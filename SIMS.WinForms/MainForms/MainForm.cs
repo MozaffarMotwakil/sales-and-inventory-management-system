@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using SIMS.WinForms.Dashboard;
 
 namespace SIMS.WinForms
 {
@@ -20,11 +21,56 @@ namespace SIMS.WinForms
             }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            frmTest form = new frmTest();
-            form.MdiParent = this;
-            form.Show();
+
+        }
+
+        private void DashboardToolStripButton_Click(object sender, EventArgs e)
+        {
+            frmDashboard dashboard = new frmDashboard();
+            dashboard.MdiParent = this;
+            dashboard.Show();
+        }
+
+        private void PointOfSelesToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InventoryToolStripButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SuppliersToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReportsToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UsersToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InvoicesToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogoutToolStripButton_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
