@@ -33,15 +33,15 @@
             this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.InvoicesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.InvoicesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.circularPictureBox = new ctrCircularPictureBox();
             this.toolStrip.SuspendLayout();
@@ -54,9 +54,10 @@
             this.toolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.toolStrip.AutoSize = false;
-            this.toolStrip.BackColor = System.Drawing.Color.Gray;
+            this.toolStrip.BackColor = System.Drawing.Color.DarkGray;
             this.toolStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DashboardToolStripButton,
@@ -69,12 +70,12 @@
             this.ActivityLogToolStripButton,
             this.LogoutToolStripButton});
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip.Location = new System.Drawing.Point(0, 221);
+            this.toolStrip.Location = new System.Drawing.Point(0, 281);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(250, 390);
+            this.toolStrip.Size = new System.Drawing.Size(250, 330);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -112,60 +113,6 @@
             this.InventoryToolStripButton3.Text = "Inventory";
             this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton3_Click);
             // 
-            // ReportsToolStripButton
-            // 
-            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
-            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
-            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.ReportsToolStripButton.Text = "Reports";
-            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
-            // 
-            // LogoutToolStripButton
-            // 
-            this.LogoutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
-            this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LogoutToolStripButton.Name = "LogoutToolStripButton";
-            this.LogoutToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.LogoutToolStripButton.Text = "Logout";
-            this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gray;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.circularPictureBox);
-            this.panel1.Location = new System.Drawing.Point(0, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 188);
-            this.panel1.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(92, 150);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Admin";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 131);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Mozaffar Motwakil Khider Salman";
-            // 
             // SuppliersToolStripButton
             // 
             this.SuppliersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -176,6 +123,17 @@
             this.SuppliersToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.SuppliersToolStripButton.Text = "Suppliers";
             this.SuppliersToolStripButton.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
+            // 
+            // ReportsToolStripButton
+            // 
+            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
+            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
+            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.ReportsToolStripButton.Text = "Reports";
+            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
             // 
             // UsersToolStripButton
             // 
@@ -188,6 +146,17 @@
             this.UsersToolStripButton.Text = "Users";
             this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
             // 
+            // InvoicesToolStripButton
+            // 
+            this.InvoicesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.InvoicesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InvoicesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InvoicesToolStripButton.Image")));
+            this.InvoicesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.InvoicesToolStripButton.Name = "InvoicesToolStripButton";
+            this.InvoicesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.InvoicesToolStripButton.Text = "Invoices";
+            this.InvoicesToolStripButton.Click += new System.EventHandler(this.InvoicesToolStripButton_Click);
+            // 
             // ActivityLogToolStripButton
             // 
             this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -199,16 +168,49 @@
             this.ActivityLogToolStripButton.Text = "Activity Log";
             this.ActivityLogToolStripButton.Click += new System.EventHandler(this.ActivityLogToolStripButton_Click);
             // 
-            // InvoicesToolStripButton
+            // LogoutToolStripButton
             // 
-            this.InvoicesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InvoicesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoicesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InvoicesToolStripButton.Image")));
-            this.InvoicesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InvoicesToolStripButton.Name = "InvoicesToolStripButton";
-            this.InvoicesToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.InvoicesToolStripButton.Text = "Invoices";
-            this.InvoicesToolStripButton.Click += new System.EventHandler(this.InvoicesToolStripButton_Click);
+            this.LogoutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
+            this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LogoutToolStripButton.Name = "LogoutToolStripButton";
+            this.LogoutToolStripButton.Size = new System.Drawing.Size(93, 36);
+            this.LogoutToolStripButton.Text = "Logout";
+            this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.circularPictureBox);
+            this.panel1.Location = new System.Drawing.Point(0, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(250, 230);
+            this.panel1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(3, 190);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(244, 18);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Admin";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(3, 170);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(244, 18);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Mozaffar_Mo";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -224,9 +226,9 @@
             // 
             this.circularPictureBox.BackColor = System.Drawing.Color.White;
             this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
-            this.circularPictureBox.Location = new System.Drawing.Point(6, 17);
+            this.circularPictureBox.Location = new System.Drawing.Point(51, 9);
             this.circularPictureBox.Name = "circularPictureBox";
-            this.circularPictureBox.Size = new System.Drawing.Size(241, 108);
+            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
             this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.circularPictureBox.TabIndex = 2;
             this.circularPictureBox.TabStop = false;
@@ -252,7 +254,6 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.ResumeLayout(false);
 

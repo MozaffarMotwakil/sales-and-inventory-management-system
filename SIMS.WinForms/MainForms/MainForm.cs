@@ -23,13 +23,17 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            frmDashboard dashboard = new frmDashboard();
+            dashboard.MdiParent = this;
+            dashboard.Dock = DockStyle.Fill;
+            dashboard.Show();
         }
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)
         {
             frmDashboard dashboard = new frmDashboard();
             dashboard.MdiParent = this;
+            dashboard.Dock = DockStyle.Fill;
             dashboard.Show();
         }
 
