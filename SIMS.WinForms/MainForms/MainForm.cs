@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using SIMS.WinForms.Dashboard;
+using SIMS.WinForms.Inventory;
 
 namespace SIMS.WinForms
 {
@@ -23,10 +24,10 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            frmDashboard dashboard = new frmDashboard();
-            dashboard.MdiParent = this;
-            dashboard.Dock = DockStyle.Fill;
-            dashboard.Show();
+            //frmDashboard dashboard = new frmDashboard();
+            //dashboard.MdiParent = this;
+            //dashboard.Dock = DockStyle.Fill;
+            //dashboard.Show();
         }
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)
@@ -44,12 +45,15 @@ namespace SIMS.WinForms
 
         private void InventoryToolStripButton3_Click(object sender, EventArgs e)
         {
-
+            frmProductsList productsList = new frmProductsList();
+            productsList.MdiParent = this;
+            productsList.Dock = DockStyle.Fill;
+            productsList.Show();
         }
 
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)

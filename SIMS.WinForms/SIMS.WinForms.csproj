@@ -58,6 +58,18 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\frmProductsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmProductsList.Designer.cs">
+      <DependentUpon>frmProductsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\ctrProductInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inventory\ctrProductInfo.Designer.cs">
+      <DependentUpon>ctrProductInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForms\ctrCircularPictureBox .cs">
       <SubType>Component</SubType>
     </Compile>
@@ -74,6 +86,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\ctrProductInfo.resx">
+      <DependentUpon>ctrProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmProductsList.resx">
+      <DependentUpon>frmProductsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -102,7 +120,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Inventory\" />
     <Folder Include="Sales\" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +148,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellow_cicle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\al-waha_mall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\price.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\barcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_basket_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stack-inventory-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

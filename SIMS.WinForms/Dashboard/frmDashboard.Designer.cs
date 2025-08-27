@@ -63,10 +63,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -75,8 +77,6 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel9.SuspendLayout();
@@ -167,12 +167,12 @@
             // panel9
             // 
             this.panel9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel9.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel9.Controls.Add(this.label17);
             this.panel9.Controls.Add(this.pictureBox2);
             this.panel9.Controls.Add(this.label1);
             this.panel9.Controls.Add(this.button9);
-            this.panel9.Location = new System.Drawing.Point(287, 49);
+            this.panel9.Location = new System.Drawing.Point(564, 49);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(269, 126);
             this.panel9.TabIndex = 0;
@@ -213,12 +213,12 @@
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.button2);
-            this.panel2.Location = new System.Drawing.Point(564, 49);
+            this.panel2.Location = new System.Drawing.Point(287, 49);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(269, 126);
             this.panel2.TabIndex = 0;
@@ -476,6 +476,19 @@
             this.label13.TabIndex = 1;
             this.label13.Text = "Total Inventory Value";
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(3, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 39);
+            this.button3.TabIndex = 1;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -518,6 +531,19 @@
             this.label14.Size = new System.Drawing.Size(189, 23);
             this.label14.TabIndex = 1;
             this.label14.Text = "Projected Sales Value";
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(3, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(45, 39);
+            this.button6.TabIndex = 1;
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // label8
             // 
@@ -613,32 +639,6 @@
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox9.TabIndex = 3;
             this.pictureBox9.TabStop = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(45, 39);
-            this.button6.TabIndex = 1;
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 39);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // frmDashboard
             // 
