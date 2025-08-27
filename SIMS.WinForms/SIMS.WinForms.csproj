@@ -58,6 +58,12 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\frmAddProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmAddProduct.Designer.cs">
+      <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\frmProductsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmAddProduct.resx">
+      <DependentUpon>frmAddProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmProductsList.resx">
       <DependentUpon>frmProductsList.cs</DependentUpon>
@@ -178,6 +187,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\filter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recived_goods.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\generate_barcode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

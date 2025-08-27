@@ -21,5 +21,12 @@ namespace SIMS.WinForms.Inventory
         {
 
         }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            frmAddProduct addProduct = new frmAddProduct();
+            addProduct.ShowDialog();
+        }
+
     }
 }
