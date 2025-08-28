@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductsList));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvProductsList = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblTotalInventoryItems = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblBelowAverageItems = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblItemsRunningLow = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtFilterText = new System.Windows.Forms.TextBox();
+            this.btnReceiveGoods = new System.Windows.Forms.Button();
+            this.btnDeleteProduct = new System.Windows.Forms.Button();
+            this.btnEditProduct = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
-            this.ctrProductInfo1 = new SIMS.WinForms.Inventory.ctrProductInfo();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -60,28 +60,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvProductsList
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvProductsList.AllowUserToAddRows = false;
+            this.dgvProductsList.AllowUserToDeleteRows = false;
+            this.dgvProductsList.AllowUserToOrderColumns = true;
+            this.dgvProductsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 339);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1120, 170);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvProductsList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProductsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductsList.Location = new System.Drawing.Point(14, 339);
+            this.dgvProductsList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvProductsList.Name = "dgvProductsList";
+            this.dgvProductsList.ReadOnly = true;
+            this.dgvProductsList.Size = new System.Drawing.Size(1120, 170);
+            this.dgvProductsList.TabIndex = 0;
+            this.dgvProductsList.TabStop = false;
             // 
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.Color.LightGreen;
-            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.lblTotalInventoryItems);
             this.panel5.Controls.Add(this.label13);
             this.panel5.Location = new System.Drawing.Point(908, 62);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -89,16 +90,16 @@
             this.panel5.Size = new System.Drawing.Size(226, 64);
             this.panel5.TabIndex = 2;
             // 
-            // label5
+            // lblTotalInventoryItems
             // 
-            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 32);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(218, 25);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "1500";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTotalInventoryItems.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalInventoryItems.Location = new System.Drawing.Point(4, 32);
+            this.lblTotalInventoryItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalInventoryItems.Name = "lblTotalInventoryItems";
+            this.lblTotalInventoryItems.Size = new System.Drawing.Size(218, 25);
+            this.lblTotalInventoryItems.TabIndex = 4;
+            this.lblTotalInventoryItems.Text = "1500";
+            this.lblTotalInventoryItems.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
@@ -115,7 +116,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Khaki;
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.lblBelowAverageItems);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(908, 143);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -123,16 +124,16 @@
             this.panel1.Size = new System.Drawing.Size(226, 64);
             this.panel1.TabIndex = 2;
             // 
-            // label6
+            // lblBelowAverageItems
             // 
-            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(4, 32);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(218, 25);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "1500";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBelowAverageItems.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBelowAverageItems.Location = new System.Drawing.Point(4, 32);
+            this.lblBelowAverageItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBelowAverageItems.Name = "lblBelowAverageItems";
+            this.lblBelowAverageItems.Size = new System.Drawing.Size(218, 25);
+            this.lblBelowAverageItems.TabIndex = 4;
+            this.lblBelowAverageItems.Text = "1500";
+            this.lblBelowAverageItems.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -149,7 +150,7 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Coral;
-            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.lblItemsRunningLow);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(908, 224);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -157,16 +158,16 @@
             this.panel2.Size = new System.Drawing.Size(226, 64);
             this.panel2.TabIndex = 2;
             // 
-            // label7
+            // lblItemsRunningLow
             // 
-            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(4, 32);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(218, 25);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "1500";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblItemsRunningLow.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblItemsRunningLow.Location = new System.Drawing.Point(4, 32);
+            this.lblItemsRunningLow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblItemsRunningLow.Name = "lblItemsRunningLow";
+            this.lblItemsRunningLow.Size = new System.Drawing.Size(218, 25);
+            this.lblItemsRunningLow.TabIndex = 4;
+            this.lblItemsRunningLow.Text = "1500";
+            this.lblItemsRunningLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -183,12 +184,12 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.cbFilter);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Controls.Add(this.textBox1);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.txtFilterText);
+            this.panel3.Controls.Add(this.btnReceiveGoods);
+            this.panel3.Controls.Add(this.btnDeleteProduct);
+            this.panel3.Controls.Add(this.btnEditProduct);
             this.panel3.Controls.Add(this.pictureBox4);
             this.panel3.Controls.Add(this.btnAddProduct);
             this.panel3.Controls.Add(this.label4);
@@ -200,38 +201,16 @@
             this.panel3.Size = new System.Drawing.Size(1148, 43);
             this.panel3.TabIndex = 3;
             // 
-            // label4
+            // cbFilter
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(572, 12);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 19);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Filter";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(617, 9);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(152, 27);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(809, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 19);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Search";
+            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilter.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Location = new System.Drawing.Point(617, 9);
+            this.cbFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(152, 27);
+            this.cbFilter.TabIndex = 4;
             // 
             // pictureBox3
             // 
@@ -239,69 +218,72 @@
             this.pictureBox3.Location = new System.Drawing.Point(775, 4);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(37, 34);
+            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
-            // textBox1
+            // txtFilterText
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(869, 9);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 27);
-            this.textBox1.TabIndex = 1;
+            this.txtFilterText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilterText.Location = new System.Drawing.Point(869, 9);
+            this.txtFilterText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtFilterText.Name = "txtFilterText";
+            this.txtFilterText.Size = new System.Drawing.Size(265, 27);
+            this.txtFilterText.TabIndex = 5;
             // 
-            // button4
+            // btnReceiveGoods
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(348, 0);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(187, 43);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Receive new goods";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnReceiveGoods.BackColor = System.Drawing.Color.White;
+            this.btnReceiveGoods.FlatAppearance.BorderSize = 0;
+            this.btnReceiveGoods.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReceiveGoods.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReceiveGoods.Image = ((System.Drawing.Image)(resources.GetObject("btnReceiveGoods.Image")));
+            this.btnReceiveGoods.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReceiveGoods.Location = new System.Drawing.Point(348, 0);
+            this.btnReceiveGoods.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnReceiveGoods.Name = "btnReceiveGoods";
+            this.btnReceiveGoods.Size = new System.Drawing.Size(187, 43);
+            this.btnReceiveGoods.TabIndex = 3;
+            this.btnReceiveGoods.Text = "Receive New Goods";
+            this.btnReceiveGoods.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReceiveGoods.UseVisualStyleBackColor = false;
+            this.btnReceiveGoods.Click += new System.EventHandler(this.btnReceiveGoods_Click);
             // 
-            // button3
+            // btnDeleteProduct
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_delete;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(232, 0);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(113, 43);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "       Delete";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnDeleteProduct.BackColor = System.Drawing.Color.White;
+            this.btnDeleteProduct.FlatAppearance.BorderSize = 0;
+            this.btnDeleteProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteProduct.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteProduct.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_delete;
+            this.btnDeleteProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteProduct.Location = new System.Drawing.Point(232, 0);
+            this.btnDeleteProduct.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnDeleteProduct.Name = "btnDeleteProduct";
+            this.btnDeleteProduct.Size = new System.Drawing.Size(113, 43);
+            this.btnDeleteProduct.TabIndex = 2;
+            this.btnDeleteProduct.Text = "       Delete";
+            this.btnDeleteProduct.UseVisualStyleBackColor = false;
+            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
             // 
-            // button2
+            // btnEditProduct
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_edit;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(115, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 43);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "       Edit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditProduct.FlatAppearance.BorderSize = 0;
+            this.btnEditProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditProduct.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditProduct.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_edit;
+            this.btnEditProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditProduct.Location = new System.Drawing.Point(115, 0);
+            this.btnEditProduct.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnEditProduct.Name = "btnEditProduct";
+            this.btnEditProduct.Size = new System.Drawing.Size(113, 43);
+            this.btnEditProduct.TabIndex = 1;
+            this.btnEditProduct.Text = "       Edit";
+            this.btnEditProduct.UseVisualStyleBackColor = true;
+            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
             // 
             // pictureBox4
             // 
@@ -330,26 +312,49 @@
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
-            // ctrProductInfo1
+            // label4
             // 
-            this.ctrProductInfo1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrProductInfo1.Location = new System.Drawing.Point(14, 62);
-            this.ctrProductInfo1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ctrProductInfo1.Name = "ctrProductInfo1";
-            this.ctrProductInfo1.Size = new System.Drawing.Size(642, 270);
-            this.ctrProductInfo1.TabIndex = 4;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(572, 12);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 19);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Filter";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(809, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 19);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Search";
+            // 
+            // ctrProductInfo
+            // 
+            this.ctrProductInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrProductInfo.Location = new System.Drawing.Point(14, 62);
+            this.ctrProductInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ctrProductInfo.Name = "ctrProductInfo";
+            this.ctrProductInfo.Size = new System.Drawing.Size(642, 270);
+            this.ctrProductInfo.TabIndex = 4;
+            this.ctrProductInfo.TabStop = false;
             // 
             // frmProductsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 523);
-            this.Controls.Add(this.ctrProductInfo1);
+            this.Controls.Add(this.ctrProductInfo);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvProductsList);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -358,7 +363,7 @@
             this.Name = "frmProductsList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -372,7 +377,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvProductsList;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel1;
@@ -380,19 +385,19 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.TextBox txtFilterText;
+        private System.Windows.Forms.Button btnDeleteProduct;
+        private System.Windows.Forms.Button btnEditProduct;
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button4;
-        private ctrProductInfo ctrProductInfo1;
+        private System.Windows.Forms.Label lblTotalInventoryItems;
+        private System.Windows.Forms.Label lblBelowAverageItems;
+        private System.Windows.Forms.Label lblItemsRunningLow;
+        private System.Windows.Forms.Button btnReceiveGoods;
+        private ctrProductInfo ctrProductInfo;
     }
 }

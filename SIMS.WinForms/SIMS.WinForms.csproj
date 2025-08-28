@@ -58,11 +58,29 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\frmAddProduct.cs">
+    <Compile Include="Inventory\frmReceiveNewGoods.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory\frmAddProduct.Designer.cs">
-      <DependentUpon>frmAddProduct.cs</DependentUpon>
+    <Compile Include="Inventory\frmReceiveNewGoods.Designer.cs">
+      <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmFindProductForDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmFindProductForDelete.Designer.cs">
+      <DependentUpon>frmFindProductForDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmFindProductForEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmFindProductForEdit.Designer.cs">
+      <DependentUpon>frmFindProductForEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmAddEditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmAddEditProduct.Designer.cs">
+      <DependentUpon>frmAddEditProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory\frmProductsList.cs">
       <SubType>Form</SubType>
@@ -75,6 +93,12 @@
     </Compile>
     <Compile Include="Inventory\ctrProductInfo.Designer.cs">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\ctrProductInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Inventory\ctrProductInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrProductInfoWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForms\ctrCircularPictureBox .cs">
       <SubType>Component</SubType>
@@ -96,11 +120,23 @@
     <EmbeddedResource Include="Inventory\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmAddProduct.resx">
-      <DependentUpon>frmAddProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Inventory\ctrProductInfoWithFilter.resx">
+      <DependentUpon>ctrProductInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmAddEditProduct.resx">
+      <DependentUpon>frmAddEditProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmFindProductForDelete.resx">
+      <DependentUpon>frmFindProductForDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmFindProductForEdit.resx">
+      <DependentUpon>frmFindProductForEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmProductsList.resx">
       <DependentUpon>frmProductsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmReceiveNewGoods.resx">
+      <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -199,6 +235,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cancle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go_to_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

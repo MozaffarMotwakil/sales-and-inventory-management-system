@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SIMS.WinForms.Inventory
@@ -17,15 +10,29 @@ namespace SIMS.WinForms.Inventory
             InitializeComponent();
         }
 
-        private void ctrProductInfo1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            frmAddProduct addProduct = new frmAddProduct();
+            frmAddEditProduct addProduct = new frmAddEditProduct();
+            addProduct.FormMode = enMode.Add;
             addProduct.ShowDialog();
+        }
+
+        private void btnEditProduct_Click(object sender, EventArgs e)
+        {
+            frmFindProductForEdit productForEdit = new frmFindProductForEdit();
+            productForEdit.ShowDialog();
+        }
+
+        private void btnDeleteProduct_Click(object sender, EventArgs e)
+        {
+            frmFindProductForDelete productForDelete = new frmFindProductForDelete();
+            productForDelete.ShowDialog();
+        }
+
+        private void btnReceiveGoods_Click(object sender, EventArgs e)
+        {
+            frmReceiveNewGoods receiveNewGoods = new frmReceiveNewGoods();
+            receiveNewGoods.ShowDialog();
         }
 
     }

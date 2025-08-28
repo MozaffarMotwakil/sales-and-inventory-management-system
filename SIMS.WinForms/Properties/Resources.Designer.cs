@@ -93,6 +93,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ecommerce_Purchase_icon {
             get {
                 object obj = ResourceManager.GetObject("Ecommerce-Purchase-icon", resourceCulture);
@@ -126,6 +136,16 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap generate_barcode {
             get {
                 object obj = ResourceManager.GetObject("generate_barcode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap go_to_edit {
+            get {
+                object obj = ResourceManager.GetObject("go_to_edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
