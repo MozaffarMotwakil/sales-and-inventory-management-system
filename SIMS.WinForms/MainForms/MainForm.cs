@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Sales;
 
 namespace SIMS.WinForms
 {
@@ -40,7 +41,10 @@ namespace SIMS.WinForms
 
         private void PointOfSelesToolStripButton_Click(object sender, EventArgs e)
         {
-
+            frmPointOfSale pointOfSale = new frmPointOfSale();
+            pointOfSale.MdiParent = this;
+            pointOfSale.Dock = DockStyle.Fill;
+            pointOfSale.Show();
         }
 
         private void InventoryToolStripButton3_Click(object sender, EventArgs e)
