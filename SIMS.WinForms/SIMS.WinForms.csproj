@@ -117,6 +117,42 @@
     <Compile Include="Sales\frmPointOfSale.Designer.cs">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Suppliers\frmFindSuppliertForDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmFindSuppliertForDelete.Designer.cs">
+      <DependentUpon>frmFindSuppliertForDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\frmFindSuppliertForEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmFindSuppliertForEdit.Designer.cs">
+      <DependentUpon>frmFindSuppliertForEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\frmAddEditSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmAddEditSupplier.Designer.cs">
+      <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\frmSuppliersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmSuppliersList.Designer.cs">
+      <DependentUpon>frmSuppliersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\ctrSupplierInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Suppliers\ctrSupplierInfo.Designer.cs">
+      <DependentUpon>ctrSupplierInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\ctrSupplierInfoWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Suppliers\ctrSupplierInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +196,24 @@
     <EmbeddedResource Include="Sales\frmPointOfSale.resx">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\ctrSupplierInfo.resx">
+      <DependentUpon>ctrSupplierInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\ctrSupplierInfoWithFilter.resx">
+      <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmAddEditSupplier.resx">
+      <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmFindSuppliertForDelete.resx">
+      <DependentUpon>frmFindSuppliertForDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmFindSuppliertForEdit.resx">
+      <DependentUpon>frmFindSuppliertForEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmSuppliersList.resx">
+      <DependentUpon>frmSuppliersList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -173,7 +227,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Ecommerce-Return-Purchase-icon.png" />
   </ItemGroup>
@@ -248,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recived_goods_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

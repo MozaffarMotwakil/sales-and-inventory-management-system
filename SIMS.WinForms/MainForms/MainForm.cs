@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
 using SIMS.WinForms.Sales;
+using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms
 {
@@ -57,7 +58,10 @@ namespace SIMS.WinForms
 
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
-            
+            frmSuppliersList suppliersList = new frmSuppliersList();
+            suppliersList.MdiParent = this;
+            suppliersList.Dock = DockStyle.Fill;
+            suppliersList.Show();
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)

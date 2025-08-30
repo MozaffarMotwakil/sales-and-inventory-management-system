@@ -101,7 +101,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.SkyBlue;
+            this.panel1.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label2);
@@ -167,7 +167,7 @@
             // panel9
             // 
             this.panel9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel9.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel9.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.panel9.Controls.Add(this.label17);
             this.panel9.Controls.Add(this.pictureBox2);
             this.panel9.Controls.Add(this.label1);
@@ -213,7 +213,7 @@
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel2.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.panel2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.label18);
@@ -269,7 +269,7 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.panel3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.pictureBox4);
             this.panel3.Controls.Add(this.label11);
@@ -324,7 +324,7 @@
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.LightPink;
+            this.panel4.BackColor = System.Drawing.Color.LightGreen;
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.pictureBox5);
             this.panel4.Controls.Add(this.label15);
@@ -380,7 +380,7 @@
             // panel7
             // 
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel7.BackColor = System.Drawing.Color.LightCoral;
+            this.panel7.BackColor = System.Drawing.Color.LightGreen;
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.pictureBox6);
             this.panel7.Controls.Add(this.label12);
@@ -436,7 +436,7 @@
             // panel5
             // 
             this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel5.BackColor = System.Drawing.Color.IndianRed;
+            this.panel5.BackColor = System.Drawing.Color.LightPink;
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.pictureBox7);
             this.panel5.Controls.Add(this.label13);
@@ -492,7 +492,7 @@
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel6.BackColor = System.Drawing.Color.Brown;
+            this.panel6.BackColor = System.Drawing.Color.LightPink;
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.pictureBox8);
             this.panel6.Controls.Add(this.label14);

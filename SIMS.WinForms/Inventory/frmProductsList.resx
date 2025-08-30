@@ -117,29 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnReceiveGoods.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAAblQTFRFAaed
-        ////AKedt4teAKac1KR2ZSuO/sWn872b16V5EayiAqWb0xFYuIxf2/Lw77qX/MSlR7639/z8/8eowJNo
-        AqmezZ5w67eRB6idUsG606N24q+GAKad6Pb1jNXQC5ua7/n4Pruz2qyB0O7suebj/f7+7rKU3qyDyJhz
-        aa2YHqeY+MChTauXjK6X2Kh727WT5rKOFKaaJI2WbzeT/fr74LOIILGncs3G27GLL4WOfNDKJ6iZ066O
-        L7atZ8jCdUKUVj+QJ3iXuoqW666Q1RpduyVhtrKREqmeeq6WZaaMqODc442v3rCFGa+lr7yku45hOaeW
-        u8CmOK6fgrmkzCBhnNvXopVvpHCM3cCliUt0zayEwKZ97MWnZTKOl5BqNGaVRlOTPH6b8ez0f1ObhUyP
-        XHql6uLu4dXovMbO31h135qX3FmLx+rogtLNsaV+laWCPKqaKLOqXLOhUrGg3kuBarSh6HeFxOnm/e7z
-        ZmWT8L7Rw7rWw+nm1aOP2sviKaCOZJKTkFqM/8Glbpx/T2+Dqy5mi16o6e7yuqDLLaWWxKF5rdrc9fL3
-        SpyVVmmBw6CR4nuioEBt3mSSG3mycwAAAmhJREFUOE+F02dX4kAYBeBknBhIIhAgEghFitKromKXtfe1
-        rHXt7qrbe++9l1+87ySDxE97P3AO3IdkMnmHYf+T86DFFo3aAk76TY8JBKYGwp2CMHtHvnG9bs5AS7Bf
-        FTFGCGGMBW+slf5eA4/CDGbOgkShK2AUFEzNmmoShGWb3hjg2V6IUWhVCw7rQgcvBxuHdkqigmhnBHtb
-        KNj/2Ai5vDscgiUyKu0ZxAQp+Ex6kifJ5EQ2m/KDA8ngTrgJgP0D+Pvhm9XV6gsPZCw7kcxkFlKwatyj
-        g2/Du0ODiVwuki9HZmbK5XjO1+x2X1qAJ+kPEDCg+EOlrxzH5SM++GyebyBx9yVVpMQAfD+CxaU2fT6u
-        OwI919xkgAtt2WIoCOAKPONeZkPTtDjpTaDt158qgKvtje2nWw6eT2ucfos6OB251qGDw7SL53mHxaNZ
-        66AvXziRKDhYo6BQB9tfen+MSn9bGfbT0U5pcc7hcqQtFk+Oi/iaEgkCRCT+HP0Na3DKsG29fXYLJM5Z
-        C3YtbrfON2wXYS9Lx2QfejCDirdubm7ku61WzeOxw4K7371SFISEKAHPBbBqMdV7OzM5OWa3pGE9/MXX
-        7yshUXYS4PTCtuvvBzJ+b24NrsC7HkrLH9aPjbcZI5egQerduS2Xy/X2RJKk+48N0NplHkc0vvhgaak6
-        IknLT+k8sAHZPJEI+f1KZVQamSaTrQPWFsbnx43xV9anO0hlANbmNU89BAtBva8BODedcGpoi7AajtGi
-        Blg22tOvYjhbougX5BUy0HrqANYaCw54ZW/XStR0fM2AxOmsHUo9LPsPyERYbA7RPWwAAAAASUVORK5C
-        YII=
-</value>
-  </data>
+  <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
