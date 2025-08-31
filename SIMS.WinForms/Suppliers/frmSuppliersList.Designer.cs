@@ -28,58 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSuppliersList = new System.Windows.Forms.DataGridView();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAddSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnEditSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteSupplier = new System.Windows.Forms.ToolStripButton();
-            this.cbFilter = new System.Windows.Forms.ComboBox();
-            this.txtFilterText = new System.Windows.Forms.TextBox();
+            this.cbFilterColumn = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.ctrSupplierInfo1 = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvSuppliersList
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSuppliersList.AllowUserToAddRows = false;
+            this.dgvSuppliersList.AllowUserToDeleteRows = false;
+            this.dgvSuppliersList.AllowUserToOrderColumns = true;
+            this.dgvSuppliersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 301);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(775, 137);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvSuppliersList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSuppliersList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvSuppliersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuppliersList.Location = new System.Drawing.Point(13, 301);
+            this.dgvSuppliersList.Name = "dgvSuppliersList";
+            this.dgvSuppliersList.ReadOnly = true;
+            this.dgvSuppliersList.Size = new System.Drawing.Size(775, 137);
+            this.dgvSuppliersList.TabIndex = 2;
             // 
             // toolStrip
             // 
-            this.toolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.White;
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddSupplier,
             this.btnEditSupplier,
             this.btnDeleteSupplier});
-            this.toolStrip.Location = new System.Drawing.Point(2, 1);
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(797, 45);
+            this.toolStrip.Size = new System.Drawing.Size(800, 45);
             this.toolStrip.TabIndex = 2;
-            this.toolStrip.Text = "toolStrip1";
+            this.toolStrip.Text = "toolStrip";
             // 
             // btnAddSupplier
             // 
@@ -91,6 +89,7 @@
             this.btnAddSupplier.Name = "btnAddSupplier";
             this.btnAddSupplier.Size = new System.Drawing.Size(102, 42);
             this.btnAddSupplier.Text = "   Add    ";
+            this.btnAddSupplier.ToolTipText = "Add a new supplier";
             this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
             // btnEditSupplier
@@ -102,6 +101,7 @@
             this.btnEditSupplier.Name = "btnEditSupplier";
             this.btnEditSupplier.Size = new System.Drawing.Size(96, 42);
             this.btnEditSupplier.Text = "   Edit   ";
+            this.btnEditSupplier.ToolTipText = "Edit a supplier";
             this.btnEditSupplier.Click += new System.EventHandler(this.btnEditSupplier_Click);
             // 
             // btnDeleteSupplier
@@ -113,29 +113,34 @@
             this.btnDeleteSupplier.Name = "btnDeleteSupplier";
             this.btnDeleteSupplier.Size = new System.Drawing.Size(114, 42);
             this.btnDeleteSupplier.Text = "   Delete   ";
+            this.btnDeleteSupplier.ToolTipText = "Delete a supplier";
             this.btnDeleteSupplier.Click += new System.EventHandler(this.btnDeleteSupplier_Click);
             // 
-            // cbFilter
+            // cbFilterColumn
             // 
-            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilter.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilter.FormattingEnabled = true;
-            this.cbFilter.Location = new System.Drawing.Point(417, 12);
-            this.cbFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(175, 27);
-            this.cbFilter.TabIndex = 8;
+            this.cbFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilterColumn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilterColumn.FormattingEnabled = true;
+            this.cbFilterColumn.Items.AddRange(new object[] {
+            "Supplier Name",
+            "Contact Person",
+            "Phone Number"});
+            this.cbFilterColumn.Location = new System.Drawing.Point(417, 12);
+            this.cbFilterColumn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbFilterColumn.Name = "cbFilterColumn";
+            this.cbFilterColumn.Size = new System.Drawing.Size(175, 27);
+            this.cbFilterColumn.TabIndex = 1;
             // 
-            // txtFilterText
+            // txtSearch
             // 
-            this.txtFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilterText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterText.Location = new System.Drawing.Point(696, 12);
-            this.txtFilterText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtFilterText.Name = "txtFilterText";
-            this.txtFilterText.Size = new System.Drawing.Size(91, 27);
-            this.txtFilterText.TabIndex = 11;
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(696, 12);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(91, 27);
+            this.txtSearch.TabIndex = 0;
             // 
             // label4
             // 
@@ -182,7 +187,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 7;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // ctrSupplierInfo1
             // 
@@ -197,15 +201,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cbFilter);
+            this.Controls.Add(this.cbFilterColumn);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.txtFilterText);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ctrSupplierInfo1);
             this.Controls.Add(this.toolStrip);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvSuppliersList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -214,7 +218,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers List";
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -226,15 +230,15 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSuppliersList;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton btnAddSupplier;
         private System.Windows.Forms.ToolStripButton btnEditSupplier;
         private System.Windows.Forms.ToolStripButton btnDeleteSupplier;
         private ctrSupplierInfo ctrSupplierInfo1;
-        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.ComboBox cbFilterColumn;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.TextBox txtFilterText;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Suppliers
 {
@@ -19,12 +13,7 @@ namespace SIMS.WinForms.Suppliers
 
         private void frmSuppliersList_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
+            cbFilterColumn.SelectedItem = "Supplier Name";
         }
 
         private void btnAddSupplier_Click(object sender, EventArgs e)
@@ -43,6 +32,34 @@ namespace SIMS.WinForms.Suppliers
         {
             frmFindSuppliertForDelete suppliertForDelete = new frmFindSuppliertForDelete();
             suppliertForDelete.ShowDialog();
+        }
+
+        private DataGridViewImageColumn _CreateEditColumn()
+        {
+            DataGridViewImageColumn edit = new DataGridViewImageColumn();
+            edit.Name = "edit";
+            edit.HeaderText = "Edit";
+            edit.Image = Resources.edit;
+            edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            edit.SortMode = DataGridViewColumnSortMode.NotSortable;
+            edit.Resizable = DataGridViewTriState.False;
+            edit.Width = 50;
+
+            return edit;
+        }
+
+        private DataGridViewImageColumn _CreateDeleteColumn()
+        {
+            DataGridViewImageColumn delete = new DataGridViewImageColumn();
+            delete.Name = "delete";
+            delete.HeaderText = "Delete";
+            delete.Image = Resources.delete;
+            delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            delete.SortMode = DataGridViewColumnSortMode.NotSortable;
+            delete.Resizable = DataGridViewTriState.False;
+            delete.Width = 50;
+
+            return delete;
         }
 
     }

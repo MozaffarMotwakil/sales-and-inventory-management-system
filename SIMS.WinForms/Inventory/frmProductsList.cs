@@ -10,6 +10,11 @@ namespace SIMS.WinForms.Inventory
             InitializeComponent();
         }
 
+        private void frmProductsList_Load(object sender, EventArgs e)
+        {
+            cbFilterColumn.SelectedItem = "Product Name";
+        }
+
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             frmAddEditProduct addProduct = new frmAddEditProduct();

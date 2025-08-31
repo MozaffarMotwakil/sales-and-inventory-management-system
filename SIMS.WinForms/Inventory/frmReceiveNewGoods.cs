@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using SIMS.WinForms.Properties;
+using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms.Inventory
 {
@@ -51,6 +52,13 @@ namespace SIMS.WinForms.Inventory
                 row.Cells["No"].Value = row.Index + 1;
                 row.Cells["Delete"].Value = Resources.delete;
             }
+        }
+
+        private void llAddSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier();
+            addSupplier.FormMode = enMode.Add;
+            addSupplier.ShowDialog();
         }
 
     }

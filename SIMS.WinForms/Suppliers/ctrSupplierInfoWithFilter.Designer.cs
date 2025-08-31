@@ -32,7 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFind = new System.Windows.Forms.Button();
-            this.txtFilterText = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnFind);
-            this.panel1.Controls.Add(this.txtFilterText);
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(593, 58);
@@ -76,13 +76,13 @@
             this.btnFind.TabIndex = 5;
             this.btnFind.UseVisualStyleBackColor = true;
             // 
-            // txtFilterText
+            // txtSearch
             // 
-            this.txtFilterText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterText.Location = new System.Drawing.Point(128, 19);
-            this.txtFilterText.Name = "txtFilterText";
-            this.txtFilterText.Size = new System.Drawing.Size(417, 27);
-            this.txtFilterText.TabIndex = 0;
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(128, 19);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(417, 27);
+            this.txtSearch.TabIndex = 0;
             // 
             // ctrSupplierInfoWithFilter
             // 
@@ -105,6 +105,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.TextBox txtFilterText;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

@@ -34,7 +34,7 @@
             this.rbBarcode = new System.Windows.Forms.RadioButton();
             this.rbProductName = new System.Windows.Forms.RadioButton();
             this.btnFind = new System.Windows.Forms.Button();
-            this.txtFilterText = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.gbSearchBy.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +54,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.gbSearchBy);
             this.panel1.Controls.Add(this.btnFind);
-            this.panel1.Controls.Add(this.txtFilterText);
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Location = new System.Drawing.Point(5, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(636, 58);
@@ -66,7 +66,7 @@
             this.gbSearchBy.Controls.Add(this.rbProductName);
             this.gbSearchBy.Location = new System.Drawing.Point(3, 3);
             this.gbSearchBy.Name = "gbSearchBy";
-            this.gbSearchBy.Size = new System.Drawing.Size(229, 52);
+            this.gbSearchBy.Size = new System.Drawing.Size(200, 52);
             this.gbSearchBy.TabIndex = 6;
             this.gbSearchBy.TabStop = false;
             this.gbSearchBy.Text = "Search By";
@@ -74,9 +74,10 @@
             // rbBarcode
             // 
             this.rbBarcode.AutoSize = true;
-            this.rbBarcode.Location = new System.Drawing.Point(141, 26);
+            this.rbBarcode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBarcode.Location = new System.Drawing.Point(123, 26);
             this.rbBarcode.Name = "rbBarcode";
-            this.rbBarcode.Size = new System.Drawing.Size(79, 22);
+            this.rbBarcode.Size = new System.Drawing.Size(71, 20);
             this.rbBarcode.TabIndex = 0;
             this.rbBarcode.Text = "Barcode";
             this.rbBarcode.UseVisualStyleBackColor = true;
@@ -85,9 +86,10 @@
             // 
             this.rbProductName.AutoSize = true;
             this.rbProductName.Checked = true;
+            this.rbProductName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbProductName.Location = new System.Drawing.Point(8, 26);
             this.rbProductName.Name = "rbProductName";
-            this.rbProductName.Size = new System.Drawing.Size(119, 22);
+            this.rbProductName.Size = new System.Drawing.Size(105, 20);
             this.rbProductName.TabIndex = 0;
             this.rbProductName.TabStop = true;
             this.rbProductName.Text = "Product Name";
@@ -103,13 +105,13 @@
             this.btnFind.TabIndex = 5;
             this.btnFind.UseVisualStyleBackColor = true;
             // 
-            // txtFilterText
+            // txtSearch
             // 
-            this.txtFilterText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterText.Location = new System.Drawing.Point(239, 22);
-            this.txtFilterText.Name = "txtFilterText";
-            this.txtFilterText.Size = new System.Drawing.Size(342, 27);
-            this.txtFilterText.TabIndex = 0;
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(209, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(372, 27);
+            this.txtSearch.TabIndex = 0;
             // 
             // ctrProductInfoWithFilter
             // 
@@ -134,7 +136,7 @@
 
         private ctrProductInfo ctrProductInfo;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtFilterText;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.GroupBox gbSearchBy;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.RadioButton rbBarcode;

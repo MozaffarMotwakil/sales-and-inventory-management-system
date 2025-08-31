@@ -31,6 +31,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gbInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.dgvPurchasedProducts = new System.Windows.Forms.DataGridView();
+            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbInvoiceSummary = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,31 +47,26 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbSallingOperation = new System.Windows.Forms.GroupBox();
-            this.gbProductSearchResults = new System.Windows.Forms.GroupBox();
-            this.dgvProductSearchResults = new System.Windows.Forms.DataGridView();
             this.gbPaymentInfo = new System.Windows.Forms.GroupBox();
+            this.rbBankTransfer = new System.Windows.Forms.RadioButton();
+            this.rbCasch = new System.Windows.Forms.RadioButton();
             this.btnCancleSale = new System.Windows.Forms.Button();
             this.btnCompleteSale = new System.Windows.Forms.Button();
             this.rtxtAmountPaid = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblChange = new System.Windows.Forms.Label();
             this.txtTextForSearch = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.rbBankTransfer = new System.Windows.Forms.RadioButton();
-            this.rbCasch = new System.Windows.Forms.RadioButton();
-            this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProductSearchResults = new System.Windows.Forms.DataGridView();
+            this.gbProductSearchResults = new System.Windows.Forms.GroupBox();
             this.gbInvoiceDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchasedProducts)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             this.gbSallingOperation.SuspendLayout();
-            this.gbProductSearchResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductSearchResults)).BeginInit();
             this.gbPaymentInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductSearchResults)).BeginInit();
+            this.gbProductSearchResults.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbInvoiceDetails
@@ -118,6 +118,46 @@
             this.dgvPurchasedProducts.Size = new System.Drawing.Size(417, 237);
             this.dgvPurchasedProducts.TabIndex = 1;
             this.dgvPurchasedProducts.TabStop = false;
+            // 
+            // No
+            // 
+            this.No.FillWeight = 38.07107F;
+            this.No.HeaderText = "No.";
+            this.No.Name = "No";
+            this.No.ReadOnly = true;
+            // 
+            // ProductName
+            // 
+            this.ProductName.FillWeight = 187.5854F;
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Quantity
+            // 
+            this.Quantity.FillWeight = 91.44786F;
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.FillWeight = 91.44786F;
+            this.UnitPrice.HeaderText = "Unit Price";
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.ReadOnly = true;
+            this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Total
+            // 
+            this.Total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Total.FillWeight = 91.44786F;
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // gbInvoiceSummary
             // 
@@ -273,33 +313,6 @@
             this.gbSallingOperation.TabStop = false;
             this.gbSallingOperation.Text = "Products Search";
             // 
-            // gbProductSearchResults
-            // 
-            this.gbProductSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbProductSearchResults.Controls.Add(this.dgvProductSearchResults);
-            this.gbProductSearchResults.Location = new System.Drawing.Point(9, 83);
-            this.gbProductSearchResults.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.gbProductSearchResults.Name = "gbProductSearchResults";
-            this.gbProductSearchResults.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.gbProductSearchResults.Size = new System.Drawing.Size(417, 199);
-            this.gbProductSearchResults.TabIndex = 2;
-            this.gbProductSearchResults.TabStop = false;
-            this.gbProductSearchResults.Text = "Product Search Results";
-            // 
-            // dgvProductSearchResults
-            // 
-            this.dgvProductSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dgvProductSearchResults.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProductSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductSearchResults.Location = new System.Drawing.Point(8, 36);
-            this.dgvProductSearchResults.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.dgvProductSearchResults.Name = "dgvProductSearchResults";
-            this.dgvProductSearchResults.Size = new System.Drawing.Size(401, 155);
-            this.dgvProductSearchResults.TabIndex = 0;
-            this.dgvProductSearchResults.TabStop = false;
-            // 
             // gbPaymentInfo
             // 
             this.gbPaymentInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -321,6 +334,28 @@
             this.gbPaymentInfo.TabIndex = 1;
             this.gbPaymentInfo.TabStop = false;
             this.gbPaymentInfo.Text = "Payment Info";
+            // 
+            // rbBankTransfer
+            // 
+            this.rbBankTransfer.AutoSize = true;
+            this.rbBankTransfer.Location = new System.Drawing.Point(266, 121);
+            this.rbBankTransfer.Name = "rbBankTransfer";
+            this.rbBankTransfer.Size = new System.Drawing.Size(125, 23);
+            this.rbBankTransfer.TabIndex = 3;
+            this.rbBankTransfer.Text = "Bank Transfer";
+            this.rbBankTransfer.UseVisualStyleBackColor = true;
+            // 
+            // rbCasch
+            // 
+            this.rbCasch.AutoSize = true;
+            this.rbCasch.Checked = true;
+            this.rbCasch.Location = new System.Drawing.Point(187, 121);
+            this.rbCasch.Name = "rbCasch";
+            this.rbCasch.Size = new System.Drawing.Size(61, 23);
+            this.rbCasch.TabIndex = 2;
+            this.rbCasch.TabStop = true;
+            this.rbCasch.Text = "Cash";
+            this.rbCasch.UseVisualStyleBackColor = true;
             // 
             // btnCancleSale
             // 
@@ -357,6 +392,20 @@
             this.rtxtAmountPaid.Size = new System.Drawing.Size(222, 36);
             this.rtxtAmountPaid.TabIndex = 1;
             this.rtxtAmountPaid.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(10, 123);
+            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(147, 19);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Payment Method";
             // 
             // label11
             // 
@@ -408,81 +457,32 @@
             this.txtTextForSearch.Size = new System.Drawing.Size(414, 27);
             this.txtTextForSearch.TabIndex = 0;
             // 
-            // label13
+            // dgvProductSearchResults
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(10, 123);
-            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(147, 19);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Payment Method";
+            this.dgvProductSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvProductSearchResults.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProductSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProductSearchResults.Location = new System.Drawing.Point(8, 36);
+            this.dgvProductSearchResults.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.dgvProductSearchResults.Name = "dgvProductSearchResults";
+            this.dgvProductSearchResults.Size = new System.Drawing.Size(401, 155);
+            this.dgvProductSearchResults.TabIndex = 0;
+            this.dgvProductSearchResults.TabStop = false;
             // 
-            // rbBankTransfer
+            // gbProductSearchResults
             // 
-            this.rbBankTransfer.AutoSize = true;
-            this.rbBankTransfer.Location = new System.Drawing.Point(266, 121);
-            this.rbBankTransfer.Name = "rbBankTransfer";
-            this.rbBankTransfer.Size = new System.Drawing.Size(125, 23);
-            this.rbBankTransfer.TabIndex = 3;
-            this.rbBankTransfer.Text = "Bank Transfer";
-            this.rbBankTransfer.UseVisualStyleBackColor = true;
-            // 
-            // rbCasch
-            // 
-            this.rbCasch.AutoSize = true;
-            this.rbCasch.Checked = true;
-            this.rbCasch.Location = new System.Drawing.Point(187, 121);
-            this.rbCasch.Name = "rbCasch";
-            this.rbCasch.Size = new System.Drawing.Size(61, 23);
-            this.rbCasch.TabIndex = 2;
-            this.rbCasch.TabStop = true;
-            this.rbCasch.Text = "Cash";
-            this.rbCasch.UseVisualStyleBackColor = true;
-            // 
-            // No
-            // 
-            this.No.FillWeight = 38.07107F;
-            this.No.HeaderText = "No.";
-            this.No.Name = "No";
-            this.No.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.FillWeight = 187.5854F;
-            this.ProductName.HeaderText = "Product Name";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            this.ProductName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Quantity
-            // 
-            this.Quantity.FillWeight = 91.44786F;
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.FillWeight = 91.44786F;
-            this.UnitPrice.HeaderText = "Unit Price";
-            this.UnitPrice.Name = "UnitPrice";
-            this.UnitPrice.ReadOnly = true;
-            this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Total
-            // 
-            this.Total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Total.FillWeight = 91.44786F;
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.gbProductSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.gbProductSearchResults.Controls.Add(this.dgvProductSearchResults);
+            this.gbProductSearchResults.Location = new System.Drawing.Point(9, 83);
+            this.gbProductSearchResults.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbProductSearchResults.Name = "gbProductSearchResults";
+            this.gbProductSearchResults.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbProductSearchResults.Size = new System.Drawing.Size(417, 199);
+            this.gbProductSearchResults.TabIndex = 2;
+            this.gbProductSearchResults.TabStop = false;
+            this.gbProductSearchResults.Text = "Product Search Results";
             // 
             // frmPointOfSale
             // 
@@ -508,10 +508,10 @@
             this.gbInvoiceSummary.PerformLayout();
             this.gbSallingOperation.ResumeLayout(false);
             this.gbSallingOperation.PerformLayout();
-            this.gbProductSearchResults.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductSearchResults)).EndInit();
             this.gbPaymentInfo.ResumeLayout(false);
             this.gbPaymentInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductSearchResults)).EndInit();
+            this.gbProductSearchResults.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -537,8 +537,6 @@
         private System.Windows.Forms.Button btnCompleteSale;
         private System.Windows.Forms.RichTextBox rtxtAmountPaid;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox gbProductSearchResults;
-        private System.Windows.Forms.DataGridView dgvProductSearchResults;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblChange;
         private System.Windows.Forms.Label label13;
@@ -549,5 +547,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.GroupBox gbProductSearchResults;
+        private System.Windows.Forms.DataGridView dgvProductSearchResults;
     }
 }

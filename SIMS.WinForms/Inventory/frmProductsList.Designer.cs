@@ -43,8 +43,8 @@
             this.btnEditProduct = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteProduct = new System.Windows.Forms.ToolStripButton();
             this.btnReceiveGoods = new System.Windows.Forms.ToolStripButton();
-            this.cbFilter = new System.Windows.Forms.ComboBox();
-            this.txtFilterText = new System.Windows.Forms.TextBox();
+            this.cbFilterColumn = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -74,7 +74,7 @@
             this.dgvProductsList.Name = "dgvProductsList";
             this.dgvProductsList.ReadOnly = true;
             this.dgvProductsList.Size = new System.Drawing.Size(1120, 170);
-            this.dgvProductsList.TabIndex = 0;
+            this.dgvProductsList.TabIndex = 2;
             this.dgvProductsList.TabStop = false;
             // 
             // panel5
@@ -191,7 +191,7 @@
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
             this.toolStrip.Size = new System.Drawing.Size(1148, 39);
-            this.toolStrip.TabIndex = 5;
+            this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip1";
             // 
             // btnAddProduct
@@ -238,27 +238,32 @@
             this.btnReceiveGoods.Text = "   Receive New Goods   ";
             this.btnReceiveGoods.Click += new System.EventHandler(this.btnReceiveGoods_Click);
             // 
-            // cbFilter
+            // cbFilterColumn
             // 
-            this.cbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilter.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilter.FormattingEnabled = true;
-            this.cbFilter.Location = new System.Drawing.Point(617, 7);
-            this.cbFilter.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(140, 27);
-            this.cbFilter.TabIndex = 14;
+            this.cbFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFilterColumn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFilterColumn.FormattingEnabled = true;
+            this.cbFilterColumn.Items.AddRange(new object[] {
+            "Product Name",
+            "Barcode",
+            "Supplier",
+            "Category"});
+            this.cbFilterColumn.Location = new System.Drawing.Point(617, 7);
+            this.cbFilterColumn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbFilterColumn.Name = "cbFilterColumn";
+            this.cbFilterColumn.Size = new System.Drawing.Size(140, 27);
+            this.cbFilterColumn.TabIndex = 1;
             // 
-            // txtFilterText
+            // txtSearch
             // 
-            this.txtFilterText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFilterText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterText.Location = new System.Drawing.Point(869, 7);
-            this.txtFilterText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtFilterText.Name = "txtFilterText";
-            this.txtFilterText.Size = new System.Drawing.Size(265, 27);
-            this.txtFilterText.TabIndex = 17;
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(869, 7);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(265, 27);
+            this.txtSearch.TabIndex = 0;
             // 
             // label4
             // 
@@ -321,9 +326,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1148, 523);
-            this.Controls.Add(this.cbFilter);
+            this.Controls.Add(this.cbFilterColumn);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txtFilterText);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -341,6 +346,7 @@
             this.Name = "frmProductsList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmProductsList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -372,9 +378,9 @@
         private System.Windows.Forms.ToolStripButton btnEditProduct;
         private System.Windows.Forms.ToolStripButton btnDeleteProduct;
         private System.Windows.Forms.ToolStripButton btnReceiveGoods;
-        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.ComboBox cbFilterColumn;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox txtFilterText;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

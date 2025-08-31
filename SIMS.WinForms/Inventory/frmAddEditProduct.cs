@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms.Inventory
 {
@@ -23,6 +24,13 @@ namespace SIMS.WinForms.Inventory
             {
                 this.Text = "Edit Product";
             }
+        }
+
+        private void llAddSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier();
+            addSupplier.FormMode = enMode.Add;
+            addSupplier.ShowDialog();
         }
 
     }

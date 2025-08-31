@@ -35,11 +35,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSupplierName = new System.Windows.Forms.Label();
-            this.llContactPerson = new System.Windows.Forms.LinkLabel();
             this.lblPhoneNumber = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
+            this.llbContactPerson = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -120,17 +120,6 @@
             this.lblSupplierName.TabIndex = 1;
             this.lblSupplierName.Text = "N/A";
             // 
-            // llContactPerson
-            // 
-            this.llContactPerson.AutoSize = true;
-            this.llContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llContactPerson.Location = new System.Drawing.Point(150, 42);
-            this.llContactPerson.Name = "llContactPerson";
-            this.llContactPerson.Size = new System.Drawing.Size(37, 19);
-            this.llContactPerson.TabIndex = 7;
-            this.llContactPerson.TabStop = true;
-            this.llContactPerson.Text = "N/A";
-            // 
             // lblPhoneNumber
             // 
             this.lblPhoneNumber.AutoSize = true;
@@ -179,11 +168,22 @@
             this.lblNotes.TabIndex = 1;
             this.lblNotes.Text = "N/A";
             // 
+            // llbContactPerson
+            // 
+            this.llbContactPerson.AutoSize = true;
+            this.llbContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llbContactPerson.ForeColor = System.Drawing.Color.Black;
+            this.llbContactPerson.Location = new System.Drawing.Point(150, 42);
+            this.llbContactPerson.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.llbContactPerson.Name = "llbContactPerson";
+            this.llbContactPerson.Size = new System.Drawing.Size(37, 19);
+            this.llbContactPerson.TabIndex = 1;
+            this.llbContactPerson.Text = "N/A";
+            // 
             // ctrSupplierInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.llContactPerson);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -192,6 +192,7 @@
             this.Controls.Add(this.lblNotes);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.llbContactPerson);
             this.Controls.Add(this.lblPhoneNumber);
             this.Controls.Add(this.lblSupplierName);
             this.Controls.Add(this.label2);
@@ -211,11 +212,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblSupplierName;
-        private System.Windows.Forms.LinkLabel llContactPerson;
         private System.Windows.Forms.Label lblPhoneNumber;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblNotes;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label llbContactPerson;
     }
 }
