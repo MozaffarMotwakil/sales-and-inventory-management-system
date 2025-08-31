@@ -5,6 +5,7 @@ using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
 using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
+using SIMS.WinForms.Users;
 
 namespace SIMS.WinForms
 {
@@ -71,7 +72,10 @@ namespace SIMS.WinForms
 
         private void UsersToolStripButton_Click(object sender, EventArgs e)
         {
-
+            frmUsersList usersList = new frmUsersList();
+            usersList.MdiParent = this;
+            usersList.Dock = DockStyle.Fill;
+            usersList.Show();
         }
 
         private void InvoicesToolStripButton_Click(object sender, EventArgs e)
