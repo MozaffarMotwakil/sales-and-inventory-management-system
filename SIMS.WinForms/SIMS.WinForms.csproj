@@ -100,6 +100,18 @@
     <Compile Include="Inventory\ctrProductInfoWithFilter.Designer.cs">
       <DependentUpon>ctrProductInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoices\frmInvoicesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoices\frmInvoicesList.Designer.cs">
+      <DependentUpon>frmInvoicesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Invoices\ctrInvoiceInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Invoices\ctrInvoiceInfo.Designer.cs">
+      <DependentUpon>ctrInvoiceInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForms\ctrCircularPictureBox .cs">
       <SubType>Component</SubType>
     </Compile>
@@ -158,6 +170,12 @@
     </Compile>
     <Compile Include="Suppliers\ctrSupplierInfoWithFilter.Designer.cs">
       <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmShowUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmShowUserInfo.Designer.cs">
+      <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\frmFindUserForDelete.cs">
       <SubType>Form</SubType>
@@ -222,6 +240,12 @@
     <EmbeddedResource Include="Inventory\frmReceiveNewGoods.resx">
       <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Invoices\ctrInvoiceInfo.resx">
+      <DependentUpon>ctrInvoiceInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoices\frmInvoicesList.resx">
+      <DependentUpon>frmInvoicesList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmFindUserForEdit.resx">
       <DependentUpon>frmFindUserForEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmShowUserInfo.resx">
+      <DependentUpon>frmShowUserInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmUsersList.resx">
       <DependentUpon>frmUsersList.cs</DependentUpon>

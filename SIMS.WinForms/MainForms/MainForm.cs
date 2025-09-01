@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
@@ -80,7 +81,10 @@ namespace SIMS.WinForms
 
         private void InvoicesToolStripButton_Click(object sender, EventArgs e)
         {
-
+            frmInvoicesList invoicesList = new frmInvoicesList();
+            invoicesList.MdiParent = this;
+            invoicesList.Dock = DockStyle.Fill;
+            invoicesList.Show();
         }
 
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
