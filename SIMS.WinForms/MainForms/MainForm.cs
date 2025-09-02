@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using SIMS.WinForms.ActivityLog;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
 using SIMS.WinForms.Invoices;
@@ -89,7 +90,10 @@ namespace SIMS.WinForms
 
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
         {
-
+            frmActivityLog activityLog = new frmActivityLog();
+            activityLog.MdiParent = this;
+            activityLog.Dock = DockStyle.Fill;
+            activityLog.Show();
         }
 
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
