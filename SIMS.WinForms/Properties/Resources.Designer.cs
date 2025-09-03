@@ -83,6 +83,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap alwaha_logo {
+            get {
+                object obj = ResourceManager.GetObject("alwaha_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap back {
             get {
                 object obj = ResourceManager.GetObject("back", resourceCulture);
@@ -183,6 +193,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconmonstr_eye_lined_24 {
+            get {
+                object obj = ResourceManager.GetObject("iconmonstr-eye-lined-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap inventory_value {
             get {
                 object obj = ResourceManager.GetObject("inventory_value", resourceCulture);
@@ -206,6 +226,26 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap next {
             get {
                 object obj = ResourceManager.GetObject("next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Password_32 {
+            get {
+                object obj = ResourceManager.GetObject("Password 32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Person_32 {
+            get {
+                object obj = ResourceManager.GetObject("Person 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -326,6 +366,16 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap shopping_basket_edit {
             get {
                 object obj = ResourceManager.GetObject("shopping_basket_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_in_32 {
+            get {
+                object obj = ResourceManager.GetObject("sign_in 32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

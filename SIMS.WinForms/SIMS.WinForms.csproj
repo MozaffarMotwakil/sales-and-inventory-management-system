@@ -121,11 +121,17 @@
     <Compile Include="MainForms\ctrCircularPictureBox .cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MainForms\MainForm.cs">
+    <Compile Include="MainForms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainForms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForms\frmMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForms\frmMainForm.Designer.cs">
+      <DependentUpon>frmMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForms\ctrModrenTextBox.cs">
       <SubType>UserControl</SubType>
@@ -255,8 +261,11 @@
     <EmbeddedResource Include="Invoices\frmInvoicesList.resx">
       <DependentUpon>frmInvoicesList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\frmMainForm.resx">
+      <DependentUpon>frmMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\ctrModrenTextBox.resx">
       <DependentUpon>ctrModrenTextBox.cs</DependentUpon>
@@ -433,6 +442,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconmonstr-eye-lined-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign_in 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Person 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Password 32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alwaha_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

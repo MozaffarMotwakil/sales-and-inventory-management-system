@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using DVLD.WinForms.MainForms;
 using SIMS.WinForms.ActivityLog;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
@@ -11,9 +12,9 @@ using SIMS.WinForms.Users;
 
 namespace SIMS.WinForms
 {
-    public partial class MainForm : Form
+    public partial class frmMainForm : Form
     {
-        public MainForm()
+        public frmMainForm()
         {
             InitializeComponent();
 
@@ -29,10 +30,10 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //frmDashboard dashboard = new frmDashboard();
-            //dashboard.MdiParent = this;
-            //dashboard.Dock = DockStyle.Fill;
-            //dashboard.Show();
+            frmDashboard dashboard = new frmDashboard();
+            dashboard.MdiParent = this;
+            dashboard.Dock = DockStyle.Fill;
+            dashboard.Show();
         }
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)
@@ -98,7 +99,8 @@ namespace SIMS.WinForms
 
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
         {
-
+            this.Close();
+            Application.OpenForms["frmLogin"].Activate();
         }
 
     }

@@ -1,6 +1,6 @@
 ﻿namespace SIMS.WinForms
 {
-    partial class MainForm
+    partial class frmMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -292,7 +292,7 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // MainForm
+            // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -300,10 +300,10 @@
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "frmMainForm";
             this.Padding = new System.Windows.Forms.Padding(250, 50, 0, 0);
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using DVLD.WinForms.MainForms;
 
 namespace SIMS.WinForms
 {
@@ -15,7 +16,7 @@ namespace SIMS.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new frmLogin());
         }
     }
 }
