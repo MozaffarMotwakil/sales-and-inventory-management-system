@@ -51,106 +51,106 @@
             this.pbProductImage = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSupplier = new System.Windows.Forms.TextBox();
-            this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.cbCatigory = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 221);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(5, 166);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 18);
+            this.label5.Size = new System.Drawing.Size(89, 16);
             this.label5.TabIndex = 6;
             this.label5.Text = "Selling Price:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 179);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(5, 128);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 18);
+            this.label4.Size = new System.Drawing.Size(108, 16);
             this.label4.TabIndex = 5;
             this.label4.Text = "Purchase Price:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 95);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(5, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 18);
+            this.label3.Size = new System.Drawing.Size(123, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Product Quantity:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(5, 53);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(5, 204);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 18);
+            this.label2.Size = new System.Drawing.Size(120, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Product Barcode:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(5, 11);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(5, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 18);
+            this.label1.Size = new System.Drawing.Size(102, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Product Name:";
             // 
             // txtProductName
             // 
-            this.txtProductName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductName.Location = new System.Drawing.Point(175, 7);
+            this.txtProductName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductName.Location = new System.Drawing.Point(175, 11);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(319, 27);
+            this.txtProductName.Size = new System.Drawing.Size(351, 23);
             this.txtProductName.TabIndex = 0;
             // 
             // txtProductQuantity
             // 
-            this.txtProductQuantity.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductQuantity.Location = new System.Drawing.Point(175, 91);
+            this.txtProductQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductQuantity.Location = new System.Drawing.Point(175, 49);
             this.txtProductQuantity.Name = "txtProductQuantity";
-            this.txtProductQuantity.Size = new System.Drawing.Size(319, 27);
+            this.txtProductQuantity.Size = new System.Drawing.Size(351, 23);
             this.txtProductQuantity.TabIndex = 2;
             // 
             // txtProductBarcode
             // 
-            this.txtProductBarcode.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductBarcode.Location = new System.Drawing.Point(175, 49);
+            this.txtProductBarcode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductBarcode.Location = new System.Drawing.Point(175, 201);
             this.txtProductBarcode.Name = "txtProductBarcode";
-            this.txtProductBarcode.Size = new System.Drawing.Size(319, 27);
+            this.txtProductBarcode.Size = new System.Drawing.Size(529, 23);
             this.txtProductBarcode.TabIndex = 1;
             // 
             // txtMinimumQuantity
             // 
-            this.txtMinimumQuantity.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMinimumQuantity.Location = new System.Drawing.Point(175, 133);
+            this.txtMinimumQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMinimumQuantity.Location = new System.Drawing.Point(175, 87);
             this.txtMinimumQuantity.Name = "txtMinimumQuantity";
-            this.txtMinimumQuantity.Size = new System.Drawing.Size(319, 27);
+            this.txtMinimumQuantity.Size = new System.Drawing.Size(351, 23);
             this.txtMinimumQuantity.TabIndex = 3;
             // 
             // txtPurchasePrice
             // 
-            this.txtPurchasePrice.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchasePrice.Location = new System.Drawing.Point(173, 175);
+            this.txtPurchasePrice.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurchasePrice.Location = new System.Drawing.Point(173, 125);
             this.txtPurchasePrice.Name = "txtPurchasePrice";
-            this.txtPurchasePrice.Size = new System.Drawing.Size(319, 27);
+            this.txtPurchasePrice.Size = new System.Drawing.Size(353, 23);
             this.txtPurchasePrice.TabIndex = 4;
             // 
             // txtSellingPrice
             // 
-            this.txtSellingPrice.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSellingPrice.Location = new System.Drawing.Point(175, 217);
+            this.txtSellingPrice.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSellingPrice.Location = new System.Drawing.Point(173, 163);
             this.txtSellingPrice.Name = "txtSellingPrice";
-            this.txtSellingPrice.Size = new System.Drawing.Size(319, 27);
+            this.txtSellingPrice.Size = new System.Drawing.Size(353, 23);
             this.txtSellingPrice.TabIndex = 5;
             // 
             // btnGenerateBarcode
@@ -160,9 +160,9 @@
             this.btnGenerateBarcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnGenerateBarcode.FlatAppearance.BorderSize = 0;
             this.btnGenerateBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateBarcode.Location = new System.Drawing.Point(457, 51);
+            this.btnGenerateBarcode.Location = new System.Drawing.Point(672, 202);
             this.btnGenerateBarcode.Name = "btnGenerateBarcode";
-            this.btnGenerateBarcode.Size = new System.Drawing.Size(35, 24);
+            this.btnGenerateBarcode.Size = new System.Drawing.Size(30, 20);
             this.btnGenerateBarcode.TabIndex = 13;
             this.toolTip.SetToolTip(this.btnGenerateBarcode, "Generate a new barcode");
             this.btnGenerateBarcode.UseVisualStyleBackColor = false;
@@ -170,10 +170,10 @@
             // llSetImage
             // 
             this.llSetImage.AutoSize = true;
-            this.llSetImage.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llSetImage.Location = new System.Drawing.Point(579, 216);
+            this.llSetImage.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llSetImage.Location = new System.Drawing.Point(586, 169);
             this.llSetImage.Name = "llSetImage";
-            this.llSetImage.Size = new System.Drawing.Size(81, 19);
+            this.llSetImage.Size = new System.Drawing.Size(64, 14);
             this.llSetImage.TabIndex = 14;
             this.llSetImage.TabStop = true;
             this.llSetImage.Text = "Set Image";
@@ -181,30 +181,30 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(5, 137);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(5, 90);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 18);
+            this.label6.Size = new System.Drawing.Size(127, 16);
             this.label6.TabIndex = 10;
             this.label6.Text = "Minimum Quantity:";
             // 
             // labal10
             // 
             this.labal10.AutoSize = true;
-            this.labal10.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labal10.Location = new System.Drawing.Point(5, 263);
+            this.labal10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labal10.Location = new System.Drawing.Point(5, 242);
             this.labal10.Name = "labal10";
-            this.labal10.Size = new System.Drawing.Size(81, 18);
+            this.labal10.Size = new System.Drawing.Size(67, 16);
             this.labal10.TabIndex = 10;
-            this.labal10.Text = "Category:";
+            this.labal10.Text = "Catigory:";
             // 
             // llAddSupplier
             // 
             this.llAddSupplier.AutoSize = true;
-            this.llAddSupplier.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llAddSupplier.Location = new System.Drawing.Point(576, 307);
+            this.llAddSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llAddSupplier.Location = new System.Drawing.Point(172, 304);
             this.llAddSupplier.Name = "llAddSupplier";
-            this.llAddSupplier.Size = new System.Drawing.Size(87, 18);
+            this.llAddSupplier.Size = new System.Drawing.Size(80, 16);
             this.llAddSupplier.TabIndex = 14;
             this.llAddSupplier.TabStop = true;
             this.llAddSupplier.Text = "Add Supplier";
@@ -216,7 +216,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(226, 335);
+            this.btnCancle.Location = new System.Drawing.Point(260, 337);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
             this.btnCancle.TabIndex = 8;
@@ -229,7 +229,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(346, 335);
+            this.btnSave.Location = new System.Drawing.Point(380, 337);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
             this.btnSave.TabIndex = 7;
@@ -241,7 +241,7 @@
             this.pbProductImage.Image = global::SIMS.WinForms.Properties.Resources.product;
             this.pbProductImage.Location = new System.Drawing.Point(532, 11);
             this.pbProductImage.Name = "pbProductImage";
-            this.pbProductImage.Size = new System.Drawing.Size(175, 200);
+            this.pbProductImage.Size = new System.Drawing.Size(172, 155);
             this.pbProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProductImage.TabIndex = 1;
             this.pbProductImage.TabStop = false;
@@ -249,30 +249,84 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(5, 305);
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(5, 280);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 18);
+            this.label8.Size = new System.Drawing.Size(64, 16);
             this.label8.TabIndex = 10;
             this.label8.Text = "Supplier:";
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(175, 298);
+            this.txtSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(173, 278);
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(319, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(529, 23);
             this.txtSupplier.TabIndex = 5;
             // 
-            // cbCategory
+            // cbCatigory
             // 
-            this.cbCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Location = new System.Drawing.Point(175, 259);
-            this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(319, 24);
-            this.cbCategory.TabIndex = 15;
+            this.cbCatigory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCatigory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCatigory.FormattingEnabled = true;
+            this.cbCatigory.Items.AddRange(new object[] {
+            "Accessories",
+            "Baby Food",
+            "Books & Magazines",
+            "Bread & Pastries",
+            "Canned Goods",
+            "Car Tools",
+            "Cheese & Dairy",
+            "Children\'s Clothing",
+            "Cleaning Tools",
+            "Computers",
+            "Cooking Tools",
+            "Cosmetics",
+            "Cookware",
+            "Dishwashing Detergents",
+            "Files",
+            "Fish & Seafood",
+            "Floor Cleaners",
+            "Fruits",
+            "Furniture",
+            "Grains & Dried Goods",
+            "Headphones & Accessories",
+            "Home Appliances",
+            "Juices",
+            "Kids\' Clothing",
+            "Laundry Detergents",
+            "Meat & Poultry",
+            "Medicines & Medical Products",
+            "Men\'s Clothing",
+            "Mobile Phones",
+            "Nuts",
+            "Notebooks & Paper",
+            "Oils & Spices",
+            "Pens",
+            "Perfumes",
+            "Pet Products",
+            "Shampoo & Soap",
+            "Shaving Tools",
+            "Shoes",
+            "Snacks",
+            "Soft Drinks",
+            "Sports Equipment",
+            "Sweets",
+            "Tea & Coffee",
+            "Toys",
+            "Trash Bags",
+            "Vegetables",
+            "Water",
+            "Women\'s Clothing"});
+            this.cbCatigory.Location = new System.Drawing.Point(173, 239);
+            this.cbCatigory.Name = "cbCatigory";
+            this.cbCatigory.Size = new System.Drawing.Size(529, 24);
+            this.cbCatigory.TabIndex = 15;
+            this.cbCatigory.Text = "Select Catigory";
+            this.cbCatigory.Enter += new System.EventHandler(this.cbCatigory_Enter);
+            this.cbCatigory.Leave += new System.EventHandler(this.cbCatigory_Leave);
             // 
             // frmAddEditProduct
             // 
@@ -280,8 +334,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(716, 386);
-            this.Controls.Add(this.cbCategory);
+            this.ClientSize = new System.Drawing.Size(716, 391);
+            this.Controls.Add(this.cbCatigory);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.llAddSupplier);
@@ -341,6 +395,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtSupplier;
-        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.ComboBox cbCatigory;
     }
 }

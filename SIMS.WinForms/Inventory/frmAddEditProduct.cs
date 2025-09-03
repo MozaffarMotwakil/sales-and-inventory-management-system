@@ -33,5 +33,21 @@ namespace SIMS.WinForms.Inventory
             addSupplier.ShowDialog();
         }
 
+        private void cbCatigory_Enter(object sender, EventArgs e)
+        {
+            if (cbCatigory.SelectedIndex == -1)
+            {
+                cbCatigory.Text = string.Empty;
+            }
+        }
+
+        private void cbCatigory_Leave(object sender, EventArgs e)
+        {
+            if (cbCatigory.SelectedIndex == -1)
+            {
+                cbCatigory.Text = "Select Catigory";
+            }
+        }
+
     }
 }

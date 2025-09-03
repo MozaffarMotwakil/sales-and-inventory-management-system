@@ -190,14 +190,13 @@
             this.cbUser.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUser.FormattingEnabled = true;
+            this.cbUser.Items.AddRange(new object[] {
+            "All Users"});
             this.cbUser.Location = new System.Drawing.Point(511, 9);
             this.cbUser.Name = "cbUser";
             this.cbUser.Size = new System.Drawing.Size(170, 24);
             this.cbUser.TabIndex = 1;
-            this.cbUser.Text = "Select User";
             this.toolTip.SetToolTip(this.cbUser, "Select the user to view the invoices they have made.");
-            this.cbUser.Enter += new System.EventHandler(this.cbUser_Enter);
-            this.cbUser.Leave += new System.EventHandler(this.cbUser_Leave);
             // 
             // btnPrevious
             // 

@@ -186,6 +186,8 @@
             this.cbActivityType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbActivityType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbActivityType.FormattingEnabled = true;
+            this.cbActivityType.Items.AddRange(new object[] {
+            "All Activities"});
             this.cbActivityType.Location = new System.Drawing.Point(677, 17);
             this.cbActivityType.Name = "cbActivityType";
             this.cbActivityType.Size = new System.Drawing.Size(150, 24);
@@ -224,14 +226,13 @@
             this.cbUser.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbUser.FormattingEnabled = true;
+            this.cbUser.Items.AddRange(new object[] {
+            "All Users"});
             this.cbUser.Location = new System.Drawing.Point(501, 17);
             this.cbUser.Name = "cbUser";
             this.cbUser.Size = new System.Drawing.Size(170, 24);
             this.cbUser.TabIndex = 2;
-            this.cbUser.Text = "Select User";
             this.toolTip.SetToolTip(this.cbUser, "Select a user to view all their activities.");
-            this.cbUser.Enter += new System.EventHandler(this.cbUser_Enter);
-            this.cbUser.Leave += new System.EventHandler(this.cbUser_Leave);
             // 
             // label7
             // 

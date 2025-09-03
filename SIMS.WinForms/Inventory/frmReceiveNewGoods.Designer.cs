@@ -65,7 +65,7 @@
             this.dgvProductsDetailsList.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -81,7 +81,7 @@
             this.Notes,
             this.Delete});
             this.dgvProductsDetailsList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvProductsDetailsList.Location = new System.Drawing.Point(14, 223);
+            this.dgvProductsDetailsList.Location = new System.Drawing.Point(14, 193);
             this.dgvProductsDetailsList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvProductsDetailsList.MultiSelect = false;
             this.dgvProductsDetailsList.Name = "dgvProductsDetailsList";
@@ -90,7 +90,7 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvProductsDetailsList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProductsDetailsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvProductsDetailsList.Size = new System.Drawing.Size(1003, 399);
+            this.dgvProductsDetailsList.Size = new System.Drawing.Size(1003, 345);
             this.dgvProductsDetailsList.TabIndex = 0;
             this.dgvProductsDetailsList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductsDetailsList_CellMouseClick);
             this.dgvProductsDetailsList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductsDetailsList_RowsAdded);
@@ -180,12 +180,12 @@
             this.gbPurchaseInvoiceDetails.Controls.Add(this.label3);
             this.gbPurchaseInvoiceDetails.Controls.Add(this.label2);
             this.gbPurchaseInvoiceDetails.Controls.Add(this.label1);
-            this.gbPurchaseInvoiceDetails.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPurchaseInvoiceDetails.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPurchaseInvoiceDetails.Location = new System.Drawing.Point(14, 16);
             this.gbPurchaseInvoiceDetails.Margin = new System.Windows.Forms.Padding(4);
             this.gbPurchaseInvoiceDetails.Name = "gbPurchaseInvoiceDetails";
             this.gbPurchaseInvoiceDetails.Padding = new System.Windows.Forms.Padding(4);
-            this.gbPurchaseInvoiceDetails.Size = new System.Drawing.Size(1003, 151);
+            this.gbPurchaseInvoiceDetails.Size = new System.Drawing.Size(1003, 138);
             this.gbPurchaseInvoiceDetails.TabIndex = 0;
             this.gbPurchaseInvoiceDetails.TabStop = false;
             this.gbPurchaseInvoiceDetails.Text = "Purchase Invoice Details";
@@ -193,11 +193,11 @@
             // llAddSupplier
             // 
             this.llAddSupplier.AutoSize = true;
-            this.llAddSupplier.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llAddSupplier.Location = new System.Drawing.Point(636, 119);
+            this.llAddSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llAddSupplier.Location = new System.Drawing.Point(208, 114);
             this.llAddSupplier.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.llAddSupplier.Name = "llAddSupplier";
-            this.llAddSupplier.Size = new System.Drawing.Size(101, 19);
+            this.llAddSupplier.Size = new System.Drawing.Size(80, 16);
             this.llAddSupplier.TabIndex = 3;
             this.llAddSupplier.TabStop = true;
             this.llAddSupplier.Text = "Add Supplier";
@@ -206,72 +206,72 @@
             // dtpPurchaseDate
             // 
             this.dtpPurchaseDate.CalendarFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPurchaseDate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPurchaseDate.Location = new System.Drawing.Point(211, 69);
+            this.dtpPurchaseDate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(211, 56);
             this.dtpPurchaseDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
-            this.dtpPurchaseDate.Size = new System.Drawing.Size(417, 27);
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(417, 23);
             this.dtpPurchaseDate.TabIndex = 1;
             // 
             // txtSupplier
             // 
-            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSupplier.Location = new System.Drawing.Point(211, 110);
+            this.txtSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(211, 87);
             this.txtSupplier.Margin = new System.Windows.Forms.Padding(4);
             this.txtSupplier.Name = "txtSupplier";
-            this.txtSupplier.Size = new System.Drawing.Size(417, 27);
+            this.txtSupplier.Size = new System.Drawing.Size(417, 23);
             this.txtSupplier.TabIndex = 2;
             // 
             // txtPurchaseInvoiceNo
             // 
-            this.txtPurchaseInvoiceNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchaseInvoiceNo.Location = new System.Drawing.Point(211, 28);
+            this.txtPurchaseInvoiceNo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPurchaseInvoiceNo.Location = new System.Drawing.Point(211, 25);
             this.txtPurchaseInvoiceNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtPurchaseInvoiceNo.Name = "txtPurchaseInvoiceNo";
-            this.txtPurchaseInvoiceNo.Size = new System.Drawing.Size(417, 27);
+            this.txtPurchaseInvoiceNo.Size = new System.Drawing.Size(417, 23);
             this.txtPurchaseInvoiceNo.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 113);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(7, 90);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 19);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Supplier:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 73);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(7, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 19);
+            this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 0;
             this.label2.Text = "Purchase Date:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 32);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 19);
+            this.label1.Size = new System.Drawing.Size(151, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Purchase Invoice No. :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 185);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(20, 164);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(142, 19);
+            this.label4.Size = new System.Drawing.Size(122, 19);
             this.label4.TabIndex = 0;
             this.label4.Text = "Products Details";
             // 
@@ -282,13 +282,12 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(744, 629);
+            this.btnCancle.Location = new System.Drawing.Point(743, 546);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(133, 52);
             this.btnCancle.TabIndex = 5;
-            this.btnCancle.Text = "Cancle";
-            this.btnCancle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancle.Text = "     Cancle";
             this.btnCancle.UseVisualStyleBackColor = true;
             // 
             // btnSave
@@ -297,7 +296,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(884, 629);
+            this.btnSave.Location = new System.Drawing.Point(884, 546);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 52);
@@ -311,7 +310,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(1031, 690);
+            this.ClientSize = new System.Drawing.Size(1031, 611);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbPurchaseInvoiceDetails);

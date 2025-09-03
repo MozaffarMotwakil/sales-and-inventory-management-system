@@ -42,6 +42,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llSetImage = new System.Windows.Forms.LinkLabel();
+            this.pbUserImage = new System.Windows.Forms.PictureBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.cbCountry = new System.Windows.Forms.ComboBox();
@@ -54,8 +56,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblFormTitle = new System.Windows.Forms.Label();
-            this.pbUserImage = new System.Windows.Forms.PictureBox();
-            this.llSetImage = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,7 +83,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(238, 495);
+            this.btnCancle.Location = new System.Drawing.Point(228, 495);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(133, 46);
@@ -96,7 +96,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(376, 495);
+            this.btnSave.Location = new System.Drawing.Point(366, 495);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 46);
@@ -246,7 +246,28 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Basic Information";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // llSetImage
+            // 
+            this.llSetImage.AutoSize = true;
+            this.llSetImage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llSetImage.Location = new System.Drawing.Point(514, 145);
+            this.llSetImage.Name = "llSetImage";
+            this.llSetImage.Size = new System.Drawing.Size(66, 16);
+            this.llSetImage.TabIndex = 21;
+            this.llSetImage.TabStop = true;
+            this.llSetImage.Text = "Set Image";
+            // 
+            // pbUserImage
+            // 
+            this.pbUserImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
+            this.pbUserImage.Location = new System.Drawing.Point(460, 24);
+            this.pbUserImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pbUserImage.Name = "pbUserImage";
+            this.pbUserImage.Size = new System.Drawing.Size(175, 118);
+            this.pbUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbUserImage.TabIndex = 20;
+            this.pbUserImage.TabStop = false;
             // 
             // txtPhone
             // 
@@ -573,28 +594,6 @@
             this.lblFormTitle.TabIndex = 0;
             this.lblFormTitle.Text = "Add/Edit User";
             this.lblFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pbUserImage
-            // 
-            this.pbUserImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
-            this.pbUserImage.Location = new System.Drawing.Point(460, 24);
-            this.pbUserImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pbUserImage.Name = "pbUserImage";
-            this.pbUserImage.Size = new System.Drawing.Size(175, 118);
-            this.pbUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbUserImage.TabIndex = 20;
-            this.pbUserImage.TabStop = false;
-            // 
-            // llSetImage
-            // 
-            this.llSetImage.AutoSize = true;
-            this.llSetImage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llSetImage.Location = new System.Drawing.Point(514, 145);
-            this.llSetImage.Name = "llSetImage";
-            this.llSetImage.Size = new System.Drawing.Size(66, 16);
-            this.llSetImage.TabIndex = 21;
-            this.llSetImage.TabStop = true;
-            this.llSetImage.Text = "Set Image";
             // 
             // frmAddEditUser
             // 

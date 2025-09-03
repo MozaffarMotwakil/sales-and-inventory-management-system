@@ -14,6 +14,8 @@ namespace SIMS.WinForms.ActivityLog
         {
             lblSearchHintText.Text = "Enter specific keywords";
             cbDateRange.SelectedItem = "Today";
+            cbActivityType.SelectedItem = "All Activities";
+            cbUser.SelectedItem = "All Users";
             dtpStartDate.Value = DateTime.Today;
             dtpEndDate.Value = DateTime.Today;
             dtpStartTime.Value = DateTime.Today;
@@ -33,22 +35,6 @@ namespace SIMS.WinForms.ActivityLog
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
         {
             txtSearch.Focus();
-        }
-
-        private void cbUser_Enter(object sender, EventArgs e)
-        {
-            if (cbUser.SelectedIndex == -1)
-            {
-                cbUser.Text = string.Empty;
-            }
-        }
-
-        private void cbUser_Leave(object sender, EventArgs e)
-        {
-            if (cbUser.SelectedIndex == -1)
-            {
-                cbUser.Text = "Select User";
-            }
         }
 
     }

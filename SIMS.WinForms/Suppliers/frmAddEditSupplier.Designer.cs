@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancle = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
@@ -45,8 +47,6 @@
             this.txtSupplierName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblFormTitle = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancle = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -68,6 +68,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(535, 668);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCancle
+            // 
+            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
+            this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancle.Location = new System.Drawing.Point(243, 613);
+            this.btnCancle.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(133, 46);
+            this.btnCancle.TabIndex = 8;
+            this.btnCancle.Text = "     Cancle";
+            this.btnCancle.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(383, 613);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(133, 46);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "     Save";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -100,7 +127,7 @@
             this.txtNotes.Margin = new System.Windows.Forms.Padding(4);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(453, 112);
+            this.txtNotes.Size = new System.Drawing.Size(484, 112);
             this.txtNotes.TabIndex = 6;
             // 
             // groupBox2
@@ -135,7 +162,7 @@
             this.txtEmail.Location = new System.Drawing.Point(10, 46);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(453, 27);
+            this.txtEmail.Size = new System.Drawing.Size(481, 27);
             this.txtEmail.TabIndex = 4;
             // 
             // label6
@@ -154,7 +181,7 @@
             this.txtAddress.Location = new System.Drawing.Point(10, 117);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(453, 27);
+            this.txtAddress.Size = new System.Drawing.Size(481, 27);
             this.txtAddress.TabIndex = 5;
             // 
             // groupBox1
@@ -180,7 +207,7 @@
             this.txtPhoneNumber.Location = new System.Drawing.Point(10, 187);
             this.txtPhoneNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(453, 27);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(481, 27);
             this.txtPhoneNumber.TabIndex = 3;
             // 
             // label4
@@ -199,7 +226,7 @@
             this.txtContactPerson.Location = new System.Drawing.Point(7, 116);
             this.txtContactPerson.Margin = new System.Windows.Forms.Padding(4);
             this.txtContactPerson.Name = "txtContactPerson";
-            this.txtContactPerson.Size = new System.Drawing.Size(457, 27);
+            this.txtContactPerson.Size = new System.Drawing.Size(484, 27);
             this.txtContactPerson.TabIndex = 1;
             // 
             // label3
@@ -218,7 +245,7 @@
             this.txtSupplierName.Location = new System.Drawing.Point(7, 46);
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(457, 27);
+            this.txtSupplierName.Size = new System.Drawing.Size(484, 27);
             this.txtSupplierName.TabIndex = 0;
             // 
             // label2
@@ -242,33 +269,6 @@
             this.lblFormTitle.TabIndex = 0;
             this.lblFormTitle.Text = "Add/Edit Supplier";
             this.lblFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(383, 613);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(133, 46);
-            this.btnSave.TabIndex = 7;
-            this.btnSave.Text = "     Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnCancle
-            // 
-            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
-            this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(243, 613);
-            this.btnCancle.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(133, 46);
-            this.btnCancle.TabIndex = 8;
-            this.btnCancle.Text = "     Cancle";
-            this.btnCancle.UseVisualStyleBackColor = true;
             // 
             // frmAddEditSupplier
             // 
