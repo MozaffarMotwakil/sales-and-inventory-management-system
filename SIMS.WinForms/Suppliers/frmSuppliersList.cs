@@ -13,7 +13,22 @@ namespace SIMS.WinForms.Suppliers
 
         private void frmSuppliersList_Load(object sender, EventArgs e)
         {
-            cbFilterColumn.SelectedItem = "Supplier Name";
+            lblSearchHintText.Text = "Enter Supplier Name or Contact Person or Phone Number";
+        }
+
+        private void frmSuppliersList_Activated(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+        }
+
+        private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
         }
 
         private void btnAddSupplier_Click(object sender, EventArgs e)

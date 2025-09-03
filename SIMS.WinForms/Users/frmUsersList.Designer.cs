@@ -32,18 +32,16 @@
             this.btnAddUser = new System.Windows.Forms.ToolStripButton();
             this.btnEditUser = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteUser = new System.Windows.Forms.ToolStripButton();
-            this.cbFilterColumn = new System.Windows.Forms.ComboBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.dgvSuppliersList = new System.Windows.Forms.DataGridView();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.ctrUserInfo1 = new SIMS.WinForms.Users.ctrUserInfo();
-            this.label3 = new System.Windows.Forms.Label();
+            this.ctrUserInfo = new SIMS.WinForms.Users.ctrUserInfo();
+            this.lblSearchHintText = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -65,7 +63,7 @@
             // btnAddUser
             // 
             this.btnAddUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUser.Image = global::SIMS.WinForms.Properties.Resources.user_add;
+            this.btnAddUser.Image = global::SIMS.WinForms.Properties.Resources.add;
             this.btnAddUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddUser.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -78,7 +76,7 @@
             // btnEditUser
             // 
             this.btnEditUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditUser.Image = global::SIMS.WinForms.Properties.Resources.user_edit;
+            this.btnEditUser.Image = global::SIMS.WinForms.Properties.Resources.edit;
             this.btnEditUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditUser.Name = "btnEditUser";
@@ -90,7 +88,7 @@
             // btnDeleteUser
             // 
             this.btnDeleteUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteUser.Image = global::SIMS.WinForms.Properties.Resources.user_delete;
+            this.btnDeleteUser.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.btnDeleteUser.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDeleteUser.Name = "btnDeleteUser";
@@ -99,43 +97,20 @@
             this.btnDeleteUser.ToolTipText = "Delete a user";
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             // 
-            // cbFilterColumn
+            // cbStatus
             // 
-            this.cbFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilterColumn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilterColumn.FormattingEnabled = true;
-            this.cbFilterColumn.Items.AddRange(new object[] {
-            "Full Name",
-            "Username",
-            "Status"});
-            this.cbFilterColumn.Location = new System.Drawing.Point(417, 12);
-            this.cbFilterColumn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbFilterColumn.Name = "cbFilterColumn";
-            this.cbFilterColumn.Size = new System.Drawing.Size(175, 27);
-            this.cbFilterColumn.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(696, 12);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(92, 27);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(365, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 19);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Filter";
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "All",
+            "Active",
+            "Inactive"});
+            this.cbStatus.Location = new System.Drawing.Point(328, 11);
+            this.cbStatus.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(139, 24);
+            this.cbStatus.TabIndex = 1;
             // 
             // dgvSuppliersList
             // 
@@ -154,62 +129,274 @@
             this.dgvSuppliersList.Size = new System.Drawing.Size(776, 84);
             this.dgvSuppliersList.TabIndex = 17;
             // 
-            // pictureBox3
+            // ctrUserInfo
             // 
-            this.pictureBox3.Image = global::SIMS.WinForms.Properties.Resources.search;
-            this.pictureBox3.Location = new System.Drawing.Point(600, 7);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 13;
-            this.pictureBox3.TabStop = false;
+            this.ctrUserInfo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrUserInfo.Location = new System.Drawing.Point(13, 62);
+            this.ctrUserInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrUserInfo.Name = "ctrUserInfo";
+            this.ctrUserInfo.Size = new System.Drawing.Size(600, 285);
+            this.ctrUserInfo.TabIndex = 18;
             // 
-            // pictureBox4
+            // lblSearchHintText
             // 
-            this.pictureBox4.Image = global::SIMS.WinForms.Properties.Resources.filter;
-            this.pictureBox4.Location = new System.Drawing.Point(327, 7);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 34);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 14;
-            this.pictureBox4.TabStop = false;
+            this.lblSearchHintText.AutoSize = true;
+            this.lblSearchHintText.BackColor = System.Drawing.Color.White;
+            this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblSearchHintText.Location = new System.Drawing.Point(723, 16);
+            this.lblSearchHintText.Name = "lblSearchHintText";
+            this.lblSearchHintText.Size = new System.Drawing.Size(57, 16);
+            this.lblSearchHintText.TabIndex = 26;
+            this.lblSearchHintText.Text = "Message";
+            this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
-            // ctrUserInfo1
+            // pictureBox
             // 
-            this.ctrUserInfo1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrUserInfo1.Location = new System.Drawing.Point(13, 62);
-            this.ctrUserInfo1.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrUserInfo1.Name = "ctrUserInfo1";
-            this.ctrUserInfo1.Size = new System.Drawing.Size(600, 285);
-            this.ctrUserInfo1.TabIndex = 18;
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.pictureBox.Location = new System.Drawing.Point(688, 12);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 27;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
-            // label3
+            // txtSearch
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(632, 15);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 19);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Search";
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(716, 11);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(72, 26);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // cbCountry
+            // 
+            this.cbCountry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCountry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCountry.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Items.AddRange(new object[] {
+            "All Countries",
+            "Afghanistan",
+            "Albania",
+            "Algeria",
+            "Andorra",
+            "Angola",
+            "Antigua & Deps",
+            "Argentina",
+            "Armenia",
+            "Australia",
+            "Austria",
+            "Azerbaijan",
+            "Bahamas",
+            "Bahrain",
+            "Bangladesh",
+            "Barbados",
+            "Belarus",
+            "Belgium",
+            "Belize",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia Herzegovina",
+            "Botswana",
+            "Brazil",
+            "Brunei",
+            "Bulgaria",
+            "Burkina",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Canada",
+            "Cape Verde",
+            "Central African Rep",
+            "Chad",
+            "Chile",
+            "China",
+            "Colombia",
+            "Comoros",
+            "Congo",
+            "Congo {Democratic Rep}",
+            "Costa Rica",
+            "Croatia",
+            "Cuba",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Djibouti",
+            "Dominica",
+            "Dominican Republic",
+            "East Timor",
+            "Ecuador",
+            "Egypt",
+            "El Salvador",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Estonia",
+            "Ethiopia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Gambia",
+            "Georgia",
+            "Germany",
+            "Ghana",
+            "Greece",
+            "Grenada",
+            "Guatemala",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Haiti",
+            "Honduras",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iran",
+            "Iraq",
+            "Ireland {Republic}",
+            "Israel",
+            "Italy",
+            "Ivory Coast",
+            "Jamaica",
+            "Japan",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kiribati",
+            "Korea North",
+            "Korea South",
+            "Kosovo",
+            "Kuwait",
+            "Kyrgyzstan",
+            "Laos",
+            "Latvia",
+            "Lebanon",
+            "Lesotho",
+            "Liberia",
+            "Libya",
+            "Liechtenstein",
+            "Lithuania",
+            "Luxembourg",
+            "Macedonia",
+            "Madagascar",
+            "Malawi",
+            "Malaysia",
+            "Maldives",
+            "Mali",
+            "Malta",
+            "Marshall Islands",
+            "Mauritania",
+            "Mauritius",
+            "Mexico",
+            "Micronesia",
+            "Moldova",
+            "Monaco",
+            "Mongolia",
+            "Montenegro",
+            "Morocco",
+            "Mozambique",
+            "Myanmar, {Burma}",
+            "Namibia",
+            "Nauru",
+            "Nepal",
+            "Netherlands",
+            "New Zealand",
+            "Nicaragua",
+            "Niger",
+            "Nigeria",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Palau",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Qatar",
+            "Romania",
+            "Russian Federation",
+            "Rwanda",
+            "St Kitts & Nevis",
+            "St Lucia",
+            "Saint Vincent & the Grenadines",
+            "Samoa",
+            "San Marino",
+            "Sao Tome & Principe",
+            "Saudi Arabia",
+            "Senegal",
+            "Serbia",
+            "Seychelles",
+            "Sierra Leone",
+            "Singapore",
+            "Slovakia",
+            "Slovenia",
+            "Solomon Islands",
+            "Somalia",
+            "South Africa",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Sweden",
+            "Switzerland",
+            "Syria",
+            "Taiwan",
+            "Tajikistan",
+            "Tanzania",
+            "Thailand",
+            "Togo",
+            "Tonga",
+            "Trinidad & Tobago",
+            "Tunisia",
+            "Turkey",
+            "Turkmenistan",
+            "Tuvalu",
+            "Uganda",
+            "Ukraine",
+            "United Arab Emirates",
+            "United Kingdom",
+            "United States",
+            "Uruguay",
+            "Uzbekistan",
+            "Vanuatu",
+            "Vatican City",
+            "Venezuela",
+            "Vietnam",
+            "Yemen",
+            "Zambia",
+            "Zimbabwe"});
+            this.cbCountry.Location = new System.Drawing.Point(474, 11);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(208, 24);
+            this.cbCountry.TabIndex = 28;
             // 
             // frmUsersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ctrUserInfo1);
-            this.Controls.Add(this.dgvSuppliersList);
-            this.Controls.Add(this.cbFilterColumn);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.cbCountry);
+            this.Controls.Add(this.lblSearchHintText);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.ctrUserInfo);
+            this.Controls.Add(this.dgvSuppliersList);
+            this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.toolStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -218,12 +405,12 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.frmUsersList_Activated);
             this.Load += new System.EventHandler(this.frmUsersList_Load);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,13 +422,12 @@
         private System.Windows.Forms.ToolStripButton btnAddUser;
         private System.Windows.Forms.ToolStripButton btnEditUser;
         private System.Windows.Forms.ToolStripButton btnDeleteUser;
-        private System.Windows.Forms.ComboBox cbFilterColumn;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.DataGridView dgvSuppliersList;
-        private ctrUserInfo ctrUserInfo1;
-        private System.Windows.Forms.Label label3;
+        private ctrUserInfo ctrUserInfo;
+        private System.Windows.Forms.Label lblSearchHintText;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cbCountry;
     }
 }

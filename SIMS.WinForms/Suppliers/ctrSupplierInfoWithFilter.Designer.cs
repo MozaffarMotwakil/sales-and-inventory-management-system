@@ -31,8 +31,8 @@
             this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnFind = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnFind = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,16 +66,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Supplier Name:";
             // 
-            // btnFind
-            // 
-            this.btnFind.BackgroundImage = global::SIMS.WinForms.Properties.Resources.search;
-            this.btnFind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFind.Location = new System.Drawing.Point(551, 19);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(37, 27);
-            this.btnFind.TabIndex = 5;
-            this.btnFind.UseVisualStyleBackColor = true;
-            // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -83,6 +73,16 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(417, 27);
             this.txtSearch.TabIndex = 0;
+            // 
+            // btnFind
+            // 
+            this.btnFind.BackgroundImage = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.btnFind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFind.Location = new System.Drawing.Point(551, 19);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(37, 27);
+            this.btnFind.TabIndex = 5;
+            this.btnFind.UseVisualStyleBackColor = true;
             // 
             // ctrSupplierInfoWithFilter
             // 

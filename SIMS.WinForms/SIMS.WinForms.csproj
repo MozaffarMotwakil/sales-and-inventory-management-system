@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityLog\frmActivityLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivityLog\frmActivityLog.Designer.cs">
+      <DependentUpon>frmActivityLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     <Compile Include="Users\ctrUserInfoWithFilter.Designer.cs">
       <DependentUpon>ctrUserInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ActivityLog\frmActivityLog.resx">
+      <DependentUpon>frmActivityLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -409,6 +418,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unknow_female.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unknow_male.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

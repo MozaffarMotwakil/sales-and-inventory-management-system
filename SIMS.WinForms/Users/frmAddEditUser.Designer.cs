@@ -54,9 +54,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblFormTitle = new System.Windows.Forms.Label();
+            this.pbUserImage = new System.Windows.Forms.PictureBox();
+            this.llSetImage = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -71,7 +74,7 @@
             this.panel1.Location = new System.Drawing.Point(13, 13);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(535, 646);
+            this.panel1.Size = new System.Drawing.Size(681, 554);
             this.panel1.TabIndex = 1;
             // 
             // btnCancle
@@ -80,7 +83,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(244, 588);
+            this.btnCancle.Location = new System.Drawing.Point(238, 495);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(133, 46);
@@ -93,7 +96,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(382, 588);
+            this.btnSave.Location = new System.Drawing.Point(376, 495);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 46);
@@ -117,7 +120,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(499, 294);
+            this.groupBox2.Size = new System.Drawing.Size(644, 201);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Account Details";
@@ -127,9 +130,10 @@
             this.cbIsActive.AutoSize = true;
             this.cbIsActive.Checked = true;
             this.cbIsActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbIsActive.Location = new System.Drawing.Point(379, 262);
+            this.cbIsActive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbIsActive.Location = new System.Drawing.Point(10, 174);
             this.cbIsActive.Name = "cbIsActive";
-            this.cbIsActive.Size = new System.Drawing.Size(84, 23);
+            this.cbIsActive.Size = new System.Drawing.Size(70, 20);
             this.cbIsActive.TabIndex = 10;
             this.cbIsActive.Text = "IsActive";
             this.cbIsActive.UseVisualStyleBackColor = true;
@@ -137,20 +141,21 @@
             // cbRole
             // 
             this.cbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRole.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
             "Employee",
             "Admin"});
-            this.cbRole.Location = new System.Drawing.Point(53, 260);
+            this.cbRole.Location = new System.Drawing.Point(346, 46);
             this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(238, 27);
+            this.cbRole.Size = new System.Drawing.Size(289, 24);
             this.cbRole.TabIndex = 9;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 176);
+            this.label8.Location = new System.Drawing.Point(343, 100);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(123, 16);
@@ -159,10 +164,11 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(11, 196);
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPassword.Location = new System.Drawing.Point(346, 120);
             this.txtConfirmPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(453, 27);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(289, 23);
             this.txtConfirmPassword.TabIndex = 8;
             // 
             // label5
@@ -180,7 +186,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 266);
+            this.label1.Location = new System.Drawing.Point(343, 24);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 16);
@@ -189,10 +195,11 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(10, 46);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(453, 27);
+            this.txtUsername.Size = new System.Drawing.Size(289, 23);
             this.txtUsername.TabIndex = 6;
             // 
             // label6
@@ -208,14 +215,17 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(10, 120);
+            this.txtPassword.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(11, 120);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(453, 27);
+            this.txtPassword.Size = new System.Drawing.Size(289, 23);
             this.txtPassword.TabIndex = 7;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.llSetImage);
+            this.groupBox1.Controls.Add(this.pbUserImage);
             this.groupBox1.Controls.Add(this.txtPhone);
             this.groupBox1.Controls.Add(this.txtFullName);
             this.groupBox1.Controls.Add(this.cbCountry);
@@ -232,32 +242,36 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(499, 223);
+            this.groupBox1.Size = new System.Drawing.Size(644, 223);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Basic Information";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(311, 119);
+            this.txtPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(270, 119);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.MaxLength = 10;
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(153, 27);
+            this.txtPhone.Size = new System.Drawing.Size(182, 23);
             this.txtPhone.TabIndex = 2;
             // 
             // txtFullName
             // 
+            this.txtFullName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFullName.Location = new System.Drawing.Point(11, 44);
             this.txtFullName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(453, 27);
+            this.txtFullName.Size = new System.Drawing.Size(441, 23);
             this.txtFullName.TabIndex = 0;
             // 
             // cbCountry
             // 
             this.cbCountry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbCountry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCountry.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Items.AddRange(new object[] {
             "Afghanistan",
@@ -458,23 +472,25 @@
             "Zimbabwe"});
             this.cbCountry.Location = new System.Drawing.Point(11, 118);
             this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(280, 27);
+            this.cbCountry.Size = new System.Drawing.Size(225, 24);
             this.cbCountry.TabIndex = 1;
             this.cbCountry.Leave += new System.EventHandler(this.cbCountry_Leave);
             // 
             // dtpBirthDate
             // 
+            this.dtpBirthDate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBirthDate.Location = new System.Drawing.Point(11, 189);
             this.dtpBirthDate.Name = "dtpBirthDate";
-            this.dtpBirthDate.Size = new System.Drawing.Size(280, 27);
+            this.dtpBirthDate.Size = new System.Drawing.Size(225, 23);
             this.dtpBirthDate.TabIndex = 3;
             // 
             // rbFemale
             // 
             this.rbFemale.AutoSize = true;
-            this.rbFemale.Location = new System.Drawing.Point(387, 193);
+            this.rbFemale.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbFemale.Location = new System.Drawing.Point(346, 193);
             this.rbFemale.Name = "rbFemale";
-            this.rbFemale.Size = new System.Drawing.Size(77, 23);
+            this.rbFemale.Size = new System.Drawing.Size(67, 20);
             this.rbFemale.TabIndex = 5;
             this.rbFemale.Text = "Female";
             this.rbFemale.UseVisualStyleBackColor = true;
@@ -483,9 +499,10 @@
             // 
             this.rbMale.AutoSize = true;
             this.rbMale.Checked = true;
-            this.rbMale.Location = new System.Drawing.Point(311, 193);
+            this.rbMale.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbMale.Location = new System.Drawing.Point(270, 193);
             this.rbMale.Name = "rbMale";
-            this.rbMale.Size = new System.Drawing.Size(59, 23);
+            this.rbMale.Size = new System.Drawing.Size(52, 20);
             this.rbMale.TabIndex = 4;
             this.rbMale.TabStop = true;
             this.rbMale.Text = "Male";
@@ -495,7 +512,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(308, 99);
+            this.label7.Location = new System.Drawing.Point(267, 99);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 16);
@@ -506,7 +523,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(308, 170);
+            this.label4.Location = new System.Drawing.Point(267, 170);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 16);
@@ -557,13 +574,35 @@
             this.lblFormTitle.Text = "Add/Edit User";
             this.lblFormTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pbUserImage
+            // 
+            this.pbUserImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
+            this.pbUserImage.Location = new System.Drawing.Point(460, 24);
+            this.pbUserImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pbUserImage.Name = "pbUserImage";
+            this.pbUserImage.Size = new System.Drawing.Size(175, 118);
+            this.pbUserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbUserImage.TabIndex = 20;
+            this.pbUserImage.TabStop = false;
+            // 
+            // llSetImage
+            // 
+            this.llSetImage.AutoSize = true;
+            this.llSetImage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llSetImage.Location = new System.Drawing.Point(514, 145);
+            this.llSetImage.Name = "llSetImage";
+            this.llSetImage.Size = new System.Drawing.Size(66, 16);
+            this.llSetImage.TabIndex = 21;
+            this.llSetImage.TabStop = true;
+            this.llSetImage.Text = "Set Image";
+            // 
             // frmAddEditUser
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(561, 672);
+            this.ClientSize = new System.Drawing.Size(707, 581);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -577,6 +616,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -609,5 +649,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pbUserImage;
+        private System.Windows.Forms.LinkLabel llSetImage;
     }
 }

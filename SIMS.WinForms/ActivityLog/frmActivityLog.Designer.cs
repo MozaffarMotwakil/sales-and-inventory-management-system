@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmActivityLog));
             this.dgvActivityRecords = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCurrentPage = new System.Windows.Forms.Label();
@@ -70,10 +69,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvActivityRecords.BackgroundColor = System.Drawing.Color.White;
             this.dgvActivityRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvActivityRecords.Location = new System.Drawing.Point(12, 327);
+            this.dgvActivityRecords.Location = new System.Drawing.Point(12, 61);
             this.dgvActivityRecords.Name = "dgvActivityRecords";
             this.dgvActivityRecords.ReadOnly = true;
-            this.dgvActivityRecords.Size = new System.Drawing.Size(926, 65);
+            this.dgvActivityRecords.Size = new System.Drawing.Size(926, 331);
             this.dgvActivityRecords.TabIndex = 1;
             this.dgvActivityRecords.TabStop = false;
             // 
@@ -197,11 +196,11 @@
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
             this.pictureBox.Location = new System.Drawing.Point(833, 16);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(29, 25);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 24;
             this.pictureBox.TabStop = false;
             this.toolTip.SetToolTip(this.pictureBox, "Search for specific keywords within log messages");

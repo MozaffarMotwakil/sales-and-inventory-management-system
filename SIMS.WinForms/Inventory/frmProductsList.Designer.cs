@@ -43,20 +43,27 @@
             this.btnEditProduct = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteProduct = new System.Windows.Forms.ToolStripButton();
             this.btnReceiveGoods = new System.Windows.Forms.ToolStripButton();
-            this.cbFilterColumn = new System.Windows.Forms.ComboBox();
+            this.cbCatigory = new System.Windows.Forms.ComboBox();
+            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
+            this.lblSearchHintText = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.lblCurrentPage = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
+            this.lblTotalPages = new System.Windows.Forms.Label();
+            this.lblTotalRecords = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvProductsList
@@ -69,11 +76,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProductsList.BackgroundColor = System.Drawing.Color.White;
             this.dgvProductsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProductsList.Location = new System.Drawing.Point(14, 339);
+            this.dgvProductsList.Location = new System.Drawing.Point(14, 316);
             this.dgvProductsList.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvProductsList.Name = "dgvProductsList";
             this.dgvProductsList.ReadOnly = true;
-            this.dgvProductsList.Size = new System.Drawing.Size(1120, 170);
+            this.dgvProductsList.Size = new System.Drawing.Size(1120, 251);
             this.dgvProductsList.TabIndex = 2;
             this.dgvProductsList.TabStop = false;
             // 
@@ -83,7 +90,7 @@
             this.panel5.BackColor = System.Drawing.Color.LightGreen;
             this.panel5.Controls.Add(this.lblTotalInventoryItems);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(908, 73);
+            this.panel5.Location = new System.Drawing.Point(908, 62);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(226, 64);
@@ -117,7 +124,7 @@
             this.panel1.BackColor = System.Drawing.Color.Khaki;
             this.panel1.Controls.Add(this.lblBelowAverageItems);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(908, 154);
+            this.panel1.Location = new System.Drawing.Point(908, 143);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(226, 64);
@@ -151,7 +158,7 @@
             this.panel2.BackColor = System.Drawing.Color.Coral;
             this.panel2.Controls.Add(this.lblItemsRunningLow);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(908, 235);
+            this.panel2.Location = new System.Drawing.Point(908, 224);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(226, 64);
@@ -238,100 +245,236 @@
             this.btnReceiveGoods.Text = "   Receive New Goods   ";
             this.btnReceiveGoods.Click += new System.EventHandler(this.btnReceiveGoods_Click);
             // 
-            // cbFilterColumn
+            // cbCatigory
             // 
-            this.cbFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilterColumn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilterColumn.FormattingEnabled = true;
-            this.cbFilterColumn.Items.AddRange(new object[] {
-            "Product Name",
-            "Barcode",
-            "Supplier",
-            "Category"});
-            this.cbFilterColumn.Location = new System.Drawing.Point(617, 7);
-            this.cbFilterColumn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbFilterColumn.Name = "cbFilterColumn";
-            this.cbFilterColumn.Size = new System.Drawing.Size(140, 27);
-            this.cbFilterColumn.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(869, 7);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(265, 27);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(565, 10);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 19);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Filter";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(805, 10);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 19);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Search";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SIMS.WinForms.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(765, 2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::SIMS.WinForms.Properties.Resources.filter;
-            this.pictureBox4.Location = new System.Drawing.Point(527, 2);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 34);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 13;
-            this.pictureBox4.TabStop = false;
+            this.cbCatigory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCatigory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCatigory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCatigory.FormattingEnabled = true;
+            this.cbCatigory.Items.AddRange(new object[] {
+            "All Catigories",
+            "Accessories",
+            "Baby Food",
+            "Books & Magazines",
+            "Bread & Pastries",
+            "Canned Goods",
+            "Car Tools",
+            "Cheese & Dairy",
+            "Children\'s Clothing",
+            "Cleaning Tools",
+            "Computers",
+            "Cooking Tools",
+            "Cosmetics",
+            "Cookware",
+            "Dishwashing Detergents",
+            "Files",
+            "Fish & Seafood",
+            "Floor Cleaners",
+            "Fruits",
+            "Furniture",
+            "Grains & Dried Goods",
+            "Headphones & Accessories",
+            "Home Appliances",
+            "Juices",
+            "Kids\' Clothing",
+            "Laundry Detergents",
+            "Meat & Poultry",
+            "Medicines & Medical Products",
+            "Men\'s Clothing",
+            "Mobile Phones",
+            "Nuts",
+            "Notebooks & Paper",
+            "Oils & Spices",
+            "Pens",
+            "Perfumes",
+            "Pet Products",
+            "Shampoo & Soap",
+            "Shaving Tools",
+            "Shoes",
+            "Snacks",
+            "Soft Drinks",
+            "Sports Equipment",
+            "Sweets",
+            "Tea & Coffee",
+            "Toys",
+            "Trash Bags",
+            "Vegetables",
+            "Water",
+            "Women\'s Clothing"});
+            this.cbCatigory.Location = new System.Drawing.Point(532, 8);
+            this.cbCatigory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbCatigory.Name = "cbCatigory";
+            this.cbCatigory.Size = new System.Drawing.Size(225, 24);
+            this.cbCatigory.TabIndex = 1;
             // 
             // ctrProductInfo
             // 
             this.ctrProductInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrProductInfo.Location = new System.Drawing.Point(14, 56);
+            this.ctrProductInfo.Location = new System.Drawing.Point(14, 40);
             this.ctrProductInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrProductInfo.Name = "ctrProductInfo";
             this.ctrProductInfo.Size = new System.Drawing.Size(642, 270);
             this.ctrProductInfo.TabIndex = 4;
             this.ctrProductInfo.TabStop = false;
             // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.AutoSize = true;
+            this.lblSearchHintText.BackColor = System.Drawing.Color.White;
+            this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblSearchHintText.Location = new System.Drawing.Point(799, 11);
+            this.lblSearchHintText.Name = "lblSearchHintText";
+            this.lblSearchHintText.Size = new System.Drawing.Size(57, 16);
+            this.lblSearchHintText.TabIndex = 32;
+            this.lblSearchHintText.Text = "Message";
+            this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.pictureBox.Location = new System.Drawing.Point(764, 7);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 33;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(792, 6);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(342, 26);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel3.Controls.Add(this.btnPrevious);
+            this.panel3.Controls.Add(this.btnNext);
+            this.panel3.Controls.Add(this.lblCurrentPage);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Location = new System.Drawing.Point(424, 573);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(301, 40);
+            this.panel3.TabIndex = 38;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrevious.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrevious.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Image = global::SIMS.WinForms.Properties.Resources.back;
+            this.btnPrevious.Location = new System.Drawing.Point(0, 0);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(75, 40);
+            this.btnPrevious.TabIndex = 9;
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNext.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Image = global::SIMS.WinForms.Properties.Resources.next;
+            this.btnNext.Location = new System.Drawing.Point(226, 0);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 40);
+            this.btnNext.TabIndex = 8;
+            this.btnNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // lblCurrentPage
+            // 
+            this.lblCurrentPage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentPage.AutoSize = true;
+            this.lblCurrentPage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentPage.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblCurrentPage.Location = new System.Drawing.Point(185, 12);
+            this.lblCurrentPage.Name = "lblCurrentPage";
+            this.lblCurrentPage.Size = new System.Drawing.Size(33, 16);
+            this.lblCurrentPage.TabIndex = 3;
+            this.lblCurrentPage.Text = "N/A";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(81, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 16);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Current Page:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 597);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 16);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Total Pages:";
+            // 
+            // lblTotalPages
+            // 
+            this.lblTotalPages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalPages.AutoSize = true;
+            this.lblTotalPages.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPages.Location = new System.Drawing.Point(119, 597);
+            this.lblTotalPages.Name = "lblTotalPages";
+            this.lblTotalPages.Size = new System.Drawing.Size(28, 16);
+            this.lblTotalPages.TabIndex = 35;
+            this.lblTotalPages.Text = "N/A";
+            // 
+            // lblTotalRecords
+            // 
+            this.lblTotalRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalRecords.AutoSize = true;
+            this.lblTotalRecords.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalRecords.Location = new System.Drawing.Point(119, 573);
+            this.lblTotalRecords.Name = "lblTotalRecords";
+            this.lblTotalRecords.Size = new System.Drawing.Size(28, 16);
+            this.lblTotalRecords.TabIndex = 36;
+            this.lblTotalRecords.Text = "N/A";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(12, 573);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(101, 16);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Total Records:";
+            // 
             // frmProductsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1148, 523);
-            this.Controls.Add(this.cbFilterColumn);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(1148, 625);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblTotalPages);
+            this.Controls.Add(this.lblTotalRecords);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblSearchHintText);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.cbCatigory);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.ctrProductInfo);
             this.Controls.Add(this.panel2);
@@ -346,6 +489,7 @@
             this.Name = "frmProductsList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Activated += new System.EventHandler(this.frmProductsList_Activated);
             this.Load += new System.EventHandler(this.frmProductsList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).EndInit();
             this.panel5.ResumeLayout(false);
@@ -353,8 +497,9 @@
             this.panel2.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,11 +523,18 @@
         private System.Windows.Forms.ToolStripButton btnEditProduct;
         private System.Windows.Forms.ToolStripButton btnDeleteProduct;
         private System.Windows.Forms.ToolStripButton btnReceiveGoods;
-        private System.Windows.Forms.ComboBox cbFilterColumn;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cbCatigory;
+        private System.Windows.Forms.Label lblSearchHintText;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label lblCurrentPage;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTotalPages;
+        private System.Windows.Forms.Label lblTotalRecords;
+        private System.Windows.Forms.Label label8;
     }
 }

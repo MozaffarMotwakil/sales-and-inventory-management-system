@@ -33,17 +33,13 @@
             this.btnAddSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnEditSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteSupplier = new System.Windows.Forms.ToolStripButton();
-            this.cbFilterColumn = new System.Windows.Forms.ComboBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.ctrSupplierInfo1 = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
+            this.lblSearchHintText = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
             this.toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSuppliersList
@@ -116,78 +112,6 @@
             this.btnDeleteSupplier.ToolTipText = "Delete a supplier";
             this.btnDeleteSupplier.Click += new System.EventHandler(this.btnDeleteSupplier_Click);
             // 
-            // cbFilterColumn
-            // 
-            this.cbFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFilterColumn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFilterColumn.FormattingEnabled = true;
-            this.cbFilterColumn.Items.AddRange(new object[] {
-            "Supplier Name",
-            "Contact Person",
-            "Phone Number"});
-            this.cbFilterColumn.Location = new System.Drawing.Point(417, 12);
-            this.cbFilterColumn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbFilterColumn.Name = "cbFilterColumn";
-            this.cbFilterColumn.Size = new System.Drawing.Size(175, 27);
-            this.cbFilterColumn.TabIndex = 1;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(696, 12);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(91, 27);
-            this.txtSearch.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(365, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 19);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Filter";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(632, 15);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 19);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Search";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::SIMS.WinForms.Properties.Resources.search;
-            this.pictureBox3.Location = new System.Drawing.Point(600, 7);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 6;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::SIMS.WinForms.Properties.Resources.filter;
-            this.pictureBox4.Location = new System.Drawing.Point(327, 7);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(37, 34);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 7;
-            this.pictureBox4.TabStop = false;
-            // 
             // ctrSupplierInfo1
             // 
             this.ctrSupplierInfo1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,17 +120,52 @@
             this.ctrSupplierInfo1.Size = new System.Drawing.Size(583, 215);
             this.ctrSupplierInfo1.TabIndex = 3;
             // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.AutoSize = true;
+            this.lblSearchHintText.BackColor = System.Drawing.Color.White;
+            this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblSearchHintText.Location = new System.Drawing.Point(715, 17);
+            this.lblSearchHintText.Name = "lblSearchHintText";
+            this.lblSearchHintText.Size = new System.Drawing.Size(57, 16);
+            this.lblSearchHintText.TabIndex = 29;
+            this.lblSearchHintText.Text = "Message";
+            this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.pictureBox.Location = new System.Drawing.Point(680, 13);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 30;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(708, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(80, 26);
+            this.txtSearch.TabIndex = 28;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // frmSuppliersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.cbFilterColumn);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.lblSearchHintText);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.ctrSupplierInfo1);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.dgvSuppliersList);
@@ -217,12 +176,12 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers List";
+            this.Activated += new System.EventHandler(this.frmSuppliersList_Activated);
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,11 +195,8 @@
         private System.Windows.Forms.ToolStripButton btnEditSupplier;
         private System.Windows.Forms.ToolStripButton btnDeleteSupplier;
         private ctrSupplierInfo ctrSupplierInfo1;
-        private System.Windows.Forms.ComboBox cbFilterColumn;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lblSearchHintText;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
     }
 }

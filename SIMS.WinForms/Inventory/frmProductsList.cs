@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Drawing;
+using System.Net;
+using System.Reflection;
+using System.Security.Cryptography;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SIMS.WinForms.Inventory
 {
@@ -12,7 +17,23 @@ namespace SIMS.WinForms.Inventory
 
         private void frmProductsList_Load(object sender, EventArgs e)
         {
-            cbFilterColumn.SelectedItem = "Product Name";
+            lblSearchHintText.Text = "Enter Product Name or Barcode or Supplier";
+            cbCatigory.SelectedItem = "All Catigories";
+        }
+
+        private void frmProductsList_Activated(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+        }
+
+        private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)

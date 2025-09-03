@@ -259,7 +259,7 @@
             // 
             // pbUserImage
             // 
-            this.pbUserImage.Image = global::SIMS.WinForms.Properties.Resources.product;
+            this.pbUserImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
             this.pbUserImage.Location = new System.Drawing.Point(421, 36);
             this.pbUserImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pbUserImage.Name = "pbUserImage";

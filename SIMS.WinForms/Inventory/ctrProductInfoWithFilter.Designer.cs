@@ -97,8 +97,8 @@
             // 
             // btnFind
             // 
-            this.btnFind.BackgroundImage = global::SIMS.WinForms.Properties.Resources.search;
-            this.btnFind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFind.BackgroundImage = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.btnFind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnFind.Location = new System.Drawing.Point(587, 22);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(37, 27);

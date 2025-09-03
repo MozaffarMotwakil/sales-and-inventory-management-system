@@ -13,9 +13,9 @@ namespace SIMS.WinForms.Invoices
         private void frmInvoicesList_Load(object sender, EventArgs e)
         {
             lblSearchHintText.Text = "Enter Invoiece Number";
-            cbDateRange.SelectedItem = "Day";
-            dtpFrom.Value = DateTime.Now;
-            dtpTo.Value = DateTime.Now;
+            cbDateRange.SelectedItem = "Today";
+            dtpStartDate.Value = DateTime.Today;
+            dtpEndDate.Value = DateTime.Today;
         }
 
         private void frmInvoicesList_Activated(object sender, EventArgs e)
@@ -48,5 +48,6 @@ namespace SIMS.WinForms.Invoices
                 cbUser.Text = "Select User";
             }
         }
+
     }
 }
