@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using DVLD.WinForms.MainForms;
 using SIMS.WinForms.ActivityLog;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;
 using SIMS.WinForms.Invoices;
+using SIMS.WinForms.Reports;
 using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
@@ -70,7 +70,10 @@ namespace SIMS.WinForms
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
         {
-
+            frmReportsDashboard mainReports = new frmReportsDashboard();
+            mainReports.MdiParent = this;
+            mainReports.Dock = DockStyle.Fill;
+            mainReports.Show();
         }
 
         private void UsersToolStripButton_Click(object sender, EventArgs e)
@@ -103,5 +106,12 @@ namespace SIMS.WinForms
             Application.OpenForms["frmLogin"].Activate();
         }
 
+        private void frmMainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
