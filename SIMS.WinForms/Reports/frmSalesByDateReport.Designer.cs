@@ -415,7 +415,7 @@
             this.Controls.Add(this.chart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSalesByDateReport";
-            this.Text = "Form1";
+            this.Text = "Sales by Date Report";
             this.Load += new System.EventHandler(this.frmSalesByDateReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.panel1.ResumeLayout(false);

@@ -134,14 +134,38 @@
     <Compile Include="MainForms\frmMainForm.Designer.cs">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForms\ctrModrenTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MainForms\ctrModrenTextBox.Designer.cs">
-      <DependentUpon>ctrModrenTextBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\frmMainReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmMainReport.Designer.cs">
+      <DependentUpon>frmMainReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmProfitAndLossReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmProfitAndLossReport.Designer.cs">
+      <DependentUpon>frmProfitAndLossReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmSalesByEmployeeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmSalesByEmployeeReport.Designer.cs">
+      <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmSalesByDateReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmSalesByDateReport.Designer.cs">
+      <DependentUpon>frmSalesByDateReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmSalesByCategoryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmSalesByCategoryReport.Designer.cs">
+      <DependentUpon>frmSalesByCategoryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\frmReportsDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,9 +298,6 @@
     <EmbeddedResource Include="MainForms\frmMainForm.resx">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForms\ctrModrenTextBox.resx">
-      <DependentUpon>ctrModrenTextBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -287,8 +308,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\frmMainReport.resx">
+      <DependentUpon>frmMainReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmProfitAndLossReport.resx">
+      <DependentUpon>frmProfitAndLossReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmSalesByDateReport.resx">
+      <DependentUpon>frmSalesByDateReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmReportsDashboard.resx">
       <DependentUpon>frmReportsDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmSalesByCategoryReport.resx">
+      <DependentUpon>frmSalesByCategoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\frmSalesByEmployeeReport.resx">
+      <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPointOfSale.resx">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>

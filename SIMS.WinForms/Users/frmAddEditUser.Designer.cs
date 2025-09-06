@@ -144,7 +144,9 @@
             this.cbRole.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
-            "Employee",
+            "Cashier",
+            "Sales Manager",
+            "Inventory Manager",
             "Admin"});
             this.cbRole.Location = new System.Drawing.Point(346, 46);
             this.cbRole.Name = "cbRole";

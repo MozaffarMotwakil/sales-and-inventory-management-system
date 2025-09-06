@@ -392,7 +392,7 @@
             this.Name = "frmSalesByEmployeeReport";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Sales by Employee Report";
             this.Load += new System.EventHandler(this.frmSalesByEmployeeReport_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

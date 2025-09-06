@@ -368,7 +368,7 @@
             this.Name = "frmSalesByCategoryReport";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Sales by Category Report";
             this.Load += new System.EventHandler(this.frmSalesByCategoryReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartTotalSalesAndProfitsByCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartCategorySalesShare)).EndInit();

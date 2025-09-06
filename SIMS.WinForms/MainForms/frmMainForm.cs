@@ -14,6 +14,27 @@ namespace SIMS.WinForms
 {
     public partial class frmMainForm : Form
     {
+        enum enFormType 
+        {
+            Dashboard,
+            PointOfSale,
+            ProductsList,
+            SuppliersList,
+            ReportsDashboard,
+            UsersList,
+            InvoicesList,
+            ActivityLog
+        };
+
+        private Form _DashboardForm;
+        private Form _PointOfSaleForm;
+        private Form _ProductsListForm;
+        private Form _SuppliersList;
+        private Form _ReportsDashboardForm;
+        private Form _UsersListForm;
+        private Form _InvoicesListForm;
+        private Form _ActivityLogForm;
+
         public frmMainForm()
         {
             InitializeComponent();
@@ -30,74 +51,47 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            frmDashboard dashboard = new frmDashboard();
-            dashboard.MdiParent = this;
-            dashboard.Dock = DockStyle.Fill;
-            dashboard.Show();
+            _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)
         {
-            frmDashboard dashboard = new frmDashboard();
-            dashboard.MdiParent = this;
-            dashboard.Dock = DockStyle.Fill;
-            dashboard.Show();
+            _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 
         private void PointOfSelesToolStripButton_Click(object sender, EventArgs e)
         {
-            frmPointOfSale pointOfSale = new frmPointOfSale();
-            pointOfSale.MdiParent = this;
-            pointOfSale.Dock = DockStyle.Fill;
-            pointOfSale.Show();
+            _OpenForm(ref _PointOfSaleForm, enFormType.PointOfSale);
         }
 
         private void InventoryToolStripButton3_Click(object sender, EventArgs e)
         {
-            frmProductsList productsList = new frmProductsList();
-            productsList.MdiParent = this;
-            productsList.Dock = DockStyle.Fill;
-            productsList.Show();
+            _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
         }
 
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
-            frmSuppliersList suppliersList = new frmSuppliersList();
-            suppliersList.MdiParent = this;
-            suppliersList.Dock = DockStyle.Fill;
-            suppliersList.Show();
+            _OpenForm(ref _SuppliersList, enFormType.SuppliersList);
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
         {
-            frmReportsDashboard mainReports = new frmReportsDashboard();
-            mainReports.MdiParent = this;
-            mainReports.Dock = DockStyle.Fill;
-            mainReports.Show();
+            _OpenForm(ref _ReportsDashboardForm, enFormType.ReportsDashboard);
         }
 
         private void UsersToolStripButton_Click(object sender, EventArgs e)
         {
-            frmUsersList usersList = new frmUsersList();
-            usersList.MdiParent = this;
-            usersList.Dock = DockStyle.Fill;
-            usersList.Show();
+            _OpenForm(ref _UsersListForm, enFormType.UsersList);
         }
 
         private void InvoicesToolStripButton_Click(object sender, EventArgs e)
         {
-            frmInvoicesList invoicesList = new frmInvoicesList();
-            invoicesList.MdiParent = this;
-            invoicesList.Dock = DockStyle.Fill;
-            invoicesList.Show();
+            _OpenForm(ref _InvoicesListForm, enFormType.InvoicesList);
         }
 
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
         {
-            frmActivityLog activityLog = new frmActivityLog();
-            activityLog.MdiParent = this;
-            activityLog.Dock = DockStyle.Fill;
-            activityLog.Show();
+            _OpenForm(ref _ActivityLogForm, enFormType.ActivityLog);
         }
 
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
@@ -106,12 +100,46 @@ namespace SIMS.WinForms
             Application.OpenForms["frmLogin"].Activate();
         }
 
-        private void frmMainForm_KeyDown(object sender, KeyEventArgs e)
+        private void _OpenForm(ref Form form, enFormType formType)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (form == null || form.IsDisposed)
             {
-                this.Close();
+                for (byte i = 2; i < Application.OpenForms.Count; i++)
+                {
+                    Application.OpenForms[i].Close();
+                }
+                
+                form = _GerFormType(formType);
+                form.MdiParent = this;
+                form.Dock = DockStyle.Fill;
+                form.Show();
             }
         }
+
+        private Form _GerFormType(enFormType formType)
+        {
+            switch (formType)
+            {
+                case enFormType.Dashboard:
+                    return new frmDashboard();
+                case enFormType.PointOfSale:
+                    return new frmPointOfSale();
+                case enFormType.ProductsList:
+                    return new frmProductsList();
+                case enFormType.SuppliersList:
+                    return new frmSuppliersList();
+                case enFormType.ReportsDashboard:
+                    return new frmReportsDashboard();
+                case enFormType.UsersList:
+                    return new frmUsersList();
+                case enFormType.InvoicesList:
+                    return new frmInvoicesList();
+                case enFormType.ActivityLog:
+                    return new frmActivityLog();
+                default:
+                    return new Form();
+            }
+        }
+
     }
 }
