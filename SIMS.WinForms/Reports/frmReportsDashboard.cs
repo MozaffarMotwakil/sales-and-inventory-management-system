@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SIMS.WinForms.Reports
 {
@@ -14,61 +12,59 @@ namespace SIMS.WinForms.Reports
 
         private void frmReportsDashboard_Load(object sender, EventArgs e)
         {
-            LoadDailySalesChart();
-            LoadTopSellingProductsChart();
+            _ConfigureMainReportForm();
         }
 
-        private void LoadDailySalesChart()
+        private void mainReportToolStripButton_Click(object sender, EventArgs e)
         {
-            chartSales.Series["DailySales"].ChartType = SeriesChartType.Line;
-            chartSales.Series["DailySales"].BorderWidth = 3;
-
-            var dailySalesData = GetDummyDailySalesData();
-
-            foreach (var item in dailySalesData)
-            {
-                chartSales.Series["DailySales"].Points.AddXY(item.Key, item.Value);
-            }
+            _ConfigureMainReportForm();
         }
 
-        private Dictionary<string, double> GetDummyDailySalesData()
+        private void salesByCategoryReportToolStripButton_Click(object sender, EventArgs e)
         {
-            var data = new Dictionary<string, double>();
-            DateTime today = DateTime.Today;
-
-            data.Add(today.AddDays(-6).ToString("dd MMM"), 12500);
-            data.Add(today.AddDays(-5).ToString("dd MMM"), 15200);
-            data.Add(today.AddDays(-4).ToString("dd MMM"), 14800);
-            data.Add(today.AddDays(-3).ToString("dd MMM"), 17500);
-            data.Add(today.AddDays(-2).ToString("dd MMM"), 16300);
-            data.Add("Yesterday", 19100);
-            data.Add("Today", 21500);
-
-            return data;
+            _OpenReportForm(new frmSalesByCategoryReport());
         }
 
-        private void LoadTopSellingProductsChart()
+        private void salesByDateReportToolStripButton_Click(object sender, EventArgs e)
         {
-            chartTopSelling.Series["Top5Products"].ChartType = SeriesChartType.Pie;
-            chartTopSelling.Series["Top5Products"].IsValueShownAsLabel = true;
-
-            var topSellingData = GetDummyTopSellingData();
-
-            foreach (var item in topSellingData)
-            {
-                chartTopSelling.Series["Top5Products"].Points.AddXY(item.Key, item.Value);
-            }
+            _OpenReportForm(new frmSalesByDateReport());
         }
 
-        private Dictionary<string, double> GetDummyTopSellingData()
+        private void salesByEmployeeReporttoolStripButton_Click(object sender, EventArgs e)
         {
-            var data = new Dictionary<string, double>();
-            data.Add("Soft Drinks", 75000);
-            data.Add("Sweets", 62000);
-            data.Add("Cheese & Dairy", 55000);
-            data.Add("Vegetables", 48000);
-            data.Add("Home Appliances", 41000);
-            return data;
+            _OpenReportForm(new frmSalesByEmployeeReport());
+        }
+
+        private void profitAndLossReportToolStripButton_Click(object sender, EventArgs e)
+        {
+            _OpenReportForm(new frmProfitAndLossReport());
+        }
+
+        private void _OpenReportForm(Form reportForm)
+        {
+            pnlReportsContainer.Controls.Clear();
+            reportForm.TopLevel = false;
+            reportForm.FormBorderStyle = FormBorderStyle.None;
+            reportForm.Dock = DockStyle.Fill;
+            pnlReportsContainer.Controls.Add(reportForm);
+            reportForm.Show();
+        }
+
+        private void _ConfigureMainReportForm()
+        {
+            pnlReportsContainer.Controls.Clear();
+            pnlReportsContainer.Controls.AddRange(
+                new Control[] {
+                    pnlAverageDailyInvoices,
+                    pnlAverageInvoiceValue,
+                    pnlTotalMonthlyProfits,
+                    pnlTotalProjectedSalesValue,
+                    label1, label2, label3, label4,
+                    chartSlowMovingProducts,
+                    chartTopFiveBestSalling,
+                    chartButtomFiveLeastSelling
+                }
+            );
         }
 
     }
