@@ -415,7 +415,7 @@
             this.Name = "frmProfitAndLossReport";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Profit and Loss Report";
             this.Load += new System.EventHandler(this.frmProfitAndLossReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);

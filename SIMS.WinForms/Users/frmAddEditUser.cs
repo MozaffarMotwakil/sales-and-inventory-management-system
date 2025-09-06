@@ -16,7 +16,7 @@ namespace SIMS.WinForms.Users
         private void frmAddEditUser_Load(object sender, EventArgs e)
         {
             cbCountry.SelectedItem = "Sudan";
-            cbRole.SelectedItem = "Employee";
+            cbRole.SelectedItem = "Cashier";
 
             if (FormMode == enMode.Add)
             {

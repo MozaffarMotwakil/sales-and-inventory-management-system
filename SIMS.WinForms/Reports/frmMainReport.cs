@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SIMS.WinForms.Dashboard
+namespace SIMS.WinForms.Reports
 {
-    public partial class frmDashboard : Form
+    public partial class frmMainReport : Form
     {
-        public frmDashboard()
+        public frmMainReport()
         {
             InitializeComponent();
         }
