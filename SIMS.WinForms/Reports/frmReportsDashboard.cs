@@ -57,7 +57,7 @@ namespace SIMS.WinForms.Reports
 
         private void _OpenReportForm(ref Form reportForm, enFormType formType)
         {
-            // Close the current form before openning the new form.
+            // Close the current report form before opening the new report form.
             if (Application.OpenForms.Count == 4 && reportForm != Application.OpenForms[3])
             {
                 Application.OpenForms[3].Close();
@@ -84,11 +84,11 @@ namespace SIMS.WinForms.Reports
                 case enFormType.SalesByCategoryReport:
                     return new frmSalesByCategoryReport();
                 case enFormType.SalesByDateReport:
-                    return new frmSalesByCategoryReport();
+                    return new frmSalesByDateReport();
                 case enFormType.SalesByEmployeeReport:
-                    return new frmSalesByCategoryReport();
+                    return new frmSalesByEmployeeReport();
                 case enFormType.ProfitAndLossReport:
-                    return new frmSalesByCategoryReport();
+                    return new frmProfitAndLossReport();
                 default:
                     return new Form();
             }
@@ -96,6 +96,7 @@ namespace SIMS.WinForms.Reports
 
         private void frmReportsDashboard_Deactivate(object sender, EventArgs e)
         {
+            // Close any report form before leaving the reports forms.
             for (byte i = 3; i < Application.OpenForms.Count; i++)
             {
                 Application.OpenForms[i].Close();
