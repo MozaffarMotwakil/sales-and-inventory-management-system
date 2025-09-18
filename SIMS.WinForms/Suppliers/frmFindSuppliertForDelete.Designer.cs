@@ -39,12 +39,12 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(371, 302);
+            this.btnCancle.Location = new System.Drawing.Point(136, 284);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(116, 48);
             this.btnCancle.TabIndex = 2;
-            this.btnCancle.Text = "Cancle";
-            this.btnCancle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancle.Text = "  إلغاء";
+            this.btnCancle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancle.UseVisualStyleBackColor = true;
             // 
@@ -54,11 +54,11 @@
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(493, 302);
+            this.btnDelete.Location = new System.Drawing.Point(14, 284);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(116, 48);
             this.btnDelete.TabIndex = 1;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "حذف  ";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
@@ -66,7 +66,8 @@
             // 
             this.ctrSupplierInfoWithFilter.Location = new System.Drawing.Point(12, 12);
             this.ctrSupplierInfoWithFilter.Name = "ctrSupplierInfoWithFilter";
-            this.ctrSupplierInfoWithFilter.Size = new System.Drawing.Size(599, 284);
+            this.ctrSupplierInfoWithFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrSupplierInfoWithFilter.Size = new System.Drawing.Size(599, 266);
             this.ctrSupplierInfoWithFilter.TabIndex = 0;
             // 
             // frmFindSuppliertForDelete
@@ -75,7 +76,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(621, 359);
+            this.ClientSize = new System.Drawing.Size(621, 338);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.ctrSupplierInfoWithFilter);
@@ -83,9 +84,11 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFindSuppliertForDelete";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Find Suppliert For Delete";
+            this.Text = "البحث عن مورد من أجل حذفه";
             this.ResumeLayout(false);
 
         }

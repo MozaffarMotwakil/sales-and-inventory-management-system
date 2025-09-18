@@ -13,7 +13,7 @@ namespace SIMS.WinForms.Suppliers
 
         private void frmSuppliersList_Load(object sender, EventArgs e)
         {
-            lblSearchHintText.Text = "Enter Supplier Name or Contact Person or Phone Number";
+            lblSearchHintText.Text = "أدخل إسم المورد أو رقم الهاتف أو إسم جهة التواصل داخل المنظمة";
         }
 
         private void frmSuppliersList_Activated(object sender, EventArgs e)

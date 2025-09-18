@@ -16,11 +16,11 @@ namespace SIMS.WinForms.Suppliers
         {
             if (FormMode == enMode.Add)
             {
-                this.Text = lblFormTitle.Text = "Add New Supplier";
+                this.Text = lblFormTitle.Text = "إضافة مورد جديد";
             }
             else
             {
-                this.Text = lblFormTitle.Text = "Edit Supplier";
+                this.Text = lblFormTitle.Text = "تعديل معلومات مورد";
             }
         }
 

@@ -38,7 +38,8 @@
             // 
             this.ctrSupplierInfoWithFilter.Location = new System.Drawing.Point(12, 12);
             this.ctrSupplierInfoWithFilter.Name = "ctrSupplierInfoWithFilter";
-            this.ctrSupplierInfoWithFilter.Size = new System.Drawing.Size(599, 284);
+            this.ctrSupplierInfoWithFilter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrSupplierInfoWithFilter.Size = new System.Drawing.Size(599, 265);
             this.ctrSupplierInfoWithFilter.TabIndex = 0;
             // 
             // btnCancle
@@ -47,11 +48,11 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(371, 302);
+            this.btnCancle.Location = new System.Drawing.Point(136, 283);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(116, 48);
             this.btnCancle.TabIndex = 2;
-            this.btnCancle.Text = "Cancle";
+            this.btnCancle.Text = "إلغاء  ";
             this.btnCancle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancle.UseVisualStyleBackColor = true;
@@ -63,11 +64,11 @@
             this.btnEdit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(493, 302);
+            this.btnEdit.Location = new System.Drawing.Point(14, 283);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(116, 48);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "  Edit";
+            this.btnEdit.Text = "تعديل";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -78,7 +79,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(621, 359);
+            this.ClientSize = new System.Drawing.Size(621, 337);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.ctrSupplierInfoWithFilter);
@@ -86,9 +87,11 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFindSuppliertForEdit";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Find Suppliert For Edit";
+            this.Text = "البحث عن مورد من أجل تعديل بياناته";
             this.ResumeLayout(false);
 
         }

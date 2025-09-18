@@ -122,12 +122,12 @@
             // SuppliersToolStripButton
             // 
             this.SuppliersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SuppliersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SuppliersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SuppliersToolStripButton.Image")));
             this.SuppliersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SuppliersToolStripButton.Name = "SuppliersToolStripButton";
             this.SuppliersToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.SuppliersToolStripButton.Text = "Suppliers";
+            this.SuppliersToolStripButton.Text = "الموردين";
             this.SuppliersToolStripButton.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
             // 
             // ReportsToolStripButton
@@ -305,6 +305,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMainForm";
             this.Padding = new System.Windows.Forms.Padding(250, 50, 0, 0);
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";

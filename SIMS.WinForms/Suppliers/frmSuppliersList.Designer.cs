@@ -33,10 +33,10 @@
             this.btnAddSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnEditSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteSupplier = new System.Windows.Forms.ToolStripButton();
-            this.ctrSupplierInfo1 = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.lblSearchHintText = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -71,6 +71,8 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStrip.ShowItemToolTips = false;
             this.toolStrip.Size = new System.Drawing.Size(800, 45);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip";
@@ -83,8 +85,8 @@
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(102, 42);
-            this.btnAddSupplier.Text = "   Add    ";
+            this.btnAddSupplier.Size = new System.Drawing.Size(137, 42);
+            this.btnAddSupplier.Text = "  إضافة مورد  ";
             this.btnAddSupplier.ToolTipText = "Add a new supplier";
             this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
             // 
@@ -95,8 +97,8 @@
             this.btnEditSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditSupplier.Name = "btnEditSupplier";
-            this.btnEditSupplier.Size = new System.Drawing.Size(96, 42);
-            this.btnEditSupplier.Text = "   Edit   ";
+            this.btnEditSupplier.Size = new System.Drawing.Size(135, 42);
+            this.btnEditSupplier.Text = "  تعديل مورد  ";
             this.btnEditSupplier.ToolTipText = "Edit a supplier";
             this.btnEditSupplier.Click += new System.EventHandler(this.btnEditSupplier_Click);
             // 
@@ -107,18 +109,10 @@
             this.btnDeleteSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnDeleteSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDeleteSupplier.Name = "btnDeleteSupplier";
-            this.btnDeleteSupplier.Size = new System.Drawing.Size(114, 42);
-            this.btnDeleteSupplier.Text = "   Delete   ";
+            this.btnDeleteSupplier.Size = new System.Drawing.Size(130, 42);
+            this.btnDeleteSupplier.Text = "  حذف مورد  ";
             this.btnDeleteSupplier.ToolTipText = "Delete a supplier";
             this.btnDeleteSupplier.Click += new System.EventHandler(this.btnDeleteSupplier_Click);
-            // 
-            // ctrSupplierInfo1
-            // 
-            this.ctrSupplierInfo1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrSupplierInfo1.Location = new System.Drawing.Point(13, 64);
-            this.ctrSupplierInfo1.Name = "ctrSupplierInfo1";
-            this.ctrSupplierInfo1.Size = new System.Drawing.Size(583, 215);
-            this.ctrSupplierInfo1.TabIndex = 3;
             // 
             // lblSearchHintText
             // 
@@ -127,21 +121,24 @@
             this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSearchHintText.Location = new System.Drawing.Point(715, 17);
+            this.lblSearchHintText.Location = new System.Drawing.Point(32, 17);
             this.lblSearchHintText.Name = "lblSearchHintText";
-            this.lblSearchHintText.Size = new System.Drawing.Size(57, 16);
+            this.lblSearchHintText.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblSearchHintText.Size = new System.Drawing.Size(47, 16);
             this.lblSearchHintText.TabIndex = 29;
-            this.lblSearchHintText.Text = "Message";
+            this.lblSearchHintText.Text = "الرسالة";
+            this.lblSearchHintText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
             // pictureBox
             // 
+            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(680, 13);
+            this.pictureBox.Location = new System.Drawing.Point(86, 12);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(29, 25);
+            this.pictureBox.Size = new System.Drawing.Size(29, 26);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 30;
             this.pictureBox.TabStop = false;
@@ -152,11 +149,21 @@
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(708, 12);
+            this.txtSearch.Location = new System.Drawing.Point(13, 12);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(80, 26);
+            this.txtSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSearch.Size = new System.Drawing.Size(74, 26);
             this.txtSearch.TabIndex = 28;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // ctrSupplierInfo
+            // 
+            this.ctrSupplierInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrSupplierInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(205, 64);
+            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(583, 215);
+            this.ctrSupplierInfo.TabIndex = 3;
             // 
             // frmSuppliersList
             // 
@@ -166,7 +173,7 @@
             this.Controls.Add(this.lblSearchHintText);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.ctrSupplierInfo1);
+            this.Controls.Add(this.ctrSupplierInfo);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.dgvSuppliersList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -194,7 +201,7 @@
         private System.Windows.Forms.ToolStripButton btnAddSupplier;
         private System.Windows.Forms.ToolStripButton btnEditSupplier;
         private System.Windows.Forms.ToolStripButton btnDeleteSupplier;
-        private ctrSupplierInfo ctrSupplierInfo1;
+        private ctrSupplierInfo ctrSupplierInfo;
         private System.Windows.Forms.Label lblSearchHintText;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
