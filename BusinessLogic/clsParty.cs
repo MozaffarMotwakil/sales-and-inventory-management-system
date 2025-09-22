@@ -11,6 +11,12 @@ namespace BusinessLogic
             Organization = 2
         }
 
+        public enum enPartyType
+        {
+            Supplier = 1,
+            ContactPerson = 2
+        }
+
         public int PartyID { get; }
         public string PartyName { get; set; }
         public enPartyCatigory PartyCategory { get; protected set; }

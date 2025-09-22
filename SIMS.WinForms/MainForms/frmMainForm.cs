@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using BusinessLogic;
 using SIMS.WinForms.ActivityLog;
 using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Inventory;

@@ -134,6 +134,30 @@
     <Compile Include="MainForms\frmMainForm.Designer.cs">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Organizations\ctrAddEditOrganization.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Organizations\ctrAddEditOrganization.Designer.cs">
+      <DependentUpon>ctrAddEditOrganization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parties\ctrAddEditParty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Parties\ctrAddEditParty.Designer.cs">
+      <DependentUpon>ctrAddEditParty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\ctrAddEditPerson.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="People\ctrAddEditPerson.Designer.cs">
+      <DependentUpon>ctrAddEditPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\frmAddEditPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\frmAddEditPerson.Designer.cs">
+      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\frmMainReport.cs">
@@ -256,6 +280,9 @@
     <Compile Include="Users\ctrUserInfoWithFilter.Designer.cs">
       <DependentUpon>ctrUserInfoWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\clsFormHelper.cs" />
+    <Compile Include="Utils\clsFormMessages.cs" />
+    <Compile Include="Utils\clsFormValidation.cs" />
     <EmbeddedResource Include="ActivityLog\frmActivityLog.resx">
       <DependentUpon>frmActivityLog.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +325,18 @@
     <EmbeddedResource Include="MainForms\frmMainForm.resx">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Organizations\ctrAddEditOrganization.resx">
+      <DependentUpon>ctrAddEditOrganization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Parties\ctrAddEditParty.resx">
+      <DependentUpon>ctrAddEditParty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\ctrAddEditPerson.resx">
+      <DependentUpon>ctrAddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\frmAddEditPerson.resx">
+      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -334,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\ctrSupplierInfoWithFilter.resx">
       <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmAddEditSupplier.ar-SD.resx">
+      <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmAddEditSupplier.resx">
       <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
@@ -503,6 +545,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\alwaha_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{05c24880-8b70-4c5b-964e-fe36b5c7b28b}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
