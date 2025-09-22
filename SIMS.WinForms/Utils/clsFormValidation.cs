@@ -20,34 +20,35 @@ namespace DVLD.WinForms.Utils
             }
         }
 
-        public static bool IsDataValid(UserControl userControl, ErrorProvider errorProvider)
+        public static bool IsDataValid(Control control, ErrorProvider errorProvider)
         {
-            userControl.ValidateChildren();
-
-            foreach (Control control in userControl.Controls)
+            if (control is ContainerControl container)
             {
-                if (errorProvider.GetError(control) != string.Empty)
-                {
-                    return false;
-                }
+                container.ValidateChildren(ValidationConstraints.None);
             }
 
-            return true;
+            return !IsControlsHasError(control, errorProvider);
         }
 
-        public static bool IsDataValid(Form form, Control.ControlCollection collection, ErrorProvider errorProvider)
+        private static bool IsControlsHasError(Control control, ErrorProvider errorProvider)
         {
-            form.ValidateChildren();
-
-            foreach (Control control in collection)
+            foreach (Control ctr in control.Controls)
             {
-                if (errorProvider.GetError(control) != string.Empty)
+                if (errorProvider.GetError(ctr) != string.Empty)
                 {
-                    return false;
+                    return true;
+                }
+
+                if (ctr.HasChildren)
+                {
+                    if (IsControlsHasError(ctr, errorProvider))
+                    {
+                        return true;
+                    }
                 }
             }
 
-            return true;
+            return false;
         }
 
         public static void ValidatingRequiredField(Control control, string ErrorMessage, ErrorProvider errorProvider)
