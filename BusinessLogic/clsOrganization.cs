@@ -11,7 +11,7 @@ namespace BusinessLogic
         {
             this.PartyName = organizationName;
             this.PartyCategory = enPartyCatigory.Organization;
-            this.CountryID = countryID;
+            this.CountryInfo = clsCountry.Find(countryID);
             this.Phone = phone;
             this.Email = email;
             this.Address = address;

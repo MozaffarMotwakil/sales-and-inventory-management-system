@@ -12,9 +12,9 @@ namespace SIMS.WinForms.Suppliers
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier editSupplier = new frmAddEditSupplier();
-            editSupplier.FormMode = enMode.Edit;
-            editSupplier.ShowDialog();
+            //frmAddEditSupplier editSupplier = new frmAddEditSupplier();
+            //editSupplier.FormMode = enMode.Edit;
+            //editSupplier.ShowDialog();
         }
 
         private void btnCancle_Click(object sender, EventArgs e)

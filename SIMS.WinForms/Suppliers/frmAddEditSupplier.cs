@@ -7,32 +7,81 @@ namespace SIMS.WinForms.Suppliers
 {
     public partial class frmAddEditSupplier : Form
     {
+        private clsParty.enPartyCatigory _SupplierCatigory;
+        public clsParty.enPartyCatigory SupplierCatigory 
+        {
+            get
+            {
+                return _SupplierCatigory;
+            }
+            set
+            {
+                _SupplierCatigory = value;
+
+                switch (_SupplierCatigory)
+                {
+                    case clsParty.enPartyCatigory.Person:
+                        ctrAddEditOrganization.Visible = false;
+                        ctrAddEditPerson.Visible = true;
+                        ctrAddEditPerson.AttachErrorProvider(errorProvider);
+                        break;
+                    case clsParty.enPartyCatigory.Organization:
+                        ctrAddEditPerson.Visible = false;
+                        ctrAddEditOrganization.Visible = true;
+                        gbOtherInfo.Location = new System.Drawing.Point(
+                            gbOtherInfo.Location.X,
+                            397
+                            );
+                        btnSave.Location = new System.Drawing.Point(
+                            btnSave.Location.X,
+                            545
+                            );
+                        btnCancle.Location = new System.Drawing.Point(
+                            btnCancle.Location.X,
+                            545
+                            );
+                        panel.Size = new System.Drawing.Size(panel.Width, 600);
+                        this.Size = new System.Drawing.Size(this.Width, 660);
+                        ctrAddEditOrganization.AttachErrorProvider(errorProvider);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         public enMode FormMode;
         private clsSupplier _Supplier;
 
-        public frmAddEditSupplier()
+        public frmAddEditSupplier(clsParty.enPartyCatigory supplierType)
         {
             InitializeComponent();
             _Supplier = null;
+            SupplierCatigory = supplierType;
             FormMode = enMode.Add;
         }
 
-        public frmAddEditSupplier(int supplierID)
+        public frmAddEditSupplier(int supplierID, clsParty.enPartyCatigory supplierType)
         {
             InitializeComponent();
             _Supplier = null;
+            SupplierCatigory = supplierType;
             FormMode = enMode.Edit;
         }
 
         private void frmAddEditSupplier_Load(object sender, EventArgs e)
         {
-            if (FormMode == enMode.Add)
+            if (FormMode is enMode.Add)
             {
-                this.Text = lblFormTitle.Text = "إضافة مورد جديد";
+                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                    "إضافة مورد جديد - شخص" :
+                    "إضافة مورد جديد - منظمة";
             }
             else
             {
-                this.Text = lblFormTitle.Text = "تعديل بيانات مورد";
+                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                    "تعديل بيانات مورد - شخص" :
+                    "تعديل بيانات مورد - منظمة";
             }
         }
 
@@ -51,10 +100,14 @@ namespace SIMS.WinForms.Suppliers
 
             if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
             {
+                clsParty supplierType = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                    ctrAddEditPerson.Person :
+                    (clsParty)ctrAddEditOrganization.Organization;
+
                 if (FormMode is enMode.Add)
                 {
                     _Supplier = new clsSupplier(
-                        null,
+                        supplierType,
                         txtNotes.Text
                     );
                 }
@@ -80,7 +133,7 @@ namespace SIMS.WinForms.Suppliers
                 }
                 else
                 {
-                    string errorMessages = string.Join(Environment.NewLine, validationResult.ConvertErrorsListToStringList());
+                    string errorMessages = string.Join(Environment.NewLine, validationResult.ConvertObjectErrorsListToStringList());
                     clsFormMessages.ShowError(errorMessages, "فشل الحفظ");
                 }
             }

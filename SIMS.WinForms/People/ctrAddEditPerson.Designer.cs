@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNationalNa = new System.Windows.Forms.TextBox();
-            this.ctrAddEditParty = new SIMS.WinForms.Parties.ctrAddEditParty();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrAddEditParty = new SIMS.WinForms.Parties.ctrAddEditParty();
             this.gbPersonInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -66,7 +66,7 @@
             this.gbPersonInfo.Padding = new System.Windows.Forms.Padding(4);
             this.gbPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gbPersonInfo.Size = new System.Drawing.Size(489, 203);
-            this.gbPersonInfo.TabIndex = 3;
+            this.gbPersonInfo.TabIndex = 1;
             this.gbPersonInfo.TabStop = false;
             this.gbPersonInfo.Text = "معلومات إضافية عن الشخص";
             // 
@@ -79,7 +79,7 @@
             this.llDeletePersonImage.Location = new System.Drawing.Point(56, 180);
             this.llDeletePersonImage.Name = "llDeletePersonImage";
             this.llDeletePersonImage.Size = new System.Drawing.Size(72, 16);
-            this.llDeletePersonImage.TabIndex = 45;
+            this.llDeletePersonImage.TabIndex = 7;
             this.llDeletePersonImage.TabStop = true;
             this.llDeletePersonImage.Text = "حذف الصورة";
             this.llDeletePersonImage.Visible = false;
@@ -93,7 +93,7 @@
             this.llSetPersonImage.Location = new System.Drawing.Point(58, 163);
             this.llSetPersonImage.Name = "llSetPersonImage";
             this.llSetPersonImage.Size = new System.Drawing.Size(68, 16);
-            this.llSetPersonImage.TabIndex = 44;
+            this.llSetPersonImage.TabIndex = 6;
             this.llSetPersonImage.TabStop = true;
             this.llSetPersonImage.Text = "تعيين صورة";
             this.llSetPersonImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llSetPersonImage_LinkClicked);
@@ -117,7 +117,7 @@
             this.dtpBirthDate.Name = "dtpBirthDate";
             this.dtpBirthDate.RightToLeftLayout = true;
             this.dtpBirthDate.Size = new System.Drawing.Size(282, 23);
-            this.dtpBirthDate.TabIndex = 40;
+            this.dtpBirthDate.TabIndex = 3;
             // 
             // rbFemale
             // 
@@ -127,7 +127,7 @@
             this.rbFemale.Location = new System.Drawing.Point(361, 166);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(50, 20);
-            this.rbFemale.TabIndex = 42;
+            this.rbFemale.TabIndex = 5;
             this.rbFemale.Text = "أنثى";
             this.rbFemale.UseVisualStyleBackColor = true;
             this.rbFemale.CheckedChanged += new System.EventHandler(this.rbFemale_CheckedChanged);
@@ -141,7 +141,7 @@
             this.rbMale.Location = new System.Drawing.Point(436, 166);
             this.rbMale.Name = "rbMale";
             this.rbMale.Size = new System.Drawing.Size(42, 20);
-            this.rbMale.TabIndex = 41;
+            this.rbMale.TabIndex = 4;
             this.rbMale.TabStop = true;
             this.rbMale.Text = "ذكر";
             this.rbMale.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 16);
-            this.label4.TabIndex = 38;
+            this.label4.TabIndex = 12;
             this.label4.Text = "الجنس";
             // 
             // label3
@@ -168,7 +168,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 16);
-            this.label3.TabIndex = 39;
+            this.label3.TabIndex = 11;
             this.label3.Text = "تاريخ الميلاد";
             // 
             // label2
@@ -180,7 +180,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 16);
-            this.label2.TabIndex = 36;
+            this.label2.TabIndex = 10;
             this.label2.Text = "الرقم الوطني";
             // 
             // txtNationalNa
@@ -190,13 +190,18 @@
             this.txtNationalNa.Margin = new System.Windows.Forms.Padding(4);
             this.txtNationalNa.Name = "txtNationalNa";
             this.txtNationalNa.Size = new System.Drawing.Size(282, 27);
-            this.txtNationalNa.TabIndex = 37;
+            this.txtNationalNa.TabIndex = 2;
             this.txtNationalNa.Validating += new System.ComponentModel.CancelEventHandler(this.txtNationalNa_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
             // 
             // ctrAddEditParty
             // 
             this.ctrAddEditParty.Address = "";
-            this.ctrAddEditParty.CountryID = ((byte)(165));
+            this.ctrAddEditParty.CountryID = ((byte)(164));
             this.ctrAddEditParty.Email = "";
             this.ctrAddEditParty.Location = new System.Drawing.Point(3, 3);
             this.ctrAddEditParty.Name = "ctrAddEditParty";
@@ -205,11 +210,6 @@
             this.ctrAddEditParty.Phone = "";
             this.ctrAddEditParty.Size = new System.Drawing.Size(497, 249);
             this.ctrAddEditParty.TabIndex = 0;
-            // 
-            // errorProvider
-            // 
-            this.errorProvider.ContainerControl = this;
-            this.errorProvider.RightToLeft = true;
             // 
             // ctrAddEditPerson
             // 

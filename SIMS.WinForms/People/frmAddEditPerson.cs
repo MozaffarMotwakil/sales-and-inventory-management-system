@@ -8,74 +8,90 @@ namespace SIMS.WinForms.People
 {
     public partial class frmAddEditPerson : Form
     {
+        private enPartyType _PersonType;
+        public enPartyType PersonType
+        {
+            get
+            {
+                return _PersonType;
+            }
+            set
+            {
+                _PersonType = value;
+
+                if (FormMode is enMode.Add)
+                {
+                    switch (_PersonType)
+                    {
+                        case enPartyType.Employee:
+                            ctrAddEditPerson.PersonType = enPartyType.Employee;
+                            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                                "إضافة موظف جديد" :
+                                "تعديل بيانات موظف";
+                            break;
+                        case enPartyType.Customer:
+                            ctrAddEditPerson.PersonType = enPartyType.Customer;
+                            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                                "إضافة عميل جديد" :
+                                "تعديل بيانات عميل";
+                            break;
+                        case enPartyType.Supplier:
+                            ctrAddEditPerson.PersonType = enPartyType.Supplier;
+                            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                                "إضافة مورد جديد" :
+                                "تعديل بيانات مورد";
+                            break;
+                        case enPartyType.ContactPerson:
+                            ctrAddEditPerson.PersonType = enPartyType.ContactPerson;
+                            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                                "إضافة جهة تواصل جديدة" :
+                                "تعديل بيانات جهة التواصل";
+                            break;
+                        default:
+                            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                                "إضافة شخص جديد" :
+                                "تعديل بيانات شخص";
+                            break;
+                    }
+                }
+            }
+        }
+
+        public enMode FormMode { get; set; }
+        private clsPerson _Person;
+
         public event Action<clsPerson> SaveSuccess;
         protected virtual void OnSaveSuccess()
         {
             SaveSuccess?.Invoke(_Person);
         }
 
-        public enMode FormMode;
-        public enPartyType? PersonType;
-        private clsPerson _Person;
-
-        public frmAddEditPerson()
+        public frmAddEditPerson(enMode formMode, enPartyType personType)
         {
             InitializeComponent();
             ctrAddEditPerson.AttachErrorProvider(errorProvider);
             _Person = null;
-            PersonType = null;
-            FormMode = enMode.Add;
+            FormMode = formMode;
+            PersonType = personType;
         }
 
-        public frmAddEditPerson(clsPerson person)
+        public frmAddEditPerson(clsPerson person, enMode formMode, enPartyType personType)
         {
             InitializeComponent();
             ctrAddEditPerson.AttachErrorProvider(errorProvider);
             _Person = person;
-            PersonType = null;
-            FormMode = enMode.Edit;
+            FormMode = formMode;
+            PersonType = personType;
         }
 
         private void frmAddEditPerson_Load(object sender, EventArgs e)
         {
-            if (FormMode is enMode.Add)
-            {
-                switch (PersonType)
-                {
-                    case enPartyType.Supplier:
-                        this.Text = lblFormTitle.Text = "إضافة مورد جديد";
-                        break;
-                    case enPartyType.ContactPerson:
-                        this.Text = lblFormTitle.Text = "إضافة جهة تواصل جديدة";
-                        break;
-                    default:
-                        this.Text = lblFormTitle.Text = "إضافة شخص جديد";
-                        break;
-                }
-            }
-            else
-            {
-                switch (PersonType)
-                {
-                    case enPartyType.Supplier:
-                        this.Text = lblFormTitle.Text = "تعديل بيانات مورد";
-                        break;
-                    case enPartyType.ContactPerson:
-                        this.Text = lblFormTitle.Text = "تعديل بيانات جهة التواصل";
-                        break;
-                    default:
-                        this.Text = lblFormTitle.Text = "تعديل بيانات شخص";
-                        break;
-                }
-            }
-
             if (FormMode is enMode.Edit)
             {
                 if (_Person is null)
                 {
-
                     this.Close();
-                    clsFormMessages.ShowError("خطأ: لم يتم العثور على الشخص.");
+                    clsFormMessages.ShowError("لم يتم العثور على الشخص");
                     return;
                 }
 
@@ -96,12 +112,9 @@ namespace SIMS.WinForms.People
                 return;
             }
 
-            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
-            {
-                _Person = ctrAddEditPerson.Person;
-                OnSaveSuccess();
-                this.Close();
-            }
+            _Person = ctrAddEditPerson.Person;
+            OnSaveSuccess();
+            this.Close();
         }
 
     }

@@ -19,7 +19,7 @@ namespace BusinessLogic
             Errors.Add(new clsValidationError(FieldName, errorMessage));
         }
 
-        public List<string> ConvertErrorsListToStringList()
+        public List<string> ConvertObjectErrorsListToStringList()
         {
             List<string> errorsList = new List<string>();
 

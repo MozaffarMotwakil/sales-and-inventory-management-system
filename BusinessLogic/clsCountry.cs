@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccess;
+using DTOs;
 
 namespace BusinessLogic
 {
@@ -10,5 +8,18 @@ namespace BusinessLogic
     {
         public byte CountryID { get; set; }
         public string CountryName { get; set; }
+
+        private clsCountry(clsCountryDTO countryDTO)
+        {
+            CountryID = countryDTO.CountryID;
+            CountryName = countryDTO.CountryName;
+        }
+
+        public static clsCountry Find(byte countryID)
+        {
+            clsCountryDTO countryDTO = clsCountryData.FindCountryByID(countryID);
+            return countryDTO is null ? null : new clsCountry(countryDTO);
+        }
+
     }
 }

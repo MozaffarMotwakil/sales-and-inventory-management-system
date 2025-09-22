@@ -31,9 +31,15 @@ namespace SIMS.WinForms.Suppliers
             txtSearch.Focus();
         }
 
-        private void btnAddSupplier_Click(object sender, EventArgs e)
+        private void personToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier();
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCatigory.Person);
+            addSupplier.ShowDialog();
+        }
+
+        private void organizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCatigory.Organization);
             addSupplier.ShowDialog();
         }
 

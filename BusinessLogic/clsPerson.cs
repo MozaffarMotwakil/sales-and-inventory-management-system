@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Net;
+using System.Security.Policy;
 using DTOs;
 
 namespace BusinessLogic
@@ -14,21 +17,66 @@ namespace BusinessLogic
         public string NationalNa { get; set; }
         public DateTime BirthDate { get; set; }
         public enGender Gender { get; set; }
-        public string ImagePath { get; set; }
+        public string CurrentImagePath { get; private set; }
+        public string NewImagePath { get; set; }
 
         public clsPerson(string personName, byte countryID, string phone, string email, string address,
             string nationalNa, DateTime birthDate, enGender gender, string imagePath)
         {
             PartyName = personName;
             PartyCategory = enPartyCatigory.Person;
-            CountryID = countryID;
+            CountryInfo = clsCountry.Find(countryID);
             Phone = phone;
             Email = email;
             Address = address;
             NationalNa = nationalNa;
             BirthDate = birthDate;
             Gender = gender;
-            ImagePath = imagePath;
+            NewImagePath = imagePath;
+        }
+
+        private clsPerson(clsPersonDTO personDTO)
+        {
+            PartyID = personDTO.PartyID;
+            PartyName = personDTO.PartyName;
+            PartyCategory = (enPartyCatigory)personDTO.PartyCategoryID;
+            CountryInfo = clsCountry.Find(personDTO.CountryID);
+            Phone = personDTO.Phone;
+            Email = personDTO.Email;
+            Address = personDTO.Address;
+            NationalNa = personDTO.NationalNa;
+            BirthDate = personDTO.BirthDate;
+            Gender = personDTO.Gender ? enGender.Female : enGender.Male;
+            CurrentImagePath = personDTO.ImagePath;
+            NewImagePath = personDTO.ImagePath;
+        }
+
+        public void DeleteImage()
+        {
+            if (File.Exists(this.CurrentImagePath))
+            {
+                File.Delete(this.CurrentImagePath);
+            }
+
+            this.CurrentImagePath = string.Empty;
+        }
+
+        public void SaveImage()
+        {
+            if (string.IsNullOrEmpty(NewImagePath))
+            {
+                this.DeleteImage();
+                return;
+            }
+            else
+            {
+                if (NewImagePath != this.CurrentImagePath)
+                {
+                    this.DeleteImage();
+                    this.CurrentImagePath = clsAppSettings.GetNewImagePathWithGUID();
+                    File.Copy(NewImagePath, this.CurrentImagePath);
+                }
+            }
         }
 
         public override clsPartyDTO MappingToDTO()
@@ -37,14 +85,14 @@ namespace BusinessLogic
                 this.PartyID,
                 this.PartyName,
                 (byte)this.PartyCategory,
-                this.CountryID,
+                this.CountryInfo.CountryID,
                 this.Phone,
                 this.Email,
                 this.Address,
                 this.NationalNa,
                 this.BirthDate,
                 this.Gender == enGender.Male ? false : true,
-                this.ImagePath
+                this.CurrentImagePath
                 );
         }
 

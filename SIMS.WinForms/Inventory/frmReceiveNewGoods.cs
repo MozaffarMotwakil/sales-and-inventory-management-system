@@ -56,9 +56,9 @@ namespace SIMS.WinForms.Inventory
 
         private void llAddSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier();
-            addSupplier.FormMode = enMode.Add;
-            addSupplier.ShowDialog();
+            //frmAddEditSupplier addSupplier = new frmAddEditSupplier();
+            //addSupplier.FormMode = enMode.Add;
+            //addSupplier.ShowDialog();
         }
 
     }

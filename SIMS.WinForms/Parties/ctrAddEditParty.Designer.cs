@@ -64,7 +64,7 @@
             this.gbBasicInfo.Padding = new System.Windows.Forms.Padding(4);
             this.gbBasicInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gbBasicInfo.Size = new System.Drawing.Size(489, 244);
-            this.gbBasicInfo.TabIndex = 2;
+            this.gbBasicInfo.TabIndex = 0;
             this.gbBasicInfo.TabStop = false;
             this.gbBasicInfo.Text = "المعلومات الأساسية";
             // 
@@ -75,215 +75,212 @@
             this.cbCountry.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Items.AddRange(new object[] {
-            "Afghanistan",
-            "Albania",
-            "Algeria",
-            "Andorra",
-            "Angola",
-            "Antigua & Deps",
-            "Argentina",
-            "Armenia",
-            "Australia",
-            "Austria",
-            "Azerbaijan",
-            "Bahamas",
-            "Bahrain",
-            "Bangladesh",
-            "Barbados",
-            "Belarus",
-            "Belgium",
-            "Belize",
-            "Benin",
-            "Bhutan",
-            "Bolivia",
-            "Bosnia Herzegovina",
-            "Botswana",
-            "Brazil",
-            "Brunei",
-            "Bulgaria",
-            "Burkina",
-            "Burundi",
-            "Cambodia",
-            "Cameroon",
-            "Canada",
-            "Cape Verde",
-            "Central African Rep",
-            "Chad",
-            "Chile",
-            "China",
-            "Colombia",
-            "Comoros",
-            "Congo",
-            "Congo {Democratic Rep}",
-            "Costa Rica",
-            "Croatia",
-            "Cuba",
-            "Cyprus",
-            "Czech Republic",
-            "Denmark",
-            "Djibouti",
-            "Dominica",
-            "Dominican Republic",
-            "East Timor",
-            "Ecuador",
-            "Egypt",
-            "El Salvador",
-            "Equatorial Guinea",
-            "Eritrea",
-            "Estonia",
-            "Ethiopia",
-            "Fiji",
-            "Finland",
-            "France",
-            "Gabon",
-            "Gambia",
-            "Georgia",
-            "Germany",
-            "Ghana",
-            "Greece",
-            "Grenada",
-            "Guatemala",
-            "Guinea",
-            "Guinea-Bissau",
-            "Guyana",
-            "Haiti",
-            "Honduras",
-            "Hungary",
-            "Iceland",
-            "India",
-            "Indonesia",
-            "Iran",
-            "Iraq",
-            "Ireland {Republic}",
-            "Israel",
-            "Italy",
-            "Ivory Coast",
-            "Jamaica",
-            "Japan",
-            "Jordan",
-            "Kazakhstan",
-            "Kenya",
-            "Kiribati",
-            "Korea North",
-            "Korea South",
-            "Kosovo",
-            "Kuwait",
-            "Kyrgyzstan",
-            "Laos",
-            "Latvia",
-            "Lebanon",
-            "Lesotho",
-            "Liberia",
-            "Libya",
-            "Liechtenstein",
-            "Lithuania",
-            "Luxembourg",
-            "Macedonia",
-            "Madagascar",
-            "Malawi",
-            "Malaysia",
-            "Maldives",
-            "Mali",
-            "Malta",
-            "Marshall Islands",
-            "Mauritania",
-            "Mauritius",
-            "Mexico",
-            "Micronesia",
-            "Moldova",
-            "Monaco",
-            "Mongolia",
-            "Montenegro",
-            "Morocco",
-            "Mozambique",
-            "Myanmar, {Burma}",
-            "Namibia",
-            "Nauru",
-            "Nepal",
-            "Netherlands",
-            "New Zealand",
-            "Nicaragua",
-            "Niger",
-            "Nigeria",
-            "Norway",
-            "Oman",
-            "Pakistan",
-            "Palau",
-            "Panama",
-            "Papua New Guinea",
-            "Paraguay",
-            "Peru",
-            "Philippines",
-            "Poland",
-            "Portugal",
-            "Qatar",
-            "Romania",
-            "Russian Federation",
-            "Rwanda",
-            "St Kitts & Nevis",
-            "St Lucia",
-            "Saint Vincent & the Grenadines",
-            "Samoa",
-            "San Marino",
-            "Sao Tome & Principe",
-            "Saudi Arabia",
-            "Senegal",
-            "Serbia",
-            "Seychelles",
-            "Sierra Leone",
-            "Singapore",
-            "Slovakia",
-            "Slovenia",
-            "Solomon Islands",
-            "Somalia",
-            "South Africa",
-            "South Sudan",
-            "Spain",
-            "Sri Lanka",
-            "Sudan",
-            "Suriname",
-            "Swaziland",
-            "Sweden",
-            "Switzerland",
-            "Syria",
-            "Taiwan",
-            "Tajikistan",
-            "Tanzania",
-            "Thailand",
-            "Togo",
-            "Tonga",
-            "Trinidad & Tobago",
-            "Tunisia",
-            "Turkey",
-            "Turkmenistan",
-            "Tuvalu",
-            "Uganda",
-            "Ukraine",
-            "United Arab Emirates",
-            "United Kingdom",
-            "United States",
-            "Uruguay",
-            "Uzbekistan",
-            "Vanuatu",
-            "Vatican City",
-            "Venezuela",
-            "Vietnam",
-            "Yemen",
-            "Zambia",
-            "Zimbabwe"});
+            "أفغانستان",
+            "ألبانيا",
+            "الجزائر",
+            "أندورا",
+            "أنغولا",
+            "أنتيغوا وبربودا",
+            "الأرجنتين",
+            "أرمينيا",
+            "أستراليا",
+            "النمسا",
+            "أذربيجان",
+            "الباهاما",
+            "البحرين",
+            "بنغلاديش",
+            "باربادوس",
+            "بيلاروسيا",
+            "بلجيكا",
+            "بليز",
+            "بنين",
+            "بوتان",
+            "بوليفيا",
+            "البوسنة والهرسك",
+            "بوتسوانا",
+            "البرازيل",
+            "بروناي",
+            "بلغاريا",
+            "بوركينا فاسو",
+            "بوروندي",
+            "الرأس الأخضر",
+            "كمبوديا",
+            "الكاميرون",
+            "كندا",
+            "جمهورية أفريقيا الوسطى",
+            "تشاد",
+            "تشيلي",
+            "الصين",
+            "كولومبيا",
+            "جزر القمر",
+            "الكونغو(برازافيل)",
+            "الكونغو(كينشاسا)",
+            "كوستاريكا",
+            "ساحل العاج",
+            "كرواتيا",
+            "كوبا",
+            "قبرص",
+            "جمهورية التشيك",
+            "الدنمارك",
+            "جيبوتي",
+            "دومينيكا",
+            "جمهورية الدومينيكان",
+            "الإكوادور",
+            "مصر",
+            "السلفادور",
+            "غينيا الاستوائية",
+            "إريتريا",
+            "إستونيا",
+            "إثيوبيا",
+            "فيجي",
+            "فنلندا",
+            "فرنسا",
+            "الغابون",
+            "غامبيا",
+            "جورجيا",
+            "ألمانيا",
+            "غانا",
+            "اليونان",
+            "غرينادا",
+            "غواتيمالا",
+            "غينيا",
+            "غينيا بيساو",
+            "غيانا",
+            "هايتي",
+            "هندوراس",
+            "هنغاريا",
+            "آيسلندا",
+            "الهند",
+            "إندونيسيا",
+            "إيران",
+            "العراق",
+            "إيرلندا",
+            "إيطاليا",
+            "جامايكا",
+            "اليابان",
+            "الأردن",
+            "كازاخستان",
+            "كينيا",
+            "كيريباتي",
+            "كوريا الشمالية",
+            "كوريا الجنوبية",
+            "الكويت",
+            "قيرغيزستان",
+            "لاوس",
+            "لاتفيا",
+            "لبنان",
+            "ليسوتو",
+            "ليبيريا",
+            "ليبيا",
+            "ليختنشتاين",
+            "ليتوانيا",
+            "لوكسمبورغ",
+            "مدغشقر",
+            "مالاوي",
+            "ماليزيا",
+            "المالديف",
+            "مالي",
+            "مالطا",
+            "جزر مارشال",
+            "موريتانيا",
+            "موريشيوس",
+            "المكسيك",
+            "مايكرونيزيا",
+            "مولدوفا",
+            "موناكو",
+            "منغوليا",
+            "الجبل الأسود",
+            "المغرب",
+            "موزمبيق",
+            "ميانمار",
+            "ناميبيا",
+            "ناورو",
+            "نيبال",
+            "هولندا",
+            "نيوزيلندا",
+            "نيكاراغوا",
+            "النيجر",
+            "نيجيريا",
+            "مقدونيا الشمالية",
+            "النرويج",
+            "سلطنة عمان",
+            "باكستان",
+            "بالاو",
+            "فلسطين",
+            "بنما",
+            "بابوا غينيا الجديدة",
+            "باراغواي",
+            "بيرو",
+            "الفلبين",
+            "بولندا",
+            "البرتغال",
+            "قطر",
+            "رومانيا",
+            "روسيا",
+            "رواندا",
+            "سانت كيتس ونيفيس",
+            "سانت لوسيا",
+            "سانت فنسنت والغرينادين",
+            "ساموا",
+            "سان مارينو",
+            "ساو تومي وبرينسيبي",
+            "المملكة العربية السعودية",
+            "السنغال",
+            "صربيا",
+            "سيشل",
+            "سيراليون",
+            "سنغافورة",
+            "سلوفاكيا",
+            "سلوفينيا",
+            "جزر سليمان",
+            "الصومال",
+            "جنوب أفريقيا",
+            "جنوب السودان",
+            "إسبانيا",
+            "سريلانكا",
+            "السودان",
+            "سورينام",
+            "السويد",
+            "سويسرا",
+            "سوريا",
+            "طاجيكستان",
+            "تنزانيا",
+            "تايلاند",
+            "تيمور الشرقية",
+            "توغو",
+            "تونغا",
+            "ترينيداد وتوباغو",
+            "تونس",
+            "تركيا",
+            "تركمانستان",
+            "توفالو",
+            "أوغندا",
+            "أوكرانيا",
+            "الإمارات العربية المتحدة",
+            "المملكة المتحدة",
+            "الولايات المتحدة",
+            "أوروغواي",
+            "أوزبكستان",
+            "فانواتو",
+            "فنزويلا",
+            "فيتنام",
+            "اليمن",
+            "زامبيا",
+            "زيمبابوي"});
             this.cbCountry.Location = new System.Drawing.Point(253, 100);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(225, 24);
-            this.cbCountry.TabIndex = 15;
+            this.cbCountry.TabIndex = 2;
+            this.cbCountry.Leave += new System.EventHandler(this.cbCountry_Leave);
             // 
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(422, 81);
+            this.label9.Location = new System.Drawing.Point(253, 81);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 16);
-            this.label9.TabIndex = 14;
+            this.label9.Size = new System.Drawing.Size(228, 16);
+            this.label9.TabIndex = 11;
             this.label9.Text = "الجنسية";
             // 
             // label6
@@ -294,7 +291,7 @@
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 16);
-            this.label6.TabIndex = 12;
+            this.label6.TabIndex = 14;
             this.label6.Text = "العنوان";
             // 
             // txtAddress
@@ -304,7 +301,7 @@
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(458, 27);
-            this.txtAddress.TabIndex = 13;
+            this.txtAddress.TabIndex = 5;
             // 
             // txtPhone
             // 
@@ -314,7 +311,7 @@
             this.txtPhone.MaxLength = 10;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(225, 23);
-            this.txtPhone.TabIndex = 11;
+            this.txtPhone.TabIndex = 3;
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this.txtPhone_Validating);
             // 
@@ -326,7 +323,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 16);
-            this.label5.TabIndex = 0;
+            this.label5.TabIndex = 13;
             this.label5.Text = "البريد الإلكتروني";
             // 
             // txtEmail
@@ -347,7 +344,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
-            this.label1.TabIndex = 8;
+            this.label1.TabIndex = 12;
             this.label1.Text = "رقم الهاتف";
             // 
             // txtPartyName
@@ -357,7 +354,7 @@
             this.txtPartyName.Margin = new System.Windows.Forms.Padding(4);
             this.txtPartyName.Name = "txtPartyName";
             this.txtPartyName.Size = new System.Drawing.Size(458, 27);
-            this.txtPartyName.TabIndex = 0;
+            this.txtPartyName.TabIndex = 1;
             this.txtPartyName.Validating += new System.ComponentModel.CancelEventHandler(this.txtPartyName_Validating);
             // 
             // lblPartyTypeName
@@ -367,7 +364,7 @@
             this.lblPartyTypeName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPartyTypeName.Name = "lblPartyTypeName";
             this.lblPartyTypeName.Size = new System.Drawing.Size(461, 16);
-            this.lblPartyTypeName.TabIndex = 0;
+            this.lblPartyTypeName.TabIndex = 10;
             this.lblPartyTypeName.Text = "إسم الكيان";
             // 
             // errorProvider

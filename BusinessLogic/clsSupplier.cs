@@ -42,6 +42,9 @@ namespace BusinessLogic
                     switch (this.PartyInfo.PartyCategory)
                     {
                         case clsParty.enPartyCatigory.Person:
+                            clsPerson person = this.PartyInfo as clsPerson;
+                            person.SaveImage();
+
                             isSaved = clsSupplierData.AddSupplier(
                                 this.PartyInfo.MappingToDTO(), this.MappingToDTO()
                                 );
@@ -49,6 +52,7 @@ namespace BusinessLogic
                             if (!isSaved)
                             {
                                 result.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
+                                person.DeleteImage();
                             }
 
                             return result;

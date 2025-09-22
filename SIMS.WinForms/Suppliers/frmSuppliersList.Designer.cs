@@ -30,7 +30,9 @@
         {
             this.dgvSuppliersList = new System.Windows.Forms.DataGridView();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.btnAddSupplier = new System.Windows.Forms.ToolStripButton();
+            this.btnAddSupplier = new System.Windows.Forms.ToolStripDropDownButton();
+            this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnEditSupplier = new System.Windows.Forms.ToolStripButton();
             this.btnDeleteSupplier = new System.Windows.Forms.ToolStripButton();
             this.lblSearchHintText = new System.Windows.Forms.Label();
@@ -79,16 +81,32 @@
             // 
             // btnAddSupplier
             // 
+            this.btnAddSupplier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.personToolStripMenuItem,
+            this.organizationToolStripMenuItem});
             this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSupplier.Image = global::SIMS.WinForms.Properties.Resources.add;
             this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(137, 42);
+            this.btnAddSupplier.Size = new System.Drawing.Size(146, 42);
             this.btnAddSupplier.Text = "  إضافة مورد  ";
             this.btnAddSupplier.ToolTipText = "Add a new supplier";
-            this.btnAddSupplier.Click += new System.EventHandler(this.btnAddSupplier_Click);
+            // 
+            // personToolStripMenuItem
+            // 
+            this.personToolStripMenuItem.Name = "personToolStripMenuItem";
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.personToolStripMenuItem.Text = "شخص";
+            this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
+            // 
+            // organizationToolStripMenuItem
+            // 
+            this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.organizationToolStripMenuItem.Text = "منظمة";
+            this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             // 
             // btnEditSupplier
             // 
@@ -162,6 +180,7 @@
             this.ctrSupplierInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrSupplierInfo.Location = new System.Drawing.Point(205, 64);
             this.ctrSupplierInfo.Name = "ctrSupplierInfo";
+            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrSupplierInfo.Size = new System.Drawing.Size(583, 215);
             this.ctrSupplierInfo.TabIndex = 3;
             // 
@@ -198,12 +217,14 @@
 
         private System.Windows.Forms.DataGridView dgvSuppliersList;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripButton btnAddSupplier;
         private System.Windows.Forms.ToolStripButton btnEditSupplier;
         private System.Windows.Forms.ToolStripButton btnDeleteSupplier;
         private ctrSupplierInfo ctrSupplierInfo;
         private System.Windows.Forms.Label lblSearchHintText;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
+        private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
     }
 }

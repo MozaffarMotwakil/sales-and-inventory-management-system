@@ -20,8 +20,17 @@ namespace SIMS.WinForms.Parties
 
                 switch (_PartyType)
                 {
+                    case clsParty.enPartyType.Employee:
+                        lblPartyTypeName.Text = "إسم الموظف";
+                        break;
+                    case clsParty.enPartyType.Customer:
+                        lblPartyTypeName.Text = "إسم العميل";
+                        break;
                     case clsParty.enPartyType.Supplier:
                         lblPartyTypeName.Text = "إسم المورد";
+                        break;
+                    case clsParty.enPartyType.ContactPerson:
+                        lblPartyTypeName.Text = "إسم جهة التواصل";
                         break;
                     default:
                         lblPartyTypeName.Text = "إسم الكيان";
@@ -46,11 +55,11 @@ namespace SIMS.WinForms.Parties
         {
             get
             { 
-                return (byte)cbCountry.SelectedIndex; 
+                return (byte)(cbCountry.SelectedIndex + 1); 
             }
             set
             {
-                cbCountry.SelectedIndex = value;
+                cbCountry.SelectedIndex = value - 1;
             }
         }
 
@@ -96,7 +105,15 @@ namespace SIMS.WinForms.Parties
 
         private void ctrAddEditParty_Load(object sender, EventArgs e)
         {
-            cbCountry.SelectedIndex = 165;
+            cbCountry.SelectedIndex = 163;
+        }
+
+        private void cbCountry_Leave(object sender, EventArgs e)
+        {
+            if (cbCountry.SelectedIndex == -1)
+            {
+                cbCountry.SelectedIndex = 163;
+            }
         }
 
         private void txtPartyName_Validating(object sender, System.ComponentModel.CancelEventArgs e)

@@ -33,16 +33,18 @@
             this.gbBasicInfo = new System.Windows.Forms.GroupBox();
             this.btnDeleteContactPerson = new System.Windows.Forms.Button();
             this.llAddContactPerson = new System.Windows.Forms.LinkLabel();
-            this.txtContactPerson = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtContactPerson = new System.Windows.Forms.TextBox();
             this.gbBasicInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrAddEditParty
             // 
             this.ctrAddEditParty.Address = "";
-            this.ctrAddEditParty.CountryID = ((byte)(165));
+            this.ctrAddEditParty.CountryID = ((byte)(164));
             this.ctrAddEditParty.Email = "";
             this.ctrAddEditParty.Location = new System.Drawing.Point(3, 3);
             this.ctrAddEditParty.Name = "ctrAddEditParty";
@@ -65,7 +67,7 @@
             this.gbBasicInfo.Padding = new System.Windows.Forms.Padding(4);
             this.gbBasicInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gbBasicInfo.Size = new System.Drawing.Size(489, 98);
-            this.gbBasicInfo.TabIndex = 4;
+            this.gbBasicInfo.TabIndex = 1;
             this.gbBasicInfo.TabStop = false;
             this.gbBasicInfo.Text = "معلومات إضافية عن المنظمة";
             // 
@@ -80,7 +82,7 @@
             this.btnDeleteContactPerson.Location = new System.Drawing.Point(20, 46);
             this.btnDeleteContactPerson.Name = "btnDeleteContactPerson";
             this.btnDeleteContactPerson.Size = new System.Drawing.Size(27, 23);
-            this.btnDeleteContactPerson.TabIndex = 24;
+            this.btnDeleteContactPerson.TabIndex = 4;
             this.toolTip.SetToolTip(this.btnDeleteContactPerson, "حذف جهة التواصل داخل المنظمة");
             this.btnDeleteContactPerson.UseVisualStyleBackColor = false;
             this.btnDeleteContactPerson.Click += new System.EventHandler(this.btnDeleteContactPerson_Click);
@@ -91,21 +93,11 @@
             this.llAddContactPerson.Location = new System.Drawing.Point(176, 75);
             this.llAddContactPerson.Name = "llAddContactPerson";
             this.llAddContactPerson.Size = new System.Drawing.Size(305, 16);
-            this.llAddContactPerson.TabIndex = 23;
+            this.llAddContactPerson.TabIndex = 3;
             this.llAddContactPerson.TabStop = true;
             this.llAddContactPerson.Text = "إضافة جهة تواصل داخل المنظمة";
             this.llAddContactPerson.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.llAddContactPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddContactPerson_LinkClicked);
-            // 
-            // txtContactPerson
-            // 
-            this.txtContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactPerson.Location = new System.Drawing.Point(20, 44);
-            this.txtContactPerson.Margin = new System.Windows.Forms.Padding(4);
-            this.txtContactPerson.Name = "txtContactPerson";
-            this.txtContactPerson.ReadOnly = true;
-            this.txtContactPerson.Size = new System.Drawing.Size(458, 27);
-            this.txtContactPerson.TabIndex = 22;
             // 
             // label3
             // 
@@ -115,8 +107,22 @@
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(176, 16);
-            this.label3.TabIndex = 21;
+            this.label3.TabIndex = 10;
             this.label3.Text = "جهة التواصل داخل المنظمة";
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // txtContactPerson
+            // 
+            this.txtContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactPerson.Location = new System.Drawing.Point(20, 44);
+            this.txtContactPerson.Margin = new System.Windows.Forms.Padding(4);
+            this.txtContactPerson.Name = "txtContactPerson";
+            this.txtContactPerson.ReadOnly = true;
+            this.txtContactPerson.Size = new System.Drawing.Size(458, 27);
+            this.txtContactPerson.TabIndex = 2;
             // 
             // ctrAddEditOrganization
             // 
@@ -128,6 +134,7 @@
             this.Size = new System.Drawing.Size(503, 360);
             this.gbBasicInfo.ResumeLayout(false);
             this.gbBasicInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -138,8 +145,9 @@
         private System.Windows.Forms.GroupBox gbBasicInfo;
         private System.Windows.Forms.Button btnDeleteContactPerson;
         private System.Windows.Forms.LinkLabel llAddContactPerson;
-        private System.Windows.Forms.TextBox txtContactPerson;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox txtContactPerson;
     }
 }

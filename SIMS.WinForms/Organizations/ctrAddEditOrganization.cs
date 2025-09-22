@@ -50,7 +50,7 @@ namespace SIMS.WinForms.Organizations
                 }
 
                 ctrAddEditParty.PartyName = value.PartyName;
-                ctrAddEditParty.CountryID = value.CountryID;
+                ctrAddEditParty.CountryID = value.CountryInfo.CountryID;
                 ctrAddEditParty.Phone = value.Phone;
                 ctrAddEditParty.Email = value.Email;
                 ctrAddEditParty.Address = value.Address;
@@ -69,17 +69,14 @@ namespace SIMS.WinForms.Organizations
 
             if (ContactPerson is null)
             {
-                addEditContactPerson = new frmAddEditPerson();
-                addEditContactPerson.FormMode = enMode.Add;
+                addEditContactPerson = new frmAddEditPerson(enMode.Add, clsParty.enPartyType.ContactPerson);
             }
             else
             {
-                addEditContactPerson = new frmAddEditPerson(ContactPerson);
-                addEditContactPerson.FormMode = enMode.Edit;
+                addEditContactPerson = new frmAddEditPerson(ContactPerson, enMode.Edit, clsParty.enPartyType.ContactPerson);
             }
 
             addEditContactPerson.SaveSuccess += AddEditContactPerson_SaveSuccess;
-            addEditContactPerson.PersonType = clsParty.enPartyType.ContactPerson;
             addEditContactPerson.ShowDialog();
         }
 
@@ -103,6 +100,12 @@ namespace SIMS.WinForms.Organizations
             {
                 clsFormMessages.ShowError("ليس هناك جهة تواصل داخل هذه المنظمة لحذفها");
             }
+        }
+
+        public void AttachErrorProvider(ErrorProvider errorProvider)
+        {
+            this.errorProvider = errorProvider;
+            ctrAddEditParty.AttachErrorProvider(errorProvider);
         }
 
     }

@@ -10,6 +10,19 @@ namespace SIMS.WinForms.People
 {
     public partial class ctrAddEditPerson : UserControl
     {
+        private clsParty.enPartyType _PesonType;
+        public clsParty.enPartyType PersonType
+        {
+            get
+            {
+                return ctrAddEditParty.PartyType;
+            }
+            set
+            {
+                ctrAddEditParty.PartyType = value;
+            }
+        }
+
         public clsPerson Person
         { 
             get
@@ -34,7 +47,7 @@ namespace SIMS.WinForms.People
                 }
 
                 ctrAddEditParty.PartyName = value.PartyName;
-                ctrAddEditParty.CountryID = value.CountryID;
+                ctrAddEditParty.CountryID = value.CountryInfo.CountryID;
                 ctrAddEditParty.Phone = value.Phone;
                 ctrAddEditParty.Email = value.Email;
                 ctrAddEditParty.Address = value.Address;
@@ -42,7 +55,7 @@ namespace SIMS.WinForms.People
                 dtpBirthDate.Value = value.BirthDate;
                 rbMale.Checked = value.Gender == enGender.Male;
                 rbFemale.Checked = value.Gender == enGender.Female;
-                pbPersonImage.ImageLocation = value.ImagePath;
+                pbPersonImage.ImageLocation = value.CurrentImagePath;
             }
         }
 

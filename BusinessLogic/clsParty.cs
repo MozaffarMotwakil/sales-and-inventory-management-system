@@ -13,14 +13,16 @@ namespace BusinessLogic
 
         public enum enPartyType
         {
-            Supplier = 1,
-            ContactPerson = 2
+            Employee = 1,
+            Customer = 2,
+            Supplier = 3,
+            ContactPerson = 4
         }
 
-        public int PartyID { get; }
+        public int PartyID { get; protected set; }
         public string PartyName { get; set; }
         public enPartyCatigory PartyCategory { get; protected set; }
-        public byte CountryID { get; set; }
+        public clsCountry CountryInfo { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -31,7 +33,7 @@ namespace BusinessLogic
         {
             PartyName = partyName;
             PartyCategory = partyCategory;
-            CountryID = countryID;
+            CountryInfo = clsCountry.Find(countryID);
             Phone = phone;
             Email = email;
             Address = address;
@@ -42,7 +44,7 @@ namespace BusinessLogic
             return new clsPartyDTO(
                 this.PartyName,
                 (byte)this.PartyCategory,
-                this.CountryID,
+                this.CountryInfo.CountryID,
                 this.Phone,
                 this.Email,
                 this.Address
@@ -56,6 +58,11 @@ namespace BusinessLogic
             if (string.IsNullOrWhiteSpace(PartyName))
             {
                 validationResult.AddError("إسم الكيان", "لا يمكن أن يكون إسم الكيان الأساسي فارغا");
+            }
+
+            if (CountryInfo is null)
+            {
+                validationResult.AddError("البلد/الجنسية", "لم يتم العثور على الدولة المختارة");
             }
 
             if (!clsValidator.IsValidPhone(Phone))
