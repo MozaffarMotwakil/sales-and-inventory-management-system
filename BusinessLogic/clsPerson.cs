@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Net;
-using System.Security.Policy;
+using DataAccess;
 using DTOs;
 
 namespace BusinessLogic
@@ -24,7 +23,7 @@ namespace BusinessLogic
             string nationalNa, DateTime birthDate, enGender gender, string imagePath)
         {
             PartyName = personName;
-            PartyCategory = enPartyCatigory.Person;
+            PartyCategory = enPartyCategory.Person;
             CountryInfo = clsCountry.Find(countryID);
             Phone = phone;
             Email = email;
@@ -39,7 +38,7 @@ namespace BusinessLogic
         {
             PartyID = personDTO.PartyID;
             PartyName = personDTO.PartyName;
-            PartyCategory = (enPartyCatigory)personDTO.PartyCategoryID;
+            PartyCategory = (enPartyCategory)personDTO.PartyCategoryID;
             CountryInfo = clsCountry.Find(personDTO.CountryID);
             Phone = personDTO.Phone;
             Email = personDTO.Email;
@@ -49,6 +48,18 @@ namespace BusinessLogic
             Gender = personDTO.Gender ? enGender.Female : enGender.Male;
             CurrentImagePath = personDTO.ImagePath;
             NewImagePath = personDTO.ImagePath;
+        }
+
+        public static clsPerson FindByPartyID(int partyID)
+        {
+            clsPersonDTO personDTO = clsPersonData.FindPersonByPartyID(partyID);
+            return personDTO is null ? null : new clsPerson(personDTO);
+        }
+
+        public static clsPerson FindByPersonID(int personID)
+        {
+            clsPersonDTO personDTO = clsPersonData.FindPersonByPersonID(personID);
+            return personDTO is null ? null : new clsPerson(personDTO);
         }
 
         public void DeleteImage()

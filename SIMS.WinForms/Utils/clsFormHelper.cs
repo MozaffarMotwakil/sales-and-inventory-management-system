@@ -9,14 +9,32 @@ namespace DVLD.WinForms.Utils
 {
     public static class clsFormHelper
     {
-        public static void SelectEntireRow(DataGridView dataGridView, DataGridViewCellMouseEventArgs e)
+        private static DataGridViewImageColumn _CreateEditColumn()
         {
-            if ((e.Clicks == 2 || e.Button == MouseButtons.Right) && e.RowIndex >= 0)
-            {
-                dataGridView.ClearSelection();
-                dataGridView.Rows[e.RowIndex].Selected = true;
-                dataGridView.CurrentCell = dataGridView.SelectedRows[0].Cells[0];
-            }
+            DataGridViewImageColumn edit = new DataGridViewImageColumn();
+            edit.Name = "edit";
+            edit.HeaderText = "تعديل";
+            edit.Image = Resources.edit;
+            edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            edit.SortMode = DataGridViewColumnSortMode.NotSortable;
+            edit.Resizable = DataGridViewTriState.False;
+            edit.Width = 50;
+
+            return edit;
+        }
+
+        private static DataGridViewImageColumn _CreateDeleteColumn()
+        {
+            DataGridViewImageColumn delete = new DataGridViewImageColumn();
+            delete.Name = "delete";
+            delete.HeaderText = "حذف";
+            delete.Image = Resources.delete;
+            delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            delete.SortMode = DataGridViewColumnSortMode.NotSortable;
+            delete.Resizable = DataGridViewTriState.False;
+            delete.Width = 50;
+
+            return delete;
         }
 
         public static void ClearSelectionOnEmptyClick(DataGridView dataGridView, MouseEventArgs e)
@@ -42,7 +60,6 @@ namespace DVLD.WinForms.Utils
             }
         }
 
-
         public static int RefreshDataGridView(DataGridView dataGridView, object DataSource)
         {
             dataGridView.DataSource = DataSource;
@@ -53,7 +70,8 @@ namespace DVLD.WinForms.Utils
         {
             if (dataGridView.SelectedRows.Count > 0)
             {
-                return Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                int.TryParse(dataGridView.SelectedRows[0].Cells[0].Value.ToString(), out int ID);
+                return ID;
             }
 
             return -1;

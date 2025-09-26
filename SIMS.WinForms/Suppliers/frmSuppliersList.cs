@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
-using SIMS.WinForms.Properties;
+using BusinessLogic;
+using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Suppliers
 {
@@ -9,11 +11,20 @@ namespace SIMS.WinForms.Suppliers
         public frmSuppliersList()
         {
             InitializeComponent();
+            clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
+        }
+
+        private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();
         }
 
         private void frmSuppliersList_Load(object sender, EventArgs e)
         {
-            lblSearchHintText.Text = "أدخل إسم المورد أو رقم الهاتف أو إسم جهة التواصل داخل المنظمة";
+            lblSearchHintText.Text = "أدخل إسم المورد";
+            dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();
+            _ResetRecordsListColumnsWidthAndName();
         }
 
         private void frmSuppliersList_Activated(object sender, EventArgs e)
@@ -21,9 +32,52 @@ namespace SIMS.WinForms.Suppliers
             txtSearch.Focus();
         }
 
+        private void _ResetRecordsListColumnsWidthAndName()
+        {
+            if (dgvSuppliersList.RowCount > 0)
+            {
+                dgvSuppliersList.Columns[0].HeaderText = "معرف المورد";
+                dgvSuppliersList.Columns[0].Width = 100;
+
+                dgvSuppliersList.Columns[1].HeaderText = "إسم المورد";
+                dgvSuppliersList.Columns[1].Width = 200;
+
+                dgvSuppliersList.Columns[2].HeaderText = "نوع المورد";
+                dgvSuppliersList.Columns[2].Width = 100;
+
+                dgvSuppliersList.Columns[3].HeaderText = "الجنسية/البلد";
+                dgvSuppliersList.Columns[3].Width = 100;
+
+                dgvSuppliersList.Columns[4].HeaderText = "رقم الهاتف";
+                dgvSuppliersList.Columns[4].Width = 100;
+
+                dgvSuppliersList.Columns[5].HeaderText = "العنوان";
+                dgvSuppliersList.Columns[5].Width = 225;
+
+                dgvSuppliersList.Columns[6].HeaderText = "الملاحظات";
+                dgvSuppliersList.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+                foreach (DataGridViewColumn column in dgvSuppliersList.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+
+                dgvSuppliersList.Columns[0].SortMode = DataGridViewColumnSortMode.Automatic;
+            }
+        }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+
+            DataView suppliersList = (dgvSuppliersList.DataSource as DataTable).DefaultView;
+
+            try
+            {
+                suppliersList.RowFilter = $"PartyName LIKE '{txtSearch.Text}%'";
+            }
+            catch (Exception) { }
         }
 
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
@@ -33,13 +87,13 @@ namespace SIMS.WinForms.Suppliers
 
         private void personToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCatigory.Person);
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Person);
             addSupplier.ShowDialog();
         }
 
         private void organizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCatigory.Organization);
+            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Organization);
             addSupplier.ShowDialog();
         }
 
@@ -55,32 +109,21 @@ namespace SIMS.WinForms.Suppliers
             suppliertForDelete.ShowDialog();
         }
 
-        private DataGridViewImageColumn _CreateEditColumn()
+        private void dgvSuppliersList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridViewImageColumn edit = new DataGridViewImageColumn();
-            edit.Name = "edit";
-            edit.HeaderText = "Edit";
-            edit.Image = Resources.edit;
-            edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            edit.SortMode = DataGridViewColumnSortMode.NotSortable;
-            edit.Resizable = DataGridViewTriState.False;
-            edit.Width = 50;
-
-            return edit;
+            clsSupplier supplier = clsSupplier.Find(clsFormHelper.GetSelectedRowID(dgvSuppliersList));
+            ctrSupplierInfo.Supplier = supplier;
+            ctrSupplierInfo.Visible = true;
         }
 
-        private DataGridViewImageColumn _CreateDeleteColumn()
+        private void dgvSuppliersList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            DataGridViewImageColumn delete = new DataGridViewImageColumn();
-            delete.Name = "delete";
-            delete.HeaderText = "Delete";
-            delete.Image = Resources.delete;
-            delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            delete.SortMode = DataGridViewColumnSortMode.NotSortable;
-            delete.Resizable = DataGridViewTriState.False;
-            delete.Width = 50;
+            dgvSuppliersList.ClearSelection();
+        }
 
-            return delete;
+        private void frmSuppliersList_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            clsSupplier.SupplierSaved -= ClsSupplier_SupplierSaved;
         }
 
     }

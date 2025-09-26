@@ -6,19 +6,21 @@ namespace DTOs
     {
         public int SupplierID { get; set; }
         public int PartyID { get; set; }
+        public byte PartyCategoryID { get; set; }
         public string Notes { get; set; }
         public bool IsDeleted { get; set; }
         public int CreatedByUserID { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int UpdatedByUserID { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int? UpdatedByUserID { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public clsSupplierDTO() { }
 
-        public clsSupplierDTO(int supplierID, int partyID, string notes, bool isDeleted, int createdByUserID, DateTime createdAt, int updatedByUserID, DateTime updatedAt)
+        public clsSupplierDTO(int supplierID, int partyID, byte partyCategoryID, string notes, bool isDeleted, int createdByUserID, DateTime createdAt, int? updatedByUserID, DateTime? updatedAt)
         {
             SupplierID = supplierID;
             PartyID = partyID;
+            PartyCategoryID = partyCategoryID;
             Notes = notes;
             IsDeleted = isDeleted;
             CreatedByUserID = createdByUserID;

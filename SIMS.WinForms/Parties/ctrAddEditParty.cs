@@ -7,6 +7,31 @@ namespace SIMS.WinForms.Parties
 {
     public partial class ctrAddEditParty : UserControl
     {
+        private clsParty.enPartyCategory _PartyCategory;
+        public clsParty.enPartyCategory PartyCategory
+        {
+            get
+            {
+                return _PartyCategory;
+            }
+            set
+            {
+                _PartyCategory = value;
+
+                switch (_PartyCategory)
+                {
+                    case clsParty.enPartyCategory.Person:
+                        lblCountry.Text = "الجنسية";
+                        break;
+                    case clsParty.enPartyCategory.Organization:
+                        lblCountry.Text = "البلد";
+                        break;
+                }
+
+                lblCountry.Text += ':';
+            }
+        }
+
         private clsParty.enPartyType _PartyType;
         public clsParty.enPartyType PartyType
         {
@@ -36,6 +61,8 @@ namespace SIMS.WinForms.Parties
                         lblPartyTypeName.Text = "إسم الكيان";
                         break;
                 }
+
+                lblPartyTypeName.Text += ':';
             }
         }
 

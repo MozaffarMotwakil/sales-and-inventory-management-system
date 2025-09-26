@@ -100,7 +100,6 @@
             // 
             // ctrAddEditOrganization
             // 
-            this.ctrAddEditOrganization.ContactPerson = null;
             resources.ApplyResources(this.ctrAddEditOrganization, "ctrAddEditOrganization");
             this.ctrAddEditOrganization.Name = "ctrAddEditOrganization";
             // 

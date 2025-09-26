@@ -10,24 +10,6 @@ namespace SIMS.WinForms.Organizations
     public partial class ctrAddEditOrganization : UserControl
     {
         private clsPerson _ContactPerson;
-        public clsPerson ContactPerson 
-        {
-            get
-            {
-                return _ContactPerson;
-            }
-            set
-            {
-                if (value is null)
-                {
-                    return;
-                }
-
-                _ContactPerson = value;
-                txtContactPerson.Text = value.PartyName;
-                llAddContactPerson.Text = "تعديل بيانات جهة التواصل داخل المنظمة";
-            }
-        }
 
         public clsOrganization Organization
         {
@@ -39,7 +21,7 @@ namespace SIMS.WinForms.Organizations
                     ctrAddEditParty.Phone,
                     ctrAddEditParty.Email,
                     ctrAddEditParty.Address,
-                    ContactPerson
+                    _ContactPerson
                     );
             }
             set
@@ -54,44 +36,47 @@ namespace SIMS.WinForms.Organizations
                 ctrAddEditParty.Phone = value.Phone;
                 ctrAddEditParty.Email = value.Email;
                 ctrAddEditParty.Address = value.Address;
-                ContactPerson = value.ContactPerson;
+                _ContactPerson = value.ContactPerson;
             }
         }
 
         public ctrAddEditOrganization()
         {
             InitializeComponent();
+            _ContactPerson = null;
         }
 
         private void llAddContactPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmAddEditPerson addEditContactPerson;
 
-            if (ContactPerson is null)
+            if (_ContactPerson is null)
             {
                 addEditContactPerson = new frmAddEditPerson(enMode.Add, clsParty.enPartyType.ContactPerson);
             }
             else
             {
-                addEditContactPerson = new frmAddEditPerson(ContactPerson, enMode.Edit, clsParty.enPartyType.ContactPerson);
+                addEditContactPerson = new frmAddEditPerson(_ContactPerson, enMode.Edit, clsParty.enPartyType.ContactPerson);
             }
 
-            addEditContactPerson.SaveSuccess += AddEditContactPerson_SaveSuccess;
+            addEditContactPerson.PersonSaved += AddEditContactPerson_PersonSaved; ;
             addEditContactPerson.ShowDialog();
         }
 
-        private void AddEditContactPerson_SaveSuccess(clsPerson contactPerson)
+        private void AddEditContactPerson_PersonSaved(object sender, clsPerson savedPerson)
         {
-            ContactPerson = contactPerson;
+            _ContactPerson = savedPerson;
+            txtContactPerson.Text = _ContactPerson.PartyName;
+            llAddContactPerson.Text = "تعديل بيانات جهة التواصل داخل المنظمة";
         }
 
         private void btnDeleteContactPerson_Click(object sender, EventArgs e)
         {
-            if (ContactPerson != null)
+            if (_ContactPerson != null)
             {
                 if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد حذف جهة التواصل داخل هذه المنظمة ؟", messageBoxIcon: MessageBoxIcon.Warning))
                 {
-                    ContactPerson = null;
+                    _ContactPerson = null;
                     txtContactPerson.Text = string.Empty;
                     llAddContactPerson.Text = "إضافة جهة تواصل داخل المنظمة";
                 }

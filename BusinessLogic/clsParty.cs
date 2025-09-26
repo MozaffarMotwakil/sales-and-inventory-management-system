@@ -5,7 +5,7 @@ namespace BusinessLogic
 {
     public class clsParty
     {
-        public enum enPartyCatigory
+        public enum enPartyCategory
         {
             Person = 1,
             Organization = 2
@@ -21,7 +21,7 @@ namespace BusinessLogic
 
         public int PartyID { get; protected set; }
         public string PartyName { get; set; }
-        public enPartyCatigory PartyCategory { get; protected set; }
+        public enPartyCategory PartyCategory { get; protected set; }
         public clsCountry CountryInfo { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -29,7 +29,7 @@ namespace BusinessLogic
 
         public clsParty() { }
 
-        public clsParty(string partyName, enPartyCatigory partyCategory, byte countryID, string phone, string email, string address)
+        public clsParty(string partyName, enPartyCategory partyCategory, byte countryID, string phone, string email, string address)
         {
             PartyName = partyName;
             PartyCategory = partyCategory;

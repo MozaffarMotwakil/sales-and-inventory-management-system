@@ -130,7 +130,7 @@
             this.rbFemale.TabIndex = 5;
             this.rbFemale.Text = "أنثى";
             this.rbFemale.UseVisualStyleBackColor = true;
-            this.rbFemale.CheckedChanged += new System.EventHandler(this.rbFemale_CheckedChanged);
+            this.rbFemale.CheckedChanged += new System.EventHandler(this.rbGender_CheckedChanged);
             // 
             // rbMale
             // 
@@ -145,7 +145,7 @@
             this.rbMale.TabStop = true;
             this.rbMale.Text = "ذكر";
             this.rbMale.UseVisualStyleBackColor = true;
-            this.rbMale.CheckedChanged += new System.EventHandler(this.rbMale_CheckedChanged);
+            this.rbMale.CheckedChanged += new System.EventHandler(this.rbGender_CheckedChanged);
             // 
             // label4
             // 
@@ -205,6 +205,7 @@
             this.ctrAddEditParty.Email = "";
             this.ctrAddEditParty.Location = new System.Drawing.Point(3, 3);
             this.ctrAddEditParty.Name = "ctrAddEditParty";
+            this.ctrAddEditParty.PartyCategory = BusinessLogic.clsParty.enPartyCategory.Person;
             this.ctrAddEditParty.PartyName = "";
             this.ctrAddEditParty.PartyType = BusinessLogic.clsParty.enPartyType.Supplier;
             this.ctrAddEditParty.Phone = "";

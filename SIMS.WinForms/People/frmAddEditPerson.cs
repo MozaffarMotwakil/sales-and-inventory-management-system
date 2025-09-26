@@ -8,7 +8,13 @@ namespace SIMS.WinForms.People
 {
     public partial class frmAddEditPerson : Form
     {
-        private enPartyType _PersonType;
+        public event EventHandler<clsPerson> PersonSaved;
+
+        protected virtual void OnPersonSaved(clsPerson savedPerson)
+        {
+            PersonSaved?.Invoke(this, savedPerson);
+        }
+
         public enPartyType PersonType
         {
             get
@@ -58,13 +64,8 @@ namespace SIMS.WinForms.People
         }
 
         public enMode FormMode { get; set; }
+        private enPartyType _PersonType;
         private clsPerson _Person;
-
-        public event Action<clsPerson> SaveSuccess;
-        protected virtual void OnSaveSuccess()
-        {
-            SaveSuccess?.Invoke(_Person);
-        }
 
         public frmAddEditPerson(enMode formMode, enPartyType personType)
         {
@@ -113,7 +114,7 @@ namespace SIMS.WinForms.People
             }
 
             _Person = ctrAddEditPerson.Person;
-            OnSaveSuccess();
+            OnPersonSaved(_Person);
             this.Close();
         }
 

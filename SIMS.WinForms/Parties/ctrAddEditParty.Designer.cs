@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.gbBasicInfo = new System.Windows.Forms.GroupBox();
             this.cbCountry = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblCountry = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -48,7 +48,7 @@
             // gbBasicInfo
             // 
             this.gbBasicInfo.Controls.Add(this.cbCountry);
-            this.gbBasicInfo.Controls.Add(this.label9);
+            this.gbBasicInfo.Controls.Add(this.lblCountry);
             this.gbBasicInfo.Controls.Add(this.label6);
             this.gbBasicInfo.Controls.Add(this.txtAddress);
             this.gbBasicInfo.Controls.Add(this.txtPhone);
@@ -273,15 +273,15 @@
             this.cbCountry.TabIndex = 2;
             this.cbCountry.Leave += new System.EventHandler(this.cbCountry_Leave);
             // 
-            // label9
+            // lblCountry
             // 
-            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(253, 81);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(228, 16);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "الجنسية";
+            this.lblCountry.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountry.Location = new System.Drawing.Point(253, 81);
+            this.lblCountry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(228, 16);
+            this.lblCountry.TabIndex = 11;
+            this.lblCountry.Text = "الجنسية";
             // 
             // label6
             // 
@@ -391,7 +391,7 @@
 
         private System.Windows.Forms.GroupBox gbBasicInfo;
         private System.Windows.Forms.ComboBox cbCountry;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCountry;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhone;

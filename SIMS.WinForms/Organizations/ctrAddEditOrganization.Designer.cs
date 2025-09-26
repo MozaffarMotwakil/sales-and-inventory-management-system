@@ -29,30 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ctrAddEditParty = new SIMS.WinForms.Parties.ctrAddEditParty();
             this.gbBasicInfo = new System.Windows.Forms.GroupBox();
             this.btnDeleteContactPerson = new System.Windows.Forms.Button();
             this.llAddContactPerson = new System.Windows.Forms.LinkLabel();
+            this.txtContactPerson = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtContactPerson = new System.Windows.Forms.TextBox();
+            this.ctrAddEditParty = new SIMS.WinForms.Parties.ctrAddEditParty();
             this.gbBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctrAddEditParty
-            // 
-            this.ctrAddEditParty.Address = "";
-            this.ctrAddEditParty.CountryID = ((byte)(164));
-            this.ctrAddEditParty.Email = "";
-            this.ctrAddEditParty.Location = new System.Drawing.Point(3, 3);
-            this.ctrAddEditParty.Name = "ctrAddEditParty";
-            this.ctrAddEditParty.PartyName = "";
-            this.ctrAddEditParty.PartyType = BusinessLogic.clsParty.enPartyType.Supplier;
-            this.ctrAddEditParty.Phone = "";
-            this.ctrAddEditParty.Size = new System.Drawing.Size(497, 249);
-            this.ctrAddEditParty.TabIndex = 0;
             // 
             // gbBasicInfo
             // 
@@ -99,6 +86,16 @@
             this.llAddContactPerson.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.llAddContactPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddContactPerson_LinkClicked);
             // 
+            // txtContactPerson
+            // 
+            this.txtContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContactPerson.Location = new System.Drawing.Point(20, 44);
+            this.txtContactPerson.Margin = new System.Windows.Forms.Padding(4);
+            this.txtContactPerson.Name = "txtContactPerson";
+            this.txtContactPerson.ReadOnly = true;
+            this.txtContactPerson.Size = new System.Drawing.Size(458, 27);
+            this.txtContactPerson.TabIndex = 2;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -114,15 +111,19 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // txtContactPerson
+            // ctrAddEditParty
             // 
-            this.txtContactPerson.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactPerson.Location = new System.Drawing.Point(20, 44);
-            this.txtContactPerson.Margin = new System.Windows.Forms.Padding(4);
-            this.txtContactPerson.Name = "txtContactPerson";
-            this.txtContactPerson.ReadOnly = true;
-            this.txtContactPerson.Size = new System.Drawing.Size(458, 27);
-            this.txtContactPerson.TabIndex = 2;
+            this.ctrAddEditParty.Address = "";
+            this.ctrAddEditParty.CountryID = ((byte)(164));
+            this.ctrAddEditParty.Email = "";
+            this.ctrAddEditParty.Location = new System.Drawing.Point(3, 3);
+            this.ctrAddEditParty.Name = "ctrAddEditParty";
+            this.ctrAddEditParty.PartyCategory = BusinessLogic.clsParty.enPartyCategory.Organization;
+            this.ctrAddEditParty.PartyName = "";
+            this.ctrAddEditParty.PartyType = BusinessLogic.clsParty.enPartyType.Supplier;
+            this.ctrAddEditParty.Phone = "";
+            this.ctrAddEditParty.Size = new System.Drawing.Size(497, 249);
+            this.ctrAddEditParty.TabIndex = 0;
             // 
             // ctrAddEditOrganization
             // 

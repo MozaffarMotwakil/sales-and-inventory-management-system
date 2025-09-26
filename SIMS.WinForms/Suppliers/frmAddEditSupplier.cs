@@ -7,8 +7,8 @@ namespace SIMS.WinForms.Suppliers
 {
     public partial class frmAddEditSupplier : Form
     {
-        private clsParty.enPartyCatigory _SupplierCatigory;
-        public clsParty.enPartyCatigory SupplierCatigory 
+        private clsParty.enPartyCategory _SupplierCatigory;
+        public clsParty.enPartyCategory SupplierCatigory 
         {
             get
             {
@@ -20,12 +20,12 @@ namespace SIMS.WinForms.Suppliers
 
                 switch (_SupplierCatigory)
                 {
-                    case clsParty.enPartyCatigory.Person:
+                    case clsParty.enPartyCategory.Person:
                         ctrAddEditOrganization.Visible = false;
                         ctrAddEditPerson.Visible = true;
                         ctrAddEditPerson.AttachErrorProvider(errorProvider);
                         break;
-                    case clsParty.enPartyCatigory.Organization:
+                    case clsParty.enPartyCategory.Organization:
                         ctrAddEditPerson.Visible = false;
                         ctrAddEditOrganization.Visible = true;
                         gbOtherInfo.Location = new System.Drawing.Point(
@@ -53,7 +53,7 @@ namespace SIMS.WinForms.Suppliers
         public enMode FormMode;
         private clsSupplier _Supplier;
 
-        public frmAddEditSupplier(clsParty.enPartyCatigory supplierType)
+        public frmAddEditSupplier(clsParty.enPartyCategory supplierType)
         {
             InitializeComponent();
             _Supplier = null;
@@ -61,7 +61,7 @@ namespace SIMS.WinForms.Suppliers
             FormMode = enMode.Add;
         }
 
-        public frmAddEditSupplier(int supplierID, clsParty.enPartyCatigory supplierType)
+        public frmAddEditSupplier(int supplierID, clsParty.enPartyCategory supplierType)
         {
             InitializeComponent();
             _Supplier = null;
@@ -73,13 +73,13 @@ namespace SIMS.WinForms.Suppliers
         {
             if (FormMode is enMode.Add)
             {
-                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCategory.Person ?
                     "إضافة مورد جديد - شخص" :
                     "إضافة مورد جديد - منظمة";
             }
             else
             {
-                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCategory.Person ?
                     "تعديل بيانات مورد - شخص" :
                     "تعديل بيانات مورد - منظمة";
             }
@@ -100,7 +100,7 @@ namespace SIMS.WinForms.Suppliers
 
             if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
             {
-                clsParty supplierType = SupplierCatigory is clsParty.enPartyCatigory.Person ?
+                clsParty supplierType = SupplierCatigory is clsParty.enPartyCategory.Person ?
                     ctrAddEditPerson.Person :
                     (clsParty)ctrAddEditOrganization.Organization;
 

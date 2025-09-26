@@ -10,7 +10,6 @@ namespace SIMS.WinForms.People
 {
     public partial class ctrAddEditPerson : UserControl
     {
-        private clsParty.enPartyType _PesonType;
         public clsParty.enPartyType PersonType
         {
             get
@@ -53,8 +52,8 @@ namespace SIMS.WinForms.People
                 ctrAddEditParty.Address = value.Address;
                 txtNationalNa.Text = value.NationalNa;
                 dtpBirthDate.Value = value.BirthDate;
-                rbMale.Checked = value.Gender == enGender.Male;
-                rbFemale.Checked = value.Gender == enGender.Female;
+                rbMale.Checked = value.Gender is enGender.Male;
+                rbFemale.Checked = value.Gender is enGender.Female;
                 pbPersonImage.ImageLocation = value.CurrentImagePath;
             }
         }
@@ -101,24 +100,16 @@ namespace SIMS.WinForms.People
             }
         }
 
-        private void rbMale_CheckedChanged(object sender, EventArgs e)
+        private void rbGender_CheckedChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(pbPersonImage.ImageLocation))
             {
                 return;
             }
 
-            pbPersonImage.Image = Resources.unknow_male;
-        }
-
-        private void rbFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(pbPersonImage.ImageLocation))
-            {
-                return;
-            }
-
-            pbPersonImage.Image = Resources.unknow_female;
+            pbPersonImage.Image = rbMale.Checked ?
+                Resources.unknow_male : 
+                Resources.unknow_female;
         }
 
         public void AttachErrorProvider(ErrorProvider errorProvider)
