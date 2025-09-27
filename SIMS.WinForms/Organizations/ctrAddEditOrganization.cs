@@ -37,6 +37,12 @@ namespace SIMS.WinForms.Organizations
                 ctrAddEditParty.Email = value.Email;
                 ctrAddEditParty.Address = value.Address;
                 _ContactPerson = value.ContactPerson;
+                txtContactPerson.Text = value.ContactPerson?.PartyName;
+                
+                if (value.ContactPerson != null)
+                {
+                    llAddContactPerson.Text = "تعديل بيانات جهة التواصل داخل المنظمة";
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using DataAccess;
 using DTOs;
 
@@ -10,12 +11,14 @@ namespace BusinessLogic
         public class SupplierSavedEventArgs : EventArgs
         {
             public clsSupplier SavedSupplier { get; }
+            public enMode OperationMode { get; }
             public DateTime Timestamp { get; }
             public int UserID { get; }
 
             public SupplierSavedEventArgs(clsSupplier savedSupplier)
             {
                 SavedSupplier = savedSupplier;
+                OperationMode = savedSupplier._Mode;
                 Timestamp = DateTime.Now;
                 UserID = clsAppSettings.CurrentUser.UserID;
             }
@@ -28,13 +31,21 @@ namespace BusinessLogic
             SupplierSaved?.Invoke(this, new SupplierSavedEventArgs(savedSupplier));
         }
 
+        public static event Action SupplierDeleted;
+        
+        protected static void OnSupplierDeleted()
+        {
+            SupplierDeleted?.Invoke();
+        }
+        
+
         public int SupplierID { get; }
-        public clsParty PartyInfo { get; }
+        public clsParty PartyInfo { get; set;  }
         public string Notes { get; set; }
         public bool IsDeleted { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime CreatedAt { get; }
-        public clsUser UpdatedByUserInfo { get; }
+        public clsUser UpdatedByUserInfo { get; private set; }
         public DateTime? UpdatedAt { get; }
         private enMode _Mode { get; set; }
 
@@ -62,6 +73,7 @@ namespace BusinessLogic
                 new clsUser(1) :
                 null;
             UpdatedAt = supplierDTO.UpdatedAt;
+            this._Mode = enMode.Update;
         }
 
         public static clsSupplier Find(int supplierID)
@@ -70,9 +82,53 @@ namespace BusinessLogic
             return supplierDTO is null ? null : new clsSupplier(supplierDTO);
         }
 
+        public static clsSupplier Find(string supplierName)
+        {
+            clsSupplierDTO supplierDTO = clsSupplierData.FindSupplierByName(supplierName);
+            return supplierDTO is null ? null : new clsSupplier(supplierDTO);
+        }
+
+        public static bool Delete(int supplierID)
+        {
+            clsSupplier supplier = Find(supplierID);
+            string imagePath = string.Empty;
+
+            if (supplier.PartyInfo is clsPerson person)
+            {
+                imagePath = person.CurrentImagePath;
+            }
+
+            bool isDeleted = clsSupplierData.DeleteSupplier(supplierID);
+
+            if (isDeleted)
+            {
+                if (File.Exists(imagePath))
+                {
+                    File.Delete(imagePath);
+                }
+
+                OnSupplierDeleted();
+            }
+
+            return isDeleted;
+        }
+
         public static DataTable GetAllSuppliers()
         {
             return clsSupplierData.GetAllSuppliers();
+        }
+
+        public static string[] GetAllSupplierNames()
+        {
+            DataTable table = clsSupplierData.GetAllSupplierNames();
+            string[] supplierNames = new string[table.Rows.Count];
+
+            for (int i = 0; i < supplierNames.Length; i++)
+            {
+                supplierNames[i] = table.Rows[i][0].ToString();
+            }
+
+            return supplierNames;
         }
 
         public clsValidationResult Save()
@@ -92,8 +148,7 @@ namespace BusinessLogic
                     switch (this.PartyInfo.PartyCategory)
                     {
                         case clsParty.enPartyCategory.Person:
-                            clsPerson person = this.PartyInfo as clsPerson;
-                            person.SaveImage();
+                            (this.PartyInfo as clsPerson).SaveImage();
 
                             isSaved = clsSupplierData.AddSupplier(
                                 this.PartyInfo.MappingToDTO(), this.MappingToDTO()
@@ -102,7 +157,7 @@ namespace BusinessLogic
                             if (!isSaved)
                             {
                                 result.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
-                                person.DeleteImage();
+                                (this.PartyInfo as clsPerson).DeleteImage();
                             }
                             else
                             {
@@ -130,6 +185,46 @@ namespace BusinessLogic
                             return result;
                     }
                 case enMode.Update:
+                    this.UpdatedByUserInfo = clsAppSettings.CurrentUser;
+
+                    switch (PartyInfo.PartyCategory)
+                    {
+                        case clsParty.enPartyCategory.Person:
+                            (this.PartyInfo as clsPerson).SaveImage();
+
+                            isSaved = clsSupplierData.UpdateSupplier(
+                                this.PartyInfo.MappingToDTO(), this.MappingToDTO()
+                                );
+
+                            if (!isSaved)
+                            {
+                                result.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
+                            }
+                            else
+                            {
+                                OnSupplierSaved(this);
+                            }
+
+                            return result;
+                        case clsParty.enPartyCategory.Organization:
+                            isSaved = clsSupplierData.UpdateSupplier(
+                                this.PartyInfo.MappingToDTO(), this.MappingToDTO(),
+                                (clsPersonDTO)((clsOrganization)PartyInfo).ContactPerson?.MappingToDTO()
+                                );
+
+                            if (!isSaved)
+                            {
+                                result.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
+                            }
+                            else
+                            {
+                                OnSupplierSaved(this);
+                            }
+
+                            return result;
+                        default:
+                            break;
+                    }
                     return result;
                 default:
                     return result;

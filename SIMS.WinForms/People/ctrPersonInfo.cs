@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using BusinessLogic;
+using DVLD.WinForms.Utils;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.People
@@ -35,9 +36,7 @@ namespace SIMS.WinForms.People
 
                 _Person = value;
                 ctrPartyInfo.Party = _Person;
-                pbPersonImage.Image = _Person.Gender is clsPerson.enGender.Male ?
-                    Resources.unknow_male :
-                    Resources.unknow_female;
+                pbPersonImage.Image = clsFormHelper.GetDefaultPersonImage(_Person.Gender);
                 pbPersonImage.ImageLocation = _Person.CurrentImagePath;
                 lblNationalNa.Text = string.IsNullOrEmpty(_Person.NationalNa) ? "N/A" : _Person.NationalNa;
                 lblBirthData.Text = _Person.BirthDate.ToString("dd/MM/yyyy");

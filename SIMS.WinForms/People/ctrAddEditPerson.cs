@@ -107,9 +107,11 @@ namespace SIMS.WinForms.People
                 return;
             }
 
-            pbPersonImage.Image = rbMale.Checked ?
-                Resources.unknow_male : 
-                Resources.unknow_female;
+            pbPersonImage.Image = clsFormHelper.GetDefaultPersonImage(
+                rbMale.Checked ?
+                enGender.Male :
+                enGender.Female
+                );
         }
 
         public void AttachErrorProvider(ErrorProvider errorProvider)

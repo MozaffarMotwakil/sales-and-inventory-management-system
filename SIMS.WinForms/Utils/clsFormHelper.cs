@@ -9,7 +9,7 @@ namespace DVLD.WinForms.Utils
 {
     public static class clsFormHelper
     {
-        private static DataGridViewImageColumn _CreateEditColumn()
+        private static DataGridViewImageColumn CreateEditColumn()
         {
             DataGridViewImageColumn edit = new DataGridViewImageColumn();
             edit.Name = "edit";
@@ -23,7 +23,7 @@ namespace DVLD.WinForms.Utils
             return edit;
         }
 
-        private static DataGridViewImageColumn _CreateDeleteColumn()
+        private static DataGridViewImageColumn CreateDeleteColumn()
         {
             DataGridViewImageColumn delete = new DataGridViewImageColumn();
             delete.Name = "delete";
@@ -35,29 +35,6 @@ namespace DVLD.WinForms.Utils
             delete.Width = 50;
 
             return delete;
-        }
-
-        public static void ClearSelectionOnEmptyClick(DataGridView dataGridView, MouseEventArgs e)
-        {
-            DataGridView.HitTestInfo hit = dataGridView.HitTest(e.X, e.Y);
-
-            if ((e.Button == MouseButtons.Right || e.Button == MouseButtons.Left) && hit.Type == DataGridViewHitTestType.None)
-            {
-                DeselectCellsAndRows(dataGridView);
-            }
-        }
-
-        public static void DeselectCellsAndRows(DataGridView dataGridView)
-        {
-            foreach (DataGridViewCell cell in dataGridView.SelectedCells)
-            {
-                cell.Selected = false;
-            }
-
-            foreach (DataGridViewRow row in dataGridView.SelectedRows)
-            {
-                row.Selected = false;
-            }
         }
 
         public static int RefreshDataGridView(DataGridView dataGridView, object DataSource)
@@ -88,23 +65,13 @@ namespace DVLD.WinForms.Utils
             return dataGridView.HitTest(point.X, point.Y);
         }
 
-        public static void PreventContextMenuOnHeaderOrEmptySpace(DataGridView dataGridView, System.ComponentModel.CancelEventArgs e)
+        public static void PreventContextMenuOnEmptyClick(DataGridView dataGridView, System.ComponentModel.CancelEventArgs e)
         {
             DataGridView.HitTestInfo hit = GetHitTestInfo(dataGridView);
 
             if (hit.Type == DataGridViewHitTestType.None || hit.Type == DataGridViewHitTestType.ColumnHeader)
             {
                 e.Cancel = true;
-            }
-        }
-
-        public static void ShowAnotherContextMenuOnEmptySpaceInDGV(DataGridView dataGridView, ContextMenuStrip contextMenuStrip)
-        {
-            DataGridView.HitTestInfo hit = clsFormHelper.GetHitTestInfo(dataGridView);
-
-            if (hit.Type == DataGridViewHitTestType.None)
-            {
-                contextMenuStrip.Show(dataGridView, clsFormHelper.GetCurrentPoint(dataGridView));
             }
         }
 

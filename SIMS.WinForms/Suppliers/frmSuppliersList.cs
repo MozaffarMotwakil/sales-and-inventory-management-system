@@ -12,12 +12,21 @@ namespace SIMS.WinForms.Suppliers
         {
             InitializeComponent();
             clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
+            clsSupplier.SupplierDeleted += ClsSupplier_SupplierDeleted; ;
+        }
+
+        private void ClsSupplier_SupplierDeleted()
+        {
+            txtSearch.Text = string.Empty;
+            dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();
+            ctrSupplierInfo.Visible = false;
         }
 
         private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
         {
             txtSearch.Text = string.Empty;
             dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();
+            ctrSupplierInfo.Supplier = e.SavedSupplier;
         }
 
         private void frmSuppliersList_Load(object sender, EventArgs e)
@@ -87,33 +96,57 @@ namespace SIMS.WinForms.Suppliers
 
         private void personToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Person);
-            addSupplier.ShowDialog();
+            frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Person);
+            addPersonSupplier.ShowDialog();
         }
 
         private void organizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Organization);
-            addSupplier.ShowDialog();
+            frmAddEditSupplier addOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Organization);
+            addOrganizationSupplier.ShowDialog();
         }
 
-        private void btnEditSupplier_Click(object sender, EventArgs e)
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmFindSuppliertForEdit suppliertForEdit = new frmFindSuppliertForEdit();
-            suppliertForEdit.ShowDialog();
+            clsSupplier supplier = clsSupplier.Find(clsFormHelper.GetSelectedRowID(dgvSuppliersList));
+
+            if (supplier is null)
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المورد");
+                return;
+            }
+            frmAddEditSupplier editSupplier = new frmAddEditSupplier(supplier, supplier.PartyInfo.PartyCategory);
+            editSupplier.ShowDialog();
         }
 
-        private void btnDeleteSupplier_Click(object sender, EventArgs e)
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmFindSuppliertForDelete suppliertForDelete = new frmFindSuppliertForDelete();
-            suppliertForDelete.ShowDialog();
+            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد حذف هذا المورد ؟", messageBoxIcon: MessageBoxIcon.Warning)) 
+            {
+                if (clsSupplier.Delete(clsFormHelper.GetSelectedRowID(dgvSuppliersList)))
+                {
+                    clsFormMessages.ShowSuccess("تم حذف المورد بنجاح");
+                }
+                else
+                {
+                    clsFormMessages.ShowError("فشلت عملية حذف المورد");
+                }
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvSuppliersList, e);
         }
 
         private void dgvSuppliersList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            clsSupplier supplier = clsSupplier.Find(clsFormHelper.GetSelectedRowID(dgvSuppliersList));
-            ctrSupplierInfo.Supplier = supplier;
-            ctrSupplierInfo.Visible = true;
+            if (e.Button is MouseButtons.Left)
+            {
+                clsSupplier supplier = clsSupplier.Find(clsFormHelper.GetSelectedRowID(dgvSuppliersList));
+                ctrSupplierInfo.Supplier = supplier;
+                ctrSupplierInfo.Visible = true;
+            }
         }
 
         private void dgvSuppliersList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -121,9 +154,24 @@ namespace SIMS.WinForms.Suppliers
             dgvSuppliersList.ClearSelection();
         }
 
+        private void dgvSuppliersList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
+            {
+                dgvSuppliersList.Rows[e.RowIndex].Selected = true;
+                dgvSuppliersList.Columns[e.ColumnIndex].Selected = true;
+            }
+        }
+
+        private void FormControls_MouseDown(object sender, MouseEventArgs e)
+        {
+            dgvSuppliersList.ClearSelection();
+        }
+
         private void frmSuppliersList_FormClosed(object sender, FormClosedEventArgs e)
         {
             clsSupplier.SupplierSaved -= ClsSupplier_SupplierSaved;
+            clsSupplier.SupplierDeleted -= ClsSupplier_SupplierDeleted;
         }
 
     }

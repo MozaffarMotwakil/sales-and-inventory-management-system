@@ -68,6 +68,67 @@ namespace DataAccess
             return supplierDTO;
         }
 
+        public static clsSupplierDTO FindSupplierByName(string supplierName)
+        {
+            clsSupplierDTO supplierDTO = null;
+
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("usp_GetSupplierByName", connection)
+                {
+                    CommandType = System.Data.CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@SupplierName", supplierName);
+
+                try
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            supplierDTO = new clsSupplierDTO
+                            {
+                                SupplierID = Convert.ToInt32(reader["SupplierID"]),
+                                PartyID = Convert.ToInt32(reader["PartyID"]),
+                                PartyCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
+                                Notes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
+                                IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
+                                CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                            };
+
+                            if (reader["UpdatedByUserID"] == DBNull.Value)
+                            {
+                                supplierDTO.UpdatedByUserID = null;
+                            }
+                            else
+                            {
+                                supplierDTO.UpdatedByUserID = Convert.ToInt32(reader["UpdatedByUserID"]);
+                            }
+
+                            if (reader["UpdatedAt"] == DBNull.Value)
+                            {
+                                supplierDTO.UpdatedAt = null;
+                            }
+                            else
+                            {
+                                supplierDTO.UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"]);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException($"Error find supplier by name.", ex);
+                }
+            }
+
+            return supplierDTO;
+        }
+
         public static DataTable GetAllSuppliers()
         {
             DataTable suppliers = null;
@@ -92,6 +153,39 @@ namespace DataAccess
                 catch (Exception ex)
                 {
                     throw new ApplicationException("Error get all suppliers.", ex);
+                }
+            }
+
+            return suppliers;
+        }
+
+        public static DataTable GetAllSupplierNames()
+        {
+            DataTable suppliers = null;
+
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("usp_GetAllSupplierNames", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                try
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            suppliers = new DataTable();
+                            suppliers.Load(reader);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException("Error get all supplier names.", ex);
                 }
             }
 
@@ -162,14 +256,13 @@ namespace DataAccess
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_InsertSupplier", connection))
+                using (SqlCommand command = new SqlCommand("usp_UpdateSupplier", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
 
                     // Original Party
                     command.Parameters.AddWithValue("SupplierID", supplierDTO.SupplierID);
                     command.Parameters.AddWithValue("SupplierName", originalPartyDTO.PartyName);
-                    command.Parameters.AddWithValue("SupplierCategoryID", originalPartyDTO.PartyCategoryID);
                     command.Parameters.AddWithValue("SupplierCountryID", originalPartyDTO.CountryID);
                     command.Parameters.AddWithValue("SupplierPhone", originalPartyDTO.Phone);
                     command.Parameters.AddWithValue("SupplierEmail",
@@ -215,6 +308,32 @@ namespace DataAccess
                     {
                         throw new Exception("Error updating supplier to database.", ex);
                     }
+                }
+            }
+        }
+
+        public static bool DeleteSupplier(int supplierID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                string query = @"usp_DeleteSupplier";
+
+                SqlCommand command = new SqlCommand(query, connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@SupplierID", supplierID);
+
+                try
+                {
+                    connection.Open();
+
+                    return command.ExecuteNonQuery() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException($"Error delete a supplier.", ex);
                 }
             }
         }

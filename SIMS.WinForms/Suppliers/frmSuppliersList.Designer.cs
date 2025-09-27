@@ -28,21 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSuppliersList = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAddSupplier = new System.Windows.Forms.ToolStripDropDownButton();
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEditSupplier = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteSupplier = new System.Windows.Forms.ToolStripButton();
             this.lblSearchHintText = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +69,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSuppliersList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSuppliersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuppliersList.ContextMenuStrip = this.contextMenuStrip;
             this.dgvSuppliersList.Location = new System.Drawing.Point(13, 319);
             this.dgvSuppliersList.MultiSelect = false;
             this.dgvSuppliersList.Name = "dgvSuppliersList";
@@ -87,8 +91,40 @@
             this.dgvSuppliersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppliersList.Size = new System.Drawing.Size(775, 119);
             this.dgvSuppliersList.TabIndex = 2;
+            this.dgvSuppliersList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseClick);
             this.dgvSuppliersList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseDoubleClick);
             this.dgvSuppliersList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSuppliersList_DataBindingComplete);
+            this.dgvSuppliersList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip.Size = new System.Drawing.Size(124, 80);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
+            this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
+            this.editToolStripMenuItem.Text = "تعديل";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.delete;
+            this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
+            this.deleteToolStripMenuItem.Text = "حذف";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStrip
             // 
@@ -96,9 +132,7 @@
             this.toolStrip.BackColor = System.Drawing.Color.White;
             this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddSupplier,
-            this.btnEditSupplier,
-            this.btnDeleteSupplier});
+            this.btnAddSupplier});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -107,6 +141,7 @@
             this.toolStrip.Size = new System.Drawing.Size(800, 45);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip";
+            this.toolStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // btnAddSupplier
             // 
@@ -122,6 +157,7 @@
             this.btnAddSupplier.Size = new System.Drawing.Size(146, 42);
             this.btnAddSupplier.Text = "  إضافة مورد  ";
             this.btnAddSupplier.ToolTipText = "Add a new supplier";
+            this.btnAddSupplier.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // personToolStripMenuItem
             // 
@@ -129,6 +165,7 @@
             this.personToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
+            this.personToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // organizationToolStripMenuItem
             // 
@@ -136,30 +173,7 @@
             this.organizationToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
-            // 
-            // btnEditSupplier
-            // 
-            this.btnEditSupplier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditSupplier.Image = global::SIMS.WinForms.Properties.Resources.edit;
-            this.btnEditSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditSupplier.Name = "btnEditSupplier";
-            this.btnEditSupplier.Size = new System.Drawing.Size(135, 42);
-            this.btnEditSupplier.Text = "  تعديل مورد  ";
-            this.btnEditSupplier.ToolTipText = "Edit a supplier";
-            this.btnEditSupplier.Click += new System.EventHandler(this.btnEditSupplier_Click);
-            // 
-            // btnDeleteSupplier
-            // 
-            this.btnDeleteSupplier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteSupplier.Image = global::SIMS.WinForms.Properties.Resources.delete;
-            this.btnDeleteSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDeleteSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteSupplier.Name = "btnDeleteSupplier";
-            this.btnDeleteSupplier.Size = new System.Drawing.Size(130, 42);
-            this.btnDeleteSupplier.Text = "  حذف مورد  ";
-            this.btnDeleteSupplier.ToolTipText = "Delete a supplier";
-            this.btnDeleteSupplier.Click += new System.EventHandler(this.btnDeleteSupplier_Click);
+            this.organizationToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // lblSearchHintText
             // 
@@ -175,6 +189,7 @@
             this.lblSearchHintText.Text = "الرسالة";
             this.lblSearchHintText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            this.lblSearchHintText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // pictureBox
             // 
@@ -188,6 +203,7 @@
             this.pictureBox.TabIndex = 30;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // txtSearch
             // 
@@ -200,6 +216,7 @@
             this.txtSearch.Size = new System.Drawing.Size(74, 26);
             this.txtSearch.TabIndex = 28;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // ctrSupplierInfo
             // 
@@ -210,6 +227,7 @@
             this.ctrSupplierInfo.Supplier = null;
             this.ctrSupplierInfo.TabIndex = 31;
             this.ctrSupplierInfo.Visible = false;
+            this.ctrSupplierInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // frmSuppliersList
             // 
@@ -234,7 +252,9 @@
             this.Activated += new System.EventHandler(this.frmSuppliersList_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSuppliersList_FormClosed);
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -247,8 +267,6 @@
 
         private System.Windows.Forms.DataGridView dgvSuppliersList;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripButton btnEditSupplier;
-        private System.Windows.Forms.ToolStripButton btnDeleteSupplier;
         private System.Windows.Forms.Label lblSearchHintText;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
@@ -256,5 +274,8 @@
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
         private ctrSupplierInfo ctrSupplierInfo;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

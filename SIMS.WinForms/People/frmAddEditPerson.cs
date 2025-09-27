@@ -87,6 +87,10 @@ namespace SIMS.WinForms.People
 
         private void frmAddEditPerson_Load(object sender, EventArgs e)
         {
+            this.Text = lblFormTitle.Text = FormMode is enMode.Add ?
+                "إضافة شخص" :
+                "تعديل شخص";
+
             if (FormMode is enMode.Edit)
             {
                 if (_Person is null)

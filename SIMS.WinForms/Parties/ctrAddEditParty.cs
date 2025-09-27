@@ -27,8 +27,6 @@ namespace SIMS.WinForms.Parties
                         lblCountry.Text = "البلد";
                         break;
                 }
-
-                lblCountry.Text += ':';
             }
         }
 

@@ -226,18 +226,6 @@
     <Compile Include="Sales\frmPointOfSale.Designer.cs">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
     </Compile>
-    <Compile Include="Suppliers\frmFindSuppliertForDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Suppliers\frmFindSuppliertForDelete.Designer.cs">
-      <DependentUpon>frmFindSuppliertForDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Suppliers\frmFindSuppliertForEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Suppliers\frmFindSuppliertForEdit.Designer.cs">
-      <DependentUpon>frmFindSuppliertForEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Suppliers\frmAddEditSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,12 +237,6 @@
     </Compile>
     <Compile Include="Suppliers\frmSuppliersList.Designer.cs">
       <DependentUpon>frmSuppliersList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Suppliers\ctrSupplierInfoWithFilter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Suppliers\ctrSupplierInfoWithFilter.Designer.cs">
-      <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Suppliers\ctrSupplierInfo.cs">
       <SubType>UserControl</SubType>
@@ -407,20 +389,11 @@
     <EmbeddedResource Include="Suppliers\ctrSupplierInfo.resx">
       <DependentUpon>ctrSupplierInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Suppliers\ctrSupplierInfoWithFilter.resx">
-      <DependentUpon>ctrSupplierInfoWithFilter.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmAddEditSupplier.ar-SD.resx">
       <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmAddEditSupplier.resx">
       <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Suppliers\frmFindSuppliertForDelete.resx">
-      <DependentUpon>frmFindSuppliertForDelete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Suppliers\frmFindSuppliertForEdit.resx">
-      <DependentUpon>frmFindSuppliertForEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmSuppliersList.resx">
       <DependentUpon>frmSuppliersList.cs</DependentUpon>

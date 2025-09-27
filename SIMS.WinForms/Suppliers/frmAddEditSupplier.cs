@@ -61,10 +61,10 @@ namespace SIMS.WinForms.Suppliers
             FormMode = enMode.Add;
         }
 
-        public frmAddEditSupplier(int supplierID, clsParty.enPartyCategory supplierType)
+        public frmAddEditSupplier(clsSupplier supplier, clsParty.enPartyCategory supplierType)
         {
             InitializeComponent();
-            _Supplier = null;
+            _Supplier = supplier;
             SupplierCatigory = supplierType;
             FormMode = enMode.Edit;
         }
@@ -82,6 +82,28 @@ namespace SIMS.WinForms.Suppliers
                 this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCategory.Person ?
                     "تعديل بيانات مورد - شخص" :
                     "تعديل بيانات مورد - منظمة";
+            }
+
+            if (FormMode is enMode.Edit)
+            {
+                if (_Supplier is null)
+                {
+                    this.Close();
+                    clsFormMessages.ShowError("لم يتم العثور على المورد");
+                    return;
+                }
+
+                switch (_SupplierCatigory)
+                {
+                    case clsParty.enPartyCategory.Person:
+                        ctrAddEditPerson.Person = _Supplier.PartyInfo as clsPerson;
+                        break;
+                    case clsParty.enPartyCategory.Organization:
+                        ctrAddEditOrganization.Organization = _Supplier.PartyInfo as clsOrganization;
+                        break;
+                }
+
+                txtNotes.Text = _Supplier.Notes;
             }
         }
 
@@ -113,7 +135,8 @@ namespace SIMS.WinForms.Suppliers
                 }
                 else
                 {
-
+                    _Supplier.PartyInfo = supplierType;
+                    _Supplier.Notes = txtNotes.Text;
                 }
 
                 clsValidationResult validationResult = _Supplier.Save();
