@@ -134,16 +134,16 @@
     <Compile Include="MainForms\frmMainForm.Designer.cs">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Organizations\ctrAddEditOrganization.cs">
+    <Compile Include="Parties\Organization\ctrAddEditOrganization.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Organizations\ctrAddEditOrganization.Designer.cs">
+    <Compile Include="Parties\Organization\ctrAddEditOrganization.Designer.cs">
       <DependentUpon>ctrAddEditOrganization.cs</DependentUpon>
     </Compile>
-    <Compile Include="Organizations\ctrOrganizationInfo.cs">
+    <Compile Include="Parties\Organization\ctrOrganizationInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Organizations\ctrOrganizationInfo.Designer.cs">
+    <Compile Include="Parties\Organization\ctrOrganizationInfo.Designer.cs">
       <DependentUpon>ctrOrganizationInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Parties\ctrAddEditParty.cs">
@@ -158,28 +158,28 @@
     <Compile Include="Parties\ctrPartyInfo.Designer.cs">
       <DependentUpon>ctrPartyInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\ctrAddEditPerson.cs">
+    <Compile Include="Parties\Person\ctrAddEditPerson.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People\ctrAddEditPerson.Designer.cs">
+    <Compile Include="Parties\Person\ctrAddEditPerson.Designer.cs">
       <DependentUpon>ctrAddEditPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\frmShowPersonInfo.cs">
+    <Compile Include="Parties\Person\frmShowPersonInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="People\frmShowPersonInfo.Designer.cs">
+    <Compile Include="Parties\Person\frmShowPersonInfo.Designer.cs">
       <DependentUpon>frmShowPersonInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\frmAddEditPerson.cs">
+    <Compile Include="Parties\Person\frmAddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="People\frmAddEditPerson.Designer.cs">
+    <Compile Include="Parties\Person\frmAddEditPerson.Designer.cs">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\ctrPersonInfo.cs">
+    <Compile Include="Parties\Person\ctrPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People\ctrPersonInfo.Designer.cs">
+    <Compile Include="Parties\Person\ctrPersonInfo.Designer.cs">
       <DependentUpon>ctrPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -331,10 +331,10 @@
     <EmbeddedResource Include="MainForms\frmMainForm.resx">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Organizations\ctrAddEditOrganization.resx">
+    <EmbeddedResource Include="Parties\Organization\ctrAddEditOrganization.resx">
       <DependentUpon>ctrAddEditOrganization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Organizations\ctrOrganizationInfo.resx">
+    <EmbeddedResource Include="Parties\Organization\ctrOrganizationInfo.resx">
       <DependentUpon>ctrOrganizationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Parties\ctrAddEditParty.resx">
@@ -343,16 +343,16 @@
     <EmbeddedResource Include="Parties\ctrPartyInfo.resx">
       <DependentUpon>ctrPartyInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\ctrAddEditPerson.resx">
+    <EmbeddedResource Include="Parties\Person\ctrAddEditPerson.resx">
       <DependentUpon>ctrAddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\frmShowPersonInfo.resx">
+    <EmbeddedResource Include="Parties\Person\frmShowPersonInfo.resx">
       <DependentUpon>frmShowPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\frmAddEditPerson.resx">
+    <EmbeddedResource Include="Parties\Person\frmAddEditPerson.resx">
       <DependentUpon>frmAddEditPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\ctrPersonInfo.resx">
+    <EmbeddedResource Include="Parties\Person\ctrPersonInfo.resx">
       <DependentUpon>ctrPersonInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

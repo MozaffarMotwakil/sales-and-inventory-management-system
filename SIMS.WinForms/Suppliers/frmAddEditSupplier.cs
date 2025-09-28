@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Parties;
+using BusinessLogic.Validation;
+using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Suppliers
@@ -135,7 +137,25 @@ namespace SIMS.WinForms.Suppliers
                 }
                 else
                 {
-                    _Supplier.PartyInfo = supplierType;
+                    _Supplier.PartyInfo.PartyName = supplierType.PartyName;
+                    _Supplier.PartyInfo.CountryInfo = supplierType.CountryInfo;
+                    _Supplier.PartyInfo.Phone = supplierType.Phone;
+                    _Supplier.PartyInfo.Email = supplierType.Email;
+                    _Supplier.PartyInfo.Address = supplierType.Address;
+
+                    switch (SupplierCatigory)
+                    {
+                        case clsParty.enPartyCategory.Person:
+                            ((clsPerson)_Supplier.PartyInfo).NationalNa = ((clsPerson)supplierType).NationalNa;
+                            ((clsPerson)_Supplier.PartyInfo).BirthDate = ((clsPerson)supplierType).BirthDate;
+                            ((clsPerson)_Supplier.PartyInfo).Gender = ((clsPerson)supplierType).Gender;
+                            ((clsPerson)_Supplier.PartyInfo).ImagePath = ((clsPerson)supplierType).ImagePath;
+                            break;
+                        case clsParty.enPartyCategory.Organization:
+                            ((clsOrganization)_Supplier.PartyInfo).CountryInfo = ((clsOrganization)supplierType).CountryInfo;
+                            break;
+                    }
+
                     _Supplier.Notes = txtNotes.Text;
                 }
 

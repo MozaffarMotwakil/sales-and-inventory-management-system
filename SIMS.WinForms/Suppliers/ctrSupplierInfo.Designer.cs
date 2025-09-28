@@ -30,8 +30,8 @@
         {
             this.lblNotesTitle = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
-            this.ctrPersonInfo = new SIMS.WinForms.People.ctrPersonInfo();
-            this.ctrOrganizationInfo = new SIMS.WinForms.Organizations.ctrOrganizationInfo();
+            this.ctrPersonInfo = new SIMS.WinForms.Parties.Person.ctrPersonInfo();
+            this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
             this.SuspendLayout();
             // 
             // lblNotesTitle
@@ -62,7 +62,7 @@
             this.ctrPersonInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrPersonInfo.Name = "ctrPersonInfo";
             this.ctrPersonInfo.Person = null;
-            this.ctrPersonInfo.PersonType = BusinessLogic.clsParty.enPartyType.Supplier;
+            this.ctrPersonInfo.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
             this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrPersonInfo.Size = new System.Drawing.Size(600, 241);
             this.ctrPersonInfo.TabIndex = 57;
@@ -72,7 +72,7 @@
             this.ctrOrganizationInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrOrganizationInfo.Name = "ctrOrganizationInfo";
             this.ctrOrganizationInfo.Organization = null;
-            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.clsParty.enPartyType.Supplier;
+            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
             this.ctrOrganizationInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrOrganizationInfo.Size = new System.Drawing.Size(600, 175);
             this.ctrOrganizationInfo.TabIndex = 53;
@@ -94,9 +94,9 @@
         }
 
         #endregion
-        private Organizations.ctrOrganizationInfo ctrOrganizationInfo;
+        private Parties.Organization.ctrOrganizationInfo ctrOrganizationInfo;
         private System.Windows.Forms.Label lblNotesTitle;
         private System.Windows.Forms.Label lblNotes;
-        private People.ctrPersonInfo ctrPersonInfo;
+        private Parties.Person.ctrPersonInfo ctrPersonInfo;
     }
 }

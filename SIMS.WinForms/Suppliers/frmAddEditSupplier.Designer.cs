@@ -37,8 +37,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.ctrAddEditOrganization = new SIMS.WinForms.Organizations.ctrAddEditOrganization();
-            this.ctrAddEditPerson = new SIMS.WinForms.People.ctrAddEditPerson();
+            this.ctrAddEditOrganization = new SIMS.WinForms.Parties.Organization.ctrAddEditOrganization();
+            this.ctrAddEditPerson = new SIMS.WinForms.Parties.Person.ctrAddEditPerson();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbOtherInfo.SuspendLayout();
             this.panel.SuspendLayout();
@@ -107,7 +107,7 @@
             // 
             resources.ApplyResources(this.ctrAddEditPerson, "ctrAddEditPerson");
             this.ctrAddEditPerson.Name = "ctrAddEditPerson";
-            this.ctrAddEditPerson.PersonType = BusinessLogic.clsParty.enPartyType.Supplier;
+            this.ctrAddEditPerson.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
             // 
             // errorProvider
             // 
@@ -145,7 +145,7 @@
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private People.ctrAddEditPerson ctrAddEditPerson;
-        private Organizations.ctrAddEditOrganization ctrAddEditOrganization;
+        private Parties.Person.ctrAddEditPerson ctrAddEditPerson;
+        private Parties.Organization.ctrAddEditOrganization ctrAddEditOrganization;
     }
 }

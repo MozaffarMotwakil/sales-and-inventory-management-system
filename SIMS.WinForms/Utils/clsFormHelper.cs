@@ -2,7 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Parties;
 using SIMS.WinForms.Properties;
 
 namespace DVLD.WinForms.Utils

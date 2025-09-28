@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Parties;
+using BusinessLogic.Suppliers;
 
 namespace SIMS.WinForms.Suppliers
 {

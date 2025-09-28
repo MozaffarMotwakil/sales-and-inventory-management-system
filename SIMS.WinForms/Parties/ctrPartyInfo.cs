@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Parties;
 
 namespace SIMS.WinForms.Parties
 {

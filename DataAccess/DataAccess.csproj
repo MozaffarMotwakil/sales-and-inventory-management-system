@@ -41,11 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsOrganizationData.cs" />
-    <Compile Include="clsPersonData.cs" />
+    <Compile Include="Parties\clsOrganizationData.cs" />
+    <Compile Include="Parties\clsPersonData.cs" />
     <Compile Include="clsDataSettings.cs" />
-    <Compile Include="clsSupplierData.cs" />
-    <Compile Include="clsCountryData.cs" />
+    <Compile Include="Suppliers\clsSupplierData.cs" />
+    <Compile Include="Parties\clsCountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

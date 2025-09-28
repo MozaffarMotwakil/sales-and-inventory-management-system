@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Parties;
+using BusinessLogic.Validation;
 using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Parties
@@ -59,8 +60,6 @@ namespace SIMS.WinForms.Parties
                         lblPartyTypeName.Text = "إسم الكيان";
                         break;
                 }
-
-                lblPartyTypeName.Text += ':';
             }
         }
 

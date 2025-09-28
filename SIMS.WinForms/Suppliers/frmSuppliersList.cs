@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using BusinessLogic;
+using BusinessLogic.Suppliers;
+using BusinessLogic.Parties;
 using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Suppliers
@@ -20,6 +21,7 @@ namespace SIMS.WinForms.Suppliers
             txtSearch.Text = string.Empty;
             dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();
             ctrSupplierInfo.Visible = false;
+            ctrSupplierInfo.Supplier = null;
         }
 
         private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
@@ -96,13 +98,13 @@ namespace SIMS.WinForms.Suppliers
 
         private void personToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Person);
+            frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(clsParty.enPartyCategory.Person);
             addPersonSupplier.ShowDialog();
         }
 
         private void organizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditSupplier addOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.clsParty.enPartyCategory.Organization);
+            frmAddEditSupplier addOrganizationSupplier = new frmAddEditSupplier(clsParty.enPartyCategory.Organization);
             addOrganizationSupplier.ShowDialog();
         }
 
@@ -115,12 +117,19 @@ namespace SIMS.WinForms.Suppliers
                 clsFormMessages.ShowError("لم يتم العثور على المورد");
                 return;
             }
+
             frmAddEditSupplier editSupplier = new frmAddEditSupplier(supplier, supplier.PartyInfo.PartyCategory);
             editSupplier.ShowDialog();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (dgvSuppliersList.SelectedRows.Count == 0)
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المورد");
+                return;
+            }
+
             if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد حذف هذا المورد ؟", messageBoxIcon: MessageBoxIcon.Warning)) 
             {
                 if (clsSupplier.Delete(clsFormHelper.GetSelectedRowID(dgvSuppliersList)))

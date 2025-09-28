@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsValidator.cs" />
-    <Compile Include="clsValidationResult.cs" />
+    <Compile Include="Validation\clsValidator.cs" />
+    <Compile Include="Validation\clsValidationResult.cs" />
     <Compile Include="clsAppSettings.cs" />
-    <Compile Include="clsUser.cs" />
-    <Compile Include="clsSupplier.cs" />
-    <Compile Include="clsOrganization.cs" />
-    <Compile Include="clsPerson.cs" />
-    <Compile Include="clsParty.cs" />
-    <Compile Include="clsCountry.cs" />
+    <Compile Include="Users\clsUser.cs" />
+    <Compile Include="Suppliers\clsSupplier.cs" />
+    <Compile Include="Parties\clsOrganization.cs" />
+    <Compile Include="Parties\clsPerson.cs" />
+    <Compile Include="Parties\clsParty.cs" />
+    <Compile Include="Parties\clsCountry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
