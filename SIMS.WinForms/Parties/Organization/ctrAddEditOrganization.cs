@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using BusinessLogic.Parties;
 using DVLD.WinForms.Utils;
-using SIMS.WinForms.Parties;
 using SIMS.WinForms.Parties.Person;
 
 namespace SIMS.WinForms.Parties.Organization

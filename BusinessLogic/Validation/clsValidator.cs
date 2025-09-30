@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using DataAccess.Parties;
 
 namespace BusinessLogic.Validation
 {
     public static class clsValidator
     {
+        public static bool IsNationalNaExists(string nationalNa)
+        {
+            return clsPersonData.IsNationalNaExists(nationalNa);
+        }
+
         public static bool IsValidName(string name)
         {
             for (int i = 0; i < name.Length; i++)
             {
-                if (char.IsLetter(name[i]) || char.IsWhiteSpace(name[i]))
+                if (!char.IsLetter(name[i]) && !char.IsWhiteSpace(name[i]))
                 {
                     return false;
                 }

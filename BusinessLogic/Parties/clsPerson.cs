@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
-using System.Security.Policy;
 using BusinessLogic.Validation;
 using DataAccess.Parties;
 using DTOs.Parties;
@@ -16,7 +14,7 @@ namespace BusinessLogic.Parties
             Female
         }
 
-        public int PersonID { get; }
+        public int? PersonID { get; }
         private string _CurrentNationalNa { get; set; }
         public string NationalNa { get; set; }
         public DateTime BirthDate { get; set; }
@@ -26,14 +24,14 @@ namespace BusinessLogic.Parties
 
         public clsPerson(string personName, byte countryID, string phone, string email, string address,
             string nationalNa, DateTime birthDate, enGender gender, string imagePath) :
-            base(-1, personName, enPartyCategory.Person, countryID, phone, email, address)
+            base(null, personName, enPartyCategory.Person, countryID, phone, email, address)
         {
-            PersonID = -1;
-            _CurrentNationalNa = string.Empty;
+            PersonID = null;
+            _CurrentNationalNa = null;
             NationalNa = nationalNa;
             BirthDate = birthDate;
             Gender = gender;
-            _CurrentImagePath = string.Empty;
+            _CurrentImagePath = null;
             ImagePath = imagePath;
         }
         private clsPerson(clsPersonDTO personDTO) :
@@ -59,11 +57,6 @@ namespace BusinessLogic.Parties
         {
             clsPersonDTO personDTO = clsPersonData.FindPersonByPersonID(personID);
             return personDTO is null ? null : new clsPerson(personDTO);
-        }
-
-        public static bool IsNationalNaExists(string nationalNa)
-        {
-            return clsPersonData.IsNationalNaExists(nationalNa);
         }
 
         public void DeleteImage()
@@ -115,7 +108,7 @@ namespace BusinessLogic.Parties
         {
             clsValidationResult orginalPartyValidationResult = base.Validated();
 
-            if (_CurrentNationalNa != NationalNa && !(string.IsNullOrEmpty(NationalNa)) && IsNationalNaExists(NationalNa))
+            if (_CurrentNationalNa != NationalNa && !(string.IsNullOrEmpty(NationalNa)) && clsValidator.IsNationalNaExists(NationalNa))
             {
                 orginalPartyValidationResult.AddError("الرقم الوطني", "الرقم الوطني موجود بالفعل");
             }

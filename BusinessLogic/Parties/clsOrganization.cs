@@ -6,14 +6,14 @@ namespace BusinessLogic.Parties
 {
     public class clsOrganization : clsParty
     {
-        public int OrganizationID { get; }
-        public clsPerson ContactPersonInfo { get; set; }
+        public int? OrganizationID { get; }
+        public clsPerson ContactPersonInfo { get; private set; }
 
         public clsOrganization (string organizationName, byte countryID,
             string phone, string email, string address, clsPerson contactPerson) :
-            base(-1, organizationName, enPartyCategory.Organization, countryID, phone, email, address)
+            base(null, organizationName, enPartyCategory.Organization, countryID, phone, email, address)
         {
-            this.OrganizationID = -1;
+            this.OrganizationID = null;
             this.ContactPersonInfo = contactPerson;
         }
 
@@ -29,6 +29,30 @@ namespace BusinessLogic.Parties
         {
             clsOrganizationDTO organizationDTO = clsOrganizationData.FindOrganizationByPartyID(partyID);
             return organizationDTO is null ? null : new clsOrganization(organizationDTO);
+        }
+
+        public void ChangeContactPersonInfo(clsPerson newContactPersonInfo)
+        {
+            if (newContactPersonInfo is null)
+            {
+                return;
+            }
+
+            ContactPersonInfo.PartyName = newContactPersonInfo.PartyName;
+            ContactPersonInfo.CountryInfo.CountryID = newContactPersonInfo.CountryInfo.CountryID;
+            ContactPersonInfo.CountryInfo.CountryName = newContactPersonInfo.CountryInfo.CountryName;
+            ContactPersonInfo.Phone = newContactPersonInfo.Phone;
+            ContactPersonInfo.Email = newContactPersonInfo.Email;
+            ContactPersonInfo.Address = newContactPersonInfo.Address;
+            ContactPersonInfo.NationalNa = newContactPersonInfo.NationalNa;
+            ContactPersonInfo.BirthDate = newContactPersonInfo.BirthDate;
+            ContactPersonInfo.Gender = newContactPersonInfo.Gender;
+            ContactPersonInfo.ImagePath = newContactPersonInfo.ImagePath;
+        }
+
+        public void RemoveContactPerson()
+        {
+            ContactPersonInfo = null;
         }
 
         public override clsValidationResult Validated()

@@ -4,7 +4,7 @@ namespace DTOs.Parties
 {
     public class clsPartyDTO
     {
-        public int PartyID { get; set; }
+        public int? PartyID { get; set; }
         public string PartyName { get; set; }
         public byte PartyCategoryID { get; set; }
         public byte CountryID { get; set; }
@@ -14,7 +14,7 @@ namespace DTOs.Parties
 
         public clsPartyDTO() { }
 
-        public clsPartyDTO (int partyID, string partyName, byte partyCatigoryID, byte countryID, string phone, string email, string address)
+        public clsPartyDTO (int? partyID, string partyName, byte partyCatigoryID, byte countryID, string phone, string email, string address)
         {
             PartyID = partyID;
             PartyName = partyName;

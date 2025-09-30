@@ -26,16 +26,16 @@ namespace SIMS.WinForms.Parties.Person
             get
             {
                 return new clsPerson(
-                    ctrAddEditParty.PartyName,
-                    ctrAddEditParty.CountryID,
-                    ctrAddEditParty.Phone,
-                    ctrAddEditParty.Email,
-                    ctrAddEditParty.Address,
-                    txtNationalNa.Text,
-                    dtpBirthDate.Value,
-                    rbMale.Checked ? clsPerson.enGender.Male : clsPerson.enGender.Female,
-                    pbPersonImage.ImageLocation
-                    );
+                ctrAddEditParty.PartyName,
+                ctrAddEditParty.CountryID,
+                ctrAddEditParty.Phone,
+                ctrAddEditParty.Email,
+                ctrAddEditParty.Address,
+                txtNationalNa.Text,
+                dtpBirthDate.Value,
+                rbMale.Checked ? clsPerson.enGender.Male : clsPerson.enGender.Female,
+                pbPersonImage.ImageLocation
+                );
             }
             set
             {

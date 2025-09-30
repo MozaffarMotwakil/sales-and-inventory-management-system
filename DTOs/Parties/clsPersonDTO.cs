@@ -4,7 +4,7 @@ namespace DTOs.Parties
 {
     public class clsPersonDTO : clsPartyDTO
     {
-        public int PersonID { get; set; }
+        public int? PersonID { get; set; }
         public string NationalNa { get; set; }
         public DateTime BirthDate { get; set; }
         public bool Gender { get; set; }
@@ -12,7 +12,7 @@ namespace DTOs.Parties
 
         public clsPersonDTO() { }
 
-        public clsPersonDTO(int partyID, int personID, string partyName, byte partyCategoryID, byte countryID, 
+        public clsPersonDTO(int? partyID, int? personID, string partyName, byte partyCategoryID, byte countryID, 
             string phone, string email, string address, string nationalNa, 
             DateTime birthDate, bool gender, string imagePath)
         {

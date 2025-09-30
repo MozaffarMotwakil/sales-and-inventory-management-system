@@ -19,15 +19,15 @@ namespace BusinessLogic.Parties
             ContactPerson = 4
         }
 
-        public int PartyID { get; }
+        public int? PartyID { get; }
         public string PartyName { get; set; }
         public enPartyCategory PartyCategory { get; }
-        public clsCountry CountryInfo { get; set; }
+        public clsCountry CountryInfo { get; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
 
-        public clsParty(int partyID, string partyName, enPartyCategory partyCategory, byte countryID, string phone, string email, string address)
+        public clsParty(int? partyID, string partyName, enPartyCategory partyCategory, byte countryID, string phone, string email, string address)
         {
             PartyID = partyID;
             PartyName = partyName;
@@ -75,7 +75,7 @@ namespace BusinessLogic.Parties
                 validationResult.AddError("رقم الهاتف", "رقم الهاتف يجب أن يتكون من 10 أرقام");
             }
 
-            if (!string.IsNullOrEmpty(Email) && !clsValidator.IsValidEmail(Email) || !Email.EndsWith("@gmail.com"))
+            if (!string.IsNullOrEmpty(Email) && !clsValidator.IsValidEmail(Email) && !Email.EndsWith("@gmail.com"))
             {
                 validationResult.AddError("البريد الإلكتروني", "تنسيق البريد الإلكتروني غير صحيح");
             }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using DTOs.Parties;
 using DTOs.Suppliers;
 
 namespace DataAccess.Suppliers
@@ -267,7 +266,6 @@ namespace DataAccess.Suppliers
                     // Original Party
                     command.Parameters.AddWithValue("SupplierID", supplierDTO.SupplierID);
                     command.Parameters.AddWithValue("@SupplierName", supplierDTO.SupplierName);
-                    command.Parameters.AddWithValue("@SupplierCategoryID", supplierDTO.SupplierCategoryID);
                     command.Parameters.AddWithValue("@SupplierCountryID", supplierDTO.SupplierCountryID);
                     command.Parameters.AddWithValue("@SupplierPhone", supplierDTO.SupplierPhone);
                     command.Parameters.AddWithValue("@SupplierEmail", clsDataSettings.GetDBNullIfNullOrEmpty(supplierDTO.SupplierEmail));

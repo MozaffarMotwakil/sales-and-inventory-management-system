@@ -138,7 +138,8 @@ namespace SIMS.WinForms.Suppliers
                 else
                 {
                     _Supplier.PartyInfo.PartyName = supplierType.PartyName;
-                    _Supplier.PartyInfo.CountryInfo = supplierType.CountryInfo;
+                    _Supplier.PartyInfo.CountryInfo.CountryID = supplierType.CountryInfo.CountryID;
+                    _Supplier.PartyInfo.CountryInfo.CountryName = supplierType.CountryInfo.CountryName;
                     _Supplier.PartyInfo.Phone = supplierType.Phone;
                     _Supplier.PartyInfo.Email = supplierType.Email;
                     _Supplier.PartyInfo.Address = supplierType.Address;
@@ -152,7 +153,17 @@ namespace SIMS.WinForms.Suppliers
                             ((clsPerson)_Supplier.PartyInfo).ImagePath = ((clsPerson)supplierType).ImagePath;
                             break;
                         case clsParty.enPartyCategory.Organization:
-                            ((clsOrganization)_Supplier.PartyInfo).CountryInfo = ((clsOrganization)supplierType).CountryInfo;
+                            clsPerson newContactPersonInfo = ((clsOrganization)supplierType).ContactPersonInfo;
+
+                            if (newContactPersonInfo != null)
+                            {
+                                ((clsOrganization)_Supplier.PartyInfo).ChangeContactPersonInfo(newContactPersonInfo);
+                            }
+                            else
+                            {
+                                ((clsOrganization)_Supplier.PartyInfo).RemoveContactPerson();
+                            }
+
                             break;
                     }
 

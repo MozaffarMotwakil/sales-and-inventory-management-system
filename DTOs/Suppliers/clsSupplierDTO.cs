@@ -4,7 +4,7 @@ namespace DTOs.Suppliers
 {
     public class clsSupplierDTO
     {
-        public int SupplierID { get; set; }
+        public int? SupplierID { get; set; }
         public string SupplierName { get; set; }
         public byte SupplierCategoryID { get; set; }
         public byte SupplierCountryID { get; set; }
@@ -33,12 +33,12 @@ namespace DTOs.Suppliers
         public string SupplierNotes { get; set; }
         public bool IsDeleted { get; set; }
         public int? CreatedByUserID { get; set; } 
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public int? UpdatedByUserID { get; set; } 
         public DateTime? UpdatedAt { get; set; }
         
         // Output Fileds
-        public int PartyID { get; set; }
+        public int? PartyID { get; set; }
         public int? PersonID { get; set; }
         public int? OrganizationID { get; set; }
         public int? ContactPersonID { get; set; }
@@ -46,14 +46,14 @@ namespace DTOs.Suppliers
 
         public clsSupplierDTO() { }
 
-        public clsSupplierDTO(int supplierID, string supplierName, byte supplierCategoryID,
+        public clsSupplierDTO(int? supplierID, string supplierName, byte supplierCategoryID,
             byte supplierCountryID, string supplierPhone, string supplierEmail, string supplierAddress,
             string supplierNationalNa, DateTime? supplierBirthDate, byte? supplierGender,
             string supplierImagePath, string contactPersonName, byte? contactPersonCountryID,
             string contactPersonPhone, string contactPersonEmail, string contactPersonAddress, 
             string contactPersonNationalNa, DateTime? contactPersonBirthDate, byte? contactPersonGender,
             string contactPersonImagePath, string supplierNotes, bool isDeleted, int? createdByUserID,
-            DateTime createdAt, int? updatedByUserID, DateTime? updatedAt, int partyID,
+            DateTime? createdAt, int? updatedByUserID, DateTime? updatedAt, int? partyID,
             int? personID, int? organizationID, int? contactPersonID, int? contactPersonPartyID)
         {
             SupplierID = supplierID;

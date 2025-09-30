@@ -6,6 +6,7 @@ using BusinessLogic.Users;
 using BusinessLogic.Parties;
 using BusinessLogic.Validation;
 using DTOs.Suppliers;
+using static BusinessLogic.Parties.clsParty;
 
 namespace BusinessLogic.Suppliers
 {
@@ -41,19 +42,19 @@ namespace BusinessLogic.Suppliers
             SupplierDeleted?.Invoke();
         }
 
-        public int SupplierID { get; }
+        public int? SupplierID { get; }
         public clsParty PartyInfo { get; }
         public string Notes { get; set; }
         public bool IsDeleted { get; }
         public clsUser CreatedByUserInfo { get; }
-        public DateTime CreatedAt { get; }
+        public DateTime? CreatedAt { get; }
         public clsUser UpdatedByUserInfo { get; private set; }
         public DateTime? UpdatedAt { get; }
         private enMode _Mode { get; set; }
 
         public clsSupplier(clsParty party, string notes)
         {
-            this.SupplierID = -1;
+            this.SupplierID = null;
             this.PartyInfo = party;
             this.Notes = notes;
             this.IsDeleted = false;
@@ -65,9 +66,10 @@ namespace BusinessLogic.Suppliers
         private clsSupplier(clsSupplierDTO supplierDTO)
         {
             SupplierID = supplierDTO.SupplierID;
-            PartyInfo = supplierDTO.SupplierCategoryID == 1 ?
-                clsPerson.FindByPartyID(supplierDTO.PartyID) :
-                (clsParty)clsOrganization.FindByPartyID(supplierDTO.PartyID);
+            PartyInfo = clsPartyFactory.GetFromDB(
+                supplierDTO.PartyID ?? -1,
+                (enPartyCategory)supplierDTO.SupplierCategoryID
+                );
             Notes = supplierDTO.SupplierNotes;
             IsDeleted = supplierDTO.IsDeleted;
             CreatedByUserInfo = new clsUser(1);
@@ -141,20 +143,15 @@ namespace BusinessLogic.Suppliers
                 return result;
             }
 
-            switch (this._Mode)
+            if (this._Mode is enMode.Update)
             {
-                case enMode.Add:
-                    return _ExecuteOperation(this.MappingToDTO(), this._Mode, result);
-                case enMode.Update:
-                    this.UpdatedByUserInfo = clsAppSettings.CurrentUser;
-                    return _ExecuteOperation(this.MappingToDTO(), this._Mode, result);
-                default:
-                    result.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
-                    return result;
+                this.UpdatedByUserInfo = clsAppSettings.CurrentUser;
             }
+
+            return _ExecuteSaving(this._Mode, result);
         }
 
-        private clsValidationResult _ExecuteOperation(clsSupplierDTO supplierDTO, enMode mode, clsValidationResult validationResult)
+        private clsValidationResult _ExecuteSaving(enMode mode, clsValidationResult validationResult)
         {
             _HandlePersonImageSaving();
 
@@ -236,8 +233,8 @@ namespace BusinessLogic.Suppliers
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.CountryInfo?.CountryID,
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Phone,
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Email,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.NationalNa,
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Address,
+                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.NationalNa,
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.BirthDate,
                     (byte?)((clsOrganization)this.PartyInfo).ContactPersonInfo?.Gender,
                     ((clsOrganization)this.PartyInfo).ContactPersonInfo?.ImagePath,
