@@ -42,21 +42,51 @@ namespace BusinessLogic.Parties
             _CurrentNationalNa = personDTO.NationalNa;
             NationalNa = personDTO.NationalNa;
             BirthDate = personDTO.BirthDate;
-            Gender = personDTO.Gender ? enGender.Female : enGender.Male;
+            Gender = personDTO.Gender.HasValue ?
+                (personDTO.Gender.Value == 0 ? enGender.Male : enGender.Female) :
+                enGender.Male;
             _CurrentImagePath = personDTO.ImagePath;
             ImagePath = personDTO.ImagePath;
         }
 
         public static clsPerson FindByPartyID(int partyID)
         {
+            if (partyID < 1)
+            {
+                return null;
+            }
+
             clsPersonDTO personDTO = clsPersonData.FindPersonByPartyID(partyID);
             return personDTO is null ? null : new clsPerson(personDTO);
         }
 
         public static clsPerson FindByPersonID(int personID)
         {
+            if (personID < 1)
+            {
+                return null;
+            }
+
             clsPersonDTO personDTO = clsPersonData.FindPersonByPersonID(personID);
             return personDTO is null ? null : new clsPerson(personDTO);
+        }
+
+        public void ChangePersonInfo(clsPerson newPersonInfo)
+        {
+            if (newPersonInfo is null)
+            {
+                return;
+            }
+
+            PartyName = newPersonInfo.PartyName;
+            CountryInfo = newPersonInfo.CountryInfo;
+            Phone = newPersonInfo.Phone;
+            Email = newPersonInfo.Email;
+            Address = newPersonInfo.Address;
+            NationalNa = newPersonInfo.NationalNa;
+            BirthDate = newPersonInfo.BirthDate;
+            Gender = newPersonInfo.Gender;
+            ImagePath = newPersonInfo.ImagePath;
         }
 
         public void DeleteImage()
@@ -76,12 +106,17 @@ namespace BusinessLogic.Parties
                 if (string.IsNullOrEmpty(ImagePath))
                 {
                     this.DeleteImage();
-                    this._CurrentImagePath = string.Empty;
                 }
                 else
                 {
+                    if (!string.IsNullOrEmpty(_CurrentImagePath))
+                    {
+                        this.DeleteImage();
+                    }
+
                     this._CurrentImagePath = clsAppSettings.GetNewImagePathWithGUID();
                     File.Copy(ImagePath, this._CurrentImagePath);
+                    this.ImagePath = this._CurrentImagePath;
                 }
             }
         }
@@ -90,16 +125,16 @@ namespace BusinessLogic.Parties
         {
             return new clsPersonDTO(
                 this.PartyID,
-                this.PersonID,
-                this.PartyName,
+                this.PartyName.Trim(),
                 (byte)this.PartyCategory,
                 this.CountryInfo.CountryID,
-                this.Phone,
-                this.Email,
-                this.Address,
-                this.NationalNa,
+                this.Phone.Trim(),
+                this.Email.Trim(),
+                this.Address.Trim(),
+                this.PersonID,
+                this.NationalNa.Trim(),
                 this.BirthDate,
-                this.Gender == enGender.Male ? false : true,
+                (byte?)(this.Gender),
                 this._CurrentImagePath
                 );
         }

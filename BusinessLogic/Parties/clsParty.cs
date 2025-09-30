@@ -22,7 +22,7 @@ namespace BusinessLogic.Parties
         public int? PartyID { get; }
         public string PartyName { get; set; }
         public enPartyCategory PartyCategory { get; }
-        public clsCountry CountryInfo { get; }
+        public clsCountry CountryInfo { get; protected set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -42,12 +42,12 @@ namespace BusinessLogic.Parties
         {
             return new clsPartyDTO(
                 this.PartyID,
-                this.PartyName,
+                this.PartyName.Trim(),
                 (byte)this.PartyCategory,
                 this.CountryInfo.CountryID,
-                this.Phone,
-                this.Email,
-                this.Address
+                this.Phone.Trim(),
+                this.Email.Trim(),
+                this.Address.Trim()
                 );
         }
 
@@ -75,9 +75,14 @@ namespace BusinessLogic.Parties
                 validationResult.AddError("رقم الهاتف", "رقم الهاتف يجب أن يتكون من 10 أرقام");
             }
 
-            if (!string.IsNullOrEmpty(Email) && !clsValidator.IsValidEmail(Email) && !Email.EndsWith("@gmail.com"))
+            if (!string.IsNullOrEmpty(Email) && !clsValidator.IsValidEmail(Email))
             {
                 validationResult.AddError("البريد الإلكتروني", "تنسيق البريد الإلكتروني غير صحيح");
+            }
+            
+            if (!string.IsNullOrEmpty(Email) && !Email.EndsWith("@gmail.com"))
+            {
+                validationResult.AddError("البريد الإلكتروني", "يجب أن يكون البريد الإلكتروني من نطاق جيميل");
             }
 
             return validationResult;

@@ -5,8 +5,10 @@ namespace BusinessLogic.Parties
 {
     public class clsCountry
     {
-        public byte CountryID { get; set; }
-        public string CountryName { get; set; }
+        public byte CountryID { get; }
+        public string CountryName { get; }
+
+        public const int DEFAULT_COUNTRY_ID = 164;
 
         private clsCountry(clsCountryDTO countryDTO)
         {

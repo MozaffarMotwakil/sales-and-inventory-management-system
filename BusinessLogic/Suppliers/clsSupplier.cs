@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 using DataAccess.Suppliers;
 using BusinessLogic.Users;
 using BusinessLogic.Parties;
@@ -27,7 +26,7 @@ namespace BusinessLogic.Suppliers
                 UserID = clsAppSettings.CurrentUser.UserID;
             }
         }
-
+        
         public static event EventHandler<SupplierSavedEventArgs> SupplierSaved;
 
         protected virtual void OnSupplierSaved(clsSupplier savedSupplier)
@@ -35,14 +34,30 @@ namespace BusinessLogic.Suppliers
             SupplierSaved?.Invoke(this, new SupplierSavedEventArgs(savedSupplier));
         }
 
-        public static event Action SupplierDeleted;
-        
-        protected static void OnSupplierDeleted()
+        public class SupplierDeletedEventArgs : EventArgs
         {
-            SupplierDeleted?.Invoke();
+            public int? SupplierID { get; }
+            public string SupplierName { get; }
+            public DateTime Timestamp { get; }
+            public int UserID { get; }
+
+            public SupplierDeletedEventArgs(clsSupplier deletedSupplier)
+            {
+                SupplierID = deletedSupplier.SupplierID;
+                SupplierName = deletedSupplier.PartyInfo.PartyName;
+                Timestamp = DateTime.Now;
+                UserID = clsAppSettings.CurrentUser.UserID;
+            }
         }
 
-        public int? SupplierID { get; }
+        public static event EventHandler<SupplierDeletedEventArgs> SupplierDeleted;
+        
+        protected static void OnSupplierDeleted(clsSupplier deletedSupplier)
+        {
+            SupplierDeleted?.Invoke(null, new SupplierDeletedEventArgs(deletedSupplier));
+        }
+
+        public int? SupplierID { get; private set; }
         public clsParty PartyInfo { get; }
         public string Notes { get; set; }
         public bool IsDeleted { get; }
@@ -93,24 +108,22 @@ namespace BusinessLogic.Suppliers
 
         public static bool Delete(int supplierID)
         {
-            string imagePath = string.Empty;
             clsSupplier supplier = Find(supplierID);
-
-            if (supplier.PartyInfo is clsPerson person)
-            {
-                imagePath = person.ImagePath;
-            }
 
             bool isDeleted = clsSupplierData.DeleteSupplier(supplierID);
 
             if (isDeleted)
             {
-                if (File.Exists(imagePath))
+                if (supplier.PartyInfo is clsPerson person)
                 {
-                    File.Delete(imagePath);
+                    person.DeleteImage();
+                }
+                else if (supplier.PartyInfo is clsOrganization organization)
+                {
+                    organization.ContactPersonInfo?.DeleteImage();
                 }
 
-                OnSupplierDeleted();
+                OnSupplierDeleted(supplier);
             }
 
             return isDeleted;
@@ -148,19 +161,24 @@ namespace BusinessLogic.Suppliers
                 this.UpdatedByUserInfo = clsAppSettings.CurrentUser;
             }
 
-            return _ExecuteSaving(this._Mode, result);
+            return _ExecuteSaving(this.MappingToDTO(), this._Mode, result);
         }
 
-        private clsValidationResult _ExecuteSaving(enMode mode, clsValidationResult validationResult)
+        private clsValidationResult _ExecuteSaving(clsSupplierDTO supplierDTO, enMode mode, clsValidationResult validationResult)
         {
             _HandlePersonImageSaving();
 
             bool isSaved = mode is enMode.Add ?
-                clsSupplierData.AddSupplier(this.MappingToDTO()) :
-                clsSupplierData.UpdateSupplier(this.MappingToDTO());
+                clsSupplierData.AddSupplier(supplierDTO) :
+                clsSupplierData.UpdateSupplier(supplierDTO);
 
             if (isSaved)
             {
+                if (this._Mode is enMode.Add)
+                {
+                    this.SupplierID = supplierDTO.SupplierID;
+                }
+
                 OnSupplierSaved(this);
             }
             else
@@ -192,65 +210,16 @@ namespace BusinessLogic.Suppliers
 
         public clsSupplierDTO MappingToDTO()
         {
-            if (this.PartyInfo.PartyCategory == clsParty.enPartyCategory.Person)
-            {
-                return new clsSupplierDTO(
-                    this.SupplierID,
-                    this.PartyInfo.PartyName,
-                    (byte)this.PartyInfo.PartyCategory,
-                    this.PartyInfo.CountryInfo.CountryID,
-                    this.PartyInfo.Phone,
-                    this.PartyInfo.Email,
-                    this.PartyInfo.Address,
-                    ((clsPerson)this.PartyInfo).NationalNa,
-                    ((clsPerson)this.PartyInfo).BirthDate,
-                    (byte)((clsPerson)this.PartyInfo).Gender,
-                    ((clsPerson)this.PartyInfo).ImagePath,
-                    null, null, null, null, null, null, null, null, null,
-                    this.Notes,
-                    this.IsDeleted,
-                    this.CreatedByUserInfo.UserID,
-                    this.CreatedAt,
-                    this.UpdatedByUserInfo?.UserID,
-                    this.UpdatedAt,
-                    this.PartyInfo.PartyID,
-                    ((clsPerson)this.PartyInfo).PersonID,
-                    null, null, null
+            return new clsSupplierDTO(
+                this.PartyInfo.MappingToDTO(),
+                this.SupplierID,
+                this.Notes.Trim(),
+                this.IsDeleted,
+                this.CreatedByUserInfo.UserID,
+                this.CreatedAt,
+                this.UpdatedByUserInfo?.UserID,
+                this.UpdatedAt
                 );
-            }
-            else
-            {
-                return new clsSupplierDTO(
-                    this.SupplierID,
-                    this.PartyInfo.PartyName,
-                    (byte)this.PartyInfo.PartyCategory,
-                    this.PartyInfo.CountryInfo.CountryID,
-                    this.PartyInfo.Phone,
-                    this.PartyInfo.Email,
-                    this.PartyInfo.Address,
-                    null, null, null, null,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.PartyName,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.CountryInfo?.CountryID,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Phone,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Email,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.Address,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.NationalNa,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.BirthDate,
-                    (byte?)((clsOrganization)this.PartyInfo).ContactPersonInfo?.Gender,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.ImagePath,
-                    this.Notes,
-                    this.IsDeleted,
-                    this.CreatedByUserInfo.UserID,
-                    this.CreatedAt,
-                    this.UpdatedByUserInfo?.UserID,
-                    this.UpdatedAt,
-                    this.PartyInfo.PartyID,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.PersonID,
-                    ((clsOrganization)this.PartyInfo).OrganizationID,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.PersonID,
-                    ((clsOrganization)this.PartyInfo).ContactPersonInfo?.PartyID
-                );
-            }
         }
 
         public clsValidationResult Validated()

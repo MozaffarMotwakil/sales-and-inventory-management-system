@@ -22,37 +22,81 @@ namespace BusinessLogic.Parties
                 organizationDTO.Phone, organizationDTO.Email, organizationDTO.Address)
         {
             this.OrganizationID = organizationDTO.OrganizationID;
-            this.ContactPersonInfo = clsPerson.FindByPersonID(organizationDTO.ContactPersonID);
+            this.ContactPersonInfo = clsPerson.FindByPersonID(organizationDTO.ContactPersonID ?? -1);
         }
 
         public static clsOrganization FindByPartyID(int partyID)
         {
+            if (partyID < 1)
+            {
+                return null;
+            }
+
             clsOrganizationDTO organizationDTO = clsOrganizationData.FindOrganizationByPartyID(partyID);
             return organizationDTO is null ? null : new clsOrganization(organizationDTO);
         }
 
-        public void ChangeContactPersonInfo(clsPerson newContactPersonInfo)
+        public void ChangeOrganizaionInfo(clsOrganization newOrganizationInfo)
         {
-            if (newContactPersonInfo is null)
+            if (newOrganizationInfo is null)
             {
                 return;
             }
 
-            ContactPersonInfo.PartyName = newContactPersonInfo.PartyName;
-            ContactPersonInfo.CountryInfo.CountryID = newContactPersonInfo.CountryInfo.CountryID;
-            ContactPersonInfo.CountryInfo.CountryName = newContactPersonInfo.CountryInfo.CountryName;
-            ContactPersonInfo.Phone = newContactPersonInfo.Phone;
-            ContactPersonInfo.Email = newContactPersonInfo.Email;
-            ContactPersonInfo.Address = newContactPersonInfo.Address;
-            ContactPersonInfo.NationalNa = newContactPersonInfo.NationalNa;
-            ContactPersonInfo.BirthDate = newContactPersonInfo.BirthDate;
-            ContactPersonInfo.Gender = newContactPersonInfo.Gender;
-            ContactPersonInfo.ImagePath = newContactPersonInfo.ImagePath;
+            PartyName = newOrganizationInfo.PartyName;
+            CountryInfo = newOrganizationInfo.CountryInfo;
+            Phone = newOrganizationInfo.Phone;
+            Email = newOrganizationInfo.Email;
+            Address = newOrganizationInfo.Address;
+
+            if (newOrganizationInfo.ContactPersonInfo != null)
+            {
+                if (ContactPersonInfo != null)
+                {
+                    // in case updating a contact person information.
+                    ContactPersonInfo.ChangePersonInfo(newOrganizationInfo.ContactPersonInfo);
+                }
+                else
+                {
+                    // in case adding a new contact person.
+                    ContactPersonInfo = newOrganizationInfo.ContactPersonInfo;
+                }
+            }
+            else
+            {
+                RemoveContactPerson();
+            }
         }
 
         public void RemoveContactPerson()
         {
+            ContactPersonInfo.DeleteImage();
             ContactPersonInfo = null;
+        }
+
+        public override clsPartyDTO MappingToDTO()
+        {
+            return new clsOrganizationDTO(
+                this.PartyID,
+                this.PartyName.Trim(),
+                (byte)this.PartyCategory,
+                this.CountryInfo.CountryID,
+                this.Phone.Trim(),
+                this.Email.Trim(),
+                this.Address.Trim(),
+                this.OrganizationID,
+                this.ContactPersonInfo?.PersonID,
+                this.ContactPersonInfo?.PartyID,
+                this.ContactPersonInfo?.PartyName.Trim(),
+                this.ContactPersonInfo?.CountryInfo.CountryID,
+                this.ContactPersonInfo?.Phone.Trim(),
+                this.ContactPersonInfo?.Email.Trim(),
+                this.ContactPersonInfo?.Address.Trim(),
+                this.ContactPersonInfo?.NationalNa.Trim(),
+                this.ContactPersonInfo?.BirthDate,
+                (byte?)this.ContactPersonInfo?.Gender,
+                this.ContactPersonInfo?.ImagePath
+                );
         }
 
         public override clsValidationResult Validated()

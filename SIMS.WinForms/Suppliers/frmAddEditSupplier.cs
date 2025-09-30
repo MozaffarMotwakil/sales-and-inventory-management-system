@@ -9,18 +9,18 @@ namespace SIMS.WinForms.Suppliers
 {
     public partial class frmAddEditSupplier : Form
     {
-        private clsParty.enPartyCategory _SupplierCatigory;
-        public clsParty.enPartyCategory SupplierCatigory 
+        private clsParty.enPartyCategory _SupplierCategory;
+        public clsParty.enPartyCategory SupplierCategory 
         {
             get
             {
-                return _SupplierCatigory;
+                return _SupplierCategory;
             }
             set
             {
-                _SupplierCatigory = value;
+                _SupplierCategory = value;
 
-                switch (_SupplierCatigory)
+                switch (_SupplierCategory)
                 {
                     case clsParty.enPartyCategory.Person:
                         ctrAddEditOrganization.Visible = false;
@@ -59,7 +59,7 @@ namespace SIMS.WinForms.Suppliers
         {
             InitializeComponent();
             _Supplier = null;
-            SupplierCatigory = supplierType;
+            SupplierCategory = supplierType;
             FormMode = enMode.Add;
         }
 
@@ -67,7 +67,7 @@ namespace SIMS.WinForms.Suppliers
         {
             InitializeComponent();
             _Supplier = supplier;
-            SupplierCatigory = supplierType;
+            SupplierCategory = supplierType;
             FormMode = enMode.Edit;
         }
 
@@ -75,13 +75,13 @@ namespace SIMS.WinForms.Suppliers
         {
             if (FormMode is enMode.Add)
             {
-                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCategory.Person ?
+                this.Text = lblFormTitle.Text = SupplierCategory is clsParty.enPartyCategory.Person ?
                     "إضافة مورد جديد - شخص" :
                     "إضافة مورد جديد - منظمة";
             }
             else
             {
-                this.Text = lblFormTitle.Text = SupplierCatigory is clsParty.enPartyCategory.Person ?
+                this.Text = lblFormTitle.Text = SupplierCategory is clsParty.enPartyCategory.Person ?
                     "تعديل بيانات مورد - شخص" :
                     "تعديل بيانات مورد - منظمة";
             }
@@ -95,7 +95,7 @@ namespace SIMS.WinForms.Suppliers
                     return;
                 }
 
-                switch (_SupplierCatigory)
+                switch (_SupplierCategory)
                 {
                     case clsParty.enPartyCategory.Person:
                         ctrAddEditPerson.Person = _Supplier.PartyInfo as clsPerson;
@@ -124,8 +124,8 @@ namespace SIMS.WinForms.Suppliers
 
             if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
             {
-                clsParty supplierType = SupplierCatigory is clsParty.enPartyCategory.Person ?
-                    ctrAddEditPerson.Person :
+                clsParty supplierType = SupplierCategory is clsParty.enPartyCategory.Person ?
+                    (clsParty)ctrAddEditPerson.Person :
                     (clsParty)ctrAddEditOrganization.Organization;
 
                 if (FormMode is enMode.Add)
@@ -137,33 +137,13 @@ namespace SIMS.WinForms.Suppliers
                 }
                 else
                 {
-                    _Supplier.PartyInfo.PartyName = supplierType.PartyName;
-                    _Supplier.PartyInfo.CountryInfo.CountryID = supplierType.CountryInfo.CountryID;
-                    _Supplier.PartyInfo.CountryInfo.CountryName = supplierType.CountryInfo.CountryName;
-                    _Supplier.PartyInfo.Phone = supplierType.Phone;
-                    _Supplier.PartyInfo.Email = supplierType.Email;
-                    _Supplier.PartyInfo.Address = supplierType.Address;
-
-                    switch (SupplierCatigory)
+                    switch (SupplierCategory)
                     {
                         case clsParty.enPartyCategory.Person:
-                            ((clsPerson)_Supplier.PartyInfo).NationalNa = ((clsPerson)supplierType).NationalNa;
-                            ((clsPerson)_Supplier.PartyInfo).BirthDate = ((clsPerson)supplierType).BirthDate;
-                            ((clsPerson)_Supplier.PartyInfo).Gender = ((clsPerson)supplierType).Gender;
-                            ((clsPerson)_Supplier.PartyInfo).ImagePath = ((clsPerson)supplierType).ImagePath;
+                            ((clsPerson)_Supplier.PartyInfo).ChangePersonInfo((clsPerson)supplierType);
                             break;
                         case clsParty.enPartyCategory.Organization:
-                            clsPerson newContactPersonInfo = ((clsOrganization)supplierType).ContactPersonInfo;
-
-                            if (newContactPersonInfo != null)
-                            {
-                                ((clsOrganization)_Supplier.PartyInfo).ChangeContactPersonInfo(newContactPersonInfo);
-                            }
-                            else
-                            {
-                                ((clsOrganization)_Supplier.PartyInfo).RemoveContactPerson();
-                            }
-
+                            ((clsOrganization)_Supplier.PartyInfo).ChangeOrganizaionInfo((clsOrganization)supplierType);
                             break;
                     }
 

@@ -6,7 +6,7 @@ namespace BusinessLogic
 {
     public enum enMode
     { 
-        Add, 
+        Add = 1, 
         Update
     };
 

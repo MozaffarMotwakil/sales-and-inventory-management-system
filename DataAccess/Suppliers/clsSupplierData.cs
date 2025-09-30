@@ -135,7 +135,10 @@ namespace DataAccess.Suppliers
 
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM vw_SuppliersDetails ORDER BY SupplierID DESC", connection);
+                SqlCommand command = new SqlCommand("usp_GetAllSuppliers", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 try
                 {

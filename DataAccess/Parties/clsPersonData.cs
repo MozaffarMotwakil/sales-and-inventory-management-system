@@ -40,7 +40,7 @@ namespace DataAccess.Parties
                                 Address = (reader["Address"] != DBNull.Value) ? reader["Address"].ToString() : string.Empty,
                                 NationalNa = (reader["NationalNa"] != DBNull.Value) ? reader["NationalNa"].ToString() : string.Empty,
                                 BirthDate = Convert.ToDateTime(reader["BirthDate"]),
-                                Gender = Convert.ToByte((reader["Gender"])) == 1,
+                                Gender = Convert.ToByte((reader["Gender"])),
                                 ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : string.Empty
                             };
                         }
@@ -88,7 +88,7 @@ namespace DataAccess.Parties
                                 Address = (reader["Address"] != DBNull.Value) ? reader["Address"].ToString() : string.Empty,
                                 NationalNa = (reader["NationalNa"] != DBNull.Value) ? reader["NationalNa"].ToString() : string.Empty,
                                 BirthDate = Convert.ToDateTime(reader["BirthDate"]),
-                                Gender = Convert.ToByte((reader["Gender"])) == 1,
+                                Gender = Convert.ToByte((reader["Gender"])),
                                 ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : string.Empty
                             };
                         }

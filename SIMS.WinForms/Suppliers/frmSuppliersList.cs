@@ -13,10 +13,10 @@ namespace SIMS.WinForms.Suppliers
         {
             InitializeComponent();
             clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
-            clsSupplier.SupplierDeleted += ClsSupplier_SupplierDeleted; ;
+            clsSupplier.SupplierDeleted += ClsSupplier_SupplierDeleted;
         }
 
-        private void ClsSupplier_SupplierDeleted()
+        private void ClsSupplier_SupplierDeleted(object sender, clsSupplier.SupplierDeletedEventArgs e)
         {
             txtSearch.Text = string.Empty;
             dgvSuppliersList.DataSource = clsSupplier.GetAllSuppliers();

@@ -129,7 +129,7 @@ namespace SIMS.WinForms.Parties
 
         private void ctrAddEditParty_Load(object sender, EventArgs e)
         {
-            cbCountry.SelectedIndex = 163;
+            cbCountry.SelectedIndex = clsCountry.DEFAULT_COUNTRY_ID - 1;
         }
 
         private void cbCountry_Leave(object sender, EventArgs e)
