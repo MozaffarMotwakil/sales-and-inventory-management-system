@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using DVLD.WinForms.Utils;
-using SIMS.WinForms.Properties;
 using BusinessLogic.Parties;
 
 namespace SIMS.WinForms.Parties.Person
@@ -34,7 +32,7 @@ namespace SIMS.WinForms.Parties.Person
                 txtNationalNa.Text,
                 dtpBirthDate.Value,
                 rbMale.Checked ? clsPerson.enGender.Male : clsPerson.enGender.Female,
-                pbPersonImage.ImageLocation
+                ctrPersonImage.ImageLocation
                 );
             }
             set
@@ -53,12 +51,6 @@ namespace SIMS.WinForms.Parties.Person
                 dtpBirthDate.Value = value.BirthDate;
                 rbMale.Checked = value.Gender is clsPerson.enGender.Male;
                 rbFemale.Checked = value.Gender is clsPerson.enGender.Female;
-
-                if (!string.IsNullOrEmpty(value.ImagePath))
-                {
-                    pbPersonImage.ImageLocation = value.ImagePath;
-                    llDeletePersonImage.Visible = true;
-                }
             }
         }
 
@@ -73,45 +65,14 @@ namespace SIMS.WinForms.Parties.Person
             dtpBirthDate.MaxDate = DateTime.Today;
         }
 
-        private void txtNationalNa_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void llSetPersonImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            OpenFileDialog fileDialogSetNewImage = new OpenFileDialog();
-            fileDialogSetNewImage.Title = "Set Image";
-            fileDialogSetNewImage.InitialDirectory = @"C:\";
-            fileDialogSetNewImage.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|.jpg|*.jpg|.png|*.png";
-            fileDialogSetNewImage.DefaultExt = "JPG";
-            fileDialogSetNewImage.FilterIndex = 1;
-
-            if (fileDialogSetNewImage.ShowDialog() == DialogResult.OK)
-            {
-                pbPersonImage.ImageLocation = fileDialogSetNewImage.FileName;
-                llDeletePersonImage.Visible = true;
-            }
-        }
-
-        private void llDeletePersonImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد حذف الصورة ؟", messageBoxIcon: MessageBoxIcon.Warning))
-            {
-                pbPersonImage.ImageLocation = string.Empty;
-                pbPersonImage.Image = rbMale.Checked ? Resources.unknow_male : Resources.unknow_female;
-                llDeletePersonImage.Visible = false;
-            }
-        }
-
         private void rbGender_CheckedChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(pbPersonImage.ImageLocation))
+            if (!string.IsNullOrEmpty(ctrPersonImage.ImageLocation))
             {
                 return;
             }
 
-            pbPersonImage.Image = clsFormHelper.GetDefaultPersonImage(
+            ctrPersonImage.DefaultImage = clsFormHelper.GetDefaultPersonImage(
                 rbMale.Checked ?
                 clsPerson.enGender.Male :
                 clsPerson.enGender.Female

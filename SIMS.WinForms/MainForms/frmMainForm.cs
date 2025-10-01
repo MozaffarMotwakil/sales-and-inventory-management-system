@@ -104,7 +104,7 @@ namespace SIMS.WinForms
         {
             if (form == null || form.IsDisposed)
             {
-                // Close any opened form before opening the new form.
+                // Close any opened form before opening a new form.
                 for (byte i = 2; i < Application.OpenForms.Count; i++)
                 {
                     Application.OpenForms[i].Close();

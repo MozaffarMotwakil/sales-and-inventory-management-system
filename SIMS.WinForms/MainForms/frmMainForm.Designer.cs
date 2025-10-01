@@ -111,12 +111,12 @@
             // InventoryToolStripButton3
             // 
             this.InventoryToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InventoryToolStripButton3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoryToolStripButton3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("InventoryToolStripButton3.Image")));
             this.InventoryToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.InventoryToolStripButton3.Name = "InventoryToolStripButton3";
             this.InventoryToolStripButton3.Size = new System.Drawing.Size(249, 36);
-            this.InventoryToolStripButton3.Text = "Inventory";
+            this.InventoryToolStripButton3.Text = "المنتجات";
             this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton3_Click);
             // 
             // SuppliersToolStripButton

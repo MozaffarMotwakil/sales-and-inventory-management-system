@@ -65,23 +65,17 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\frmReceiveNewGoods.cs">
+    <Compile Include="Inventory\frmProductUnitConversions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory\frmReceiveNewGoods.Designer.cs">
+    <Compile Include="Inventory\frmProductUnitConversions.Designer.cs">
+      <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\frmReceiveNewGoods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\frmReceiveNewGoods.Designer.cs">
       <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\frmFindProductForDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inventory\frmFindProductForDelete.Designer.cs">
-      <DependentUpon>frmFindProductForDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\frmFindProductForEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inventory\frmFindProductForEdit.Designer.cs">
-      <DependentUpon>frmFindProductForEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory\frmAddEditProduct.cs">
       <SubType>Form</SubType>
@@ -100,12 +94,6 @@
     </Compile>
     <Compile Include="Inventory\ctrProductInfo.Designer.cs">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Inventory\ctrProductInfoWithFilter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Inventory\ctrProductInfoWithFilter.Designer.cs">
-      <DependentUpon>ctrProductInfoWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Invoices\frmInvoicesList.cs">
       <SubType>Form</SubType>
@@ -286,9 +274,15 @@
     <Compile Include="Users\ctrUserInfoWithFilter.Designer.cs">
       <DependentUpon>ctrUserInfoWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\clsFormHelper.cs" />
-    <Compile Include="Utils\clsFormMessages.cs" />
-    <Compile Include="Utils\clsFormValidation.cs" />
+    <Compile Include="Utilities\clsFormHelper.cs" />
+    <Compile Include="Utilities\clsFormMessages.cs" />
+    <Compile Include="Utilities\clsFormValidation.cs" />
+    <Compile Include="Utilities\ctrImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\ctrImage.Designer.cs">
+      <DependentUpon>ctrImage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ActivityLog\frmActivityLog.resx">
       <DependentUpon>frmActivityLog.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,22 +295,16 @@
     <EmbeddedResource Include="Inventory\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\ctrProductInfoWithFilter.resx">
-      <DependentUpon>ctrProductInfoWithFilter.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmAddEditProduct.resx">
       <DependentUpon>frmAddEditProduct.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmFindProductForDelete.resx">
-      <DependentUpon>frmFindProductForDelete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmFindProductForEdit.resx">
-      <DependentUpon>frmFindProductForEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmProductsList.resx">
       <DependentUpon>frmProductsList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmReceiveNewGoods.resx">
+    <EmbeddedResource Include="Inventory\frmProductUnitConversions.resx">
+      <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\frmReceiveNewGoods.resx">
       <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoices\ctrInvoiceInfo.resx">
@@ -330,6 +318,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\frmMainForm.resx">
       <DependentUpon>frmMainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Parties\Organization\ctrAddEditOrganization.resx">
       <DependentUpon>ctrAddEditOrganization.cs</DependentUpon>
@@ -418,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Users\frmUsersList.resx">
       <DependentUpon>frmUsersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\ctrImage.resx">
+      <DependentUpon>ctrImage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -560,6 +552,9 @@
       <Project>{05c24880-8b70-4c5b-964e-fe36b5c7b28b}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\default_image.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

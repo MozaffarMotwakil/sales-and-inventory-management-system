@@ -64,13 +64,17 @@ namespace BusinessLogic.Parties
             }
             else
             {
-                RemoveContactPerson();
+                // in case the the user delete the current contact person.
+                if (this.ContactPersonInfo != null)
+                {
+                    RemoveContactPerson();
+                }
             }
         }
 
         public void RemoveContactPerson()
         {
-            ContactPersonInfo.DeleteImage();
+            ContactPersonInfo?.DeleteImage();
             ContactPersonInfo = null;
         }
 

@@ -28,23 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvProductsList = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblTotalInventoryItems = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBelowAverageItems = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblItemsRunningLow = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAddProduct = new System.Windows.Forms.ToolStripButton();
-            this.btnEditProduct = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteProduct = new System.Windows.Forms.ToolStripButton();
-            this.btnReceiveGoods = new System.Windows.Forms.ToolStripButton();
             this.cbCatigory = new System.Windows.Forms.ComboBox();
-            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
             this.lblSearchHintText = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -57,13 +53,17 @@
             this.lblTotalPages = new System.Windows.Forms.Label();
             this.lblTotalRecords = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
+            this.addProducrToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel3.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvProductsList
@@ -90,10 +90,10 @@
             this.panel5.BackColor = System.Drawing.Color.LightGreen;
             this.panel5.Controls.Add(this.lblTotalInventoryItems);
             this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(908, 62);
+            this.panel5.Location = new System.Drawing.Point(888, 62);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(226, 64);
+            this.panel5.Size = new System.Drawing.Size(246, 64);
             this.panel5.TabIndex = 2;
             // 
             // lblTotalInventoryItems
@@ -110,12 +110,12 @@
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(2, 5);
+            this.label13.Location = new System.Drawing.Point(4, 5);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(223, 25);
+            this.label13.Size = new System.Drawing.Size(238, 25);
             this.label13.TabIndex = 1;
-            this.label13.Text = "Total Inventory Items";
+            this.label13.Text = "إجمالي عدد المنتجات";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -123,11 +123,11 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.Khaki;
             this.panel1.Controls.Add(this.lblBelowAverageItems);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(908, 143);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(888, 143);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(226, 64);
+            this.panel1.Size = new System.Drawing.Size(246, 64);
             this.panel1.TabIndex = 2;
             // 
             // lblBelowAverageItems
@@ -141,15 +141,26 @@
             this.lblBelowAverageItems.Text = "1500";
             this.lblBelowAverageItems.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(238, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "عدد المنتجات تحت حد الإنذار";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 5);
+            this.label1.Location = new System.Drawing.Point(4, 7);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 25);
+            this.label1.Size = new System.Drawing.Size(238, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Below Average Items";
+            this.label1.Text = "عدد المنتجات التي نفذت";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -157,11 +168,11 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.Coral;
             this.panel2.Controls.Add(this.lblItemsRunningLow);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(908, 224);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(888, 224);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(226, 64);
+            this.panel2.Size = new System.Drawing.Size(246, 64);
             this.panel2.TabIndex = 2;
             // 
             // lblItemsRunningLow
@@ -175,75 +186,10 @@
             this.lblItemsRunningLow.Text = "1500";
             this.lblItemsRunningLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(219, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Items Running Low";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.BackColor = System.Drawing.Color.White;
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnAddProduct,
-            this.btnEditProduct,
-            this.btnDeleteProduct,
-            this.btnReceiveGoods});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(1148, 39);
-            this.toolStrip.TabIndex = 0;
-            this.toolStrip.Text = "toolStrip1";
-            // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddProduct.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_add;
-            this.btnAddProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAddProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(98, 36);
-            this.btnAddProduct.Text = "   Add   ";
-            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
-            // 
-            // btnEditProduct
-            // 
-            this.btnEditProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditProduct.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_edit;
-            this.btnEditProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditProduct.Name = "btnEditProduct";
-            this.btnEditProduct.Size = new System.Drawing.Size(96, 36);
-            this.btnEditProduct.Text = "   Edit   ";
-            this.btnEditProduct.Click += new System.EventHandler(this.btnEditProduct_Click);
-            // 
-            // btnDeleteProduct
-            // 
-            this.btnDeleteProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteProduct.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_delete;
-            this.btnDeleteProduct.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDeleteProduct.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteProduct.Name = "btnDeleteProduct";
-            this.btnDeleteProduct.Size = new System.Drawing.Size(114, 36);
-            this.btnDeleteProduct.Text = "   Delete   ";
-            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
-            // 
-            // btnReceiveGoods
-            // 
-            this.btnReceiveGoods.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReceiveGoods.Image = global::SIMS.WinForms.Properties.Resources.recived_goods_32;
-            this.btnReceiveGoods.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnReceiveGoods.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnReceiveGoods.Name = "btnReceiveGoods";
-            this.btnReceiveGoods.Size = new System.Drawing.Size(208, 36);
-            this.btnReceiveGoods.Text = "   Receive New Goods   ";
-            this.btnReceiveGoods.Click += new System.EventHandler(this.btnReceiveGoods_Click);
+            this.btnAddProduct.Size = new System.Drawing.Size(23, 23);
             // 
             // cbCatigory
             // 
@@ -307,16 +253,6 @@
             this.cbCatigory.Size = new System.Drawing.Size(225, 24);
             this.cbCatigory.TabIndex = 1;
             // 
-            // ctrProductInfo
-            // 
-            this.ctrProductInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrProductInfo.Location = new System.Drawing.Point(14, 40);
-            this.ctrProductInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ctrProductInfo.Name = "ctrProductInfo";
-            this.ctrProductInfo.Size = new System.Drawing.Size(642, 270);
-            this.ctrProductInfo.TabIndex = 4;
-            this.ctrProductInfo.TabStop = false;
-            // 
             // lblSearchHintText
             // 
             this.lblSearchHintText.AutoSize = true;
@@ -326,9 +262,9 @@
             this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblSearchHintText.Location = new System.Drawing.Point(799, 11);
             this.lblSearchHintText.Name = "lblSearchHintText";
-            this.lblSearchHintText.Size = new System.Drawing.Size(57, 16);
+            this.lblSearchHintText.Size = new System.Drawing.Size(47, 16);
             this.lblSearchHintText.TabIndex = 32;
-            this.lblSearchHintText.Text = "Message";
+            this.lblSearchHintText.Text = "الرسالة";
             this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
             // pictureBox
@@ -377,6 +313,7 @@
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(75, 40);
             this.btnPrevious.TabIndex = 9;
+            this.toolTip.SetToolTip(this.btnPrevious, "الصفحة التالية");
             this.btnPrevious.UseVisualStyleBackColor = false;
             // 
             // btnNext
@@ -390,6 +327,7 @@
             this.btnNext.Size = new System.Drawing.Size(75, 40);
             this.btnNext.TabIndex = 8;
             this.btnNext.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip.SetToolTip(this.btnNext, "الصفحة السابقة");
             this.btnNext.UseVisualStyleBackColor = false;
             // 
             // lblCurrentPage
@@ -399,7 +337,7 @@
             this.lblCurrentPage.AutoSize = true;
             this.lblCurrentPage.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentPage.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblCurrentPage.Location = new System.Drawing.Point(185, 12);
+            this.lblCurrentPage.Location = new System.Drawing.Point(78, 12);
             this.lblCurrentPage.Name = "lblCurrentPage";
             this.lblCurrentPage.Size = new System.Drawing.Size(33, 16);
             this.lblCurrentPage.TabIndex = 3;
@@ -411,11 +349,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(81, 12);
+            this.label4.Location = new System.Drawing.Point(117, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 16);
+            this.label4.Size = new System.Drawing.Size(103, 16);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Current Page:";
+            this.label4.Text = "الصفحة الحالية:";
             // 
             // label5
             // 
@@ -424,16 +362,16 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 597);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 16);
+            this.label5.Size = new System.Drawing.Size(113, 16);
             this.label5.TabIndex = 34;
-            this.label5.Text = "Total Pages:";
+            this.label5.Text = "مجموع الصفحات:";
             // 
             // lblTotalPages
             // 
             this.lblTotalPages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalPages.AutoSize = true;
             this.lblTotalPages.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPages.Location = new System.Drawing.Point(119, 597);
+            this.lblTotalPages.Location = new System.Drawing.Point(131, 597);
             this.lblTotalPages.Name = "lblTotalPages";
             this.lblTotalPages.Size = new System.Drawing.Size(28, 16);
             this.lblTotalPages.TabIndex = 35;
@@ -444,7 +382,7 @@
             this.lblTotalRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalRecords.AutoSize = true;
             this.lblTotalRecords.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalRecords.Location = new System.Drawing.Point(119, 573);
+            this.lblTotalRecords.Location = new System.Drawing.Point(131, 573);
             this.lblTotalRecords.Name = "lblTotalRecords";
             this.lblTotalRecords.Size = new System.Drawing.Size(28, 16);
             this.lblTotalRecords.TabIndex = 36;
@@ -457,9 +395,43 @@
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(12, 573);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 16);
+            this.label8.Size = new System.Drawing.Size(112, 16);
             this.label8.TabIndex = 37;
-            this.label8.Text = "Total Records:";
+            this.label8.Text = "مجموع المنتجات:";
+            // 
+            // ctrProductInfo
+            // 
+            this.ctrProductInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrProductInfo.Location = new System.Drawing.Point(15, 42);
+            this.ctrProductInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ctrProductInfo.Name = "ctrProductInfo";
+            this.ctrProductInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrProductInfo.Size = new System.Drawing.Size(642, 270);
+            this.ctrProductInfo.TabIndex = 4;
+            this.ctrProductInfo.TabStop = false;
+            // 
+            // addProducrToolStripButton
+            // 
+            this.addProducrToolStripButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addProducrToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_add;
+            this.addProducrToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.addProducrToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.addProducrToolStripButton.Name = "addProducrToolStripButton";
+            this.addProducrToolStripButton.Size = new System.Drawing.Size(159, 36);
+            this.addProducrToolStripButton.Text = "   إضافة منتج جديد   ";
+            this.addProducrToolStripButton.Click += new System.EventHandler(this.addProducrToolStripButton_Click);
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.BackColor = System.Drawing.Color.White;
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addProducrToolStripButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.ShowItemToolTips = false;
+            this.toolStrip.Size = new System.Drawing.Size(1148, 39);
+            this.toolStrip.TabIndex = 0;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // frmProductsList
             // 
@@ -487,6 +459,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProductsList";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Activated += new System.EventHandler(this.frmProductsList_Activated);
@@ -495,11 +469,11 @@
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -517,12 +491,7 @@
         private System.Windows.Forms.Label lblTotalInventoryItems;
         private System.Windows.Forms.Label lblBelowAverageItems;
         private System.Windows.Forms.Label lblItemsRunningLow;
-        private ctrProductInfo ctrProductInfo;
-        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton btnAddProduct;
-        private System.Windows.Forms.ToolStripButton btnEditProduct;
-        private System.Windows.Forms.ToolStripButton btnDeleteProduct;
-        private System.Windows.Forms.ToolStripButton btnReceiveGoods;
         private System.Windows.Forms.ComboBox cbCatigory;
         private System.Windows.Forms.Label lblSearchHintText;
         private System.Windows.Forms.PictureBox pictureBox;
@@ -536,5 +505,9 @@
         private System.Windows.Forms.Label lblTotalPages;
         private System.Windows.Forms.Label lblTotalRecords;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolTip toolTip;
+        private ctrProductInfo ctrProductInfo;
+        private System.Windows.Forms.ToolStripButton addProducrToolStripButton;
+        private System.Windows.Forms.ToolStrip toolStrip;
     }
 }

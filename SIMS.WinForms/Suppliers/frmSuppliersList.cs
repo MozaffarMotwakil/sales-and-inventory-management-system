@@ -175,6 +175,11 @@ namespace SIMS.WinForms.Suppliers
         private void FormControls_MouseDown(object sender, MouseEventArgs e)
         {
             dgvSuppliersList.ClearSelection();
+
+            if (sender != dgvSuppliersList)
+            {
+                ctrSupplierInfo.Visible = false;
+            }
         }
 
         private void frmSuppliersList_FormClosed(object sender, FormClosedEventArgs e)

@@ -30,9 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbPersonInfo = new System.Windows.Forms.GroupBox();
-            this.llDeletePersonImage = new System.Windows.Forms.LinkLabel();
-            this.llSetPersonImage = new System.Windows.Forms.LinkLabel();
-            this.pbPersonImage = new System.Windows.Forms.PictureBox();
+            this.ctrPersonImage = new SIMS.WinForms.Utilities.ctrImage();
             this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.rbMale = new System.Windows.Forms.RadioButton();
@@ -43,15 +41,12 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ctrAddEditParty = new SIMS.WinForms.Parties.ctrAddEditParty();
             this.gbPersonInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // gbPersonInfo
             // 
-            this.gbPersonInfo.Controls.Add(this.llDeletePersonImage);
-            this.gbPersonInfo.Controls.Add(this.llSetPersonImage);
-            this.gbPersonInfo.Controls.Add(this.pbPersonImage);
+            this.gbPersonInfo.Controls.Add(this.ctrPersonImage);
             this.gbPersonInfo.Controls.Add(this.dtpBirthDate);
             this.gbPersonInfo.Controls.Add(this.rbFemale);
             this.gbPersonInfo.Controls.Add(this.rbMale);
@@ -70,45 +65,18 @@
             this.gbPersonInfo.TabStop = false;
             this.gbPersonInfo.Text = "معلومات إضافية عن الشخص";
             // 
-            // llDeletePersonImage
+            // ctrPersonImage
             // 
-            this.llDeletePersonImage.AutoSize = true;
-            this.llDeletePersonImage.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.llDeletePersonImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.llDeletePersonImage.LinkColor = System.Drawing.Color.Red;
-            this.llDeletePersonImage.Location = new System.Drawing.Point(56, 180);
-            this.llDeletePersonImage.Name = "llDeletePersonImage";
-            this.llDeletePersonImage.Size = new System.Drawing.Size(72, 16);
-            this.llDeletePersonImage.TabIndex = 7;
-            this.llDeletePersonImage.TabStop = true;
-            this.llDeletePersonImage.Text = "حذف الصورة";
-            this.llDeletePersonImage.Visible = false;
-            this.llDeletePersonImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llDeletePersonImage_LinkClicked);
-            // 
-            // llSetPersonImage
-            // 
-            this.llSetPersonImage.AutoSize = true;
-            this.llSetPersonImage.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.llSetPersonImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.llSetPersonImage.Location = new System.Drawing.Point(58, 163);
-            this.llSetPersonImage.Name = "llSetPersonImage";
-            this.llSetPersonImage.Size = new System.Drawing.Size(68, 16);
-            this.llSetPersonImage.TabIndex = 6;
-            this.llSetPersonImage.TabStop = true;
-            this.llSetPersonImage.Text = "تعيين صورة";
-            this.llSetPersonImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llSetPersonImage_LinkClicked);
-            // 
-            // pbPersonImage
-            // 
-            this.pbPersonImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
-            this.pbPersonImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pbPersonImage.Location = new System.Drawing.Point(8, 24);
-            this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pbPersonImage.Name = "pbPersonImage";
-            this.pbPersonImage.Size = new System.Drawing.Size(168, 136);
-            this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbPersonImage.TabIndex = 43;
-            this.pbPersonImage.TabStop = false;
+            this.ctrPersonImage.DefaultImage = global::SIMS.WinForms.Properties.Resources.unknow_male;
+            this.ctrPersonImage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrPersonImage.ImageLocation = null;
+            this.ctrPersonImage.Location = new System.Drawing.Point(9, 20);
+            this.ctrPersonImage.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.ctrPersonImage.Name = "ctrPersonImage";
+            this.ctrPersonImage.PictureBoxSizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ctrPersonImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrPersonImage.Size = new System.Drawing.Size(170, 175);
+            this.ctrPersonImage.TabIndex = 13;
             // 
             // dtpBirthDate
             // 
@@ -191,7 +159,6 @@
             this.txtNationalNa.Name = "txtNationalNa";
             this.txtNationalNa.Size = new System.Drawing.Size(282, 27);
             this.txtNationalNa.TabIndex = 2;
-            this.txtNationalNa.Validating += new System.ComponentModel.CancelEventHandler(this.txtNationalNa_Validating);
             // 
             // errorProvider
             // 
@@ -223,7 +190,6 @@
             this.Load += new System.EventHandler(this.ctrAddEditPerson_Load);
             this.gbPersonInfo.ResumeLayout(false);
             this.gbPersonInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -240,9 +206,7 @@
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel llDeletePersonImage;
-        private System.Windows.Forms.LinkLabel llSetPersonImage;
-        private System.Windows.Forms.PictureBox pbPersonImage;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private Utilities.ctrImage ctrPersonImage;
     }
 }

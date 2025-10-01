@@ -148,8 +148,8 @@
   <data name="product" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\product.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="unknow_male" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\unknow_male.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="price" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\price.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barcode" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barcode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,8 +193,8 @@
   <data name="inventory_value" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\inventory_value.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shopping_basket_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shopping_basket_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="unknow_male" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unknow_male.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,13 +232,16 @@
   <data name="unknow_female" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unknow_female.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="price" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\price.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shopping_basket_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shopping_basket_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="alwaha_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\alwaha_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Person 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Person 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="alwaha_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\alwaha_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="default_image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\default_image.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
