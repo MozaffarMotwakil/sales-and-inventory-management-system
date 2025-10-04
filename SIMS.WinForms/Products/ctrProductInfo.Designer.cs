@@ -1,4 +1,4 @@
-﻿namespace SIMS.WinForms.Inventory
+﻿namespace SIMS.WinForms.Products
 {
     partial class ctrProductInfo
     {

@@ -1,4 +1,4 @@
-﻿namespace SIMS.WinForms.Inventory
+﻿namespace SIMS.WinForms.Products
 {
     partial class frmAddEditProduct
     {
@@ -37,11 +37,13 @@
             this.txtMinimumQuantity = new System.Windows.Forms.TextBox();
             this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.btnDeleteContactPerson = new System.Windows.Forms.Button();
+            this.btnGenerateBarcode = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.labal10 = new System.Windows.Forms.Label();
             this.cbCatigory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbUnit = new System.Windows.Forms.ComboBox();
+            this.cbBaseUnit = new System.Windows.Forms.ComboBox();
             this.cbMainSupllier = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
@@ -49,8 +51,6 @@
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
-            this.btnDeleteContactPerson = new System.Windows.Forms.Button();
-            this.btnGenerateBarcode = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTotalOtherUnits = new System.Windows.Forms.Label();
             this.ctrProductImage = new SIMS.WinForms.Utilities.ctrImage();
@@ -124,6 +124,38 @@
             this.txtSellingPrice.Name = "txtSellingPrice";
             this.txtSellingPrice.Size = new System.Drawing.Size(551, 23);
             this.txtSellingPrice.TabIndex = 5;
+            // 
+            // btnDeleteContactPerson
+            // 
+            this.btnDeleteContactPerson.BackColor = System.Drawing.Color.White;
+            this.btnDeleteContactPerson.BackgroundImage = global::SIMS.WinForms.Properties.Resources.delete;
+            this.btnDeleteContactPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDeleteContactPerson.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteContactPerson.FlatAppearance.BorderSize = 0;
+            this.btnDeleteContactPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteContactPerson.Location = new System.Drawing.Point(665, 297);
+            this.btnDeleteContactPerson.Name = "btnDeleteContactPerson";
+            this.btnDeleteContactPerson.Size = new System.Drawing.Size(27, 22);
+            this.btnDeleteContactPerson.TabIndex = 15;
+            this.toolTip.SetToolTip(this.btnDeleteContactPerson, "حذف المورد الأساسي الذي تم إضافته");
+            this.btnDeleteContactPerson.UseVisualStyleBackColor = false;
+            this.btnDeleteContactPerson.Visible = false;
+            // 
+            // btnGenerateBarcode
+            // 
+            this.btnGenerateBarcode.BackColor = System.Drawing.Color.White;
+            this.btnGenerateBarcode.BackgroundImage = global::SIMS.WinForms.Properties.Resources.generate_barcode;
+            this.btnGenerateBarcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnGenerateBarcode.FlatAppearance.BorderSize = 0;
+            this.btnGenerateBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateBarcode.Location = new System.Drawing.Point(464, 58);
+            this.btnGenerateBarcode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnGenerateBarcode.Name = "btnGenerateBarcode";
+            this.btnGenerateBarcode.Size = new System.Drawing.Size(31, 20);
+            this.btnGenerateBarcode.TabIndex = 2;
+            this.toolTip.SetToolTip(this.btnGenerateBarcode, "توليد باركود جديد");
+            this.btnGenerateBarcode.UseVisualStyleBackColor = false;
+            this.btnGenerateBarcode.Click += new System.EventHandler(this.btnGenerateBarcode_Click);
             // 
             // label6
             // 
@@ -221,12 +253,12 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "الوحدة الأساسية:";
             // 
-            // cbUnit
+            // cbBaseUnit
             // 
-            this.cbUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbUnit.FormattingEnabled = true;
-            this.cbUnit.Items.AddRange(new object[] {
+            this.cbBaseUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbBaseUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbBaseUnit.FormattingEnabled = true;
+            this.cbBaseUnit.Items.AddRange(new object[] {
             "قطعة",
             "كرتونة",
             "علبة",
@@ -234,14 +266,14 @@
             "كيلوغرام",
             "لتر",
             "كيس"});
-            this.cbUnit.Location = new System.Drawing.Point(142, 149);
-            this.cbUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.cbUnit.Name = "cbUnit";
-            this.cbUnit.Size = new System.Drawing.Size(353, 24);
-            this.cbUnit.TabIndex = 4;
-            this.cbUnit.Text = "إختار وحدة القياس";
-            this.cbUnit.Enter += new System.EventHandler(this.cbUnit_Enter);
-            this.cbUnit.Leave += new System.EventHandler(this.cbUnit_Leave);
+            this.cbBaseUnit.Location = new System.Drawing.Point(142, 149);
+            this.cbBaseUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbBaseUnit.Name = "cbBaseUnit";
+            this.cbBaseUnit.Size = new System.Drawing.Size(353, 24);
+            this.cbBaseUnit.TabIndex = 4;
+            this.cbBaseUnit.Text = "إختار وحدة القياس";
+            this.cbBaseUnit.Enter += new System.EventHandler(this.cbUnit_Enter);
+            this.cbBaseUnit.Leave += new System.EventHandler(this.cbUnit_Leave);
             // 
             // cbMainSupllier
             // 
@@ -328,38 +360,6 @@
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
-            // btnDeleteContactPerson
-            // 
-            this.btnDeleteContactPerson.BackColor = System.Drawing.Color.White;
-            this.btnDeleteContactPerson.BackgroundImage = global::SIMS.WinForms.Properties.Resources.delete;
-            this.btnDeleteContactPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDeleteContactPerson.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteContactPerson.FlatAppearance.BorderSize = 0;
-            this.btnDeleteContactPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteContactPerson.Location = new System.Drawing.Point(665, 297);
-            this.btnDeleteContactPerson.Name = "btnDeleteContactPerson";
-            this.btnDeleteContactPerson.Size = new System.Drawing.Size(27, 22);
-            this.btnDeleteContactPerson.TabIndex = 15;
-            this.toolTip.SetToolTip(this.btnDeleteContactPerson, "حذف المورد الأساسي الذي تم إضافته");
-            this.btnDeleteContactPerson.UseVisualStyleBackColor = false;
-            this.btnDeleteContactPerson.Visible = false;
-            // 
-            // btnGenerateBarcode
-            // 
-            this.btnGenerateBarcode.BackColor = System.Drawing.Color.White;
-            this.btnGenerateBarcode.BackgroundImage = global::SIMS.WinForms.Properties.Resources.generate_barcode;
-            this.btnGenerateBarcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnGenerateBarcode.FlatAppearance.BorderSize = 0;
-            this.btnGenerateBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateBarcode.Location = new System.Drawing.Point(464, 58);
-            this.btnGenerateBarcode.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnGenerateBarcode.Name = "btnGenerateBarcode";
-            this.btnGenerateBarcode.Size = new System.Drawing.Size(31, 20);
-            this.btnGenerateBarcode.TabIndex = 2;
-            this.toolTip.SetToolTip(this.btnGenerateBarcode, "توليد باركود جديد");
-            this.btnGenerateBarcode.UseVisualStyleBackColor = false;
-            this.btnGenerateBarcode.Click += new System.EventHandler(this.btnGenerateBarcode_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -407,7 +407,7 @@
             this.Controls.Add(this.cbMainSupllier);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ctrProductImage);
-            this.Controls.Add(this.cbUnit);
+            this.Controls.Add(this.cbBaseUnit);
             this.Controls.Add(this.cbCatigory);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnSave);
@@ -454,7 +454,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbCatigory;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbUnit;
+        private System.Windows.Forms.ComboBox cbBaseUnit;
         private Utilities.ctrImage ctrProductImage;
         private System.Windows.Forms.ComboBox cbMainSupllier;
         private System.Windows.Forms.Label label4;

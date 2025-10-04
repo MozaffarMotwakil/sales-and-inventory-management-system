@@ -4,7 +4,7 @@ using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Suppliers;
 
-namespace SIMS.WinForms.Inventory
+namespace SIMS.WinForms.Products
 {
     public partial class frmAddEditProduct : Form
     {
@@ -40,17 +40,17 @@ namespace SIMS.WinForms.Inventory
 
         private void cbUnit_Enter(object sender, EventArgs e)
         {
-            if (cbUnit.SelectedIndex == -1)
+            if (cbBaseUnit.SelectedIndex == -1)
             {
-                cbUnit.Text = string.Empty;
+                cbBaseUnit.Text = string.Empty;
             }
         }
 
         private void cbUnit_Leave(object sender, EventArgs e)
         {
-            if (cbUnit.SelectedIndex == -1)
+            if (cbBaseUnit.SelectedIndex == -1)
             {
-                cbUnit.Text = "إختار وحدة القياس";
+                cbBaseUnit.Text = "إختار وحدة القياس";
             }
         }
 
@@ -81,7 +81,13 @@ namespace SIMS.WinForms.Inventory
 
         private void llAddOtherUnits_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmProductUnitConversions unitConversions = new frmProductUnitConversions(txtProductName.Text, cbUnit.Text);
+            if (string.IsNullOrWhiteSpace(txtProductName.Text) || cbBaseUnit.SelectedIndex == -1)
+            {
+                clsFormMessages.ShowError("لا يمكن أن يكون إسم المنتج أو إسم الوحدة الأساسية فارغا");
+                return;
+            }
+
+            frmProductUnitConversions unitConversions = new frmProductUnitConversions(txtProductName.Text, cbBaseUnit.Text);
             unitConversions.ShowDialog();
         }
 

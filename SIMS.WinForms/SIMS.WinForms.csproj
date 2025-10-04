@@ -65,10 +65,10 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\frmProductUnitConversions.cs">
+    <Compile Include="Products\frmProductUnitConversions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory\frmProductUnitConversions.Designer.cs">
+    <Compile Include="Products\frmProductUnitConversions.Designer.cs">
       <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\frmReceiveNewGoods.cs">
@@ -77,22 +77,22 @@
     <Compile Include="Purchases\frmReceiveNewGoods.Designer.cs">
       <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\frmAddEditProduct.cs">
+    <Compile Include="Products\frmAddEditProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory\frmAddEditProduct.Designer.cs">
+    <Compile Include="Products\frmAddEditProduct.Designer.cs">
       <DependentUpon>frmAddEditProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\frmProductsList.cs">
+    <Compile Include="Products\frmProductsList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory\frmProductsList.Designer.cs">
+    <Compile Include="Products\frmProductsList.Designer.cs">
       <DependentUpon>frmProductsList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\ctrProductInfo.cs">
+    <Compile Include="Products\ctrProductInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Inventory\ctrProductInfo.Designer.cs">
+    <Compile Include="Products\ctrProductInfo.Designer.cs">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Invoices\frmInvoicesList.cs">
@@ -292,16 +292,16 @@
     <EmbeddedResource Include="frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\ctrProductInfo.resx">
+    <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmAddEditProduct.resx">
+    <EmbeddedResource Include="Products\frmAddEditProduct.resx">
       <DependentUpon>frmAddEditProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmProductsList.resx">
+    <EmbeddedResource Include="Products\frmProductsList.resx">
       <DependentUpon>frmProductsList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory\frmProductUnitConversions.resx">
+    <EmbeddedResource Include="Products\frmProductUnitConversions.resx">
       <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\frmReceiveNewGoods.resx">

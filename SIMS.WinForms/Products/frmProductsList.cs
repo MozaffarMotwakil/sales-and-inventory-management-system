@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SIMS.WinForms.Inventory
+namespace SIMS.WinForms.Products
 {
     public partial class frmProductsList : Form
     {

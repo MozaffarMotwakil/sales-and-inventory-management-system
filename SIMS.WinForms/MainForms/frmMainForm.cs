@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using SIMS.WinForms.ActivityLog;
 using SIMS.WinForms.Dashboard;
-using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Products;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Reports;
 using SIMS.WinForms.Sales;

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parties\clsPartyFactory.cs" />
+    <Compile Include="Products\clsProductUnitConversion.cs" />
     <Compile Include="Utilities\clsActivityLog.cs" />
     <Compile Include="Validation\clsValidator.cs" />
     <Compile Include="Validation\clsValidationResult.cs" />

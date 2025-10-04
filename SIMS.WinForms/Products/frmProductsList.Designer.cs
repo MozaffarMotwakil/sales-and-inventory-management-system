@@ -1,4 +1,4 @@
-﻿namespace SIMS.WinForms.Inventory
+﻿namespace SIMS.WinForms.Products
 {
     partial class frmProductsList
     {
@@ -54,7 +54,7 @@
             this.lblTotalRecords = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ctrProductInfo = new SIMS.WinForms.Inventory.ctrProductInfo();
+            this.ctrProductInfo = new SIMS.WinForms.Products.ctrProductInfo();
             this.addProducrToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductsList)).BeginInit();
