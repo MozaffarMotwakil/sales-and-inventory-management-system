@@ -34,12 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductBarcode = new System.Windows.Forms.TextBox();
-            this.txtMinimumQuantity = new System.Windows.Forms.TextBox();
             this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnDeleteContactPerson = new System.Windows.Forms.Button();
             this.btnGenerateBarcode = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.labal10 = new System.Windows.Forms.Label();
             this.cbCatigory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,6 +51,8 @@
             this.btnCancle = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTotalOtherUnits = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.ctrProductImage = new SIMS.WinForms.Utilities.ctrImage();
             this.SuspendLayout();
             // 
@@ -107,15 +107,6 @@
             this.txtProductBarcode.Size = new System.Drawing.Size(353, 23);
             this.txtProductBarcode.TabIndex = 1;
             // 
-            // txtMinimumQuantity
-            // 
-            this.txtMinimumQuantity.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMinimumQuantity.Location = new System.Drawing.Point(142, 250);
-            this.txtMinimumQuantity.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txtMinimumQuantity.Name = "txtMinimumQuantity";
-            this.txtMinimumQuantity.Size = new System.Drawing.Size(551, 23);
-            this.txtMinimumQuantity.TabIndex = 6;
-            // 
             // txtSellingPrice
             // 
             this.txtSellingPrice.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -133,7 +124,7 @@
             this.btnDeleteContactPerson.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnDeleteContactPerson.FlatAppearance.BorderSize = 0;
             this.btnDeleteContactPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteContactPerson.Location = new System.Drawing.Point(665, 297);
+            this.btnDeleteContactPerson.Location = new System.Drawing.Point(665, 251);
             this.btnDeleteContactPerson.Name = "btnDeleteContactPerson";
             this.btnDeleteContactPerson.Size = new System.Drawing.Size(27, 22);
             this.btnDeleteContactPerson.TabIndex = 15;
@@ -156,17 +147,6 @@
             this.toolTip.SetToolTip(this.btnGenerateBarcode, "توليد باركود جديد");
             this.btnGenerateBarcode.UseVisualStyleBackColor = false;
             this.btnGenerateBarcode.Click += new System.EventHandler(this.btnGenerateBarcode_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(7, 253);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 16);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "الحد الأدنى للكمية: ";
             // 
             // labal10
             // 
@@ -280,7 +260,7 @@
             this.cbMainSupllier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbMainSupllier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMainSupllier.FormattingEnabled = true;
-            this.cbMainSupllier.Location = new System.Drawing.Point(142, 296);
+            this.cbMainSupllier.Location = new System.Drawing.Point(142, 250);
             this.cbMainSupllier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbMainSupllier.Name = "cbMainSupllier";
             this.cbMainSupllier.Size = new System.Drawing.Size(551, 24);
@@ -291,17 +271,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 299);
+            this.label4.Location = new System.Drawing.Point(5, 253);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(113, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "المورد الأساسي:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // llAddPersonSupplier
             // 
             this.llAddPersonSupplier.AutoSize = true;
-            this.llAddPersonSupplier.Location = new System.Drawing.Point(139, 322);
+            this.llAddPersonSupplier.Location = new System.Drawing.Point(139, 276);
             this.llAddPersonSupplier.Name = "llAddPersonSupplier";
             this.llAddPersonSupplier.Size = new System.Drawing.Size(146, 16);
             this.llAddPersonSupplier.TabIndex = 14;
@@ -323,7 +304,7 @@
             // llAddOrganizationSupplier
             // 
             this.llAddOrganizationSupplier.AutoSize = true;
-            this.llAddOrganizationSupplier.Location = new System.Drawing.Point(291, 322);
+            this.llAddOrganizationSupplier.Location = new System.Drawing.Point(291, 276);
             this.llAddOrganizationSupplier.Name = "llAddOrganizationSupplier";
             this.llAddOrganizationSupplier.Size = new System.Drawing.Size(145, 16);
             this.llAddOrganizationSupplier.TabIndex = 14;
@@ -336,7 +317,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(244, 351);
+            this.btnSave.Location = new System.Drawing.Point(244, 395);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
@@ -351,7 +332,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(364, 351);
+            this.btnCancle.Location = new System.Drawing.Point(364, 395);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
@@ -378,6 +359,27 @@
             this.lblTotalOtherUnits.TabIndex = 16;
             this.lblTotalOtherUnits.Text = "0";
             // 
+            // txtDescription
+            // 
+            this.txtDescription.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(142, 308);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(551, 83);
+            this.txtDescription.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(7, 311);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 16);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "الوصف:";
+            // 
             // ctrProductImage
             // 
             this.ctrProductImage.DefaultImage = global::SIMS.WinForms.Properties.Resources.product;
@@ -390,6 +392,7 @@
             this.ctrProductImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrProductImage.Size = new System.Drawing.Size(170, 180);
             this.ctrProductImage.TabIndex = 7;
+            this.ctrProductImage.Load += new System.EventHandler(this.ctrProductImage_Load);
             // 
             // frmAddEditProduct
             // 
@@ -397,7 +400,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(716, 401);
+            this.ClientSize = new System.Drawing.Size(716, 442);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalOtherUnits);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnDeleteContactPerson);
@@ -414,10 +419,8 @@
             this.Controls.Add(this.btnGenerateBarcode);
             this.Controls.Add(this.txtProductBarcode);
             this.Controls.Add(this.txtSellingPrice);
-            this.Controls.Add(this.txtMinimumQuantity);
             this.Controls.Add(this.txtProductName);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.labal10);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -444,18 +447,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.TextBox txtProductBarcode;
-        private System.Windows.Forms.TextBox txtMinimumQuantity;
         private System.Windows.Forms.TextBox txtSellingPrice;
         private System.Windows.Forms.Button btnGenerateBarcode;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labal10;
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbCatigory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbBaseUnit;
-        private Utilities.ctrImage ctrProductImage;
         private System.Windows.Forms.ComboBox cbMainSupllier;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llAddPersonSupplier;
@@ -464,5 +464,8 @@
         private System.Windows.Forms.LinkLabel llAddOrganizationSupplier;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblTotalOtherUnits;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label label6;
+        private Utilities.ctrImage ctrProductImage;
     }
 }

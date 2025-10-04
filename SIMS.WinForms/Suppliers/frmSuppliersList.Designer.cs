@@ -130,7 +130,7 @@
             // 
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.White;
-            this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddSupplier});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
@@ -138,7 +138,7 @@
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(800, 45);
+            this.toolStrip.Size = new System.Drawing.Size(800, 39);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip";
             this.toolStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
@@ -148,13 +148,13 @@
             this.btnAddSupplier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personToolStripMenuItem,
             this.organizationToolStripMenuItem});
-            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSupplier.Image = global::SIMS.WinForms.Properties.Resources.add;
             this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(146, 42);
+            this.btnAddSupplier.Size = new System.Drawing.Size(120, 36);
             this.btnAddSupplier.Text = "  إضافة مورد  ";
             this.btnAddSupplier.ToolTipText = "Add a new supplier";
             this.btnAddSupplier.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
@@ -162,7 +162,7 @@
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
             this.personToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
@@ -170,7 +170,7 @@
             // organizationToolStripMenuItem
             // 
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             this.organizationToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
@@ -182,7 +182,7 @@
             this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSearchHintText.Location = new System.Drawing.Point(718, 17);
+            this.lblSearchHintText.Location = new System.Drawing.Point(718, 11);
             this.lblSearchHintText.Name = "lblSearchHintText";
             this.lblSearchHintText.Size = new System.Drawing.Size(47, 16);
             this.lblSearchHintText.TabIndex = 29;
@@ -196,7 +196,7 @@
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(686, 12);
+            this.pictureBox.Location = new System.Drawing.Point(686, 6);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(29, 26);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -210,7 +210,7 @@
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(714, 12);
+            this.txtSearch.Location = new System.Drawing.Point(714, 6);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSearch.Size = new System.Drawing.Size(74, 26);
@@ -220,7 +220,7 @@
             // 
             // ctrSupplierInfo
             // 
-            this.ctrSupplierInfo.Location = new System.Drawing.Point(13, 48);
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(13, 46);
             this.ctrSupplierInfo.Name = "ctrSupplierInfo";
             this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
