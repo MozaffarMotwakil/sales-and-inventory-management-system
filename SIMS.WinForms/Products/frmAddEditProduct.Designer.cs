@@ -277,7 +277,6 @@
             this.label4.Size = new System.Drawing.Size(113, 16);
             this.label4.TabIndex = 13;
             this.label4.Text = "المورد الأساسي:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // llAddPersonSupplier
             // 
@@ -392,7 +391,6 @@
             this.ctrProductImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrProductImage.Size = new System.Drawing.Size(170, 180);
             this.ctrProductImage.TabIndex = 7;
-            this.ctrProductImage.Load += new System.EventHandler(this.ctrProductImage_Load);
             // 
             // frmAddEditProduct
             // 

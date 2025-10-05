@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Suppliers;
@@ -58,8 +59,7 @@ namespace SIMS.WinForms.Products
         {
             if (string.IsNullOrWhiteSpace(txtProductBarcode.Text))
             {
-                // ينقل لاحقا إلى طبقة الأعمال
-                txtProductBarcode.Text = "INV-" + Guid.NewGuid();
+                txtProductBarcode.Text = clsProduct.GenerateBarcode();
             }
             else
             {
@@ -101,14 +101,5 @@ namespace SIMS.WinForms.Products
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ctrProductImage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

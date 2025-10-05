@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Products\clsCategoryDTO.cs" />
+    <Compile Include="Products\clsUnitDTO.cs" />
+    <Compile Include="Products\clsProductDTO.cs" />
     <Compile Include="Parties\clsCountryDTO.cs" />
     <Compile Include="Parties\clsOrganizationDTO.cs" />
     <Compile Include="Parties\clsPersonDTO.cs" />

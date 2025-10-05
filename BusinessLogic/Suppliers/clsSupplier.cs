@@ -96,18 +96,33 @@ namespace BusinessLogic.Suppliers
 
         public static clsSupplier Find(int supplierID)
         {
+            if (supplierID < 1)
+            {
+                return null;
+            }
+
             clsSupplierDTO supplierDTO = clsSupplierData.FindSupplierByID(supplierID);
             return supplierDTO is null ? null : new clsSupplier(supplierDTO);
         }
 
         public static clsSupplier Find(string supplierName)
         {
+            if (string.IsNullOrWhiteSpace(supplierName))
+            {
+                return null;
+            }
+
             clsSupplierDTO supplierDTO = clsSupplierData.FindSupplierByName(supplierName);
             return supplierDTO is null ? null : new clsSupplier(supplierDTO);
         }
 
         public static bool Delete(int supplierID)
         {
+            if (supplierID < 1)
+            {
+                return false;
+            }
+
             clsSupplier supplier = Find(supplierID);
 
             bool isDeleted = clsSupplierData.DeleteSupplier(supplierID);
@@ -145,6 +160,21 @@ namespace BusinessLogic.Suppliers
             }
 
             return supplierNames;
+        }
+
+        public void ChangeInfo(clsParty partyInfo, string notes)
+        {
+            switch (this.PartyInfo.PartyCategory)
+            {
+                case clsParty.enPartyCategory.Person:
+                    ((clsPerson)this.PartyInfo).ChangePersonInfo((clsPerson)partyInfo);
+                    break;
+                case clsParty.enPartyCategory.Organization:
+                    ((clsOrganization)this.PartyInfo).ChangeOrganizaionInfo((clsOrganization)partyInfo);
+                    break;
+            }
+
+            this.Notes = notes;
         }
 
         public clsValidationResult Save()

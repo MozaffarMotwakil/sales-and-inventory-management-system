@@ -44,6 +44,9 @@
     <Compile Include="Parties\clsOrganizationData.cs" />
     <Compile Include="Parties\clsPersonData.cs" />
     <Compile Include="clsDataSettings.cs" />
+    <Compile Include="Products\clsProductUnitData.cs" />
+    <Compile Include="Products\clsProductCategoryData.cs" />
+    <Compile Include="Products\clsProductData.cs" />
     <Compile Include="Suppliers\clsSupplierData.cs" />
     <Compile Include="Parties\clsCountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -39,23 +39,13 @@ namespace DataAccess.Suppliers
                                 CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                             };
 
-                            if (reader["UpdatedByUserID"] == DBNull.Value)
-                            {
-                                supplierDTO.UpdatedByUserID = null;
-                            }
-                            else
-                            {
-                                supplierDTO.UpdatedByUserID = Convert.ToInt32(reader["UpdatedByUserID"]);
-                            }
+                            supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
+                                supplierDTO.UpdatedByUserID = null :
+                                Convert.ToInt32(reader["UpdatedByUserID"]);
 
-                            if (reader["UpdatedAt"] == DBNull.Value)
-                            {
-                                supplierDTO.UpdatedAt = null;
-                            }
-                            else
-                            {
-                                supplierDTO.UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"]);
-                            }
+                            supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
+                                supplierDTO.UpdatedAt = null :
+                                Convert.ToDateTime(reader["UpdatedAt"]);
                         }
                     }
                 }
@@ -100,23 +90,13 @@ namespace DataAccess.Suppliers
                                 CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                             };
 
-                            if (reader["UpdatedByUserID"] == DBNull.Value)
-                            {
-                                supplierDTO.UpdatedByUserID = null;
-                            }
-                            else
-                            {
-                                supplierDTO.UpdatedByUserID = Convert.ToInt32(reader["UpdatedByUserID"]);
-                            }
+                            supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
+                                supplierDTO.UpdatedByUserID = null :
+                                Convert.ToInt32(reader["UpdatedByUserID"]);
 
-                            if (reader["UpdatedAt"] == DBNull.Value)
-                            {
-                                supplierDTO.UpdatedAt = null;
-                            }
-                            else
-                            {
-                                supplierDTO.UpdatedAt = Convert.ToDateTime(reader["UpdatedAt"]);
-                            }
+                            supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
+                                supplierDTO.UpdatedAt = null :
+                                Convert.ToDateTime(reader["UpdatedAt"]);
                         }
                     }
                 }

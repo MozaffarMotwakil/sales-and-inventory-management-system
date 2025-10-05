@@ -124,30 +124,20 @@ namespace SIMS.WinForms.Suppliers
 
             if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
             {
-                clsParty supplierType = SupplierCategory is clsParty.enPartyCategory.Person ?
+                clsParty supplierPatyInfo = SupplierCategory is clsParty.enPartyCategory.Person ?
                     (clsParty)ctrAddEditPerson.Person :
                     (clsParty)ctrAddEditOrganization.Organization;
 
                 if (FormMode is enMode.Add)
                 {
                     _Supplier = new clsSupplier(
-                        supplierType,
+                        supplierPatyInfo,
                         txtNotes.Text
                     );
                 }
                 else
                 {
-                    switch (SupplierCategory)
-                    {
-                        case clsParty.enPartyCategory.Person:
-                            ((clsPerson)_Supplier.PartyInfo).ChangePersonInfo((clsPerson)supplierType);
-                            break;
-                        case clsParty.enPartyCategory.Organization:
-                            ((clsOrganization)_Supplier.PartyInfo).ChangeOrganizaionInfo((clsOrganization)supplierType);
-                            break;
-                    }
-
-                    _Supplier.Notes = txtNotes.Text;
+                    _Supplier.ChangeInfo(supplierPatyInfo, txtNotes.Text);
                 }
 
                 clsValidationResult validationResult = _Supplier.Save();

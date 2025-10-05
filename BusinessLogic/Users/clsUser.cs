@@ -10,5 +10,16 @@ namespace BusinessLogic.Users
         {
             UserID = userID;
         }
+
+        public static clsUser Find(int userID)
+        {
+            if (userID < 1)
+            {
+                return null;
+            }
+
+            return new clsUser(1);
+        }
+
     }
 }
