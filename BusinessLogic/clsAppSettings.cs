@@ -34,9 +34,30 @@ namespace BusinessLogic
             }
         }
 
-        public static string GetNewImagePathWithGUID()
+        public static string ProductImagesFolderPath
+        {
+            get
+            {
+                string peopleImagesFolderPath = Path.Combine(AppDataFolder, "ALWAHA-Product-Images");
+
+                if (!Directory.Exists(peopleImagesFolderPath))
+                {
+                    Directory.CreateDirectory(peopleImagesFolderPath);
+                }
+
+                return peopleImagesFolderPath;
+            }
+        }
+
+        public static string GetNewImagePathWithGUIDForPeople()
         {
             return Path.Combine(PeopleImagesFolderPath, $"{Guid.NewGuid()}.JPG");
         }
+
+        public static string GetNewImagePathWithGUIDForProduct()
+        {
+            return Path.Combine(ProductImagesFolderPath, $"{Guid.NewGuid()}.JPG");
+        }
+
     }
 }

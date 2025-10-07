@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using DataAccess.Products;
 using DTOs.Products;
 using BusinessLogic.Users;
@@ -68,6 +69,8 @@ namespace BusinessLogic.Products
         public clsSupplier MainSupplierInfo { get; private set; }
         public float SellingPrice { get; set; }
         public string Description { get; set; }
+        private string _CurrentImagePath { get; set; }
+        public string ImagePath { get; set; }
         public bool IsDeleted { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
@@ -75,8 +78,8 @@ namespace BusinessLogic.Products
         public DateTime? UpdatedAt { get; }
         private enMode _Mode { get; set; }
 
-        public clsProduct(string productName, string barcode, int categoryID, int mainUnitID, 
-            List<clsProductUnitConversion> unitConversions, string mainSupplierName, float sellingPrice, string description)
+        public clsProduct(string productName, string barcode, int categoryID, int mainUnitID, List<clsProductUnitConversion> unitConversions,
+            string mainSupplierName, float sellingPrice, string description, string imagePath)
         {
             ProductID = null;
             ProductName = productName;
@@ -87,6 +90,8 @@ namespace BusinessLogic.Products
             MainSupplierInfo = clsSupplier.Find(mainSupplierName);
             SellingPrice = sellingPrice;
             Description = description;
+            _CurrentImagePath = null;
+            ImagePath = imagePath;
             CreatedByUserInfo = clsAppSettings.CurrentUser;
             _Mode = enMode.Add; 
         }
@@ -102,6 +107,8 @@ namespace BusinessLogic.Products
             MainSupplierInfo = clsSupplier.Find(productDTO.MainSupplierID ?? -1);
             SellingPrice = productDTO.SellingPrice;
             Description = productDTO.Description;
+            _CurrentImagePath = productDTO.ImagePath;
+            ImagePath = productDTO.ImagePath;
             CreatedByUserInfo = clsUser.Find(productDTO.CreatedByUserID);
             CreatedAt = productDTO.CreatedAt;
             UpdatedByUserInfo = productDTO.UpdatedByUserID is null ? 
@@ -128,6 +135,8 @@ namespace BusinessLogic.Products
             {
                 return false;
             }
+
+            Find(productID)?.DeleteImage();
 
             if (clsProductData.DeleteProduct(productID))
             {
@@ -201,6 +210,7 @@ namespace BusinessLogic.Products
                 MainSupplierID = this.MainSupplierInfo?.SupplierID,
                 SellingPrice = this.SellingPrice,
                 Description = this.Description,
+                ImagePath = this.ImagePath,
                 CreatedByUserID = this.CreatedByUserInfo.UserID,
                 UpdatedByUserID = this.UpdatedByUserInfo?.UserID
             };
@@ -276,6 +286,38 @@ namespace BusinessLogic.Products
             ProductName.Trim(); Barcode.Trim(); Description.Trim();
         }
 
+        private void DeleteImage()
+        {
+            if (File.Exists(this._CurrentImagePath))
+            {
+                File.Delete(this._CurrentImagePath);
+            }
+
+            this._CurrentImagePath = string.Empty;
+        }
+
+        private void SaveImage()
+        {
+            if (_CurrentImagePath != ImagePath)
+            {
+                if (string.IsNullOrEmpty(ImagePath))
+                {
+                    this.DeleteImage();
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(_CurrentImagePath))
+                    {
+                        this.DeleteImage();
+                    }
+
+                    this._CurrentImagePath = clsAppSettings.GetNewImagePathWithGUIDForProduct();
+                    File.Copy(ImagePath, this._CurrentImagePath);
+                    this.ImagePath = this._CurrentImagePath;
+                }
+            }
+        }
+
         public clsValidationResult Save()
         {
             clsValidationResult validationResult = this.Validated();
@@ -284,6 +326,8 @@ namespace BusinessLogic.Products
             {
                 return validationResult;
             }
+
+            this.SaveImage();
 
             return _ExecuteSaving(this.MappingToDTO(), this._Mode, validationResult);
         }

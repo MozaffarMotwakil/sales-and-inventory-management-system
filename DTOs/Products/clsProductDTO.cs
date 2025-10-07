@@ -14,6 +14,7 @@ namespace DTOs.Products
         public int? MainSupplierID { get; set; }
         public float SellingPrice { get; set; }
         public string Description { get; set; }
+        public string ImagePath { get; set; }
         public bool IsDeleted { get; set; }
         public int CreatedByUserID { get; set; }
         public DateTime? CreatedAt { get; set; }
@@ -23,8 +24,8 @@ namespace DTOs.Products
         public clsProductDTO() { }
 
         public clsProductDTO(int? productID, string productName, string barcode, int categoryID, int mainUnitID,
-            DataTable unitConversions, int? mainSupplierID, float sellingPrice, string description, bool isDeleted,
-            int createdByUserID, DateTime? createdAt, int? updatedByUserID, DateTime? updatedAt)
+            DataTable unitConversions, int? mainSupplierID, float sellingPrice, string description, string imagePath, 
+            bool isDeleted, int createdByUserID, DateTime? createdAt, int? updatedByUserID, DateTime? updatedAt)
         {
             ProductID = productID;
             ProductName = productName;
@@ -35,6 +36,7 @@ namespace DTOs.Products
             MainSupplierID = mainSupplierID;
             SellingPrice = sellingPrice;
             Description = description;
+            ImagePath = imagePath;
             IsDeleted = isDeleted;
             CreatedByUserID = createdByUserID;
             CreatedAt = createdAt;

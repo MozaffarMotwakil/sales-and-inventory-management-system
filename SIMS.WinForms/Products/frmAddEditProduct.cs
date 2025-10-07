@@ -57,6 +57,7 @@ namespace SIMS.WinForms.Products
 
                 txtDescription.Text = _Product.Description;
                 lblTotalOtherUnits.Text = _Product.UnitConversions?.Count.ToString();
+                ctrProductImage.ImageLocation = _Product.ImagePath;
             }
 
             clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
@@ -101,16 +102,6 @@ namespace SIMS.WinForms.Products
             }
         }
 
-        private void cbMainSupllier_SelectedSupplierChanged(object sender, EventArgs e)
-        {
-            if (cbMainSupllier.SelectedIndex == -1)
-            {
-                cbMainSupllier.Enabled = llAddPersonSupplier.Enabled =
-                    llAddOrganizationSupplier.Enabled = true;
-                btnDeleteMainSupplier.Visible = false;
-            }
-        }
-
         private void cbMainSupllier_Enter(object sender, EventArgs e)
         {
             if (cbMainSupllier.SelectedIndex == -1)
@@ -124,21 +115,6 @@ namespace SIMS.WinForms.Products
             if (cbMainSupllier.SelectedIndex == -1)
             {
                 cbMainSupllier.Text = "إختار المورد الأساسي";
-            }
-            else
-            {
-                cbMainSupllier.Enabled = llAddPersonSupplier.Enabled =
-                    llAddOrganizationSupplier.Enabled = false;
-                btnDeleteMainSupplier.Visible = true;
-            }
-        }
-
-        private void btnDeleteMainSupplier_Click(object sender, EventArgs e)
-        {
-            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد إلغاء تعيين هذا المورد كمورد أساسي لهذا المنتج ؟", messageBoxIcon: MessageBoxIcon.Warning))
-            {
-                cbMainSupllier.SelectedIndex = -1;
-                cbMainSupllier.Focus();
             }
         }
 
@@ -280,7 +256,8 @@ namespace SIMS.WinForms.Products
                         _UnitConversionsForm.UnitConversions,
                         cbMainSupllier.Text,
                         Convert.ToSingle(txtSellingPrice.Text),
-                        txtDescription.Text
+                        txtDescription.Text,
+                        ctrProductImage.ImageLocation
                         );
                 }
                 else
@@ -306,6 +283,7 @@ namespace SIMS.WinForms.Products
                         sellingPrice :
                         _Product.SellingPrice;
                     _Product.Description = txtDescription.Text;
+                    _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
 
                 clsValidationResult validationResult = _Product.Save();

@@ -114,7 +114,7 @@ namespace BusinessLogic.Parties
                         this.DeleteImage();
                     }
 
-                    this._CurrentImagePath = clsAppSettings.GetNewImagePathWithGUID();
+                    this._CurrentImagePath = clsAppSettings.GetNewImagePathWithGUIDForPeople();
                     File.Copy(ImagePath, this._CurrentImagePath);
                     this.ImagePath = this._CurrentImagePath;
                 }

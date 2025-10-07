@@ -36,7 +36,6 @@
             this.txtProductBarcode = new System.Windows.Forms.TextBox();
             this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDeleteMainSupplier = new System.Windows.Forms.Button();
             this.btnGenerateBarcode = new System.Windows.Forms.Button();
             this.labal10 = new System.Windows.Forms.Label();
             this.cbCategory = new System.Windows.Forms.ComboBox();
@@ -122,23 +121,6 @@
             this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSellingPrice_KeyPress);
             this.txtSellingPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtSellingPrice_Validating);
             // 
-            // btnDeleteMainSupplier
-            // 
-            this.btnDeleteMainSupplier.BackColor = System.Drawing.Color.White;
-            this.btnDeleteMainSupplier.BackgroundImage = global::SIMS.WinForms.Properties.Resources.delete;
-            this.btnDeleteMainSupplier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDeleteMainSupplier.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteMainSupplier.FlatAppearance.BorderSize = 0;
-            this.btnDeleteMainSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteMainSupplier.Location = new System.Drawing.Point(660, 251);
-            this.btnDeleteMainSupplier.Name = "btnDeleteMainSupplier";
-            this.btnDeleteMainSupplier.Size = new System.Drawing.Size(27, 22);
-            this.btnDeleteMainSupplier.TabIndex = 15;
-            this.toolTip.SetToolTip(this.btnDeleteMainSupplier, "إلغاء تعيين المورد الحالي من أن يكون المورد الأساسي");
-            this.btnDeleteMainSupplier.UseVisualStyleBackColor = false;
-            this.btnDeleteMainSupplier.Visible = false;
-            this.btnDeleteMainSupplier.Click += new System.EventHandler(this.btnDeleteMainSupplier_Click);
-            // 
             // btnGenerateBarcode
             // 
             this.btnGenerateBarcode.BackColor = System.Drawing.Color.White;
@@ -218,8 +200,6 @@
             this.cbMainSupllier.Size = new System.Drawing.Size(546, 24);
             this.cbMainSupllier.TabIndex = 12;
             this.cbMainSupllier.Text = "إختار المورد الأساسي";
-            this.cbMainSupllier.SelectedIndexChanged += new System.EventHandler(this.cbMainSupllier_SelectedSupplierChanged);
-            this.cbMainSupllier.SelectedValueChanged += new System.EventHandler(this.cbMainSupllier_SelectedSupplierChanged);
             this.cbMainSupllier.Enter += new System.EventHandler(this.cbMainSupllier_Enter);
             this.cbMainSupllier.Leave += new System.EventHandler(this.cbMainSupllier_Leave);
             // 
@@ -364,7 +344,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalOtherUnits);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnDeleteMainSupplier);
             this.Controls.Add(this.llAddOtherUnits);
             this.Controls.Add(this.llAddOrganizationSupplier);
             this.Controls.Add(this.llAddPersonSupplier);
@@ -421,7 +400,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llAddPersonSupplier;
         private System.Windows.Forms.LinkLabel llAddOtherUnits;
-        private System.Windows.Forms.Button btnDeleteMainSupplier;
         private System.Windows.Forms.LinkLabel llAddOrganizationSupplier;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblTotalOtherUnits;

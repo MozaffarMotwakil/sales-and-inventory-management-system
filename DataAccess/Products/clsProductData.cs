@@ -39,6 +39,7 @@ namespace DataAccess.Products
                                 MainSupplierID = reader["MainSupplierID"] == DBNull.Value ? null : (int?)(reader["MainSupplierID"]),
                                 SellingPrice = Convert.ToSingle(reader["SellingPrice"]),
                                 Description = (reader["Description"] != DBNull.Value) ? reader["Description"].ToString() : string.Empty,
+                                ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : string.Empty,
                                 IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
                                 CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                 CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
@@ -121,6 +122,7 @@ namespace DataAccess.Products
                     command.Parameters.AddWithValue("@MainSupplierID", clsDataSettings.GetDBNullIfNull(productDTO.MainSupplierID));
                     command.Parameters.AddWithValue("@SellingPrice", productDTO.SellingPrice);
                     command.Parameters.AddWithValue("@Description", clsDataSettings.GetDBNullIfNullOrEmpty(productDTO.Description));
+                    command.Parameters.AddWithValue("@ImagePath", clsDataSettings.GetDBNullIfNullOrEmpty(productDTO.ImagePath));
                     command.Parameters.AddWithValue("@CreatedByUserID", productDTO.CreatedByUserID);
                     
                     SqlParameter parameter = command.Parameters.AddWithValue("@UnitConversions", productDTO.UnitConversions);
@@ -166,6 +168,7 @@ namespace DataAccess.Products
                     command.Parameters.AddWithValue("@MainSupplierID", clsDataSettings.GetDBNullIfNull(productDTO.MainSupplierID));
                     command.Parameters.AddWithValue("@SellingPrice", productDTO.SellingPrice);
                     command.Parameters.AddWithValue("@Description", clsDataSettings.GetDBNullIfNullOrEmpty(productDTO.Description));
+                    command.Parameters.AddWithValue("@ImagePath", clsDataSettings.GetDBNullIfNullOrEmpty(productDTO.ImagePath));
                     command.Parameters.AddWithValue("@UpdatedByUserID", productDTO.CreatedByUserID);
 
                     SqlParameter parameter = command.Parameters.AddWithValue("@UnitConversions", productDTO.UnitConversions);
