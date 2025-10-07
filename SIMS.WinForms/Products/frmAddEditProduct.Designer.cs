@@ -36,10 +36,10 @@
             this.txtProductBarcode = new System.Windows.Forms.TextBox();
             this.txtSellingPrice = new System.Windows.Forms.TextBox();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.btnDeleteContactPerson = new System.Windows.Forms.Button();
+            this.btnDeleteMainSupplier = new System.Windows.Forms.Button();
             this.btnGenerateBarcode = new System.Windows.Forms.Button();
             this.labal10 = new System.Windows.Forms.Label();
-            this.cbCatigory = new System.Windows.Forms.ComboBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbBaseUnit = new System.Windows.Forms.ComboBox();
             this.cbMainSupllier = new System.Windows.Forms.ComboBox();
@@ -53,7 +53,9 @@
             this.lblTotalOtherUnits = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.ctrProductImage = new SIMS.WinForms.Utilities.ctrImage();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -97,6 +99,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(353, 23);
             this.txtProductName.TabIndex = 0;
+            this.txtProductName.Validating += new System.ComponentModel.CancelEventHandler(this.txtProductName_Validating);
             // 
             // txtProductBarcode
             // 
@@ -106,6 +109,7 @@
             this.txtProductBarcode.Name = "txtProductBarcode";
             this.txtProductBarcode.Size = new System.Drawing.Size(353, 23);
             this.txtProductBarcode.TabIndex = 1;
+            this.txtProductBarcode.Validating += new System.ComponentModel.CancelEventHandler(this.txtProductBarcode_Validating);
             // 
             // txtSellingPrice
             // 
@@ -113,24 +117,27 @@
             this.txtSellingPrice.Location = new System.Drawing.Point(142, 204);
             this.txtSellingPrice.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSellingPrice.Name = "txtSellingPrice";
-            this.txtSellingPrice.Size = new System.Drawing.Size(551, 23);
+            this.txtSellingPrice.Size = new System.Drawing.Size(546, 23);
             this.txtSellingPrice.TabIndex = 5;
+            this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSellingPrice_KeyPress);
+            this.txtSellingPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtSellingPrice_Validating);
             // 
-            // btnDeleteContactPerson
+            // btnDeleteMainSupplier
             // 
-            this.btnDeleteContactPerson.BackColor = System.Drawing.Color.White;
-            this.btnDeleteContactPerson.BackgroundImage = global::SIMS.WinForms.Properties.Resources.delete;
-            this.btnDeleteContactPerson.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDeleteContactPerson.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnDeleteContactPerson.FlatAppearance.BorderSize = 0;
-            this.btnDeleteContactPerson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteContactPerson.Location = new System.Drawing.Point(665, 251);
-            this.btnDeleteContactPerson.Name = "btnDeleteContactPerson";
-            this.btnDeleteContactPerson.Size = new System.Drawing.Size(27, 22);
-            this.btnDeleteContactPerson.TabIndex = 15;
-            this.toolTip.SetToolTip(this.btnDeleteContactPerson, "حذف المورد الأساسي الذي تم إضافته");
-            this.btnDeleteContactPerson.UseVisualStyleBackColor = false;
-            this.btnDeleteContactPerson.Visible = false;
+            this.btnDeleteMainSupplier.BackColor = System.Drawing.Color.White;
+            this.btnDeleteMainSupplier.BackgroundImage = global::SIMS.WinForms.Properties.Resources.delete;
+            this.btnDeleteMainSupplier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDeleteMainSupplier.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteMainSupplier.FlatAppearance.BorderSize = 0;
+            this.btnDeleteMainSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteMainSupplier.Location = new System.Drawing.Point(660, 251);
+            this.btnDeleteMainSupplier.Name = "btnDeleteMainSupplier";
+            this.btnDeleteMainSupplier.Size = new System.Drawing.Size(27, 22);
+            this.btnDeleteMainSupplier.TabIndex = 15;
+            this.toolTip.SetToolTip(this.btnDeleteMainSupplier, "إلغاء تعيين المورد الحالي من أن يكون المورد الأساسي");
+            this.btnDeleteMainSupplier.UseVisualStyleBackColor = false;
+            this.btnDeleteMainSupplier.Visible = false;
+            this.btnDeleteMainSupplier.Click += new System.EventHandler(this.btnDeleteMainSupplier_Click);
             // 
             // btnGenerateBarcode
             // 
@@ -159,68 +166,20 @@
             this.labal10.TabIndex = 10;
             this.labal10.Text = "التصنيف/الفئة:";
             // 
-            // cbCatigory
+            // cbCategory
             // 
-            this.cbCatigory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbCatigory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbCatigory.FormattingEnabled = true;
-            this.cbCatigory.Items.AddRange(new object[] {
-            "Accessories",
-            "Baby Food",
-            "Books & Magazines",
-            "Bread & Pastries",
-            "Canned Goods",
-            "Car Tools",
-            "Cheese & Dairy",
-            "Children\'s Clothing",
-            "Cleaning Tools",
-            "Computers",
-            "Cooking Tools",
-            "Cosmetics",
-            "Cookware",
-            "Dishwashing Detergents",
-            "Files",
-            "Fish & Seafood",
-            "Floor Cleaners",
-            "Fruits",
-            "Furniture",
-            "Grains & Dried Goods",
-            "Headphones & Accessories",
-            "Home Appliances",
-            "Juices",
-            "Kids\' Clothing",
-            "Laundry Detergents",
-            "Meat & Poultry",
-            "Medicines & Medical Products",
-            "Men\'s Clothing",
-            "Mobile Phones",
-            "Nuts",
-            "Notebooks & Paper",
-            "Oils & Spices",
-            "Pens",
-            "Perfumes",
-            "Pet Products",
-            "Shampoo & Soap",
-            "Shaving Tools",
-            "Shoes",
-            "Snacks",
-            "Soft Drinks",
-            "Sports Equipment",
-            "Sweets",
-            "Tea & Coffee",
-            "Toys",
-            "Trash Bags",
-            "Vegetables",
-            "Water",
-            "Women\'s Clothing"});
-            this.cbCatigory.Location = new System.Drawing.Point(142, 103);
-            this.cbCatigory.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.cbCatigory.Name = "cbCatigory";
-            this.cbCatigory.Size = new System.Drawing.Size(353, 24);
-            this.cbCatigory.TabIndex = 3;
-            this.cbCatigory.Text = "إختار التصنيف/الفئة";
-            this.cbCatigory.Enter += new System.EventHandler(this.cbCatigory_Enter);
-            this.cbCatigory.Leave += new System.EventHandler(this.cbCatigory_Leave);
+            this.cbCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(142, 103);
+            this.cbCategory.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(353, 24);
+            this.cbCategory.TabIndex = 3;
+            this.cbCategory.Text = "إختار التصنيف/الفئة";
+            this.cbCategory.Enter += new System.EventHandler(this.cbCatigory_Enter);
+            this.cbCategory.Leave += new System.EventHandler(this.cbCatigory_Leave);
+            this.cbCategory.Validating += new System.ComponentModel.CancelEventHandler(this.cbCategory_Validating);
             // 
             // label3
             // 
@@ -238,22 +197,15 @@
             this.cbBaseUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbBaseUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbBaseUnit.FormattingEnabled = true;
-            this.cbBaseUnit.Items.AddRange(new object[] {
-            "قطعة",
-            "كرتونة",
-            "علبة",
-            "زجاجة",
-            "كيلوغرام",
-            "لتر",
-            "كيس"});
             this.cbBaseUnit.Location = new System.Drawing.Point(142, 149);
             this.cbBaseUnit.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbBaseUnit.Name = "cbBaseUnit";
             this.cbBaseUnit.Size = new System.Drawing.Size(353, 24);
             this.cbBaseUnit.TabIndex = 4;
-            this.cbBaseUnit.Text = "إختار وحدة القياس";
+            this.cbBaseUnit.Text = "إختار وحدة القياس الأساسية";
             this.cbBaseUnit.Enter += new System.EventHandler(this.cbUnit_Enter);
             this.cbBaseUnit.Leave += new System.EventHandler(this.cbUnit_Leave);
+            this.cbBaseUnit.Validating += new System.ComponentModel.CancelEventHandler(this.cbBaseUnit_Validating);
             // 
             // cbMainSupllier
             // 
@@ -263,9 +215,13 @@
             this.cbMainSupllier.Location = new System.Drawing.Point(142, 250);
             this.cbMainSupllier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbMainSupllier.Name = "cbMainSupllier";
-            this.cbMainSupllier.Size = new System.Drawing.Size(551, 24);
+            this.cbMainSupllier.Size = new System.Drawing.Size(546, 24);
             this.cbMainSupllier.TabIndex = 12;
             this.cbMainSupllier.Text = "إختار المورد الأساسي";
+            this.cbMainSupllier.SelectedIndexChanged += new System.EventHandler(this.cbMainSupllier_SelectedSupplierChanged);
+            this.cbMainSupllier.SelectedValueChanged += new System.EventHandler(this.cbMainSupllier_SelectedSupplierChanged);
+            this.cbMainSupllier.Enter += new System.EventHandler(this.cbMainSupllier_Enter);
+            this.cbMainSupllier.Leave += new System.EventHandler(this.cbMainSupllier_Leave);
             // 
             // label4
             // 
@@ -365,7 +321,7 @@
             this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(551, 83);
+            this.txtDescription.Size = new System.Drawing.Size(546, 83);
             this.txtDescription.TabIndex = 17;
             // 
             // label6
@@ -379,12 +335,17 @@
             this.label6.TabIndex = 18;
             this.label6.Text = "الوصف:";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
+            // 
             // ctrProductImage
             // 
             this.ctrProductImage.DefaultImage = global::SIMS.WinForms.Properties.Resources.product;
             this.ctrProductImage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrProductImage.ImageLocation = null;
-            this.ctrProductImage.Location = new System.Drawing.Point(523, 11);
+            this.ctrProductImage.Location = new System.Drawing.Point(518, 11);
             this.ctrProductImage.Margin = new System.Windows.Forms.Padding(4);
             this.ctrProductImage.Name = "ctrProductImage";
             this.ctrProductImage.PictureBoxSizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -403,7 +364,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalOtherUnits);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnDeleteContactPerson);
+            this.Controls.Add(this.btnDeleteMainSupplier);
             this.Controls.Add(this.llAddOtherUnits);
             this.Controls.Add(this.llAddOrganizationSupplier);
             this.Controls.Add(this.llAddPersonSupplier);
@@ -411,7 +372,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ctrProductImage);
             this.Controls.Add(this.cbBaseUnit);
-            this.Controls.Add(this.cbCatigory);
+            this.Controls.Add(this.cbCategory);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnGenerateBarcode);
@@ -434,6 +395,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إضافة/تعديل منتج";
             this.Load += new System.EventHandler(this.frmAddEditProduct_Load);
+            this.Shown += new System.EventHandler(this.frmAddEditProduct_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,19 +414,20 @@
         private System.Windows.Forms.Label labal10;
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ComboBox cbCatigory;
+        private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbBaseUnit;
         private System.Windows.Forms.ComboBox cbMainSupllier;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llAddPersonSupplier;
         private System.Windows.Forms.LinkLabel llAddOtherUnits;
-        private System.Windows.Forms.Button btnDeleteContactPerson;
+        private System.Windows.Forms.Button btnDeleteMainSupplier;
         private System.Windows.Forms.LinkLabel llAddOrganizationSupplier;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblTotalOtherUnits;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label6;
         private Utilities.ctrImage ctrProductImage;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

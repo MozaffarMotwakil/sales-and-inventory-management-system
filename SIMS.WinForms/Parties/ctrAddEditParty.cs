@@ -142,12 +142,12 @@ namespace SIMS.WinForms.Parties
 
         private void txtPartyName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            clsFormValidation.ValidatingRequiredField(txtPartyName, "لا يمكن أن يكون الإسم فارغا", errorProvider);
+            clsFormValidation.ValidatingRequiredField(txtPartyName, errorProvider, "لا يمكن أن يكون الإسم فارغا");
         }
 
         private void txtPhone_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            clsFormValidation.ValidatingRequiredField(txtPhone, "لا يمكن أن يكون رقم الهاتف فارغا", errorProvider);
+            clsFormValidation.ValidatingRequiredField(txtPhone, errorProvider, "لا يمكن أن يكون رقم الهاتف فارغا");
 
             if (!string.IsNullOrEmpty(txtPhone.Text))
             {

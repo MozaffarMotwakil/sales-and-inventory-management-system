@@ -36,8 +36,7 @@ namespace DataAccess.Products
                                 Barcode = Convert.ToString(reader["Barcode"]),
                                 CategoryID = Convert.ToInt32(reader["CategoryID"]),
                                 MainUnitID = Convert.ToInt32(reader["MainUnitID"]),
-                                UnitConversions = (DataTable)reader["UnitConversions"],
-                                MainSupplierID = Convert.ToInt32(reader["MainSupplierID"]),
+                                MainSupplierID = reader["MainSupplierID"] == DBNull.Value ? null : (int?)(reader["MainSupplierID"]),
                                 SellingPrice = Convert.ToSingle(reader["SellingPrice"]),
                                 Description = (reader["Description"] != DBNull.Value) ? reader["Description"].ToString() : string.Empty,
                                 IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
@@ -55,7 +54,7 @@ namespace DataAccess.Products
 
                             if (reader.NextResult())
                             {
-                                if (reader.Read())
+                                if (reader.HasRows)
                                 {
                                     DataTable alternativeUnits = new DataTable();
                                     alternativeUnits.Load(reader);
@@ -246,7 +245,7 @@ namespace DataAccess.Products
             return productName;
         }
 
-        public static bool IsBarcodeExists(string Barcode)
+        public static bool IsBarcodeExists(string barcode)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
@@ -255,7 +254,7 @@ namespace DataAccess.Products
                     CommandType = CommandType.StoredProcedure
                 };
 
-                command.Parameters.AddWithValue("@Barcode", Barcode);
+                command.Parameters.AddWithValue("@Barcode", barcode);
 
                 SqlParameter returnValueParam = new SqlParameter();
                 returnValueParam.Direction = ParameterDirection.ReturnValue;
@@ -271,6 +270,35 @@ namespace DataAccess.Products
                 catch (Exception ex)
                 {
                     throw new ApplicationException($"Error checking barcode existence.", ex);
+                }
+            }
+        }
+
+        public static bool IsProductNameExists(string productName)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand("usp_IsProductNameExists", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@ProductName", productName);
+
+                SqlParameter returnValueParam = new SqlParameter();
+                returnValueParam.Direction = ParameterDirection.ReturnValue;
+                command.Parameters.Add(returnValueParam);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    return (int)returnValueParam.Value == 1;
+                }
+                catch (Exception ex)
+                {
+                    throw new ApplicationException($"Error checking product name existence.", ex);
                 }
             }
         }

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
+using BusinessLogic.Validation;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Suppliers;
 
@@ -9,33 +10,78 @@ namespace SIMS.WinForms.Products
 {
     public partial class frmAddEditProduct : Form
     {
-        public enMode FormMode;
+        private enMode _FormMode;
+        private clsProduct _Product;
+        private frmProductUnitConversions _UnitConversionsForm;
+        private bool _IsAddedSupplier;
+        private int _AddedSupplierID;
+
 
         public frmAddEditProduct()
         {
             InitializeComponent();
-            FormMode = enMode.Add;
+            _Product = null;
+            _UnitConversionsForm = new frmProductUnitConversions(this);
+            _FormMode = enMode.Add;
+        }
+
+        public frmAddEditProduct(clsProduct product)
+        {
+            InitializeComponent();
+            _Product = product;
+            _UnitConversionsForm = new frmProductUnitConversions(this, product.UnitConversions);
+            _FormMode = enMode.Edit;
         }
 
         private void frmAddEditProduct_Load(object sender, EventArgs e)
         {
-            this.Text = FormMode == enMode.Add ? "إضافة منتج جديد" : "تعديل منتج";
+            this.Text = _FormMode == enMode.Add ? 
+                "إضافة منتج جديد" :
+                "تعديل منتج";
+            cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
+            cbBaseUnit.Items.AddRange(clsUnit.GetUnitNames());
             cbMainSupllier.Items.AddRange(clsSupplier.GetAllSupplierNames());
+
+            if (_FormMode is enMode.Edit)
+            {
+                txtProductName.Text = _Product.ProductName;
+                txtProductBarcode.Text = _Product.Barcode;
+                cbCategory.SelectedIndex = _Product.CategoryInfo.CategoryID - 1;
+                cbBaseUnit.SelectedIndex = _Product.MainUnitInfo.UnitID - 1;
+                txtSellingPrice.Text = _Product.SellingPrice.ToString();
+
+                if (_Product.MainSupplierInfo != null)
+                {
+                    cbMainSupllier.SelectedItem = _Product.MainSupplierInfo.PartyInfo.PartyName;
+                }
+
+                txtDescription.Text = _Product.Description;
+                lblTotalOtherUnits.Text = _Product.UnitConversions?.Count.ToString();
+            }
+
+            clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
+        }
+
+        private void frmAddEditProduct_Shown(object sender, EventArgs e)
+        {
+            cbMainSupllier.Focus();
+            errorProvider.Clear();
+            txtProductName.Focus();
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
         {
-            if (cbCatigory.SelectedIndex == -1)
+            if (cbCategory.SelectedIndex == -1)
             {
-                cbCatigory.Text = string.Empty;
+                cbCategory.Text = string.Empty;
             }
         }
 
         private void cbCatigory_Leave(object sender, EventArgs e)
         {
-            if (cbCatigory.SelectedIndex == -1)
+            if (cbCategory.SelectedIndex == -1)
             {
-                cbCatigory.Text = "إختار التصنيف/الفئة";
+                cbCategory.Text = "إختار التصنيف/الفئة";
             }
         }
 
@@ -51,7 +97,48 @@ namespace SIMS.WinForms.Products
         {
             if (cbBaseUnit.SelectedIndex == -1)
             {
-                cbBaseUnit.Text = "إختار وحدة القياس";
+                cbBaseUnit.Text = "إختار وحدة القياس الأساسية";
+            }
+        }
+
+        private void cbMainSupllier_SelectedSupplierChanged(object sender, EventArgs e)
+        {
+            if (cbMainSupllier.SelectedIndex == -1)
+            {
+                cbMainSupllier.Enabled = llAddPersonSupplier.Enabled =
+                    llAddOrganizationSupplier.Enabled = true;
+                btnDeleteMainSupplier.Visible = false;
+            }
+        }
+
+        private void cbMainSupllier_Enter(object sender, EventArgs e)
+        {
+            if (cbMainSupllier.SelectedIndex == -1)
+            {
+                cbMainSupllier.Text = string.Empty;
+            }
+        }
+
+        private void cbMainSupllier_Leave(object sender, EventArgs e)
+        {
+            if (cbMainSupllier.SelectedIndex == -1)
+            {
+                cbMainSupllier.Text = "إختار المورد الأساسي";
+            }
+            else
+            {
+                cbMainSupllier.Enabled = llAddPersonSupplier.Enabled =
+                    llAddOrganizationSupplier.Enabled = false;
+                btnDeleteMainSupplier.Visible = true;
+            }
+        }
+
+        private void btnDeleteMainSupplier_Click(object sender, EventArgs e)
+        {
+            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد إلغاء تعيين هذا المورد كمورد أساسي لهذا المنتج ؟", messageBoxIcon: MessageBoxIcon.Warning))
+            {
+                cbMainSupllier.SelectedIndex = -1;
+                cbMainSupllier.Focus();
             }
         }
 
@@ -60,6 +147,11 @@ namespace SIMS.WinForms.Products
             if (string.IsNullOrWhiteSpace(txtProductBarcode.Text))
             {
                 txtProductBarcode.Text = clsProduct.GenerateBarcode();
+
+                if (!string.IsNullOrEmpty(errorProvider.GetError(txtProductBarcode)))
+                {
+                    errorProvider.SetError(txtProductBarcode, string.Empty);
+                }
             }
             else
             {
@@ -69,37 +161,174 @@ namespace SIMS.WinForms.Products
 
         private void llAddPersonSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmAddEditSupplier addEditPersonSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Person);
-            addEditPersonSupplier.ShowDialog();
+            frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Person);
+            addPersonSupplier.ShowDialog();
+            cbMainSupllier.Focus();
+            llAddPersonSupplier.Focus();
         }
 
         private void llAddOrganizationSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmAddEditSupplier addEditOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Organization);
             addEditOrganizationSupplier.ShowDialog();
+            cbMainSupllier.Focus();
+            llAddOrganizationSupplier.Focus();
+        }
+
+        private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
+        {
+            cbMainSupllier.Items.AddRange(clsSupplier.GetAllSupplierNames());
+            cbMainSupllier.SelectedItem = e.SavedSupplier.PartyInfo.PartyName;
+            _IsAddedSupplier = true;
+            _AddedSupplierID = e.SavedSupplier.SupplierID ?? -1;
         }
 
         private void llAddOtherUnits_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtProductName.Text) || cbBaseUnit.SelectedIndex == -1)
             {
-                clsFormMessages.ShowError("لا يمكن أن يكون إسم المنتج أو إسم الوحدة الأساسية فارغا");
+                txtProductName.Focus(); cbBaseUnit.Focus(); llAddOtherUnits.Focus();
+                clsFormMessages.ShowError("لإضافة وحدات بديلة يجب أولا تعيين إسم للمنتج و إختيار وحدة قياس أساسية");
                 return;
             }
 
-            frmProductUnitConversions unitConversions = new frmProductUnitConversions(txtProductName.Text, cbBaseUnit.Text);
-            unitConversions.ShowDialog();
+            _UnitConversionsForm.ProductName = txtProductName.Text;
+            _UnitConversionsForm.BaseUnit = cbBaseUnit.Text;
+            _UnitConversionsForm.FormMode = _FormMode;
+            _UnitConversionsForm.ShowDialog();
+            lblTotalOtherUnits.Text = _UnitConversionsForm.UnitConversions.Count.ToString();
+        }
+
+        private void txtProductName_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(txtProductName, errorProvider, "لا يمكن أن يكون حقل إسم المنتج فارغا");
+        }
+
+        private void txtProductBarcode_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(txtProductBarcode, errorProvider, "لا يمكن أن يكون حقل الباركود فارغا");
+        }
+
+        private void cbCategory_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(cbCategory, errorProvider, "يجب إختيار تصنيف/فئة للمنتج");
+        }
+
+        private void cbBaseUnit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(cbBaseUnit, errorProvider, "يجب إختيار وحدة قياس أساسية للمنتج");
+        }
+
+        private void txtSellingPrice_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSellingPrice.Text))
+            {
+                errorProvider.SetError(txtSellingPrice, "لا يمكن أن يكون حقل سعر البيع فارغاً");
+            }
+            else if (!float.TryParse(txtSellingPrice.Text, out float sellingPrice))
+            {
+                errorProvider.SetError(txtSellingPrice, "يجب إدخال قيمة رقمية صحيحة أو عشرية لسعر البيع");
+            }
+            else if (sellingPrice < 1)
+            {
+                errorProvider.SetError(txtSellingPrice, "يجب أن يكون سعر البيع أكبر من صفر");
+            }
+            else
+            {
+                errorProvider.SetError(txtSellingPrice, string.Empty);
+            }
+        }
+
+        private void txtSellingPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            clsFormValidation.HandleFloatingKeyPress(e, txtSellingPrice, errorProvider);
         }
 
         private void btnCancle_Click(object sender, EventArgs e)
         {
+            if (_IsAddedSupplier)
+            {
+                if (clsFormMessages.Confirm("لقد قمت بإضافة مورد جديد, هل تريد حذفه ؟", messageBoxIcon: MessageBoxIcon.Warning))
+                {
+                    if (!clsSupplier.Delete(_AddedSupplierID))
+                    {
+                        clsFormMessages.ShowError("لقد فشلت عملية حذف المورد الجديد الذي تم إضافته, رجاءا قم بحذفه يدويا إذا لم تكن بحاجة إليه");
+                    }
+                }
+            }
+
             this.Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!clsFormValidation.IsDataValid(this, errorProvider))
+            {
+                clsFormMessages.ShowInvalidDataError();
+                return;
+            }
 
+            if (clsFormMessages.Confirm("هل أنت متأكد من أنك تريد الحفظ ؟"))
+            {
+                if (_FormMode is enMode.Add)
+                {
+                    _Product = new clsProduct(
+                        txtProductName.Text,
+                        txtProductBarcode.Text,
+                        cbCategory.SelectedIndex + 1,
+                        cbBaseUnit.SelectedIndex + 1,
+                        _UnitConversionsForm.UnitConversions,
+                        cbMainSupllier.Text,
+                        Convert.ToSingle(txtSellingPrice.Text),
+                        txtDescription.Text
+                        );
+                }
+                else
+                {
+                    _Product.ProductName = txtProductName.Text;
+                    _Product.Barcode = txtProductBarcode.Text;
+                    _Product.ChangeCategory(cbCategory.SelectedIndex + 1);
+                    _Product.ChangeMainUnit(cbBaseUnit.SelectedIndex + 1);
+
+                    if (_Product.MainSupplierInfo?.PartyInfo?.PartyName != cbMainSupllier.SelectedText)
+                    {
+                        if (cbMainSupllier.SelectedIndex != -1 || cbMainSupllier.SelectedItem != null)
+                        {
+                            _Product.ChangeMainSupplier(cbMainSupllier.Text);
+                        }
+                        else
+                        {
+                            _Product.DeleteMainSupplier();
+                        }
+                    }
+
+                    _Product.SellingPrice = float.TryParse(txtSellingPrice.Text, out float sellingPrice) ?
+                        sellingPrice :
+                        _Product.SellingPrice;
+                    _Product.Description = txtDescription.Text;
+                }
+
+                clsValidationResult validationResult = _Product.Save();
+
+                if (validationResult.IsValid)
+                {
+                    if (_FormMode is enMode.Add)
+                    {
+                        clsFormMessages.ShowSuccess("تم إضافة المنتج بنجاح");
+                    }
+                    else
+                    {
+                        clsFormMessages.ShowSuccess("تم حفظ التغيرات بنجاح");
+                    }
+
+                    this.Close();
+                }
+                else
+                {
+                    clsFormMessages.ShowValidationErrors(validationResult);
+                }
+            }
         }
-
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
+using BusinessLogic.Validation;
 
 namespace DVLD.WinForms.Utils
 {
@@ -12,6 +14,12 @@ namespace DVLD.WinForms.Utils
         public static void ShowNotImplementedFeatureWarning()
         {
             ShowWarning("لم يتم تنفيذ هذه الميزة بعد, سوف يتم إضافتها قريبا", "ميزة غير متوفرة");
+        }
+
+        public static void ShowValidationErrors(clsValidationResult validationResult)
+        {
+            string errorMessages = string.Join(Environment.NewLine, validationResult.ConvertObjectErrorsListToStringList());
+            clsFormMessages.ShowError(errorMessages, "فشل الحفظ");
         }
 
         public static void ShowSuccess(string message, string title = "نجاح")

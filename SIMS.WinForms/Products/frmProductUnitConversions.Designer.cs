@@ -32,13 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUnitConversions = new System.Windows.Forms.DataGridView();
+            this.colUnitConversion = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colConversionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBaseUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.btnCancle = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBaseUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colConversionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitConversion = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnitConversions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,12 +89,52 @@
             this.dgvUnitConversions.ShowCellToolTips = false;
             this.dgvUnitConversions.Size = new System.Drawing.Size(776, 253);
             this.dgvUnitConversions.TabIndex = 0;
+            this.dgvUnitConversions.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvUnitConversions_CellBeginEdit);
             this.dgvUnitConversions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUnitConversions_CellEndEdit);
             this.dgvUnitConversions.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             this.dgvUnitConversions.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvUnitConversions_CellValidating);
+            this.dgvUnitConversions.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvUnitConversions_EditingControlShowing);
             this.dgvUnitConversions.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUnitConversions_RowsAdded);
             this.dgvUnitConversions.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvUnitConversions_RowsRemoved);
             this.dgvUnitConversions.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvUnitConversions_RowValidating);
+            // 
+            // colUnitConversion
+            // 
+            this.colUnitConversion.HeaderText = "الوحدة البديلة";
+            this.colUnitConversion.Name = "colUnitConversion";
+            this.colUnitConversion.Width = 175;
+            // 
+            // colConversionFactor
+            // 
+            this.colConversionFactor.HeaderText = "معامل التحويل";
+            this.colConversionFactor.MaxInputLength = 10;
+            this.colConversionFactor.Name = "colConversionFactor";
+            this.colConversionFactor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colConversionFactor.Width = 140;
+            // 
+            // colBaseUnit
+            // 
+            this.colBaseUnit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colBaseUnit.HeaderText = "الوحدة الأساسية";
+            this.colBaseUnit.Name = "colBaseUnit";
+            this.colBaseUnit.ReadOnly = true;
+            this.colBaseUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colDescription
+            // 
+            this.colDescription.HeaderText = "الوصف المرئي";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.ReadOnly = true;
+            this.colDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDescription.Width = 225;
+            // 
+            // colDelete
+            // 
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDelete.Width = 50;
             // 
             // btnCancle
             // 
@@ -106,7 +146,7 @@
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
-            this.btnCancle.TabIndex = 11;
+            this.btnCancle.TabIndex = 2;
             this.btnCancle.Text = "    إلغاء";
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
@@ -120,59 +160,14 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "    حفظ";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // colDelete
-            // 
-            this.colDelete.HeaderText = "حذف";
-            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colDelete.Width = 50;
-            // 
-            // colDescription
-            // 
-            this.colDescription.HeaderText = "الوصف المرئي";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
-            this.colDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDescription.Width = 225;
-            // 
-            // colBaseUnit
-            // 
-            this.colBaseUnit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colBaseUnit.HeaderText = "الوحدة الأساسية";
-            this.colBaseUnit.Name = "colBaseUnit";
-            this.colBaseUnit.ReadOnly = true;
-            this.colBaseUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colConversionFactor
-            // 
-            this.colConversionFactor.HeaderText = "معامل التحويل";
-            this.colConversionFactor.MaxInputLength = 10;
-            this.colConversionFactor.Name = "colConversionFactor";
-            this.colConversionFactor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colConversionFactor.Width = 140;
-            // 
-            // colUnitConversion
-            // 
-            this.colUnitConversion.HeaderText = "الوحدة البديلة";
-            this.colUnitConversion.Items.AddRange(new object[] {
-            "قطعة",
-            "كرتونة",
-            "علبة",
-            "زجاجة",
-            "كيلوغرام",
-            "لتر",
-            "كيس"});
-            this.colUnitConversion.Name = "colUnitConversion";
-            this.colUnitConversion.Width = 175;
-            // 
             // frmProductUnitConversions
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
@@ -189,7 +184,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إدارة معاملات التحويل للمنتج: [اسم المنتج]";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmProductUnitConversions_FormClosing);
             this.Load += new System.EventHandler(this.frmProductUnitConversions_Load);
+            this.Shown += new System.EventHandler(this.frmProductUnitConversions_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnitConversions)).EndInit();
             this.ResumeLayout(false);
 

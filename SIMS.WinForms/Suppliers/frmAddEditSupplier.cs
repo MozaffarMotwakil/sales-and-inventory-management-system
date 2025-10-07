@@ -157,8 +157,7 @@ namespace SIMS.WinForms.Suppliers
                 }
                 else
                 {
-                    string errorMessages = string.Join(Environment.NewLine, validationResult.ConvertObjectErrorsListToStringList());
-                    clsFormMessages.ShowError(errorMessages, "فشل الحفظ");
+                    clsFormMessages.ShowValidationErrors(validationResult);
                 }
             }
         }

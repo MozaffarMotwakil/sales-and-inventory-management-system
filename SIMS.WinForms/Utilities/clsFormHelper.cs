@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Parties;
 using SIMS.WinForms.Properties;

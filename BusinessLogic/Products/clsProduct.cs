@@ -76,7 +76,7 @@ namespace BusinessLogic.Products
         private enMode _Mode { get; set; }
 
         public clsProduct(string productName, string barcode, int categoryID, int mainUnitID, 
-            List<clsProductUnitConversion> unitConversions, clsSupplier mainSupplier, float sellingPrice, string description)
+            List<clsProductUnitConversion> unitConversions, string mainSupplierName, float sellingPrice, string description)
         {
             ProductID = null;
             ProductName = productName;
@@ -84,7 +84,7 @@ namespace BusinessLogic.Products
             CategoryInfo = clsCategory.Find(categoryID);
             MainUnitInfo = clsUnit.Find(mainUnitID);
             UnitConversions = unitConversions;
-            MainSupplierInfo = mainSupplier;
+            MainSupplierInfo = clsSupplier.Find(mainSupplierName);
             SellingPrice = sellingPrice;
             Description = description;
             CreatedByUserInfo = clsAppSettings.CurrentUser;
@@ -113,6 +113,11 @@ namespace BusinessLogic.Products
 
         public static clsProduct Find(int productID)
         {
+            if (productID < 1)
+            {
+                return null;
+            }
+
             clsProductDTO productDTO = clsProductData.FindProductByID(productID);
             return productDTO is null ? null : new clsProduct(productDTO);
         }
@@ -137,7 +142,12 @@ namespace BusinessLogic.Products
         {
             return clsProductData.IsBarcodeExists(barcode);
         }
-        
+
+        public static bool IsProductNameExists(string productName)
+        {
+            return clsProductData.IsProductNameExists(productName);
+        }
+
         public static string GetProductName(int prouctID)
         {
             return clsProductData.GetProductName(prouctID);
@@ -163,19 +173,19 @@ namespace BusinessLogic.Products
             MainUnitInfo = clsUnit.Find(newUnitID);
         }
 
-        public void ChangeMainProduct(int newSupplierID)
+        public void ChangeMainSuppliert(int newSupplierID)
         {
             MainSupplierInfo = clsSupplier.Find(newSupplierID);
         }
 
-        public void ChangeMainProduct(string newSupplierName)
+        public void ChangeMainSupplier(string newSupplierName)
         {
             MainSupplierInfo = clsSupplier.Find(newSupplierName);
         }
 
-        public void ChangeMainProduct(clsSupplier newSupplier)
+        public void DeleteMainSupplier()
         {
-            MainSupplierInfo = newSupplier;
+            MainSupplierInfo = null;
         }
 
         public virtual clsProductDTO MappingToDTO()
@@ -192,17 +202,25 @@ namespace BusinessLogic.Products
                 SellingPrice = this.SellingPrice,
                 Description = this.Description,
                 CreatedByUserID = this.CreatedByUserInfo.UserID,
-                UpdatedByUserID = this.UpdatedByUserInfo.UserID
+                UpdatedByUserID = this.UpdatedByUserInfo?.UserID
             };
         }
 
         public virtual clsValidationResult Validated()
         {
             clsValidationResult validationResult = new clsValidationResult();
+            clsProduct currentProductInDB = Find(ProductID ?? -1);
+            TrimAllStringFields();
 
             if (string.IsNullOrWhiteSpace(ProductName))
-            {
+            { 
                 validationResult.AddError("إسم المنتج", "لا يمكن أن يكون إسم المنتج فارغا");
+            }
+
+            if ((_Mode == enMode.Update && currentProductInDB.ProductName != this.ProductName && IsProductNameExists(this.ProductName)) || 
+                (_Mode == enMode.Add && IsProductNameExists(ProductName)))
+            {
+                validationResult.AddError("إسم المنتج", "المنتج موجود بالفعل");
             }
 
             if (string.IsNullOrWhiteSpace(Barcode))
@@ -210,7 +228,8 @@ namespace BusinessLogic.Products
                 validationResult.AddError("الباركود", "لا يمكن أن يكون الباركود فارغا");
             }
 
-            if (IsBarcodeExists(Barcode))
+            if ((_Mode == enMode.Update && currentProductInDB.Barcode != this.Barcode && IsBarcodeExists(this.Barcode)) ||
+                (_Mode == enMode.Add && IsBarcodeExists(Barcode)))
             {
                 validationResult.AddError("الباركود", "الباركود موجود بالفعل");
             }
@@ -250,6 +269,11 @@ namespace BusinessLogic.Products
             }
 
             return validationResult;
+        }
+
+        public void TrimAllStringFields()
+        {
+            ProductName.Trim(); Barcode.Trim(); Description.Trim();
         }
 
         public clsValidationResult Save()
