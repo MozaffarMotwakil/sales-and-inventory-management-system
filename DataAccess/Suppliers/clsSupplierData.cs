@@ -9,170 +9,112 @@ namespace DataAccess.Suppliers
     {
         public static clsSupplierDTO FindSupplierByID(int supplierID)
         {
-            clsSupplierDTO supplierDTO = null;
-
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("usp_GetSupplierByID", connection)
+                using (SqlCommand command = new SqlCommand("usp_GetSupplierByID", connection))
                 {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SupplierID", supplierID);
 
-                command.Parameters.AddWithValue("@SupplierID", supplierID);
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        if (reader.Read())
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            supplierDTO = new clsSupplierDTO
+                            clsSupplierDTO supplierDTO = null;
+
+                            if (reader.Read())
                             {
-                                SupplierID = supplierID,
-                                PartyID = Convert.ToInt32(reader["PartyID"]),
-                                SupplierCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
-                                SupplierNotes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
-                                IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
-                                CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
-                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
-                            };
+                                supplierDTO = new clsSupplierDTO
+                                {
+                                    SupplierID = supplierID,
+                                    PartyID = Convert.ToInt32(reader["PartyID"]),
+                                    SupplierCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
+                                    SupplierNotes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
+                                    IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                                };
 
-                            supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
-                                supplierDTO.UpdatedByUserID = null :
-                                Convert.ToInt32(reader["UpdatedByUserID"]);
+                                supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
+                                    supplierDTO.UpdatedByUserID = null :
+                                    Convert.ToInt32(reader["UpdatedByUserID"]);
 
-                            supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
-                                supplierDTO.UpdatedAt = null :
-                                Convert.ToDateTime(reader["UpdatedAt"]);
+                                supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
+                                    supplierDTO.UpdatedAt = null :
+                                    Convert.ToDateTime(reader["UpdatedAt"]);
+                            }
+
+                            return supplierDTO;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException($"Error find supplier by ID.", ex);
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException($"Error find supplier by ID.", ex);
+                    }
                 }
             }
-
-            return supplierDTO;
         }
 
         public static clsSupplierDTO FindSupplierByName(string supplierName)
         {
-            clsSupplierDTO supplierDTO = null;
-
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("usp_GetSupplierByName", connection)
+                using (SqlCommand command = new SqlCommand("usp_GetSupplierByName", connection))
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@SupplierName", supplierName);
 
-                command.Parameters.AddWithValue("@SupplierName", supplierName);
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        if (reader.Read())
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            supplierDTO = new clsSupplierDTO
+                            clsSupplierDTO supplierDTO = null;
+
+                            if (reader.Read())
                             {
-                                SupplierID = Convert.ToInt32(reader["SupplierID"]),
-                                PartyID = Convert.ToInt32(reader["PartyID"]),
-                                SupplierCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
-                                SupplierNotes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
-                                IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
-                                CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
-                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
-                            };
+                                supplierDTO = new clsSupplierDTO
+                                {
+                                    SupplierID = Convert.ToInt32(reader["SupplierID"]),
+                                    PartyID = Convert.ToInt32(reader["PartyID"]),
+                                    SupplierCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
+                                    SupplierNotes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
+                                    IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                                };
 
-                            supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
-                                supplierDTO.UpdatedByUserID = null :
-                                Convert.ToInt32(reader["UpdatedByUserID"]);
+                                supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
+                                    supplierDTO.UpdatedByUserID = null :
+                                    Convert.ToInt32(reader["UpdatedByUserID"]);
 
-                            supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
-                                supplierDTO.UpdatedAt = null :
-                                Convert.ToDateTime(reader["UpdatedAt"]);
+                                supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
+                                    supplierDTO.UpdatedAt = null :
+                                    Convert.ToDateTime(reader["UpdatedAt"]);
+                            }
+
+                            return supplierDTO;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException($"Error find supplier by name.", ex);
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException($"Error find supplier by name.", ex);
+                    }
                 }
             }
-
-            return supplierDTO;
         }
 
         public static DataTable GetAllSuppliers()
         {
-            DataTable suppliers = null;
-
-            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
-            {
-                SqlCommand command = new SqlCommand("usp_GetAllSuppliers", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            suppliers = new DataTable();
-                            suppliers.Load(reader);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException("Error get all suppliers.", ex);
-                }
-            }
-
-            return suppliers;
+            return clsDataSettings.GetDataTable("usp_GetAllSuppliers", "Error get all suppliers.");
         }
 
         public static DataTable GetAllSupplierNames()
         {
-            DataTable suppliers = null;
-
-            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
-            {
-                SqlCommand command = new SqlCommand("usp_GetAllSupplierNames", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            suppliers = new DataTable();
-                            suppliers.Load(reader);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException("Error get all supplier names.", ex);
-                }
-            }
-
-            return suppliers;
+            return clsDataSettings.GetDataTable("usp_GetAllSupplierNames", "Error get all supplier names.");
         }
 
         public static bool AddSupplier(clsSupplierDTO supplierDTO)
@@ -290,28 +232,7 @@ namespace DataAccess.Suppliers
 
         public static bool DeleteSupplier(int supplierID)
         {
-            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
-            {
-                string query = @"usp_DeleteSupplier";
-
-                SqlCommand command = new SqlCommand(query, connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                command.Parameters.AddWithValue("@SupplierID", supplierID);
-
-                try
-                {
-                    connection.Open();
-
-                    return command.ExecuteNonQuery() > 0;
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException($"Error delete a supplier.", ex);
-                }
-            }
+            return clsDataSettings.DeleteRecord("usp_DeleteSupplier", "@SupplierID", supplierID, "Error delete a supplier.");
         }
 
     }

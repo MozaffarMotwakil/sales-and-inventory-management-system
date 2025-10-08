@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DataAccess
 {
@@ -14,6 +16,62 @@ namespace DataAccess
         public static object GetDBNullIfNull(object value)
         {
             return value ?? DBNull.Value;
+        }
+
+        public static DataTable GetDataTable(string storedProcedureName, string exceptionMessage)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            DataTable records = null;
+
+                            if (reader.HasRows)
+                            {
+                                records = new DataTable();
+                                records.Load(reader);
+                            }
+
+                            return records;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException(exceptionMessage, ex);
+                    }
+                }
+            }
+        }
+
+        public static bool DeleteRecord(string storedProcedureName, string parameterName, int supplierID, string exceptionMessage)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(parameterName, supplierID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException(exceptionMessage, ex);
+                    }
+                }
+            }
         }
 
     }

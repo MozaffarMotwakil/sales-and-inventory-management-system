@@ -13,6 +13,7 @@ namespace DataAccess.Utilities
                 using (SqlCommand command = new SqlCommand("usp_InsertNewLog", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.AddWithValue("@UserID", userID);
                     command.Parameters.AddWithValue("@EntityID", entityID);
                     command.Parameters.AddWithValue("@EntityTypeID", entityTypeID);
