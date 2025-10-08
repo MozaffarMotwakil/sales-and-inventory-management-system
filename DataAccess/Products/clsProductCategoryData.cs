@@ -9,73 +9,45 @@ namespace DataAccess.Products
     {
         public static clsCategoryDTO FindProductCategoryByID(int categoryID)
         {
-            clsCategoryDTO categoryDTO = null;
-
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                SqlCommand command = new SqlCommand("usp_GetProductCategoryByID", connection)
+                using (SqlCommand command = new SqlCommand("usp_GetProductCategoryByID", connection))
                 {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                };
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@CategoryID", categoryID);
 
-                command.Parameters.AddWithValue("@CategoryID", categoryID);
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        if (reader.Read())
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            categoryDTO = new clsCategoryDTO
+                            clsCategoryDTO categoryDTO = null;
+
+                            if (reader.Read())
                             {
-                                CategoryID = categoryID,
-                                CategoryName = Convert.ToString(reader["CategoryName"]),
-                            };
+                                categoryDTO = new clsCategoryDTO
+                                {
+                                    CategoryID = categoryID,
+                                    CategoryName = Convert.ToString(reader["CategoryName"]),
+                                };
+                            }
+
+                            return categoryDTO;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException($"Error find product category by ID.", ex);
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException($"Error find product category by ID.", ex);
+                    }
                 }
             }
-
-            return categoryDTO;
         }
 
         public static DataTable GetAllProductCategoryNames()
         {
-            DataTable productCategories = null;
-
-            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
-            {
-                SqlCommand command = new SqlCommand("usp_GetAllProductCategories", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                try
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            productCategories = new DataTable();
-                            productCategories.Load(reader);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException("Error get all product category names.", ex);
-                }
-            }
-
-            return productCategories;
+            return clsDataSettings.GetDataTable("usp_GetAllProductCategories", "Error get all product category names.");
         }
+
     }
 }
