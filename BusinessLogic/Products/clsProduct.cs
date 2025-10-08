@@ -32,9 +32,9 @@ namespace BusinessLogic.Products
 
         public static event EventHandler<ProductSavedEventArgs> ProductSaved;
 
-        protected virtual void OnProductSaved(int productID, string productName, enMode mode)
+        private static void OnProductSaved(int productID, string productName, enMode mode)
         {
-            ProductSaved?.Invoke(this, new ProductSavedEventArgs(productID, productName, mode));
+            ProductSaved?.Invoke(null, new ProductSavedEventArgs(productID, productName, mode));
         }
 
         public class ProductDeletedEventArgs : EventArgs
@@ -55,7 +55,7 @@ namespace BusinessLogic.Products
 
         public static event EventHandler<ProductDeletedEventArgs> ProductDeleted;
 
-        protected static void OnProductDeleted(int productID, string productName)
+        private static void OnProductDeleted(int productID, string productName)
         {
             ProductDeleted?.Invoke(null, new ProductDeletedEventArgs(productID, productName));
         }
@@ -65,7 +65,7 @@ namespace BusinessLogic.Products
         public string Barcode { get; set; }
         public clsCategory CategoryInfo { get; private set; }
         public clsUnit MainUnitInfo { get; private set; }
-        public List<clsProductUnitConversion> UnitConversions { get; }
+        public List<clsProductUnitConversion> UnitConversions { get; } = new List<clsProductUnitConversion>();
         public clsSupplier MainSupplierInfo { get; private set; }
         public float SellingPrice { get; set; }
         public string Description { get; set; }
@@ -182,14 +182,23 @@ namespace BusinessLogic.Products
             MainUnitInfo = clsUnit.Find(newUnitID);
         }
 
-        public void ChangeMainSuppliert(int newSupplierID)
-        {
-            MainSupplierInfo = clsSupplier.Find(newSupplierID);
-        }
-
         public void ChangeMainSupplier(string newSupplierName)
         {
-            MainSupplierInfo = clsSupplier.Find(newSupplierName);
+            if (MainSupplierInfo?.PartyInfo.PartyName == newSupplierName)
+            {
+                return;
+            }
+
+            clsSupplier newSupplier = clsSupplier.Find(newSupplierName);
+
+            if (newSupplier != null)
+            {
+                MainSupplierInfo = newSupplier;
+            }
+            else
+            {
+                this.DeleteMainSupplier();
+            }
         }
 
         public void DeleteMainSupplier()
@@ -197,7 +206,7 @@ namespace BusinessLogic.Products
             MainSupplierInfo = null;
         }
 
-        public virtual clsProductDTO MappingToDTO()
+        public clsProductDTO MappingToDTO()
         {
             return new clsProductDTO
             {
@@ -283,7 +292,9 @@ namespace BusinessLogic.Products
 
         public void TrimAllStringFields()
         {
-            ProductName.Trim(); Barcode.Trim(); Description.Trim();
+            ProductName = ProductName.Trim();
+            Barcode = Barcode.Trim();
+            Description = Description.Trim();
         }
 
         private void DeleteImage()

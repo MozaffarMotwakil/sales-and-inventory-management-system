@@ -41,7 +41,7 @@
             this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbBaseUnit = new System.Windows.Forms.ComboBox();
-            this.cbMainSupllier = new System.Windows.Forms.ComboBox();
+            this.cbMainSupplier = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
             this.llAddOtherUnits = new System.Windows.Forms.LinkLabel();
@@ -117,7 +117,7 @@
             this.txtSellingPrice.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtSellingPrice.Name = "txtSellingPrice";
             this.txtSellingPrice.Size = new System.Drawing.Size(546, 23);
-            this.txtSellingPrice.TabIndex = 5;
+            this.txtSellingPrice.TabIndex = 6;
             this.txtSellingPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSellingPrice_KeyPress);
             this.txtSellingPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtSellingPrice_Validating);
             // 
@@ -189,19 +189,19 @@
             this.cbBaseUnit.Leave += new System.EventHandler(this.cbUnit_Leave);
             this.cbBaseUnit.Validating += new System.ComponentModel.CancelEventHandler(this.cbBaseUnit_Validating);
             // 
-            // cbMainSupllier
+            // cbMainSupplier
             // 
-            this.cbMainSupllier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbMainSupllier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbMainSupllier.FormattingEnabled = true;
-            this.cbMainSupllier.Location = new System.Drawing.Point(142, 250);
-            this.cbMainSupllier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.cbMainSupllier.Name = "cbMainSupllier";
-            this.cbMainSupllier.Size = new System.Drawing.Size(546, 24);
-            this.cbMainSupllier.TabIndex = 12;
-            this.cbMainSupllier.Text = "إختار المورد الأساسي";
-            this.cbMainSupllier.Enter += new System.EventHandler(this.cbMainSupllier_Enter);
-            this.cbMainSupllier.Leave += new System.EventHandler(this.cbMainSupllier_Leave);
+            this.cbMainSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMainSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbMainSupplier.FormattingEnabled = true;
+            this.cbMainSupplier.Location = new System.Drawing.Point(142, 250);
+            this.cbMainSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbMainSupplier.Name = "cbMainSupplier";
+            this.cbMainSupplier.Size = new System.Drawing.Size(546, 24);
+            this.cbMainSupplier.TabIndex = 7;
+            this.cbMainSupplier.Text = "إختار المورد الأساسي";
+            this.cbMainSupplier.Enter += new System.EventHandler(this.cbMainSupllier_Enter);
+            this.cbMainSupplier.Leave += new System.EventHandler(this.cbMainSupllier_Leave);
             // 
             // label4
             // 
@@ -220,7 +220,7 @@
             this.llAddPersonSupplier.Location = new System.Drawing.Point(139, 276);
             this.llAddPersonSupplier.Name = "llAddPersonSupplier";
             this.llAddPersonSupplier.Size = new System.Drawing.Size(146, 16);
-            this.llAddPersonSupplier.TabIndex = 14;
+            this.llAddPersonSupplier.TabIndex = 8;
             this.llAddPersonSupplier.TabStop = true;
             this.llAddPersonSupplier.Text = "إضافة مورد جديد (شخص)";
             this.llAddPersonSupplier.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddPersonSupplier_LinkClicked);
@@ -231,7 +231,7 @@
             this.llAddOtherUnits.Location = new System.Drawing.Point(139, 175);
             this.llAddOtherUnits.Name = "llAddOtherUnits";
             this.llAddOtherUnits.Size = new System.Drawing.Size(106, 16);
-            this.llAddOtherUnits.TabIndex = 14;
+            this.llAddOtherUnits.TabIndex = 5;
             this.llAddOtherUnits.TabStop = true;
             this.llAddOtherUnits.Text = "إضافة وحدات بديلة";
             this.llAddOtherUnits.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddOtherUnits_LinkClicked);
@@ -242,7 +242,7 @@
             this.llAddOrganizationSupplier.Location = new System.Drawing.Point(291, 276);
             this.llAddOrganizationSupplier.Name = "llAddOrganizationSupplier";
             this.llAddOrganizationSupplier.Size = new System.Drawing.Size(145, 16);
-            this.llAddOrganizationSupplier.TabIndex = 14;
+            this.llAddOrganizationSupplier.TabIndex = 9;
             this.llAddOrganizationSupplier.TabStop = true;
             this.llAddOrganizationSupplier.Text = "إضافة مورد جديد (منظمة)";
             this.llAddOrganizationSupplier.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llAddOrganizationSupplier_LinkClicked);
@@ -256,7 +256,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "    حفظ";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -271,7 +271,7 @@
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
-            this.btnCancle.TabIndex = 9;
+            this.btnCancle.TabIndex = 12;
             this.btnCancle.Text = "    إلغاء";
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
@@ -302,7 +302,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(546, 83);
-            this.txtDescription.TabIndex = 17;
+            this.txtDescription.TabIndex = 10;
             // 
             // label6
             // 
@@ -331,11 +331,10 @@
             this.ctrProductImage.PictureBoxSizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ctrProductImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrProductImage.Size = new System.Drawing.Size(170, 180);
-            this.ctrProductImage.TabIndex = 7;
+            this.ctrProductImage.TabIndex = 13;
             // 
             // frmAddEditProduct
             // 
-            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
@@ -347,7 +346,7 @@
             this.Controls.Add(this.llAddOtherUnits);
             this.Controls.Add(this.llAddOrganizationSupplier);
             this.Controls.Add(this.llAddPersonSupplier);
-            this.Controls.Add(this.cbMainSupllier);
+            this.Controls.Add(this.cbMainSupplier);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ctrProductImage);
             this.Controls.Add(this.cbBaseUnit);
@@ -374,7 +373,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إضافة/تعديل منتج";
             this.Load += new System.EventHandler(this.frmAddEditProduct_Load);
-            this.Shown += new System.EventHandler(this.frmAddEditProduct_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -396,7 +394,7 @@
         private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbBaseUnit;
-        private System.Windows.Forms.ComboBox cbMainSupllier;
+        private System.Windows.Forms.ComboBox cbMainSupplier;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel llAddPersonSupplier;
         private System.Windows.Forms.LinkLabel llAddOtherUnits;

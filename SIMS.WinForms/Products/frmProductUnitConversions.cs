@@ -209,16 +209,8 @@ namespace SIMS.WinForms.Products
 
         private void dgvUnitConversions_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (_IsEmptyCell(e.RowIndex, colUnitConversion.Index) && !(_IsEmptyCell(e.RowIndex, colConversionFactor.Index)))
+            if (!string.IsNullOrEmpty(dgvUnitConversions.Rows[e.RowIndex].ErrorText))
             {
-                dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إختيار نوع الوحدة البديلة أولا";
-                e.Cancel = true;
-                SystemSounds.Asterisk.Play();
-            }
-
-            if ((!_IsEmptyCell(e.RowIndex, colUnitConversion.Index) || (!_IsEmptyCell(e.RowIndex, colConversionFactor.Index))) && !(_IsValidFactor(e.RowIndex)))
-            {
-                dgvUnitConversions.Rows[e.RowIndex].ErrorText = "معامل التحويل يجب أن يكون رقماً صحيحاً وأكبر من 1";
                 e.Cancel = true;
                 SystemSounds.Asterisk.Play();
             }

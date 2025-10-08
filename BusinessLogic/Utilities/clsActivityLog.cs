@@ -1,4 +1,5 @@
 ﻿using System;
+using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
 using DataAccess.Utilities;
 
@@ -8,7 +9,8 @@ namespace BusinessLogic.Utilities
     {
         public enum enEntityTypes
         {
-            Supplier = 1
+            Supplier = 1,
+            Product
         }
 
         public enum enActivityTypes
@@ -24,6 +26,8 @@ namespace BusinessLogic.Utilities
         {
             clsSupplier.SupplierSaved += LogSupplierSaveAction;
             clsSupplier.SupplierDeleted += LogSupplierDeleteAction;
+            clsProduct.ProductSaved += LogProductSaveAction;
+            clsProduct.ProductDeleted += LogProductDeleteAction; 
         }
 
         public static void Initialize() { }
@@ -51,6 +55,34 @@ namespace BusinessLogic.Utilities
                 e.UserID,
                 e.SupplierID,
                 (int)enEntityTypes.Supplier,
+                (int)enActivityTypes.Delete,
+                details
+            );
+        }
+
+        private static void LogProductSaveAction(object sender, clsProduct.ProductSavedEventArgs e)
+        {
+            string details = e.OperationMode is enMode.Add ?
+                $"تم إضافة منتج جديد: [{e.ProductName}], معرف المنتج: [{e.ProductID}]." :
+                $"تم تعديل بيانات المنتج: [{e.ProductName}], معرف المنتج: [{e.ProductID}].";
+
+            Log(
+                e.UserID,
+                e.ProductID,
+                (int)enEntityTypes.Product,
+                (int)e.OperationMode,
+                details
+            );
+        }
+
+        private static void LogProductDeleteAction(object sender, clsProduct.ProductDeletedEventArgs e)
+        {
+            string details = $"تم حذف المنتج: [{e.ProductName}], معرف المنتج: [{e.ProductID}].";
+
+            Log(
+                e.UserID,
+                e.ProductID,
+                (int)enEntityTypes.Product,
                 (int)enActivityTypes.Delete,
                 details
             );

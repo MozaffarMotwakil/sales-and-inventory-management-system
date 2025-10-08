@@ -10,12 +10,11 @@ namespace SIMS.WinForms.Products
 {
     public partial class frmAddEditProduct : Form
     {
-        private enMode _FormMode;
         private clsProduct _Product;
         private frmProductUnitConversions _UnitConversionsForm;
         private bool _IsAddedSupplier;
         private int _AddedSupplierID;
-
+        private enMode _FormMode;
 
         public frmAddEditProduct()
         {
@@ -38,9 +37,10 @@ namespace SIMS.WinForms.Products
             this.Text = _FormMode == enMode.Add ? 
                 "إضافة منتج جديد" :
                 "تعديل منتج";
+
             cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
             cbBaseUnit.Items.AddRange(clsUnit.GetUnitNames());
-            cbMainSupllier.Items.AddRange(clsSupplier.GetAllSupplierNames());
+            cbMainSupplier.Items.AddRange(clsSupplier.GetAllSupplierNames());
 
             if (_FormMode is enMode.Edit)
             {
@@ -49,25 +49,13 @@ namespace SIMS.WinForms.Products
                 cbCategory.SelectedIndex = _Product.CategoryInfo.CategoryID - 1;
                 cbBaseUnit.SelectedIndex = _Product.MainUnitInfo.UnitID - 1;
                 txtSellingPrice.Text = _Product.SellingPrice.ToString();
-
-                if (_Product.MainSupplierInfo != null)
-                {
-                    cbMainSupllier.SelectedItem = _Product.MainSupplierInfo.PartyInfo.PartyName;
-                }
-
+                cbMainSupplier.SelectedItem = _Product.MainSupplierInfo?.PartyInfo.PartyName;
                 txtDescription.Text = _Product.Description;
                 lblTotalOtherUnits.Text = _Product.UnitConversions?.Count.ToString();
                 ctrProductImage.ImageLocation = _Product.ImagePath;
             }
 
             clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
-        }
-
-        private void frmAddEditProduct_Shown(object sender, EventArgs e)
-        {
-            cbMainSupllier.Focus();
-            errorProvider.Clear();
-            txtProductName.Focus();
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
@@ -104,17 +92,17 @@ namespace SIMS.WinForms.Products
 
         private void cbMainSupllier_Enter(object sender, EventArgs e)
         {
-            if (cbMainSupllier.SelectedIndex == -1)
+            if (cbMainSupplier.SelectedIndex == -1)
             {
-                cbMainSupllier.Text = string.Empty;
+                cbMainSupplier.Text = string.Empty;
             }
         }
 
         private void cbMainSupllier_Leave(object sender, EventArgs e)
         {
-            if (cbMainSupllier.SelectedIndex == -1)
+            if (cbMainSupplier.SelectedIndex == -1)
             {
-                cbMainSupllier.Text = "إختار المورد الأساسي";
+                cbMainSupplier.Text = "إختار المورد الأساسي";
             }
         }
 
@@ -139,7 +127,7 @@ namespace SIMS.WinForms.Products
         {
             frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Person);
             addPersonSupplier.ShowDialog();
-            cbMainSupllier.Focus();
+            cbMainSupplier.Focus();
             llAddPersonSupplier.Focus();
         }
 
@@ -147,14 +135,16 @@ namespace SIMS.WinForms.Products
         {
             frmAddEditSupplier addEditOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Organization);
             addEditOrganizationSupplier.ShowDialog();
-            cbMainSupllier.Focus();
+            cbMainSupplier.Focus();
             llAddOrganizationSupplier.Focus();
         }
 
         private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
         {
-            cbMainSupllier.Items.AddRange(clsSupplier.GetAllSupplierNames());
-            cbMainSupllier.SelectedItem = e.SavedSupplier.PartyInfo.PartyName;
+            cbMainSupplier.Items.AddRange(clsSupplier.GetAllSupplierNames());
+            cbMainSupplier.SelectedItem = e.SavedSupplier.PartyInfo.PartyName;
+
+            // It use later for delete the added supplier if the user cancle the add/edit operation
             _IsAddedSupplier = true;
             _AddedSupplierID = e.SavedSupplier.SupplierID ?? -1;
         }
@@ -172,6 +162,8 @@ namespace SIMS.WinForms.Products
             _UnitConversionsForm.BaseUnit = cbBaseUnit.Text;
             _UnitConversionsForm.FormMode = _FormMode;
             _UnitConversionsForm.ShowDialog();
+
+            // after come back from setting a unit cinversions
             lblTotalOtherUnits.Text = _UnitConversionsForm.UnitConversions.Count.ToString();
         }
 
@@ -254,7 +246,7 @@ namespace SIMS.WinForms.Products
                         cbCategory.SelectedIndex + 1,
                         cbBaseUnit.SelectedIndex + 1,
                         _UnitConversionsForm.UnitConversions,
-                        cbMainSupllier.Text,
+                        cbMainSupplier.Text,
                         Convert.ToSingle(txtSellingPrice.Text),
                         txtDescription.Text,
                         ctrProductImage.ImageLocation
@@ -266,22 +258,8 @@ namespace SIMS.WinForms.Products
                     _Product.Barcode = txtProductBarcode.Text;
                     _Product.ChangeCategory(cbCategory.SelectedIndex + 1);
                     _Product.ChangeMainUnit(cbBaseUnit.SelectedIndex + 1);
-
-                    if (_Product.MainSupplierInfo?.PartyInfo?.PartyName != cbMainSupllier.SelectedText)
-                    {
-                        if (cbMainSupllier.SelectedIndex != -1 || cbMainSupllier.SelectedItem != null)
-                        {
-                            _Product.ChangeMainSupplier(cbMainSupllier.Text);
-                        }
-                        else
-                        {
-                            _Product.DeleteMainSupplier();
-                        }
-                    }
-
-                    _Product.SellingPrice = float.TryParse(txtSellingPrice.Text, out float sellingPrice) ?
-                        sellingPrice :
-                        _Product.SellingPrice;
+                    _Product.ChangeMainSupplier(cbMainSupplier.Text);
+                    _Product.SellingPrice = Convert.ToSingle(txtSellingPrice.Text);
                     _Product.Description = txtDescription.Text;
                     _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
