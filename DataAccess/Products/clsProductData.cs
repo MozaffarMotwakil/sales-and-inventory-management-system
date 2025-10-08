@@ -14,7 +14,6 @@ namespace DataAccess.Products
                 using (SqlCommand command = new SqlCommand("usp_GetProductByID", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-
                     command.Parameters.AddWithValue("@ProductID", productID);
 
                     try
@@ -71,11 +70,6 @@ namespace DataAccess.Products
                     }
                 }
             }
-        }
-
-        public static DataTable GetAllProducts()
-        {
-            return clsDataSettings.GetDataTable("usp_GetAllProducts", "Error get all products.");
         }
 
         public static bool AddProduct(clsProductDTO productDTO)
@@ -159,24 +153,52 @@ namespace DataAccess.Products
             }
         }
 
+        public static DataTable GetAllProducts()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_GetAllProducts",
+                "Error get all products."
+                );
+        }
+
         public static bool DeleteProduct(int productID)
         {
-            return clsDataSettings.DeleteRecord("usp_DeleteProduct", "@ProductID", productID, "Error delete a product.");
+            return clsDataSettings.DeleteRecord(
+                "usp_DeleteProduct", 
+                "@ProductID", 
+                productID, 
+                "Error delete a product."
+                );
         }
 
         public static string GetProductName(int productID)
         {
-            return clsDataSettings.GetSingleValue("usp_GetProductName", "@ProductID", productID, "Error get product name.")?.ToString();
+            return clsDataSettings.GetSingleValue(
+                "usp_GetProductName",
+                "@ProductID",
+                productID, 
+                "Error get product name."
+                )?.ToString();
         }
 
         public static bool IsBarcodeExists(string barcode)
         {
-            return clsDataSettings.IsExists("usp_IsBarcodeExists", "@Barcode", barcode, "Error checking barcode existence.");
+            return clsDataSettings.IsExists(
+                "usp_IsBarcodeExists", 
+                "@Barcode",
+                barcode, 
+                "Error checking barcode existence."
+                );
         }
 
         public static bool IsProductNameExists(string productName)
         {
-            return clsDataSettings.IsExists("usp_IsProductNameExists", "@ProductName", productName, "Error checking product name existence.");
+            return clsDataSettings.IsExists(
+                "usp_IsProductNameExists",
+                "@ProductName", 
+                productName,
+                "Error checking product name existence."
+                );
         }
 
     }

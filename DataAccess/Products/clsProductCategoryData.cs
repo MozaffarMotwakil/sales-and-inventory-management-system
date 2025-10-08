@@ -46,7 +46,10 @@ namespace DataAccess.Products
 
         public static DataTable GetAllProductCategoryNames()
         {
-            return clsDataSettings.GetDataTable("usp_GetAllProductCategories", "Error get all product category names.");
+            return clsDataSettings.GetDataTable(
+                "usp_GetAllProductCategories", 
+                "Error get all product category names."
+                );
         }
 
     }

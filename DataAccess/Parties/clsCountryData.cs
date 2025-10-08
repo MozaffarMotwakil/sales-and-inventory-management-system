@@ -8,38 +8,39 @@ namespace DataAccess.Parties
     {
         public static clsCountryDTO FindCountryByID(byte countryID)
         {
-            clsCountryDTO countryDTO = null;
-
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                string query = @"SELECT *
-                                FROM Countries
-                                WHERE CountryID = @CountryID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@CountryID", countryID);
-
-                try
+                using (SqlCommand command = new SqlCommand("usp_GetCountryByID", connection))
                 {
-                    connection.Open();
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@CountryID", countryID);
 
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        if (reader.Read())
-                        {
-                            countryDTO = new clsCountryDTO();
+                        connection.Open();
 
-                            countryDTO.CountryID = countryID;
-                            countryDTO.CountryName = reader["CountryName"].ToString();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            clsCountryDTO countryDTO = null;
+
+                            if (reader.Read())
+                            {
+                                countryDTO = new clsCountryDTO
+                                {
+                                    CountryID = countryID,
+                                    CountryName = reader["CountryName"].ToString()
+                                };
+                            }
+
+                            return countryDTO;
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error find country by ID in database.", ex);
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error find country by ID in database.", ex);
+                    }
                 }
             }
-
-            return countryDTO;
         }
 
     }
