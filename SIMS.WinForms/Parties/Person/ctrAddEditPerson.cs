@@ -51,6 +51,7 @@ namespace SIMS.WinForms.Parties.Person
                 dtpBirthDate.Value = value.BirthDate;
                 rbMale.Checked = value.Gender is clsPerson.enGender.Male;
                 rbFemale.Checked = value.Gender is clsPerson.enGender.Female;
+                ctrPersonImage.ImageLocation = value.ImagePath;
             }
         }
 

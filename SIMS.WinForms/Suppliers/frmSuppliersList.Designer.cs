@@ -41,20 +41,25 @@
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSearchHintText = new System.Windows.Forms.Label();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.lblTotalSuppliersCount = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.cbSupplierCategory = new System.Windows.Forms.ComboBox();
             this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvSuppliersList
             // 
             this.dgvSuppliersList.AllowUserToAddRows = false;
             this.dgvSuppliersList.AllowUserToDeleteRows = false;
-            this.dgvSuppliersList.AllowUserToResizeColumns = false;
+            this.dgvSuppliersList.AllowUserToOrderColumns = true;
             this.dgvSuppliersList.AllowUserToResizeRows = false;
             this.dgvSuppliersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -89,11 +94,12 @@
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvSuppliersList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSuppliersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSuppliersList.Size = new System.Drawing.Size(775, 119);
+            this.dgvSuppliersList.Size = new System.Drawing.Size(875, 119);
             this.dgvSuppliersList.TabIndex = 2;
             this.dgvSuppliersList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseClick);
             this.dgvSuppliersList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseDoubleClick);
             this.dgvSuppliersList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSuppliersList_DataBindingComplete);
+            this.dgvSuppliersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvSuppliersList_KeyDown);
             this.dgvSuppliersList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // contextMenuStrip
@@ -138,7 +144,7 @@
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(800, 39);
+            this.toolStrip.Size = new System.Drawing.Size(900, 39);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip";
             this.toolStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
@@ -182,41 +188,88 @@
             this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSearchHintText.Location = new System.Drawing.Point(718, 11);
+            this.lblSearchHintText.Location = new System.Drawing.Point(797, 11);
             this.lblSearchHintText.Name = "lblSearchHintText";
             this.lblSearchHintText.Size = new System.Drawing.Size(47, 16);
             this.lblSearchHintText.TabIndex = 29;
             this.lblSearchHintText.Text = "الرسالة";
-            this.lblSearchHintText.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             this.lblSearchHintText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(686, 6);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(29, 26);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 30;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
-            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(714, 6);
+            this.txtSearch.Location = new System.Drawing.Point(793, 6);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSearch.Size = new System.Drawing.Size(74, 26);
+            this.txtSearch.Size = new System.Drawing.Size(95, 26);
             this.txtSearch.TabIndex = 28;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.pictureBox.Location = new System.Drawing.Point(764, 6);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 34;
+            this.pictureBox.TabStop = false;
+            // 
+            // lblTotalSuppliersCount
+            // 
+            this.lblTotalSuppliersCount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSuppliersCount.Location = new System.Drawing.Point(4, 32);
+            this.lblTotalSuppliersCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalSuppliersCount.Name = "lblTotalSuppliersCount";
+            this.lblTotalSuppliersCount.Size = new System.Drawing.Size(238, 25);
+            this.lblTotalSuppliersCount.TabIndex = 4;
+            this.lblTotalSuppliersCount.Text = "N/A";
+            this.lblTotalSuppliersCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(4, 5);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(238, 25);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "إجمالي عدد الموردين";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel5.BackColor = System.Drawing.Color.LightGreen;
+            this.panel5.Controls.Add(this.lblTotalSuppliersCount);
+            this.panel5.Controls.Add(this.label13);
+            this.panel5.Location = new System.Drawing.Point(641, 66);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(247, 64);
+            this.panel5.TabIndex = 35;
+            // 
+            // cbSupplierCategory
+            // 
+            this.cbSupplierCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSupplierCategory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSupplierCategory.FormattingEnabled = true;
+            this.cbSupplierCategory.Items.AddRange(new object[] {
+            "كل الموردين",
+            "الأشخاص فقط",
+            "المنظمات فقط"});
+            this.cbSupplierCategory.Location = new System.Drawing.Point(557, 8);
+            this.cbSupplierCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbSupplierCategory.Name = "cbSupplierCategory";
+            this.cbSupplierCategory.Size = new System.Drawing.Size(200, 24);
+            this.cbSupplierCategory.TabIndex = 36;
+            this.cbSupplierCategory.SelectedIndexChanged += new System.EventHandler(this.cbSupplierCategory_SelectedIndexChanged);
             // 
             // ctrSupplierInfo
             // 
@@ -233,10 +286,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ctrSupplierInfo);
-            this.Controls.Add(this.lblSearchHintText);
+            this.ClientSize = new System.Drawing.Size(900, 450);
+            this.Controls.Add(this.cbSupplierCategory);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.lblSearchHintText);
+            this.Controls.Add(this.ctrSupplierInfo);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.dgvSuppliersList);
@@ -249,15 +304,16 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers List";
-            this.Activated += new System.EventHandler(this.frmSuppliersList_Activated);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSuppliersList_FormClosed);
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
+            this.Shown += new System.EventHandler(this.frmSuppliersList_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,7 +324,6 @@
         private System.Windows.Forms.DataGridView dgvSuppliersList;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.Label lblSearchHintText;
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
@@ -277,5 +332,10 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Label lblTotalSuppliersCount;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.ComboBox cbSupplierCategory;
     }
 }

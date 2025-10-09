@@ -19,19 +19,28 @@ namespace SIMS.WinForms.Products
         private void ClsProduct_ProductDeleted(object sender, clsProduct.ProductDeletedEventArgs e)
         {
             txtSearch.Text = string.Empty;
-            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(dgvProductsList, clsProduct.GetAllProducts()).ToString();
+            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(
+                dgvProductsList,
+                clsProduct.GetAllProducts()
+                ).ToString();
         }
 
         private void ClsProduct_ProductSaved(object sender, clsProduct.ProductSavedEventArgs e)
         {
             txtSearch.Text = string.Empty;
-            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(dgvProductsList, clsProduct.GetAllProducts()).ToString();
+            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(
+                dgvProductsList,
+                clsProduct.GetAllProducts()
+                ).ToString();
         }
 
         private void frmProductsList_Load(object sender, EventArgs e)
         {
             lblSearchHintText.Text = "أدخل إسم المنتج أو الباركود الخاص بالمنتج";
-            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(dgvProductsList, clsProduct.GetAllProducts()).ToString();
+            lblTotalInventoryItems.Text = clsFormHelper.RefreshDataGridView(
+                dgvProductsList,
+                clsProduct.GetAllProducts()
+                ).ToString();
             _ResetDGV();
             cbCategory.SelectedIndex = 0;
             cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
@@ -84,12 +93,26 @@ namespace SIMS.WinForms.Products
             }
         }
 
-        private void cbCatigory_Leave(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (cbCategory.SelectedIndex == -1)
+            lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+
+            DataView producsList = (dgvProductsList.DataSource as DataTable).DefaultView;
+
+            try
             {
-                cbCategory.SelectedIndex = 0;
+                if (cbCategory.SelectedIndex == 0)
+                {
+                    producsList.RowFilter = $"ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%'";
+                }
+                else
+                {
+                    producsList.RowFilter = $"(ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
+                }
             }
+            catch (Exception) { } // في حال رمي إستثناء بسبب إدخال رموز غير صالحة فلا حاجة لعرض رسالة خطأ أو إيقاف تجربة المستخدم
+
+            lblTotalInventoryItems.Text = producsList.Count.ToString();
         }
 
         private void cbCatigory_SelectedIndexChanged(object sender, EventArgs e)
@@ -113,31 +136,17 @@ namespace SIMS.WinForms.Products
             lblTotalInventoryItems.Text = producsList.Count.ToString();
         }
 
+        private void cbCatigory_Leave(object sender, EventArgs e)
+        {
+            if (cbCategory.SelectedIndex == -1)
+            {
+                cbCategory.SelectedIndex = 0;
+            }
+        }
+
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
         {
             txtSearch.Focus();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
-
-            DataView producsList = (dgvProductsList.DataSource as DataTable).DefaultView;
-
-            try
-            {
-                if (cbCategory.SelectedIndex == 0)
-                {
-                    producsList.RowFilter = $"ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%'";
-                }
-                else
-                {
-                    producsList.RowFilter = $"(ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
-                }
-            }
-            catch (Exception) { } // في حال رمي إستثناء بسبب إدخال رموز غير صالحة فلا حاجة لعرض رسالة خطأ أو إيقاف تجربة المستخدم
-
-            lblTotalInventoryItems.Text = producsList.Count.ToString();
         }
 
         private void addProducrToolStripButton_Click(object sender, EventArgs e)
@@ -202,11 +211,6 @@ namespace SIMS.WinForms.Products
             }
         }
 
-        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            clsFormHelper.PreventContextMenuOnEmptyClick(dgvProductsList, e);
-        }
-
         private void FormControls_MouseDown(object sender, MouseEventArgs e)
         {
             dgvProductsList.ClearSelection();
@@ -215,6 +219,11 @@ namespace SIMS.WinForms.Products
             {
                 ctrProductInfo.Visible = false;
             }
+        }
+
+        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvProductsList, e);
         }
 
         private void _ShowSelectedProductInfo()

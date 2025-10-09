@@ -191,13 +191,13 @@ namespace BusinessLogic.Suppliers
                 this.UpdatedByUserInfo = clsAppSettings.CurrentUser;
             }
 
+            _HandlePersonImageSaving();
+
             return _ExecuteSaving(this.MappingToDTO(), this._Mode, result);
         }
 
         private clsValidationResult _ExecuteSaving(clsSupplierDTO supplierDTO, enMode mode, clsValidationResult validationResult)
         {
-            _HandlePersonImageSaving();
-
             bool isSaved = mode is enMode.Add ?
                 clsSupplierData.AddSupplier(supplierDTO) :
                 clsSupplierData.UpdateSupplier(supplierDTO);
