@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\EntityDeletedEventArgs.cs" />
+    <Compile Include="Interfaces\EntitySavedEventArgs.cs" />
+    <Compile Include="Interfaces\IEntityListManager.cs" />
     <Compile Include="Parties\clsPartyFactory.cs" />
+    <Compile Include="Products\clsProductService.cs" />
     <Compile Include="Products\clsUnit.cs" />
     <Compile Include="Products\clsCategory.cs" />
     <Compile Include="Products\clsProduct.cs" />

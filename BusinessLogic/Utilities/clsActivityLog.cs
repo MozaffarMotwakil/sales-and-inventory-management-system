@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BusinessLogic.Interfaces;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
 using DataAccess.Utilities;
@@ -22,12 +22,13 @@ namespace BusinessLogic.Utilities
             Logout
         }
 
+
         static clsActivityLog()
         {
             clsSupplier.SupplierSaved += LogSupplierSaveAction;
             clsSupplier.SupplierDeleted += LogSupplierDeleteAction;
-            clsProduct.ProductSaved += LogProductSaveAction;
-            clsProduct.ProductDeleted += LogProductDeleteAction; 
+            new clsProductService().EntitySaved += LogProductSaveAction;
+            new clsProductService().EntityDeleted += LogProductDeleteAction;
         }
 
         public static void Initialize() { }
@@ -60,28 +61,28 @@ namespace BusinessLogic.Utilities
             );
         }
 
-        private static void LogProductSaveAction(object sender, clsProduct.ProductSavedEventArgs e)
+        private static void LogProductSaveAction(object sender, EntitySavedEventArgs e)
         {
             string details = e.OperationMode is enMode.Add ?
-                $"تم إضافة منتج جديد: [{e.ProductName}], معرف المنتج: [{e.ProductID}]." :
-                $"تم تعديل بيانات المنتج: [{e.ProductName}], معرف المنتج: [{e.ProductID}].";
+                $"تم إضافة منتج جديد: [{e.EntityName}], معرف المنتج: [{e.EntityID}]." :
+                $"تم تعديل بيانات المنتج: [{e.EntityName}], معرف المنتج: [{e.EntityID}].";
 
             Log(
                 e.UserID,
-                e.ProductID,
+                e.EntityID,
                 (int)enEntityTypes.Product,
                 (int)e.OperationMode,
                 details
             );
         }
 
-        private static void LogProductDeleteAction(object sender, clsProduct.ProductDeletedEventArgs e)
+        private static void LogProductDeleteAction(object sender, EntityDeletedEventArgs e)
         {
-            string details = $"تم حذف المنتج: [{e.ProductName}], معرف المنتج: [{e.ProductID}].";
+            string details = $"تم حذف المنتج: [{e.EntityName}], معرف المنتج: [{e.EntityID}].";
 
             Log(
                 e.UserID,
-                e.ProductID,
+                e.EntityID,
                 (int)enEntityTypes.Product,
                 (int)enActivityTypes.Delete,
                 details
