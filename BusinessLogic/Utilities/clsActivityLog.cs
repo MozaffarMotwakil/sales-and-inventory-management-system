@@ -25,36 +25,36 @@ namespace BusinessLogic.Utilities
 
         static clsActivityLog()
         {
-            clsSupplier.SupplierSaved += LogSupplierSaveAction;
-            clsSupplier.SupplierDeleted += LogSupplierDeleteAction;
+            new clsSupplierService().EntitySaved += LogSupplierSaveAction;
+            new clsSupplierService().EntityDeleted += LogSupplierDeleteAction;
             new clsProductService().EntitySaved += LogProductSaveAction;
             new clsProductService().EntityDeleted += LogProductDeleteAction;
         }
 
         public static void Initialize() { }
 
-        private static void LogSupplierSaveAction(object sender, clsSupplier.SupplierSavedEventArgs e)
+        private static void LogSupplierSaveAction(object sender, EntitySavedEventArgs e)
         {
             string details = e.OperationMode is enMode.Add ?
-                $"تم إضافة مورد جديد: [{e.SavedSupplier.PartyInfo.PartyName}], معرف المورد: [{e.SavedSupplier.SupplierID}]." :
-                $"تم تعديل بيانات المورد: [{e.SavedSupplier.PartyInfo.PartyName}], معرف المورد: [{e.SavedSupplier.SupplierID}].";
+                $"تم إضافة مورد جديد: [{e.EntityName}], معرف المورد: [{e.EntityID}]." :
+                $"تم تعديل بيانات المورد: [{e.EntityName}], معرف المورد: [{e.EntityID}].";
 
             Log(
                 e.UserID,
-                e.SavedSupplier.SupplierID,
+                e.EntityID,
                 (int)enEntityTypes.Supplier,
                 (int)e.OperationMode,
                 details
             );
         }
 
-        private static void LogSupplierDeleteAction(object sender, clsSupplier.SupplierDeletedEventArgs e)
+        private static void LogSupplierDeleteAction(object sender, EntityDeletedEventArgs e)
         {
-            string details = $"تم حذف مورد: [{e.SupplierName}], معرف المورد: [{e.SupplierID}].";
+            string details = $"تم حذف مورد: [{e.EntityName}], معرف المورد: [{e.EntityID}].";
 
             Log(
                 e.UserID,
-                e.SupplierID,
+                e.EntityID,
                 (int)enEntityTypes.Supplier,
                 (int)enActivityTypes.Delete,
                 details
