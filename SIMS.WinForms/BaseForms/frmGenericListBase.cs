@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
+using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms.BaseForms
 {
@@ -37,7 +39,7 @@ namespace SIMS.WinForms.BaseForms
 
             if (e.OperationMode == BusinessLogic.enMode.Update && EntityInfoControl.Visible)
             {
-                HandleEntityInfoDisplay(e.EntityID);
+                HandleEntityInfoDisplay(Manager.Find(e.EntityID));
             }
             else
             {
@@ -57,6 +59,7 @@ namespace SIMS.WinForms.BaseForms
         {
             LoadData();
             ResetColumnsOfDGV();
+            SetOnlyFirstColumnSortable();
         }
 
         private void frmGenericListBase_Shown(object sender, EventArgs e)
@@ -76,19 +79,28 @@ namespace SIMS.WinForms.BaseForms
         protected virtual void SearchTextChanged(object sender, EventArgs e)
         {
             lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
 
-            DataView entitiesList = (dgvEntitiesList.DataSource as DataTable).DefaultView;
+        private void searchTimer_Tick(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            ApplySearchFilter();
+        }
 
+        protected virtual void ApplySearchFilter()
+        {
             try
             {
+                DataView entitiesList = (dgvEntitiesList.DataSource as DataTable).DefaultView;
                 entitiesList.RowFilter = Filter;
+                lblTotalRecords.Text = entitiesList.Count.ToString();
             }
-            catch (Exception) 
+            catch
             {
                 // في حال رمي إستثناء بسبب إدخال رموز غير صالحة فلا حاجة لعرض رسالة خطأ أو إيقاف تجربة المستخدم
-            } 
-                
-            lblTotalRecords.Text = entitiesList.Count.ToString();
+            }
         }
 
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
@@ -192,10 +204,19 @@ namespace SIMS.WinForms.BaseForms
 
         private void ShowSelectedEntityInfo()
         {
-            HandleEntityInfoDisplay(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+            TEntity entity = Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (entity == null)
+            {
+                clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
+                return;
+            }
+
+            HandleEntityInfoDisplay(entity);
+            EntityInfoControl.Visible = true;
         }
 
-        protected virtual void HandleEntityInfoDisplay(int entityID) { }
+        protected virtual void HandleEntityInfoDisplay(TEntity entity) { }
 
         protected virtual void DeleteSelectedEntity()
         {
@@ -212,11 +233,22 @@ namespace SIMS.WinForms.BaseForms
             }
         }
 
+        protected void SetOnlyFirstColumnSortable()
+        {
+            foreach (DataGridViewColumn column in dgvEntitiesList.Columns)
+            {
+                if (column.Index != 0)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+            }
+        }
+
         private void frmGenericListBase_FormClosed(object sender, FormClosedEventArgs e)
         {
             Manager.EntitySaved -= EntitySavedEvent;
             Manager.EntityDeleted -= EntityDeletedEvent;
         }
-
+        
     }
 }

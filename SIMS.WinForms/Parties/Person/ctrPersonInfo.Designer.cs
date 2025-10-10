@@ -125,7 +125,7 @@
             this.pbPersonImage.Location = new System.Drawing.Point(4, 3);
             this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pbPersonImage.Name = "pbPersonImage";
-            this.pbPersonImage.Size = new System.Drawing.Size(125, 125);
+            this.pbPersonImage.Size = new System.Drawing.Size(150, 234);
             this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPersonImage.TabIndex = 52;
             this.pbPersonImage.TabStop = false;

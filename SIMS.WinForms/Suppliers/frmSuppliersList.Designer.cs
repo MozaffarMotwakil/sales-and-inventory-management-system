@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dataGridViewTextBoxColumn36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,18 +71,17 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbSupplierCategory = new System.Windows.Forms.ComboBox();
-            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAddSupplier = new System.Windows.Forms.ToolStripDropDownButton();
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTotalRecordsText
             // 
-            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 437);
             this.lblTotalRecordsText.Size = new System.Drawing.Size(141, 16);
             this.lblTotalRecordsText.Text = "إجمالي عدد الموردين:";
             // 
@@ -84,6 +90,61 @@
             this.lblTotalRecords.Location = new System.Drawing.Point(158, 437);
             this.lblTotalRecords.Size = new System.Drawing.Size(157, 16);
             this.lblTotalRecords.Text = "16";
+            // 
+            // dataGridViewTextBoxColumn36
+            // 
+            this.dataGridViewTextBoxColumn36.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn36.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn36.Name = "dataGridViewTextBoxColumn36";
+            this.dataGridViewTextBoxColumn36.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn37
+            // 
+            this.dataGridViewTextBoxColumn37.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn37.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
+            this.dataGridViewTextBoxColumn37.ReadOnly = true;
+            this.dataGridViewTextBoxColumn37.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn38
+            // 
+            this.dataGridViewTextBoxColumn38.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn38.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
+            this.dataGridViewTextBoxColumn38.ReadOnly = true;
+            this.dataGridViewTextBoxColumn38.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn39
+            // 
+            this.dataGridViewTextBoxColumn39.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn39.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
+            this.dataGridViewTextBoxColumn39.ReadOnly = true;
+            this.dataGridViewTextBoxColumn39.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn40
+            // 
+            this.dataGridViewTextBoxColumn40.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn40.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
+            this.dataGridViewTextBoxColumn40.ReadOnly = true;
+            this.dataGridViewTextBoxColumn40.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn41
+            // 
+            this.dataGridViewTextBoxColumn41.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn41.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
+            this.dataGridViewTextBoxColumn41.ReadOnly = true;
+            this.dataGridViewTextBoxColumn41.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dataGridViewTextBoxColumn42
+            // 
+            this.dataGridViewTextBoxColumn42.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn42.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
+            this.dataGridViewTextBoxColumn42.ReadOnly = true;
+            this.dataGridViewTextBoxColumn42.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // dataGridViewTextBoxColumn29
             // 
@@ -346,16 +407,6 @@
             this.cbSupplierCategory.TabIndex = 46;
             this.cbSupplierCategory.SelectedIndexChanged += new System.EventHandler(this.cbSupplierCategory_SelectedIndexChanged);
             // 
-            // ctrSupplierInfo
-            // 
-            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 42);
-            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
-            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
-            this.ctrSupplierInfo.Supplier = null;
-            this.ctrSupplierInfo.TabIndex = 45;
-            this.ctrSupplierInfo.Visible = false;
-            // 
             // toolStrip
             // 
             this.toolStrip.AutoSize = false;
@@ -400,6 +451,16 @@
             this.organizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
+            // 
+            // ctrSupplierInfo
+            // 
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 42);
+            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
+            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
+            this.ctrSupplierInfo.Supplier = null;
+            this.ctrSupplierInfo.TabIndex = 45;
+            this.ctrSupplierInfo.Visible = false;
             // 
             // frmSuppliersList
             // 
@@ -473,5 +534,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn39;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
     }
 }

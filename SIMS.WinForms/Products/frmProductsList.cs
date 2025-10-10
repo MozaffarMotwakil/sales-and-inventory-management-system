@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using BusinessLogic.Products;
-using DVLD.WinForms.Utils;
 using SIMS.WinForms.BaseForms;
 
 namespace SIMS.WinForms.Products
@@ -54,21 +53,13 @@ namespace SIMS.WinForms.Products
 
                 base.dgvEntitiesList.Columns[7].HeaderText = "المورد الرئيسي";
                 base.dgvEntitiesList.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-
-                foreach (DataGridViewColumn column in base.dgvEntitiesList.Columns)
-                {
-                    if (column.Index != 0)
-                    {
-                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                    }
-                }
-
             }
         }
 
         protected override void SearchTextChanged(object sender, EventArgs e)
         {
+            base.SearchTextChanged(sender, e);
+
             if (cbCategory.SelectedIndex == 0)
             {
                 Filter = $"ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%'";
@@ -77,24 +68,22 @@ namespace SIMS.WinForms.Products
             {
                 Filter = $"(ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
             }
-
-            base.SearchTextChanged(sender, e);
         }
 
         private void cbCatigory_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
 
-            if (cbCategory.SelectedIndex == 0)
-            {
-                Filter = string.Empty;
-            }
-            else
+            if (cbCategory.SelectedIndex != 0)
             {
                 Filter = $"CategoryName LIKE '%{cbCategory.Text}%'";
             }
+            else
+            {
+                Filter = string.Empty;
+            }
 
-            base.SearchTextChanged(sender, e);
+            base.ApplySearchFilter();
         }
 
         private void cbCatigory_Leave(object sender, EventArgs e)
@@ -116,18 +105,9 @@ namespace SIMS.WinForms.Products
             return new frmAddEditProduct(product);
         }
 
-        protected override void HandleEntityInfoDisplay(int productID)
+        protected override void HandleEntityInfoDisplay(clsProduct product)
         { 
-            clsProduct product = Manager.Find(productID);
-
-            if (product == null)
-            {
-                clsFormMessages.ShowError("لم يتم العثور على المنتج");
-                return;
-            }
-
             ctrProductInfo.Product = product;
-            ctrProductInfo.Visible = true;
         }
 
     }

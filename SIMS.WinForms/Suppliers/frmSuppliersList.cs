@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Parties;
-using DVLD.WinForms.Utils;
 using SIMS.WinForms.BaseForms;
 
 namespace SIMS.WinForms.Suppliers
@@ -51,19 +50,13 @@ namespace SIMS.WinForms.Suppliers
 
                 base.dgvEntitiesList.Columns[6].HeaderText = "الملاحظات";
                 base.dgvEntitiesList.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                foreach (DataGridViewColumn column in base.dgvEntitiesList.Columns)
-                {
-                    if (column.Index != 0)
-                    {
-                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                    }
-                }
             }
         }
 
         protected override void SearchTextChanged(object sender, EventArgs e)
         {
+            base.SearchTextChanged(sender, e);
+
             if (cbSupplierCategory.SelectedIndex == 0)
             {
                 Filter = $"PartyName LIKE '%{txtSearch.Text}%' OR Address LIKE '%{txtSearch.Text}%'";
@@ -73,8 +66,6 @@ namespace SIMS.WinForms.Suppliers
                 string category = cbSupplierCategory.SelectedIndex == 1 ? "شخص" : "منظمة";
                 Filter = $"(PartyName LIKE '%{txtSearch.Text}%' OR Address LIKE '%{txtSearch.Text}%') AND CategoryName = '{category}'";
             }
-
-            base.SearchTextChanged(sender, e);
         }
 
         private void cbSupplierCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,7 +85,7 @@ namespace SIMS.WinForms.Suppliers
                 Filter = string.Empty;
             }
 
-            base.SearchTextChanged(sender, e);
+            base.ApplySearchFilter();
         }
 
         private void personToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,18 +105,9 @@ namespace SIMS.WinForms.Suppliers
             return new frmAddEditSupplier(supplier, supplier.PartyInfo.PartyCategory);
         }
 
-        protected override void HandleEntityInfoDisplay(int supplierID)
+        protected override void HandleEntityInfoDisplay(clsSupplier supplier)
         {
-            clsSupplier supplier = Manager.Find(supplierID);
-
-            if (supplier == null)
-            {
-                clsFormMessages.ShowError("لم يتم العثور على المورد");
-                return;
-            }
-
             ctrSupplierInfo.Supplier = supplier;
-            ctrSupplierInfo.Visible = true;
         }
 
     }
