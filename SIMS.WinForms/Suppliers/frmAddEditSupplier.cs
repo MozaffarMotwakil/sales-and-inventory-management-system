@@ -140,7 +140,7 @@ namespace SIMS.WinForms.Suppliers
                     _Supplier.ChangeInfo(supplierPatyInfo, txtNotes.Text);
                 }
 
-                clsValidationResult validationResult = _Supplier.Save();
+                clsValidationResult validationResult = new clsSupplierService().Save(_Supplier);
 
                 if (validationResult.IsValid)
                 {

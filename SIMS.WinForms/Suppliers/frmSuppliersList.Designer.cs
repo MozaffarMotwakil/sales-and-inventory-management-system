@@ -28,109 +28,333 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgvSuppliersList = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbSupplierCategory = new System.Windows.Forms.ComboBox();
+            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.btnAddSupplier = new System.Windows.Forms.ToolStripDropDownButton();
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblSearchHintText = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.lblTotalSuppliersCount = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.cbSupplierCategory = new System.Windows.Forms.ComboBox();
-            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).BeginInit();
-            this.contextMenuStrip.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.panel5.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgvSuppliersList
+            // lblTotalRecordsText
             // 
-            this.dgvSuppliersList.AllowUserToAddRows = false;
-            this.dgvSuppliersList.AllowUserToDeleteRows = false;
-            this.dgvSuppliersList.AllowUserToOrderColumns = true;
-            this.dgvSuppliersList.AllowUserToResizeRows = false;
-            this.dgvSuppliersList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSuppliersList.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSuppliersList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvSuppliersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSuppliersList.ContextMenuStrip = this.contextMenuStrip;
-            this.dgvSuppliersList.Location = new System.Drawing.Point(13, 319);
-            this.dgvSuppliersList.MultiSelect = false;
-            this.dgvSuppliersList.Name = "dgvSuppliersList";
-            this.dgvSuppliersList.ReadOnly = true;
-            this.dgvSuppliersList.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSuppliersList.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSuppliersList.RowHeadersVisible = false;
-            this.dgvSuppliersList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvSuppliersList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvSuppliersList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSuppliersList.Size = new System.Drawing.Size(875, 119);
-            this.dgvSuppliersList.TabIndex = 2;
-            this.dgvSuppliersList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseClick);
-            this.dgvSuppliersList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliersList_CellMouseDoubleClick);
-            this.dgvSuppliersList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSuppliersList_DataBindingComplete);
-            this.dgvSuppliersList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvSuppliersList_KeyDown);
-            this.dgvSuppliersList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
+            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 437);
+            this.lblTotalRecordsText.Size = new System.Drawing.Size(141, 16);
+            this.lblTotalRecordsText.Text = "إجمالي عدد الموردين:";
             // 
-            // contextMenuStrip
+            // lblTotalRecords
             // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip.Size = new System.Drawing.Size(124, 80);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            this.lblTotalRecords.Location = new System.Drawing.Point(158, 437);
+            this.lblTotalRecords.Size = new System.Drawing.Size(157, 16);
+            this.lblTotalRecords.Text = "16";
             // 
-            // editToolStripMenuItem
+            // dataGridViewTextBoxColumn29
             // 
-            this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
-            this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
-            this.editToolStripMenuItem.Text = "تعديل";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn29.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn29.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.ReadOnly = true;
             // 
-            // deleteToolStripMenuItem
+            // dataGridViewTextBoxColumn30
             // 
-            this.deleteToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.delete;
-            this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
-            this.deleteToolStripMenuItem.Text = "حذف";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn30.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn30.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            this.dataGridViewTextBoxColumn30.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn31
+            // 
+            this.dataGridViewTextBoxColumn31.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn31.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
+            this.dataGridViewTextBoxColumn31.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn32
+            // 
+            this.dataGridViewTextBoxColumn32.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn32.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            this.dataGridViewTextBoxColumn32.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn33
+            // 
+            this.dataGridViewTextBoxColumn33.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn33.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            this.dataGridViewTextBoxColumn33.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            this.dataGridViewTextBoxColumn34.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn34.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            this.dataGridViewTextBoxColumn34.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn35
+            // 
+            this.dataGridViewTextBoxColumn35.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn35.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn35.Name = "dataGridViewTextBoxColumn35";
+            this.dataGridViewTextBoxColumn35.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn22
+            // 
+            this.dataGridViewTextBoxColumn22.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn22.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
+            this.dataGridViewTextBoxColumn22.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn23
+            // 
+            this.dataGridViewTextBoxColumn23.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn23.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
+            this.dataGridViewTextBoxColumn23.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            this.dataGridViewTextBoxColumn24.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn24.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            this.dataGridViewTextBoxColumn25.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn25.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn26.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn27
+            // 
+            this.dataGridViewTextBoxColumn27.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn27.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            this.dataGridViewTextBoxColumn27.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn28
+            // 
+            this.dataGridViewTextBoxColumn28.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn28.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+            this.dataGridViewTextBoxColumn28.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn15.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn16.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn17
+            // 
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn17.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn18
+            // 
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn18.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn19
+            // 
+            this.dataGridViewTextBoxColumn19.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn19.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
+            this.dataGridViewTextBoxColumn19.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn20.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn21
+            // 
+            this.dataGridViewTextBoxColumn21.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn21.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
+            this.dataGridViewTextBoxColumn21.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn10.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn11.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SupplierID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "SupplierID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "PartyName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "PartyName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn3.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "CountryName";
+            this.dataGridViewTextBoxColumn4.HeaderText = "CountryName";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Phone";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Phone";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Address";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Notes";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Notes";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // cbSupplierCategory
+            // 
+            this.cbSupplierCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSupplierCategory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSupplierCategory.FormattingEnabled = true;
+            this.cbSupplierCategory.Items.AddRange(new object[] {
+            "كل الموردين",
+            "الأشخاص فقط",
+            "المنظمات فقط"});
+            this.cbSupplierCategory.Location = new System.Drawing.Point(559, 8);
+            this.cbSupplierCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbSupplierCategory.Name = "cbSupplierCategory";
+            this.cbSupplierCategory.Size = new System.Drawing.Size(200, 24);
+            this.cbSupplierCategory.TabIndex = 46;
+            this.cbSupplierCategory.SelectedIndexChanged += new System.EventHandler(this.cbSupplierCategory_SelectedIndexChanged);
+            // 
+            // ctrSupplierInfo
+            // 
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 42);
+            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
+            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
+            this.ctrSupplierInfo.Supplier = null;
+            this.ctrSupplierInfo.TabIndex = 45;
+            this.ctrSupplierInfo.Visible = false;
             // 
             // toolStrip
             // 
@@ -144,176 +368,63 @@
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(900, 39);
-            this.toolStrip.TabIndex = 2;
+            this.toolStrip.Size = new System.Drawing.Size(900, 40);
+            this.toolStrip.TabIndex = 44;
             this.toolStrip.Text = "toolStrip";
-            this.toolStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // btnAddSupplier
             // 
             this.btnAddSupplier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personToolStripMenuItem,
             this.organizationToolStripMenuItem});
-            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSupplier.Image = global::SIMS.WinForms.Properties.Resources.add;
             this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(120, 36);
-            this.btnAddSupplier.Text = "  إضافة مورد  ";
+            this.btnAddSupplier.Size = new System.Drawing.Size(140, 37);
+            this.btnAddSupplier.Text = "  إضافة مورد جديد";
             this.btnAddSupplier.ToolTipText = "Add a new supplier";
-            this.btnAddSupplier.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
-            this.personToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // organizationToolStripMenuItem
             // 
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
-            this.organizationToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
-            // 
-            // lblSearchHintText
-            // 
-            this.lblSearchHintText.AutoSize = true;
-            this.lblSearchHintText.BackColor = System.Drawing.Color.White;
-            this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSearchHintText.Location = new System.Drawing.Point(797, 11);
-            this.lblSearchHintText.Name = "lblSearchHintText";
-            this.lblSearchHintText.Size = new System.Drawing.Size(47, 16);
-            this.lblSearchHintText.TabIndex = 29;
-            this.lblSearchHintText.Text = "الرسالة";
-            this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
-            this.lblSearchHintText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(793, 6);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSearch.Size = new System.Drawing.Size(95, 26);
-            this.txtSearch.TabIndex = 28;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            this.txtSearch.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(764, 6);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(29, 26);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 34;
-            this.pictureBox.TabStop = false;
-            // 
-            // lblTotalSuppliersCount
-            // 
-            this.lblTotalSuppliersCount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalSuppliersCount.Location = new System.Drawing.Point(4, 32);
-            this.lblTotalSuppliersCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalSuppliersCount.Name = "lblTotalSuppliersCount";
-            this.lblTotalSuppliersCount.Size = new System.Drawing.Size(238, 25);
-            this.lblTotalSuppliersCount.TabIndex = 4;
-            this.lblTotalSuppliersCount.Text = "N/A";
-            this.lblTotalSuppliersCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(4, 5);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(238, 25);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "إجمالي عدد الموردين";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel5
-            // 
-            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.LightGreen;
-            this.panel5.Controls.Add(this.lblTotalSuppliersCount);
-            this.panel5.Controls.Add(this.label13);
-            this.panel5.Location = new System.Drawing.Point(641, 66);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(247, 64);
-            this.panel5.TabIndex = 35;
-            // 
-            // cbSupplierCategory
-            // 
-            this.cbSupplierCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSupplierCategory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSupplierCategory.FormattingEnabled = true;
-            this.cbSupplierCategory.Items.AddRange(new object[] {
-            "كل الموردين",
-            "الأشخاص فقط",
-            "المنظمات فقط"});
-            this.cbSupplierCategory.Location = new System.Drawing.Point(557, 8);
-            this.cbSupplierCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbSupplierCategory.Name = "cbSupplierCategory";
-            this.cbSupplierCategory.Size = new System.Drawing.Size(200, 24);
-            this.cbSupplierCategory.TabIndex = 36;
-            this.cbSupplierCategory.SelectedIndexChanged += new System.EventHandler(this.cbSupplierCategory_SelectedIndexChanged);
-            // 
-            // ctrSupplierInfo
-            // 
-            this.ctrSupplierInfo.Location = new System.Drawing.Point(13, 46);
-            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
-            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
-            this.ctrSupplierInfo.Supplier = null;
-            this.ctrSupplierInfo.TabIndex = 31;
-            this.ctrSupplierInfo.Visible = false;
-            this.ctrSupplierInfo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
             // 
             // frmSuppliersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 450);
+            this.ClientSize = new System.Drawing.Size(900, 460);
             this.Controls.Add(this.cbSupplierCategory);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.lblSearchHintText);
             this.Controls.Add(this.ctrSupplierInfo);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.toolStrip);
-            this.Controls.Add(this.dgvSuppliersList);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmSuppliersList";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers List";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSuppliersList_FormClosed);
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
-            this.Shown += new System.EventHandler(this.frmSuppliersList_Shown);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormControls_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliersList)).EndInit();
-            this.contextMenuStrip.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.toolStrip, 0);
+            this.Controls.SetChildIndex(this.txtSearch, 0);
+            this.Controls.SetChildIndex(this.pictureBox, 0);
+            this.Controls.SetChildIndex(this.lblSearchHintText, 0);
+            this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
+            this.Controls.SetChildIndex(this.lblTotalRecords, 0);
+            this.Controls.SetChildIndex(this.ctrSupplierInfo, 0);
+            this.Controls.SetChildIndex(this.cbSupplierCategory, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,21 +432,46 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvSuppliersList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.ComboBox cbSupplierCategory;
+        private ctrSupplierInfo ctrSupplierInfo;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.Label lblSearchHintText;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
-        private ctrSupplierInfo ctrSupplierInfo;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.Label lblTotalSuppliersCount;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.ComboBox cbSupplierCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
     }
 }
