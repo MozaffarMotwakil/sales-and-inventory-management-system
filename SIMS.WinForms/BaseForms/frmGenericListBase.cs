@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Interfaces;
@@ -10,7 +11,7 @@ namespace SIMS.WinForms.BaseForms
     public partial class frmGenericListBase<TManager, TEntity> : Form
         where TManager : IEntityListManager<TEntity>, new()
     {
-        protected TManager Manager { get; private set; }
+        protected readonly TManager Manager;
         protected Control EntityInfoControl { get; set; }
         protected string EntityName { get; set; }
         protected string Filter { get; set; }
@@ -24,8 +25,8 @@ namespace SIMS.WinForms.BaseForms
         {
             InitializeComponent();
             Manager = new TManager();
-            Manager.EntitySaved += EntitySavedEvent; ;
-            Manager.EntityDeleted += EntityDeletedEvent; ;
+            Manager.EntitySaved += EntitySavedEvent;
+            Manager.EntityDeleted += EntityDeletedEvent;
         }
 
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)

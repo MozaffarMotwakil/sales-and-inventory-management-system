@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Validation;
@@ -11,6 +12,7 @@ namespace SIMS.WinForms.Products
     public partial class frmAddEditProduct : Form
     {
         private clsProduct _Product;
+        private clsSupplierService _SupplierService;
         private frmProductUnitConversions _UnitConversionsForm;
         private bool _IsAddedSupplier;
         private int _AddedSupplierID;
@@ -20,6 +22,7 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = null;
+            _SupplierService = new clsSupplierService();
             _UnitConversionsForm = new frmProductUnitConversions(this);
             _FormMode = enMode.Add;
         }
@@ -28,6 +31,7 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = product;
+            _SupplierService = new clsSupplierService();
             _UnitConversionsForm = new frmProductUnitConversions(this, product.UnitConversions);
             _FormMode = enMode.Edit;
         }
@@ -40,7 +44,7 @@ namespace SIMS.WinForms.Products
 
             cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
             cbBaseUnit.Items.AddRange(clsUnit.GetUnitNames());
-            cbMainSupplier.Items.AddRange(clsSupplier.GetAllSupplierNames());
+            cbMainSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
 
             if (_FormMode is enMode.Edit)
             {
@@ -55,7 +59,7 @@ namespace SIMS.WinForms.Products
                 ctrProductImage.ImageLocation = _Product.ImagePath;
             }
 
-            clsSupplier.SupplierSaved += ClsSupplier_SupplierSaved;
+            _SupplierService.EntitySaved += ClsSupplier_SupplierSaved;
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
@@ -139,14 +143,14 @@ namespace SIMS.WinForms.Products
             llAddOrganizationSupplier.Focus();
         }
 
-        private void ClsSupplier_SupplierSaved(object sender, clsSupplier.SupplierSavedEventArgs e)
+        private void ClsSupplier_SupplierSaved(object sender, EntitySavedEventArgs e)
         {
-            cbMainSupplier.Items.AddRange(clsSupplier.GetAllSupplierNames());
-            cbMainSupplier.SelectedItem = e.SavedSupplier.PartyInfo.PartyName;
+            cbMainSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
+            cbMainSupplier.SelectedItem = e.EntityName;
 
             // It use later for delete the added supplier if the user cancle the add/edit operation
             _IsAddedSupplier = true;
-            _AddedSupplierID = e.SavedSupplier.SupplierID ?? -1;
+            _AddedSupplierID = e.EntityID;
         }
 
         private void llAddOtherUnits_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -218,7 +222,7 @@ namespace SIMS.WinForms.Products
             {
                 if (clsFormMessages.Confirm("لقد قمت بإضافة مورد جديد, هل تريد حذفه ؟", messageBoxIcon: MessageBoxIcon.Warning))
                 {
-                    if (!clsSupplier.Delete(_AddedSupplierID))
+                    if (!_SupplierService.Delete(_AddedSupplierID))
                     {
                         clsFormMessages.ShowError("لقد فشلت عملية حذف المورد الجديد الذي تم إضافته, رجاءا قم بحذفه يدويا إذا لم تكن بحاجة إليه");
                     }

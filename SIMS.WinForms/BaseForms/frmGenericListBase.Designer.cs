@@ -89,15 +89,14 @@
             // lblTotalRecords
             // 
             this.lblTotalRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblTotalRecords.AutoSize = true;
             this.lblTotalRecords.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalRecords.Location = new System.Drawing.Point(160, 435);
+            this.lblTotalRecords.Location = new System.Drawing.Point(160, 437);
             this.lblTotalRecords.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalRecords.Name = "lblTotalRecords";
-            this.lblTotalRecords.Size = new System.Drawing.Size(28, 16);
+            this.lblTotalRecords.Size = new System.Drawing.Size(181, 16);
             this.lblTotalRecords.TabIndex = 43;
             this.lblTotalRecords.Text = "N/A";
-            this.lblTotalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTotalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblTotalRecords.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
             // 
             // lblTotalRecordsText
@@ -105,7 +104,7 @@
             this.lblTotalRecordsText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalRecordsText.AutoSize = true;
             this.lblTotalRecordsText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 435);
+            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 437);
             this.lblTotalRecordsText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalRecordsText.Name = "lblTotalRecordsText";
             this.lblTotalRecordsText.Size = new System.Drawing.Size(143, 16);
@@ -176,7 +175,7 @@
             this.deleteToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip.Size = new System.Drawing.Size(197, 102);
+            this.contextMenuStrip.Size = new System.Drawing.Size(124, 80);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // editToolStripMenuItem
@@ -185,7 +184,7 @@
             this.editToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
             this.editToolStripMenuItem.Text = "تعديل";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -195,7 +194,7 @@
             this.deleteToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
             this.deleteToolStripMenuItem.Text = "حذف";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 

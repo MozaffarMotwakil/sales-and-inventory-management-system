@@ -36,7 +36,7 @@ namespace BusinessLogic.Products
             CategoryInfo = clsCategory.Find(categoryID);
             MainUnitInfo = clsUnit.Find(mainUnitID);
             UnitConversions = unitConversions;
-            MainSupplierInfo = clsSupplier.Find(mainSupplierName);
+            MainSupplierInfo = new clsSupplierService().Find(mainSupplierName);
             SellingPrice = sellingPrice;
             Description = description;
             CurrentImagePath = null;
@@ -53,7 +53,7 @@ namespace BusinessLogic.Products
             CategoryInfo = clsCategory.Find(productDTO.CategoryID);
             MainUnitInfo = clsUnit.Find(productDTO.MainUnitID);
             UnitConversions = clsProductUnitConversion.ConvertAlternativeUnitsTableToList(productDTO.UnitConversions);
-            MainSupplierInfo = clsSupplier.Find(productDTO.MainSupplierID ?? -1);
+            MainSupplierInfo = new clsSupplierService().Find(productDTO.MainSupplierID ?? -1);
             SellingPrice = productDTO.SellingPrice;
             Description = productDTO.Description;
             CurrentImagePath = productDTO.ImagePath;
@@ -84,7 +84,7 @@ namespace BusinessLogic.Products
                 return;
             }
 
-            clsSupplier newSupplier = clsSupplier.Find(newSupplierName);
+            clsSupplier newSupplier = new clsSupplierService().Find(newSupplierName);
 
             if (newSupplier != null)
             {

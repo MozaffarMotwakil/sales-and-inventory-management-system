@@ -28,6 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dataGridViewTextBoxColumn73 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn74 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn75 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn76 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn77 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn78 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn79 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn80 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn65 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn66 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn67 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,16 +118,73 @@
             // 
             // lblTotalRecordsText
             // 
+            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 437);
             this.lblTotalRecordsText.Size = new System.Drawing.Size(142, 16);
             this.lblTotalRecordsText.Text = "إجمالي عدد المنتجات:";
             // 
             // lblTotalRecords
             // 
             this.lblTotalRecords.AutoSize = false;
-            this.lblTotalRecords.Location = new System.Drawing.Point(159, 435);
+            this.lblTotalRecords.Location = new System.Drawing.Point(159, 437);
             this.lblTotalRecords.Size = new System.Drawing.Size(154, 16);
             this.lblTotalRecords.Text = "4";
             this.lblTotalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dataGridViewTextBoxColumn73
+            // 
+            this.dataGridViewTextBoxColumn73.DataPropertyName = "ProductID";
+            this.dataGridViewTextBoxColumn73.HeaderText = "ProductID";
+            this.dataGridViewTextBoxColumn73.Name = "dataGridViewTextBoxColumn73";
+            this.dataGridViewTextBoxColumn73.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn74
+            // 
+            this.dataGridViewTextBoxColumn74.DataPropertyName = "ProductName";
+            this.dataGridViewTextBoxColumn74.HeaderText = "ProductName";
+            this.dataGridViewTextBoxColumn74.Name = "dataGridViewTextBoxColumn74";
+            this.dataGridViewTextBoxColumn74.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn75
+            // 
+            this.dataGridViewTextBoxColumn75.DataPropertyName = "Barcode";
+            this.dataGridViewTextBoxColumn75.HeaderText = "Barcode";
+            this.dataGridViewTextBoxColumn75.Name = "dataGridViewTextBoxColumn75";
+            this.dataGridViewTextBoxColumn75.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn76
+            // 
+            this.dataGridViewTextBoxColumn76.DataPropertyName = "CategoryName";
+            this.dataGridViewTextBoxColumn76.HeaderText = "CategoryName";
+            this.dataGridViewTextBoxColumn76.Name = "dataGridViewTextBoxColumn76";
+            this.dataGridViewTextBoxColumn76.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn77
+            // 
+            this.dataGridViewTextBoxColumn77.DataPropertyName = "MainUnitName";
+            this.dataGridViewTextBoxColumn77.HeaderText = "MainUnitName";
+            this.dataGridViewTextBoxColumn77.Name = "dataGridViewTextBoxColumn77";
+            this.dataGridViewTextBoxColumn77.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn78
+            // 
+            this.dataGridViewTextBoxColumn78.DataPropertyName = "AlternativeUnitsCount";
+            this.dataGridViewTextBoxColumn78.HeaderText = "AlternativeUnitsCount";
+            this.dataGridViewTextBoxColumn78.Name = "dataGridViewTextBoxColumn78";
+            this.dataGridViewTextBoxColumn78.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn79
+            // 
+            this.dataGridViewTextBoxColumn79.DataPropertyName = "SellingPrice";
+            this.dataGridViewTextBoxColumn79.HeaderText = "SellingPrice";
+            this.dataGridViewTextBoxColumn79.Name = "dataGridViewTextBoxColumn79";
+            this.dataGridViewTextBoxColumn79.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn80
+            // 
+            this.dataGridViewTextBoxColumn80.DataPropertyName = "MainSupplierName";
+            this.dataGridViewTextBoxColumn80.HeaderText = "MainSupplierName";
+            this.dataGridViewTextBoxColumn80.Name = "dataGridViewTextBoxColumn80";
+            this.dataGridViewTextBoxColumn80.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn65
             // 
@@ -661,8 +726,8 @@
             this.addProducrToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.addProducrToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.addProducrToolStripButton.Name = "addProducrToolStripButton";
-            this.addProducrToolStripButton.Size = new System.Drawing.Size(124, 37);
-            this.addProducrToolStripButton.Text = "إضافة منتج جديد";
+            this.addProducrToolStripButton.Size = new System.Drawing.Size(133, 37);
+            this.addProducrToolStripButton.Text = "   إضافة منتج جديد";
             this.addProducrToolStripButton.Click += new System.EventHandler(this.addProducrToolStripButton_Click);
             // 
             // ctrProductInfo
@@ -785,5 +850,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn70;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn71;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn72;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn73;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn74;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn75;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn76;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn77;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn78;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn79;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn80;
     }
 }
