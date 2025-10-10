@@ -110,7 +110,7 @@ namespace SIMS.WinForms.Products
         {
             if (string.IsNullOrWhiteSpace(txtProductBarcode.Text))
             {
-                txtProductBarcode.Text = clsProduct.GenerateBarcode();
+                txtProductBarcode.Text = clsProductService.GenerateBarcode();
 
                 if (!string.IsNullOrEmpty(errorProvider.GetError(txtProductBarcode)))
                 {
@@ -264,7 +264,7 @@ namespace SIMS.WinForms.Products
                     _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
 
-                clsValidationResult validationResult = _Product.Save();
+                clsValidationResult validationResult = new clsProductService().Save(_Product);
 
                 if (validationResult.IsValid)
                 {

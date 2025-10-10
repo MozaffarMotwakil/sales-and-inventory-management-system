@@ -53,6 +53,12 @@
     <Compile Include="ActivityLog\frmActivityLog.Designer.cs">
       <DependentUpon>frmActivityLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseForms\frmGenericListBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForms\frmGenericListBase.Designer.cs">
+      <DependentUpon>frmGenericListBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\frmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +291,9 @@
     </Compile>
     <EmbeddedResource Include="ActivityLog\frmActivityLog.resx">
       <DependentUpon>frmActivityLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForms\frmGenericListBase.resx">
+      <DependentUpon>frmGenericListBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
