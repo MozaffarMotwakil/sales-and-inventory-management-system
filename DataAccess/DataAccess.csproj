@@ -69,6 +69,7 @@
     <Compile Include="Parties\clsCountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\clsActivityLogData.cs" />
+    <Compile Include="Warehouses\clsWarehouseData.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DTOs\DTOs.csproj">

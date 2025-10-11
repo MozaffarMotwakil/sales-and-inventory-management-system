@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Warehouses\clsWarehouseService.cs" />
+    <Compile Include="Warehouses\clsWarehouse.cs" />
     <Compile Include="Interfaces\EntityDeletedEventArgs.cs" />
     <Compile Include="Interfaces\EntitySavedEventArgs.cs" />
     <Compile Include="Interfaces\IEntityListManager.cs" />
@@ -91,5 +93,6 @@
       <Name>DTOs</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
