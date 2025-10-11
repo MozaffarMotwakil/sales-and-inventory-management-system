@@ -51,29 +51,6 @@ namespace DataAccess
             }
         }
 
-        public static bool DeleteRecord(string storedProcedureName, string parameterName, int recordID, string exceptionMessage)
-        {
-            using (SqlConnection connection = new SqlConnection(ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue(parameterName, recordID);
-
-                    try
-                    {
-                        connection.Open();
-
-                        return command.ExecuteNonQuery() > 0;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new ApplicationException(exceptionMessage, ex);
-                    }
-                }
-            }
-        }
-
         public static object GetSingleValue<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
@@ -101,34 +78,33 @@ namespace DataAccess
             }
         }
 
-        public static bool IsExists<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
+        public static bool ExecuteSimpleSP<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
         {
-            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                SqlCommand command = new SqlCommand(storedProcedureName, connection)
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
                 {
-                    CommandType = CommandType.StoredProcedure
-                };
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(parameterName, parameterValue);
 
-                command.Parameters.AddWithValue(parameterName, parameterValue);
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
 
-                SqlParameter returnValueParam = new SqlParameter
-                {
-                    Direction = ParameterDirection.ReturnValue
-                };
+                    command.Parameters.Add(returnValueParam);
 
-                command.Parameters.Add(returnValueParam);
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
 
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-
-                    return (int)returnValueParam.Value == 1;
-                }
-                catch (Exception ex)
-                {
-                    throw new ApplicationException(exceptionMessage, ex);
+                        return (int)returnValueParam.Value == 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ApplicationException(exceptionMessage, ex);
+                    }
                 }
             }
         }

@@ -43,12 +43,12 @@ namespace DataAccess.Products
                                 };
 
                                 productDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
-                                    productDTO.UpdatedByUserID = null :
-                                    Convert.ToInt32(reader["UpdatedByUserID"]);
+                                    (int?)null :
+                                    (int)reader["UpdatedByUserID"];
 
                                 productDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
-                                    productDTO.UpdatedAt = null :
-                                    Convert.ToDateTime(reader["UpdatedAt"]);
+                                    (DateTime?)null :
+                                    (DateTime)reader["UpdatedAt"];
 
                                 if (reader.NextResult())
                                 {
@@ -163,7 +163,7 @@ namespace DataAccess.Products
 
         public static bool DeleteProduct(int productID)
         {
-            return clsDataSettings.DeleteRecord(
+            return clsDataSettings.ExecuteSimpleSP(
                 "usp_DeleteProduct", 
                 "@ProductID", 
                 productID, 
@@ -183,7 +183,7 @@ namespace DataAccess.Products
 
         public static bool IsBarcodeExists(string barcode)
         {
-            return clsDataSettings.IsExists(
+            return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsBarcodeExists", 
                 "@Barcode",
                 barcode, 
@@ -193,7 +193,7 @@ namespace DataAccess.Products
 
         public static bool IsProductNameExists(string productName)
         {
-            return clsDataSettings.IsExists(
+            return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsProductNameExists",
                 "@ProductName", 
                 productName,

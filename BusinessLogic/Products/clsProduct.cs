@@ -39,9 +39,7 @@ namespace BusinessLogic.Products
             MainSupplierInfo = new clsSupplierService().Find(mainSupplierName);
             SellingPrice = sellingPrice;
             Description = description;
-            CurrentImagePath = null;
             ImagePath = imagePath;
-            CreatedByUserInfo = clsAppSettings.CurrentUser;
             Mode = enMode.Add; 
         }
 
@@ -60,8 +58,8 @@ namespace BusinessLogic.Products
             ImagePath = productDTO.ImagePath;
             CreatedByUserInfo = clsUser.Find(productDTO.CreatedByUserID);
             CreatedAt = productDTO.CreatedAt;
-            UpdatedByUserInfo = productDTO.UpdatedByUserID is null ? 
-                clsAppSettings.CurrentUser :
+            UpdatedByUserInfo = productDTO.UpdatedByUserID is null ?
+                null :
                 clsUser.Find(productDTO.UpdatedByUserID ?? -1);
             UpdatedAt = productDTO.UpdatedAt;
             Mode = enMode.Update;

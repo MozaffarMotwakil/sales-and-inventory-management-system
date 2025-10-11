@@ -25,7 +25,6 @@ namespace BusinessLogic.Suppliers
             this.PartyInfo = party;
             this.Notes = notes;
             this.IsDeleted = false;
-            this.CreatedByUserInfo = clsAppSettings.CurrentUser;
             this.Mode = enMode.Add;
         }
 
@@ -38,10 +37,10 @@ namespace BusinessLogic.Suppliers
                 );
             Notes = supplierDTO.SupplierNotes;
             IsDeleted = supplierDTO.IsDeleted;
-            CreatedByUserInfo = new clsUser(1);
+            CreatedByUserInfo = clsUser.Find(supplierDTO.UpdatedByUserID ?? -1);
             CreatedAt = supplierDTO.CreatedAt;
             UpdatedByUserInfo = supplierDTO.UpdatedByUserID is null ?
-                clsAppSettings.CurrentUser :
+                null :
                 clsUser.Find(supplierDTO.UpdatedByUserID ?? -1); 
             UpdatedAt = supplierDTO.UpdatedAt;
             this.Mode = enMode.Update;

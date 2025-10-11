@@ -106,6 +106,18 @@ namespace BusinessLogic.Suppliers
 
         private clsValidationResult _ExecuteSaving(clsSupplierDTO supplierDTO, enMode mode, clsValidationResult validationResult)
         {
+            if (mode is enMode.Add)
+            {
+                supplierDTO.CreatedByUserID = clsAppSettings.CurrentUser.UserID;
+            }
+            else
+            {
+                if (supplierDTO.UpdatedByUserID == null)
+                {
+                    supplierDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
+                }
+            }
+
             bool isSaved = mode is enMode.Add ?
                 clsSupplierData.AddSupplier(supplierDTO) :
                 clsSupplierData.UpdateSupplier(supplierDTO);

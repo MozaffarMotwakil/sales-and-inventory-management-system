@@ -146,6 +146,18 @@ namespace BusinessLogic.Products
 
         private clsValidationResult _ExecuteSaving(clsProductDTO productDTO, enMode mode, clsValidationResult validationResult)
         {
+            if (mode is enMode.Add)
+            {
+                productDTO.CreatedByUserID = clsAppSettings.CurrentUser.UserID;
+            }
+            else
+            {
+                if (productDTO.UpdatedByUserID == null)
+                {
+                    productDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
+                }
+            }
+
             bool isSaved = mode is enMode.Add ?
                 clsProductData.AddProduct(productDTO) :
                 clsProductData.UpdateProduct(productDTO);

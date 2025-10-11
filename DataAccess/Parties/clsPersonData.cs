@@ -28,7 +28,7 @@ namespace DataAccess.Parties
 
         public static bool IsNationalNaExists(string nationalNa)
         {
-            return clsDataSettings.IsExists(
+            return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsNationalNaExists",
                 "@NationalNa",
                 nationalNa,

@@ -58,12 +58,12 @@ namespace DataAccess.Suppliers
                                 };
 
                                 supplierDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
-                                    supplierDTO.UpdatedByUserID = null :
-                                    Convert.ToInt32(reader["UpdatedByUserID"]);
+                                    (int?)null :
+                                    (int)reader["UpdatedByUserID"];
 
                                 supplierDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
-                                    supplierDTO.UpdatedAt = null :
-                                    Convert.ToDateTime(reader["UpdatedAt"]);
+                                    (DateTime?)null :
+                                    (DateTime)reader["UpdatedAt"];
                             }
 
                             return supplierDTO;
@@ -208,7 +208,7 @@ namespace DataAccess.Suppliers
 
         public static bool DeleteSupplier(int supplierID)
         {
-            return clsDataSettings.DeleteRecord(
+            return clsDataSettings.ExecuteSimpleSP(
                 "usp_DeleteSupplier", 
                 "@SupplierID",
                 supplierID, 
