@@ -193,16 +193,14 @@ namespace DataAccess.Suppliers
         public static DataTable GetAllSuppliers()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllSuppliers",
-                "Error get all suppliers."
+                "usp_GetAllSuppliers"
                 );
         }
 
         public static DataTable GetAllSupplierNames()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllSupplierNames",
-                "Error get all supplier names."
+                "usp_GetAllSupplierNames"
                 );
         }
 
@@ -211,8 +209,7 @@ namespace DataAccess.Suppliers
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_DeleteSupplier", 
                 "@SupplierID",
-                supplierID, 
-                "Error delete a supplier."
+                supplierID
                 );
         }
 

@@ -127,6 +127,8 @@ namespace DataAccess.Warehouses
                     try
                     {
                         connection.Open();
+                        command.ExecuteNonQuery();
+
                         return (int)returnValueParam.Value == 1;
                     }
                     catch (Exception ex)
@@ -142,16 +144,14 @@ namespace DataAccess.Warehouses
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_Delete",
                 "@WarehouseID",
-                warehouseID,
-                "Error delete a warehouse."
+                warehouseID
                 );
         }
 
         public static DataTable GetAllWarehouses()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Warehouses_GetAll",
-                "Error get all warehouses."
+                "usp_Warehouses_GetAll"
                 );
         }
 
@@ -160,8 +160,7 @@ namespace DataAccess.Warehouses
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_IsWarehouseNameExists",
                 "@WarehouseName",
-                warehouseName,
-                "Error checking warehouse names existence."
+                warehouseName
                 );
         }
 
@@ -170,8 +169,7 @@ namespace DataAccess.Warehouses
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_SetActive",
                 "@WarehouseID",
-                warehouseID,
-                "Error settinng warehouse active."
+                warehouseID
                 );
         }
 
@@ -180,8 +178,7 @@ namespace DataAccess.Warehouses
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_SetInActive",
                 "@WarehouseID",
-                warehouseID,
-                "Error settinng warehouse inactive."
+                warehouseID
                 );
         }
 

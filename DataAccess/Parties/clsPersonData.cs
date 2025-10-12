@@ -31,8 +31,7 @@ namespace DataAccess.Parties
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsNationalNaExists",
                 "@NationalNa",
-                nationalNa,
-                "Error checking NationalNa existence."
+                nationalNa
                 );
         }
 

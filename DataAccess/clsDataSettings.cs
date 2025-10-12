@@ -18,7 +18,7 @@ namespace DataAccess
             return value ?? DBNull.Value;
         }
 
-        public static DataTable GetDataTable(string storedProcedureName, string exceptionMessage)
+        public static DataTable GetDataTable(string storedProcedureName)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -32,26 +32,25 @@ namespace DataAccess
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            DataTable records = null;
+                            DataTable records = new DataTable();
 
                             if (reader.HasRows)
                             {
-                                records = new DataTable();
                                 records.Load(reader);
                             }
 
                             return records;
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new ApplicationException(exceptionMessage, ex);
+                        throw;
                     }
                 }
             }
         }
 
-        public static object GetSingleValue<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
+        public static object GetSingleValue<T>(string storedProcedureName, string parameterName, T parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
@@ -70,15 +69,15 @@ namespace DataAccess
                             return reader[0] == DBNull.Value ? null : reader[0];
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new ApplicationException(exceptionMessage, ex);
+                        throw;
                     }
                 }
             }
         }
 
-        public static bool ExecuteSimpleSP<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
+        public static bool ExecuteSimpleSP<T>(string storedProcedureName, string parameterName, T parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -101,9 +100,9 @@ namespace DataAccess
 
                         return (int)returnValueParam.Value == 1;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new ApplicationException(exceptionMessage, ex);
+                        throw;
                     }
                 }
             }

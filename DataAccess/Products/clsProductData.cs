@@ -156,8 +156,7 @@ namespace DataAccess.Products
         public static DataTable GetAllProducts()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllProducts",
-                "Error get all products."
+                "usp_GetAllProducts"
                 );
         }
 
@@ -166,8 +165,7 @@ namespace DataAccess.Products
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_DeleteProduct", 
                 "@ProductID", 
-                productID, 
-                "Error delete a product."
+                productID
                 );
         }
 
@@ -176,8 +174,7 @@ namespace DataAccess.Products
             return clsDataSettings.GetSingleValue(
                 "usp_GetProductName",
                 "@ProductID",
-                productID, 
-                "Error get product name."
+                productID
                 )?.ToString();
         }
 
@@ -186,8 +183,7 @@ namespace DataAccess.Products
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsBarcodeExists", 
                 "@Barcode",
-                barcode, 
-                "Error checking barcode existence."
+                barcode
                 );
         }
 
@@ -196,8 +192,7 @@ namespace DataAccess.Products
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsProductNameExists",
                 "@ProductName", 
-                productName,
-                "Error checking product name existence."
+                productName
                 );
         }
 
