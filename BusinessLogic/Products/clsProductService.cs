@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
@@ -13,14 +14,28 @@ namespace BusinessLogic.Products
         public event EventHandler<EntitySavedEventArgs> EntitySaved;
         public event EventHandler<EntityDeletedEventArgs> EntityDeleted;
 
+        private static clsProductService _Instance;
+
+        private clsProductService() { }
+
+        public static clsProductService GetInstance()
+        {
+            if (_Instance == null)
+            {
+                _Instance = new clsProductService();
+            }
+
+            return _Instance;
+        }
+
         private void OnProductSaved(int productID, string productName, enMode mode)
         {
-            EntitySaved?.Invoke(null, new EntitySavedEventArgs(productID, productName, mode));
+            EntitySaved?.Invoke(this, new EntitySavedEventArgs(productID, productName, mode));
         }
 
         private void OnProductDeleted(int productID, string productName)
         {
-            EntityDeleted?.Invoke(null, new EntityDeletedEventArgs(productID, productName));
+            EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(productID, productName));
         }
 
         public clsProduct Find(int productID)
@@ -43,11 +58,22 @@ namespace BusinessLogic.Products
 
             clsProduct product = Find(productID);
 
-            if (clsProductData.DeleteProduct(productID))
+            try
             {
-                DeleteImage(product);
-                OnProductDeleted(productID, product.ProductName);
-                return true;
+                if (clsProductData.DeleteProduct(productID))
+                {
+                    DeleteImage(product);
+                    OnProductDeleted(productID, product.ProductName);
+                    return true;
+                }
+            }
+            catch (SqlException ex) when (ex.Number >= 50000)
+            {
+                throw new InvalidOperationException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(clsAppSettings.ErrorToConnectionFormDB, ex);
             }
 
             return false;

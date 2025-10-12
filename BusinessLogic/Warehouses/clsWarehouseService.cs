@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
 using DataAccess.Warehouses;
@@ -12,14 +13,28 @@ namespace BusinessLogic.Warehouses
         public event EventHandler<EntitySavedEventArgs> EntitySaved;
         public event EventHandler<EntityDeletedEventArgs> EntityDeleted;
 
+        private static clsWarehouseService _Instance;
+
+        private clsWarehouseService() { }
+
+        public static clsWarehouseService GetInstance()
+        {
+            if (_Instance == null)
+            {
+                _Instance = new clsWarehouseService();
+            }
+
+            return _Instance;
+        }
+
         private void OnWarehouseSaved(int warehouseID, string warehouseName, enMode mode)
         {
-            EntitySaved?.Invoke(null, new EntitySavedEventArgs(warehouseID, warehouseName, mode));
+            EntitySaved?.Invoke(this, new EntitySavedEventArgs(warehouseID, warehouseName, mode));
         }
 
         private void OnWarehouseDeleted(int warehouseID, string warehouseName)
         {
-            EntityDeleted?.Invoke(null, new EntityDeletedEventArgs(warehouseID, warehouseName));
+            EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(warehouseID, warehouseName));
         }
 
         public clsWarehouse Find(int warehouseID)
@@ -42,18 +57,51 @@ namespace BusinessLogic.Warehouses
 
             clsWarehouse warehouse = Find(warehouseID);
 
-            if (clsWarehouseData.DeleteWarehouse(warehouseID))
+            try
             {
-                OnWarehouseDeleted(warehouseID, warehouse.WarehouseName);
-                return true;
+                if (clsWarehouseData.DeleteWarehouse(warehouseID))
+                {
+                    OnWarehouseDeleted(warehouseID, warehouse.WarehouseName);
+                    return true;
+                }
             }
-
+            catch (SqlException ex) when (ex.Number >= 50000)
+            {
+                throw new InvalidOperationException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(clsAppSettings.ErrorToConnectionFormDB, ex);
+            }
+            
             return false;
         }
 
         public DataTable GetAll()
         {
             return clsWarehouseData.GetAllWarehouses();
+        }
+
+        public bool MarkAsActive(clsWarehouse warehouse)
+        {
+            if (warehouse.Mode != enMode.Update && clsWarehouseData.SetWarehouseActive(warehouse.WarehouseID ?? -1))
+            {
+                OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool MarkAsInActive(clsWarehouse warehouse)
+        {
+            if (warehouse.Mode != enMode.Update && clsWarehouseData.SetWarehouseInActive(warehouse.WarehouseID ?? -1))
+            {
+                OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
+                return true;
+            }
+
+            return false;
         }
 
         public static bool IsWarehouseNameExists(string warehouseName)

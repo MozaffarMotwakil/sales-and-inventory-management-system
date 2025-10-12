@@ -1,14 +1,13 @@
 ﻿using System;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
-using DataAccess.Warehouses;
 using DTOs.Warehouses;
 
 namespace BusinessLogic.Warehouses
 {
     public class clsWarehouse
     {
-        public int? WarehouseID { get; set; }
+        public int? WarehouseID { get; }
         public string WarehouseName { get; set; }
         public string Address { get; set; }
         public bool IsMainWarehouse { get; set; }
@@ -19,13 +18,13 @@ namespace BusinessLogic.Warehouses
         public DateTime? UpdatedAt { get; }
         public enMode Mode { get; }
 
-        public clsWarehouse(string warehouseName, string address, bool isMainWarehouse)
+        public clsWarehouse(string warehouseName, string address, bool isMainWarehouse, bool isActive)
         {
             WarehouseID = null;
             WarehouseName = warehouseName;
             Address = address;
             IsMainWarehouse = isMainWarehouse;
-            IsActive = true;
+            IsActive = isActive;
             Mode = enMode.Add;
         }
 
@@ -43,26 +42,6 @@ namespace BusinessLogic.Warehouses
             Mode = enMode.Update;
         }
 
-        public bool SetActive()
-        {
-            if (Mode == enMode.Add) 
-            {
-                return false;
-            }
-
-            return clsWarehouseData.SetWarehouseActive(this.WarehouseID ?? -1);
-        }
-
-        public bool SetInActive()
-        {
-            if (Mode == enMode.Add)
-            {
-                return false;
-            }
-
-            return clsWarehouseData.SetWarehouseInActive(this.WarehouseID ?? -1);
-        }
-
         public clsWarehouseDTO MappingToDTO()
         {
             return new clsWarehouseDTO
@@ -72,9 +51,9 @@ namespace BusinessLogic.Warehouses
                Address = Address,
                IsMainWarehouse = IsMainWarehouse,
                IsActive = IsActive,
-               CreatedByUserID = CreatedByUserInfo.UserID,
+               CreatedByUserID = CreatedByUserInfo?.UserID,
                CreatedAt = CreatedAt,
-               UpdatedByUserID = UpdatedByUserInfo.UserID,
+               UpdatedByUserID = UpdatedByUserInfo?.UserID,
                UpdatedAt = UpdatedAt
             };
         }

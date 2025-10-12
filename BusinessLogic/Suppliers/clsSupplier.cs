@@ -37,7 +37,7 @@ namespace BusinessLogic.Suppliers
                 );
             Notes = supplierDTO.SupplierNotes;
             IsDeleted = supplierDTO.IsDeleted;
-            CreatedByUserInfo = clsUser.Find(supplierDTO.UpdatedByUserID ?? -1);
+            CreatedByUserInfo = clsUser.Find(supplierDTO.CreatedByUserID ?? -1);
             CreatedAt = supplierDTO.CreatedAt;
             UpdatedByUserInfo = supplierDTO.UpdatedByUserID is null ?
                 null :
@@ -68,7 +68,7 @@ namespace BusinessLogic.Suppliers
                 this.SupplierID,
                 this.Notes.Trim(),
                 this.IsDeleted,
-                this.CreatedByUserInfo.UserID,
+                this.CreatedByUserInfo?.UserID,
                 this.CreatedAt,
                 this.UpdatedByUserInfo?.UserID,
                 this.UpdatedAt

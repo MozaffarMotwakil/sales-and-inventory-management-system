@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Parties;
+using BusinessLogic.Validation;
 using DataAccess.Suppliers;
 using DTOs.Suppliers;
-using System.Data;
-using BusinessLogic.Validation;
-using BusinessLogic.Interfaces;
 
 namespace BusinessLogic.Suppliers
 {
@@ -13,14 +14,28 @@ namespace BusinessLogic.Suppliers
         public event EventHandler<EntitySavedEventArgs> EntitySaved;
         public event EventHandler<EntityDeletedEventArgs> EntityDeleted;
 
+        private static clsSupplierService _Instance;
+
+        private clsSupplierService() { }
+
+        public static clsSupplierService GetInstance()
+        {
+            if (_Instance == null)
+            {
+                _Instance = new clsSupplierService();
+            }
+
+            return _Instance;
+        }
+
         private void OnSupplierSaved(int productID, string productName, enMode mode)
         {
-            EntitySaved?.Invoke(null, new EntitySavedEventArgs(productID, productName, mode));
+            EntitySaved?.Invoke(this, new EntitySavedEventArgs(productID, productName, mode));
         }
 
         private void OnSupplierDeleted(int productID, string productName)
         {
-            EntityDeleted?.Invoke(null, new EntityDeletedEventArgs(productID, productName));
+            EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(productID, productName));
         }
 
         public clsSupplier Find(int supplierID)
@@ -54,19 +69,30 @@ namespace BusinessLogic.Suppliers
 
             clsSupplier supplier = Find(supplierID);
 
-            if (clsSupplierData.DeleteSupplier(supplierID))
+            try
             {
-                if (supplier.PartyInfo is clsPerson person)
+                if (clsSupplierData.DeleteSupplier(supplierID))
                 {
-                    person.DeleteImage();
-                }
-                else if (supplier.PartyInfo is clsOrganization organization)
-                {
-                    organization.ContactPersonInfo?.DeleteImage();
-                }
+                    if (supplier.PartyInfo is clsPerson person)
+                    {
+                        person.DeleteImage();
+                    }
+                    else if (supplier.PartyInfo is clsOrganization organization)
+                    {
+                        organization.ContactPersonInfo?.DeleteImage();
+                    }
 
-                OnSupplierDeleted(supplier.SupplierID ?? -1, supplier.PartyInfo.PartyName);
-                return true;
+                    OnSupplierDeleted(supplier.SupplierID ?? -1, supplier.PartyInfo.PartyName);
+                    return true;
+                }
+            }
+            catch (SqlException ex) when (ex.Number >= 50000)
+            {
+                throw new InvalidOperationException(ex.Message, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(clsAppSettings.ErrorToConnectionFormDB, ex);
             }
 
             return false;

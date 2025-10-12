@@ -14,6 +14,8 @@ namespace BusinessLogic
     {
         public static clsUser CurrentUser = new clsUser(1);
 
+        public const string ErrorToConnectionFormDB = "عذرا,حدثت مشكلة أثناء الإتصال مع قاعدة البيانات, الرجاء المحاولة لاحقا.";
+
         public static string AppDataFolder
         {
             get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData); }
