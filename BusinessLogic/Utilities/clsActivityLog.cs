@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Interfaces;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
+using BusinessLogic.Warehouses;
 using DataAccess.Utilities;
 
 namespace BusinessLogic.Utilities
@@ -10,7 +11,8 @@ namespace BusinessLogic.Utilities
         public enum enEntityTypes
         {
             Supplier = 1,
-            Product
+            Product,
+            Warehouse
         }
 
         public enum enActivityTypes
@@ -22,13 +24,14 @@ namespace BusinessLogic.Utilities
             Logout
         }
 
-
         static clsActivityLog()
         {
-            new clsSupplierService().EntitySaved += LogSupplierSaveAction;
-            new clsSupplierService().EntityDeleted += LogSupplierDeleteAction;
-            new clsProductService().EntitySaved += LogProductSaveAction;
-            new clsProductService().EntityDeleted += LogProductDeleteAction;
+           clsSupplierService.GetInstance().EntitySaved += LogSupplierSaveAction;
+           clsSupplierService.GetInstance().EntityDeleted += LogSupplierDeleteAction;
+           clsProductService.GetInstance().EntitySaved += LogProductSaveAction;
+           clsProductService.GetInstance().EntityDeleted += LogProductDeleteAction;
+           clsWarehouseService.GetInstance().EntitySaved += LogWarehouseSaveAction;
+           clsWarehouseService.GetInstance().EntityDeleted += LogWarehouseDeleteAction;
         }
 
         public static void Initialize() { }
@@ -84,6 +87,34 @@ namespace BusinessLogic.Utilities
                 e.UserID,
                 e.EntityID,
                 (int)enEntityTypes.Product,
+                (int)enActivityTypes.Delete,
+                details
+            );
+        }
+
+        private static void LogWarehouseSaveAction(object sender, EntitySavedEventArgs e)
+        {
+            string details = e.OperationMode is enMode.Add ?
+                $"تم إضافة مخزن جديد: [{e.EntityName}], معرف المخزن: [{e.EntityID}]." :
+                $"تم تعديل بيانات المخزن: [{e.EntityName}], معرف المخزن: [{e.EntityID}].";
+
+            Log(
+                e.UserID,
+                e.EntityID,
+                (int)enEntityTypes.Warehouse,
+                (int)e.OperationMode,
+                details
+            );
+        }
+
+        private static void LogWarehouseDeleteAction(object sender, EntityDeletedEventArgs e)
+        {
+            string details = $"تم حذف المنتج: [{e.EntityName}], معرف المنتج: [{e.EntityID}].";
+
+            Log(
+                e.UserID,
+                e.EntityID,
+                (int)enEntityTypes.Warehouse,
                 (int)enActivityTypes.Delete,
                 details
             );
