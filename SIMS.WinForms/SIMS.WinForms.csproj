@@ -309,6 +309,24 @@
     <Compile Include="Utilities\ctrImage.Designer.cs">
       <DependentUpon>ctrImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Warehouses\frmAddEditWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmAddEditWarehouse.Designer.cs">
+      <DependentUpon>frmAddEditWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouses\frmWarehousesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmWarehousesList.Designer.cs">
+      <DependentUpon>frmWarehousesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouses\ctrWarehouseInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Warehouses\ctrWarehouseInfo.Designer.cs">
+      <DependentUpon>ctrWarehouseInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ActivityLog\frmActivityLog.resx">
       <DependentUpon>frmActivityLog.cs</DependentUpon>
     </EmbeddedResource>
@@ -439,6 +457,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\ctrImage.resx">
       <DependentUpon>ctrImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmAddEditWarehouse.resx">
+      <DependentUpon>frmAddEditWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmWarehousesList.resx">
+      <DependentUpon>frmWarehousesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\ctrWarehouseInfo.resx">
+      <DependentUpon>ctrWarehouseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -584,6 +611,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warehouse_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

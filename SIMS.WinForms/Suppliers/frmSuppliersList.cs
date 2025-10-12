@@ -8,7 +8,7 @@ namespace SIMS.WinForms.Suppliers
 {
     public partial class frmSuppliersList : frmGenericListBase<clsSupplierService, clsSupplier>
     {
-        public frmSuppliersList()
+        public frmSuppliersList() : base(clsSupplierService.GetInstance())
         {
             InitializeComponent();
         }

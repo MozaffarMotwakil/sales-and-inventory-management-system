@@ -34,6 +34,7 @@
             this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.InvoicesToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -70,6 +71,7 @@
             this.PointOfSelesToolStripButton,
             this.InventoryToolStripButton3,
             this.SuppliersToolStripButton,
+            this.WarehousesToolStripButton,
             this.ReportsToolStripButton,
             this.UsersToolStripButton,
             this.InvoicesToolStripButton,
@@ -81,7 +83,7 @@
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(250, 379);
+            this.toolStrip.Size = new System.Drawing.Size(250, 468);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -117,7 +119,7 @@
             this.InventoryToolStripButton3.Name = "InventoryToolStripButton3";
             this.InventoryToolStripButton3.Size = new System.Drawing.Size(249, 36);
             this.InventoryToolStripButton3.Text = "المنتجات";
-            this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton3_Click);
+            this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton_Click);
             // 
             // SuppliersToolStripButton
             // 
@@ -129,6 +131,16 @@
             this.SuppliersToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.SuppliersToolStripButton.Text = "الموردين";
             this.SuppliersToolStripButton.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
+            // 
+            // WarehousesToolStripButton
+            // 
+            this.WarehousesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarehousesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
+            this.WarehousesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.WarehousesToolStripButton.Text = "المخازن";
+            this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
             // 
             // ReportsToolStripButton
             // 
@@ -296,7 +308,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 611);
+            this.ClientSize = new System.Drawing.Size(984, 700);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -343,6 +355,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripButton WarehousesToolStripButton;
     }
 }
 

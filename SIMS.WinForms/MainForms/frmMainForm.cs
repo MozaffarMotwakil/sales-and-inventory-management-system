@@ -9,6 +9,7 @@ using SIMS.WinForms.Reports;
 using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
+using SIMS.WinForms.Warehouses;
 
 namespace SIMS.WinForms
 {
@@ -20,6 +21,7 @@ namespace SIMS.WinForms
             PointOfSale,
             ProductsList,
             SuppliersList,
+            WarehousesList,
             ReportsDashboard,
             UsersList,
             InvoicesList,
@@ -30,6 +32,7 @@ namespace SIMS.WinForms
         private Form _PointOfSaleForm;
         private Form _ProductsListForm;
         private Form _SuppliersList;
+        private Form _WarehousesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
         private Form _InvoicesListForm;
@@ -64,7 +67,7 @@ namespace SIMS.WinForms
             _OpenForm(ref _PointOfSaleForm, enFormType.PointOfSale);
         }
 
-        private void InventoryToolStripButton3_Click(object sender, EventArgs e)
+        private void InventoryToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
         }
@@ -72,6 +75,11 @@ namespace SIMS.WinForms
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _SuppliersList, enFormType.SuppliersList);
+        }
+
+        private void WarehousesToolStripButton_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _WarehousesList, enFormType.WarehousesList);
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
@@ -129,6 +137,8 @@ namespace SIMS.WinForms
                     return new frmProductsList();
                 case enFormType.SuppliersList:
                     return new frmSuppliersList();
+                case enFormType.WarehousesList:
+                    return new frmWarehousesList();
                 case enFormType.ReportsDashboard:
                     return new frmReportsDashboard();
                 case enFormType.UsersList:
@@ -141,6 +151,6 @@ namespace SIMS.WinForms
                     return new Form();
             }
         }
-
+        
     }
 }
