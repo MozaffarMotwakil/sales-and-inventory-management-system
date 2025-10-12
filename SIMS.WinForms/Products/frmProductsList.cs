@@ -7,7 +7,7 @@ namespace SIMS.WinForms.Products
 {
     public partial class frmProductsList : frmGenericListBase<clsProductService, clsProduct>
     {
-        public frmProductsList()
+        public frmProductsList() : base(clsProductService.GetInstance())
         {
             InitializeComponent();
         }

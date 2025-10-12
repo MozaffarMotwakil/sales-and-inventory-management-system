@@ -12,7 +12,6 @@ namespace SIMS.WinForms.Products
     public partial class frmAddEditProduct : Form
     {
         private clsProduct _Product;
-        private clsSupplierService _SupplierService;
         private frmProductUnitConversions _UnitConversionsForm;
         private bool _IsAddedSupplier;
         private int _AddedSupplierID;
@@ -22,7 +21,6 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = null;
-            _SupplierService = new clsSupplierService();
             _UnitConversionsForm = new frmProductUnitConversions(this);
             _FormMode = enMode.Add;
         }
@@ -31,7 +29,6 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = product;
-            _SupplierService = new clsSupplierService();
             _UnitConversionsForm = new frmProductUnitConversions(this, product.UnitConversions);
             _FormMode = enMode.Edit;
         }
@@ -59,7 +56,7 @@ namespace SIMS.WinForms.Products
                 ctrProductImage.ImageLocation = _Product.ImagePath;
             }
 
-            _SupplierService.EntitySaved += ClsSupplier_SupplierSaved;
+            clsSupplierService.GetInstance().EntitySaved += ClsSupplier_SupplierSaved;
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
@@ -222,7 +219,7 @@ namespace SIMS.WinForms.Products
             {
                 if (clsFormMessages.Confirm("لقد قمت بإضافة مورد جديد, هل تريد حذفه ؟", messageBoxIcon: MessageBoxIcon.Warning))
                 {
-                    if (!_SupplierService.Delete(_AddedSupplierID))
+                    if (!clsSupplierService.GetInstance().Delete(_AddedSupplierID))
                     {
                         clsFormMessages.ShowError("لقد فشلت عملية حذف المورد الجديد الذي تم إضافته, رجاءا قم بحذفه يدويا إذا لم تكن بحاجة إليه");
                     }
@@ -268,7 +265,7 @@ namespace SIMS.WinForms.Products
                     _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
 
-                clsValidationResult validationResult = new clsProductService().Save(_Product);
+                clsValidationResult validationResult = clsProductService.GetInstance().Save(_Product);
 
                 if (validationResult.IsValid)
                 {

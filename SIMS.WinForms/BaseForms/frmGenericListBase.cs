@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Interfaces;
-using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
-using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms.BaseForms
 {
     public partial class frmGenericListBase<TManager, TEntity> : Form
-        where TManager : IEntityListManager<TEntity>, new()
+        where TManager : IEntityListManager<TEntity>
+        where TEntity : class
     {
         protected readonly TManager Manager;
         protected Control EntityInfoControl { get; set; }
@@ -23,21 +21,25 @@ namespace SIMS.WinForms.BaseForms
             set => lblSearchHintText.Text = value;
         }
 
-        public frmGenericListBase()
+        public frmGenericListBase(TManager manager)
         {
             InitializeComponent();
-            Manager = new TManager();
+            Manager = manager;
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }
 
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)
         {
-            txtSearch.Text = string.Empty;
             dgvEntitiesList.DataSource = Manager.GetAll();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
 
-            if (e.OperationMode == BusinessLogic.enMode.Update && EntityInfoControl.Visible)
+            if (e.OperationMode == BusinessLogic.enMode.Add && dgvEntitiesList.Rows.Count == 1)
+            {
+                ResetColumnsOfDGV();
+                SetOnlyFirstColumnSortable();
+            }
+            else if (e.OperationMode == BusinessLogic.enMode.Update && EntityInfoControl.Visible)
             {
                 HandleEntityInfoDisplay(Manager.Find(e.EntityID));
             }
@@ -45,6 +47,8 @@ namespace SIMS.WinForms.BaseForms
             {
                 EntityInfoControl.Visible = false;
             }
+            
+            ApplySearchFilter();
         }
 
         protected virtual void EntityDeletedEvent(object sender, EntityDeletedEventArgs e)
@@ -53,6 +57,7 @@ namespace SIMS.WinForms.BaseForms
             EntityInfoControl.Visible = false;
             dgvEntitiesList.DataSource = Manager.GetAll();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
+            ApplySearchFilter();
         }
 
         private void frmGenericListBase_Load(object sender, EventArgs e)
@@ -101,6 +106,8 @@ namespace SIMS.WinForms.BaseForms
             {
                 // في حال رمي إستثناء بسبب إدخال رموز غير صالحة فلا حاجة لعرض رسالة خطأ أو إيقاف تجربة المستخدم
             }
+
+            txtSearch.Focus();
         }
 
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
@@ -204,6 +211,11 @@ namespace SIMS.WinForms.BaseForms
 
         private void ShowSelectedEntityInfo()
         {
+            if (EntityInfoControl == null)
+            {
+                return;
+            }
+
             TEntity entity = Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
 
             if (entity == null)
@@ -222,13 +234,20 @@ namespace SIMS.WinForms.BaseForms
         {
             if (clsFormMessages.Confirm($"هل أنت متأكد من أنك تريد حذف هذا {EntityName} ؟", messageBoxIcon: MessageBoxIcon.Warning, messageBoxDefaultButton: MessageBoxDefaultButton.Button2))
             {
-                if (Manager.Delete(clsFormHelper.GetSelectedRowID(dgvEntitiesList)))
+                try
                 {
-                    clsFormMessages.ShowSuccess($"تم حذف {EntityName} بنجاح");
+                    if (Manager.Delete(clsFormHelper.GetSelectedRowID(dgvEntitiesList)))
+                    {
+                        clsFormMessages.ShowSuccess($"تم حذف {EntityName} بنجاح");
+                    }
+                    else
+                    {
+                        clsFormMessages.ShowError($"فشلت عملية حذف {EntityName}");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    clsFormMessages.ShowError($"فشلت عملية حذف {EntityName}");
+                    clsFormMessages.ShowError(ex.Message);
                 }
             }
         }
