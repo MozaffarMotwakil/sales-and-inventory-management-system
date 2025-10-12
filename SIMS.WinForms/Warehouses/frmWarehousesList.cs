@@ -1,20 +1,30 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using BusinessLogic.Warehouses;
-using SIMS.WinForms.BaseForms;
+using DVLD.WinForms.Utils;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Warehouses
 {
-    public partial class frmWarehousesList : frmGenericListBase<clsWarehouseService, clsWarehouse>
+    public partial class frmWarehousesList : BaseWarehousesForm
     {
-        public frmWarehousesList() : base(clsWarehouseService.GetInstance())
+        private clsWarehouseService _WarehouseService;
+        public frmWarehousesList() 
         {
             InitializeComponent();
+            _WarehouseService = clsWarehouseService.GetInstance();
         }
 
         private void frmWarehousesList_Load(object sender, EventArgs e)
         {
             cbWarehouseActivity.SelectedIndex = 1;
+            contextMenuStrip.Items.Add("تنشيط", Resources.active);
+            contextMenuStrip.Items.Add("إلغاء التنشيط", Resources.in_active);
+            contextMenuStrip.Items[2].ImageScaling = ToolStripItemImageScaling.None;
+            contextMenuStrip.Items[2].Click += MarkSupplierAsActive_Click;
+            contextMenuStrip.Items[3].ImageScaling = ToolStripItemImageScaling.None;
+            contextMenuStrip.Items[3].Click += MarkSupplierAsInActive_Click; ;
         }
 
         protected override void LoadData()
@@ -23,30 +33,6 @@ namespace SIMS.WinForms.Warehouses
             base.SearchHintMessage = "أدخل إسم المخزن أو العنوان";
             base.EntityName = "المخزن";
             base.EntityInfoControl = ctrWarehouseInfo;
-        }
-
-        protected override void ResetColumnsOfDGV()
-        {
-            if (base.dgvEntitiesList.RowCount > 0)
-            {
-                base.dgvEntitiesList.Columns[0].HeaderText = "معرف المخزن";
-                base.dgvEntitiesList.Columns[0].Width = 105;
-
-                base.dgvEntitiesList.Columns[1].HeaderText = "إسم المخزن";
-                base.dgvEntitiesList.Columns[1].Width = 225;
-
-                base.dgvEntitiesList.Columns[2].HeaderText = "العنوان";
-                base.dgvEntitiesList.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                base.dgvEntitiesList.Columns[3].HeaderText = "عدد العناصر";
-                base.dgvEntitiesList.Columns[3].Width = 150;
-
-                base.dgvEntitiesList.Columns[4].HeaderText = "التصنيف";
-                base.dgvEntitiesList.Columns[4].Width = 100;
-
-                base.dgvEntitiesList.Columns[5].HeaderText = "الحالة";
-                base.dgvEntitiesList.Columns[5].Width = 100;
-            }
         }
 
         protected override void SearchTextChanged(object sender, EventArgs e)
@@ -98,6 +84,79 @@ namespace SIMS.WinForms.Warehouses
         protected override void HandleEntityInfoDisplay(clsWarehouse warehouse)
         {
             ctrWarehouseInfo.Warehouse = warehouse;
+        }
+
+        protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            base.contextMenuStrip_Opening(sender, e);
+
+            if (dgvEntitiesList.CurrentRow.Index >= 0)
+            {
+                contextMenuStrip.Items[2].Visible = contextMenuStrip.Items[3].Visible = false;
+                clsWarehouse warehouse = _WarehouseService.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+                if (warehouse != null)
+                {
+                    if (warehouse.IsActive)
+                    {
+                        contextMenuStrip.Items[3].Visible = true;
+                    }
+                    else
+                    {
+                        contextMenuStrip.Items[2].Visible = true;
+                    }
+                } 
+            }
+        }
+
+        private void MarkSupplierAsInActive_Click(object sender, EventArgs e)
+        {
+            if (base.dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsWarehouse warehouse = _WarehouseService.Find(clsFormHelper.GetSelectedRowID(base.dgvEntitiesList));
+
+            if (warehouse == null)
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزن");
+                return;
+            }
+
+            if (_WarehouseService.MarkAsInActive(warehouse))
+            {
+                clsFormMessages.ShowSuccess("تم إلغاء تنشيط المخزن بنجاح");
+            }
+            else
+            {
+                clsFormMessages.ShowError("فشل إلغاء تنشيط المخزن");
+            }
+        }
+
+        private void MarkSupplierAsActive_Click(object sender, EventArgs e)
+        {
+            if (base.dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsWarehouse warehouse = _WarehouseService.Find(clsFormHelper.GetSelectedRowID(base.dgvEntitiesList));
+
+            if (warehouse == null)
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزن");
+                return;
+            }
+
+            if (_WarehouseService.MarkAsActive(warehouse))
+            {
+                clsFormMessages.ShowSuccess("تم تنشيط المخزن بنجاح");
+            }
+            else
+            {
+                clsFormMessages.ShowError("فشل تنشيط المخزن");
+            }
         }
 
     }
