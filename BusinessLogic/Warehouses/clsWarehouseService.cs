@@ -84,7 +84,12 @@ namespace BusinessLogic.Warehouses
 
         public bool MarkAsActive(clsWarehouse warehouse)
         {
-            if (warehouse.Mode != enMode.Update && clsWarehouseData.SetWarehouseActive(warehouse.WarehouseID ?? -1))
+            if (warehouse.IsActive)
+            {
+                return true;
+            }
+
+            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetWarehouseActive(warehouse.WarehouseID ?? -1))
             {
                 OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
                 return true;
@@ -95,7 +100,12 @@ namespace BusinessLogic.Warehouses
 
         public bool MarkAsInActive(clsWarehouse warehouse)
         {
-            if (warehouse.Mode != enMode.Update && clsWarehouseData.SetWarehouseInActive(warehouse.WarehouseID ?? -1))
+            if (!warehouse.IsActive)
+            {
+                return true;
+            }
+
+            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetWarehouseInActive(warehouse.WarehouseID ?? -1))
             {
                 OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
                 return true;

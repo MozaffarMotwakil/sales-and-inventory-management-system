@@ -91,6 +91,9 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Products\BaseProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Products\frmProductUnitConversions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +243,9 @@
     <Compile Include="Sales\frmPointOfSale.Designer.cs">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Suppliers\BaseSuppliersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Suppliers\frmAddEditSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +314,9 @@
     </Compile>
     <Compile Include="Utilities\ctrImage.Designer.cs">
       <DependentUpon>ctrImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouses\BaseWarehousesForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Warehouses\frmAddEditWarehouse.cs">
       <SubType>Form</SubType>
@@ -617,6 +626,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\supplier_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\active.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in-active.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

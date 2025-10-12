@@ -63,6 +63,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap active {
+            get {
+                object obj = ResourceManager.GetObject("active", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -206,6 +216,16 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap iconmonstr_eye_lined_24 {
             get {
                 object obj = ResourceManager.GetObject("iconmonstr-eye-lined-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap in_active {
+            get {
+                object obj = ResourceManager.GetObject("in-active", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

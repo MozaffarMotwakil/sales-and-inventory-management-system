@@ -56,7 +56,7 @@ namespace BusinessLogic.Products
             Description = productDTO.Description;
             CurrentImagePath = productDTO.ImagePath;
             ImagePath = productDTO.ImagePath;
-            CreatedByUserInfo = clsUser.Find(productDTO.CreatedByUserID);
+            CreatedByUserInfo = clsUser.Find(productDTO.CreatedByUserID ?? -1);
             CreatedAt = productDTO.CreatedAt;
             UpdatedByUserInfo = productDTO.UpdatedByUserID is null ?
                 null :
@@ -113,7 +113,7 @@ namespace BusinessLogic.Products
                 SellingPrice = this.SellingPrice,
                 Description = this.Description,
                 ImagePath = this.ImagePath,
-                CreatedByUserID = this.CreatedByUserInfo.UserID,
+                CreatedByUserID = this.CreatedByUserInfo?.UserID,
                 UpdatedByUserID = this.UpdatedByUserInfo?.UserID
             };
         }

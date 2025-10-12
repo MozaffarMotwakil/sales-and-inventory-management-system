@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using BusinessLogic.Products;
-using SIMS.WinForms.BaseForms;
 
 namespace SIMS.WinForms.Products
 {
-    public partial class frmProductsList : frmGenericListBase<clsProductService, clsProduct>
+    public partial class frmProductsList : BaseProductsForm
     {
-        public frmProductsList() : base(clsProductService.GetInstance())
+        public frmProductsList()
         {
             InitializeComponent();
         }
@@ -24,36 +23,6 @@ namespace SIMS.WinForms.Products
             base.SearchHintMessage = "أدخل إسم المنتج أو الباركود الخاص بالمنتج";
             base.EntityName = "المنتج";
             base.EntityInfoControl = ctrProductInfo;
-        }
-
-        protected override void ResetColumnsOfDGV()
-        {
-            if (base.dgvEntitiesList.RowCount > 0)
-            {
-                base.dgvEntitiesList.Columns[0].HeaderText = "معرف المنتج";
-                base.dgvEntitiesList.Columns[0].Width = 95;
-
-                base.dgvEntitiesList.Columns[1].HeaderText = "إسم المنتج";
-                base.dgvEntitiesList.Columns[1].Width = 200;
-
-                base.dgvEntitiesList.Columns[2].HeaderText = "الباركود";
-                base.dgvEntitiesList.Columns[2].Width = 150;
-
-                base.dgvEntitiesList.Columns[3].HeaderText = "التصنيف/الفئة";
-                base.dgvEntitiesList.Columns[3].Width = 150;
-
-                base.dgvEntitiesList.Columns[4].HeaderText = "الوحدة الأساسية";
-                base.dgvEntitiesList.Columns[4].Width = 100;
-
-                base.dgvEntitiesList.Columns[5].HeaderText = "الوحدات البديلة";
-                base.dgvEntitiesList.Columns[5].Width = 100;
-
-                base.dgvEntitiesList.Columns[6].HeaderText = "سعر البيع";
-                base.dgvEntitiesList.Columns[6].Width = 80;
-
-                base.dgvEntitiesList.Columns[7].HeaderText = "المورد الرئيسي";
-                base.dgvEntitiesList.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
         }
 
         protected override void SearchTextChanged(object sender, EventArgs e)

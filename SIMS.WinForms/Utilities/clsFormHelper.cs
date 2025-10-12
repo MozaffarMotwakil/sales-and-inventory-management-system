@@ -49,6 +49,12 @@ namespace DVLD.WinForms.Utils
                 return ID;
             }
 
+            if (dataGridView.CurrentRow.Index >= 0)
+            {
+                int.TryParse(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[0].Value.ToString(), out int ID);
+                return ID;
+            }
+
             return -1;
         }
 

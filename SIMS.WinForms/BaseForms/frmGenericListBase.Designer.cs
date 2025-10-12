@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSearchHintText = new System.Windows.Forms.Label();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTotalRecords = new System.Windows.Forms.Label();
             this.lblTotalRecordsText = new System.Windows.Forms.Label();
@@ -44,9 +43,10 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntitiesList)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchHintText
@@ -62,19 +62,6 @@
             this.lblSearchHintText.TabIndex = 36;
             this.lblSearchHintText.Text = "الرسالة";
             this.lblSearchHintText.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.BackColor = System.Drawing.Color.White;
-            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(766, 6);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(29, 26);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox.TabIndex = 37;
-            this.pictureBox.TabStop = false;
-            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
             // txtSearch
             // 
@@ -176,7 +163,7 @@
             this.deleteToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip.Size = new System.Drawing.Size(124, 80);
+            this.contextMenuStrip.Size = new System.Drawing.Size(197, 102);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // editToolStripMenuItem
@@ -185,7 +172,7 @@
             this.editToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.editToolStripMenuItem.Text = "تعديل";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -195,7 +182,7 @@
             this.deleteToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.deleteToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(123, 38);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.deleteToolStripMenuItem.Text = "حذف";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -204,6 +191,19 @@
             this.searchTimer.Enabled = true;
             this.searchTimer.Interval = 300;
             this.searchTimer.Tick += new System.EventHandler(this.searchTimer_Tick);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.White;
+            this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
+            this.pictureBox.Location = new System.Drawing.Point(766, 6);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.TabIndex = 37;
+            this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.pictureBoxAndSearchHintText_Click);
             // 
             // frmGenericListBase
             // 
@@ -228,9 +228,9 @@
             this.Load += new System.EventHandler(this.frmGenericListBase_Load);
             this.Shown += new System.EventHandler(this.frmGenericListBase_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntitiesList)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,9 +244,9 @@
         protected System.Windows.Forms.Label lblSearchHintText;
         protected System.Windows.Forms.PictureBox pictureBox;
         protected System.Windows.Forms.Label lblTotalRecords;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.Timer searchTimer;
+        protected System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        protected System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        protected System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        protected System.Windows.Forms.Timer searchTimer;
     }
 }

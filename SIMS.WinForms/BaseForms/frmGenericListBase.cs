@@ -148,7 +148,7 @@ namespace SIMS.WinForms.BaseForms
 
         private void dgvEntitiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex == -1)
+            if (e.RowIndex == -1 || e.Button == MouseButtons.Right)
             {
                 return;
             }
@@ -204,7 +204,7 @@ namespace SIMS.WinForms.BaseForms
             }
         }
 
-        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        protected virtual void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
             clsFormHelper.PreventContextMenuOnEmptyClick(dgvEntitiesList, e);
         }
@@ -268,6 +268,6 @@ namespace SIMS.WinForms.BaseForms
             Manager.EntitySaved -= EntitySavedEvent;
             Manager.EntityDeleted -= EntityDeletedEvent;
         }
-        
+
     }
 }
