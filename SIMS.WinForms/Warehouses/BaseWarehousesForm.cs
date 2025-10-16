@@ -6,7 +6,7 @@ namespace SIMS.WinForms.Warehouses
 {
     public class BaseWarehousesForm : frmGenericListBase<clsWarehouseService, clsWarehouse>
     {
-        public BaseWarehousesForm() : base(clsWarehouseService.GetInstance()) { }
+        public BaseWarehousesForm() : base(clsWarehouseService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {

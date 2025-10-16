@@ -6,7 +6,7 @@ namespace SIMS.WinForms.Suppliers
 {
     public class BaseSuppliersForm : frmGenericListBase<clsSupplierService, clsSupplier>
     {
-        public BaseSuppliersForm() : base(clsSupplierService.GetInstance()) { }
+        public BaseSuppliersForm() : base(clsSupplierService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {

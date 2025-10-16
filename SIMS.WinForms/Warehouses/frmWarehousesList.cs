@@ -13,7 +13,7 @@ namespace SIMS.WinForms.Warehouses
         public frmWarehousesList() 
         {
             InitializeComponent();
-            _WarehouseService = clsWarehouseService.GetInstance();
+            _WarehouseService = clsWarehouseService.CreateInstance();
         }
 
         private void frmWarehousesList_Load(object sender, EventArgs e)

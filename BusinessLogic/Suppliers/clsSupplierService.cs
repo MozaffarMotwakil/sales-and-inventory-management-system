@@ -18,7 +18,7 @@ namespace BusinessLogic.Suppliers
 
         private clsSupplierService() { }
 
-        public static clsSupplierService GetInstance()
+        public static clsSupplierService CreateInstance()
         {
             if (_Instance == null)
             {
@@ -36,6 +36,11 @@ namespace BusinessLogic.Suppliers
         private void OnSupplierDeleted(int productID, string productName)
         {
             EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(productID, productName));
+        }
+
+        public static bool IsSupplierExistsByPartyID(int partyID)
+        {
+            return clsSupplierData.IsSupplierExistsByPartyID(partyID);
         }
 
         public clsSupplier Find(int supplierID)
@@ -138,10 +143,7 @@ namespace BusinessLogic.Suppliers
             }
             else
             {
-                if (supplierDTO.UpdatedByUserID == null)
-                {
-                    supplierDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
-                }
+                supplierDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
             }
 
             bool isSaved = mode is enMode.Add ?

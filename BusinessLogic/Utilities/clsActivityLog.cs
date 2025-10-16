@@ -26,12 +26,12 @@ namespace BusinessLogic.Utilities
 
         static clsActivityLog()
         {
-           clsSupplierService.GetInstance().EntitySaved += LogSupplierSaveAction;
-           clsSupplierService.GetInstance().EntityDeleted += LogSupplierDeleteAction;
-           clsProductService.GetInstance().EntitySaved += LogProductSaveAction;
-           clsProductService.GetInstance().EntityDeleted += LogProductDeleteAction;
-           clsWarehouseService.GetInstance().EntitySaved += LogWarehouseSaveAction;
-           clsWarehouseService.GetInstance().EntityDeleted += LogWarehouseDeleteAction;
+           clsSupplierService.CreateInstance().EntitySaved += LogSupplierSaveAction;
+           clsSupplierService.CreateInstance().EntityDeleted += LogSupplierDeleteAction;
+           clsProductService.CreateInstance().EntitySaved += LogProductSaveAction;
+           clsProductService.CreateInstance().EntityDeleted += LogProductDeleteAction;
+           clsWarehouseService.CreateInstance().EntitySaved += LogWarehouseSaveAction;
+           clsWarehouseService.CreateInstance().EntityDeleted += LogWarehouseDeleteAction;
         }
 
         public static void Initialize() { }

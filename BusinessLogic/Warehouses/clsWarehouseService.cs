@@ -17,7 +17,7 @@ namespace BusinessLogic.Warehouses
 
         private clsWarehouseService() { }
 
-        public static clsWarehouseService GetInstance()
+        public static clsWarehouseService CreateInstance()
         {
             if (_Instance == null)
             {
@@ -155,10 +155,7 @@ namespace BusinessLogic.Warehouses
             }
             else
             {
-                if (warehouseDTO.UpdatedByUserID == null)
-                {
-                    warehouseDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
-                }
+                warehouseDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
             }
 
             bool isSaved = mode is enMode.Add ?

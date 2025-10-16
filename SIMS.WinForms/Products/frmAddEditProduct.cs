@@ -56,7 +56,7 @@ namespace SIMS.WinForms.Products
                 ctrProductImage.ImageLocation = _Product.ImagePath;
             }
 
-            clsSupplierService.GetInstance().EntitySaved += ClsSupplier_SupplierSaved;
+            clsSupplierService.CreateInstance().EntitySaved += ClsSupplier_SupplierSaved;
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
@@ -219,7 +219,7 @@ namespace SIMS.WinForms.Products
             {
                 if (clsFormMessages.Confirm("لقد قمت بإضافة مورد جديد, هل تريد حذفه ؟", messageBoxIcon: MessageBoxIcon.Warning))
                 {
-                    if (!clsSupplierService.GetInstance().Delete(_AddedSupplierID))
+                    if (!clsSupplierService.CreateInstance().Delete(_AddedSupplierID))
                     {
                         clsFormMessages.ShowError("لقد فشلت عملية حذف المورد الجديد الذي تم إضافته, رجاءا قم بحذفه يدويا إذا لم تكن بحاجة إليه");
                     }
@@ -265,7 +265,7 @@ namespace SIMS.WinForms.Products
                     _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
 
-                clsValidationResult validationResult = clsProductService.GetInstance().Save(_Product);
+                clsValidationResult validationResult = clsProductService.CreateInstance().Save(_Product);
 
                 if (validationResult.IsValid)
                 {

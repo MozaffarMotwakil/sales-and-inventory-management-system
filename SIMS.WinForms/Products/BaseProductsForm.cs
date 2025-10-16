@@ -6,7 +6,7 @@ namespace SIMS.WinForms.Products
 {
     public class BaseProductsForm : frmGenericListBase<clsProductService, clsProduct>
     {
-        public BaseProductsForm() : base(clsProductService.GetInstance()) { }
+        public BaseProductsForm() : base(clsProductService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {

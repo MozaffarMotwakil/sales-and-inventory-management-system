@@ -95,7 +95,7 @@ namespace SIMS.WinForms.Warehouses
                 _Warehouse.IsActive = rbActive.Checked;
             }
 
-            clsValidationResult validationResult = clsWarehouseService.GetInstance().Save(_Warehouse);
+            clsValidationResult validationResult = clsWarehouseService.CreateInstance().Save(_Warehouse);
 
             if (validationResult.IsValid)
             {

@@ -18,7 +18,7 @@ namespace BusinessLogic.Products
 
         private clsProductService() { }
 
-        public static clsProductService GetInstance()
+        public static clsProductService CreateInstance()
         {
             if (_Instance == null)
             {
@@ -84,14 +84,19 @@ namespace BusinessLogic.Products
             return clsProductData.GetAllProducts();
         }
 
-        public static bool IsBarcodeExists(string barcode)
+        public static bool IsProductExists(int productID)
         {
-            return clsProductData.IsBarcodeExists(barcode);
+            return clsProductData.IsProductExists(productID);
         }
 
-        public static bool IsProductNameExists(string productName)
+        public static bool IsProductExistsByBarcode(string barcode)
         {
-            return clsProductData.IsProductNameExists(productName);
+            return clsProductData.IsProductExistsByBarcode(barcode);
+        }
+
+        public static bool IsProductExistsByName(string productName)
+        {
+            return clsProductData.IsProductExistsByName(productName);
         }
 
         public static string GetProductName(int prouctID)
@@ -109,14 +114,14 @@ namespace BusinessLogic.Products
             clsValidationResult validationResult = product.Validated();
             clsProduct currentProductInDB = Find(product.ProductID ?? -1);
 
-            if ((product.Mode == enMode.Update && currentProductInDB.ProductName != product.ProductName && IsProductNameExists(product.ProductName)) ||
-                (product.Mode == enMode.Add && IsProductNameExists(product.ProductName)))
+            if ((product.Mode == enMode.Update && currentProductInDB.ProductName != product.ProductName && IsProductExistsByName(product.ProductName)) ||
+                (product.Mode == enMode.Add && IsProductExistsByName(product.ProductName)))
             {
                 validationResult.AddError("إسم المنتج", "المنتج موجود بالفعل");
             }
 
-            if ((product.Mode == enMode.Update && currentProductInDB.Barcode != product.Barcode && IsBarcodeExists(product.Barcode)) ||
-                (product.Mode == enMode.Add && IsBarcodeExists(product.Barcode)))
+            if ((product.Mode == enMode.Update && currentProductInDB.Barcode != product.Barcode && IsProductExistsByBarcode(product.Barcode)) ||
+                (product.Mode == enMode.Add && IsProductExistsByBarcode(product.Barcode)))
             {
                 validationResult.AddError("الباركود", "الباركود موجود بالفعل");
             }
@@ -178,10 +183,7 @@ namespace BusinessLogic.Products
             }
             else
             {
-                if (productDTO.UpdatedByUserID == null)
-                {
-                    productDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
-                }
+                productDTO.UpdatedByUserID = clsAppSettings.CurrentUser.UserID;
             }
 
             bool isSaved = mode is enMode.Add ?
