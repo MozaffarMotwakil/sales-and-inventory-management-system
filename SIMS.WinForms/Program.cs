@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using BusinessLogic.Utilities;
 using DVLD.WinForms.MainForms;
+using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms
 {
@@ -17,8 +19,22 @@ namespace SIMS.WinForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             clsActivityLog.Initialize();
             Application.Run(new frmLogin());
         }
+
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            clsEventLogger.LogErrorToWindowsEventLog("خطأ غير مُعالج في واجهة المستخدم.", e.Exception);
+            clsFormMessages.ShowError("نعتذر، حدث خطأ غير متوقع. تم تسجيل تفاصيل الخطأ في سجل أحداث النظام.", "خطأ نظام حرج");
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            clsEventLogger.LogErrorToWindowsEventLog("خطأ نظام غير مُعالج في الخلفية.", (Exception)e.ExceptionObject);
+        }
+
     }
 }
