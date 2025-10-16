@@ -212,6 +212,15 @@ namespace DataAccess.Suppliers
                 supplierID
                 );
         }
+        
+        public static bool IsSupplierExistsByPartyID(int partyID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Suppliers_IsSupplierExistsByPartyID", 
+                "@PartyID",
+                partyID
+                );
+        }
 
     }
 }

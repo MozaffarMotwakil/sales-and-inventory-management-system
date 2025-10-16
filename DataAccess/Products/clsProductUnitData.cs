@@ -51,5 +51,14 @@ namespace DataAccess.Products
                 );
         }
 
+        public static bool IsUnitExists(int unitID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Products_IsProductUnitExistsByID",
+                "@UnitID",
+                unitID
+                );
+        }
+
     }
 }

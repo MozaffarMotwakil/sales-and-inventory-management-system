@@ -178,7 +178,16 @@ namespace DataAccess.Products
                 )?.ToString();
         }
 
-        public static bool IsBarcodeExists(string barcode)
+        public static bool IsProductExists(int productID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Products_IsExistsByID",
+                "@ProductID",
+                productID
+                );
+        }
+
+        public static bool IsProductExistsByBarcode(string barcode)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsBarcodeExists", 
@@ -187,7 +196,7 @@ namespace DataAccess.Products
                 );
         }
 
-        public static bool IsProductNameExists(string productName)
+        public static bool IsProductExistsByName(string productName)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_IsProductNameExists",
