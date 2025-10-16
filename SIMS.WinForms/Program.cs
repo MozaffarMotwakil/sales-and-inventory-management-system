@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogic.Utilities;
 using DVLD.WinForms.MainForms;
@@ -20,6 +21,7 @@ namespace SIMS.WinForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             clsActivityLog.Initialize();
             Application.Run(new frmLogin());
@@ -34,6 +36,14 @@ namespace SIMS.WinForms
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             clsEventLogger.LogErrorToWindowsEventLog("خطأ نظام غير مُعالج في الخلفية.", (Exception)e.ExceptionObject);
+        }
+
+        static void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            clsEventLogger.LogErrorToWindowsEventLog("خطأ غير مُعالج في Task (Async).", e.Exception);
+
+            // هذا السطر يخبر النظام بأننا تعاملنا مع الخطأ لمنع إنهيار التطبيق
+            e.SetObserved();
         }
 
     }

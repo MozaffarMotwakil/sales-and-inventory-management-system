@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace DataAccess
 {
     public static class clsDataSettings
     {
-        public static string ConnectionString = "Server=.; Database=ERP_ALWAHA; User Id=sa; Password=sa123456";
+        public static string ConnectionString = ConfigurationManager.ConnectionStrings["DataBaseConnection"].ConnectionString;
 
         public static object GetDBNullIfNullOrEmpty(string value)
         {
