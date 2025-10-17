@@ -31,7 +31,7 @@ namespace DataAccess.Warehouses
                                     WarehouseID = WarehouseID,
                                     WarehouseName = Convert.ToString(reader["WarehouseName"]),
                                     Address = Convert.ToString(reader["Address"]),
-                                    IsMainWarehouse = Convert.ToBoolean(reader["IsMainWarehouse"]),
+                                    TypeID = Convert.ToInt32(reader["TypeID"]),
                                     IsActive = Convert.ToBoolean(reader["IsActive"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
@@ -67,7 +67,7 @@ namespace DataAccess.Warehouses
 
                     command.Parameters.AddWithValue("@WarehouseName", warehouseDTO.WarehouseName);
                     command.Parameters.AddWithValue("@Address", clsDataSettings.GetDBNullIfNullOrEmpty(warehouseDTO.Address));
-                    command.Parameters.AddWithValue("@IsMainWarehouse", warehouseDTO.IsMainWarehouse);
+                    command.Parameters.AddWithValue("@TypeID", warehouseDTO.TypeID);
                     command.Parameters.AddWithValue("@IsActive", warehouseDTO.IsActive);
                     command.Parameters.AddWithValue("@CreatedByUserID", warehouseDTO.CreatedByUserID);
 
@@ -113,7 +113,7 @@ namespace DataAccess.Warehouses
                     command.Parameters.AddWithValue("@WarehouseID", warehouseDTO.WarehouseID);
                     command.Parameters.AddWithValue("@WarehouseName", warehouseDTO.WarehouseName);
                     command.Parameters.AddWithValue("@Address", clsDataSettings.GetDBNullIfNullOrEmpty(warehouseDTO.Address));
-                    command.Parameters.AddWithValue("@IsMainWarehouse", warehouseDTO.IsMainWarehouse);
+                    command.Parameters.AddWithValue("@TypeID", warehouseDTO.TypeID);
                     command.Parameters.AddWithValue("@IsActive", warehouseDTO.IsActive);
                     command.Parameters.AddWithValue("@UpdatedByUserID", warehouseDTO.UpdatedByUserID);
 

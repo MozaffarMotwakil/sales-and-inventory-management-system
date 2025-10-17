@@ -7,10 +7,17 @@ namespace BusinessLogic.Warehouses
 {
     public class clsWarehouse
     {
+        public enum enWarehouseType
+        {
+            ShopWarehouse = 1,
+            MainWarehouse,
+            SubWarehouse
+        }
+
         public int? WarehouseID { get; }
         public string WarehouseName { get; set; }
         public string Address { get; set; }
-        public bool IsMainWarehouse { get; set; }
+        public enWarehouseType Type { get; set; }
         public bool IsActive { get; set; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
@@ -18,12 +25,12 @@ namespace BusinessLogic.Warehouses
         public DateTime? UpdatedAt { get; }
         public enMode Mode { get; }
 
-        public clsWarehouse(string warehouseName, string address, bool isMainWarehouse, bool isActive)
+        public clsWarehouse(string warehouseName, string address, enWarehouseType type, bool isActive)
         {
             WarehouseID = null;
             WarehouseName = warehouseName;
             Address = address;
-            IsMainWarehouse = isMainWarehouse;
+            Type = type;
             IsActive = isActive;
             Mode = enMode.Add;
         }
@@ -33,7 +40,7 @@ namespace BusinessLogic.Warehouses
             WarehouseID = warehouseDTO.WarehouseID;
             WarehouseName = warehouseDTO.WarehouseName;
             Address = warehouseDTO.Address;
-            IsMainWarehouse = warehouseDTO.IsMainWarehouse;
+            Type = (enWarehouseType)warehouseDTO.TypeID;
             IsActive = warehouseDTO.IsActive;
             CreatedByUserInfo = clsUser.Find(warehouseDTO.CreatedByUserID ?? -1);
             CreatedAt = warehouseDTO.CreatedAt;
@@ -49,7 +56,7 @@ namespace BusinessLogic.Warehouses
                WarehouseID = WarehouseID,
                WarehouseName = WarehouseName,
                Address = Address,
-               IsMainWarehouse = IsMainWarehouse,
+               TypeID = (int)Type,
                IsActive = IsActive,
                CreatedByUserID = CreatedByUserInfo?.UserID,
                CreatedAt = CreatedAt,

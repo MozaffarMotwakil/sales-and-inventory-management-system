@@ -59,6 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Invoices\clsPurchaseInvoice.cs" />
+    <Compile Include="Invoices\clsInvoice.cs" />
+    <Compile Include="Invoices\clsInvoiceLine.cs" />
+    <Compile Include="Utilities\clsEventLogger.cs" />
     <Compile Include="Warehouses\clsWarehouseService.cs" />
     <Compile Include="Warehouses\clsWarehouse.cs" />
     <Compile Include="Interfaces\EntityDeletedEventArgs.cs" />
@@ -93,6 +97,5 @@
       <Name>DTOs</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
