@@ -41,11 +41,18 @@ namespace SIMS.WinForms.Warehouses
                     return;
                 }
 
+                if (_Warehouse.Type == clsWarehouse.enWarehouseType.ShopWarehouse)
+                {
+                    this.Close();
+                    clsFormMessages.ShowError("لا يمكن تعديل معلومات مخزن المحل");
+                    return;
+                }
+
                 txtWarehouseName.Text = _Warehouse.WarehouseName;
                 rbActive.Checked = _Warehouse.IsActive;
                 rbInActive.Checked = !_Warehouse.IsActive;
-                rbMainWarehouse.Checked = _Warehouse.IsMainWarehouse;
-                rbSubWarehouse.Checked = !_Warehouse.IsMainWarehouse;
+                rbSubWarehouse.Checked = !(rbMainWarehouse.Checked =
+                    (_Warehouse.Type == clsWarehouse.enWarehouseType.MainWarehouse));
                 txtAddress.Text = _Warehouse.Address;
             }
         }
@@ -83,7 +90,9 @@ namespace SIMS.WinForms.Warehouses
                 _Warehouse = new clsWarehouse(
                     txtWarehouseName.Text, 
                     txtAddress.Text, 
-                    rbMainWarehouse.Checked, 
+                    rbMainWarehouse.Checked ? 
+                        clsWarehouse.enWarehouseType.MainWarehouse :
+                        clsWarehouse.enWarehouseType.SubWarehouse, 
                     rbActive.Checked
                     );
             }
@@ -91,7 +100,9 @@ namespace SIMS.WinForms.Warehouses
             {
                 _Warehouse.WarehouseName = txtWarehouseName.Text;
                 _Warehouse.Address = txtAddress.Text;
-                _Warehouse.IsMainWarehouse = rbMainWarehouse.Checked;
+                _Warehouse.Type = rbMainWarehouse.Checked ?
+                    clsWarehouse.enWarehouseType.MainWarehouse :
+                    clsWarehouse.enWarehouseType.SubWarehouse;
                 _Warehouse.IsActive = rbActive.Checked;
             }
 

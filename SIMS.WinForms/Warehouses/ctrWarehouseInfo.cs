@@ -16,7 +16,12 @@ namespace SIMS.WinForms.Warehouses
 
                 lblWarehouseName.Text = value.WarehouseName;
                 lblAddress.Text = value.Address;
-                lblCategory.Text = value.IsMainWarehouse ? "رئيسي" : "فرعي";
+                lblCategory.Text = 
+                    value.Type == clsWarehouse.enWarehouseType.ShopWarehouse ?
+                    "محلي" :
+                    value.Type == clsWarehouse.enWarehouseType.MainWarehouse ?
+                    "رئيسي" :
+                    "فرعي";
                 lblActivityStatus.Text = value.IsActive ? "نشط" : "غير نشط";
             }
         }

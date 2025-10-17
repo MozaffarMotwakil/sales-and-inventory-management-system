@@ -97,6 +97,12 @@ namespace SIMS.WinForms.Warehouses
 
                 if (warehouse != null)
                 {
+                    if (warehouse.Type == clsWarehouse.enWarehouseType.ShopWarehouse)
+                    {
+                        e.Cancel = true;
+                        return;
+                    }
+
                     if (warehouse.IsActive)
                     {
                         contextMenuStrip.Items[3].Visible = true;
