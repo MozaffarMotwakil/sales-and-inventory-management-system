@@ -99,9 +99,9 @@ namespace BusinessLogic.Products
             return clsProductData.IsProductExistsByName(productName);
         }
 
-        public static string GetProductName(int prouctID)
+        public static bool IsBarcodeExists(int? currentProductID, string barcode)
         {
-            return clsProductData.GetProductName(prouctID);
+            return clsProductData.IsBarcodeExists(currentProductID, barcode);
         }
 
         public static string GenerateBarcode()
@@ -120,10 +120,17 @@ namespace BusinessLogic.Products
                 validationResult.AddError("إسم المنتج", "المنتج موجود بالفعل");
             }
 
-            if ((product.Mode == enMode.Update && currentProductInDB.Barcode != product.Barcode && IsProductExistsByBarcode(product.Barcode)) ||
-                (product.Mode == enMode.Add && IsProductExistsByBarcode(product.Barcode)))
+            if (IsBarcodeExists(product.ProductID, product.Barcode))
             {
-                validationResult.AddError("الباركود", "الباركود موجود بالفعل");
+                validationResult.AddError("الباركود", $"الباركود \"{product.Barcode}\" موجود بالفعل");
+            }
+
+            foreach (clsProductUnitConversion unitConversion in product.UnitConversions)
+            {
+                if (IsBarcodeExists(product.ProductID, unitConversion.Barcode))
+                {
+                    validationResult.AddError("الباركود", $"الباركود \"{unitConversion.Barcode}\" موجود بالفعل");
+                }
             }
 
             return validationResult;

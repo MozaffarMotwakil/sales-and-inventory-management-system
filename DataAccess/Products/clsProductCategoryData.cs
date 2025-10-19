@@ -11,7 +11,7 @@ namespace DataAccess.Products
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_GetProductCategoryByID", connection))
+                using (SqlCommand command = new SqlCommand("usp_Products_GetProductCategoryByID", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@CategoryID", categoryID);
@@ -47,7 +47,7 @@ namespace DataAccess.Products
         public static DataTable GetAllProductCategoryNames()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllProductCategories"
+                "usp_Products_GetAllProductCategories"
                 );
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessLogic.Parties;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Validation;
 

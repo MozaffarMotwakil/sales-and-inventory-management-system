@@ -194,7 +194,7 @@ namespace SIMS.WinForms.Products
             {
                 errorProvider.SetError(txtSellingPrice, "لا يمكن أن يكون حقل سعر البيع فارغاً");
             }
-            else if (!float.TryParse(txtSellingPrice.Text, out float sellingPrice))
+            else if (!decimal.TryParse(txtSellingPrice.Text, out decimal sellingPrice))
             {
                 errorProvider.SetError(txtSellingPrice, "يجب إدخال قيمة رقمية صحيحة أو عشرية لسعر البيع");
             }

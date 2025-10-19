@@ -11,7 +11,7 @@ namespace DataAccess.Products
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_GetProductByID", connection))
+                using (SqlCommand command = new SqlCommand("usp_Products_GetProductByID", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.AddWithValue("@ProductID", productID);
@@ -76,7 +76,7 @@ namespace DataAccess.Products
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_InsertProduct", connection))
+                using (SqlCommand command = new SqlCommand("usp_Products_InsertProduct", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -121,7 +121,7 @@ namespace DataAccess.Products
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_UpdateProduct", connection))
+                using (SqlCommand command = new SqlCommand("usp_Products_UpdateProduct", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -156,26 +156,17 @@ namespace DataAccess.Products
         public static DataTable GetAllProducts()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllProducts"
+                "usp_Products_GetAllProducts"
                 );
         }
 
         public static bool DeleteProduct(int productID)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_DeleteProduct", 
+                "usp_Products_DeleteProduct", 
                 "@ProductID", 
                 productID
                 );
-        }
-
-        public static string GetProductName(int productID)
-        {
-            return clsDataSettings.GetSingleValue(
-                "usp_GetProductName",
-                "@ProductID",
-                productID
-                )?.ToString();
         }
 
         public static bool IsProductExists(int productID)
@@ -190,16 +181,48 @@ namespace DataAccess.Products
         public static bool IsProductExistsByBarcode(string barcode)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_IsBarcodeExists", 
+                "usp_Products_IsExistsByBarcode", 
                 "@Barcode",
                 barcode
                 );
+        }
+        
+        public static bool IsBarcodeExists(int? currentProductID, string barcode)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Products_IsBarcodeExists", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ProductID", currentProductID);
+                    command.Parameters.AddWithValue("@Barcode", barcode);
+
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+
+                    command.Parameters.Add(returnValueParam);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        return (int)returnValueParam.Value == 1;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
         }
 
         public static bool IsProductExistsByName(string productName)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_IsProductNameExists",
+                "usp_Products_IsExistsByProductName",
                 "@ProductName", 
                 productName
                 );

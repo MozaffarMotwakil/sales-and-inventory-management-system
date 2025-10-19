@@ -150,21 +150,33 @@ namespace BusinessLogic.Products
                 validationResult.AddError("وحدة القياس الأساسية", "يجب تعيين وحدة القياس الأساسية");
             }
 
-            if (UnitConversions != null)
+            if (UnitConversions != null && UnitConversions.Count > 0)
             {
-                for (int i = 0; i < UnitConversions.Count; i++)
+                HashSet<int> uniqueAlternativeUnits = new HashSet<int>();
+                HashSet<string> uniqueBarcodes = new HashSet<string>();
+
+                foreach (var conversion in UnitConversions)
                 {
-                    if (UnitConversions[i].AlternativeUnitID == MainUnitInfo.UnitID)
+                    if (conversion.AlternativeUnitID == MainUnitInfo.UnitID)
                     {
                         validationResult.AddError("وحدة القياس البديلة", "لا يمكن أن تكون وحدة القياس الأساسية وحدة قياس بديلة");
                     }
 
-                    for (int j = 0; j < UnitConversions.Count; j++)
+                    if (!uniqueAlternativeUnits.Add(conversion.AlternativeUnitID))
                     {
-                        if (j != i && UnitConversions[i].AlternativeUnitID == UnitConversions[j].AlternativeUnitID)
-                        {
-                            validationResult.AddError("وحدة القياس البديلة", "لا يمكن أن تتكرر وحدة القياس البديلة");
-                        }
+                        validationResult.AddError("وحدة القياس البديلة", "لا يمكن أن تتكرر وحدة القياس البديلة");
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(conversion.Barcode) && !uniqueBarcodes.Add(conversion.Barcode))
+                    {
+                        validationResult.AddError("وحدة القياس البديلة",
+                            $"لا يمكن أن يكون لوحدتين مختلفتين نفس الباركود ({conversion.UnitName}).");
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(conversion.Barcode) && conversion.Barcode == this.Barcode)
+                    {
+                        validationResult.AddError("وحدة القياس البديلة",
+                            $"لا يمكن أن يكون للوحدة البديلة \"{conversion.UnitName}\" نفس الباركود الخاص بالوحدة الأساسية");
                     }
                 }
             }
