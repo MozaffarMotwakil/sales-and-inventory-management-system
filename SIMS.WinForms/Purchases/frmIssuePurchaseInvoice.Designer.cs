@@ -1,6 +1,6 @@
 ﻿namespace SIMS.WinForms.Inventory
 {
-    partial class frmReceiveNewGoods
+    partial class frmIssuePurchaseInvoice
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReceiveNewGoods));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProductsDetailsList = new System.Windows.Forms.DataGridView();
             this.gbPurchaseInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
@@ -69,14 +68,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProductsDetailsList.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductsDetailsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductsDetailsList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvProductsDetailsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductsDetailsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLineNa,
@@ -94,11 +93,11 @@
             this.dgvProductsDetailsList.MultiSelect = false;
             this.dgvProductsDetailsList.Name = "dgvProductsDetailsList";
             this.dgvProductsDetailsList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvProductsDetailsList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvProductsDetailsList.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvProductsDetailsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvProductsDetailsList.Size = new System.Drawing.Size(1260, 407);
+            this.dgvProductsDetailsList.Size = new System.Drawing.Size(960, 376);
             this.dgvProductsDetailsList.TabIndex = 0;
             this.dgvProductsDetailsList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductsDetailsList_CellMouseClick);
             this.dgvProductsDetailsList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductsDetailsList_RowsAdded);
@@ -121,16 +120,17 @@
             this.gbPurchaseInvoiceDetails.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbPurchaseInvoiceDetails.Location = new System.Drawing.Point(12, 12);
             this.gbPurchaseInvoiceDetails.Name = "gbPurchaseInvoiceDetails";
-            this.gbPurchaseInvoiceDetails.Size = new System.Drawing.Size(1260, 199);
+            this.gbPurchaseInvoiceDetails.Size = new System.Drawing.Size(960, 199);
             this.gbPurchaseInvoiceDetails.TabIndex = 0;
             this.gbPurchaseInvoiceDetails.TabStop = false;
             this.gbPurchaseInvoiceDetails.Text = "رأس الفاتورة";
             // 
             // llAddOrganizationSupplier
             // 
+            this.llAddOrganizationSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.llAddOrganizationSupplier.AutoSize = true;
             this.llAddOrganizationSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llAddOrganizationSupplier.Location = new System.Drawing.Point(809, 168);
+            this.llAddOrganizationSupplier.Location = new System.Drawing.Point(509, 173);
             this.llAddOrganizationSupplier.Name = "llAddOrganizationSupplier";
             this.llAddOrganizationSupplier.Size = new System.Drawing.Size(145, 16);
             this.llAddOrganizationSupplier.TabIndex = 12;
@@ -139,9 +139,10 @@
             // 
             // llAddPersonSupplier
             // 
+            this.llAddPersonSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.llAddPersonSupplier.AutoSize = true;
             this.llAddPersonSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llAddPersonSupplier.Location = new System.Drawing.Point(980, 168);
+            this.llAddPersonSupplier.Location = new System.Drawing.Point(680, 173);
             this.llAddPersonSupplier.Name = "llAddPersonSupplier";
             this.llAddPersonSupplier.Size = new System.Drawing.Size(146, 16);
             this.llAddPersonSupplier.TabIndex = 11;
@@ -150,12 +151,13 @@
             // 
             // cbWarehouse
             // 
+            this.cbWarehouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbWarehouse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbWarehouse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbWarehouse.FormattingEnabled = true;
-            this.cbWarehouse.Location = new System.Drawing.Point(765, 106);
+            this.cbWarehouse.Location = new System.Drawing.Point(465, 111);
             this.cbWarehouse.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbWarehouse.Name = "cbWarehouse";
             this.cbWarehouse.Size = new System.Drawing.Size(358, 24);
@@ -163,11 +165,12 @@
             // 
             // cbMainSupplier
             // 
+            this.cbMainSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbMainSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbMainSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMainSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMainSupplier.FormattingEnabled = true;
-            this.cbMainSupplier.Location = new System.Drawing.Point(765, 142);
+            this.cbMainSupplier.Location = new System.Drawing.Point(465, 147);
             this.cbMainSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.cbMainSupplier.Name = "cbMainSupplier";
             this.cbMainSupplier.Size = new System.Drawing.Size(358, 24);
@@ -176,9 +179,10 @@
             // 
             // dtpPurchaseDate
             // 
+            this.dtpPurchaseDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpPurchaseDate.CalendarFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPurchaseDate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpPurchaseDate.Location = new System.Drawing.Point(765, 67);
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(465, 72);
             this.dtpPurchaseDate.Name = "dtpPurchaseDate";
             this.dtpPurchaseDate.RightToLeftLayout = true;
             this.dtpPurchaseDate.Size = new System.Drawing.Size(358, 23);
@@ -186,17 +190,19 @@
             // 
             // txtPurchaseInvoiceNo
             // 
+            this.txtPurchaseInvoiceNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPurchaseInvoiceNo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPurchaseInvoiceNo.Location = new System.Drawing.Point(765, 28);
+            this.txtPurchaseInvoiceNo.Location = new System.Drawing.Point(465, 33);
             this.txtPurchaseInvoiceNo.Name = "txtPurchaseInvoiceNo";
             this.txtPurchaseInvoiceNo.Size = new System.Drawing.Size(361, 23);
             this.txtPurchaseInvoiceNo.TabIndex = 0;
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1198, 106);
+            this.label5.Location = new System.Drawing.Point(898, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 16);
             this.label5.TabIndex = 0;
@@ -204,9 +210,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(1205, 145);
+            this.label3.Location = new System.Drawing.Point(905, 150);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 16);
             this.label3.TabIndex = 0;
@@ -214,9 +221,10 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1129, 67);
+            this.label2.Location = new System.Drawing.Point(829, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 16);
             this.label2.TabIndex = 0;
@@ -224,9 +232,10 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1171, 28);
+            this.label1.Location = new System.Drawing.Point(871, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 16);
             this.label1.TabIndex = 0;
@@ -244,11 +253,12 @@
             // 
             // btnCancle
             // 
+            this.btnCancle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(659, 658);
+            this.btnCancle.Location = new System.Drawing.Point(483, 626);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
@@ -258,10 +268,11 @@
             // 
             // btnSave
             // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(539, 658);
+            this.btnSave.Location = new System.Drawing.Point(363, 626);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
@@ -278,7 +289,7 @@
             this.colLineNa.ReadOnly = true;
             this.colLineNa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colLineNa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLineNa.Width = 50;
+            this.colLineNa.Width = 40;
             // 
             // colProductName
             // 
@@ -304,7 +315,6 @@
             this.ReceivedQuantity.Name = "ReceivedQuantity";
             this.ReceivedQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ReceivedQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ReceivedQuantity.Width = 150;
             // 
             // colPurchasePrice
             // 
@@ -314,19 +324,20 @@
             this.colPurchasePrice.Name = "colPurchasePrice";
             this.colPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colPurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colPurchasePrice.Width = 150;
             // 
             // colDiscount
             // 
             this.colDiscount.HeaderText = "قيمة الخصم";
             this.colDiscount.Name = "colDiscount";
             this.colDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscount.Width = 80;
             // 
             // colTax
             // 
             this.colTax.HeaderText = "نسبة الضريبة";
             this.colTax.Name = "colTax";
             this.colTax.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTax.Width = 80;
             // 
             // colSubTotal
             // 
@@ -334,7 +345,6 @@
             this.colSubTotal.Name = "colSubTotal";
             this.colSubTotal.ReadOnly = true;
             this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colSubTotal.Width = 110;
             // 
             // colGrandTotal
             // 
@@ -342,15 +352,14 @@
             this.colGrandTotal.Name = "colGrandTotal";
             this.colGrandTotal.ReadOnly = true;
             this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colGrandTotal.Width = 110;
             // 
             // colDelete
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle2.NullValue")));
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.NullValue = null;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle8;
             this.colDelete.HeaderText = "حذف";
             this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
@@ -359,23 +368,22 @@
             this.colDelete.ToolTipText = "Delete This Row";
             this.colDelete.Width = 50;
             // 
-            // frmReceiveNewGoods
+            // frmIssuePurchaseInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 711);
+            this.ClientSize = new System.Drawing.Size(984, 681);
             this.Controls.Add(this.btnCancle);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbPurchaseInvoiceDetails);
             this.Controls.Add(this.dgvProductsDetailsList);
             this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmReceiveNewGoods";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Name = "frmIssuePurchaseInvoice";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "إصدار فاتورة مشتريات";
             this.Load += new System.EventHandler(this.frmReceiveNewGoods_Load);

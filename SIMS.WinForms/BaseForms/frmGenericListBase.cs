@@ -25,12 +25,9 @@ namespace SIMS.WinForms.BaseForms
         public frmGenericListBase(TManager manager)
         {
             InitializeComponent();
-            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
-            {
-                Manager = manager;
-                Manager.EntitySaved += EntitySavedEvent;
-                Manager.EntityDeleted += EntityDeletedEvent;
-            }
+            Manager = manager;
+            Manager.EntitySaved += EntitySavedEvent;
+            Manager.EntityDeleted += EntityDeletedEvent;
         }
 
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)
@@ -66,6 +63,11 @@ namespace SIMS.WinForms.BaseForms
 
         private void frmGenericListBase_Load(object sender, EventArgs e)
         {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
+
             LoadData();
             ResetColumnsOfDGV();
             SetOnlyFirstColumnSortable();
@@ -78,6 +80,11 @@ namespace SIMS.WinForms.BaseForms
 
         protected virtual void LoadData()
         {
+            if (Manager == null)
+            {
+                return;
+            }
+
             dgvEntitiesList.DataSource = Manager.GetAll();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
             dgvEntitiesList.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 8, FontStyle.Bold);

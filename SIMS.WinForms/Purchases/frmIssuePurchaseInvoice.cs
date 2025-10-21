@@ -1,18 +1,20 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Inventory
 {
-    public partial class frmReceiveNewGoods : Form
+    public partial class frmIssuePurchaseInvoice : Form
     {
-        public frmReceiveNewGoods()
+        public frmIssuePurchaseInvoice()
         {
             InitializeComponent();
         }
 
         private void frmReceiveNewGoods_Load(object sender, EventArgs e)
         {
+            dgvProductsDetailsList.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 8, FontStyle.Bold);
             dgvProductsDetailsList.Rows[0].Cells[colLineNa.Index].Value = 1;
             dgvProductsDetailsList.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
         }

@@ -11,6 +11,7 @@ using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Purchases;
 
 namespace SIMS.WinForms
 {
@@ -147,6 +148,8 @@ namespace SIMS.WinForms
                     return new frmSuppliersList();
                 case enFormType.WarehousesList:
                     return new frmWarehousesList();
+                case enFormType.PurchasesList:
+                    return new frmPurchasesList();
                 case enFormType.ReportsDashboard:
                     return new frmReportsDashboard();
                 case enFormType.UsersList:

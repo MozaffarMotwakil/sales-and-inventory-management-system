@@ -113,11 +113,11 @@
     <Compile Include="Purchases\frmPurchasesList.Designer.cs">
       <DependentUpon>frmPurchasesList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\frmReceiveNewGoods.cs">
+    <Compile Include="Purchases\frmIssuePurchaseInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\frmReceiveNewGoods.Designer.cs">
-      <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
+    <Compile Include="Purchases\frmIssuePurchaseInvoice.Designer.cs">
+      <DependentUpon>frmIssuePurchaseInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Products\frmAddEditProduct.cs">
       <SubType>Form</SubType>
@@ -373,8 +373,11 @@
     <EmbeddedResource Include="Products\frmProductUnitConversions.resx">
       <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\frmReceiveNewGoods.resx">
-      <DependentUpon>frmReceiveNewGoods.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\frmPurchasesList.resx">
+      <DependentUpon>frmPurchasesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\frmIssuePurchaseInvoice.resx">
+      <DependentUpon>frmIssuePurchaseInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoices\ctrInvoiceInfo.resx">
       <DependentUpon>ctrInvoiceInfo.cs</DependentUpon>
