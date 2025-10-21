@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Invoices\clsPurchaseInvoiceService.cs" />
     <Compile Include="Invoices\clsPurchaseInvoice.cs" />
     <Compile Include="Invoices\clsInvoice.cs" />
     <Compile Include="Invoices\clsInvoiceLine.cs" />

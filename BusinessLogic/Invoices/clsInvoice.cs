@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
-using BusinessLogic.Parties;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
@@ -34,42 +32,32 @@ namespace BusinessLogic.Invoices
             BankTransfer
         }
 
-        public int? InvoiceID { get; }
-        public string InvoiceNa { get; }
-        public DateTime InvoiceDate { get; }
-        public enInvoiceType InvoiceType { get; }
-        public enInvoiceStatus InvoiceStatus { get; }
-        public clsParty PartyInfo { get; }
-        public decimal TotalSubTotal { get; }
-        public decimal TotalDiscountAmount { get; }
-        public decimal TotalTaxAmount { get; }
-        public decimal GrandTotal { get; }
-        public enPaymentMethod PaymentMethod { get; }
-        public ReadOnlyCollection<clsInvoiceLine> Lines => _Lines.AsReadOnly();
-        public decimal? CashPaidAmount { get; }
-        public clsInvoice OriginalInvoiceInfo { get; }
-        public clsUser CreatedByUserInfo { get; }
-        public DateTime? CreateAt { get; }
+        protected int? InvoiceID { get; }
+        protected string InvoiceNa { get; }
+        protected DateTime InvoiceDate { get; }
+        protected enInvoiceType InvoiceType { get; }
+        protected enInvoiceStatus InvoiceStatus { get; }
+        protected List<clsInvoiceLine> Lines { get; } = new List<clsInvoiceLine>();
+        protected decimal TotalSubTotal => CalculateTotalSubTotal();
+        protected decimal TotalDiscountAmount => CalculateDiscountTotal();  
+        protected decimal TotalTaxAmount => CalculateTaxTotal();
+        public decimal GrandTotal => CalculateGrandTotal();
+        protected enPaymentMethod? PaymentMethod { get; }
+        protected decimal? CashPaidAmount { get; }
+        protected clsUser CreatedByUserInfo { get; }
+        protected DateTime? CreateAt { get; }
 
-        private List<clsInvoiceLine> _Lines { get; } = new List<clsInvoiceLine>();
-
-        public clsInvoice(string invoiceNa, DateTime invoiceDate, enInvoiceType invoiceType,
-            enInvoiceStatus invoiceStatus, clsParty party, List<clsInvoiceLine> lines,
-            enPaymentMethod paymentMethod, decimal? cashPaidAmount, clsInvoice originalInvoice = null)
+        protected clsInvoice(string invoiceNa, DateTime invoiceDate, enInvoiceType invoiceType,
+            enInvoiceStatus invoiceStatus, List<clsInvoiceLine> lines,
+            enPaymentMethod? paymentMethod, decimal? cashPaidAmount)
         {
             InvoiceNa = invoiceNa;
             InvoiceDate = invoiceDate;
             InvoiceType = invoiceType;
             InvoiceStatus = invoiceStatus;
-            PartyInfo = party;
-            _Lines = lines;
-            TotalSubTotal = CalculateTotalSubTotal();
-            TotalDiscountAmount = CalculateDiscountTotal();
-            TotalTaxAmount = CalculateTaxTotal();
-            GrandTotal = CalculateGrandTotal();
+            Lines = lines;
             PaymentMethod = paymentMethod;
             CashPaidAmount = cashPaidAmount;
-            OriginalInvoiceInfo = originalInvoice;
         }
 
         public bool IsInvoiceExists(int invoiceID)
@@ -84,43 +72,22 @@ namespace BusinessLogic.Invoices
 
         public decimal CalculateTotalSubTotal()
         {
-            return _Lines.Sum(invokeLine => invokeLine.LineSubTotal);
+            return Lines.Sum(invokeLine => invokeLine.LineSubTotal);
         }
 
         public decimal CalculateTaxTotal()
         {
-            return _Lines.Sum(invokeLine => invokeLine.Tax);
+            return Lines.Sum(invokeLine => invokeLine.Tax);
         }
 
         public decimal CalculateDiscountTotal()
         {
-            return _Lines.Sum(invokeLine => invokeLine.Discount);
+            return Lines.Sum(invokeLine => invokeLine.Discount);
         }
 
         public decimal CalculateGrandTotal()
         {
-            return _Lines.Sum(invokeLine => invokeLine.FinalLineTotal);
-        }
-
-        private clsInvoiceDTO MappingToDTO()
-        {
-            return new clsInvoiceDTO
-            {
-                InvoiceID = this.InvoiceID,
-                InvoiceNa = this.InvoiceNa,
-                InvoiceTypeID = (byte)this.InvoiceType,
-                InvoiceStatusID = (byte)this.InvoiceStatus,
-                PartyID = this.PartyInfo.PartyID.Value,
-                Lines = clsInvoiceLine.CreateInvoiceLinesDataTable(this._Lines),
-                TotalSubTotal = this.TotalSubTotal,
-                TotalDiscountAmount = this.TotalDiscountAmount,
-                TotalTaxAmount = this.TotalTaxAmount,
-                GrandTotal = this.GrandTotal,
-                PaymentMethodID = (int)this.PaymentMethod,
-                CashPaidAmount = this.CashPaidAmount,
-                OriginalInvoiceID = this.OriginalInvoiceInfo?.InvoiceID,
-                CreatedByUserID = clsAppSettings.CurrentUser.UserID,
-            };
+            return Lines.Sum(invokeLine => invokeLine.FinalLineTotal);
         }
 
         public virtual clsValidationResult Validated()
@@ -142,28 +109,23 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("التاريخ", "لا يمكن أن يكون تاريخ الفاتورة في المستقبل.");
             }
 
-            if (PartyInfo == null || PartyInfo.PartyID == null)
-            {
-                validationResult.AddError("الطرف/العميل", "يجب تعيين طرف (عميل/مورد) صالح للفاتورة.");
-            }
-
-            if (InvoiceType < enInvoiceType.Purchase)
+            if (!Enum.IsDefined(typeof(enInvoiceType), InvoiceType))
             {
                 validationResult.AddError("نوع الفاتورة", "يجب اختيار نوع فاتورة صالح.");
             }
 
-            if (InvoiceStatus < enInvoiceStatus.Paid)
+            if (!Enum.IsDefined(typeof(enInvoiceStatus), InvoiceStatus))
             {
-                validationResult.AddError("طريقة الدفع", "يجب اختيار حالة صالحة للفاتورة.");
-            }
-
-            if (PaymentMethod < enPaymentMethod.Cash)
-            {
-                validationResult.AddError("طريقة الدفع", "يجب اختيار طريقة دفع صالحة.");
+                validationResult.AddError("حالة الفاتورة", "يجب اختيار حالة صالحة للفاتورة.");
             }
 
             if (InvoiceStatus == enInvoiceStatus.Paid || InvoiceStatus == enInvoiceStatus.PartiallyPaid)
             {
+                if (!Enum.IsDefined(typeof(enPaymentMethod), PaymentMethod))
+                {
+                    validationResult.AddError("طريقة الدفع", "يجب اختيار طريقة دفع صالحة.");
+                }
+
                 if (CashPaidAmount == null || CashPaidAmount < 0)
                 {
                     validationResult.AddError("المبلغ النقدي المدفوع", "يجب تحديد مبلغ مدفوع موجب.");
@@ -221,6 +183,11 @@ namespace BusinessLogic.Invoices
             return validationResult;
         }
 
+        protected virtual clsInvoiceDTO MappingToDTO() 
+        {
+            throw new NotImplementedException(""); 
+        }
+
         public clsValidationResult Issue()
         {
             clsValidationResult validationResult = this.Validated();
@@ -232,7 +199,7 @@ namespace BusinessLogic.Invoices
 
             try
             {
-                if (!clsInvoiceData.IssueInvoice(this.MappingToDTO()))
+                if (!clsInvoiceData.IssueInvoice(MappingToDTO()))
                 {
                     validationResult.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
                 }

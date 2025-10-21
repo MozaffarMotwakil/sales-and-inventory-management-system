@@ -49,6 +49,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
@@ -69,9 +70,10 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DashboardToolStripButton,
             this.PointOfSelesToolStripButton,
-            this.InventoryToolStripButton3,
             this.SuppliersToolStripButton,
+            this.InventoryToolStripButton3,
             this.WarehousesToolStripButton,
+            this.PurchasesToolStripButton,
             this.ReportsToolStripButton,
             this.UsersToolStripButton,
             this.InvoicesToolStripButton,
@@ -304,6 +306,16 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // PurchasesToolStripButton
+            // 
+            this.PurchasesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PurchasesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchasesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PurchasesToolStripButton.Name = "PurchasesToolStripButton";
+            this.PurchasesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PurchasesToolStripButton.Text = "المشتريات";
+            this.PurchasesToolStripButton.Click += new System.EventHandler(this.PurchasesToolStripButton_Click);
+            // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,6 +368,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripButton WarehousesToolStripButton;
+        private System.Windows.Forms.ToolStripButton PurchasesToolStripButton;
     }
 }
 

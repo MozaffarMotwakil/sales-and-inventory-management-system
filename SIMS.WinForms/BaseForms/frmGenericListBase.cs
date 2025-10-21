@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -24,9 +25,12 @@ namespace SIMS.WinForms.BaseForms
         public frmGenericListBase(TManager manager)
         {
             InitializeComponent();
-            Manager = manager;
-            Manager.EntitySaved += EntitySavedEvent;
-            Manager.EntityDeleted += EntityDeletedEvent;
+            if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+            {
+                Manager = manager;
+                Manager.EntitySaved += EntitySavedEvent;
+                Manager.EntityDeleted += EntityDeletedEvent;
+            }
         }
 
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)

@@ -19,7 +19,7 @@ namespace BusinessLogic.Invoices
         public decimal LineSubTotal { get; set; }
         public decimal FinalLineTotal { get; set; }
 
-        public static DataTable CreateInvoiceLinesDataTable(List<clsInvoiceLine> lines)
+        public static DataTable ConvertInvoiceLinesListToDataTable(List<clsInvoiceLine> lines)
         {
             DataTable invoiceLines = new DataTable();
 
@@ -45,6 +45,38 @@ namespace BusinessLogic.Invoices
                     line.Tax,
                     line.LineSubTotal,
                     line.FinalLineTotal
+                );
+            }
+
+            return invoiceLines;
+        }
+
+        public static List<clsInvoiceLine> ConvertInvoiceLinesDataTableToList(DataTable lines)
+        {
+            List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
+
+            // To prevent NullReferenceException if the list is null.
+            if (lines is null)
+            {
+                return invoiceLines;
+            }
+
+            foreach (DataRow row in lines.Rows)
+            {
+                invoiceLines.Add(
+                    new clsInvoiceLine
+                    {
+                        InvoiceID = (int)row["InvoiceID"],
+                        ProductID = (int)row["ProductID"],
+                        UnitID = (int)row["UnitID"],
+                        UnitPrice = (decimal)row["UnitPrice"],
+                        ConversionFactor = (int)row["ConversionFactor"],
+                        Quantity = (int)row["Quantity"],
+                        LineSubTotal = (decimal)row["LineSubTotal"],
+                        Discount = (decimal)row["Discount"],
+                        Tax = (decimal)row["Tax"],
+                        FinalLineTotal = (decimal)row["FinalLineTotal"]
+                    }
                 );
             }
 

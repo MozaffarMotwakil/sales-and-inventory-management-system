@@ -104,6 +104,15 @@
     <Compile Include="Products\frmProductUnitConversions.Designer.cs">
       <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\BasePurchasesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\frmPurchasesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\frmPurchasesList.Designer.cs">
+      <DependentUpon>frmPurchasesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\frmReceiveNewGoods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -637,9 +646,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\in-active.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

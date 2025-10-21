@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using SIMS.WinForms.Properties;
-using SIMS.WinForms.Suppliers;
 
 namespace SIMS.WinForms.Inventory
 {
@@ -14,8 +13,8 @@ namespace SIMS.WinForms.Inventory
 
         private void frmReceiveNewGoods_Load(object sender, EventArgs e)
         {
-            dgvProductsDetailsList.Rows[0].Cells["No"].Value = 1;
-            dgvProductsDetailsList.Rows[0].Cells["Delete"].Value = Resources.delete;
+            dgvProductsDetailsList.Rows[0].Cells[colLineNa.Index].Value = 1;
+            dgvProductsDetailsList.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
         }
 
 
@@ -31,7 +30,7 @@ namespace SIMS.WinForms.Inventory
 
         private void dgvProductsDetailsList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == dgvProductsDetailsList.Columns["Delete"].Index && e.RowIndex != dgvProductsDetailsList.RowCount - 1)
+            if (e.ColumnIndex == dgvProductsDetailsList.Columns[colDelete.Index].Index && e.RowIndex != dgvProductsDetailsList.RowCount - 1)
             {
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirm",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -49,16 +48,9 @@ namespace SIMS.WinForms.Inventory
         {
             foreach (DataGridViewRow row in dgvProductsDetailsList.Rows)
             {
-                row.Cells["No"].Value = row.Index + 1;
-                row.Cells["Delete"].Value = Resources.delete;
+                row.Cells[colLineNa.Index].Value = row.Index + 1;
+                row.Cells[colDelete.Index].Value = Resources.delete;
             }
-        }
-
-        private void llAddSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            //frmAddEditSupplier addSupplier = new frmAddEditSupplier();
-            //addSupplier.FormMode = enMode.Add;
-            //addSupplier.ShowDialog();
         }
 
     }

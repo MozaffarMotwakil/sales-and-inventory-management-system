@@ -10,6 +10,7 @@ using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
+using SIMS.WinForms.Inventory;
 
 namespace SIMS.WinForms
 {
@@ -22,6 +23,7 @@ namespace SIMS.WinForms
             ProductsList,
             SuppliersList,
             WarehousesList,
+            PurchasesList,
             ReportsDashboard,
             UsersList,
             InvoicesList,
@@ -33,6 +35,7 @@ namespace SIMS.WinForms
         private Form _ProductsListForm;
         private Form _SuppliersList;
         private Form _WarehousesList;
+        private Form _PurchasesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
         private Form _InvoicesListForm;
@@ -67,19 +70,24 @@ namespace SIMS.WinForms
             _OpenForm(ref _PointOfSaleForm, enFormType.PointOfSale);
         }
 
-        private void InventoryToolStripButton_Click(object sender, EventArgs e)
-        {
-            _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
-        }
-
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _SuppliersList, enFormType.SuppliersList);
         }
 
+        private void InventoryToolStripButton_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
+        }
+
         private void WarehousesToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _WarehousesList, enFormType.WarehousesList);
+        }
+
+        private void PurchasesToolStripButton_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _PurchasesList, enFormType.PurchasesList);
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
@@ -151,6 +159,6 @@ namespace SIMS.WinForms
                     return new Form();
             }
         }
-        
+
     }
 }
