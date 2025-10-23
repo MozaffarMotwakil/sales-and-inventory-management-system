@@ -51,6 +51,15 @@ namespace DataAccess.Products
                 );
         }
 
+        public static DataTable GetAllUnitsByProductID(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetAllUnitsByProductID",
+                "@ProductID",
+                productID
+                );
+        }
+
         public static bool IsUnitExists(int unitID)
         {
             return clsDataSettings.ExecuteSimpleSP(

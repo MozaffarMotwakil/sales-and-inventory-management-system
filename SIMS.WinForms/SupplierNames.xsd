@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SupplierNames" targetNamespace="http://tempuri.org/SupplierNames.xsd" xmlns:mstns="http://tempuri.org/SupplierNames.xsd" xmlns="http://tempuri.org/SupplierNames.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_ALWAHA" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_ALWAHA (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SIMS.WinForms.Properties.Settings.GlobalReference.Default.ERP_ALWAHA" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SuppliersDetailsTableAdapter" GeneratorDataComponentClassName="vw_SuppliersDetailsTableAdapter" Name="vw_SuppliersDetails" UserDataComponentName="vw_SuppliersDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_ALWAHA (Settings)" DbObjectName="ERP_ALWAHA.dbo.vw_SuppliersDetails" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT SupplierID, PartyName FROM dbo.vw_SuppliersDetails</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SupplierID" DataSetColumn="SupplierID" />
+              <Mapping SourceColumn="PartyName" DataSetColumn="PartyName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SupplierNames" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="SupplierNames" msprop:Generator_DataSetName="SupplierNames">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_SuppliersDetails" msprop:Generator_RowEvHandlerName="vw_SuppliersDetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SuppliersDetailsRowDeleted" msprop:Generator_RowDeletingName="vw_SuppliersDetailsRowDeleting" msprop:Generator_RowEvArgName="vw_SuppliersDetailsRowChangeEvent" msprop:Generator_TablePropName="vw_SuppliersDetails" msprop:Generator_RowChangedName="vw_SuppliersDetailsRowChanged" msprop:Generator_RowChangingName="vw_SuppliersDetailsRowChanging" msprop:Generator_TableClassName="vw_SuppliersDetailsDataTable" msprop:Generator_RowClassName="vw_SuppliersDetailsRow" msprop:Generator_TableVarName="tablevw_SuppliersDetails" msprop:Generator_UserTableName="vw_SuppliersDetails">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SupplierID" msprop:Generator_ColumnPropNameInRow="SupplierID" msprop:Generator_ColumnPropNameInTable="SupplierIDColumn" msprop:Generator_ColumnVarNameInTable="columnSupplierID" msprop:Generator_UserColumnName="SupplierID" type="xs:int" />
+              <xs:element name="PartyName" msprop:Generator_ColumnPropNameInRow="PartyName" msprop:Generator_ColumnPropNameInTable="PartyNameColumn" msprop:Generator_ColumnVarNameInTable="columnPartyName" msprop:Generator_UserColumnName="PartyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_SuppliersDetails" />
+      <xs:field xpath="mstns:SupplierID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

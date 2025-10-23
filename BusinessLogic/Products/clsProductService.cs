@@ -4,7 +4,9 @@ using System.Data.SqlClient;
 using System.IO;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
+using DataAccess.Parties;
 using DataAccess.Products;
+using DataAccess.Warehouses;
 using DTOs.Products;
 
 namespace BusinessLogic.Products
@@ -82,6 +84,11 @@ namespace BusinessLogic.Products
         public DataTable GetAll()
         {
             return clsProductData.GetAllProducts();
+        }
+
+        public static DataTable GetAllProductUnits(int productID)
+        {
+            return clsProductUnitData.GetAllUnitsByProductID(productID);
         }
 
         public static bool IsProductExists(int productID)
