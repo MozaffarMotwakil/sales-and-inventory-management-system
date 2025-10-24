@@ -26,6 +26,7 @@ namespace SIMS.WinForms.BaseForms
         {
             InitializeComponent();
             Manager = manager;
+            EntityInfoControl = new Control();
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }

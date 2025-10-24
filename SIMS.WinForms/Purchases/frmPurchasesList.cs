@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using BusinessLogic.Products;
 using SIMS.WinForms.Inventory;
 
 namespace SIMS.WinForms.Purchases
 {
     public partial class frmPurchasesList : BasePurchasesForm
     {
-        frmIssuePurchaseInvoice IssuePurchaseInvoiceForm;
         public frmPurchasesList()
         {
             InitializeComponent();
@@ -21,8 +13,26 @@ namespace SIMS.WinForms.Purchases
 
         private void issuePurchaseInvoiceToolStripButton_Click(object sender, EventArgs e)
         {
-                IssuePurchaseInvoiceForm = new frmIssuePurchaseInvoice();
-                IssuePurchaseInvoiceForm.Show();
+            frmIssuePurchaseInvoice issuePurchaseInvoiceForm = new frmIssuePurchaseInvoice();
+            issuePurchaseInvoiceForm.Show();
+        }
+
+        private void frmPurchasesList_Load(object sender, EventArgs e)
+        {
+            contextMenuStrip.Items.Clear();
+        }
+
+        protected override void LoadData()
+        {
+            base.LoadData();
+            base.SearchHintMessage = "أدخل رقم الفاتورة أو إسم المورد";
+            base.EntityName = "الفاتورة";
+        }
+
+        protected override void SearchTextChanged(object sender, EventArgs e)
+        {
+            base.SearchTextChanged(sender, e);
+            Filter = $"InvoiceNa LIKE '%{txtSearch.Text}%' OR SupplierName LIKE '%{txtSearch.Text}%'";
         }
 
     }

@@ -200,9 +200,15 @@ namespace BusinessLogic.Invoices
 
             try
             {
-                if (!clsInvoiceData.IssueInvoice(MappingToDTO()))
+                clsInvoiceDTO dto = MappingToDTO();
+
+                if (!clsInvoiceData.IssueInvoice(dto))
                 {
                     validationResult.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
+                }
+                else
+                {
+                    clsPurchaseInvoiceService.CreateInstance().OnPurchaseInvoiceIssued(dto.InvoiceID.Value, dto.InvoiceNa, enMode.Add);
                 }
 
                 return validationResult;

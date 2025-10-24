@@ -34,6 +34,11 @@
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lblTotalRecordsText
+            // 
+            this.lblTotalRecordsText.Size = new System.Drawing.Size(135, 16);
+            this.lblTotalRecordsText.Text = "إجمالي عدد الفواتير: ";
+            // 
             // toolStrip
             // 
             this.toolStrip.AutoSize = false;
@@ -50,12 +55,11 @@
             // issuePurchaseInvoiceToolStripButton
             // 
             this.issuePurchaseInvoiceToolStripButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.issuePurchaseInvoiceToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.shopping_basket_add;
             this.issuePurchaseInvoiceToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.issuePurchaseInvoiceToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.issuePurchaseInvoiceToolStripButton.Name = "issuePurchaseInvoiceToolStripButton";
-            this.issuePurchaseInvoiceToolStripButton.Size = new System.Drawing.Size(133, 37);
-            this.issuePurchaseInvoiceToolStripButton.Text = "   إضافة منتج جديد";
+            this.issuePurchaseInvoiceToolStripButton.Size = new System.Drawing.Size(129, 37);
+            this.issuePurchaseInvoiceToolStripButton.Text = "   إصدار فاتورة مشتريات";
             this.issuePurchaseInvoiceToolStripButton.Click += new System.EventHandler(this.issuePurchaseInvoiceToolStripButton_Click);
             // 
             // frmPurchasesList
@@ -67,12 +71,13 @@
             this.Name = "frmPurchasesList";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmPurchasesList_Load);
+            this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.txtSearch, 0);
             this.Controls.SetChildIndex(this.pictureBox, 0);
             this.Controls.SetChildIndex(this.lblSearchHintText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
-            this.Controls.SetChildIndex(this.toolStrip, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
