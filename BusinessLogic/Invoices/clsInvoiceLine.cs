@@ -15,7 +15,7 @@ namespace BusinessLogic.Invoices
         public int ConversionFactor { get; set; }
         public int Quantity { get; set; }
         public decimal Discount { get; set; }
-        public decimal Tax { get; set; }
+        public decimal TaxRate { get; set; }
         public decimal LineSubTotal { get; set; }
         public decimal FinalLineTotal { get; set; }
 
@@ -42,7 +42,7 @@ namespace BusinessLogic.Invoices
                     line.ConversionFactor,
                     (short)line.Quantity,
                     line.Discount,
-                    line.Tax,
+                    line.TaxRate,
                     line.LineSubTotal,
                     line.FinalLineTotal
                 );
@@ -74,7 +74,7 @@ namespace BusinessLogic.Invoices
                         Quantity = (int)row["Quantity"],
                         LineSubTotal = (decimal)row["LineSubTotal"],
                         Discount = (decimal)row["Discount"],
-                        Tax = (decimal)row["Tax"],
+                        TaxRate = (decimal)row["Tax"],
                         FinalLineTotal = (decimal)row["FinalLineTotal"]
                     }
                 );
@@ -92,7 +92,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("المنتج", "لم يتم العثور على المنتج المختار ");
             }
 
-            if (clsProductUnitData.IsUnitExists(UnitID))
+            if (!clsProductUnitData.IsUnitExists(UnitID))
             {
                 validationResult.AddError("وحدة القياس", "لم يتم العثور على وحدة القياس المختارة");
             }
@@ -117,7 +117,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
             }
 
-            if (Tax < 0)
+            if (TaxRate < 0)
             {
                 validationResult.AddError("الضريبة", "لا يمكن أن تكون قيمة الضريبة سالبة.");
             }
@@ -129,11 +129,11 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الإجمالي الفرعي", "الإجمالي الفرعي المحسوب غير صحيح بناءً على السعر والكمية.");
             }
 
-            decimal expectedFinalTotal = LineSubTotal - Discount + Tax;
+            decimal expectedFinalTotal = (LineSubTotal - Discount) * + (1 + TaxRate / 100);
 
             if (FinalLineTotal != expectedFinalTotal)
             {
-                validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح بناءً على المعادلة (SubTotal - Discount + Tax).");
+                validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
             }
 
             if (Discount > LineSubTotal)

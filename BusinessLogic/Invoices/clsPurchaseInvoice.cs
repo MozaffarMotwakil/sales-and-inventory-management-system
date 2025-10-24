@@ -48,6 +48,7 @@ namespace BusinessLogic.Invoices
             {
                 InvoiceID = this.InvoiceID,
                 InvoiceNa = this.InvoiceNa,
+                InvoiceDate = this.InvoiceDate,
                 InvoiceTypeID = (byte)this.InvoiceType,
                 InvoiceStatusID = (byte)this.InvoiceStatus,
                 PartyID = this.Supplier?.PartyInfo.PartyID,

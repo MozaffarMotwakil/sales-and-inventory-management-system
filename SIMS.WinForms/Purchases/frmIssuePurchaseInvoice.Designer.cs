@@ -29,23 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvInvoiceLines = new System.Windows.Forms.DataGridView();
-            this.colLineNa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productNames = new SIMS.WinForms.ProductNames();
-            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.gbPurchaseInvoiceDetails = new System.Windows.Forms.GroupBox();
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
@@ -87,6 +78,17 @@
             this.productsTableAdapter = new SIMS.WinForms.ProductNamesTableAdapters.ProductsTableAdapter();
             this.vw_SuppliersDetailsTableAdapter = new SIMS.WinForms.SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.colLineNa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colConversionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productNames)).BeginInit();
@@ -108,34 +110,43 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInvoiceLines.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInvoiceLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInvoiceLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLineNa,
             this.colProduct,
             this.colUnit,
             this.colQuantity,
+            this.colConversionFactor,
             this.colUnitPrice,
             this.colDiscount,
             this.colTax,
             this.colSubTotal,
             this.colGrandTotal,
             this.colDelete});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvInvoiceLines.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvInvoiceLines.Location = new System.Drawing.Point(12, 149);
             this.dgvInvoiceLines.MultiSelect = false;
             this.dgvInvoiceLines.Name = "dgvInvoiceLines";
             this.dgvInvoiceLines.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvInvoiceLines.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvInvoiceLines.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvInvoiceLines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvInvoiceLines.Size = new System.Drawing.Size(1156, 350);
             this.dgvInvoiceLines.TabIndex = 0;
@@ -148,28 +159,6 @@
             this.dgvInvoiceLines.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvProductsDetailsList_RowsRemoved);
             this.dgvInvoiceLines.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvInvoiceLines_RowValidating);
             // 
-            // colLineNa
-            // 
-            this.colLineNa.FillWeight = 40.92768F;
-            this.colLineNa.HeaderText = "م";
-            this.colLineNa.MaxInputLength = 2;
-            this.colLineNa.Name = "colLineNa";
-            this.colLineNa.ReadOnly = true;
-            this.colLineNa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLineNa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLineNa.Width = 40;
-            // 
-            // colProduct
-            // 
-            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProduct.DataSource = this.productsBindingSource;
-            this.colProduct.DisplayMember = "ProductName";
-            this.colProduct.FillWeight = 177.3019F;
-            this.colProduct.HeaderText = "المنتج";
-            this.colProduct.Name = "colProduct";
-            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colProduct.ValueMember = "ProductID";
-            // 
             // productsBindingSource
             // 
             this.productsBindingSource.DataMember = "Products";
@@ -180,76 +169,6 @@
             // 
             this.productNames.DataSetName = "ProductNames";
             this.productNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // colUnit
-            // 
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.colUnit.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colUnit.HeaderText = "الوحدة";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colUnit.Width = 150;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.FillWeight = 76.84161F;
-            this.colQuantity.HeaderText = "الكمية";
-            this.colQuantity.MaxInputLength = 9;
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colUnitPrice
-            // 
-            this.colUnitPrice.FillWeight = 78.73761F;
-            this.colUnitPrice.HeaderText = "سعر شراء الوحدة";
-            this.colUnitPrice.MaxInputLength = 9;
-            this.colUnitPrice.Name = "colUnitPrice";
-            this.colUnitPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colUnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colDiscount
-            // 
-            this.colDiscount.HeaderText = "قيمة الخصم";
-            this.colDiscount.Name = "colDiscount";
-            this.colDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDiscount.Width = 80;
-            // 
-            // colTax
-            // 
-            this.colTax.HeaderText = "نسبة الضريبة";
-            this.colTax.Name = "colTax";
-            this.colTax.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTax.Width = 80;
-            // 
-            // colSubTotal
-            // 
-            this.colSubTotal.HeaderText = "الإجمالي الفرعي";
-            this.colSubTotal.Name = "colSubTotal";
-            this.colSubTotal.ReadOnly = true;
-            this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colGrandTotal
-            // 
-            this.colGrandTotal.HeaderText = "الإجمالي الكلي";
-            this.colGrandTotal.Name = "colGrandTotal";
-            this.colGrandTotal.ReadOnly = true;
-            this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.NullValue = null;
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colDelete.HeaderText = "حذف";
-            this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
-            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colDelete.ToolTipText = "Delete This Row";
-            this.colDelete.Width = 50;
             // 
             // gbPurchaseInvoiceDetails
             // 
@@ -690,6 +609,104 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // colLineNa
+            // 
+            this.colLineNa.FillWeight = 40.92768F;
+            this.colLineNa.HeaderText = "م";
+            this.colLineNa.MaxInputLength = 2;
+            this.colLineNa.Name = "colLineNa";
+            this.colLineNa.ReadOnly = true;
+            this.colLineNa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLineNa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLineNa.Width = 40;
+            // 
+            // colProduct
+            // 
+            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProduct.DataSource = this.productsBindingSource;
+            this.colProduct.DisplayMember = "ProductName";
+            this.colProduct.FillWeight = 177.3019F;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colProduct.ValueMember = "ProductID";
+            // 
+            // colUnit
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.colUnit.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colUnit.Width = 150;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.FillWeight = 76.84161F;
+            this.colQuantity.HeaderText = "الكمية";
+            this.colQuantity.MaxInputLength = 9;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colConversionFactor
+            // 
+            this.colConversionFactor.HeaderText = "معامل التحويل";
+            this.colConversionFactor.Name = "colConversionFactor";
+            this.colConversionFactor.Visible = false;
+            // 
+            // colUnitPrice
+            // 
+            this.colUnitPrice.FillWeight = 78.73761F;
+            this.colUnitPrice.HeaderText = "سعر شراء الوحدة";
+            this.colUnitPrice.MaxInputLength = 9;
+            this.colUnitPrice.Name = "colUnitPrice";
+            this.colUnitPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colUnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colDiscount
+            // 
+            this.colDiscount.HeaderText = "قيمة الخصم";
+            this.colDiscount.Name = "colDiscount";
+            this.colDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscount.Width = 80;
+            // 
+            // colTax
+            // 
+            this.colTax.HeaderText = "نسبة الضريبة";
+            this.colTax.Name = "colTax";
+            this.colTax.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTax.Width = 80;
+            // 
+            // colSubTotal
+            // 
+            this.colSubTotal.HeaderText = "الإجمالي الفرعي";
+            this.colSubTotal.Name = "colSubTotal";
+            this.colSubTotal.ReadOnly = true;
+            this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colGrandTotal
+            // 
+            this.colGrandTotal.HeaderText = "الإجمالي الكلي";
+            this.colGrandTotal.Name = "colGrandTotal";
+            this.colGrandTotal.ReadOnly = true;
+            this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
+            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDelete.ToolTipText = "Delete This Row";
+            this.colDelete.Width = 50;
+            // 
             // frmIssuePurchaseInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -789,16 +806,17 @@
         private SupplierNames supplierNames;
         private System.Windows.Forms.BindingSource vwSuppliersDetailsBindingSource;
         private SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter vw_SuppliersDetailsTableAdapter;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLineNa;
         private System.Windows.Forms.DataGridViewComboBoxColumn colProduct;
         private System.Windows.Forms.DataGridViewComboBoxColumn colUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colConversionFactor;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrandTotal;
         private System.Windows.Forms.DataGridViewImageColumn colDelete;
-        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

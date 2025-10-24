@@ -88,7 +88,10 @@ namespace BusinessLogic.Products
 
         public static DataTable GetAllProductUnits(int productID)
         {
-            return clsProductUnitData.GetAllUnitsByProductID(productID);
+            DataTable productUnits = clsProductUnitData.GetAllUnitsByProductID(productID);
+            DataColumn[] primaryKey = new DataColumn[1] { productUnits.Columns["UnitID"] };
+            productUnits.PrimaryKey = primaryKey;
+            return productUnits;
         }
 
         public static bool IsProductExists(int productID)

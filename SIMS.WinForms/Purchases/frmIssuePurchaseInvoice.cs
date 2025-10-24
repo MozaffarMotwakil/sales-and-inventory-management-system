@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Invoices;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
+using BusinessLogic.Validation;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Properties;
 using SIMS.WinForms.Suppliers;
@@ -13,8 +17,6 @@ namespace SIMS.WinForms.Inventory
 {
     public partial class frmIssuePurchaseInvoice : Form
     {
-        private int? CurrentProductID;
-
         public frmIssuePurchaseInvoice()
         {
             InitializeComponent();
@@ -151,25 +153,47 @@ namespace SIMS.WinForms.Inventory
         {
             if (e.ColumnIndex == colProduct.Index)
             {
-                 CurrentProductID = (int?)dgvInvoiceLines.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
             }
 
-            //dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Tag = dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value;
-            //dgvInvoiceLines.CurrentRow.Cells[colDiscount.Index].Tag = dgvInvoiceLines.CurrentRow.Cells[colDiscount.Index].Value;
-            //dgvInvoiceLines.CurrentRow.Cells[colTax.Index].Tag = dgvInvoiceLines.CurrentRow.Cells[colTax.Index].Value;
-            //dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Tag = dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value;
+            if (e.ColumnIndex == colSubTotal.Index)
+            {
+                dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
+            }
+
+            if (e.ColumnIndex == colDiscount.Index)
+            {
+                dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
+            }
+
+            if (e.ColumnIndex == colTax.Index)
+            {
+                dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
+            }
+
+            if (e.ColumnIndex == colGrandTotal.Index)
+            {
+                dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
+            }
         }
 
         private void dgvProductsDetailsList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == colProduct.Index)
             {
-                if (CurrentProductID != (int?)dgvInvoiceLines.CurrentCell.Value)
+                if ((int?)dgvInvoiceLines.CurrentCell.Tag != (int?)dgvInvoiceLines.CurrentCell.Value)
                 {
                     DataGridViewComboBoxCell cellComboBox = (dgvInvoiceLines.CurrentRow.Cells[colUnit.Index] as DataGridViewComboBoxCell);
                     cellComboBox.ValueMember = string.Empty;
                     cellComboBox.Value = null;
+                    dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = null;
                 }
+            }
+
+            if (e.ColumnIndex == colUnit.Index && dgvInvoiceLines.CurrentCell.Value != null)
+            {
+                DataGridViewComboBoxCell comboBoxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
+                dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = (comboBoxCell.DataSource as DataTable).Rows.Find(dgvInvoiceLines.CurrentCell.Value).Field<object>("ConversionFactor");
             }
 
             if (int.TryParse(dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value?.ToString(), out int lineQuantity) &&
@@ -182,22 +206,6 @@ namespace SIMS.WinForms.Inventory
                     decimal.TryParse(dgvInvoiceLines.CurrentRow.Cells[colTax.Index].Value?.ToString(), out decimal lineTax))
                 {
                     dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = ((lineSubTotal - lineDiscount) * (1 + (lineTax / 100)));
-
-                    //object subTotal = dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Tag;
-                    //object discountTotal = dgvInvoiceLines.CurrentRow.Cells[colDiscount.Index].Tag;
-                    //object taxRate = dgvInvoiceLines.CurrentRow.Cells[colTax.Index].Tag;
-                    //object grandTotal = dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Tag;
-
-
-                    //lblTotalSubTotal.Text = (Convert.ToDecimal(lblTotalSubTotal.Text) - (subTotal == null ? 0 : Convert.ToDecimal(subTotal))).ToString();
-                    //lblTotalDiscount.Text = (Convert.ToDecimal(lblTotalDiscount.Text) - (discountTotal == null ? 0 : Convert.ToDecimal(discountTotal))).ToString();
-                    //lblTotalTax.Text = (Convert.ToDecimal(lblTotalTax.Text) - (taxRate == null ? 0 : (Convert.ToDecimal(subTotal) - Convert.ToDecimal(discountTotal)) * (Convert.ToDecimal(taxRate) / 100))).ToString();
-                    //lblTotalGrandTotal.Text = (Convert.ToDecimal(lblTotalGrandTotal.Text) - (grandTotal == null ? 0 : Convert.ToDecimal(grandTotal))).ToString();
-
-                    lblTotalSubTotal.Text = (Convert.ToDecimal(lblTotalSubTotal.Text) + lineSubTotal).ToString();
-                    lblTotalDiscount.Text = (Convert.ToDecimal(lblTotalDiscount.Text) + lineDiscount).ToString();
-                    lblTotalTax.Text = (Convert.ToDecimal(lblTotalTax.Text) + (lineSubTotal - lineDiscount) * (lineTax / 100)).ToString();
-                    lblTotalGrandTotal.Text = (Convert.ToDecimal(lblTotalGrandTotal.Text) + Convert.ToDecimal(dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value)).ToString();
                 }
             }
 
@@ -211,6 +219,53 @@ namespace SIMS.WinForms.Inventory
                 dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
             }
 
+            decimal sum = 0;
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                if (dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value != null)
+                {
+                    sum += Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value);
+                }
+            }
+
+            lblTotalSubTotal.Text = sum.ToString();
+
+            sum = 0;
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                if (dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value != null)
+                {
+                    sum += Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value);
+                }
+            }
+
+            lblTotalDiscount.Text = sum.ToString();
+
+            sum = 0;
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                if (dgvInvoiceLines.Rows[i].Cells[colTax.Index].Value != null && dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value != null && dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value != null)
+                {
+                    sum += (((Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value) - (Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value)))) * ((Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colTax.Index].Value) / 100)));
+                }
+            }
+
+            lblTotalTax.Text = sum.ToString();
+
+            sum = 0;
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                if (dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value != null)
+                {
+                    sum += Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value);
+                }
+            }
+
+            lblTotalGrandTotal.Text = sum.ToString();
         }
 
         private void txtPurchaseInvoiceNo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -440,6 +495,60 @@ namespace SIMS.WinForms.Inventory
                 return;
             }
 
+            clsPurchaseInvoice purchaseInvoice = new clsPurchaseInvoice(
+                txtPurchaseInvoiceNo.Text,
+                dtpPurchaseDate.Value,
+                rbPaid.Checked ? clsInvoice.enInvoiceStatus.Paid : rbPartiallyPaid.Checked ? clsInvoice.enInvoiceStatus.PartiallyPaid : clsInvoice.enInvoiceStatus.Unpaid,
+                _GetInvoiceLinesFromDGV(),
+                rbCash.Checked ? clsInvoice.enPaymentMethod.Cash : clsInvoice.enPaymentMethod.BankTransfer,
+                rbPaid.Checked ? Convert.ToDecimal(lblTotalGrandTotal.Text) : rbPartiallyPaid.Checked ? (string.IsNullOrWhiteSpace(txtPaidAmount.Text) ? (decimal?)null : Convert.ToDecimal(txtPaidAmount.Text)) : null,
+                clsSupplierService.CreateInstance().Find((int?)cbSupplier.SelectedValue ?? -1)
+                );
+
+            clsValidationResult validationResult = purchaseInvoice.Issue();
+
+            if (validationResult.IsValid)
+            {
+                clsFormMessages.ShowSuccess("تم إصدار الفاتورة بنجاح");
+                this.Close();
+            }
+            else
+            {
+                clsFormMessages.ShowValidationErrors(validationResult);
+            }
+        }
+
+        private List<clsInvoiceLine> _GetInvoiceLinesFromDGV()
+        {
+            List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                try
+                {
+                    invoiceLines.Add(
+                        new clsInvoiceLine
+                        {
+                            ProductID = int.Parse(dgvInvoiceLines.Rows[i].Cells[colProduct.Index].Value.ToString()),
+                            UnitID = int.Parse(dgvInvoiceLines.Rows[i].Cells[colUnit.Index].Value.ToString()),
+                            UnitPrice = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colUnitPrice.Index].Value.ToString()),
+                            ConversionFactor = int.Parse(dgvInvoiceLines.Rows[i].Cells[colConversionFactor.Index].Value.ToString()),
+                            Quantity = int.Parse(dgvInvoiceLines.Rows[i].Cells[colQuantity.Index].Value.ToString()),
+                            LineSubTotal = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value.ToString()),
+                            Discount = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value.ToString()),
+                            TaxRate = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colTax.Index].Value.ToString()),
+                            FinalLineTotal = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value.ToString())
+                        }
+                    );
+                }
+                catch (Exception ex)
+                {
+                    clsFormMessages.ShowError($"حدث خطأ في قراءة الصف {i + 1}: {ex.Message}\nسيتم إلغاء العملية الحالية الرجاء المحاولة مرة أخرى", "خطأ في البيانات");
+                    break;
+                }
+            }
+
+            return invoiceLines;
         }
 
     }

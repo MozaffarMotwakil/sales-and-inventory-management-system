@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using BusinessLogic.Users;
+using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
 using DTOs.Invoices;
@@ -77,7 +78,7 @@ namespace BusinessLogic.Invoices
 
         public decimal CalculateTaxTotal()
         {
-            return Lines.Sum(invokeLine => invokeLine.Tax);
+            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - invokeLine.Discount) * (invokeLine.TaxRate / 100));
         }
 
         public decimal CalculateDiscountTotal()
@@ -173,7 +174,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الإجمالي الكلي", "الإجمالي الكلي للفاتورة غير متطابق مع مجموع السطور النهائي.");
             }
 
-            decimal calculatedFinalTotal = TotalSubTotal - TotalDiscountAmount + TotalTaxAmount;
+            decimal calculatedFinalTotal = (TotalSubTotal - TotalDiscountAmount) + (TotalTaxAmount);
 
             if (GrandTotal != calculatedFinalTotal)
             {
@@ -211,9 +212,10 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("قاعدة البيانات", ex.Message);
                 return validationResult;
             }
-            catch
+            catch (Exception ex)
             {
                 validationResult.AddError("قاعدة البيانات", clsAppSettings.ErrorToConnectionFormDB);
+                clsEventLogger.LogErrorToWindowsEventLog(clsAppSettings.ErrorToConnectionFormDB, ex);
                 return validationResult;
             }
         }
