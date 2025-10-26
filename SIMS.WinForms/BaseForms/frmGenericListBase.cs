@@ -129,15 +129,15 @@ namespace SIMS.WinForms.BaseForms
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TEntity product = Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+            TEntity entity = Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
 
-            if (product == null)
+            if (entity == null)
             {
                 clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
                 return;
             }
 
-            Form editEntity = CreateEditForm(product);
+            Form editEntity = CreateEditForm(entity);
 
            editEntity.ShowDialog();
         }

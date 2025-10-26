@@ -269,6 +269,12 @@
     <Compile Include="Suppliers\BaseSuppliersForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Suppliers\frmShowSupplierInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmShowSupplierInfo.Designer.cs">
+      <DependentUpon>frmShowSupplierInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Suppliers\frmAddEditSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -470,6 +476,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmAddEditSupplier.resx">
       <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmShowSupplierInfo.resx">
+      <DependentUpon>frmShowSupplierInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmSuppliersList.resx">
       <DependentUpon>frmSuppliersList.cs</DependentUpon>

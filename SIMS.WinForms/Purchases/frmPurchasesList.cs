@@ -1,5 +1,5 @@
 ﻿using System;
-using BusinessLogic.Products;
+using BusinessLogic.Invoices;
 using SIMS.WinForms.Inventory;
 
 namespace SIMS.WinForms.Purchases
@@ -27,12 +27,18 @@ namespace SIMS.WinForms.Purchases
             base.LoadData();
             base.SearchHintMessage = "أدخل رقم الفاتورة أو إسم المورد";
             base.EntityName = "الفاتورة";
+            base.EntityInfoControl = ctrInvoiceInfo;
         }
 
         protected override void SearchTextChanged(object sender, EventArgs e)
         {
             base.SearchTextChanged(sender, e);
             Filter = $"InvoiceNa LIKE '%{txtSearch.Text}%' OR SupplierName LIKE '%{txtSearch.Text}%'";
+        }
+
+        protected override void HandleEntityInfoDisplay(clsInvoice invoice)
+        {
+            ctrInvoiceInfo.Invoice = invoice;
         }
 
     }

@@ -9,7 +9,7 @@ namespace BusinessLogic.Invoices
     /// <summary>
     /// This class is represent a server class for purchases and return purchases invoices
     /// </summary>
-    public class clsPurchaseInvoiceService : IEntityListManager<clsPurchaseInvoice>
+    public class clsPurchaseInvoiceService : IEntityListManager<clsInvoice>
     {
         public event EventHandler<EntitySavedEventArgs> EntitySaved;
         public event EventHandler<EntityDeletedEventArgs> EntityDeleted;
@@ -33,14 +33,14 @@ namespace BusinessLogic.Invoices
             EntitySaved?.Invoke(this, new EntitySavedEventArgs(purchaseInvoiceID, purchaseInvoiceNumber, mode));
         }
 
-        public clsPurchaseInvoice Find(int purchaseInvoiceID)
+        public clsInvoice Find(int purchaseInvoiceID)
         {
             if (purchaseInvoiceID < 1)
             {
                 return null;
             }
 
-            clsPurchaseInvoiceDTO purchaseInvoiceDTO = clsPurchaseInvoiceData.FindPurchaseInvoiceByID(purchaseInvoiceID);
+            clsPurchaseInvoiceDTO purchaseInvoiceDTO = clsInvoiceData.FindInvoiceByID(purchaseInvoiceID) as clsPurchaseInvoiceDTO;
             return purchaseInvoiceDTO is null ? null : new clsPurchaseInvoice(purchaseInvoiceDTO);
         }
 

@@ -502,7 +502,8 @@ namespace SIMS.WinForms.Inventory
                 _GetInvoiceLinesFromDGV(),
                 rbCash.Checked ? clsInvoice.enPaymentMethod.Cash : clsInvoice.enPaymentMethod.BankTransfer,
                 rbPaid.Checked ? Convert.ToDecimal(lblTotalGrandTotal.Text) : rbPartiallyPaid.Checked ? (string.IsNullOrWhiteSpace(txtPaidAmount.Text) ? (decimal?)null : Convert.ToDecimal(txtPaidAmount.Text)) : null,
-                clsSupplierService.CreateInstance().Find((int?)cbSupplier.SelectedValue ?? -1)
+                (int?)cbSupplier.SelectedValue ?? -1,
+                (int)cbWarehouse.SelectedValue
                 );
 
             clsValidationResult validationResult = purchaseInvoice.Issue();
@@ -537,7 +538,7 @@ namespace SIMS.WinForms.Inventory
                             LineSubTotal = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value.ToString()),
                             Discount = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colDiscount.Index].Value.ToString()),
                             TaxRate = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colTax.Index].Value.ToString()),
-                            FinalLineTotal = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value.ToString())
+                            LineGrandTotal = decimal.Parse(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value.ToString())
                         }
                     );
                 }

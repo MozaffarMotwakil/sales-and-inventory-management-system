@@ -54,6 +54,17 @@ namespace BusinessLogic.Suppliers
             return supplierDTO is null ? null : new clsSupplier(supplierDTO);
         }
 
+        public clsSupplier FindByPartyID(int partyID)
+        {
+            if (partyID < 1)
+            {
+                return null;
+            }
+
+            clsSupplierDTO supplierDTO = clsSupplierData.FindSupplierByPartyID(partyID);
+            return supplierDTO is null ? null : new clsSupplier(supplierDTO);
+        }
+
         public clsSupplier Find(string supplierName)
         {
             if (string.IsNullOrWhiteSpace(supplierName))

@@ -5,10 +5,12 @@ namespace BusinessLogic.Users
     public class clsUser
     {
         public int UserID { get; set; }
+        public string UserName { get; set; }
 
         public clsUser(int userID)
         {
             UserID = userID;
+            UserName = "Mozaffar_Mo";
         }
 
         public static clsUser Find(int userID)

@@ -30,6 +30,7 @@
         {
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.issuePurchaseInvoiceToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ctrInvoiceInfo = new SIMS.WinForms.Invoices.ctrInvoiceInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -38,6 +39,10 @@
             // 
             this.lblTotalRecordsText.Size = new System.Drawing.Size(135, 16);
             this.lblTotalRecordsText.Text = "إجمالي عدد الفواتير: ";
+            // 
+            // lblTotalRecords
+            // 
+            this.lblTotalRecords.Location = new System.Drawing.Point(152, 437);
             // 
             // toolStrip
             // 
@@ -62,11 +67,24 @@
             this.issuePurchaseInvoiceToolStripButton.Text = "   إصدار فاتورة مشتريات";
             this.issuePurchaseInvoiceToolStripButton.Click += new System.EventHandler(this.issuePurchaseInvoiceToolStripButton_Click);
             // 
+            // ctrInvoiceInfo
+            // 
+            this.ctrInvoiceInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrInvoiceInfo.Invoice = null;
+            this.ctrInvoiceInfo.Location = new System.Drawing.Point(12, 43);
+            this.ctrInvoiceInfo.Name = "ctrInvoiceInfo";
+            this.ctrInvoiceInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrInvoiceInfo.Size = new System.Drawing.Size(881, 275);
+            this.ctrInvoiceInfo.TabIndex = 51;
+            this.ctrInvoiceInfo.Visible = false;
+            // 
             // frmPurchasesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 460);
+            this.Controls.Add(this.ctrInvoiceInfo);
             this.Controls.Add(this.toolStrip);
             this.Name = "frmPurchasesList";
             this.ShowIcon = false;
@@ -78,6 +96,7 @@
             this.Controls.SetChildIndex(this.lblSearchHintText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
+            this.Controls.SetChildIndex(this.ctrInvoiceInfo, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
@@ -90,5 +109,6 @@
 
         protected System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton issuePurchaseInvoiceToolStripButton;
+        private Invoices.ctrInvoiceInfo ctrInvoiceInfo;
     }
 }

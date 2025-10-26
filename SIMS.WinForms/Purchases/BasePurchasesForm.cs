@@ -5,7 +5,7 @@ using SIMS.WinForms.BaseForms;
 
 namespace SIMS.WinForms.Purchases
 {
-    public class BasePurchasesForm : frmGenericListBase<clsPurchaseInvoiceService, clsPurchaseInvoice>
+    public class BasePurchasesForm : frmGenericListBase<clsPurchaseInvoiceService, clsInvoice>
     {
         public BasePurchasesForm() : base(clsPurchaseInvoiceService.CreateInstance()) { }
 

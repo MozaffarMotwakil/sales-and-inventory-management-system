@@ -7,7 +7,68 @@ namespace DataAccess.Invoices
 {
     public static class clsInvoiceData
     {
-        public static bool IssueInvoice(clsInvoiceDTO invoice)
+        public static clsInvoiceDTO FindInvoiceByID(int purchaseInvoiceID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Invoices_GetByID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@InvoiceID", purchaseInvoiceID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            clsPurchaseInvoiceDTO purchaseInvoicetDTO = null;
+
+                            if (reader.Read())
+                            {
+                                purchaseInvoicetDTO = new clsPurchaseInvoiceDTO
+                                {
+                                    InvoiceID = Convert.ToInt32(reader["InvoiceID"]),
+                                    InvoiceNa = Convert.ToString(reader["InvoiceNa"]),
+                                    InvoiceDate = Convert.ToDateTime(reader["InvoiceDate"]),
+                                    InvoiceTypeID = Convert.ToByte(reader["InvoiceTypeID"]),
+                                    InvoiceStatusID = Convert.ToByte(reader["InvoiceStatusID"]),
+                                    TotalSubTotal = Convert.ToDecimal(reader["TotalSubTotal"]),
+                                    TotalDiscountAmount = Convert.ToDecimal(reader["TotalDiscountAmount"]),
+                                    TotalTaxAmount = Convert.ToDecimal(reader["TotalTaxAmount"]),
+                                    GrandTotal = Convert.ToDecimal(reader["GrandTotal"]),
+                                    PaymentMethodID = Convert.ToByte(reader["PaymentMethodID"]),
+                                    PaymentAmount = Convert.ToDecimal(reader["PaymentAmount"]),
+                                    PartyID = Convert.ToInt32(reader["PartyID"]),
+                                    WarehouseID = Convert.ToInt32(reader["WarehouseID"]),
+                                    OriginalInvoiceID = (reader["OriginalInvoiceID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["OriginalInvoiceID"])),
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                                };
+
+                                if (reader.NextResult())
+                                {
+                                    if (reader.HasRows)
+                                    {
+                                        DataTable invoiceLines = new DataTable();
+                                        invoiceLines.Load(reader);
+                                        purchaseInvoicetDTO.Lines = invoiceLines;
+                                    }
+                                }
+                            }
+
+                            return purchaseInvoicetDTO;
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static bool IssueInvoice(clsInvoiceDTO invoiceDTO)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
@@ -15,21 +76,22 @@ namespace DataAccess.Invoices
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@InvoiceNa", invoice.InvoiceNa);
-                    command.Parameters.AddWithValue("@InvoiceDate", invoice.InvoiceDate);
-                    command.Parameters.AddWithValue("@InvoiceTypeID", invoice.InvoiceTypeID);
-                    command.Parameters.AddWithValue("@InvoiceStatusID", invoice.InvoiceStatusID);
-                    command.Parameters.AddWithValue("@PartyID", invoice.PartyID);
-                    command.Parameters.AddWithValue("@TotalSubTotal", invoice.TotalSubTotal);
-                    command.Parameters.AddWithValue("@TotalDiscountAmount", invoice.TotalDiscountAmount);
-                    command.Parameters.AddWithValue("@TotalTaxAmount", invoice.TotalTaxAmount);
-                    command.Parameters.AddWithValue("@GrandTotal", invoice.GrandTotal);
-                    command.Parameters.AddWithValue("@OriginalInvoiceID", clsDataSettings.GetDBNullIfNull(invoice.OriginalInvoiceID));
-                    command.Parameters.AddWithValue("@PaymentMethodID", clsDataSettings.GetDBNullIfNull(invoice.PaymentMethodID));
-                    command.Parameters.AddWithValue("@CashPaidAmount", clsDataSettings.GetDBNullIfNull(invoice.CashPaidAmount));
-                    command.Parameters.AddWithValue("@CreatedByUserID", invoice.CreatedByUserID);
+                    command.Parameters.AddWithValue("@InvoiceNa", invoiceDTO.InvoiceNa);
+                    command.Parameters.AddWithValue("@InvoiceDate", invoiceDTO.InvoiceDate);
+                    command.Parameters.AddWithValue("@InvoiceTypeID", invoiceDTO.InvoiceTypeID);
+                    command.Parameters.AddWithValue("@InvoiceStatusID", invoiceDTO.InvoiceStatusID);
+                    command.Parameters.AddWithValue("@TotalSubTotal", invoiceDTO.TotalSubTotal);
+                    command.Parameters.AddWithValue("@TotalDiscountAmount", invoiceDTO.TotalDiscountAmount);
+                    command.Parameters.AddWithValue("@TotalTaxAmount", invoiceDTO.TotalTaxAmount);
+                    command.Parameters.AddWithValue("@GrandTotal", invoiceDTO.GrandTotal);
+                    command.Parameters.AddWithValue("@PaymentMethodID", clsDataSettings.GetDBNullIfNull(invoiceDTO.PaymentMethodID));
+                    command.Parameters.AddWithValue("@PaymentAmount", clsDataSettings.GetDBNullIfNull(invoiceDTO.PaymentAmount));
+                    command.Parameters.AddWithValue("@PartyID", invoiceDTO.PartyID);
+                    command.Parameters.AddWithValue("@WarehouseID", invoiceDTO.WarehouseID);
+                    command.Parameters.AddWithValue("@OriginalInvoiceID", clsDataSettings.GetDBNullIfNull(invoiceDTO.OriginalInvoiceID));
+                    command.Parameters.AddWithValue("@CreatedByUserID", invoiceDTO.CreatedByUserID);
 
-                    SqlParameter tvpParam = command.Parameters.AddWithValue("@InvoiceLines", invoice.Lines);
+                    SqlParameter tvpParam = command.Parameters.AddWithValue("@InvoiceLines", invoiceDTO.Lines);
                     tvpParam.SqlDbType = SqlDbType.Structured;
                     tvpParam.TypeName = "InvoiceLineType";
 
@@ -52,7 +114,7 @@ namespace DataAccess.Invoices
 
                         if (outputParam.Value != DBNull.Value)
                         {
-                            invoice.InvoiceID = (int)outputParam.Value;
+                            invoiceDTO.InvoiceID = (int)outputParam.Value;
                         }
 
                         return (int)returnValueParam.Value == 1;

@@ -1,20 +1,94 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using BusinessLogic.Invoices;
+using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 
 namespace SIMS.WinForms.Invoices
 {
     public partial class ctrInvoiceInfo : UserControl
     {
+        private clsInvoice _Invoice;
+        public clsInvoice Invoice 
+        {
+            get
+            {
+                return _Invoice;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                _Invoice = value;
+                lblInvoiceNo.Text = _Invoice.InvoiceNa;
+                lblIssuedDate.Text = _Invoice.InvoiceDate.ToString("dd/MM/yyyy");
+                lblWarehouse.Text = _Invoice.WarehouseInfo.WarehouseName;
+                lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
+                lblInvoiceStatus.Text = _Invoice.GetInvoiceStatusName();
+                lblPaymentMethod.Text = _Invoice.GetPaymentMethodName();
+                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString("0.##");
+                llPartyName.Text = _Invoice.GetPartyName();
+                llCreatedByUser.Text = _Invoice.CreatedByUserInfo.UserName;
+                lblSubtotal.Text = _Invoice.TotalSubTotal.ToString("0.##");
+                lblDiscountTotal.Text = _Invoice.TotalDiscountAmount.ToString("0.##");
+                lblTaxTotal.Text = _Invoice.TotalTaxAmount.ToString("0.##");
+                lblGrandTotal.Text = _Invoice.GrandTotal.ToString("0.##");
+                _SetInvoiceLinesToDGV(_Invoice.Lines);
+            }
+        }
+
         public ctrInvoiceInfo()
         {
             InitializeComponent();
         }
 
+        private void ctrInvoiceInfo_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void llPartyName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (_Invoice is clsPurchaseInvoice purchaseInvoice && purchaseInvoice.Supplier != null)
+            {
+                frmShowSupplierInfo supplierInfo = new frmShowSupplierInfo(purchaseInvoice.Supplier);
+                supplierInfo.ShowDialog();
+            }
+        }
+
         private void llCreatedByUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            return;
             frmShowUserInfo userInfo = new frmShowUserInfo();
             userInfo.ShowDialog();
         }
+
+        private void _SetInvoiceLinesToDGV(List<clsInvoiceLine> invoiceLines)
+        {
+            dgvPurchasedProducts.Rows.Clear();
+
+            for (int i = 0; i < invoiceLines.Count; i++)
+            {
+                try
+                {
+                    dgvPurchasedProducts.Rows.Add(
+                        i + 1,
+                        invoiceLines[i].ProductInfo.ProductName, 
+                        invoiceLines[i].UnitInfo.UnitName,
+                        invoiceLines[i].Quantity,
+                        invoiceLines[i].UnitPrice.ToString("0.##"),
+                        invoiceLines[i].LineSubTotal.ToString("0.##"),
+                        invoiceLines[i].Discount.ToString("0.##"),
+                        invoiceLines[i].TaxRate.ToString("0.##") + "%",
+                        invoiceLines[i].LineGrandTotal.ToString("0.##")
+                        );
+                }
+                catch { }
+            }
+        }
+
     }
 }

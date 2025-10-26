@@ -12,8 +12,16 @@ namespace DataAccess.Suppliers
             return FindSupplier(
                 "usp_GetSupplierByID",
                 "@SupplierID",
-                supplierID,
-                "Error find supplier by ID."
+                supplierID
+                );
+        }
+
+        public static clsSupplierDTO FindSupplierByPartyID(int partyID)
+        {
+            return FindSupplier(
+                "usp_Suppliers_GetSupplierByPartyID",
+                "@PartyID",
+                partyID
                 );
         }
 
@@ -22,12 +30,11 @@ namespace DataAccess.Suppliers
             return FindSupplier(
                 "usp_GetSupplierByName",
                 "@SupplierName",
-                supplierName,
-                "Error find supplier by name."
+                supplierName
                 );
         }
 
-        private static clsSupplierDTO FindSupplier<T>(string storedProcedureName, string parameterName, T parameterValue, string exceptionMessage)
+        private static clsSupplierDTO FindSupplier<T>(string storedProcedureName, string parameterName, T parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
@@ -69,9 +76,9 @@ namespace DataAccess.Suppliers
                             return supplierDTO;
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new ApplicationException(exceptionMessage, ex);
+                        throw;
                     }
                 }
             }

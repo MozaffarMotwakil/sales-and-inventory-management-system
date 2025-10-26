@@ -10,14 +10,16 @@ namespace BusinessLogic.Invoices
     {
         public int? InvoiceID { get; set; }
         public int ProductID { get; set; }
+        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
         public int UnitID { get; set; }
+        public clsUnit UnitInfo => clsUnit.Find(UnitID);
         public decimal UnitPrice { get; set; }
         public int ConversionFactor { get; set; }
         public int Quantity { get; set; }
         public decimal Discount { get; set; }
         public decimal TaxRate { get; set; }
         public decimal LineSubTotal { get; set; }
-        public decimal FinalLineTotal { get; set; }
+        public decimal LineGrandTotal { get; set; }
 
         public static DataTable ConvertInvoiceLinesListToDataTable(List<clsInvoiceLine> lines)
         {
@@ -44,7 +46,7 @@ namespace BusinessLogic.Invoices
                     line.Discount,
                     line.TaxRate,
                     line.LineSubTotal,
-                    line.FinalLineTotal
+                    line.LineGrandTotal
                 );
             }
 
@@ -66,16 +68,16 @@ namespace BusinessLogic.Invoices
                 invoiceLines.Add(
                     new clsInvoiceLine
                     {
-                        InvoiceID = (int)row["InvoiceID"],
-                        ProductID = (int)row["ProductID"],
-                        UnitID = (int)row["UnitID"],
-                        UnitPrice = (decimal)row["UnitPrice"],
-                        ConversionFactor = (int)row["ConversionFactor"],
-                        Quantity = (int)row["Quantity"],
-                        LineSubTotal = (decimal)row["LineSubTotal"],
-                        Discount = (decimal)row["Discount"],
-                        TaxRate = (decimal)row["Tax"],
-                        FinalLineTotal = (decimal)row["FinalLineTotal"]
+                        InvoiceID = int.Parse(row["InvoiceID"].ToString()),
+                        ProductID = int.Parse(row["ProductID"].ToString()),
+                        UnitID = int.Parse(row["UnitID"].ToString()),
+                        UnitPrice = decimal.Parse(row["UnitPrice"].ToString()),
+                        ConversionFactor = int.Parse(row["ConversionFactor"].ToString()),
+                        Quantity = int.Parse(row["Quantity"].ToString()),
+                        LineSubTotal = decimal.Parse(row["LineSubTotal"].ToString()),
+                        Discount = decimal.Parse(row["Discount"].ToString()),
+                        TaxRate = decimal.Parse(row["Tax"].ToString()),
+                        LineGrandTotal = decimal.Parse(row["LineGrandTotal"].ToString())
                     }
                 );
             }
@@ -131,7 +133,7 @@ namespace BusinessLogic.Invoices
 
             decimal expectedFinalTotal = (LineSubTotal - Discount) * + (1 + TaxRate / 100);
 
-            if (FinalLineTotal != expectedFinalTotal)
+            if (LineGrandTotal != expectedFinalTotal)
             {
                 validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
             }
