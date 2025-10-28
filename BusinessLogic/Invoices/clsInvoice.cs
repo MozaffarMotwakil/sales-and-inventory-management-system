@@ -12,31 +12,31 @@ using DTOs.Invoices;
 
 namespace BusinessLogic.Invoices
 {
+    public enum enInvoiceType
+    {
+        Purchase = 1,
+        PurchaseReturn,
+        Sales,
+        SalesReturn
+    }
+
+    public enum enInvoiceStatus
+    {
+        Paid = 1,
+        PartiallyPaid,
+        Unpaid
+    }
+
+    public enum enPaymentMethod
+    {
+        Cash = 1,
+        BankTransfer
+    }
+
     public abstract class clsInvoice
     {
-        public enum enInvoiceType
-        {
-            Purchase = 1,
-            PurchaseReturn,
-            Sales,
-            SalesReturn
-        }
-
-        public enum enInvoiceStatus
-        {
-            Paid = 1,
-            PartiallyPaid,
-            Unpaid
-        }
-
-        public enum enPaymentMethod
-        {
-            Cash = 1,
-            BankTransfer
-        }
-
         public int? InvoiceID { get; }
-        public string InvoiceNa { get; }
+        public string InvoiceNo { get; protected set; }
         public DateTime InvoiceDate { get; }
         public enInvoiceType InvoiceType { get; }
         public enInvoiceStatus InvoiceStatus { get; }
@@ -51,30 +51,20 @@ namespace BusinessLogic.Invoices
         public clsUser CreatedByUserInfo { get; protected set; }
         public DateTime? CreateAt { get; protected set; }
 
-        protected clsInvoice(string invoiceNa, DateTime invoiceDate, enInvoiceType invoiceType,
-            enInvoiceStatus invoiceStatus, List<clsInvoiceLine> lines, clsWarehouse warehouse,
-            enPaymentMethod? paymentMethod, decimal? cashPaidAmount)
+        protected clsInvoice(int? invoiceID, string invoiceNo, DateTime invoiceDate, enInvoiceType invoiceType, enInvoiceStatus invoiceStatus,
+            List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? cashPaidAmount)
         {
-            InvoiceNa = invoiceNa;
+            InvoiceID = invoiceID;
+            InvoiceNo = invoiceNo;
             InvoiceDate = invoiceDate;
             InvoiceType = invoiceType;
             InvoiceStatus = invoiceStatus;
             Lines = lines;
-            WarehouseInfo = warehouse;
+            WarehouseInfo = clsWarehouseService.CreateInstance().Find(warehouseID);
             PaymentMethod = paymentMethod;
             PaymentAmount = cashPaidAmount;
         }
-
-        public bool IsInvoiceExists(int invoiceID)
-        {
-            return clsInvoiceData.IsInvoiceExists(invoiceID);
-        }
-
-        public bool IsInvoiceExists(string invoiceNa)
-        {
-            return clsInvoiceData.IsInvoiceExists(invoiceNa);
-        }
-
+        
         private decimal CalculateTotalSubTotal()
         {
             return Lines.Sum(invokeLine => invokeLine.LineSubTotal);
@@ -82,12 +72,12 @@ namespace BusinessLogic.Invoices
 
         private decimal CalculateTaxTotal()
         {
-            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - invokeLine.Discount) * (invokeLine.TaxRate / 100));
+            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - (invokeLine.LineSubTotal * invokeLine.DiscountPercentage / 100)) * (invokeLine.TaxRate / 100));
         }
 
         private decimal CalculateDiscountTotal()
         {
-            return Lines.Sum(invokeLine => invokeLine.Discount);
+            return Lines.Sum(invokeLine => invokeLine.LineSubTotal * invokeLine.DiscountPercentage / 100);
         }
 
         private decimal CalculateGrandTotal()
@@ -147,12 +137,12 @@ namespace BusinessLogic.Invoices
         {
             clsValidationResult validationResult = new clsValidationResult();
 
-            if (string.IsNullOrWhiteSpace(InvoiceNa))
+            if (string.IsNullOrWhiteSpace(InvoiceNo))
             {
-                validationResult.AddError("رقم الفاتورة", "لا يمكن أن يكون الرقم المرجعي للفاتورة فارغًا.");
+                validationResult.AddError("رقم الفاتورة", "لا يمكن أن يكون رقم الفاتورة فارغًا.");
             }
 
-            if (IsInvoiceExists(InvoiceNa))
+            if (clsInvoiceService.IsInvoiceExists(InvoiceNo))
             {
                 validationResult.AddError("رقم الفاتورة", "توجد فاتورة بنفس الرقم, لا يمكن أن يتكرر رقم الفاتورة.");
             }
@@ -241,10 +231,7 @@ namespace BusinessLogic.Invoices
             return validationResult;
         }
 
-        protected virtual clsInvoiceDTO MappingToDTO() 
-        {
-            throw new NotImplementedException(""); 
-        }
+        protected abstract clsInvoiceDTO MappingToDTO();
 
         public clsValidationResult Issue()
         {
@@ -257,15 +244,15 @@ namespace BusinessLogic.Invoices
 
             try
             {
-                clsInvoiceDTO dto = MappingToDTO();
+                clsInvoiceDTO invoiceDTO = this.MappingToDTO();
 
-                if (!clsInvoiceData.IssueInvoice(dto))
+                if (!clsInvoiceData.IssueInvoice(invoiceDTO))
                 {
                     validationResult.AddError("قاعدة البيانات", "فشل الحفظ في قاعدة البيانات");
                 }
                 else
                 {
-                    clsPurchaseInvoiceService.CreateInstance().OnPurchaseInvoiceIssued(dto.InvoiceID.Value, dto.InvoiceNa, enMode.Add);
+                    clsInvoiceService.CreateInstance().OnInvoiceIssued(invoiceDTO.InvoiceID.Value, invoiceDTO.InvoiceNo);
                 }
 
                 return validationResult;

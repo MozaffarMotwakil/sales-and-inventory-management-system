@@ -1,0 +1,836 @@
+﻿namespace SIMS.WinForms.Purchases
+{
+    partial class frmIssuePurchaseReturnInvoice
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.lblTotalGrandTotal = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rbUnpaid = new System.Windows.Forms.RadioButton();
+            this.rbPaid = new System.Windows.Forms.RadioButton();
+            this.rbPartiallyPaid = new System.Windows.Forms.RadioButton();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rbBankTransfer = new System.Windows.Forms.RadioButton();
+            this.rbCash = new System.Windows.Forms.RadioButton();
+            this.txtPaidAmount = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.warehousesTableAdapter = new SIMS.WinForms.WarehouseNamesTableAdapters.WarehousesTableAdapter();
+            this.productsTableAdapter = new SIMS.WinForms.ProductNamesTableAdapters.ProductsTableAdapter();
+            this.vw_SuppliersDetailsTableAdapter = new SIMS.WinForms.SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtOriginalInvoiceNo = new System.Windows.Forms.TextBox();
+            this.gbInvoiceSummary = new System.Windows.Forms.GroupBox();
+            this.lblTotalTax = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblTotalSubTotal = new System.Windows.Forms.Label();
+            this.lblTotalDiscount = new System.Windows.Forms.Label();
+            this.btnCancle = new System.Windows.Forms.Button();
+            this.gbPurchaseInvoiceDetails = new System.Windows.Forms.GroupBox();
+            this.cbWarehouse = new System.Windows.Forms.ComboBox();
+            this.warehousesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.warehouseNames = new SIMS.WinForms.WarehouseNames();
+            this.cbSupplier = new System.Windows.Forms.ComboBox();
+            this.vwSuppliersDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supplierNames = new SIMS.WinForms.SupplierNames();
+            this.dtpPurchaseDate = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productNames = new SIMS.WinForms.ProductNames();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dgvInvoiceLines = new System.Windows.Forms.DataGridView();
+            this.colLineNa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colConversionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscountAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTaxRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.gbInvoiceSummary.SuspendLayout();
+            this.gbPurchaseInvoiceDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productNames)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblTotalGrandTotal
+            // 
+            this.lblTotalGrandTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalGrandTotal.AutoSize = true;
+            this.lblTotalGrandTotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalGrandTotal.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalGrandTotal.Location = new System.Drawing.Point(8, 75);
+            this.lblTotalGrandTotal.Name = "lblTotalGrandTotal";
+            this.lblTotalGrandTotal.Size = new System.Drawing.Size(14, 16);
+            this.lblTotalGrandTotal.TabIndex = 17;
+            this.lblTotalGrandTotal.Text = "0";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbUnpaid);
+            this.panel1.Controls.Add(this.rbPaid);
+            this.panel1.Controls.Add(this.rbPartiallyPaid);
+            this.panel1.Location = new System.Drawing.Point(490, 486);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(372, 31);
+            this.panel1.TabIndex = 34;
+            // 
+            // rbUnpaid
+            // 
+            this.rbUnpaid.AutoSize = true;
+            this.rbUnpaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbUnpaid.Location = new System.Drawing.Point(6, 4);
+            this.rbUnpaid.Name = "rbUnpaid";
+            this.rbUnpaid.Size = new System.Drawing.Size(87, 20);
+            this.rbUnpaid.TabIndex = 14;
+            this.rbUnpaid.Text = "غير مدفوعة";
+            this.rbUnpaid.UseVisualStyleBackColor = true;
+            this.rbUnpaid.CheckedChanged += new System.EventHandler(this.rbUnpaid_CheckedChanged);
+            // 
+            // rbPaid
+            // 
+            this.rbPaid.AutoSize = true;
+            this.rbPaid.Checked = true;
+            this.rbPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPaid.Location = new System.Drawing.Point(255, 4);
+            this.rbPaid.Name = "rbPaid";
+            this.rbPaid.Size = new System.Drawing.Size(108, 20);
+            this.rbPaid.TabIndex = 14;
+            this.rbPaid.TabStop = true;
+            this.rbPaid.Text = "مدفوعة بالكامل";
+            this.rbPaid.UseVisualStyleBackColor = true;
+            this.rbPaid.CheckedChanged += new System.EventHandler(this.rbPaid_CheckedChanged);
+            // 
+            // rbPartiallyPaid
+            // 
+            this.rbPartiallyPaid.AutoSize = true;
+            this.rbPartiallyPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbPartiallyPaid.Location = new System.Drawing.Point(126, 4);
+            this.rbPartiallyPaid.Name = "rbPartiallyPaid";
+            this.rbPartiallyPaid.Size = new System.Drawing.Size(96, 20);
+            this.rbPartiallyPaid.TabIndex = 14;
+            this.rbPartiallyPaid.Text = "مدفوعة جزئيا";
+            this.rbPartiallyPaid.UseVisualStyleBackColor = true;
+            this.rbPartiallyPaid.CheckedChanged += new System.EventHandler(this.rbPartiallyPaid_CheckedChanged);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(1056, 449);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(114, 42);
+            this.btnSave.TabIndex = 28;
+            this.btnSave.Text = "    حفظ";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(394, 492);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 16);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "حالة الفاتورة:";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rbBankTransfer);
+            this.panel2.Controls.Add(this.rbCash);
+            this.panel2.Location = new System.Drawing.Point(490, 450);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(372, 31);
+            this.panel2.TabIndex = 32;
+            // 
+            // rbBankTransfer
+            // 
+            this.rbBankTransfer.AutoSize = true;
+            this.rbBankTransfer.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBankTransfer.Location = new System.Drawing.Point(132, 4);
+            this.rbBankTransfer.Name = "rbBankTransfer";
+            this.rbBankTransfer.Size = new System.Drawing.Size(90, 20);
+            this.rbBankTransfer.TabIndex = 14;
+            this.rbBankTransfer.Text = "تحويل بنكي";
+            this.rbBankTransfer.UseVisualStyleBackColor = true;
+            // 
+            // rbCash
+            // 
+            this.rbCash.AutoSize = true;
+            this.rbCash.Checked = true;
+            this.rbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbCash.Location = new System.Drawing.Point(312, 4);
+            this.rbCash.Name = "rbCash";
+            this.rbCash.Size = new System.Drawing.Size(51, 20);
+            this.rbCash.TabIndex = 14;
+            this.rbCash.TabStop = true;
+            this.rbCash.Text = "كاش";
+            this.rbCash.UseVisualStyleBackColor = true;
+            // 
+            // txtPaidAmount
+            // 
+            this.txtPaidAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPaidAmount.Enabled = false;
+            this.txtPaidAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPaidAmount.Location = new System.Drawing.Point(499, 522);
+            this.txtPaidAmount.Name = "txtPaidAmount";
+            this.txtPaidAmount.Size = new System.Drawing.Size(363, 23);
+            this.txtPaidAmount.TabIndex = 35;
+            this.txtPaidAmount.Validating += new System.ComponentModel.CancelEventHandler(this.txtPaidAmount_Validating);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(394, 525);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(104, 16);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "المبلغ المستلم:";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(394, 456);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 16);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "طريقة الدفع:";
+            // 
+            // warehousesTableAdapter
+            // 
+            this.warehousesTableAdapter.ClearBeforeFill = true;
+            // 
+            // productsTableAdapter
+            // 
+            this.productsTableAdapter.ClearBeforeFill = true;
+            // 
+            // vw_SuppliersDetailsTableAdapter
+            // 
+            this.vw_SuppliersDetailsTableAdapter.ClearBeforeFill = true;
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
+            // 
+            // txtOriginalInvoiceNo
+            // 
+            this.txtOriginalInvoiceNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOriginalInvoiceNo.Enabled = false;
+            this.txtOriginalInvoiceNo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOriginalInvoiceNo.Location = new System.Drawing.Point(920, 42);
+            this.txtOriginalInvoiceNo.Name = "txtOriginalInvoiceNo";
+            this.txtOriginalInvoiceNo.Size = new System.Drawing.Size(225, 23);
+            this.txtOriginalInvoiceNo.TabIndex = 34;
+            // 
+            // gbInvoiceSummary
+            // 
+            this.gbInvoiceSummary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbInvoiceSummary.Controls.Add(this.lblTotalTax);
+            this.gbInvoiceSummary.Controls.Add(this.label13);
+            this.gbInvoiceSummary.Controls.Add(this.label14);
+            this.gbInvoiceSummary.Controls.Add(this.label15);
+            this.gbInvoiceSummary.Controls.Add(this.label16);
+            this.gbInvoiceSummary.Controls.Add(this.label17);
+            this.gbInvoiceSummary.Controls.Add(this.lblTotalSubTotal);
+            this.gbInvoiceSummary.Controls.Add(this.lblTotalGrandTotal);
+            this.gbInvoiceSummary.Controls.Add(this.lblTotalDiscount);
+            this.gbInvoiceSummary.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbInvoiceSummary.Location = new System.Drawing.Point(14, 450);
+            this.gbInvoiceSummary.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbInvoiceSummary.Name = "gbInvoiceSummary";
+            this.gbInvoiceSummary.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.gbInvoiceSummary.Size = new System.Drawing.Size(348, 95);
+            this.gbInvoiceSummary.TabIndex = 36;
+            this.gbInvoiceSummary.TabStop = false;
+            this.gbInvoiceSummary.Text = "ملخص الفاتورة";
+            // 
+            // lblTotalTax
+            // 
+            this.lblTotalTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalTax.AutoSize = true;
+            this.lblTotalTax.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalTax.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalTax.Location = new System.Drawing.Point(8, 55);
+            this.lblTotalTax.Name = "lblTotalTax";
+            this.lblTotalTax.Size = new System.Drawing.Size(14, 16);
+            this.lblTotalTax.TabIndex = 17;
+            this.lblTotalTax.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(235, 17);
+            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(114, 18);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "الإجمالي الفرعي";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(245, 53);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(104, 18);
+            this.label14.TabIndex = 11;
+            this.label14.Text = "إجمالي الضريبة";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(249, 35);
+            this.label15.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(100, 18);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "إجمالي الخصم";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label16.Location = new System.Drawing.Point(2, 60);
+            this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(343, 16);
+            this.label16.TabIndex = 9;
+            this.label16.Text = "________________________________________________";
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(245, 73);
+            this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(104, 18);
+            this.label17.TabIndex = 10;
+            this.label17.Text = "الإجمالي الكلي";
+            // 
+            // lblTotalSubTotal
+            // 
+            this.lblTotalSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalSubTotal.AutoSize = true;
+            this.lblTotalSubTotal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSubTotal.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalSubTotal.Location = new System.Drawing.Point(8, 19);
+            this.lblTotalSubTotal.Name = "lblTotalSubTotal";
+            this.lblTotalSubTotal.Size = new System.Drawing.Size(14, 16);
+            this.lblTotalSubTotal.TabIndex = 17;
+            this.lblTotalSubTotal.Text = "0";
+            // 
+            // lblTotalDiscount
+            // 
+            this.lblTotalDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotalDiscount.AutoSize = true;
+            this.lblTotalDiscount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDiscount.ForeColor = System.Drawing.Color.Red;
+            this.lblTotalDiscount.Location = new System.Drawing.Point(8, 37);
+            this.lblTotalDiscount.Name = "lblTotalDiscount";
+            this.lblTotalDiscount.Size = new System.Drawing.Size(14, 16);
+            this.lblTotalDiscount.TabIndex = 17;
+            this.lblTotalDiscount.Text = "0";
+            // 
+            // btnCancle
+            // 
+            this.btnCancle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
+            this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancle.Location = new System.Drawing.Point(1056, 493);
+            this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(114, 42);
+            this.btnCancle.TabIndex = 29;
+            this.btnCancle.Text = "    إلغاء";
+            this.btnCancle.UseVisualStyleBackColor = true;
+            // 
+            // gbPurchaseInvoiceDetails
+            // 
+            this.gbPurchaseInvoiceDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.txtOriginalInvoiceNo);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.cbWarehouse);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.cbSupplier);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.dtpPurchaseDate);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.label5);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.label3);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.label2);
+            this.gbPurchaseInvoiceDetails.Controls.Add(this.label1);
+            this.gbPurchaseInvoiceDetails.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbPurchaseInvoiceDetails.Location = new System.Drawing.Point(14, 5);
+            this.gbPurchaseInvoiceDetails.Name = "gbPurchaseInvoiceDetails";
+            this.gbPurchaseInvoiceDetails.Size = new System.Drawing.Size(1156, 90);
+            this.gbPurchaseInvoiceDetails.TabIndex = 27;
+            this.gbPurchaseInvoiceDetails.TabStop = false;
+            this.gbPurchaseInvoiceDetails.Text = "رأس الفاتورة";
+            // 
+            // cbWarehouse
+            // 
+            this.cbWarehouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbWarehouse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbWarehouse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbWarehouse.DataSource = this.warehousesBindingSource;
+            this.cbWarehouse.DisplayMember = "WarehouseName";
+            this.cbWarehouse.Enabled = false;
+            this.cbWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWarehouse.FormattingEnabled = true;
+            this.cbWarehouse.Location = new System.Drawing.Point(414, 42);
+            this.cbWarehouse.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbWarehouse.Name = "cbWarehouse";
+            this.cbWarehouse.Size = new System.Drawing.Size(225, 24);
+            this.cbWarehouse.TabIndex = 10;
+            this.cbWarehouse.ValueMember = "WarehouseID";
+            // 
+            // warehousesBindingSource
+            // 
+            this.warehousesBindingSource.DataMember = "Warehouses";
+            this.warehousesBindingSource.DataSource = this.warehouseNames;
+            // 
+            // warehouseNames
+            // 
+            this.warehouseNames.DataSetName = "WarehouseNames";
+            this.warehouseNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cbSupplier
+            // 
+            this.cbSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbSupplier.DataSource = this.vwSuppliersDetailsBindingSource;
+            this.cbSupplier.DisplayMember = "PartyName";
+            this.cbSupplier.Enabled = false;
+            this.cbSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSupplier.FormattingEnabled = true;
+            this.cbSupplier.Location = new System.Drawing.Point(92, 41);
+            this.cbSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbSupplier.Name = "cbSupplier";
+            this.cbSupplier.Size = new System.Drawing.Size(294, 24);
+            this.cbSupplier.TabIndex = 10;
+            this.cbSupplier.ValueMember = "SupplierID";
+            // 
+            // vwSuppliersDetailsBindingSource
+            // 
+            this.vwSuppliersDetailsBindingSource.DataMember = "vw_SuppliersDetails";
+            this.vwSuppliersDetailsBindingSource.DataSource = this.supplierNames;
+            this.vwSuppliersDetailsBindingSource.Sort = "PartyName";
+            // 
+            // supplierNames
+            // 
+            this.supplierNames.DataSetName = "SupplierNames";
+            this.supplierNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dtpPurchaseDate
+            // 
+            this.dtpPurchaseDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpPurchaseDate.CalendarFont = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPurchaseDate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPurchaseDate.Location = new System.Drawing.Point(667, 43);
+            this.dtpPurchaseDate.Name = "dtpPurchaseDate";
+            this.dtpPurchaseDate.RightToLeftLayout = true;
+            this.dtpPurchaseDate.Size = new System.Drawing.Size(225, 23);
+            this.dtpPurchaseDate.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(586, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 16);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "المخزن:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(340, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "المورد:";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(768, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(127, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "تاريخ عملية الإرجاع:";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1017, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "رقم الفاتورة الأصلية:";
+            // 
+            // productsBindingSource
+            // 
+            this.productsBindingSource.DataMember = "Products";
+            this.productsBindingSource.DataSource = this.productNames;
+            this.productsBindingSource.Sort = "ProductName";
+            // 
+            // productNames
+            // 
+            this.productNames.DataSetName = "ProductNames";
+            this.productNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(22, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 18);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "سطور الفاتورة";
+            // 
+            // dgvInvoiceLines
+            // 
+            this.dgvInvoiceLines.AllowUserToResizeColumns = false;
+            this.dgvInvoiceLines.AllowUserToResizeRows = false;
+            this.dgvInvoiceLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvInvoiceLines.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvInvoiceLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInvoiceLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colLineNa,
+            this.colProduct,
+            this.colUnit,
+            this.colQuantity,
+            this.colConversionFactor,
+            this.colUnitPrice,
+            this.colDiscountAmount,
+            this.colTaxRate,
+            this.colSubTotal,
+            this.colGrandTotal,
+            this.colDelete});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvInvoiceLines.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgvInvoiceLines.Location = new System.Drawing.Point(14, 113);
+            this.dgvInvoiceLines.MultiSelect = false;
+            this.dgvInvoiceLines.Name = "dgvInvoiceLines";
+            this.dgvInvoiceLines.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvInvoiceLines.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgvInvoiceLines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvInvoiceLines.Size = new System.Drawing.Size(1156, 324);
+            this.dgvInvoiceLines.TabIndex = 37;
+            this.dgvInvoiceLines.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvInvoiceLines_CellBeginEdit);
+            this.dgvInvoiceLines.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoiceLines_CellEndEdit);
+            this.dgvInvoiceLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProductsDetailsList_CellMouseClick);
+            this.dgvInvoiceLines.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvInvoiceLines_CellValidating);
+            this.dgvInvoiceLines.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductsDetailsList_RowsAdded);
+            this.dgvInvoiceLines.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvProductsDetailsList_RowsRemoved);
+            this.dgvInvoiceLines.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvInvoiceLines_RowValidating);
+            // 
+            // colLineNa
+            // 
+            this.colLineNa.FillWeight = 40.92768F;
+            this.colLineNa.HeaderText = "م";
+            this.colLineNa.MaxInputLength = 2;
+            this.colLineNa.Name = "colLineNa";
+            this.colLineNa.ReadOnly = true;
+            this.colLineNa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLineNa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLineNa.Width = 40;
+            // 
+            // colProduct
+            // 
+            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProduct.DataSource = this.productsBindingSource;
+            this.colProduct.DisplayMember = "ProductName";
+            this.colProduct.FillWeight = 177.3019F;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colProduct.ValueMember = "ProductID";
+            // 
+            // colUnit
+            // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.colUnit.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colUnit.Width = 150;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.FillWeight = 76.84161F;
+            this.colQuantity.HeaderText = "الكمية";
+            this.colQuantity.MaxInputLength = 9;
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colConversionFactor
+            // 
+            this.colConversionFactor.HeaderText = "معامل التحويل";
+            this.colConversionFactor.Name = "colConversionFactor";
+            this.colConversionFactor.Visible = false;
+            // 
+            // colUnitPrice
+            // 
+            this.colUnitPrice.FillWeight = 78.73761F;
+            this.colUnitPrice.HeaderText = "سعر شراء الوحدة";
+            this.colUnitPrice.MaxInputLength = 9;
+            this.colUnitPrice.Name = "colUnitPrice";
+            this.colUnitPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colUnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colDiscountAmount
+            // 
+            this.colDiscountAmount.HeaderText = "قيمة الخصم";
+            this.colDiscountAmount.Name = "colDiscountAmount";
+            this.colDiscountAmount.ReadOnly = true;
+            this.colDiscountAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscountAmount.Width = 80;
+            // 
+            // colTaxRate
+            // 
+            this.colTaxRate.HeaderText = "نسبة الضريبة";
+            this.colTaxRate.Name = "colTaxRate";
+            this.colTaxRate.ReadOnly = true;
+            this.colTaxRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTaxRate.Width = 80;
+            // 
+            // colSubTotal
+            // 
+            this.colSubTotal.HeaderText = "الإجمالي الفرعي";
+            this.colSubTotal.Name = "colSubTotal";
+            this.colSubTotal.ReadOnly = true;
+            this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colGrandTotal
+            // 
+            this.colGrandTotal.HeaderText = "الإجمالي الكلي";
+            this.colGrandTotal.Name = "colGrandTotal";
+            this.colGrandTotal.ReadOnly = true;
+            this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
+            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDelete.ToolTipText = "Delete This Row";
+            this.colDelete.Width = 50;
+            // 
+            // frmIssuePurchaseReturnInvoice
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1184, 551);
+            this.Controls.Add(this.dgvInvoiceLines);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.txtPaidAmount);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.gbInvoiceSummary);
+            this.Controls.Add(this.btnCancle);
+            this.Controls.Add(this.gbPurchaseInvoiceDetails);
+            this.Controls.Add(this.label4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmIssuePurchaseReturnInvoice";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
+            this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "إصدار فاتورة مرتجعات مشتريات";
+            this.Load += new System.EventHandler(this.frmReturnPurchaseInvoice_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.gbInvoiceSummary.ResumeLayout(false);
+            this.gbInvoiceSummary.PerformLayout();
+            this.gbPurchaseInvoiceDetails.ResumeLayout(false);
+            this.gbPurchaseInvoiceDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productNames)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lblTotalGrandTotal;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rbUnpaid;
+        private System.Windows.Forms.RadioButton rbPaid;
+        private System.Windows.Forms.RadioButton rbPartiallyPaid;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rbBankTransfer;
+        private System.Windows.Forms.RadioButton rbCash;
+        private System.Windows.Forms.TextBox txtPaidAmount;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private WarehouseNamesTableAdapters.WarehousesTableAdapter warehousesTableAdapter;
+        private ProductNamesTableAdapters.ProductsTableAdapter productsTableAdapter;
+        private SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter vw_SuppliersDetailsTableAdapter;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.GroupBox gbInvoiceSummary;
+        private System.Windows.Forms.Label lblTotalTax;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblTotalSubTotal;
+        private System.Windows.Forms.Label lblTotalDiscount;
+        private System.Windows.Forms.Button btnCancle;
+        private System.Windows.Forms.GroupBox gbPurchaseInvoiceDetails;
+        private System.Windows.Forms.TextBox txtOriginalInvoiceNo;
+        private System.Windows.Forms.ComboBox cbWarehouse;
+        private System.Windows.Forms.BindingSource warehousesBindingSource;
+        private WarehouseNames warehouseNames;
+        private System.Windows.Forms.ComboBox cbSupplier;
+        private System.Windows.Forms.BindingSource vwSuppliersDetailsBindingSource;
+        private SupplierNames supplierNames;
+        private System.Windows.Forms.DateTimePicker dtpPurchaseDate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource productsBindingSource;
+        private ProductNames productNames;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dgvInvoiceLines;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLineNa;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colProduct;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colConversionFactor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscountAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTaxRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSubTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrandTotal;
+        private System.Windows.Forms.DataGridViewImageColumn colDelete;
+    }
+}

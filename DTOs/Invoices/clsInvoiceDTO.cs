@@ -3,10 +3,10 @@ using System.Data;
 
 namespace DTOs.Invoices
 {
-    public abstract class clsInvoiceDTO
+    public class clsInvoiceDTO
     {
         public int? InvoiceID { get; set; }
-        public string InvoiceNa { get; set; }
+        public string InvoiceNo { get; set; }
         public DateTime InvoiceDate { get; set; }
         public byte InvoiceTypeID { get; set; }   
         public byte InvoiceStatusID { get; set; } 

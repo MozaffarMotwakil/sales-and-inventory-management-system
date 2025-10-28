@@ -1,5 +1,6 @@
 ﻿using System;
 using BusinessLogic.Invoices;
+using DVLD.WinForms.Utils;
 using SIMS.WinForms.Inventory;
 
 namespace SIMS.WinForms.Purchases
@@ -20,6 +21,27 @@ namespace SIMS.WinForms.Purchases
         private void frmPurchasesList_Load(object sender, EventArgs e)
         {
             contextMenuStrip.Items.Clear();
+            contextMenuStrip.Items.Add("إصدار فاتورة مرتجعات");
+            contextMenuStrip.Items[0].Click += IssueReturnPurchaseInvoice_Click;
+        }
+
+        protected override object GetDataSource()
+        {
+            return clsInvoiceService.CreateInstance().GetAllPurchaseInvoice();
+        }
+
+        private void IssueReturnPurchaseInvoice_Click(object sender, EventArgs e)
+        {
+            clsInvoice invoice = clsInvoiceService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (invoice == null)
+            {
+                clsFormMessages.ShowError($"لم يتم العثور على الفاتورة");
+                return;
+            }
+
+            frmIssuePurchaseReturnInvoice returnPurchaseInvoice = new frmIssuePurchaseReturnInvoice(invoice as clsPurchaseInvoice);
+            returnPurchaseInvoice.ShowDialog();
         }
 
         protected override void LoadData()

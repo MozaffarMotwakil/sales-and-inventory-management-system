@@ -33,7 +33,7 @@ namespace SIMS.WinForms.BaseForms
 
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)
         {
-            dgvEntitiesList.DataSource = Manager.GetAll();
+            dgvEntitiesList.DataSource = GetDataSource();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
 
             if (e.OperationMode == BusinessLogic.enMode.Add && dgvEntitiesList.Rows.Count == 1)
@@ -57,7 +57,7 @@ namespace SIMS.WinForms.BaseForms
         {
             txtSearch.Text = string.Empty;
             EntityInfoControl.Visible = false;
-            dgvEntitiesList.DataSource = Manager.GetAll();
+            dgvEntitiesList.DataSource = GetDataSource();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
             ApplySearchFilter();
         }
@@ -86,12 +86,17 @@ namespace SIMS.WinForms.BaseForms
                 return;
             }
 
-            dgvEntitiesList.DataSource = Manager.GetAll();
+            dgvEntitiesList.DataSource = GetDataSource();
             lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
             dgvEntitiesList.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 8, FontStyle.Bold);
         }
 
         protected virtual void ResetColumnsOfDGV() { }
+
+        protected virtual object GetDataSource() 
+        {
+            return Manager.GetAll();
+        }
 
         protected virtual void SearchTextChanged(object sender, EventArgs e)
         {
@@ -138,8 +143,7 @@ namespace SIMS.WinForms.BaseForms
             }
 
             Form editEntity = CreateEditForm(entity);
-
-           editEntity.ShowDialog();
+            editEntity.ShowDialog();
         }
 
         protected virtual Form CreateEditForm(TEntity entity) 

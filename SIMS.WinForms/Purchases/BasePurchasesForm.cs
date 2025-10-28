@@ -5,9 +5,9 @@ using SIMS.WinForms.BaseForms;
 
 namespace SIMS.WinForms.Purchases
 {
-    public class BasePurchasesForm : frmGenericListBase<clsPurchaseInvoiceService, clsInvoice>
+    public class BasePurchasesForm : frmGenericListBase<clsInvoiceService, clsInvoice>
     {
-        public BasePurchasesForm() : base(clsPurchaseInvoiceService.CreateInstance()) { }
+        public BasePurchasesForm() : base(clsInvoiceService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {

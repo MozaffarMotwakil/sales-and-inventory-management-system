@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using BusinessLogic.Products;
 using BusinessLogic.Validation;
+using DataAccess.Invoices;
 using DataAccess.Products;
 
 namespace BusinessLogic.Invoices
 {
     public class clsInvoiceLine
     {
+        public int? LineID { get; set; }
         public int? InvoiceID { get; set; }
         public int ProductID { get; set; }
         public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
@@ -16,7 +19,7 @@ namespace BusinessLogic.Invoices
         public decimal UnitPrice { get; set; }
         public int ConversionFactor { get; set; }
         public int Quantity { get; set; }
-        public decimal Discount { get; set; }
+        public decimal DiscountPercentage { get; set; }
         public decimal TaxRate { get; set; }
         public decimal LineSubTotal { get; set; }
         public decimal LineGrandTotal { get; set; }
@@ -43,7 +46,7 @@ namespace BusinessLogic.Invoices
                     line.UnitPrice,
                     line.ConversionFactor,
                     (short)line.Quantity,
-                    line.Discount,
+                    line.DiscountPercentage,
                     line.TaxRate,
                     line.LineSubTotal,
                     line.LineGrandTotal
@@ -68,21 +71,32 @@ namespace BusinessLogic.Invoices
                 invoiceLines.Add(
                     new clsInvoiceLine
                     {
-                        InvoiceID = int.Parse(row["InvoiceID"].ToString()),
-                        ProductID = int.Parse(row["ProductID"].ToString()),
-                        UnitID = int.Parse(row["UnitID"].ToString()),
-                        UnitPrice = decimal.Parse(row["UnitPrice"].ToString()),
-                        ConversionFactor = int.Parse(row["ConversionFactor"].ToString()),
-                        Quantity = int.Parse(row["Quantity"].ToString()),
-                        LineSubTotal = decimal.Parse(row["LineSubTotal"].ToString()),
-                        Discount = decimal.Parse(row["Discount"].ToString()),
-                        TaxRate = decimal.Parse(row["Tax"].ToString()),
-                        LineGrandTotal = decimal.Parse(row["LineGrandTotal"].ToString())
+                        LineID = Convert.ToInt32(row["LineID"]),
+                        InvoiceID = Convert.ToInt32(row["InvoiceID"]),
+                        ProductID = Convert.ToInt32(row["ProductID"]),
+                        UnitID = Convert.ToInt32(row["UnitID"]),
+                        UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
+                        ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
+                        Quantity = Convert.ToInt32(row["Quantity"]),
+                        LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
+                        DiscountPercentage = Convert.ToDecimal(row["Discount"]),
+                        TaxRate = Convert.ToDecimal(row["Tax"]),
+                        LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
                     }
                 );
             }
 
             return invoiceLines;
+        }
+
+        public static decimal CalculateDiscountPercentage(decimal discountAmount, decimal subTotal)
+        {
+            return discountAmount / subTotal * 100;
+        }
+
+        public int GetRemainingQuantity()
+        {
+            return clsInvoiceData.GetInvoiceLineRemainingQuantity(this.LineID ?? -1);
         }
 
         public clsValidationResult Validated()
@@ -114,7 +128,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("سعر الوحدة", "لا يمكن أن يكون سعر الوحدة عدد سالب");
             }
 
-            if (Discount < 0)
+            if (DiscountPercentage < 0)
             {
                 validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
             }
@@ -131,14 +145,14 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الإجمالي الفرعي", "الإجمالي الفرعي المحسوب غير صحيح بناءً على السعر والكمية.");
             }
 
-            decimal expectedFinalTotal = (LineSubTotal - Discount) * + (1 + TaxRate / 100);
+            decimal expectedFinalTotal = (LineSubTotal - (LineSubTotal * (DiscountPercentage / 100))) * + (1 + TaxRate / 100);
 
             if (LineGrandTotal != expectedFinalTotal)
             {
                 validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
             }
 
-            if (Discount > LineSubTotal)
+            if (DiscountPercentage > LineSubTotal)
             {
                 validationResult.AddError("الخصم", "لا يمكن أن يتجاوز الخصم الممنوح القيمة الفرعية للسطر.");
             }

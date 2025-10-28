@@ -112,6 +112,12 @@
     <Compile Include="Purchases\BasePurchasesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Purchases\frmIssuePurchaseReturnInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\frmIssuePurchaseReturnInvoice.Designer.cs">
+      <DependentUpon>frmIssuePurchaseReturnInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\frmPurchasesList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -447,6 +453,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Purchases\frmIssuePurchaseReturnInvoice.resx">
+      <DependentUpon>frmIssuePurchaseReturnInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmMainReport.resx">
       <DependentUpon>frmMainReport.cs</DependentUpon>
     </EmbeddedResource>

@@ -24,7 +24,7 @@ namespace SIMS.WinForms.Invoices
                 }
 
                 _Invoice = value;
-                lblInvoiceNo.Text = _Invoice.InvoiceNa;
+                lblInvoiceNo.Text = _Invoice.InvoiceNo;
                 lblIssuedDate.Text = _Invoice.InvoiceDate.ToString("dd/MM/yyyy");
                 lblWarehouse.Text = _Invoice.WarehouseInfo.WarehouseName;
                 lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
@@ -81,7 +81,7 @@ namespace SIMS.WinForms.Invoices
                         invoiceLines[i].Quantity,
                         invoiceLines[i].UnitPrice.ToString("0.##"),
                         invoiceLines[i].LineSubTotal.ToString("0.##"),
-                        invoiceLines[i].Discount.ToString("0.##"),
+                        invoiceLines[i].DiscountPercentage.ToString("0.##"),
                         invoiceLines[i].TaxRate.ToString("0.##") + "%",
                         invoiceLines[i].LineGrandTotal.ToString("0.##")
                         );

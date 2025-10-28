@@ -59,8 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Invoices\clsPurchaseInvoiceDTO.cs" />
-    <Compile Include="Invoices\clsInvoiceLineDTO.cs" />
     <Compile Include="Invoices\clsInvoiceDTO.cs" />
     <Compile Include="Products\clsCategoryDTO.cs" />
     <Compile Include="Products\clsUnitDTO.cs" />

@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Invoices\clsPurchaseInvoiceData.cs" />
     <Compile Include="Invoices\clsInvoiceData.cs" />
     <Compile Include="Parties\clsOrganizationData.cs" />
     <Compile Include="Parties\clsPersonData.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Parties\clsCountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\clsActivityLogData.cs" />
+    <Compile Include="Warehouses\clsInventoryData.cs" />
     <Compile Include="Warehouses\clsWarehouseData.cs" />
   </ItemGroup>
   <ItemGroup>
