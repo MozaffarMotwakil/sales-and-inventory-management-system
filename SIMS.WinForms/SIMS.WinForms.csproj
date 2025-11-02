@@ -95,6 +95,12 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoices\frmBaseIssueInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoices\frmBaseIssueInvoice.Designer.cs">
+      <DependentUpon>frmBaseIssueInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -387,6 +393,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoices\frmBaseIssueInvoice.resx">
+      <DependentUpon>frmBaseIssueInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>

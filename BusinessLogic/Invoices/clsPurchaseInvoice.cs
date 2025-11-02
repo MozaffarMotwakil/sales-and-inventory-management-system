@@ -12,8 +12,9 @@ namespace BusinessLogic.Invoices
         public clsSupplier Supplier { get; }
 
         public clsPurchaseInvoice(string invoiceNo, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
-            List<clsInvoiceLine> lines, int supplierID, int warehouseID, enPaymentMethod? paymentMethod, decimal? cashPaidAmount) :
-            base(null, invoiceNo, invoiceDate, enInvoiceType.Purchase, invoiceStatus, lines, warehouseID, paymentMethod, cashPaidAmount)
+            List<clsInvoiceLine> lines, int supplierID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
+            base(null, invoiceNo, invoiceDate, enInvoiceType.Purchase, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
+                null, null)
         {
             Supplier = clsSupplierService.CreateInstance().Find(supplierID);
         }
@@ -21,11 +22,10 @@ namespace BusinessLogic.Invoices
         internal clsPurchaseInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
                 (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines),
-                invoiceDTO.WarehouseID, (enPaymentMethod)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount)
+                invoiceDTO.WarehouseID, (enPaymentMethod)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
+                invoiceDTO.CreatedAt)
         {
             Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
-            CreatedByUserInfo = clsUser.Find(invoiceDTO.CreatedByUserID.Value);
-            CreateAt = invoiceDTO.CreatedAt;
         }
 
         public override clsValidationResult Validated()

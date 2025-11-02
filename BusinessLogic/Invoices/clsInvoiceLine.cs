@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net.Http.Headers;
 using BusinessLogic.Products;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
@@ -19,7 +20,7 @@ namespace BusinessLogic.Invoices
         public decimal UnitPrice { get; set; }
         public int ConversionFactor { get; set; }
         public int Quantity { get; set; }
-        public decimal DiscountPercentage { get; set; }
+        public decimal DiscountRate { get; set; }
         public decimal TaxRate { get; set; }
         public decimal LineSubTotal { get; set; }
         public decimal LineGrandTotal { get; set; }
@@ -46,7 +47,7 @@ namespace BusinessLogic.Invoices
                     line.UnitPrice,
                     line.ConversionFactor,
                     (short)line.Quantity,
-                    line.DiscountPercentage,
+                    line.DiscountRate,
                     line.TaxRate,
                     line.LineSubTotal,
                     line.LineGrandTotal
@@ -60,38 +61,60 @@ namespace BusinessLogic.Invoices
         {
             List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
 
-            // To prevent NullReferenceException if the list is null.
-            if (lines is null)
+            if (lines != null)
             {
-                return invoiceLines;
-            }
-
-            foreach (DataRow row in lines.Rows)
-            {
-                invoiceLines.Add(
-                    new clsInvoiceLine
-                    {
-                        LineID = Convert.ToInt32(row["LineID"]),
-                        InvoiceID = Convert.ToInt32(row["InvoiceID"]),
-                        ProductID = Convert.ToInt32(row["ProductID"]),
-                        UnitID = Convert.ToInt32(row["UnitID"]),
-                        UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
-                        ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
-                        Quantity = Convert.ToInt32(row["Quantity"]),
-                        LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
-                        DiscountPercentage = Convert.ToDecimal(row["Discount"]),
-                        TaxRate = Convert.ToDecimal(row["Tax"]),
-                        LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
-                    }
-                );
+                foreach (DataRow row in lines.Rows)
+                {
+                    invoiceLines.Add(
+                        new clsInvoiceLine
+                        {
+                            LineID = Convert.ToInt32(row["LineID"]),
+                            InvoiceID = Convert.ToInt32(row["InvoiceID"]),
+                            ProductID = Convert.ToInt32(row["ProductID"]),
+                            UnitID = Convert.ToInt32(row["UnitID"]),
+                            UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
+                            ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
+                            Quantity = Convert.ToInt32(row["Quantity"]),
+                            LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
+                            DiscountRate = Convert.ToDecimal(row["Discount"]),
+                            TaxRate = Convert.ToDecimal(row["Tax"]),
+                            LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
+                        }
+                    );
+                }
             }
 
             return invoiceLines;
         }
 
-        public static decimal CalculateDiscountPercentage(decimal discountAmount, decimal subTotal)
+        public static decimal CalculateSubTotal(decimal unitPrice, int quantity)
         {
-            return discountAmount / subTotal * 100;
+            return unitPrice * quantity;
+        }
+
+        public static decimal CalculateDiscountRate(decimal discountAmount, decimal subTotal)
+        {
+            return (discountAmount / subTotal) * 100;
+        }
+
+        public static decimal CalculateDiscountAmount(decimal discountRate, decimal subTotal)
+        {
+            return (discountRate / 100) * subTotal;
+        }
+
+        public static decimal CalculateTaxRate(decimal taxAmount, decimal discountAmount, decimal subTotal)
+        {
+            return (taxAmount / (subTotal - discountAmount)) * 100;
+        }
+
+        public static decimal CalculateTaxAmount(decimal taxRate, decimal discountAmount, decimal subTotal)
+        {
+            return (subTotal - discountAmount) * (taxRate / 100);
+        }
+
+        public static decimal CalculateGrandTotal(decimal subTotal, decimal discountRate, decimal taxRate)
+        {
+            return (subTotal - (subTotal * (discountRate / 100))) * (1 + taxRate / 100);
         }
 
         public int GetRemainingQuantity()
@@ -128,7 +151,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("سعر الوحدة", "لا يمكن أن يكون سعر الوحدة عدد سالب");
             }
 
-            if (DiscountPercentage < 0)
+            if (DiscountRate < 0)
             {
                 validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
             }
@@ -145,14 +168,14 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الإجمالي الفرعي", "الإجمالي الفرعي المحسوب غير صحيح بناءً على السعر والكمية.");
             }
 
-            decimal expectedFinalTotal = (LineSubTotal - (LineSubTotal * (DiscountPercentage / 100))) * + (1 + TaxRate / 100);
+            decimal expectedFinalTotal = CalculateGrandTotal(LineSubTotal, DiscountRate, TaxRate);
 
             if (LineGrandTotal != expectedFinalTotal)
             {
                 validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
             }
 
-            if (DiscountPercentage > LineSubTotal)
+            if (DiscountRate > LineSubTotal)
             {
                 validationResult.AddError("الخصم", "لا يمكن أن يتجاوز الخصم الممنوح القيمة الفرعية للسطر.");
             }

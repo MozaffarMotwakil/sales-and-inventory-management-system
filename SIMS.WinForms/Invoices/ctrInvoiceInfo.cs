@@ -57,6 +57,11 @@ namespace SIMS.WinForms.Invoices
                 frmShowSupplierInfo supplierInfo = new frmShowSupplierInfo(purchaseInvoice.Supplier);
                 supplierInfo.ShowDialog();
             }
+            else if (_Invoice is clsPurchaseReturnInvoice purchaseReturnInvoice && purchaseReturnInvoice?.OriginalInvoiceInfo?.Supplier != null)
+            {
+                frmShowSupplierInfo supplierInfo = new frmShowSupplierInfo(purchaseReturnInvoice?.OriginalInvoiceInfo?.Supplier);
+                supplierInfo.ShowDialog();
+            }
         }
 
         private void llCreatedByUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -81,7 +86,7 @@ namespace SIMS.WinForms.Invoices
                         invoiceLines[i].Quantity,
                         invoiceLines[i].UnitPrice.ToString("0.##"),
                         invoiceLines[i].LineSubTotal.ToString("0.##"),
-                        invoiceLines[i].DiscountPercentage.ToString("0.##"),
+                        invoiceLines[i].DiscountRate.ToString("0.##") + "%",
                         invoiceLines[i].TaxRate.ToString("0.##") + "%",
                         invoiceLines[i].LineGrandTotal.ToString("0.##")
                         );

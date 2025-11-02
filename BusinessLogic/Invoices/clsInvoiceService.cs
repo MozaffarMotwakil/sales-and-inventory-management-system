@@ -30,7 +30,7 @@ namespace BusinessLogic.Invoices
             EntitySaved?.Invoke(this, new EntitySavedEventArgs(invoiceID, invoiceNumber, enMode.Add));
         }
 
-        public  static bool IsInvoiceExists(int invoiceID)
+        public static bool IsInvoiceExists(int invoiceID)
         {
             return clsInvoiceData.IsInvoiceExists(invoiceID);
         }
@@ -97,6 +97,8 @@ namespace BusinessLogic.Invoices
         {
             throw new NotImplementedException("لم يتم إنشاء دالة جلب كل فواتير المشتريات");
         }
+
+      
 
     }
 }

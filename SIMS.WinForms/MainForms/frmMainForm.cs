@@ -10,7 +10,6 @@ using SIMS.WinForms.Sales;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
-using SIMS.WinForms.Inventory;
 using SIMS.WinForms.Purchases;
 
 namespace SIMS.WinForms

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using BusinessLogic.Utilities;
 using DVLD.WinForms.MainForms;
 using DVLD.WinForms.Utils;
+using SIMS.WinForms.Invoices;
 
 namespace SIMS.WinForms
 {

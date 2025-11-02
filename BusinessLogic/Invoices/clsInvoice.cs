@@ -48,11 +48,11 @@ namespace BusinessLogic.Invoices
         public enPaymentMethod? PaymentMethod { get; }
         public decimal? PaymentAmount { get; }
         public clsWarehouse WarehouseInfo { get; }
-        public clsUser CreatedByUserInfo { get; protected set; }
-        public DateTime? CreateAt { get; protected set; }
+        public clsUser CreatedByUserInfo { get; }
+        public DateTime? CreateAt { get; }
 
         protected clsInvoice(int? invoiceID, string invoiceNo, DateTime invoiceDate, enInvoiceType invoiceType, enInvoiceStatus invoiceStatus,
-            List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? cashPaidAmount)
+            List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount, int? createdByUserID, DateTime? createdAt)
         {
             InvoiceID = invoiceID;
             InvoiceNo = invoiceNo;
@@ -62,7 +62,9 @@ namespace BusinessLogic.Invoices
             Lines = lines;
             WarehouseInfo = clsWarehouseService.CreateInstance().Find(warehouseID);
             PaymentMethod = paymentMethod;
-            PaymentAmount = cashPaidAmount;
+            PaymentAmount = paymentAmount;
+            CreatedByUserInfo = createdByUserID.HasValue ? clsUser.Find(createdByUserID.Value) : null;
+            CreateAt = createdAt;
         }
         
         private decimal CalculateTotalSubTotal()
@@ -72,12 +74,12 @@ namespace BusinessLogic.Invoices
 
         private decimal CalculateTaxTotal()
         {
-            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - (invokeLine.LineSubTotal * invokeLine.DiscountPercentage / 100)) * (invokeLine.TaxRate / 100));
+            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - (invokeLine.LineSubTotal * invokeLine.DiscountRate / 100)) * (invokeLine.TaxRate / 100));
         }
 
         private decimal CalculateDiscountTotal()
         {
-            return Lines.Sum(invokeLine => invokeLine.LineSubTotal * invokeLine.DiscountPercentage / 100);
+            return Lines.Sum(invokeLine => invokeLine.LineSubTotal * invokeLine.DiscountRate / 100);
         }
 
         private decimal CalculateGrandTotal()
