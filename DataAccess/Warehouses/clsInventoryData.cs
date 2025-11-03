@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,13 @@ namespace DataAccess.Warehouses
                 }
             }
         }
+
+        public static DataTable GetAllInventories()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Inventories_GetAllInventories"
+                );
+        }
+
     }
 }

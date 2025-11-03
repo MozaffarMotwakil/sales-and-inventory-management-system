@@ -32,9 +32,11 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
+            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.InvoicesToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -45,11 +47,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
@@ -72,7 +74,7 @@
             this.PointOfSelesToolStripButton,
             this.SuppliersToolStripButton,
             this.InventoryToolStripButton3,
-            this.WarehousesToolStripButton,
+            this.WarehousesAndInventories,
             this.PurchasesToolStripButton,
             this.ReportsToolStripButton,
             this.UsersToolStripButton,
@@ -112,17 +114,6 @@
             this.PointOfSelesToolStripButton.Text = "Point of Seles";
             this.PointOfSelesToolStripButton.Click += new System.EventHandler(this.PointOfSelesToolStripButton_Click);
             // 
-            // InventoryToolStripButton3
-            // 
-            this.InventoryToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InventoryToolStripButton3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InventoryToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("InventoryToolStripButton3.Image")));
-            this.InventoryToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InventoryToolStripButton3.Name = "InventoryToolStripButton3";
-            this.InventoryToolStripButton3.Size = new System.Drawing.Size(249, 36);
-            this.InventoryToolStripButton3.Text = "المنتجات";
-            this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton_Click);
-            // 
             // SuppliersToolStripButton
             // 
             this.SuppliersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -134,15 +125,48 @@
             this.SuppliersToolStripButton.Text = "الموردين";
             this.SuppliersToolStripButton.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
             // 
+            // InventoryToolStripButton3
+            // 
+            this.InventoryToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.InventoryToolStripButton3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoryToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("InventoryToolStripButton3.Image")));
+            this.InventoryToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.InventoryToolStripButton3.Name = "InventoryToolStripButton3";
+            this.InventoryToolStripButton3.Size = new System.Drawing.Size(249, 36);
+            this.InventoryToolStripButton3.Text = "المنتجات";
+            this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton_Click);
+            // 
+            // WarehousesAndInventories
+            // 
+            this.WarehousesAndInventories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.WarehousesAndInventories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.WarehousesToolStripButton,
+            this.InventoriesToolStripMenuItem});
+            this.WarehousesAndInventories.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarehousesAndInventories.Image = ((System.Drawing.Image)(resources.GetObject("WarehousesAndInventories.Image")));
+            this.WarehousesAndInventories.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.WarehousesAndInventories.Name = "WarehousesAndInventories";
+            this.WarehousesAndInventories.Size = new System.Drawing.Size(249, 36);
+            this.WarehousesAndInventories.Text = "المخازن و المخزون";
+            // 
             // WarehousesToolStripButton
             // 
             this.WarehousesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarehousesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
-            this.WarehousesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.WarehousesToolStripButton.Size = new System.Drawing.Size(180, 34);
             this.WarehousesToolStripButton.Text = "المخازن";
             this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
+            // 
+            // PurchasesToolStripButton
+            // 
+            this.PurchasesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PurchasesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PurchasesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PurchasesToolStripButton.Name = "PurchasesToolStripButton";
+            this.PurchasesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PurchasesToolStripButton.Text = "المشتريات";
+            this.PurchasesToolStripButton.Click += new System.EventHandler(this.PurchasesToolStripButton_Click);
             // 
             // ReportsToolStripButton
             // 
@@ -248,73 +272,71 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DarkCyan;
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(984, 50);
             this.panel2.TabIndex = 5;
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(869, 26);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 19);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "dd/MM/yyyy";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(869, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 19);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "00:00:00 AM";
-            // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(329, 5);
+            this.label3.Location = new System.Drawing.Point(303, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(266, 45);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Al-Waha Mall";
+            this.label3.Size = new System.Drawing.Size(345, 45);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "سوبرماركت الواحة";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(3, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 19);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "dd/MM/yyyy";
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::SIMS.WinForms.Properties.Resources.al_waha_mall;
-            this.pictureBox1.Location = new System.Drawing.Point(242, -18);
+            this.pictureBox1.Location = new System.Drawing.Point(651, -18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(87, 92);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // PurchasesToolStripButton
+            // label4
             // 
-            this.PurchasesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PurchasesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PurchasesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PurchasesToolStripButton.Name = "PurchasesToolStripButton";
-            this.PurchasesToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.PurchasesToolStripButton.Text = "المشتريات";
-            this.PurchasesToolStripButton.Click += new System.EventHandler(this.PurchasesToolStripButton_Click);
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(3, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 19);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "00:00:00 AM";
+            // 
+            // InventoriesToolStripMenuItem
+            // 
+            this.InventoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoriesToolStripMenuItem.Name = "InventoriesToolStripMenuItem";
+            this.InventoriesToolStripMenuItem.Size = new System.Drawing.Size(180, 34);
+            this.InventoriesToolStripMenuItem.Text = "المخزون";
+            this.InventoriesToolStripMenuItem.Click += new System.EventHandler(this.InventoriesToolStripMenuItem_Click);
             // 
             // frmMainForm
             // 
@@ -330,6 +352,7 @@
             this.Name = "frmMainForm";
             this.Padding = new System.Windows.Forms.Padding(250, 50, 0, 0);
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
@@ -362,13 +385,15 @@
         private System.Windows.Forms.ToolStripButton UsersToolStripButton;
         private System.Windows.Forms.ToolStripButton InvoicesToolStripButton;
         private System.Windows.Forms.ToolStripButton ActivityLogToolStripButton;
+        private System.Windows.Forms.ToolStripButton PurchasesToolStripButton;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ToolStripButton WarehousesToolStripButton;
-        private System.Windows.Forms.ToolStripButton PurchasesToolStripButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripDropDownButton WarehousesAndInventories;
+        private System.Windows.Forms.ToolStripMenuItem WarehousesToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem InventoriesToolStripMenuItem;
     }
 }
 

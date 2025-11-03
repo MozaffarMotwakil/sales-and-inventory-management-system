@@ -51,7 +51,7 @@ namespace BusinessLogic.Invoices
                         validationResult.AddError(line.ProductInfo.ProductName, "لا يمكن إرجاع كمية أكبر من الكمية المشتراة المتبقية من هذا المنتج");
                     }
 
-                    if (line.Quantity > clsInventory.GetInventoryQuantity(this.WarehouseInfo.WarehouseID ?? -1, line.ProductID, line.UnitID))
+                    if (line.Quantity > clsInventoryService.GetInventoryQuantity(this.WarehouseInfo.WarehouseID ?? -1, line.ProductID, line.UnitID))
                     {
                         validationResult.AddError(line.ProductInfo.ProductName, "كمية البضاعة التي يراد إرجاعها أكبر من كمية المخزون الحالي");
                     }

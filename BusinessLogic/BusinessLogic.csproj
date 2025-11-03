@@ -66,6 +66,7 @@
     <Compile Include="Invoices\clsInvoiceLine.cs" />
     <Compile Include="Utilities\clsEventLogger.cs" />
     <Compile Include="Warehouses\clsInventory.cs" />
+    <Compile Include="Warehouses\clsInventoryService.cs" />
     <Compile Include="Warehouses\clsWarehouseService.cs" />
     <Compile Include="Warehouses\clsWarehouse.cs" />
     <Compile Include="Interfaces\EntityDeletedEventArgs.cs" />

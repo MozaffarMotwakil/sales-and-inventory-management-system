@@ -23,6 +23,7 @@ namespace SIMS.WinForms
             ProductsList,
             SuppliersList,
             WarehousesList,
+            InventoriesList,
             PurchasesList,
             ReportsDashboard,
             UsersList,
@@ -35,6 +36,7 @@ namespace SIMS.WinForms
         private Form _ProductsListForm;
         private Form _SuppliersList;
         private Form _WarehousesList;
+        private Form _InventoriesList;
         private Form _PurchasesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
@@ -57,6 +59,9 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            WarehousesAndInventories.DropDownDirection = ToolStripDropDownDirection.Left;
+            WarehousesToolStripButton.AutoSize = false;
+            WarehousesToolStripButton.Size = new Size(249, 36);
             _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 
@@ -88,6 +93,11 @@ namespace SIMS.WinForms
         private void PurchasesToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _PurchasesList, enFormType.PurchasesList);
+        }
+
+        private void InventoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _InventoriesList, enFormType.InventoriesList);
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
@@ -147,6 +157,8 @@ namespace SIMS.WinForms
                     return new frmSuppliersList();
                 case enFormType.WarehousesList:
                     return new frmWarehousesList();
+                case enFormType.InventoriesList:
+                    return new frmInventoriesList();
                 case enFormType.PurchasesList:
                     return new frmPurchasesList();
                 case enFormType.ReportsDashboard:
@@ -162,5 +174,6 @@ namespace SIMS.WinForms
             }
         }
 
+       
     }
 }
