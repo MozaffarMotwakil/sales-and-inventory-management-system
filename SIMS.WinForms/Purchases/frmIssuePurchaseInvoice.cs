@@ -293,7 +293,7 @@ namespace SIMS.WinForms.Inventory
                 }
                 else if (!IsCurrentCellEmpty())
                 {
-                    decimal subTotal = (decimal)GetCurrentValueOfCell(colSubTotal.Index);
+                    decimal subTotal = (decimal)GetCellValue(colSubTotal.Index);
 
                     if ((e.ColumnIndex == colDiscountAmount.Index && discount >= subTotal) ||
                         (e.ColumnIndex == colDiscountRate.Index && clsInvoiceLine.CalculateDiscountAmount(discount, subTotal) >= subTotal))

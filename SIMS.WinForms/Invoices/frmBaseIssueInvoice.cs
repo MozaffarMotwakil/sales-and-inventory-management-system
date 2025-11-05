@@ -144,7 +144,7 @@ namespace SIMS.WinForms.Invoices
 
         protected bool IsCellValueChange(int columnIndex)
         {
-            return GetLastValueOfCell(columnIndex) != GetCurrentValueOfCell(columnIndex);
+            return GetLastValueOfCell(columnIndex) != GetCellValue(columnIndex);
         }
 
         protected object GetLastValueOfCell()
@@ -152,19 +152,24 @@ namespace SIMS.WinForms.Invoices
             return dgvInvoiceLines.CurrentCell.Tag;
         }
 
-        protected object GetCurrentValueOfCell()
-        {
-            return dgvInvoiceLines.CurrentCell.Value;
-        }
-
         protected object GetLastValueOfCell(int columnIndex)
         {
             return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Tag;
         }
 
-        protected object GetCurrentValueOfCell(int columnIndex)
+        protected object GetCellValue()
+        {
+            return dgvInvoiceLines.CurrentCell.Value;
+        }
+
+        protected object GetCellValue(int columnIndex)
         {
             return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Value;
+        }
+
+        protected object GetCellValue(int rowIndex, int columnIndex)
+        {
+            return dgvInvoiceLines.Rows[rowIndex].Cells[columnIndex].Value;
         }
 
         protected bool IsCellValueChange()

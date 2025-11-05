@@ -27,6 +27,7 @@ namespace SIMS.WinForms.BaseForms
             InitializeComponent();
             Manager = manager;
             EntityInfoControl = new Control();
+            EntityInfoControl.Visible = false;
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }
@@ -277,6 +278,26 @@ namespace SIMS.WinForms.BaseForms
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
             }
+        }
+
+        protected object GetCellValue(int columnIndex)
+        {
+            if (dgvEntitiesList.CurrentRow == null || columnIndex < 0 || dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return null;
+            }
+
+            return dgvEntitiesList.SelectedRows[0].Cells[columnIndex].Value;
+        }
+
+        protected object GetCellValue(int rowIndex, int columnIndex)
+        {
+            if (rowIndex < 0 || columnIndex < 0)
+            {
+                return null;
+            }
+
+            return dgvEntitiesList.Rows[rowIndex].Cells[columnIndex].Value;
         }
 
         private void frmGenericListBase_FormClosed(object sender, FormClosedEventArgs e)

@@ -25,6 +25,14 @@ namespace SIMS.WinForms.Products
             _FormMode = enMode.Add;
         }
 
+        public frmAddEditProduct(int productID)
+        {
+            InitializeComponent();
+            _Product = clsProductService.CreateInstance().Find(productID);
+            _UnitConversionsForm = new frmProductUnitConversions(this, _Product?.UnitConversions);
+            _FormMode = enMode.Edit;
+        }
+
         public frmAddEditProduct(clsProduct product)
         {
             InitializeComponent();
@@ -45,6 +53,13 @@ namespace SIMS.WinForms.Products
 
             if (_FormMode is enMode.Edit)
             {
+                if (_Product == null)
+                {
+                    clsFormMessages.ShowError("لم يتم العثور على المنتج");
+                    this.Close();
+                    return;
+                }
+
                 txtProductName.Text = _Product.ProductName;
                 txtProductBarcode.Text = _Product.Barcode;
                 cbCategory.SelectedIndex = _Product.CategoryInfo.CategoryID - 1;

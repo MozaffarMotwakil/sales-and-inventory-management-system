@@ -52,7 +52,7 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[11].Width = 85;
                 base.dgvEntitiesList.Columns[11].DefaultCellStyle.Format = "0.##";
 
-                base.dgvEntitiesList.Columns[12].HeaderText = "الربع المتوقع (جنيه)";
+                base.dgvEntitiesList.Columns[12].HeaderText = "الربح المتوقع (جنيه)";
                 base.dgvEntitiesList.Columns[12].Width = 85;
                 base.dgvEntitiesList.Columns[12].DefaultCellStyle.Format = "0.##";
 

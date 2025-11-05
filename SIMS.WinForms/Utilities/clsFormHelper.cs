@@ -35,12 +35,6 @@ namespace DVLD.WinForms.Utils
             return delete;
         }
 
-        public static int RefreshDataGridView(DataGridView dataGridView, object DataSource)
-        {
-            dataGridView.DataSource = DataSource;
-            return dataGridView.RowCount;
-        }
-
         public static int GetSelectedRowID(DataGridView dataGridView)
         {
             if (dataGridView.SelectedRows.Count > 0)
