@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
 using DataAccess.Products;
@@ -81,6 +82,15 @@ namespace BusinessLogic.Warehouses
         public DataTable GetAll()
         {
             return clsWarehouseData.GetAllWarehouses();
+        }
+
+        public static object[] GetAllWarehouseNames()
+        {
+            return clsWarehouseData.GetAllWarehouseNames()
+                .Rows
+                .Cast<DataRow>()
+                .Select(row => row[0])
+                .ToArray();
         }
 
         public bool MarkAsActive(clsWarehouse warehouse)

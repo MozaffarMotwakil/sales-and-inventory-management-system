@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
 using DataAccess.Parties;
@@ -84,6 +85,15 @@ namespace BusinessLogic.Products
         public DataTable GetAll()
         {
             return clsProductData.GetAllProducts();
+        }
+
+        public static object[] GetAllProductNames()
+        {
+            return clsProductData.GetAllProductNames()
+                .Rows
+                .Cast<DataRow>()
+                .Select(row => row[0])
+                .ToArray();
         }
 
         public static DataTable GetAllProductUnits(int productID)

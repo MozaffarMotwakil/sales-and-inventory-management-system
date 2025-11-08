@@ -160,6 +160,13 @@ namespace DataAccess.Products
                 );
         }
 
+        public static DataTable GetAllProductNames()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetAllProductNames"
+                );
+        }
+
         public static bool DeleteProduct(int productID)
         {
             return clsDataSettings.ExecuteSimpleSP(

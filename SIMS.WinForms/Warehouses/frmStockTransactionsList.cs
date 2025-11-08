@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DVLD.WinForms.Utils;
+using BusinessLogic.Employees;
+using BusinessLogic.Products;
+using BusinessLogic.Warehouses;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -16,6 +10,19 @@ namespace SIMS.WinForms.Warehouses
         public frmStockTransactionsList()
         {
             InitializeComponent();
+        }
+
+        private void frmStockTransactionsList_Load(object sender, EventArgs e)
+        {
+            cbProduct.SelectedIndex = cbUnit.SelectedIndex =
+                cbWarehouse.SelectedIndex = cbTransactionType.SelectedIndex =
+                cbResponseEmployee.SelectedIndex = 0;
+
+            cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
+            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbWarehouse.Items.AddRange(clsWarehouseService.GetAllWarehouseNames());
+            cbTransactionType.Items.AddRange(clsStockTransactionService.GetAllStockTransactionTypeNames());
+            cbResponseEmployee.Items.AddRange(clsEmployeeService.GetAllEmployeeName());
         }
 
     }

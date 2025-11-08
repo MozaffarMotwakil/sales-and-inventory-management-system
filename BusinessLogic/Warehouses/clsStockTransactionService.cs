@@ -39,7 +39,16 @@ namespace BusinessLogic.Warehouses
 
         public DataTable GetAll()
         {
-            return clsInventoryData.GetAllInventoryTransactions();
+            return clsInventoryData.GetAllStockTransactions();
+        }
+
+        public static object[] GetAllStockTransactionTypeNames()
+        {
+            return clsInventoryData.GetAllStockTransactionTypeNames()
+                .Rows
+                .Cast<DataRow>()
+                .Select(row => row[0])
+                .ToArray();
         }
 
     }

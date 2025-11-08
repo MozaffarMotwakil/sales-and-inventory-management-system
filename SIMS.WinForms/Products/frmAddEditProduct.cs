@@ -48,7 +48,7 @@ namespace SIMS.WinForms.Products
                 "تعديل منتج";
 
             cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
-            cbBaseUnit.Items.AddRange(clsUnit.GetUnitNames());
+            cbBaseUnit.Items.AddRange(clsUnit.GetAllUnitNames());
             cbMainSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
 
             if (_FormMode is enMode.Edit)

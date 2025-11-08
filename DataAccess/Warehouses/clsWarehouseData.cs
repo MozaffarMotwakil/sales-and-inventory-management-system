@@ -155,6 +155,13 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DataTable GetAllWarehouseNames()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Warehouses_GetAllWarehouseNames"
+                );
+        }
+
         public static bool IsWarehouseNameExists(string warehouseName)
         {
             return clsDataSettings.ExecuteSimpleSP(

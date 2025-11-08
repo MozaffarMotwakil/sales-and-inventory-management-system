@@ -51,7 +51,7 @@ namespace SIMS.WinForms.Products
             lblBaseUnitName.Text = BaseUnit;
 
             colUnitConversion.Items.Clear();
-            colUnitConversion.Items.AddRange(clsUnit.GetUnitNames());
+            colUnitConversion.Items.AddRange(clsUnit.GetAllUnitNames());
             _SelectedUnits.Add(BaseUnit);
 
             _AllUnits.Clear();
