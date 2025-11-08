@@ -115,5 +115,12 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DataTable GetAllInventoryTransactions()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Inventories_GetAllStockTransactions"
+                );
+        }
+
     }
 }

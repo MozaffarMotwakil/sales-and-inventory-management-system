@@ -112,23 +112,25 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addProducrToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ctrProductInfo = new SIMS.WinForms.Products.ctrProductInfo();
+            this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTotalRecordsText
             // 
-            this.lblTotalRecordsText.Location = new System.Drawing.Point(9, 437);
             this.lblTotalRecordsText.Size = new System.Drawing.Size(142, 16);
             this.lblTotalRecordsText.Text = "إجمالي عدد المنتجات:";
             // 
             // lblTotalRecords
             // 
-            this.lblTotalRecords.AutoSize = false;
-            this.lblTotalRecords.Location = new System.Drawing.Point(159, 437);
+            this.lblTotalRecords.Location = new System.Drawing.Point(159, 691);
             this.lblTotalRecords.Size = new System.Drawing.Size(154, 16);
             this.lblTotalRecords.Text = "4";
-            this.lblTotalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Size = new System.Drawing.Size(220, 26);
             // 
             // dataGridViewTextBoxColumn73
             // 
@@ -698,7 +700,7 @@
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Items.AddRange(new object[] {
             "كل التصنيفات"});
-            this.cbCategory.Location = new System.Drawing.Point(559, 8);
+            this.cbCategory.Location = new System.Drawing.Point(643, 9);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(200, 24);
@@ -715,7 +717,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(900, 40);
+            this.toolStrip.Size = new System.Drawing.Size(1112, 40);
             this.toolStrip.TabIndex = 47;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -747,23 +749,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 460);
+            this.ClientSize = new System.Drawing.Size(1112, 714);
             this.Controls.Add(this.cbCategory);
             this.Controls.Add(this.ctrProductInfo);
             this.Controls.Add(this.toolStrip);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmProductsList";
+            this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmProductsList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
-            this.Controls.SetChildIndex(this.txtSearch, 0);
-            this.Controls.SetChildIndex(this.pictureBox, 0);
-            this.Controls.SetChildIndex(this.lblSearchHintText, 0);
+            this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.ctrProductInfo, 0);
             this.Controls.SetChildIndex(this.cbCategory, 0);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

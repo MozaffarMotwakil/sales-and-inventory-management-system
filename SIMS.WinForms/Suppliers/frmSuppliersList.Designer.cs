@@ -83,6 +83,7 @@
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
+            this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +95,7 @@
             // 
             // lblTotalRecords
             // 
-            this.lblTotalRecords.Location = new System.Drawing.Point(158, 437);
+            this.lblTotalRecords.Location = new System.Drawing.Point(158, 691);
             this.lblTotalRecords.Size = new System.Drawing.Size(157, 16);
             this.lblTotalRecords.Text = "16";
             // 
@@ -462,7 +463,7 @@
             "كل الموردين",
             "الأشخاص فقط",
             "المنظمات فقط"});
-            this.cbSupplierCategory.Location = new System.Drawing.Point(559, 8);
+            this.cbSupplierCategory.Location = new System.Drawing.Point(643, 9);
             this.cbSupplierCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbSupplierCategory.Name = "cbSupplierCategory";
             this.cbSupplierCategory.Size = new System.Drawing.Size(200, 24);
@@ -481,7 +482,7 @@
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(900, 40);
+            this.toolStrip.Size = new System.Drawing.Size(1112, 40);
             this.toolStrip.TabIndex = 44;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -503,14 +504,14 @@
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
             // 
             // organizationToolStripMenuItem
             // 
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             // 
@@ -528,23 +529,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 460);
+            this.ClientSize = new System.Drawing.Size(1112, 714);
             this.Controls.Add(this.cbSupplierCategory);
             this.Controls.Add(this.ctrSupplierInfo);
             this.Controls.Add(this.toolStrip);
             this.Name = "frmSuppliersList";
             this.ShowIcon = false;
+            this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Suppliers List";
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
-            this.Controls.SetChildIndex(this.txtSearch, 0);
-            this.Controls.SetChildIndex(this.pictureBox, 0);
-            this.Controls.SetChildIndex(this.lblSearchHintText, 0);
+            this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.ctrSupplierInfo, 0);
             this.Controls.SetChildIndex(this.cbSupplierCategory, 0);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

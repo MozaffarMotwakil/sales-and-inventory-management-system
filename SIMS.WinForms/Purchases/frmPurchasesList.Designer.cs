@@ -31,6 +31,7 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.issuePurchaseInvoiceToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ctrInvoiceInfo = new SIMS.WinForms.Invoices.ctrInvoiceInfo();
+            this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -42,7 +43,7 @@
             // 
             // lblTotalRecords
             // 
-            this.lblTotalRecords.Location = new System.Drawing.Point(152, 437);
+            this.lblTotalRecords.Location = new System.Drawing.Point(152, 691);
             // 
             // toolStrip
             // 
@@ -53,7 +54,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(900, 40);
+            this.toolStrip.Size = new System.Drawing.Size(1112, 40);
             this.toolStrip.TabIndex = 48;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -75,7 +76,7 @@
             this.ctrInvoiceInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrInvoiceInfo.Name = "ctrInvoiceInfo";
             this.ctrInvoiceInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrInvoiceInfo.Size = new System.Drawing.Size(881, 275);
+            this.ctrInvoiceInfo.Size = new System.Drawing.Size(1088, 275);
             this.ctrInvoiceInfo.TabIndex = 51;
             this.ctrInvoiceInfo.Visible = false;
             // 
@@ -83,20 +84,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 460);
+            this.ClientSize = new System.Drawing.Size(1112, 714);
             this.Controls.Add(this.ctrInvoiceInfo);
             this.Controls.Add(this.toolStrip);
             this.Name = "frmPurchasesList";
             this.ShowIcon = false;
+            this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmPurchasesList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
-            this.Controls.SetChildIndex(this.txtSearch, 0);
-            this.Controls.SetChildIndex(this.pictureBox, 0);
-            this.Controls.SetChildIndex(this.lblSearchHintText, 0);
+            this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.ctrInvoiceInfo, 0);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

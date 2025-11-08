@@ -24,6 +24,7 @@ namespace SIMS.WinForms
             SuppliersList,
             WarehousesList,
             InventoriesList,
+            StockTransactionsList,
             PurchasesList,
             ReportsDashboard,
             UsersList,
@@ -37,6 +38,7 @@ namespace SIMS.WinForms
         private Form _SuppliersList;
         private Form _WarehousesList;
         private Form _InventoriesList;
+        private Form _StockTransactionsList;
         private Form _PurchasesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
@@ -100,6 +102,11 @@ namespace SIMS.WinForms
             _OpenForm(ref _InventoriesList, enFormType.InventoriesList);
         }
 
+        private void StockTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _StockTransactionsList, enFormType.StockTransactionsList);
+        }
+
         private void ReportsToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _ReportsDashboardForm, enFormType.ReportsDashboard);
@@ -159,6 +166,8 @@ namespace SIMS.WinForms
                     return new frmWarehousesList();
                 case enFormType.InventoriesList:
                     return new frmInventoriesList();
+                case enFormType.StockTransactionsList:
+                    return new frmStockTransactionsList();
                 case enFormType.PurchasesList:
                     return new frmPurchasesList();
                 case enFormType.ReportsDashboard:
@@ -174,6 +183,5 @@ namespace SIMS.WinForms
             }
         }
 
-       
     }
 }

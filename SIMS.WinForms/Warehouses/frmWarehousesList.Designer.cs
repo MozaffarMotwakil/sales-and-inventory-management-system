@@ -62,6 +62,7 @@
             this.addWarehouseToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.cbWarehouseActivity = new System.Windows.Forms.ComboBox();
             this.ctrWarehouseInfo = new SIMS.WinForms.Warehouses.ctrWarehouseInfo();
+            this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +74,7 @@
             // 
             // lblTotalRecords
             // 
-            this.lblTotalRecords.Location = new System.Drawing.Point(153, 437);
+            this.lblTotalRecords.Location = new System.Drawing.Point(153, 691);
             this.lblTotalRecords.Text = "1";
             // 
             // dataGridViewTextBoxColumn25
@@ -336,7 +337,7 @@
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(900, 40);
+            this.toolStrip.Size = new System.Drawing.Size(1112, 40);
             this.toolStrip.TabIndex = 48;
             this.toolStrip.Text = "toolStrip1";
             // 
@@ -360,7 +361,7 @@
             "كل المخازن",
             "المخازن النشطه",
             "المخازن الغير نشطه"});
-            this.cbWarehouseActivity.Location = new System.Drawing.Point(559, 8);
+            this.cbWarehouseActivity.Location = new System.Drawing.Point(643, 9);
             this.cbWarehouseActivity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbWarehouseActivity.Name = "cbWarehouseActivity";
             this.cbWarehouseActivity.Size = new System.Drawing.Size(200, 24);
@@ -380,22 +381,23 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 460);
+            this.ClientSize = new System.Drawing.Size(1112, 714);
             this.Controls.Add(this.ctrWarehouseInfo);
             this.Controls.Add(this.cbWarehouseActivity);
             this.Controls.Add(this.toolStrip);
             this.Name = "frmWarehousesList";
             this.ShowIcon = false;
+            this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmWarehousesList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
-            this.Controls.SetChildIndex(this.txtSearch, 0);
-            this.Controls.SetChildIndex(this.pictureBox, 0);
-            this.Controls.SetChildIndex(this.lblSearchHintText, 0);
+            this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.cbWarehouseActivity, 0);
             this.Controls.SetChildIndex(this.ctrWarehouseInfo, 0);
+            this.searchPanel.ResumeLayout(false);
+            this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();

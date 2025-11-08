@@ -22,6 +22,12 @@ namespace SIMS.WinForms.BaseForms
             set => lblSearchHintText.Text = value;
         }
 
+        public bool ShowSearchTextBox 
+        {
+            get => searchPanel.Visible;
+            set => searchPanel.Visible = value;
+        }
+
         public frmGenericListBase(TManager manager)
         {
             InitializeComponent();
