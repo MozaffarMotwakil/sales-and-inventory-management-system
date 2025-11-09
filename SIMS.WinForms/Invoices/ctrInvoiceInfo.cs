@@ -87,7 +87,9 @@ namespace SIMS.WinForms.Invoices
                         invoiceLines[i].UnitPrice.ToString("0.##"),
                         invoiceLines[i].LineSubTotal.ToString("0.##"),
                         invoiceLines[i].DiscountRate.ToString("0.##") + "%",
+                        invoiceLines[i].CalculateDiscountAmount().ToString("0.##"),
                         invoiceLines[i].TaxRate.ToString("0.##") + "%",
+                        invoiceLines[i].CalculateTaxAmount().ToString("0.##"),
                         invoiceLines[i].LineGrandTotal.ToString("0.##")
                         );
                 }

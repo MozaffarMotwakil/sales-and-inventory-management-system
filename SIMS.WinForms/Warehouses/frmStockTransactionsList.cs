@@ -1,12 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using BusinessLogic.Employees;
 using BusinessLogic.Products;
 using BusinessLogic.Warehouses;
+using DVLD.WinForms.Utils;
+using SIMS.WinForms.Invoices;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Warehouses
 {
     public partial class frmStockTransactionsList : BaseStockTransactionsForm
     {
+        private static DateTime _FirstStockTransactionDate = clsStockTransactionService.GetFirstStockTransactionDate();
+
         public frmStockTransactionsList()
         {
             InitializeComponent();
@@ -14,15 +21,171 @@ namespace SIMS.WinForms.Warehouses
 
         private void frmStockTransactionsList_Load(object sender, EventArgs e)
         {
-            cbProduct.SelectedIndex = cbUnit.SelectedIndex =
-                cbWarehouse.SelectedIndex = cbTransactionType.SelectedIndex =
-                cbResponseEmployee.SelectedIndex = 0;
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstStockTransactionDate;
+            dtpTimeFrom.MinDate = dtpTimeTo.MinDate = DateTime.MinValue;
+
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = DateTime.Now;
+            dtpTimeFrom.MaxDate = dtpTimeTo.MaxDate = DateTime.MaxValue;
+
+            cbRange.SelectedIndex = 3;
+
+            cbProduct.SelectedIndex = cbUnit.SelectedIndex = cbWarehouse.SelectedIndex = 
+                cbTransactionType.SelectedIndex = cbResponseEmployee.SelectedIndex = 0;
 
             cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
             cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
             cbWarehouse.Items.AddRange(clsWarehouseService.GetAllWarehouseNames());
             cbTransactionType.Items.AddRange(clsStockTransactionService.GetAllStockTransactionTypeNames());
             cbResponseEmployee.Items.AddRange(clsEmployeeService.GetAllEmployeeName());
+
+            contextMenuStrip.Items.Clear();
+
+            contextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
+            contextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
+            contextMenuStrip.Items[0].Image = Resources.Invoice_32;
+            contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+        }
+
+        private void ShowInvoiceDetails_Click(object sender, EventArgs e)
+        {
+            if (dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int? invoiceID = (int?)GetCellValue(dgvEntitiesList.Columns["SourceInvoiceID"].Index);
+
+            if (invoiceID.HasValue)
+            {
+                frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(invoiceID.Value);
+                showInvoiceInfo.ShowDialog();
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على الفاتورة");
+            }
+        }
+
+        protected override void LoadData()
+        {
+            base.LoadData();
+            base.SearchHintMessage = "أدخل رقم الفاتورة";
+        }
+      
+        private void cbProduct_Leave(object sender, EventArgs e)
+        {
+            if (cbProduct.SelectedIndex == -1)
+            {
+                cbProduct.SelectedIndex = 0;
+            }
+        }
+
+        private void cbResponseEmployee_Leave(object sender, EventArgs e)
+        {
+            if (cbResponseEmployee.SelectedIndex == -1)
+            {
+                cbResponseEmployee.SelectedIndex = 0;
+            }
+        }
+
+        private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
+                dtpDateTo.Enabled = dtpTimeTo.Enabled = false;
+
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstStockTransactionDate;
+
+            DateTime currentTime = DateTime.Now;
+
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = currentTime;
+
+            dtpDateFrom.Value = dtpDateTo.Value = dtpTimeFrom.Value =
+                dtpTimeTo.Value = currentTime;
+
+            if (cbRange.SelectedIndex == 0)
+            {
+                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-1) ?
+                    _FirstStockTransactionDate :
+                    DateTime.Today.AddDays(-1);
+            }
+            else if (cbRange.SelectedIndex == 1)
+            {
+                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-7) ?
+                    _FirstStockTransactionDate :
+                    DateTime.Today.AddDays(-7);
+            }
+            else if (cbRange.SelectedIndex == 2)
+            {
+                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-30) ?
+                    _FirstStockTransactionDate :
+                    DateTime.Today.AddDays(-30);
+            }
+            else if (cbRange.SelectedIndex == 3)
+            {
+                dtpDateFrom.Value = _FirstStockTransactionDate;
+            }
+            else
+            {
+                dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
+                    dtpDateTo.Enabled = dtpTimeTo.Enabled = true;
+
+                dtpDateFrom.Value = currentTime.Date;
+                dtpDateTo.Value = currentTime.Date;
+                dtpTimeFrom.Value = currentTime.Date;
+                dtpTimeTo.Value = currentTime.Date;
+            }
+        }
+
+        private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            dtpDateTo.MinDate = dtpDateFrom.Value;
+        }
+
+        private void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            List<string> filters = new List<string>();
+
+            if (cbProduct.SelectedIndex == -1 || cbUnit.SelectedIndex == -1 || cbWarehouse.SelectedIndex == -1 ||
+                cbTransactionType.SelectedIndex == -1 || cbResponseEmployee.SelectedIndex == -1 || cbRange.SelectedIndex == -1)
+            {
+                clsFormMessages.ShowError("هناك بعض الحقول تحتوي على قيم غير صالحة, رجاءا قم بتعيين قيم صالحة في جميع الحقول للبحث");
+                return;
+            }
+
+            if (cbProduct.SelectedIndex != 0)
+            {
+                filters.Add($"ProductName = '{cbProduct.Text}'");
+            }
+
+            if (cbUnit.SelectedIndex != 0)
+            {
+                filters.Add($"UnitName = '{cbUnit.Text}'");
+            }
+
+            if (cbWarehouse.SelectedIndex != 0)
+            {
+                filters.Add($"TransactionTypeName = '{cbTransactionType.Text}'");
+            }
+
+            if (cbTransactionType.SelectedIndex != 0)
+            {
+                filters.Add($"TransactionTypeName = '{cbTransactionType.Text}'");
+            }
+
+            if (cbResponseEmployee.SelectedIndex != 0)
+            {
+                filters.Add($"CreatedBy = '{cbResponseEmployee.Text}'");
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                filters.Add($"InvoiceNa LIKE '%{txtSearch.Text}%'");
+            }
+
+            filters.Add($"(TransactionTime >= #{dtpTimeFrom.Value.ToString("HH:mm:ss") + " " + dtpDateFrom.Value.ToString("yyyy-MM-dd")}# AND TransactionTime <= #{dtpTimeTo.Value.ToString("HH:mm:ss") + " " + dtpDateTo.Value.ToString("yyyy-MM-dd")}#)");
+
+            base.Filter = string.Join(" AND ", filters);
+            base.ApplySearchFilter();
         }
 
     }

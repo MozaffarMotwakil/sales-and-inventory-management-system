@@ -118,6 +118,32 @@ namespace DataAccess
             }
         }
 
+        public static object GetSingleValue(string storedProcedureName)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            return reader[0] == DBNull.Value ? null : reader[0];
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
         public static bool ExecuteSimpleSP<T>(string storedProcedureName, string parameterName, T parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))

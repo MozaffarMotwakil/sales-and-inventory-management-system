@@ -66,8 +66,10 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscountRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscountValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTaxRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPurchasedProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -98,8 +100,10 @@
             this.colQuantity,
             this.UnitPrice,
             this.colSubTotal,
-            this.colDiscount,
+            this.colDiscountRate,
+            this.colDiscountValue,
             this.colTaxRate,
+            this.colTaxValue,
             this.colGrandTotal});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -486,12 +490,12 @@
             // 
             // colProduct
             // 
-            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colProduct.FillWeight = 171.306F;
             this.colProduct.HeaderText = "المنتج";
             this.colProduct.Name = "colProduct";
             this.colProduct.ReadOnly = true;
             this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colProduct.Width = 250;
             // 
             // colUnit
             // 
@@ -513,7 +517,7 @@
             // UnitPrice
             // 
             this.UnitPrice.FillWeight = 83.51167F;
-            this.UnitPrice.HeaderText = "سعر الوحدة";
+            this.UnitPrice.HeaderText = "سعر الوحدة (جنيه)";
             this.UnitPrice.Name = "UnitPrice";
             this.UnitPrice.ReadOnly = true;
             this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -521,32 +525,51 @@
             // 
             // colSubTotal
             // 
-            this.colSubTotal.HeaderText = "الإجمالي الفرعي";
+            this.colSubTotal.HeaderText = "الإجمالي الفرعي (جنيه)";
             this.colSubTotal.Name = "colSubTotal";
             this.colSubTotal.ReadOnly = true;
             this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colSubTotal.Width = 80;
             // 
-            // colDiscount
+            // colDiscountRate
             // 
-            this.colDiscount.HeaderText = "نسبة الخصم";
-            this.colDiscount.Name = "colDiscount";
-            this.colDiscount.ReadOnly = true;
-            this.colDiscount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDiscount.Width = 80;
+            this.colDiscountRate.HeaderText = "نسبة الخصم";
+            this.colDiscountRate.Name = "colDiscountRate";
+            this.colDiscountRate.ReadOnly = true;
+            this.colDiscountRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscountRate.Width = 80;
+            // 
+            // colDiscountValue
+            // 
+            this.colDiscountValue.HeaderText = "قيمة الخصم (جنيه)";
+            this.colDiscountValue.Name = "colDiscountValue";
+            this.colDiscountValue.ReadOnly = true;
+            this.colDiscountValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDiscountValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscountValue.Width = 80;
             // 
             // colTaxRate
             // 
             this.colTaxRate.HeaderText = "نسبة الضريبة";
             this.colTaxRate.Name = "colTaxRate";
             this.colTaxRate.ReadOnly = true;
+            this.colTaxRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colTaxRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colTaxRate.Width = 80;
+            // 
+            // colTaxValue
+            // 
+            this.colTaxValue.HeaderText = "قيمة الضريبة (جنيه)";
+            this.colTaxValue.Name = "colTaxValue";
+            this.colTaxValue.ReadOnly = true;
+            this.colTaxValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTaxValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTaxValue.Width = 80;
             // 
             // colGrandTotal
             // 
             this.colGrandTotal.FillWeight = 126.9036F;
-            this.colGrandTotal.HeaderText = "الإجمالي الكلي";
+            this.colGrandTotal.HeaderText = "الإجمالي الكلي (جنيه)";
             this.colGrandTotal.Name = "colGrandTotal";
             this.colGrandTotal.ReadOnly = true;
             this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -609,8 +632,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSubTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscountRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscountValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTaxRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTaxValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrandTotal;
     }
 }

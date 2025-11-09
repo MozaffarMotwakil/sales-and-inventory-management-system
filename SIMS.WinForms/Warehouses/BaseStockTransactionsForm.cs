@@ -46,20 +46,18 @@ namespace SIMS.WinForms.Warehouses
             {
                 base.dgvEntitiesList.Columns[0].HeaderText = "معرف سجل الحركة";
                 base.dgvEntitiesList.Columns[0].Visible = false;
-                base.dgvEntitiesList.Columns[0].Width = 105;
 
-                base.dgvEntitiesList.Columns[1].HeaderText = "إسم المنتج";
+                base.dgvEntitiesList.Columns[1].HeaderText = "المنتج";
                 base.dgvEntitiesList.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                base.dgvEntitiesList.Columns[2].HeaderText = "إسم الوحدة";
+                base.dgvEntitiesList.Columns[2].HeaderText = "الوحدة";
                 base.dgvEntitiesList.Columns[2].Width = 90;
 
-                base.dgvEntitiesList.Columns[3].HeaderText = "إسم المخزن";
+                base.dgvEntitiesList.Columns[3].HeaderText = "المخزن";
                 base.dgvEntitiesList.Columns[3].Width = 100;
 
                 base.dgvEntitiesList.Columns[4].HeaderText = "معرف نوع الحركة";
                 base.dgvEntitiesList.Columns[4].Visible = false;
-                base.dgvEntitiesList.Columns[4].Width = 100;
 
                 base.dgvEntitiesList.Columns[5].HeaderText = "نوع الحركة";
                 base.dgvEntitiesList.Columns[5].Width = 80;
@@ -73,14 +71,17 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[8].HeaderText = "الكمية بعد الحركة";
                 base.dgvEntitiesList.Columns[8].Width = 75;
 
-                base.dgvEntitiesList.Columns[9].HeaderText = "رقم الفاتورة المؤثرة";
-                base.dgvEntitiesList.Columns[9].Width = 120;
+                base.dgvEntitiesList.Columns[9].HeaderText = "معرف الفاتورة المؤثرة";
+                base.dgvEntitiesList.Columns[9].Visible = false;
 
-                base.dgvEntitiesList.Columns[10].HeaderText = "الموظف المسؤول";
-                base.dgvEntitiesList.Columns[10].Width = 150;
+                base.dgvEntitiesList.Columns[10].HeaderText = "رقم الفاتورة المؤثرة";
+                base.dgvEntitiesList.Columns[10].Width = 120;
 
-                base.dgvEntitiesList.Columns[11].HeaderText = "تاريخ الحركة";
-                base.dgvEntitiesList.Columns[11].Width = 125;
+                base.dgvEntitiesList.Columns[11].HeaderText = "الموظف المسؤول";
+                base.dgvEntitiesList.Columns[11].Width = 150;
+
+                base.dgvEntitiesList.Columns[12].HeaderText = "تاريخ الحركة";
+                base.dgvEntitiesList.Columns[12].Width = 125;
             }
         }
     }

@@ -95,6 +95,12 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invoices\frmShowInvoiceInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invoices\frmShowInvoiceInfo.Designer.cs">
+      <DependentUpon>frmShowInvoiceInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoices\frmBaseIssueInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -420,6 +426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Invoices\frmBaseIssueInvoice.resx">
       <DependentUpon>frmBaseIssueInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invoices\frmShowInvoiceInfo.resx">
+      <DependentUpon>frmShowInvoiceInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
@@ -757,6 +766,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\in-active.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Invoice_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

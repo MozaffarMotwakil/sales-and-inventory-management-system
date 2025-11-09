@@ -51,5 +51,10 @@ namespace BusinessLogic.Warehouses
                 .ToArray();
         }
 
+        public static DateTime GetFirstStockTransactionDate()
+        {
+            return clsInventoryData.GetFirstStockTransactionDate();
+        }
+
     }
 }

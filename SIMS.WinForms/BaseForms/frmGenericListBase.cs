@@ -32,8 +32,6 @@ namespace SIMS.WinForms.BaseForms
         {
             InitializeComponent();
             Manager = manager;
-            EntityInfoControl = new Control();
-            EntityInfoControl.Visible = false;
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }
@@ -48,11 +46,11 @@ namespace SIMS.WinForms.BaseForms
                 ResetColumnsOfDGV();
                 SetOnlyFirstColumnSortable();
             }
-            else if (e.OperationMode == BusinessLogic.enMode.Update && EntityInfoControl.Visible)
+            else if (e.OperationMode == BusinessLogic.enMode.Update && (EntityInfoControl != null && EntityInfoControl.Visible))
             {
                 HandleEntityInfoDisplay(Manager.Find(e.EntityID));
             }
-            else
+            else if (EntityInfoControl != null)
             {
                 EntityInfoControl.Visible = false;
             }

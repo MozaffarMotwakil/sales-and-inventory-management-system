@@ -129,5 +129,12 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DateTime GetFirstStockTransactionDate()
+        {
+            return Convert.ToDateTime(
+                clsDataSettings.GetSingleValue("usp_Inventories_GetFirstStockTransactionDate")
+                );
+        }
+
     }
 }

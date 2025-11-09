@@ -102,6 +102,11 @@ namespace BusinessLogic.Invoices
             return (discountRate / 100) * subTotal;
         }
 
+        public decimal CalculateDiscountAmount()
+        {
+            return (DiscountRate / 100) * LineSubTotal;
+        }
+
         public static decimal CalculateTaxRate(decimal taxAmount, decimal discountAmount, decimal subTotal)
         {
             return (taxAmount / (subTotal - discountAmount)) * 100;
@@ -110,6 +115,11 @@ namespace BusinessLogic.Invoices
         public static decimal CalculateTaxAmount(decimal taxRate, decimal discountAmount, decimal subTotal)
         {
             return (subTotal - discountAmount) * (taxRate / 100);
+        }
+
+        public decimal CalculateTaxAmount()
+        {
+            return (LineSubTotal - CalculateDiscountAmount()) * (TaxRate / 100);
         }
 
         public static decimal CalculateGrandTotal(decimal subTotal, decimal discountRate, decimal taxRate)
