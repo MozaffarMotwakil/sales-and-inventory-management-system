@@ -376,6 +376,12 @@
     <Compile Include="Warehouses\BaseStockTransactionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Warehouses\frmShowInventoryTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmShowInventoryTransactions.Designer.cs">
+      <DependentUpon>frmShowInventoryTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Warehouses\frmStockTransactionsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -563,6 +569,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmInventoriesList.resx">
       <DependentUpon>frmInventoriesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmShowInventoryTransactions.resx">
+      <DependentUpon>frmShowInventoryTransactions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmStockTransactionsList.resx">
       <DependentUpon>frmStockTransactionsList.cs</DependentUpon>
@@ -769,6 +778,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Invoice_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stock-market.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\packages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\warehouse.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

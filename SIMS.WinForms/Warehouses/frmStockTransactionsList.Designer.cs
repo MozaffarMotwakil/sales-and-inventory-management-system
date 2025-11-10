@@ -42,6 +42,10 @@
             this.cbUnit = new System.Windows.Forms.ComboBox();
             this.cbWarehouse = new System.Windows.Forms.ComboBox();
             this.cbTransactionType = new System.Windows.Forms.ComboBox();
+            this.lblInTransactions = new System.Windows.Forms.Label();
+            this.lblOutTransactions = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel2.SuspendLayout();
@@ -54,6 +58,7 @@
             // lblTotalRecords
             // 
             this.lblTotalRecords.Location = new System.Drawing.Point(161, 693);
+            this.lblTotalRecords.Size = new System.Drawing.Size(84, 14);
             // 
             // searchPanel
             // 
@@ -71,6 +76,7 @@
             // txtSearch
             // 
             this.txtSearch.Size = new System.Drawing.Size(167, 26);
+            this.txtSearch.TabIndex = 10;
             // 
             // panel2
             // 
@@ -106,7 +112,7 @@
             this.dtpTimeFrom.RightToLeftLayout = true;
             this.dtpTimeFrom.ShowUpDown = true;
             this.dtpTimeFrom.Size = new System.Drawing.Size(110, 21);
-            this.dtpTimeFrom.TabIndex = 68;
+            this.dtpTimeFrom.TabIndex = 7;
             this.dtpTimeFrom.Value = new System.DateTime(2025, 9, 2, 0, 0, 0, 0);
             // 
             // dtpDateFrom
@@ -119,7 +125,7 @@
             this.dtpDateFrom.Name = "dtpDateFrom";
             this.dtpDateFrom.RightToLeftLayout = true;
             this.dtpDateFrom.Size = new System.Drawing.Size(110, 21);
-            this.dtpDateFrom.TabIndex = 67;
+            this.dtpDateFrom.TabIndex = 6;
             this.dtpDateFrom.ValueChanged += new System.EventHandler(this.dtpDateFrom_ValueChanged);
             // 
             // dtpTimeTo
@@ -133,7 +139,7 @@
             this.dtpTimeTo.RightToLeftLayout = true;
             this.dtpTimeTo.ShowUpDown = true;
             this.dtpTimeTo.Size = new System.Drawing.Size(110, 21);
-            this.dtpTimeTo.TabIndex = 70;
+            this.dtpTimeTo.TabIndex = 9;
             this.dtpTimeTo.Value = new System.DateTime(2025, 9, 2, 0, 0, 0, 0);
             // 
             // dtpDateTo
@@ -146,7 +152,7 @@
             this.dtpDateTo.Name = "dtpDateTo";
             this.dtpDateTo.RightToLeftLayout = true;
             this.dtpDateTo.Size = new System.Drawing.Size(110, 21);
-            this.dtpDateTo.TabIndex = 69;
+            this.dtpDateTo.TabIndex = 8;
             // 
             // cbRange
             // 
@@ -163,7 +169,7 @@
             this.cbRange.Location = new System.Drawing.Point(561, 30);
             this.cbRange.Name = "cbRange";
             this.cbRange.Size = new System.Drawing.Size(150, 22);
-            this.cbRange.TabIndex = 75;
+            this.cbRange.TabIndex = 5;
             this.cbRange.SelectedIndexChanged += new System.EventHandler(this.cbRange_SelectedIndexChanged);
             // 
             // btnApplyFilter
@@ -173,7 +179,7 @@
             this.btnApplyFilter.Location = new System.Drawing.Point(11, 5);
             this.btnApplyFilter.Name = "btnApplyFilter";
             this.btnApplyFilter.Size = new System.Drawing.Size(45, 45);
-            this.btnApplyFilter.TabIndex = 74;
+            this.btnApplyFilter.TabIndex = 11;
             this.btnApplyFilter.UseVisualStyleBackColor = true;
             this.btnApplyFilter.Click += new System.EventHandler(this.btnApplyFilter_Click);
             // 
@@ -209,7 +215,7 @@
             this.cbResponseEmployee.Location = new System.Drawing.Point(873, 30);
             this.cbResponseEmployee.Name = "cbResponseEmployee";
             this.cbResponseEmployee.Size = new System.Drawing.Size(225, 22);
-            this.cbResponseEmployee.TabIndex = 64;
+            this.cbResponseEmployee.TabIndex = 1;
             this.cbResponseEmployee.Leave += new System.EventHandler(this.cbResponseEmployee_Leave);
             // 
             // cbProduct
@@ -224,7 +230,7 @@
             this.cbProduct.Location = new System.Drawing.Point(873, 2);
             this.cbProduct.Name = "cbProduct";
             this.cbProduct.Size = new System.Drawing.Size(225, 22);
-            this.cbProduct.TabIndex = 65;
+            this.cbProduct.TabIndex = 0;
             this.cbProduct.Leave += new System.EventHandler(this.cbProduct_Leave);
             // 
             // cbUnit
@@ -238,7 +244,7 @@
             this.cbUnit.Location = new System.Drawing.Point(717, 2);
             this.cbUnit.Name = "cbUnit";
             this.cbUnit.Size = new System.Drawing.Size(150, 22);
-            this.cbUnit.TabIndex = 63;
+            this.cbUnit.TabIndex = 2;
             // 
             // cbWarehouse
             // 
@@ -251,7 +257,7 @@
             this.cbWarehouse.Location = new System.Drawing.Point(717, 30);
             this.cbWarehouse.Name = "cbWarehouse";
             this.cbWarehouse.Size = new System.Drawing.Size(150, 22);
-            this.cbWarehouse.TabIndex = 63;
+            this.cbWarehouse.TabIndex = 3;
             // 
             // cbTransactionType
             // 
@@ -264,13 +270,57 @@
             this.cbTransactionType.Location = new System.Drawing.Point(561, 2);
             this.cbTransactionType.Name = "cbTransactionType";
             this.cbTransactionType.Size = new System.Drawing.Size(150, 22);
-            this.cbTransactionType.TabIndex = 62;
+            this.cbTransactionType.TabIndex = 4;
+            // 
+            // lblInTransactions
+            // 
+            this.lblInTransactions.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInTransactions.Location = new System.Drawing.Point(433, 693);
+            this.lblInTransactions.Name = "lblInTransactions";
+            this.lblInTransactions.Size = new System.Drawing.Size(84, 14);
+            this.lblInTransactions.TabIndex = 85;
+            this.lblInTransactions.Text = "N/A";
+            this.lblInTransactions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblOutTransactions
+            // 
+            this.lblOutTransactions.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOutTransactions.Location = new System.Drawing.Point(703, 693);
+            this.lblOutTransactions.Name = "lblOutTransactions";
+            this.lblOutTransactions.Size = new System.Drawing.Size(84, 14);
+            this.lblOutTransactions.TabIndex = 86;
+            this.lblOutTransactions.Text = "N/A";
+            this.lblOutTransactions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(252, 693);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(175, 16);
+            this.label3.TabIndex = 83;
+            this.label3.Text = "إجمالي عدد حركات الدخول:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(523, 693);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(174, 16);
+            this.label4.TabIndex = 84;
+            this.label4.Text = "إجمالي عدد حركات الخروج:";
             // 
             // frmStockTransactionsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 714);
+            this.Controls.Add(this.lblInTransactions);
+            this.Controls.Add(this.lblOutTransactions);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel2);
             this.Name = "frmStockTransactionsList";
             this.ShowIcon = false;
@@ -282,6 +332,10 @@
             this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.lblOutTransactions, 0);
+            this.Controls.SetChildIndex(this.lblInTransactions, 0);
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -308,5 +362,9 @@
         private System.Windows.Forms.ComboBox cbWarehouse;
         private System.Windows.Forms.ComboBox cbTransactionType;
         private System.Windows.Forms.ComboBox cbRange;
+        private System.Windows.Forms.Label lblInTransactions;
+        private System.Windows.Forms.Label lblOutTransactions;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

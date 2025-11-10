@@ -22,16 +22,17 @@ namespace SIMS.WinForms.BaseForms
             set => lblSearchHintText.Text = value;
         }
 
-        public bool ShowSearchTextBox 
+        public bool ShowSearchTextBox
         {
             get => searchPanel.Visible;
             set => searchPanel.Visible = value;
         }
 
-        public frmGenericListBase(TManager manager)
+        public frmGenericListBase(TManager manager, bool showSearchTextBox = true)
         {
             InitializeComponent();
             Manager = manager;
+            ShowSearchTextBox = showSearchTextBox;
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }
@@ -39,7 +40,7 @@ namespace SIMS.WinForms.BaseForms
         protected virtual void EntitySavedEvent(object sender, EntitySavedEventArgs e)
         {
             dgvEntitiesList.DataSource = GetDataSource();
-            lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
+            UpdateRecordsCountLabels();
 
             if (e.OperationMode == BusinessLogic.enMode.Add && dgvEntitiesList.Rows.Count == 1)
             {
@@ -63,7 +64,7 @@ namespace SIMS.WinForms.BaseForms
             txtSearch.Text = string.Empty;
             EntityInfoControl.Visible = false;
             dgvEntitiesList.DataSource = GetDataSource();
-            lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
+            UpdateRecordsCountLabels();
             ApplySearchFilter();
         }
 
@@ -92,11 +93,21 @@ namespace SIMS.WinForms.BaseForms
             }
 
             dgvEntitiesList.DataSource = GetDataSource();
-            lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
+            UpdateRecordsCountLabels();
             dgvEntitiesList.ColumnHeadersDefaultCellStyle.Font = new Font("Tahoma", 8, FontStyle.Bold);
         }
 
         protected virtual void ResetColumnsOfDGV() { }
+
+        protected virtual void UpdateRecordsCountLabels()
+        {
+            lblTotalRecords.Text = dgvEntitiesList.Rows.Count.ToString();
+        }
+
+        protected virtual void UpdateRecordsCountLabels(DataView filteredDataSource)
+        {
+            lblTotalRecords.Text = filteredDataSource.Count.ToString();
+        }
 
         protected virtual object GetDataSource() 
         {
@@ -122,7 +133,7 @@ namespace SIMS.WinForms.BaseForms
             {
                 DataView entitiesList = (dgvEntitiesList.DataSource as DataTable).DefaultView;
                 entitiesList.RowFilter = Filter;
-                lblTotalRecords.Text = entitiesList.Count.ToString();
+                UpdateRecordsCountLabels(entitiesList);
             }
             catch
             {
@@ -167,26 +178,17 @@ namespace SIMS.WinForms.BaseForms
             DeleteSelectedEntity();
         }
 
-        private void dgvEntitiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        protected virtual void dgvEntitiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex == -1 || e.Button == MouseButtons.Right)
+            if (e.RowIndex == -1 || e.Button == MouseButtons.Right || dgvEntitiesList.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            if (dgvEntitiesList.SelectedRows.Count == 0)
-            {
-                clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
-                return;
-            }
-
-            if (e.Button is MouseButtons.Left)
-            {
-                ShowSelectedEntityInfo();
-            }
+            ShowSelectedEntityInfo();
         }
 
-        private void dgvEntitiesList_KeyDown(object sender, KeyEventArgs e)
+        protected virtual void dgvEntitiesList_KeyDown(object sender, KeyEventArgs e)
         {
             if (dgvEntitiesList.SelectedRows.Count == 1)
             {

@@ -129,6 +129,15 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DataTable GetAllStockTransactionsByInventoryID(int inventoryID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Inventories_GetAllStockTransactionsByInventoryID",
+                "@InventoryID",
+                inventoryID
+                );
+        }
+
         public static DateTime GetFirstStockTransactionDate()
         {
             return Convert.ToDateTime(

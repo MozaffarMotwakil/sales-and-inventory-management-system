@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Warehouses;
 using SIMS.WinForms.BaseForms;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -10,34 +11,9 @@ namespace SIMS.WinForms.Warehouses
     {
         public BaseStockTransactionsForm() : base(clsStockTransactionService.CreateInstance()) 
         {
-            dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
             dgvEntitiesList.Location = new Point(dgvEntitiesList.Location.X, 65);
             dgvEntitiesList.Height = 625;
-            ShowSearchTextBox = false;
-        }
-
-        private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                int transactionType = Convert.ToInt32(dgvEntitiesList.Rows[e.RowIndex].Cells["TransactionTypeID"].Value);
-
-                if (transactionType == 1)
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
-                else if (transactionType == 2)
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
-                }
-                else
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvEntitiesList.DefaultCellStyle.BackColor;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvEntitiesList.DefaultCellStyle.ForeColor;
-                }
-            }
+            pictureBox.Image = Resources.Invoice_32;
         }
 
         protected override void ResetColumnsOfDGV()
@@ -84,5 +60,6 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[12].Width = 125;
             }
         }
+
     }
 }

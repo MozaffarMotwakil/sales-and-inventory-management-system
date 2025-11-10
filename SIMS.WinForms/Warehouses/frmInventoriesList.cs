@@ -1,6 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+using BusinessLogic.Products;
+using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Products;
+using SIMS.WinForms.Properties;
+using static BusinessLogic.Warehouses.clsInventoryService;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -15,14 +23,91 @@ namespace SIMS.WinForms.Warehouses
         {
             contextMenuStrip.Items.Clear();
 
-            contextMenuStrip.Items.Add("عرض سجل النشاط");
+            contextMenuStrip.Items.Add("عرض حركات المخزون");
+            contextMenuStrip.Items[0].Image = Resources.stock_market;
+            contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
             contextMenuStrip.Items[0].Click += ShowTransactionLog_Click;
 
-            contextMenuStrip.Items.Add("عرض تفاصيل المنتج");
+            contextMenuStrip.Items.Add("تعديل معلومات المنتج");
+            contextMenuStrip.Items[1].Image = Resources.shopping_basket_edit;
+            contextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
             contextMenuStrip.Items[1].Click += ShowProductInfo_Click;
 
             contextMenuStrip.Items.Add("تعديل حد إعادة الطلب");
+            contextMenuStrip.Items[2].Image = Resources.edit;
+            contextMenuStrip.Items[2].ImageScaling = ToolStripItemImageScaling.None;
             contextMenuStrip.Items[2].Click += UpdateReorderQuantity_Click;
+
+            cbProduct.SelectedIndex = cbCategory.SelectedIndex =
+                cbUnit.SelectedIndex = cbWarehouse.SelectedIndex = 
+                cbInventoryStatus.SelectedIndex = 0;
+
+            cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
+            cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
+            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbWarehouse.Items.AddRange(clsWarehouseService.GetAllWarehouseNames());
+
+            dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
+            clsProductService.CreateInstance().EntitySaved += FrmInventoriesList_ProductSaved;
+        }
+
+        private void FrmInventoriesList_ProductSaved(object sender, BusinessLogic.Interfaces.EntitySavedEventArgs e)
+        {
+            base.EntitySavedEvent(sender, e);
+        }
+
+        protected override void dgvEntitiesList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dgvEntitiesList.SelectedRows.Count == 1)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ShowTransactionLog_Click(sender, e);
+                }
+                else if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+                {
+                    base.DeleteSelectedEntity();
+                }
+            }
+        }
+
+        protected override void dgvEntitiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.Button == MouseButtons.Right || dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            ShowTransactionLog_Click(sender, e);
+        }
+
+        private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string inventoryStatus = Convert.ToString(dgvEntitiesList.Rows[e.RowIndex].Cells["InventoryStatus"].Value);
+
+                if (inventoryStatus == "آمن")
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (inventoryStatus == "منخفض")
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGoldenrod;
+                }
+                else if (inventoryStatus == "نفذ")
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+                else
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvEntitiesList.DefaultCellStyle.BackColor;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvEntitiesList.DefaultCellStyle.ForeColor;
+                }
+            }
         }
 
         private void UpdateReorderQuantity_Click(object sender, EventArgs e)
@@ -63,7 +148,91 @@ namespace SIMS.WinForms.Warehouses
                 return;
             }
 
+            frmShowInventoryTransactions inventoryTransactions = new frmShowInventoryTransactions(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+            inventoryTransactions.ShowDialog();
+        }
 
+        private void btnApplyFilter_Click(object sender, EventArgs e)
+        {
+            List<string> filters = new List<string>();
+
+            if (cbProduct.SelectedIndex == -1 || cbUnit.SelectedIndex == -1 || cbWarehouse.SelectedIndex == -1 ||
+                cbCategory.SelectedIndex == -1 || cbInventoryStatus.SelectedIndex == -1)
+            {
+                clsFormMessages.ShowError("هناك بعض الحقول تحتوي على قيم غير صالحة, رجاءا قم بتعيين قيم صالحة في جميع الحقول للبحث");
+                return;
+            }
+
+            if (cbProduct.SelectedIndex != 0)
+            {
+                filters.Add($"ProductName = '{cbProduct.Text}'");
+            }
+
+            if (cbCategory.SelectedIndex != 0)
+            {
+                filters.Add($"CategoryName = '{cbCategory.Text}'");
+            }
+
+            if (cbUnit.SelectedIndex != 0)
+            {
+                filters.Add($"UnitName = '{cbUnit.Text}'");
+            }
+
+            if (cbWarehouse.SelectedIndex != 0)
+            {
+                filters.Add($"WarehouseName = '{cbWarehouse.Text}'");
+            }
+
+            if (cbInventoryStatus.SelectedIndex != 0)
+            {
+                filters.Add($"InventoryStatus = '{cbInventoryStatus.Text}'");
+            }
+
+            base.Filter = string.Join(" AND ", filters);
+            base.ApplySearchFilter();
+        }
+
+        private void cbProduct_Leave(object sender, EventArgs e)
+        {
+            if (cbProduct.SelectedIndex == -1)
+            {
+                cbProduct.SelectedIndex = 0;
+            }
+        }
+
+        private void cbCategory_Leave(object sender, EventArgs e)
+        {
+            if (cbCategory.SelectedIndex == -1)
+            {
+                cbCategory.SelectedIndex = 0;
+            }
+        }
+
+        protected override void UpdateRecordsCountLabels()
+        {
+            base.UpdateRecordsCountLabels();
+            InventoryInfo inventoryInfo = clsInventoryService.CreateInstance()
+                .CalculateInventoriesValues(dgvEntitiesList.DataSource as DataTable);
+            UpdateLabelValues(inventoryInfo);
+        }
+
+        protected override void UpdateRecordsCountLabels(DataView filteredDataSource)
+        {
+            base.UpdateRecordsCountLabels(filteredDataSource);
+            InventoryInfo inventoryInfo = clsInventoryService.CreateInstance()
+                .CalculateInventoriesValues(filteredDataSource);
+            UpdateLabelValues(inventoryInfo);
+        }
+
+        private void UpdateLabelValues(InventoryInfo inventoryInfo)
+        {
+            lblSavedIInventoriesCount.Text = inventoryInfo.SavedItemsCount.ToString();
+            lblLowedInventoriesCount.Text = inventoryInfo.LowedItemsCount.ToString();
+            lblEmptyInventoriesCount.Text = inventoryInfo.EmptyItemsCount.ToString();
+            lblTotalInventoryValue.Text = inventoryInfo.TotalCurrentAmount.ToString() + " جنيه";
+            lblTotalProjectedSalesValue.Text = inventoryInfo.TotalProjectedSellAmount.ToString() + " جنيه";
+            lblExpectedProfitValue.Text = inventoryInfo.TotalProfitAmoubt.ToString() + " جنيه";
+            lblExpectedProfitRate.Text = inventoryInfo.TotalProfitRate.ToString() + "%";
         }
 
     }

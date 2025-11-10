@@ -32,5 +32,10 @@ namespace SIMS.WinForms.Suppliers
             this.Height -= 65;
         }
 
+        private void btnCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

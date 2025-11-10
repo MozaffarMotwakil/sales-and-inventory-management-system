@@ -92,11 +92,6 @@ namespace SIMS.WinForms
             _OpenForm(ref _WarehousesList, enFormType.WarehousesList);
         }
 
-        private void PurchasesToolStripButton_Click(object sender, EventArgs e)
-        {
-            _OpenForm(ref _PurchasesList, enFormType.PurchasesList);
-        }
-
         private void InventoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _InventoriesList, enFormType.InventoriesList);
@@ -105,6 +100,11 @@ namespace SIMS.WinForms
         private void StockTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _StockTransactionsList, enFormType.StockTransactionsList);
+        }
+
+        private void PurchasesToolStripButton_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _PurchasesList, enFormType.PurchasesList);
         }
 
         private void ReportsToolStripButton_Click(object sender, EventArgs e)

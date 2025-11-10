@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Employees;
 using BusinessLogic.Products;
@@ -7,6 +9,7 @@ using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Properties;
+using static BusinessLogic.Warehouses.clsStockTransactionService;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -38,12 +41,38 @@ namespace SIMS.WinForms.Warehouses
             cbTransactionType.Items.AddRange(clsStockTransactionService.GetAllStockTransactionTypeNames());
             cbResponseEmployee.Items.AddRange(clsEmployeeService.GetAllEmployeeName());
 
+            dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
+
             contextMenuStrip.Items.Clear();
 
             contextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
             contextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
             contextMenuStrip.Items[0].Image = Resources.Invoice_32;
             contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+        }
+
+        private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int transactionType = Convert.ToInt32(dgvEntitiesList.Rows[e.RowIndex].Cells["TransactionTypeID"].Value);
+
+                if (transactionType == 1)
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (transactionType == 2)
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+                else
+                {
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvEntitiesList.DefaultCellStyle.BackColor;
+                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvEntitiesList.DefaultCellStyle.ForeColor;
+                }
+            }
         }
 
         private void ShowInvoiceDetails_Click(object sender, EventArgs e)
@@ -71,7 +100,32 @@ namespace SIMS.WinForms.Warehouses
             base.LoadData();
             base.SearchHintMessage = "أدخل رقم الفاتورة";
         }
-      
+
+        protected override void dgvEntitiesList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (dgvEntitiesList.SelectedRows.Count == 1)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ShowInvoiceDetails_Click(sender, e);
+                }
+                else if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+                {
+                    base.DeleteSelectedEntity();
+                }
+            }
+        }
+
+        protected override void dgvEntitiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.Button == MouseButtons.Right || dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            ShowInvoiceDetails_Click(sender, e);
+        }
+
         private void cbProduct_Leave(object sender, EventArgs e)
         {
             if (cbProduct.SelectedIndex == -1)
@@ -123,6 +177,7 @@ namespace SIMS.WinForms.Warehouses
             else if (cbRange.SelectedIndex == 3)
             {
                 dtpDateFrom.Value = _FirstStockTransactionDate;
+                dtpTimeFrom.Value = _FirstStockTransactionDate;
             }
             else
             {
@@ -164,7 +219,7 @@ namespace SIMS.WinForms.Warehouses
 
             if (cbWarehouse.SelectedIndex != 0)
             {
-                filters.Add($"TransactionTypeName = '{cbTransactionType.Text}'");
+                filters.Add($"WarehouseName = '{cbWarehouse.Text}'");
             }
 
             if (cbTransactionType.SelectedIndex != 0)
@@ -186,6 +241,26 @@ namespace SIMS.WinForms.Warehouses
 
             base.Filter = string.Join(" AND ", filters);
             base.ApplySearchFilter();
+        }
+
+        protected override void UpdateRecordsCountLabels()
+        {
+            base.UpdateRecordsCountLabels();
+            StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+                .GetStockTransactionInfo(dgvEntitiesList.DataSource as DataTable);
+
+            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
+            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
+        }
+
+        protected override void UpdateRecordsCountLabels(DataView dataSource)
+        {
+            base.UpdateRecordsCountLabels();
+            StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+                .GetStockTransactionInfo(dataSource);
+
+            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
+            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
         }
 
     }

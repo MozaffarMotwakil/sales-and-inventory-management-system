@@ -1,4 +1,6 @@
-﻿using BusinessLogic.Products;
+﻿using System.Data;
+using BusinessLogic.Products;
+using DataAccess.Warehouses;
 using DTOs.Warehouses;
 
 namespace BusinessLogic.Warehouses
@@ -18,6 +20,11 @@ namespace BusinessLogic.Warehouses
             ProductInfo = clsProductService.CreateInstance().Find(inventoryDTO.ProductID);
             UnitInfo = clsUnit.Find(inventoryDTO.UnitID);
             ReorderQuantity = inventoryDTO.ReorderQuantity;
+        }
+
+        public DataTable GetStockTransactions()
+        {
+            return clsInventoryData.GetAllStockTransactionsByInventoryID(this.InventoryID);
         }
 
     }
