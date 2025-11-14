@@ -5,7 +5,7 @@ using DTOs.Warehouses;
 
 namespace DataAccess.Warehouses
 {
-    public class clsInventoryData
+    public static class clsInventoryData
     {
         public static clsInventoryDTO FindInventoryByID(int inventoryID)
         {

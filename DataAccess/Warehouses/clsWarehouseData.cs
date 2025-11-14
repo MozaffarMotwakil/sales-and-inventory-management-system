@@ -189,5 +189,41 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DataRow GetBasicInfo(int warehouseID)
+        {
+            return clsDataSettings.GetDataRow(
+                "usp_Warehouses_GetBasicInfo",
+                "@WarehouseID",
+                warehouseID
+                );
+        }
+
+        public static DataRow GetInventorySummary(int warehouseID)
+        {
+            return clsDataSettings.GetDataRow(
+                "usp_Warehouses_GetInventorySummary",
+                "@WarehouseID",
+                warehouseID
+                );
+        }
+
+        public static DataRow GetFinancialSummary(int warehouseID)
+        {
+            return clsDataSettings.GetDataRow(
+                "usp_Warehouses_GetFinancialSummary",
+                "@WarehouseID",
+                warehouseID
+                );
+        }
+
+        public static DataRow GetKPIsSummary(int warehouseID)
+        {
+            return clsDataSettings.GetDataRow(
+                "usp_Warehouses_GetKPIsSummary",
+                "@WarehouseID",
+                warehouseID
+                );
+        }
+
     }
 }

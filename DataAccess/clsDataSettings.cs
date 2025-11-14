@@ -19,6 +19,24 @@ namespace DataAccess
             return value ?? DBNull.Value;
         }
 
+        public static DataRow GetDataRow(string storedProcedureName)
+        {
+            DataTable dataTable = GetDataTable(storedProcedureName);
+
+            return dataTable.Rows.Count != 0 ?
+                dataTable.Rows[0] :
+                null;
+        }
+
+        public static DataRow GetDataRow<T>(string storedProcedureName, string parameterName, T parameterValue)
+        {
+            DataTable dataTable = GetDataTable(storedProcedureName, parameterName, parameterValue);
+
+            return dataTable.Rows.Count != 0 ?
+                dataTable.Rows[0] :
+                null;
+        }
+
         public static DataTable GetDataTable(string storedProcedureName)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))

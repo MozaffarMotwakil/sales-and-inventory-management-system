@@ -1,6 +1,6 @@
 ﻿namespace SIMS.WinForms.Warehouses
 {
-    partial class frmWarehousesList
+    partial class e
     {
         /// <summary>
         /// Required designer variable.
@@ -373,11 +373,11 @@
             this.ctrWarehouseInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrWarehouseInfo.Name = "ctrWarehouseInfo";
             this.ctrWarehouseInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrWarehouseInfo.Size = new System.Drawing.Size(876, 270);
+            this.ctrWarehouseInfo.Size = new System.Drawing.Size(800, 269);
             this.ctrWarehouseInfo.TabIndex = 50;
             this.ctrWarehouseInfo.Visible = false;
             // 
-            // frmWarehousesList
+            // e
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -385,7 +385,7 @@
             this.Controls.Add(this.ctrWarehouseInfo);
             this.Controls.Add(this.cbWarehouseActivity);
             this.Controls.Add(this.toolStrip);
-            this.Name = "frmWarehousesList";
+            this.Name = "e";
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -435,12 +435,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private ctrWarehouseInfo ctrWarehouseInfo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private ctrWarehouseInfo ctrWarehouseInfo;
     }
 }

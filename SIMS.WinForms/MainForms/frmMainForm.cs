@@ -163,7 +163,7 @@ namespace SIMS.WinForms
                 case enFormType.SuppliersList:
                     return new frmSuppliersList();
                 case enFormType.WarehousesList:
-                    return new frmWarehousesList();
+                    return new e();
                 case enFormType.InventoriesList:
                     return new frmInventoriesList();
                 case enFormType.StockTransactionsList:
