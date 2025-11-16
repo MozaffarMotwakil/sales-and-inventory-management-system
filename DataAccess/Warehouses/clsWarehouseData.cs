@@ -49,9 +49,9 @@ namespace DataAccess.Warehouses
                             return warehouseDTO;
                         }
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new ApplicationException($"Error find warehouse by ID.", ex);
+                        throw;
                     }
                 }
             }
@@ -94,9 +94,9 @@ namespace DataAccess.Warehouses
 
                         return false;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new Exception("Error adding warehouse to database.", ex);
+                        throw;
                     }
                 }
             }
@@ -128,12 +128,102 @@ namespace DataAccess.Warehouses
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
-
                         return (int)returnValueParam.Value == 1;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new Exception("Error updating warehouse to database.", ex);
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static bool PerformStockTransferOperation(clsTransferOperationDTO transferOperationDTO)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_PerformStockTransferOperation", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@SourceWarehouseID", transferOperationDTO.SourceWarehouseID);
+                    command.Parameters.AddWithValue("@DestinationWarehouseID", transferOperationDTO.DestinationWarehouseID);
+                    command.Parameters.AddWithValue("@ResponsibleEmployeeID", transferOperationDTO.ResponsibleEmployeeID);
+                    command.Parameters.AddWithValue("@TransferOperationDateTime", transferOperationDTO.TransferOperationDateTime);
+                    command.Parameters.AddWithValue("@CreatedByUserID", transferOperationDTO.CreatedByUserID);
+
+                    SqlParameter tvpParam = command.Parameters.AddWithValue("@TransferedInventories", transferOperationDTO.TransferedInventories);
+                    tvpParam.SqlDbType = SqlDbType.Structured;
+                    tvpParam.TypeName = "TransferedInventoryType";
+
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+
+                    command.Parameters.Add(returnValueParam);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return (int)returnValueParam.Value == 1;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static clsTransferOperationDTO FindStockTransferOperation(int transferOperationID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_GetStockTransferOperationByID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TransferOperationID", transferOperationID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            clsTransferOperationDTO transferOperationDTO = null;
+
+                            if (reader.Read())
+                            {
+                                transferOperationDTO = new clsTransferOperationDTO
+                                {
+                                    TransferOperationID = Convert.ToInt32(reader["TransferOperationID"]),
+                                    SourceWarehouseID = Convert.ToInt32(reader["SourceWarehouseID"]),
+                                    DestinationWarehouseID = Convert.ToInt32(reader["DestinationWarehouseID"]),
+                                    ResponsibleEmployeeID = Convert.ToInt32(reader["ResponsibleEmployeeID"]),
+                                    TransferOperationDateTime = Convert.ToDateTime(reader["TransferOperationDateTime"]),
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+                                };
+
+                                if (reader.NextResult())
+                                {
+                                    if (reader.HasRows)
+                                    {
+                                        DataTable transferedInventories = new DataTable();
+                                        transferedInventories.Load(reader);
+                                        transferOperationDTO.TransferedInventories = transferedInventories;
+                                    }
+                                }
+                            }
+
+                            return transferOperationDTO;
+                        }
+                    }
+                    catch
+                    {
+                        throw;
                     }
                 }
             }

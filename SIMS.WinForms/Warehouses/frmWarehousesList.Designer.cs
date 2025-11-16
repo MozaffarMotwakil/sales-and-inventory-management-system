@@ -60,6 +60,7 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addWarehouseToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem = new System.Windows.Forms.ToolStripButton();
             this.cbWarehouseActivity = new System.Windows.Forms.ComboBox();
             this.ctrWarehouseInfo = new SIMS.WinForms.Warehouses.ctrWarehouseInfo();
             this.searchPanel.SuspendLayout();
@@ -333,7 +334,8 @@
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.White;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addWarehouseToolStripButton});
+            this.addWarehouseToolStripButton,
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
@@ -350,7 +352,20 @@
             this.addWarehouseToolStripButton.Name = "addWarehouseToolStripButton";
             this.addWarehouseToolStripButton.Size = new System.Drawing.Size(138, 37);
             this.addWarehouseToolStripButton.Text = "   إضافة مخزن جديد";
+            this.addWarehouseToolStripButton.ToolTipText = "   إضافة مخزن جديد   ";
             this.addWarehouseToolStripButton.Click += new System.EventHandler(this.addWarehouseToolStripButton_Click);
+            // 
+            // TransfareInventoriesBetweenWarehousesToolStripMenuItem
+            // 
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.recived_goods_32;
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Name = "TransfareInventoriesBetweenWarehousesToolStripMenuItem";
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Size = new System.Drawing.Size(155, 37);
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Text = "نقل بضاعة بين المخازن";
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.ToolTipText = "   نقل بضاعة بين المخازن   ";
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Click += new System.EventHandler(this.TransfareInventoriesBetweenWarehousesToolStripMenuItem_Click);
             // 
             // cbWarehouseActivity
             // 
@@ -442,5 +457,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private ctrWarehouseInfo ctrWarehouseInfo;
+        private System.Windows.Forms.ToolStripButton TransfareInventoriesBetweenWarehousesToolStripMenuItem;
     }
 }

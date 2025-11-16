@@ -145,5 +145,16 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static string GetInventoryStatus(int inventoryID)
+        {
+            return Convert.ToString(
+                clsDataSettings.GetSingleValue(
+                    "usp.Inventories_GetInventoryStatus",
+                    "@InventoryID",
+                    inventoryID
+                    )
+                );
+        }
+
     }
 }

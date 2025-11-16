@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Net.Http.Headers;
 using BusinessLogic.Products;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;

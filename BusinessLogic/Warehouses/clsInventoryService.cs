@@ -38,19 +38,9 @@ namespace BusinessLogic.Warehouses
             return _Instance;
         }
 
-        private void OnInventorySaved(int inventoryID, string productName, string unitName)
+        public void OnInventorySaved(int inventoryID, string productName, string unitName)
         {
             EntitySaved?.Invoke(this, new EntitySavedEventArgs(inventoryID, productName + " - " + unitName, enMode.Update));
-        }
-
-        public static int GetInventoryQuantity(int warehouseID, int productID, int unitID)
-        {
-            return clsInventoryData.GetInventoryQuantity(warehouseID, productID, unitID);
-        }
-
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException("لا يمكن حذف مخزون");
         }
 
         public clsInventory Find(int inventoryID)
@@ -64,25 +54,19 @@ namespace BusinessLogic.Warehouses
             return inventoryDTO is null ? null : new clsInventory(inventoryDTO);
         }
 
+        public bool Delete(int id)
+        {
+            throw new NotImplementedException("لا يمكن حذف مخزون");
+        }
+
         public DataTable GetAll()
         {
             return clsInventoryData.GetAllInventories();
         }
 
-        public bool UpdateReorderQuantity(clsInventory inventory,  int newReorderQuantity)
+        public static int GetInventoryQuantity(int warehouseID, int productID, int unitID)
         {
-            if (inventory == null)
-            {
-                return false;
-            }
-
-            if (clsInventoryData.UpdateReorderQuantity(inventory.InventoryID, newReorderQuantity))
-            {
-                OnInventorySaved(inventory.InventoryID, inventory.ProductInfo.ProductName, inventory.UnitInfo.UnitName);
-                return true;
-            }
-
-            return false;
+            return clsInventoryData.GetInventoryQuantity(warehouseID, productID, unitID);
         }
 
         public InventoryInfo CalculateInventoriesValues(DataTable dataSource)

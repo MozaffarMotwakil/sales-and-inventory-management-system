@@ -377,6 +377,12 @@
     <Compile Include="Warehouses\BaseStockTransactionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Warehouses\frmTransfareInventories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmTransfareInventories.Designer.cs">
+      <DependentUpon>frmTransfareInventories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Warehouses\frmShowInventoryTransactions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -564,6 +570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\ctrImage.resx">
       <DependentUpon>ctrImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmTransfareInventories.resx">
+      <DependentUpon>frmTransfareInventories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmAddEditWarehouse.resx">
       <DependentUpon>frmAddEditWarehouse.cs</DependentUpon>

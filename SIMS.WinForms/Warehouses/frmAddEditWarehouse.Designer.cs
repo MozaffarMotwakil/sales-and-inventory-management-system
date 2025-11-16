@@ -47,6 +47,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtWarehouseName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             this.gbWarehouseInfo.SuspendLayout();
@@ -57,20 +59,23 @@
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
+            this.errorProvider.RightToLeft = true;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.gbWarehouseInfo);
-            this.panel1.Location = new System.Drawing.Point(11, 12);
+            this.panel1.Location = new System.Drawing.Point(13, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(555, 388);
+            this.panel1.Size = new System.Drawing.Size(577, 440);
             this.panel1.TabIndex = 0;
             // 
             // gbWarehouseInfo
             // 
             this.gbWarehouseInfo.BackColor = System.Drawing.Color.White;
+            this.gbWarehouseInfo.Controls.Add(this.comboBox1);
+            this.gbWarehouseInfo.Controls.Add(this.label6);
             this.gbWarehouseInfo.Controls.Add(this.label4);
             this.gbWarehouseInfo.Controls.Add(this.btnCancle);
             this.gbWarehouseInfo.Controls.Add(this.btnSave);
@@ -83,7 +88,7 @@
             this.gbWarehouseInfo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbWarehouseInfo.Location = new System.Drawing.Point(7, 3);
             this.gbWarehouseInfo.Name = "gbWarehouseInfo";
-            this.gbWarehouseInfo.Size = new System.Drawing.Size(537, 376);
+            this.gbWarehouseInfo.Size = new System.Drawing.Size(558, 430);
             this.gbWarehouseInfo.TabIndex = 26;
             this.gbWarehouseInfo.TabStop = false;
             this.gbWarehouseInfo.Text = "معلومات المخزن";
@@ -92,7 +97,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(7, 339);
+            this.label4.Location = new System.Drawing.Point(18, 337);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(524, 34);
             this.label4.TabIndex = 30;
@@ -106,7 +111,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(174, 281);
+            this.btnCancle.Location = new System.Drawing.Point(156, 383);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
@@ -119,7 +124,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(296, 281);
+            this.btnSave.Location = new System.Drawing.Point(278, 383);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
@@ -131,7 +136,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(7, 180);
+            this.txtAddress.Location = new System.Drawing.Point(22, 231);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtAddress.MaxLength = 255;
             this.txtAddress.Multiline = true;
@@ -144,7 +149,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(436, 180);
+            this.label2.Location = new System.Drawing.Point(457, 231);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 16);
@@ -156,7 +161,7 @@
             this.panel2.Controls.Add(this.rbInActive);
             this.panel2.Controls.Add(this.rbActive);
             this.panel2.Controls.Add(this.label5);
-            this.panel2.Location = new System.Drawing.Point(214, 126);
+            this.panel2.Location = new System.Drawing.Point(234, 126);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(323, 26);
             this.panel2.TabIndex = 24;
@@ -165,7 +170,7 @@
             // 
             this.rbInActive.AutoSize = true;
             this.rbInActive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbInActive.Location = new System.Drawing.Point(44, 3);
+            this.rbInActive.Location = new System.Drawing.Point(39, 3);
             this.rbInActive.Name = "rbInActive";
             this.rbInActive.Size = new System.Drawing.Size(74, 20);
             this.rbInActive.TabIndex = 6;
@@ -177,7 +182,7 @@
             this.rbActive.AutoSize = true;
             this.rbActive.Checked = true;
             this.rbActive.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbActive.Location = new System.Drawing.Point(143, 3);
+            this.rbActive.Location = new System.Drawing.Point(138, 3);
             this.rbActive.Name = "rbActive";
             this.rbActive.Size = new System.Drawing.Size(52, 20);
             this.rbActive.TabIndex = 5;
@@ -201,7 +206,7 @@
             this.panel3.Controls.Add(this.rbSubWarehouse);
             this.panel3.Controls.Add(this.rbMainWarehouse);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(216, 76);
+            this.panel3.Location = new System.Drawing.Point(236, 76);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(321, 26);
             this.panel3.TabIndex = 23;
@@ -211,7 +216,7 @@
             this.rbSubWarehouse.AutoSize = true;
             this.rbSubWarehouse.Checked = true;
             this.rbSubWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSubWarehouse.Location = new System.Drawing.Point(61, 3);
+            this.rbSubWarehouse.Location = new System.Drawing.Point(55, 3);
             this.rbSubWarehouse.Name = "rbSubWarehouse";
             this.rbSubWarehouse.Size = new System.Drawing.Size(56, 20);
             this.rbSubWarehouse.TabIndex = 3;
@@ -223,7 +228,7 @@
             // 
             this.rbMainWarehouse.AutoSize = true;
             this.rbMainWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbMainWarehouse.Location = new System.Drawing.Point(128, 3);
+            this.rbMainWarehouse.Location = new System.Drawing.Point(122, 3);
             this.rbMainWarehouse.Name = "rbMainWarehouse";
             this.rbMainWarehouse.Size = new System.Drawing.Size(66, 20);
             this.rbMainWarehouse.TabIndex = 2;
@@ -244,7 +249,7 @@
             // txtWarehouseName
             // 
             this.txtWarehouseName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWarehouseName.Location = new System.Drawing.Point(7, 29);
+            this.txtWarehouseName.Location = new System.Drawing.Point(22, 29);
             this.txtWarehouseName.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtWarehouseName.MaxLength = 72;
             this.txtWarehouseName.Name = "txtWarehouseName";
@@ -256,12 +261,32 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(443, 32);
+            this.label1.Location = new System.Drawing.Point(463, 32);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 28;
             this.label1.Text = "إسم المخزن:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(22, 179);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(402, 24);
+            this.comboBox1.TabIndex = 34;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(431, 182);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 16);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "الموظف المسؤول:";
             // 
             // frmAddEditWarehouse
             // 
@@ -269,7 +294,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(578, 411);
+            this.ClientSize = new System.Drawing.Size(602, 464);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -313,5 +338,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtWarehouseName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label6;
     }
 }

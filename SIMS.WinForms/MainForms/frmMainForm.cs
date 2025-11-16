@@ -62,8 +62,6 @@ namespace SIMS.WinForms
         private void MainForm_Load(object sender, EventArgs e)
         {
             WarehousesAndInventories.DropDownDirection = ToolStripDropDownDirection.Left;
-            WarehousesToolStripButton.AutoSize = false;
-            WarehousesToolStripButton.Size = new Size(249, 36);
             _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 

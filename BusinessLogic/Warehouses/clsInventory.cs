@@ -22,6 +22,29 @@ namespace BusinessLogic.Warehouses
             ReorderQuantity = inventoryDTO.ReorderQuantity;
         }
 
+        public bool UpdateReorderQuantity(int newReorderQuantity)
+        {
+            if (clsInventoryData.UpdateReorderQuantity(this.InventoryID, newReorderQuantity))
+            {
+                clsInventoryService.CreateInstance().OnInventorySaved(this.InventoryID, this.ProductInfo.ProductName, this.UnitInfo.UnitName);
+                return true;
+            }
+
+            return false;
+        }
+
+        public int GetCurrentQuantity()
+        {
+            return clsInventoryData.GetInventoryQuantity(
+                this.WarehouseInfo.WarehouseID ?? -1, this.ProductInfo.ProductID ?? -1, this.UnitInfo.UnitID
+                );
+        }
+
+        public string GetStatus()
+        {
+            return clsInventoryData.GetInventoryStatus(this.InventoryID);
+        }
+
         public DataTable GetStockTransactions()
         {
             return clsInventoryData.GetAllStockTransactionsByInventoryID(this.InventoryID);

@@ -180,5 +180,11 @@ namespace SIMS.WinForms.Warehouses
             }
         }
 
+        private void TransfareInventoriesBetweenWarehousesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTransfareInventories transfareInventories = new frmTransfareInventories();
+            transfareInventories.ShowDialog();
+        }
+
     }
 }

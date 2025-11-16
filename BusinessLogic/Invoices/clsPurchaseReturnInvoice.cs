@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BusinessLogic.Suppliers;
-using BusinessLogic.Users;
 using BusinessLogic.Validation;
 using BusinessLogic.Warehouses;
 using DTOs.Invoices;

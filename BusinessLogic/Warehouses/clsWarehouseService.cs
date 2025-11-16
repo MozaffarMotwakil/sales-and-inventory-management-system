@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
-using DataAccess.Products;
 using DataAccess.Warehouses;
 using DTOs.Warehouses;
 

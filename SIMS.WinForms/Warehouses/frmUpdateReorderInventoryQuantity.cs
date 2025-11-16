@@ -68,7 +68,7 @@ namespace SIMS.WinForms.Warehouses
                 return;
             }
 
-            if (clsInventoryService.CreateInstance().UpdateReorderQuantity(_Inventory, int.Parse(txtReorderQuantity.Text)))
+            if (_Inventory.UpdateReorderQuantity(int.Parse(txtReorderQuantity.Text)))
             {
                 clsFormMessages.ShowSuccess("تم تعديل حد إعادة الطلب لهذا المخزون بنجاح");
                 this.Close();

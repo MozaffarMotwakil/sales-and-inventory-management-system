@@ -68,6 +68,8 @@
     <Compile Include="Invoices\clsInvoice.cs" />
     <Compile Include="Invoices\clsInvoiceLine.cs" />
     <Compile Include="Utilities\clsEventLogger.cs" />
+    <Compile Include="Warehouses\clsTransferOperation.cs" />
+    <Compile Include="Warehouses\clsTransferedInventory.cs" />
     <Compile Include="Warehouses\clsStockTransactionService.cs" />
     <Compile Include="Warehouses\clsStockTransaction.cs" />
     <Compile Include="Warehouses\clsInventory.cs" />

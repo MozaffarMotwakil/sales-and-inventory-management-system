@@ -35,9 +35,6 @@
             this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
-            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StockTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -47,17 +44,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StockTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.circularPictureBox = new ctrCircularPictureBox();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -150,39 +150,6 @@
             this.WarehousesAndInventories.Name = "WarehousesAndInventories";
             this.WarehousesAndInventories.Size = new System.Drawing.Size(249, 36);
             this.WarehousesAndInventories.Text = "المخازن و المخزون";
-            // 
-            // WarehousesToolStripButton
-            // 
-            this.WarehousesToolStripButton.AutoSize = false;
-            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarehousesToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
-            this.WarehousesToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
-            this.WarehousesToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.WarehousesToolStripButton.Text = "المخازن";
-            this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
-            // 
-            // InventoriesToolStripMenuItem
-            // 
-            this.InventoriesToolStripMenuItem.AutoSize = false;
-            this.InventoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InventoriesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.packages;
-            this.InventoriesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.InventoriesToolStripMenuItem.Name = "InventoriesToolStripMenuItem";
-            this.InventoriesToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
-            this.InventoriesToolStripMenuItem.Text = "المخزون";
-            this.InventoriesToolStripMenuItem.Click += new System.EventHandler(this.InventoriesToolStripMenuItem_Click);
-            // 
-            // StockTransactionsToolStripMenuItem
-            // 
-            this.StockTransactionsToolStripMenuItem.AutoSize = false;
-            this.StockTransactionsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockTransactionsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
-            this.StockTransactionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.StockTransactionsToolStripMenuItem.Name = "StockTransactionsToolStripMenuItem";
-            this.StockTransactionsToolStripMenuItem.Size = new System.Drawing.Size(249, 36);
-            this.StockTransactionsToolStripMenuItem.Text = "حركات المخزون";
-            this.StockTransactionsToolStripMenuItem.Click += new System.EventHandler(this.StockTransactionsToolStripMenuItem_Click);
             // 
             // PurchasesToolStripButton
             // 
@@ -282,17 +249,6 @@
             this.label1.Text = "Mozaffar_Mo";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // circularPictureBox
-            // 
-            this.circularPictureBox.BackColor = System.Drawing.Color.White;
-            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
-            this.circularPictureBox.Location = new System.Drawing.Point(49, 15);
-            this.circularPictureBox.Name = "circularPictureBox";
-            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
-            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.circularPictureBox.TabIndex = 2;
-            this.circularPictureBox.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -356,6 +312,47 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "00:00:00 AM";
             // 
+            // InventoriesToolStripMenuItem
+            // 
+            this.InventoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoriesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.packages;
+            this.InventoriesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.InventoriesToolStripMenuItem.Name = "InventoriesToolStripMenuItem";
+            this.InventoriesToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
+            this.InventoriesToolStripMenuItem.Text = "المخزون";
+            this.InventoriesToolStripMenuItem.Click += new System.EventHandler(this.InventoriesToolStripMenuItem_Click);
+            // 
+            // StockTransactionsToolStripMenuItem
+            // 
+            this.StockTransactionsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockTransactionsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
+            this.StockTransactionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.StockTransactionsToolStripMenuItem.Name = "StockTransactionsToolStripMenuItem";
+            this.StockTransactionsToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
+            this.StockTransactionsToolStripMenuItem.Text = "حركات المخزون";
+            this.StockTransactionsToolStripMenuItem.Click += new System.EventHandler(this.StockTransactionsToolStripMenuItem_Click);
+            // 
+            // WarehousesToolStripButton
+            // 
+            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarehousesToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
+            this.WarehousesToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
+            this.WarehousesToolStripButton.Size = new System.Drawing.Size(218, 38);
+            this.WarehousesToolStripButton.Text = "المخازن";
+            this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
+            // 
+            // circularPictureBox
+            // 
+            this.circularPictureBox.BackColor = System.Drawing.Color.White;
+            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
+            this.circularPictureBox.Location = new System.Drawing.Point(49, 15);
+            this.circularPictureBox.Name = "circularPictureBox";
+            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.circularPictureBox.TabIndex = 2;
+            this.circularPictureBox.TabStop = false;
+            // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -379,10 +376,10 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -410,9 +407,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripDropDownButton WarehousesAndInventories;
+        private System.Windows.Forms.ToolStripMenuItem InventoriesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StockTransactionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem WarehousesToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem InventoriesToolStripMenuItem;
     }
 }
 

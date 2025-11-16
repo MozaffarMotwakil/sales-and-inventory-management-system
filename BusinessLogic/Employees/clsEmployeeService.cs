@@ -14,5 +14,11 @@ namespace BusinessLogic.Employees
                 .Select(row => row[0])
                 .ToArray();
         }
+
+        public static clsEmployee Find(int employeeID)
+        {
+            return new clsEmployee(3);
+        }
+
     }
 }
