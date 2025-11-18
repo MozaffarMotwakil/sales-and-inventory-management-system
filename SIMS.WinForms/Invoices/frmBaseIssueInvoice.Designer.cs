@@ -41,13 +41,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.warehousesTableAdapter = new SIMS.WinForms.WarehouseNamesTableAdapters.WarehousesTableAdapter();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblTotalSubTotal = new System.Windows.Forms.Label();
             this.lblTotalDiscount = new System.Windows.Forms.Label();
             this.warehousesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.warehouseNames = new SIMS.WinForms.WarehouseNames();
             this.label15 = new System.Windows.Forms.Label();
             this.productsTableAdapter = new SIMS.WinForms.ProductNamesTableAdapters.ProductsTableAdapter();
             this.vwSuppliersDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -100,7 +98,6 @@
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.gbInvoiceDetails = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
@@ -114,10 +111,6 @@
             this.panel2.SuspendLayout();
             this.gbInvoiceDetails.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // warehousesTableAdapter
-            // 
-            this.warehousesTableAdapter.ClearBeforeFill = true;
             // 
             // label16
             // 
@@ -168,16 +161,6 @@
             this.lblTotalDiscount.Size = new System.Drawing.Size(14, 16);
             this.lblTotalDiscount.TabIndex = 17;
             this.lblTotalDiscount.Text = "0";
-            // 
-            // warehousesBindingSource
-            // 
-            this.warehousesBindingSource.DataMember = "Warehouses";
-            this.warehousesBindingSource.DataSource = this.warehouseNames;
-            // 
-            // warehouseNames
-            // 
-            this.warehouseNames.DataSetName = "WarehouseNames";
-            this.warehouseNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label15
             // 
@@ -352,7 +335,7 @@
             this.dgvInvoiceLines.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -375,7 +358,7 @@
             this.colDelete});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -744,8 +727,6 @@
             this.cbWarehouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbWarehouse.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbWarehouse.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbWarehouse.DataSource = this.warehousesBindingSource;
-            this.cbWarehouse.DisplayMember = "WarehouseName";
             this.cbWarehouse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbWarehouse.FormattingEnabled = true;
@@ -754,7 +735,6 @@
             this.cbWarehouse.Name = "cbWarehouse";
             this.cbWarehouse.Size = new System.Drawing.Size(294, 24);
             this.cbWarehouse.TabIndex = 3;
-            this.cbWarehouse.ValueMember = "WarehouseID";
             // 
             // txtInvoiceNo
             // 
@@ -808,7 +788,6 @@
             this.Text = "إصدار فاتورة";
             this.Load += new System.EventHandler(this.frmBaseIssueInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);
@@ -832,13 +811,11 @@
 
         #endregion
 
-        protected WarehouseNamesTableAdapters.WarehousesTableAdapter warehousesTableAdapter;
         protected System.Windows.Forms.Label label16;
         protected System.Windows.Forms.Label label17;
         protected System.Windows.Forms.Label lblTotalSubTotal;
         protected System.Windows.Forms.Label lblTotalDiscount;
         protected System.Windows.Forms.BindingSource warehousesBindingSource;
-        protected WarehouseNames warehouseNames;
         protected System.Windows.Forms.Label label15;
         protected ProductNamesTableAdapters.ProductsTableAdapter productsTableAdapter;
         protected System.Windows.Forms.BindingSource vwSuppliersDetailsBindingSource;

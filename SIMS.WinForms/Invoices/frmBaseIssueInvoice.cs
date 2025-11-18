@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
 using BusinessLogic.Validation;
+using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Properties;
 
@@ -19,14 +21,19 @@ namespace SIMS.WinForms.Invoices
 
         private void frmBaseIssueInvoice_Load(object sender, EventArgs e)
         {
-            this.warehousesTableAdapter.Fill(this.warehouseNames.Warehouses);
+            dgvInvoiceLines.ColumnHeadersDefaultCellStyle.Font =
+                new Font("Tahoma", 8, FontStyle.Bold);
+
+            cbWarehouse.DataSource = clsWarehouseService.GetWarehousesList();
+            cbWarehouse.DisplayMember = "WarehouseName";
+            cbWarehouse.ValueMember = "WarehouseID";
+            cbWarehouse.SelectedValue = 1;
 
             dgvInvoiceLines.Rows[0].Cells[colLineNa.Index].Value = 1;
             dgvInvoiceLines.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
 
             dtpInvoiceIssueDate.MaxDate = dtpInvoiceIssueDate.Value = DateTime.Today;
             dtpInvoiceIssueDate.MinDate = DateTime.Today.AddYears(-1);
-            cbWarehouse.SelectedIndex = 0;
         }
 
         protected enInvoiceStatus GetInvoiceStatus()

@@ -12,6 +12,8 @@ namespace BusinessLogic.Warehouses
         public clsProduct ProductInfo { get; set; }
         public clsUnit UnitInfo { get; set; }
         public int ReorderQuantity { get; set; }
+        public float AveragePurchasePrice => clsInventoryData.GetAveragePurchasePrice(this.ProductInfo?.ProductID ?? -1, UnitInfo?.UnitID ?? -1);
+        public float SellingPrice => clsInventoryData.GetSellingPrice(this.ProductInfo?.ProductID ?? -1, UnitInfo?.UnitID ?? -1);
 
         internal clsInventory(clsInventoryDTO inventoryDTO)
         {

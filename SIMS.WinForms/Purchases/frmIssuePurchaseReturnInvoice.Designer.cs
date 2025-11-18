@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
@@ -72,8 +70,6 @@
             this.ClientSize = new System.Drawing.Size(1284, 661);
             this.Name = "frmIssuePurchaseReturnInvoice";
             this.Load += new System.EventHandler(this.frmReturnPurchaseInvoice_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
 using DataAccess.Warehouses;
@@ -124,6 +126,24 @@ namespace BusinessLogic.Warehouses
         {
             WarehouseName = WarehouseName.Trim();
             Address = Address.Trim();
+        }
+
+        public List<clsInventory> GetAvailableInventories()
+        {
+            int[] inventoryIDs = clsWarehouseData.GetAvailableInventoryIDsForWarehouse(this.WarehouseID ?? -1)
+               .Rows
+               .Cast<DataRow>()
+               .Select(id => (int)id[0])
+               .ToArray();
+
+            List<clsInventory> availableInventories = new List<clsInventory>();
+
+            foreach (int inventoryID in inventoryIDs)
+            {
+                availableInventories.Add(clsInventoryService.CreateInstance().Find(inventoryID));
+            }
+
+            return availableInventories;
         }
 
         public clsValidationResult Validated()

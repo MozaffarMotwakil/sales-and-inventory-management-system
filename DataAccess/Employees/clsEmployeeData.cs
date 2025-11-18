@@ -4,10 +4,10 @@ namespace DataAccess.Employees
 {
     public static class clsEmployeeData
     {
-        public static DataTable GetAllEmployeeNames()
+        public static DataTable GetEmployeesList()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Employees_GetAllEmployeeNames"
+                "usp_Employees_GetEmployeesList"
                 );
         }
     }

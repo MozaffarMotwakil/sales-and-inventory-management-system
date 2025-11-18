@@ -76,8 +76,11 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[17].HeaderText = "آخر حركة بيع";
                 base.dgvEntitiesList.Columns[17].Width = 125;
 
-                base.dgvEntitiesList.Columns[18].HeaderText = "حالة المخزون";
-                base.dgvEntitiesList.Columns[18].Width = 85;
+                base.dgvEntitiesList.Columns[18].HeaderText = "آخر حركة نقل";
+                base.dgvEntitiesList.Columns[18].Width = 125;
+
+                base.dgvEntitiesList.Columns[19].HeaderText = "حالة المخزون";
+                base.dgvEntitiesList.Columns[19].Width = 85;
             }
         }
 

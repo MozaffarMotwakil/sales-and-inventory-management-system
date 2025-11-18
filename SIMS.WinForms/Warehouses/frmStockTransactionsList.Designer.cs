@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbTransactionReason = new System.Windows.Forms.ComboBox();
             this.dtpTimeFrom = new System.Windows.Forms.DateTimePicker();
             this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dtpTimeTo = new System.Windows.Forms.DateTimePicker();
@@ -62,7 +63,7 @@
             // 
             // searchPanel
             // 
-            this.searchPanel.Location = new System.Drawing.Point(852, 16);
+            this.searchPanel.Location = new System.Drawing.Point(555, 27);
             this.searchPanel.Size = new System.Drawing.Size(197, 26);
             // 
             // pictureBox
@@ -82,6 +83,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.cbTransactionReason);
             this.panel2.Controls.Add(this.dtpTimeFrom);
             this.panel2.Controls.Add(this.dtpDateFrom);
             this.panel2.Controls.Add(this.dtpTimeTo);
@@ -101,13 +103,26 @@
             this.panel2.Size = new System.Drawing.Size(1112, 57);
             this.panel2.TabIndex = 66;
             // 
+            // cbTransactionReason
+            // 
+            this.cbTransactionReason.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTransactionReason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTransactionReason.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTransactionReason.FormattingEnabled = true;
+            this.cbTransactionReason.Items.AddRange(new object[] {
+            "كل الأسباب"});
+            this.cbTransactionReason.Location = new System.Drawing.Point(359, 2);
+            this.cbTransactionReason.Name = "cbTransactionReason";
+            this.cbTransactionReason.Size = new System.Drawing.Size(167, 22);
+            this.cbTransactionReason.TabIndex = 73;
+            // 
             // dtpTimeFrom
             // 
             this.dtpTimeFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpTimeFrom.Enabled = false;
             this.dtpTimeFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTimeFrom.Location = new System.Drawing.Point(415, 30);
+            this.dtpTimeFrom.Location = new System.Drawing.Point(212, 31);
             this.dtpTimeFrom.Name = "dtpTimeFrom";
             this.dtpTimeFrom.RightToLeftLayout = true;
             this.dtpTimeFrom.ShowUpDown = true;
@@ -121,7 +136,7 @@
             this.dtpDateFrom.Enabled = false;
             this.dtpDateFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateFrom.Location = new System.Drawing.Point(415, 3);
+            this.dtpDateFrom.Location = new System.Drawing.Point(212, 4);
             this.dtpDateFrom.Name = "dtpDateFrom";
             this.dtpDateFrom.RightToLeftLayout = true;
             this.dtpDateFrom.Size = new System.Drawing.Size(110, 21);
@@ -134,7 +149,7 @@
             this.dtpTimeTo.Enabled = false;
             this.dtpTimeTo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpTimeTo.Location = new System.Drawing.Point(265, 30);
+            this.dtpTimeTo.Location = new System.Drawing.Point(62, 31);
             this.dtpTimeTo.Name = "dtpTimeTo";
             this.dtpTimeTo.RightToLeftLayout = true;
             this.dtpTimeTo.ShowUpDown = true;
@@ -148,7 +163,7 @@
             this.dtpDateTo.Enabled = false;
             this.dtpDateTo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateTo.Location = new System.Drawing.Point(265, 3);
+            this.dtpDateTo.Location = new System.Drawing.Point(62, 4);
             this.dtpDateTo.Name = "dtpDateTo";
             this.dtpDateTo.RightToLeftLayout = true;
             this.dtpDateTo.Size = new System.Drawing.Size(110, 21);
@@ -188,7 +203,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(377, 20);
+            this.label1.Location = new System.Drawing.Point(174, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 16);
             this.label1.TabIndex = 71;
@@ -199,7 +214,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(526, 20);
+            this.label2.Location = new System.Drawing.Point(323, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 16);
             this.label2.TabIndex = 72;
@@ -366,5 +381,6 @@
         private System.Windows.Forms.Label lblOutTransactions;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbTransactionReason;
     }
 }

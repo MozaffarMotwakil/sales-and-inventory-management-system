@@ -30,8 +30,6 @@
         {
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
@@ -105,8 +103,6 @@
             this.Name = "frmIssuePurchaseInvoice";
             this.Text = "إصدار فاتورة مشتريات";
             this.Load += new System.EventHandler(this.frmReceiveNewGoods_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warehouseNames)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);

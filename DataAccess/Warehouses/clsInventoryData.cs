@@ -129,6 +129,13 @@ namespace DataAccess.Warehouses
                 );
         }
 
+        public static DataTable GetAllStockTransactionReasonNames()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Inventories_GetAllStockTransactionReasonNames"
+                );
+        }
+
         public static DataTable GetAllStockTransactionsByInventoryID(int inventoryID)
         {
             return clsDataSettings.GetDataTable(
@@ -149,11 +156,67 @@ namespace DataAccess.Warehouses
         {
             return Convert.ToString(
                 clsDataSettings.GetSingleValue(
-                    "usp.Inventories_GetInventoryStatus",
+                    "usp_Inventories_GetInventoryStatus",
                     "@InventoryID",
                     inventoryID
                     )
                 );
+        }
+
+        public static float GetAveragePurchasePrice(int productID, int unitID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_GetAveragePurchasePrice", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ProductID", productID);
+                    command.Parameters.AddWithValue("@UnitID", unitID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            return reader[0] == DBNull.Value ? float.NaN : Convert.ToSingle(reader[0]);
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
+        public static float GetSellingPrice(int productID, int unitID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_GetSellingPrice", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@ProductID", productID);
+                    command.Parameters.AddWithValue("@UnitID", unitID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            return reader[0] == DBNull.Value ? float.NaN : Convert.ToSingle(reader[0]);
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
         }
 
     }

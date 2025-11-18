@@ -27,6 +27,7 @@ namespace SIMS.WinForms.Warehouses
 
             lblProductName.Text = _Inventory.ProductInfo.ProductName;
             lblUnitName.Text = _Inventory.UnitInfo.UnitName;
+            lblWarehouseName.Text = _Inventory.WarehouseInfo.WarehouseName;
             txtReorderQuantity.Text = _Inventory.ReorderQuantity.ToString();
         }
 

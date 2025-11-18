@@ -7,7 +7,7 @@ namespace DTOs.Warehouses
     {
         public int? TransferOperationID { get; set; }
         public int SourceWarehouseID { get; set; }
-        public int DestinationWarehouseID { get; set; }
+        public int? DestinationWarehouseID { get; set; }
         public DataTable TransferedInventories { get; set; }
         public int ResponsibleEmployeeID { get; set; }
         public DateTime TransferOperationDateTime { get; set; }

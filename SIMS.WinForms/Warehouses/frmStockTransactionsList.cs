@@ -9,7 +9,6 @@ using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Properties;
-using static BusinessLogic.Warehouses.clsStockTransactionService;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -33,13 +32,14 @@ namespace SIMS.WinForms.Warehouses
             cbRange.SelectedIndex = 3;
 
             cbProduct.SelectedIndex = cbUnit.SelectedIndex = cbWarehouse.SelectedIndex = 
-                cbTransactionType.SelectedIndex = cbResponseEmployee.SelectedIndex = 0;
+                cbTransactionType.SelectedIndex = cbResponseEmployee.SelectedIndex = cbTransactionReason.SelectedIndex = 0;
 
             cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
             cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
-            cbWarehouse.Items.AddRange(clsWarehouseService.GetAllWarehouseNames());
-            cbTransactionType.Items.AddRange(clsStockTransactionService.GetAllStockTransactionTypeNames());
-            cbResponseEmployee.Items.AddRange(clsEmployeeService.GetAllEmployeeName());
+            cbWarehouse.Items.AddRange(clsWarehouseService.GetWarehouseNames());
+            cbTransactionType.Items.AddRange(clsStockTransactionService.GetStockTransactionTypeNames());
+            cbResponseEmployee.Items.AddRange(clsEmployeeService.GetEmployeeNames());
+            cbTransactionReason.Items.AddRange(clsStockTransactionService.GetStockTransactionReasonNames());
 
             dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
 
@@ -227,6 +227,11 @@ namespace SIMS.WinForms.Warehouses
                 filters.Add($"TransactionTypeName = '{cbTransactionType.Text}'");
             }
 
+            if (cbTransactionReason.SelectedIndex != 0)
+            {
+                filters.Add($"ReasonName = '{cbTransactionReason.Text}'");
+            }
+
             if (cbResponseEmployee.SelectedIndex != 0)
             {
                 filters.Add($"CreatedBy = '{cbResponseEmployee.Text}'");
@@ -246,7 +251,7 @@ namespace SIMS.WinForms.Warehouses
         protected override void UpdateRecordsCountLabels()
         {
             base.UpdateRecordsCountLabels();
-            StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
                 .GetStockTransactionInfo(dgvEntitiesList.DataSource as DataTable);
 
             lblInTransactions.Text = transactionInfo.InTransactions.ToString();
@@ -256,7 +261,7 @@ namespace SIMS.WinForms.Warehouses
         protected override void UpdateRecordsCountLabels(DataView dataSource)
         {
             base.UpdateRecordsCountLabels();
-            StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
                 .GetStockTransactionInfo(dataSource);
 
             lblInTransactions.Text = transactionInfo.InTransactions.ToString();

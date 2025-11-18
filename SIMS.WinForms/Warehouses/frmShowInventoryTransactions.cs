@@ -80,28 +80,31 @@ namespace SIMS.WinForms.Warehouses
                 dgvStockTransactions.Columns[4].Visible = false;
 
                 dgvStockTransactions.Columns[5].HeaderText = "نوع الحركة";
-                dgvStockTransactions.Columns[5].Width = 100;
+                dgvStockTransactions.Columns[5].Width = 80;
 
-                dgvStockTransactions.Columns[6].HeaderText = "الكمية قبل الحركة";
+                dgvStockTransactions.Columns[6].HeaderText = "سبب الحركة";
                 dgvStockTransactions.Columns[6].Width = 100;
 
-                dgvStockTransactions.Columns[7].HeaderText = "التأثير على المخزون";
-                dgvStockTransactions.Columns[7].Width = 100;
+                dgvStockTransactions.Columns[7].HeaderText = "الكمية قبل الحركة";
+                dgvStockTransactions.Columns[7].Width = 80;
 
-                dgvStockTransactions.Columns[8].HeaderText = "الكمية بعد الحركة";
-                dgvStockTransactions.Columns[8].Width = 100;
+                dgvStockTransactions.Columns[8].HeaderText = "التأثير على المخزون";
+                dgvStockTransactions.Columns[8].Width = 80;
 
-                dgvStockTransactions.Columns[9].HeaderText = "معرف الفاتورة المؤثرة";
-                dgvStockTransactions.Columns[9].Visible = false;
+                dgvStockTransactions.Columns[9].HeaderText = "الكمية بعد الحركة";
+                dgvStockTransactions.Columns[9].Width = 80;
 
-                dgvStockTransactions.Columns[10].HeaderText = "رقم الفاتورة المؤثرة";
-                dgvStockTransactions.Columns[10].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgvStockTransactions.Columns[10].HeaderText = "معرف الفاتورة المؤثرة";
+                dgvStockTransactions.Columns[10].Visible = false;
 
-                dgvStockTransactions.Columns[11].HeaderText = "الموظف المسؤول";
-                dgvStockTransactions.Columns[11].Width = 200;
+                dgvStockTransactions.Columns[11].HeaderText = "رقم الفاتورة المؤثرة";
+                dgvStockTransactions.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dgvStockTransactions.Columns[12].HeaderText = "تاريخ الحركة";
-                dgvStockTransactions.Columns[12].Width = 150;
+                dgvStockTransactions.Columns[12].HeaderText = "الموظف المسؤول";
+                dgvStockTransactions.Columns[12].Width = 180;
+
+                dgvStockTransactions.Columns[13].HeaderText = "تاريخ الحركة";
+                dgvStockTransactions.Columns[13].Width = 150;
 
                 foreach (DataGridViewColumn column in dgvStockTransactions.Columns)
                 {

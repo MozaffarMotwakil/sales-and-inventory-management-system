@@ -6,12 +6,17 @@ namespace BusinessLogic.Employees
 {
     public class clsEmployeeService
     {
-        public static object[] GetAllEmployeeName()
+        public static DataTable GetEmployeesList()
         {
-            return clsEmployeeData.GetAllEmployeeNames()
+            return clsEmployeeData.GetEmployeesList();
+        }
+
+        public static object[] GetEmployeeNames()
+        {
+            return clsEmployeeData.GetEmployeesList()
                 .Rows
                 .Cast<DataRow>()
-                .Select(row => row[0])
+                .Select(row => row["EmployeeName"])
                 .ToArray();
         }
 

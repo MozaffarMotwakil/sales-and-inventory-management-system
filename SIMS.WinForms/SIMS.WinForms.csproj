@@ -363,11 +363,6 @@
     <Compile Include="Utilities\ctrImage.Designer.cs">
       <DependentUpon>ctrImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="WarehouseNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WarehouseNames.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Warehouses\BaseWarehousesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -626,17 +621,6 @@
     </None>
     <None Include="SupplierNames.xss">
       <DependentUpon>SupplierNames.xsd</DependentUpon>
-    </None>
-    <None Include="WarehouseNames.xsc">
-      <DependentUpon>WarehouseNames.xsd</DependentUpon>
-    </None>
-    <None Include="WarehouseNames.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>WarehouseNames.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="WarehouseNames.xss">
-      <DependentUpon>WarehouseNames.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

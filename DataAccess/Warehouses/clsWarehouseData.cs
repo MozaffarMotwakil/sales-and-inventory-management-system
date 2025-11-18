@@ -245,10 +245,19 @@ namespace DataAccess.Warehouses
                 );
         }
 
-        public static DataTable GetAllWarehouseNames()
+        public static DataTable GetAvailableInventoryIDsForWarehouse(int warehouseID)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Warehouses_GetAllWarehouseNames"
+                "usp_Inventories_GetAvailableInventoryIDsForWarehouse",
+                "@WarehouseID",
+                warehouseID
+                );
+        }
+        
+        public static DataTable GetWarehousesList()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Warehouses_GetWarehousesList"
                 );
         }
 

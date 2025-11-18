@@ -37,7 +37,7 @@ namespace BusinessLogic.Warehouses
         {
             TransferOperationID = transferOperationDTO.TransferOperationID;
             SourceWarehouseInfo = clsWarehouseService.CreateInstance().Find(transferOperationDTO.SourceWarehouseID);
-            DestianationWarehouseInfo = clsWarehouseService.CreateInstance().Find(transferOperationDTO.DestinationWarehouseID);
+            DestianationWarehouseInfo = clsWarehouseService.CreateInstance().Find(transferOperationDTO.DestinationWarehouseID.Value);
             TransferedInventories = clsTransferedInventory.ConvertTransferedInventoriesTableToList(transferOperationDTO.TransferedInventories);
             ResponsibleEmployeeInfo = clsEmployeeService.Find(transferOperationDTO.ResponsibleEmployeeID);
             TransferOperationDateTime = transferOperationDTO.TransferOperationDateTime;

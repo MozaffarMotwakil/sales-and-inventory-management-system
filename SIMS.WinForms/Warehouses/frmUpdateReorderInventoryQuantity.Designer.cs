@@ -39,6 +39,8 @@
             this.lblUnitName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblWarehouseName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,7 @@
             // txtReorderQuantity
             // 
             this.txtReorderQuantity.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReorderQuantity.Location = new System.Drawing.Point(18, 93);
+            this.txtReorderQuantity.Location = new System.Drawing.Point(17, 134);
             this.txtReorderQuantity.Name = "txtReorderQuantity";
             this.txtReorderQuantity.Size = new System.Drawing.Size(410, 26);
             this.txtReorderQuantity.TabIndex = 3;
@@ -61,7 +63,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(249, 74);
+            this.label1.Location = new System.Drawing.Point(248, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(182, 16);
             this.label1.TabIndex = 9;
@@ -81,7 +83,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(379, 37);
+            this.label3.Location = new System.Drawing.Point(379, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 5;
@@ -93,7 +95,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(101, 134);
+            this.btnCancle.Location = new System.Drawing.Point(100, 175);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
@@ -106,7 +108,7 @@
             // 
             this.lblProductName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProductName.ForeColor = System.Drawing.Color.Red;
-            this.lblProductName.Location = new System.Drawing.Point(18, 9);
+            this.lblProductName.Location = new System.Drawing.Point(17, 9);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(326, 16);
             this.lblProductName.TabIndex = 12;
@@ -116,7 +118,7 @@
             // 
             this.lblUnitName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnitName.ForeColor = System.Drawing.Color.Red;
-            this.lblUnitName.Location = new System.Drawing.Point(18, 37);
+            this.lblUnitName.Location = new System.Drawing.Point(17, 41);
             this.lblUnitName.Name = "lblUnitName";
             this.lblUnitName.Size = new System.Drawing.Size(326, 16);
             this.lblUnitName.TabIndex = 11;
@@ -126,17 +128,19 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.lblWarehouseName);
             this.panel1.Controls.Add(this.lblUnitName);
             this.panel1.Controls.Add(this.lblProductName);
             this.panel1.Controls.Add(this.btnCancle);
             this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtReorderQuantity);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(435, 187);
+            this.panel1.Size = new System.Drawing.Size(435, 223);
             this.panel1.TabIndex = 0;
             // 
             // btnSave
@@ -144,7 +148,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::SIMS.WinForms.Properties.Resources.save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(228, 134);
+            this.btnSave.Location = new System.Drawing.Point(227, 175);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(114, 42);
@@ -153,13 +157,33 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(372, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "المخزن:";
+            // 
+            // lblWarehouseName
+            // 
+            this.lblWarehouseName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarehouseName.ForeColor = System.Drawing.Color.Red;
+            this.lblWarehouseName.Location = new System.Drawing.Point(17, 73);
+            this.lblWarehouseName.Name = "lblWarehouseName";
+            this.lblWarehouseName.Size = new System.Drawing.Size(326, 16);
+            this.lblWarehouseName.TabIndex = 11;
+            this.lblWarehouseName.Text = "N/A";
+            // 
             // frmUpdateReorderInventoryQuantity
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(459, 211);
+            this.ClientSize = new System.Drawing.Size(459, 247);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -189,5 +213,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtReorderQuantity;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblWarehouseName;
+        private System.Windows.Forms.Label label4;
     }
 }

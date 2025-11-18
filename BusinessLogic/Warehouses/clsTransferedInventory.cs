@@ -13,10 +13,19 @@ namespace BusinessLogic.Warehouses
         public clsInventory DestinationInventoryInfo { get; }
         public int TransferedQuantity { get; }
 
-        public clsTransferedInventory(int sourceInventoryID, int destinationInventoryID, int transferedQuantity)
+        public clsTransferedInventory(int sourceInventoryID, int transferedQuantity)
         {
             TransferedInventoryID = null;
             TransferOperationInfo = null;
+            SourceInventoryInfo = clsInventoryService.CreateInstance().Find(sourceInventoryID);
+            DestinationInventoryInfo = null;
+            TransferedQuantity = transferedQuantity;
+        }
+
+        internal clsTransferedInventory(int transferedInventoryID, int transferOperationID, int sourceInventoryID, int destinationInventoryID, int transferedQuantity)
+        {
+            TransferedInventoryID = transferedInventoryID;
+            TransferOperationInfo = clsTransferOperation.Find(transferOperationID);
             SourceInventoryInfo = clsInventoryService.CreateInstance().Find(sourceInventoryID);
             DestinationInventoryInfo = clsInventoryService.CreateInstance().Find(destinationInventoryID);
             TransferedQuantity = transferedQuantity;
@@ -27,14 +36,12 @@ namespace BusinessLogic.Warehouses
             DataTable transferedInventoriesTable = new DataTable();
 
             transferedInventoriesTable.Columns.Add("SourceInventoryID", typeof(int));
-            transferedInventoriesTable.Columns.Add("DestinationInventoryID", typeof(int));
             transferedInventoriesTable.Columns.Add("TransferedQuantity", typeof(int));
 
             foreach (clsTransferedInventory transferedInventoryList in transferedInventories)
             {
                 transferedInventoriesTable.Rows.Add(
                     transferedInventoryList.SourceInventoryInfo.InventoryID,
-                    transferedInventoryList.DestinationInventoryInfo.InventoryID,
                     transferedInventoryList.TransferedQuantity
                 );
             }
@@ -52,6 +59,8 @@ namespace BusinessLogic.Warehouses
                 {
                     transferedInventoriesList.Add(
                         new clsTransferedInventory (
+                            transferedInventoryID: Convert.ToInt32(row["TransferedInventoryID"]),
+                            transferOperationID: Convert.ToInt32(row["TransferOperationID"]),
                             sourceInventoryID: Convert.ToInt32(row["SourceInventoryID"]),
                             destinationInventoryID: Convert.ToInt32(row["DestinationInventoryID"]),
                             transferedQuantity: Convert.ToInt32(row["TransferedQuantity"])
