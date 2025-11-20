@@ -44,8 +44,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvStockTransactions = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showInvoiceInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCancle = new System.Windows.Forms.Button();
+            this.showInvoiceInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -224,15 +224,6 @@
             this.contextMenuStrip.Size = new System.Drawing.Size(197, 42);
             this.contextMenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClearSelectionFromDGV);
             // 
-            // showInvoiceInfoToolStripMenuItem
-            // 
-            this.showInvoiceInfoToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.Invoice_32;
-            this.showInvoiceInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.showInvoiceInfoToolStripMenuItem.Name = "showInvoiceInfoToolStripMenuItem";
-            this.showInvoiceInfoToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
-            this.showInvoiceInfoToolStripMenuItem.Text = "عرض تفاصيل الفاتورة";
-            this.showInvoiceInfoToolStripMenuItem.Click += new System.EventHandler(this.showInvoiceInfoToolStripMenuItem_Click);
-            // 
             // btnCancle
             // 
             this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -247,6 +238,15 @@
             this.btnCancle.Text = "    إلغاء";
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
+            // 
+            // showInvoiceInfoToolStripMenuItem
+            // 
+            this.showInvoiceInfoToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.Invoice_32;
+            this.showInvoiceInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showInvoiceInfoToolStripMenuItem.Name = "showInvoiceInfoToolStripMenuItem";
+            this.showInvoiceInfoToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.showInvoiceInfoToolStripMenuItem.Text = "عرض تفاصيل الفاتورة";
+            this.showInvoiceInfoToolStripMenuItem.Click += new System.EventHandler(this.showInvoiceInfoToolStripMenuItem_Click);
             // 
             // frmShowInventoryTransactions
             // 

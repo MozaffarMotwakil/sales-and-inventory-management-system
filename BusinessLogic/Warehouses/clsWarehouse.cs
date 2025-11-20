@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using BusinessLogic.Employees;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
 using DataAccess.Warehouses;
@@ -75,6 +76,7 @@ namespace BusinessLogic.Warehouses
         public string WarehouseName { get; set; }
         public string Address { get; set; }
         public enWarehouseType Type { get; set; }
+        public clsEmployee ResponsibleEmployeeInfo { get; set; }
         public bool IsActive { get; set; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
@@ -82,12 +84,14 @@ namespace BusinessLogic.Warehouses
         public DateTime? UpdatedAt { get; }
         public enMode Mode { get; }
 
-        public clsWarehouse(string warehouseName, string address, enWarehouseType type, bool isActive)
+        public clsWarehouse(string warehouseName, string address, enWarehouseType type,
+             int responsibleEmployeeID, bool isActive)
         {
             WarehouseID = null;
             WarehouseName = warehouseName;
             Address = address;
             Type = type;
+            ResponsibleEmployeeInfo = clsEmployeeService.Find(responsibleEmployeeID);
             IsActive = isActive;
             Mode = enMode.Add;
         }
@@ -98,6 +102,7 @@ namespace BusinessLogic.Warehouses
             WarehouseName = warehouseDTO.WarehouseName;
             Address = warehouseDTO.Address;
             Type = (enWarehouseType)warehouseDTO.TypeID;
+            ResponsibleEmployeeInfo = clsEmployeeService.Find(warehouseDTO.ResponsibleEmployeeID);
             IsActive = warehouseDTO.IsActive;
             CreatedByUserInfo = clsUser.Find(warehouseDTO.CreatedByUserID ?? -1);
             CreatedAt = warehouseDTO.CreatedAt;
@@ -114,12 +119,18 @@ namespace BusinessLogic.Warehouses
                WarehouseName = WarehouseName,
                Address = Address,
                TypeID = (int)Type,
+               ResponsibleEmployeeID = this.ResponsibleEmployeeInfo.EmployeeID,
                IsActive = IsActive,
                CreatedByUserID = CreatedByUserInfo?.UserID,
                CreatedAt = CreatedAt,
                UpdatedByUserID = UpdatedByUserInfo?.UserID,
                UpdatedAt = UpdatedAt
             };
+        }
+
+        public void UpdateResponsibleEmployee(int newResponsiableEmployeeID)
+        {
+            this.ResponsibleEmployeeInfo = clsEmployeeService.Find(newResponsiableEmployeeID);
         }
 
         public void TrimAllStringFields()
@@ -159,6 +170,11 @@ namespace BusinessLogic.Warehouses
             if (string.IsNullOrWhiteSpace(Address))
             {
                 validationResult.AddError("العنوان", "لا يمكن أن يكون العنوان فارغا");
+            }
+
+            if (ResponsibleEmployeeInfo == null)
+            {
+                validationResult.AddError("الموظف المسؤول", "لم يتم العثور على الموظف المسؤول");
             }
 
             return validationResult;

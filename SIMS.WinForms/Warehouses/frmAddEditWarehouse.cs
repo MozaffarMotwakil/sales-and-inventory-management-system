@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using BusinessLogic.Employees;
 using BusinessLogic.Validation;
 using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
@@ -32,6 +33,12 @@ namespace SIMS.WinForms.Warehouses
                 "إضافة مخزن جديد" :
                 "تعديل معلومات مخزن";
 
+            cbResponsibleEmployee.DataSource = clsEmployeeService.GetEmployeesList();
+            cbResponsibleEmployee.DisplayMember = "EmployeeName";
+            cbResponsibleEmployee.ValueMember = "EmployeeID";
+            cbResponsibleEmployee.SelectedIndex = -1;
+            cbResponsibleEmployee.Text = "إختر الموظف المسؤول عن المخزن";
+
             if (_FormMode is enMode.Edit)
             {
                 if (_Warehouse is null)
@@ -53,6 +60,7 @@ namespace SIMS.WinForms.Warehouses
                 rbInActive.Checked = !_Warehouse.IsActive;
                 rbSubWarehouse.Checked = !(rbMainWarehouse.Checked =
                     (_Warehouse.Type == clsWarehouse.enWarehouseType.MainWarehouse));
+                cbResponsibleEmployee.SelectedValue = _Warehouse.ResponsibleEmployeeInfo.EmployeeID;
                 txtAddress.Text = _Warehouse.Address;
             }
         }
@@ -93,6 +101,7 @@ namespace SIMS.WinForms.Warehouses
                     rbMainWarehouse.Checked ? 
                         clsWarehouse.enWarehouseType.MainWarehouse :
                         clsWarehouse.enWarehouseType.SubWarehouse, 
+                    (int)cbResponsibleEmployee.SelectedValue,
                     rbActive.Checked
                     );
             }
@@ -103,6 +112,12 @@ namespace SIMS.WinForms.Warehouses
                 _Warehouse.Type = rbMainWarehouse.Checked ?
                     clsWarehouse.enWarehouseType.MainWarehouse :
                     clsWarehouse.enWarehouseType.SubWarehouse;
+
+                if (_Warehouse.ResponsibleEmployeeInfo.EmployeeID != (int)cbResponsibleEmployee.SelectedValue)
+                {
+                    _Warehouse.UpdateResponsibleEmployee((int)cbResponsibleEmployee.SelectedValue);
+                }
+
                 _Warehouse.IsActive = rbActive.Checked;
             }
 
@@ -125,6 +140,27 @@ namespace SIMS.WinForms.Warehouses
             {
                 clsFormMessages.ShowValidationErrors(validationResult);
             }
+        }
+
+        private void cbResponsibleEmployee_Enter(object sender, EventArgs e)
+        {
+            if (cbResponsibleEmployee.SelectedIndex == -1)
+            {
+                cbResponsibleEmployee.Text = string.Empty;
+            }
+        }
+
+        private void cbResponsibleEmployee_Leave(object sender, EventArgs e)
+        {
+            if (cbResponsibleEmployee.SelectedIndex == -1)
+            {
+                cbResponsibleEmployee.Text = "إختر الموظف المسؤول عن المخزن";
+            }
+        }
+
+        private void cbResponsibleEmployee_Validating(object sender, CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(cbResponsibleEmployee, errorProvider, "يجب تعيين موظف مسؤول عن المخزن");
         }
 
     }

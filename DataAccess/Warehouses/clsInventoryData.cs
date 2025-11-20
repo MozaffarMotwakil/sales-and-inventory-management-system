@@ -47,6 +47,55 @@ namespace DataAccess.Warehouses
             }
         }
 
+        public static clsStockTransactionDTO FindStockTransactionByID(int transactionID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_GetStockTransactionByID", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TransactionID", transactionID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            clsStockTransactionDTO stockTransactionDTO = null;
+
+                            if (reader.Read())
+                            {
+                                stockTransactionDTO = new clsStockTransactionDTO
+                                {
+                                    TransactionID = Convert.ToInt32(reader["TransactionID"]),
+                                    InventoryID = Convert.ToInt32(reader["InventoryID"]),
+                                    OriginalQuantity = Convert.ToInt32(reader["OriginalQuantity"]),
+                                    QuantityChange = Convert.ToInt32(reader["QuantityChange"]),
+                                    TransactionTypeID = Convert.ToInt32(reader["TransactionTypeID"]),
+                                    TransactionReasonID = Convert.ToInt32(reader["TransactionReasonID"]),
+                                    SourceInvoiceID = reader["SourceInvoiceID"] != DBNull.Value ?
+                                        Convert.ToInt32(reader["SourceInvoiceID"]) :
+                                        (int?)null,
+                                    TransferOperationID = reader["TransferOperationID"] != DBNull.Value ?
+                                        Convert.ToInt32(reader["TransferOperationID"]) :
+                                        (int?)null,
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                                };
+                            }
+
+                            return stockTransactionDTO;
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
         public static bool UpdateReorderQuantity(int inventoryID, int newReorderQuantity)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))

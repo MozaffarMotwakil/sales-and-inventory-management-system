@@ -69,6 +69,7 @@
     <Compile Include="Suppliers\clsSupplierDTO.cs" />
     <Compile Include="Parties\clsPartyDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Warehouses\clsStockTransactionDTO.cs" />
     <Compile Include="Warehouses\clsTransferOperationDTO.cs" />
     <Compile Include="Warehouses\clsInventoryDTO.cs" />
     <Compile Include="Warehouses\clsWarehouseDTO.cs" />

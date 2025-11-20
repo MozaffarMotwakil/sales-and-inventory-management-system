@@ -7,10 +7,10 @@ using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Warehouses
 {
-    public partial class e : BaseWarehousesForm
+    public partial class frmWarehouswList : BaseWarehousesForm
     {
         private clsWarehouseService _WarehouseService;
-        public e() 
+        public frmWarehouswList() 
         {
             InitializeComponent();
             _WarehouseService = clsWarehouseService.CreateInstance();
@@ -27,12 +27,6 @@ namespace SIMS.WinForms.Warehouses
             contextMenuStrip.Items.Add("إلغاء التنشيط", Resources.in_active);
             contextMenuStrip.Items[3].ImageScaling = ToolStripItemImageScaling.None;
             contextMenuStrip.Items[3].Click += MarkSupplierAsInActive_Click; 
-
-            contextMenuStrip.Items.Add("عرض نسب تمثيل التصنيفات/الفئات");
-            contextMenuStrip.Items[4].ImageScaling = ToolStripItemImageScaling.None;
-            
-            contextMenuStrip.Items.Add("عرض نسب تمثيل الوحدات");
-            contextMenuStrip.Items[5].ImageScaling = ToolStripItemImageScaling.None;
 
             dgvEntitiesList.CellMouseDown += dgvEntitiesList_CellMouseDown;
         }
@@ -98,7 +92,10 @@ namespace SIMS.WinForms.Warehouses
 
         private void dgvEntitiesList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            dgvEntitiesList.Rows[e.RowIndex].Selected = true;
+            if (e.RowIndex >= 0)
+            {
+                dgvEntitiesList.Rows[e.RowIndex].Selected = true;
+            }
         }
 
         protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)

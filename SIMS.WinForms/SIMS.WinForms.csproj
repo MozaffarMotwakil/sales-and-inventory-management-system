@@ -372,6 +372,21 @@
     <Compile Include="Warehouses\BaseStockTransactionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Warehouses\BaseTransferedOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmShowTransferOperationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmShowTransferOperationInfo.Designer.cs">
+      <DependentUpon>frmShowTransferOperationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouses\frmTransferedOperationsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouses\frmTransferedOperationsList.Designer.cs">
+      <DependentUpon>frmTransferedOperationsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Warehouses\frmTransfareInventories.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -566,6 +581,9 @@
     <EmbeddedResource Include="Utilities\ctrImage.resx">
       <DependentUpon>ctrImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmShowTransferOperationInfo.resx">
+      <DependentUpon>frmShowTransferOperationInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmTransfareInventories.resx">
       <DependentUpon>frmTransfareInventories.cs</DependentUpon>
     </EmbeddedResource>
@@ -580,6 +598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmStockTransactionsList.resx">
       <DependentUpon>frmStockTransactionsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouses\frmTransferedOperationsList.resx">
+      <DependentUpon>frmTransferedOperationsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Warehouses\frmUpdateReorderInventoryQuantity.resx">
       <DependentUpon>frmUpdateReorderInventoryQuantity.cs</DependentUpon>
@@ -781,6 +802,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\warehouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

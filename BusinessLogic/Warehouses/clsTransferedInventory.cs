@@ -8,27 +8,39 @@ namespace BusinessLogic.Warehouses
     public class clsTransferedInventory
     {
         public int? TransferedInventoryID { get; }
-        public clsTransferOperation TransferOperationInfo { get; }
         public clsInventory SourceInventoryInfo { get; }
         public clsInventory DestinationInventoryInfo { get; }
+        public int PrevioustSourceInventoryQuantity { get; }
+        public int NextSourceInventoryQuantity =>
+            PrevioustSourceInventoryQuantity - TransferedQuantity;
+        public int PreviousDestinationInventoryQuantity { get; }
+        public int NextDestinationInventoryQuantity => 
+            PreviousDestinationInventoryQuantity + TransferedQuantity;
         public int TransferedQuantity { get; }
+        public float InventoryAveragePurchasePrice { get; }
+        public float TransferedInventoryValue =>
+            InventoryAveragePurchasePrice * TransferedQuantity;
 
-        public clsTransferedInventory(int sourceInventoryID, int transferedQuantity)
+        public clsTransferedInventory(int sourceInventoryID, int transferedQuantity, float inventoryAveragePurchasePrice)
         {
             TransferedInventoryID = null;
-            TransferOperationInfo = null;
             SourceInventoryInfo = clsInventoryService.CreateInstance().Find(sourceInventoryID);
             DestinationInventoryInfo = null;
             TransferedQuantity = transferedQuantity;
+            InventoryAveragePurchasePrice = inventoryAveragePurchasePrice;
         }
 
-        internal clsTransferedInventory(int transferedInventoryID, int transferOperationID, int sourceInventoryID, int destinationInventoryID, int transferedQuantity)
+        internal clsTransferedInventory(int transferedInventoryID, int sourceInventoryID, int destinationInventoryID,
+            int previousSourceInventoryQuantity, int previousDestinationInventoryQuantity, int transferedQuantity,
+            float inventoryAveragePurchasePrice)
         {
             TransferedInventoryID = transferedInventoryID;
-            TransferOperationInfo = clsTransferOperation.Find(transferOperationID);
             SourceInventoryInfo = clsInventoryService.CreateInstance().Find(sourceInventoryID);
             DestinationInventoryInfo = clsInventoryService.CreateInstance().Find(destinationInventoryID);
             TransferedQuantity = transferedQuantity;
+            PrevioustSourceInventoryQuantity = previousSourceInventoryQuantity;
+            PreviousDestinationInventoryQuantity = previousDestinationInventoryQuantity;
+            InventoryAveragePurchasePrice = inventoryAveragePurchasePrice;
         }
 
         public static DataTable ConvertTransferedInventoriesListToTable(List<clsTransferedInventory> transferedInventories)
@@ -37,12 +49,14 @@ namespace BusinessLogic.Warehouses
 
             transferedInventoriesTable.Columns.Add("SourceInventoryID", typeof(int));
             transferedInventoriesTable.Columns.Add("TransferedQuantity", typeof(int));
+            transferedInventoriesTable.Columns.Add("InventoryAveragePurchasePrice", typeof(float));
 
             foreach (clsTransferedInventory transferedInventoryList in transferedInventories)
             {
                 transferedInventoriesTable.Rows.Add(
                     transferedInventoryList.SourceInventoryInfo.InventoryID,
-                    transferedInventoryList.TransferedQuantity
+                    transferedInventoryList.TransferedQuantity,
+                    transferedInventoryList.InventoryAveragePurchasePrice
                 );
             }
 
@@ -60,10 +74,12 @@ namespace BusinessLogic.Warehouses
                     transferedInventoriesList.Add(
                         new clsTransferedInventory (
                             transferedInventoryID: Convert.ToInt32(row["TransferedInventoryID"]),
-                            transferOperationID: Convert.ToInt32(row["TransferOperationID"]),
                             sourceInventoryID: Convert.ToInt32(row["SourceInventoryID"]),
                             destinationInventoryID: Convert.ToInt32(row["DestinationInventoryID"]),
-                            transferedQuantity: Convert.ToInt32(row["TransferedQuantity"])
+                            previousSourceInventoryQuantity: Convert.ToInt32(row["PreviousSourceInventoryQuantity"]),
+                            previousDestinationInventoryQuantity: Convert.ToInt32(row["PreviousDestinationInventoryQuantity"]),
+                            transferedQuantity: Convert.ToInt32(row["TransferedQuantity"]),
+                            inventoryAveragePurchasePrice: Convert.ToSingle(row["InventoryAveragePurchasePrice"])
                             )
                     );
                 }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using BusinessLogic.Interfaces;
 using DataAccess.Warehouses;
+using DTOs.Warehouses;
 
 namespace BusinessLogic.Warehouses
 {
@@ -35,9 +36,10 @@ namespace BusinessLogic.Warehouses
             throw new InvalidOperationException("لا يمكن حذف سجل حركة مخزون");
         }
 
-        public clsStockTransaction Find(int id)
+        public clsStockTransaction Find(int transactionID)
         {
-            throw new NotImplementedException();
+            clsStockTransactionDTO stockTransactionDTO = clsInventoryData.FindStockTransactionByID(transactionID);
+            return stockTransactionDTO == null ? null : new clsStockTransaction(stockTransactionDTO);
         }
 
         public DataTable GetAll()

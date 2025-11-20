@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using BusinessLogic.Employees;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
@@ -18,6 +19,15 @@ namespace BusinessLogic.Warehouses
         public List<clsTransferedInventory> TransferedInventories { get; }
         public clsEmployee ResponsibleEmployeeInfo { get; }
         public DateTime TransferOperationDateTime { get; }
+        public int TransferedProductsCount => TransferedInventories
+            .GroupBy(row => row.SourceInventoryInfo.ProductInfo.ProductID)
+            .Count();
+        public int TransferedInventoriesCount => TransferedInventories
+            .Count();
+        public int TotalTransferedQuantity => TransferedInventories
+            .Sum(row => row.TransferedQuantity);
+        public float TotalTransferedInventoriesValue => TransferedInventories
+            .Sum(row => row.InventoryAveragePurchasePrice * row.TransferedQuantity);
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
 

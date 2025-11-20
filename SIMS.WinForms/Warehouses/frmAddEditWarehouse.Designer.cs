@@ -32,6 +32,8 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.gbWarehouseInfo = new System.Windows.Forms.GroupBox();
+            this.cbResponsibleEmployee = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnCancle = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -47,8 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtWarehouseName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             this.gbWarehouseInfo.SuspendLayout();
@@ -74,7 +74,7 @@
             // gbWarehouseInfo
             // 
             this.gbWarehouseInfo.BackColor = System.Drawing.Color.White;
-            this.gbWarehouseInfo.Controls.Add(this.comboBox1);
+            this.gbWarehouseInfo.Controls.Add(this.cbResponsibleEmployee);
             this.gbWarehouseInfo.Controls.Add(this.label6);
             this.gbWarehouseInfo.Controls.Add(this.label4);
             this.gbWarehouseInfo.Controls.Add(this.btnCancle);
@@ -92,6 +92,31 @@
             this.gbWarehouseInfo.TabIndex = 26;
             this.gbWarehouseInfo.TabStop = false;
             this.gbWarehouseInfo.Text = "معلومات المخزن";
+            // 
+            // cbResponsibleEmployee
+            // 
+            this.cbResponsibleEmployee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbResponsibleEmployee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbResponsibleEmployee.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbResponsibleEmployee.FormattingEnabled = true;
+            this.cbResponsibleEmployee.Location = new System.Drawing.Point(22, 179);
+            this.cbResponsibleEmployee.Name = "cbResponsibleEmployee";
+            this.cbResponsibleEmployee.Size = new System.Drawing.Size(402, 24);
+            this.cbResponsibleEmployee.TabIndex = 34;
+            this.cbResponsibleEmployee.Enter += new System.EventHandler(this.cbResponsibleEmployee_Enter);
+            this.cbResponsibleEmployee.Leave += new System.EventHandler(this.cbResponsibleEmployee_Leave);
+            this.cbResponsibleEmployee.Validating += new System.ComponentModel.CancelEventHandler(this.cbResponsibleEmployee_Validating);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(431, 182);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 16);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "الموظف المسؤول:";
             // 
             // label4
             // 
@@ -268,26 +293,6 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "إسم المخزن:";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(22, 179);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(402, 24);
-            this.comboBox1.TabIndex = 34;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(431, 182);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 16);
-            this.label6.TabIndex = 33;
-            this.label6.Text = "الموظف المسؤول:";
-            // 
             // frmAddEditWarehouse
             // 
             this.AcceptButton = this.btnSave;
@@ -338,7 +343,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtWarehouseName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbResponsibleEmployee;
         private System.Windows.Forms.Label label6;
     }
 }

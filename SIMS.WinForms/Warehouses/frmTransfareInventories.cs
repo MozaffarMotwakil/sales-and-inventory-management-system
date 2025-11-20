@@ -49,6 +49,7 @@ namespace SIMS.WinForms.Warehouses
                 .Cast<DataRow>()
                 .Where(row => Convert.ToInt32(row["WarehouseID"]) != Convert.ToInt32(cbSourceWarehouse.SelectedValue))
                 .CopyToDataTable();
+
             cbDestinationWarehouse.DisplayMember = "WarehouseName";
             cbDestinationWarehouse.ValueMember = "WarehouseID";
             cbDestinationWarehouse.SelectedValue = 3;
@@ -92,6 +93,35 @@ namespace SIMS.WinForms.Warehouses
             }
 
             _UpdateRowsDetails();
+
+            lblTotalProsuctsCount.Text = dgvTransferedInventories
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .GroupBy(row => row.Cells[colProduct.Index].Value)
+                .Count()
+                .ToString();
+
+            lblTotalItemsCount.Text = dgvTransferedInventories
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .Count()
+                .ToString();
+
+            lblTotalQuantity.Text = dgvTransferedInventories
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .Sum(row => Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
+                .ToString();
+
+            lblTotalItemsValue.Text = dgvTransferedInventories
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .Sum(row => Convert.ToSingle(row.Cells[colAveragePurchasePrice.Index].Value) * Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
+                .ToString() + " جنيه";
         }
 
         private void _UpdateRowsDetails()
@@ -105,11 +135,29 @@ namespace SIMS.WinForms.Warehouses
 
         private void cbSourceWarehouse_Leave(object sender, EventArgs e)
         {
+            string selectedValue = string.Empty;
+
+            selectedValue = cbDestinationWarehouse.Text;
+            cbDestinationWarehouse.SelectedItem = null;
+            cbDestinationWarehouse.DataSource = null;
+
             cbDestinationWarehouse.DataSource = _Warehouses
                 .Rows
                 .Cast<DataRow>()
                 .Where(row => Convert.ToInt32(row["WarehouseID"]) != Convert.ToInt32(cbSourceWarehouse.SelectedValue))
                 .CopyToDataTable();
+
+            cbDestinationWarehouse.DisplayMember = "WarehouseName";
+            cbDestinationWarehouse.ValueMember = "WarehouseID";
+
+            if (selectedValue != cbSourceWarehouse.Text)
+            {
+                cbDestinationWarehouse.SelectedItem = selectedValue;
+            }
+            else
+            {
+                cbDestinationWarehouse.SelectedIndex = 0;
+            }
 
             _SourceWarehouseAvailableInventories = clsWarehouseService
                 .CreateInstance()
@@ -124,11 +172,23 @@ namespace SIMS.WinForms.Warehouses
 
         private void cbDestinationWarehouse_Leave(object sender, EventArgs e)
         {
-            cbDestinationWarehouse.DataSource = _Warehouses
-                .Rows
-                .Cast<DataRow>()
-                .Where(row => Convert.ToInt32(row["WarehouseID"]) != Convert.ToInt32(cbSourceWarehouse.SelectedValue))
-                .CopyToDataTable();
+            string selectedValue = string.Empty;
+
+            selectedValue = cbSourceWarehouse.Text;
+            cbSourceWarehouse.DataSource = null;
+
+            cbSourceWarehouse.DataSource = _Warehouses;
+            cbSourceWarehouse.DisplayMember = "WarehouseName";
+            cbSourceWarehouse.ValueMember = "WarehouseID";
+
+            if (selectedValue != cbDestinationWarehouse.Text)
+            {
+                cbSourceWarehouse.SelectedItem = selectedValue;
+            }
+            else
+            {
+                cbSourceWarehouse.SelectedIndex = 0;
+            }
 
             _SourceWarehouseAvailableInventories = clsWarehouseService
                 .CreateInstance()
@@ -261,6 +321,21 @@ namespace SIMS.WinForms.Warehouses
                 currentRow.Cells[colAveragePurchasePrice.Index].Value = sourceInventory.AveragePurchasePrice;
                 currentRow.Cells[colSellingPrice.Index].Value = sourceInventory.SellingPrice;
 
+                lblTotalProsuctsCount.Text = dgvTransferedInventories
+                    .Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(row => !row.IsNewRow)
+                    .GroupBy(row => row.Cells[colProduct.Index].Value)
+                    .Count()
+                    .ToString();
+
+                lblTotalItemsCount.Text = dgvTransferedInventories
+                    .Rows
+                    .Cast<DataGridViewRow>()
+                    .Where(row => !row.IsNewRow)
+                    .Count()
+                    .ToString();
+
                 if (currentRow.Cells[colTransfareQuantity.Index].Value != null)
                 {
                     int currentQuantity = sourceInventory.GetCurrentQuantity();
@@ -273,7 +348,21 @@ namespace SIMS.WinForms.Warehouses
                     }
 
                     currentRow.Cells[colTransafareQuantityAmount.Index].Value = 
-                        Convert.ToInt32(currentRow.Cells[colAveragePurchasePrice.Index].Value) * transferedQuantity;
+                        Convert.ToSingle(currentRow.Cells[colAveragePurchasePrice.Index].Value) * transferedQuantity;
+
+                    lblTotalQuantity.Text = dgvTransferedInventories
+                        .Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(row => !row.IsNewRow)
+                        .Sum(row => Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
+                        .ToString();
+
+                    lblTotalItemsValue.Text = dgvTransferedInventories
+                        .Rows
+                        .Cast<DataGridViewRow>()
+                        .Where(row => !row.IsNewRow)
+                        .Sum(row => Convert.ToSingle(row.Cells[colAveragePurchasePrice.Index].Value) * Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
+                        .ToString() + " جنيه";
                 }
             }
         }
@@ -405,7 +494,10 @@ namespace SIMS.WinForms.Warehouses
                 Convert.ToInt32(cbDestinationWarehouse.SelectedValue),
                 Convert.ToInt32(cbResponsibleEmployee.SelectedValue),
                 _GetTransferedInventories(),
-                dtpTime.Value
+                new DateTime(
+                    dtpDate.Value.Year, dtpDate.Value.Month, dtpDate.Value.Day,
+                    dtpTime.Value.Hour, dtpTime.Value.Minute, dtpTime.Value.Second
+                    )
                 );
 
             clsValidationResult validationResult = transferOperation.PerformTransferOperation();
@@ -437,7 +529,8 @@ namespace SIMS.WinForms.Warehouses
                     {
                         transferedInventories.Add(new clsTransferedInventory(
                             _SourceWarehouseAvailableInventories[j].InventoryID,
-                            Convert.ToInt32(dgvTransferedInventories.Rows[i].Cells[colTransfareQuantity.Index].Value)
+                            Convert.ToInt32(dgvTransferedInventories.Rows[i].Cells[colTransfareQuantity.Index].Value),
+                            Convert.ToSingle(dgvTransferedInventories.Rows[i].Cells[colAveragePurchasePrice.Index].Value)
                             )
                         );
                     }

@@ -88,12 +88,12 @@ namespace BusinessLogic.Warehouses
             return clsWarehouseData.GetWarehousesList();
         }
 
-        public static object[] GetWarehouseNames()
+        public static string[] GetWarehouseNames()
         {
             return clsWarehouseData.GetWarehousesList()
                 .Rows
                 .Cast<DataRow>()
-                .Select(row => row["WarehouseName"])
+                .Select(row => Convert.ToString(row["WarehouseName"]))
                 .ToArray();
         }
 

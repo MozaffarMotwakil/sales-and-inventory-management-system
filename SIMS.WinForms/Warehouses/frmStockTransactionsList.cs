@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -49,6 +50,88 @@ namespace SIMS.WinForms.Warehouses
             contextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
             contextMenuStrip.Items[0].Image = Resources.Invoice_32;
             contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+
+            contextMenuStrip.Items.Add("عرض تفاصيل عملية النقل");
+            contextMenuStrip.Items[1].Click += ShowTransferOperationInfo_Click;
+            contextMenuStrip.Items[1].Image = Resources.inventory;
+            contextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
+
+            dgvEntitiesList.CellMouseDown += dgvEntitiesList_CellMouseDown;
+        }
+
+        private void ShowTransferOperationInfo_Click(object sender, EventArgs e)
+        {
+            if (dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (currentStockTransaction != null)
+            {
+                if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
+                {
+                    int? transferOperationID = (int?)GetCellValue(dgvEntitiesList.Columns["TransferOperationID"].Index);
+
+                    if (transferOperationID != null)
+                    {
+                        frmShowTransferOperationInfo showTransferOperationInfo = new frmShowTransferOperationInfo(transferOperationID.Value);
+                        showTransferOperationInfo.ShowDialog();
+                    }
+                    else
+                    {
+                        clsFormMessages.ShowError("لم يتم العثور على عملية النقل");
+                    }
+                }
+                else
+                {
+                    clsFormMessages.ShowError("لا يمكن عرض تفاصيل عملية النقل لأن سبب حركة المخزون ليس من نوع نقل بضاعة");
+                }
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على سجل حركة المخزون");
+            }
+        }
+
+        private void ShowInvoiceDetails_Click(object sender, EventArgs e)
+        {
+            if (dgvEntitiesList.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (currentStockTransaction != null)
+            {
+                if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.Purchase ||
+                    currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.PurchaseReturn ||
+                    currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.Sales ||
+                    currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.SalesReturn)
+                {
+                    int? invoiceID = (int?)GetCellValue(dgvEntitiesList.Columns["SourceInvoiceID"].Index);
+
+                    if (invoiceID != null)
+                    {
+                        frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(invoiceID.Value);
+                        showInvoiceInfo.ShowDialog();
+                    }
+                    else
+                    {
+                        clsFormMessages.ShowError("لم يتم العثور على الفاتورة");
+                    }
+                }
+                else
+                {
+                    clsFormMessages.ShowError("لا يمكن عرض تفاصيل الفاتورة لأن سبب حركة المخزون لم ينتج عنه فاتورة مشتريات/مرتجعاتمشتريات/مبيعات/مرتجعات مبيعات");
+                }
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على سجل حركة المخزون");
+            }
         }
 
         private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -75,26 +158,6 @@ namespace SIMS.WinForms.Warehouses
             }
         }
 
-        private void ShowInvoiceDetails_Click(object sender, EventArgs e)
-        {
-            if (dgvEntitiesList.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            int? invoiceID = (int?)GetCellValue(dgvEntitiesList.Columns["SourceInvoiceID"].Index);
-
-            if (invoiceID.HasValue)
-            {
-                frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(invoiceID.Value);
-                showInvoiceInfo.ShowDialog();
-            }
-            else
-            {
-                clsFormMessages.ShowError("لم يتم العثور على الفاتورة");
-            }
-        }
-
         protected override void LoadData()
         {
             base.LoadData();
@@ -107,7 +170,16 @@ namespace SIMS.WinForms.Warehouses
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    ShowInvoiceDetails_Click(sender, e);
+                    clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+                    if (currentStockTransaction != null && currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
+                    {
+                        ShowTransferOperationInfo_Click(sender, e);
+                    }
+                    else
+                    {
+                        ShowInvoiceDetails_Click(sender, e);
+                    }
                 }
                 else if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
                 {
@@ -123,7 +195,16 @@ namespace SIMS.WinForms.Warehouses
                 return;
             }
 
-            ShowInvoiceDetails_Click(sender, e);
+            clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (currentStockTransaction != null && currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
+            {
+                ShowTransferOperationInfo_Click(sender, e);
+            }
+            else
+            {
+                ShowInvoiceDetails_Click(sender, e);
+            }
         }
 
         private void cbProduct_Leave(object sender, EventArgs e)
@@ -158,21 +239,21 @@ namespace SIMS.WinForms.Warehouses
 
             if (cbRange.SelectedIndex == 0)
             {
-                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-1) ?
+                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-1) ?
                     _FirstStockTransactionDate :
-                    DateTime.Today.AddDays(-1);
+                    DateTime.Now.AddDays(-1);
             }
             else if (cbRange.SelectedIndex == 1)
             {
-                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-7) ?
+                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-7) ?
                     _FirstStockTransactionDate :
-                    DateTime.Today.AddDays(-7);
+                    DateTime.Now.AddDays(-7);
             }
             else if (cbRange.SelectedIndex == 2)
             {
-                dtpDateFrom.Value = _FirstStockTransactionDate > DateTime.Today.AddDays(-30) ?
+                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-30) ?
                     _FirstStockTransactionDate :
-                    DateTime.Today.AddDays(-30);
+                    DateTime.Now.AddDays(-30);
             }
             else if (cbRange.SelectedIndex == 3)
             {
@@ -266,6 +347,38 @@ namespace SIMS.WinForms.Warehouses
 
             lblInTransactions.Text = transactionInfo.InTransactions.ToString();
             lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
+        }
+
+        private void dgvEntitiesList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvEntitiesList.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            base.contextMenuStrip_Opening(sender, e);
+
+            if (dgvEntitiesList.CurrentRow.Index >= 0)
+            {
+                contextMenuStrip.Items[0].Visible = contextMenuStrip.Items[1].Visible = false;
+
+                clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+                if (currentStockTransaction != null)
+                {
+                    if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
+                    {
+                        contextMenuStrip.Items[1].Visible = true;
+                    }
+                    else
+                    {
+                        contextMenuStrip.Items[0].Visible = true;
+                    }
+                }
+            }
         }
 
     }

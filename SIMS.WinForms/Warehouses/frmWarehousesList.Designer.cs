@@ -1,6 +1,6 @@
 ﻿namespace SIMS.WinForms.Warehouses
 {
-    partial class e
+    partial class frmWarehouswList
     {
         /// <summary>
         /// Required designer variable.
@@ -358,7 +358,7 @@
             // TransfareInventoriesBetweenWarehousesToolStripMenuItem
             // 
             this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.recived_goods_32;
+            this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supply;
             this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TransfareInventoriesBetweenWarehousesToolStripMenuItem.Name = "TransfareInventoriesBetweenWarehousesToolStripMenuItem";
@@ -392,7 +392,7 @@
             this.ctrWarehouseInfo.TabIndex = 50;
             this.ctrWarehouseInfo.Visible = false;
             // 
-            // e
+            // frmWarehouswList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -400,7 +400,7 @@
             this.Controls.Add(this.ctrWarehouseInfo);
             this.Controls.Add(this.cbWarehouseActivity);
             this.Controls.Add(this.toolStrip);
-            this.Name = "e";
+            this.Name = "frmWarehouswList";
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

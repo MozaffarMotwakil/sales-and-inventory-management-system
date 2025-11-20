@@ -32,6 +32,7 @@ namespace DataAccess.Warehouses
                                     WarehouseName = Convert.ToString(reader["WarehouseName"]),
                                     Address = Convert.ToString(reader["Address"]),
                                     TypeID = Convert.ToInt32(reader["TypeID"]),
+                                    ResponsibleEmployeeID = Convert.ToInt32(reader["ResponsibleEmployeeID"]),
                                     IsActive = Convert.ToBoolean(reader["IsActive"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
@@ -68,6 +69,7 @@ namespace DataAccess.Warehouses
                     command.Parameters.AddWithValue("@WarehouseName", warehouseDTO.WarehouseName);
                     command.Parameters.AddWithValue("@Address", clsDataSettings.GetDBNullIfNullOrEmpty(warehouseDTO.Address));
                     command.Parameters.AddWithValue("@TypeID", warehouseDTO.TypeID);
+                    command.Parameters.AddWithValue("@ResponsibleEmployeeID", warehouseDTO.ResponsibleEmployeeID);
                     command.Parameters.AddWithValue("@IsActive", warehouseDTO.IsActive);
                     command.Parameters.AddWithValue("@CreatedByUserID", warehouseDTO.CreatedByUserID);
 
@@ -114,6 +116,7 @@ namespace DataAccess.Warehouses
                     command.Parameters.AddWithValue("@WarehouseName", warehouseDTO.WarehouseName);
                     command.Parameters.AddWithValue("@Address", clsDataSettings.GetDBNullIfNullOrEmpty(warehouseDTO.Address));
                     command.Parameters.AddWithValue("@TypeID", warehouseDTO.TypeID);
+                    command.Parameters.AddWithValue("@ResponsibleEmployeeID", warehouseDTO.ResponsibleEmployeeID);
                     command.Parameters.AddWithValue("@IsActive", warehouseDTO.IsActive);
                     command.Parameters.AddWithValue("@UpdatedByUserID", warehouseDTO.UpdatedByUserID);
 
@@ -200,7 +203,7 @@ namespace DataAccess.Warehouses
                                 {
                                     TransferOperationID = Convert.ToInt32(reader["TransferOperationID"]),
                                     SourceWarehouseID = Convert.ToInt32(reader["SourceWarehouseID"]),
-                                    DestinationWarehouseID = Convert.ToInt32(reader["DestinationWarehouseID"]),
+                                    DestinationWarehouseID = Convert.ToInt32(reader["DestianationWarehouseID"]),
                                     ResponsibleEmployeeID = Convert.ToInt32(reader["ResponsibleEmployeeID"]),
                                     TransferOperationDateTime = Convert.ToDateTime(reader["TransferOperationDateTime"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
@@ -258,6 +261,13 @@ namespace DataAccess.Warehouses
         {
             return clsDataSettings.GetDataTable(
                 "usp_Warehouses_GetWarehousesList"
+                );
+        }
+
+        public static DataTable GetAllTransferOperations()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Warehouses_GetAllTransferOperations"
                 );
         }
 
@@ -321,6 +331,13 @@ namespace DataAccess.Warehouses
                 "usp_Warehouses_GetKPIsSummary",
                 "@WarehouseID",
                 warehouseID
+                );
+        }
+
+        public static DateTime GetFirstTransferOperationDate()
+        {
+            return Convert.ToDateTime(
+                clsDataSettings.GetSingleValue("usp_Inventories_GetFirstTransferOperationDate")
                 );
         }
 

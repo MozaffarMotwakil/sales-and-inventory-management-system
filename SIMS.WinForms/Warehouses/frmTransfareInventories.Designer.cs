@@ -43,6 +43,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvTransferedInventories = new System.Windows.Forms.DataGridView();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colTransfareQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCurrentQuantitySource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatusSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCurrentQuantityDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatusDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAveragePurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTransafareQuantityAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpTime = new System.Windows.Forms.DateTimePicker();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -56,18 +68,6 @@
             this.btnCancle = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProduct = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.colTransfareQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCurrentQuantitySource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatusSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCurrentQuantityDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatusDestination = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAveragePurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTransafareQuantityAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -135,7 +135,7 @@
             this.lblTotalItemsValue.Name = "lblTotalItemsValue";
             this.lblTotalItemsValue.Size = new System.Drawing.Size(127, 14);
             this.lblTotalItemsValue.TabIndex = 0;
-            this.lblTotalItemsValue.Text = "N/A جنيه";
+            this.lblTotalItemsValue.Text = "0 جنيه";
             // 
             // lblTotalItemsCount
             // 
@@ -144,7 +144,7 @@
             this.lblTotalItemsCount.Name = "lblTotalItemsCount";
             this.lblTotalItemsCount.Size = new System.Drawing.Size(127, 14);
             this.lblTotalItemsCount.TabIndex = 0;
-            this.lblTotalItemsCount.Text = "N/A";
+            this.lblTotalItemsCount.Text = "0";
             // 
             // lblTotalQuantity
             // 
@@ -153,7 +153,7 @@
             this.lblTotalQuantity.Name = "lblTotalQuantity";
             this.lblTotalQuantity.Size = new System.Drawing.Size(127, 14);
             this.lblTotalQuantity.TabIndex = 0;
-            this.lblTotalQuantity.Text = "N/A";
+            this.lblTotalQuantity.Text = "0";
             // 
             // lblTotalProsuctsCount
             // 
@@ -162,7 +162,7 @@
             this.lblTotalProsuctsCount.Name = "lblTotalProsuctsCount";
             this.lblTotalProsuctsCount.Size = new System.Drawing.Size(127, 14);
             this.lblTotalProsuctsCount.TabIndex = 0;
-            this.lblTotalProsuctsCount.Text = "N/A";
+            this.lblTotalProsuctsCount.Text = "0";
             // 
             // label9
             // 
@@ -241,6 +241,110 @@
             this.dgvTransferedInventories.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTransferedInventories_RowsAdded);
             this.dgvTransferedInventories.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvTransferedInventories_RowsRemoved);
             this.dgvTransferedInventories.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvTransferedInventories_RowValidating);
+            // 
+            // colNo
+            // 
+            this.colNo.HeaderText = "م";
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNo.Width = 40;
+            // 
+            // colProduct
+            // 
+            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colUnit.Width = 120;
+            // 
+            // colTransfareQuantity
+            // 
+            this.colTransfareQuantity.HeaderText = "الكمية المراد نقلها";
+            this.colTransfareQuantity.Name = "colTransfareQuantity";
+            this.colTransfareQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTransfareQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTransfareQuantity.Width = 85;
+            // 
+            // ColCurrentQuantitySource
+            // 
+            this.ColCurrentQuantitySource.HeaderText = "الكمية الحالية (المصدر)";
+            this.ColCurrentQuantitySource.Name = "ColCurrentQuantitySource";
+            this.ColCurrentQuantitySource.ReadOnly = true;
+            this.ColCurrentQuantitySource.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColCurrentQuantitySource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColCurrentQuantitySource.Width = 80;
+            // 
+            // colStatusSource
+            // 
+            this.colStatusSource.HeaderText = "حالة المخزون (المصدر)";
+            this.colStatusSource.Name = "colStatusSource";
+            this.colStatusSource.ReadOnly = true;
+            this.colStatusSource.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colStatusSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colStatusSource.Width = 80;
+            // 
+            // colCurrentQuantityDestination
+            // 
+            this.colCurrentQuantityDestination.HeaderText = "الكمية الحالية (الوجهة)";
+            this.colCurrentQuantityDestination.Name = "colCurrentQuantityDestination";
+            this.colCurrentQuantityDestination.ReadOnly = true;
+            this.colCurrentQuantityDestination.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colCurrentQuantityDestination.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCurrentQuantityDestination.Width = 80;
+            // 
+            // colStatusDestination
+            // 
+            this.colStatusDestination.HeaderText = "حالة المخزون (الوجهة)";
+            this.colStatusDestination.Name = "colStatusDestination";
+            this.colStatusDestination.ReadOnly = true;
+            this.colStatusDestination.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colStatusDestination.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colStatusDestination.Width = 80;
+            // 
+            // colAveragePurchasePrice
+            // 
+            this.colAveragePurchasePrice.HeaderText = "متوسط سعر الشراء (جنيه)";
+            this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
+            this.colAveragePurchasePrice.ReadOnly = true;
+            this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colAveragePurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAveragePurchasePrice.Width = 80;
+            // 
+            // colSellingPrice
+            // 
+            this.colSellingPrice.HeaderText = "سعر البيع (جنيه)";
+            this.colSellingPrice.Name = "colSellingPrice";
+            this.colSellingPrice.ReadOnly = true;
+            this.colSellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSellingPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colSellingPrice.Width = 80;
+            // 
+            // colTransafareQuantityAmount
+            // 
+            this.colTransafareQuantityAmount.HeaderText = "قيمة البضاعة المراد نقلها (جنيه)";
+            this.colTransafareQuantityAmount.Name = "colTransafareQuantityAmount";
+            this.colTransafareQuantityAmount.ReadOnly = true;
+            this.colTransafareQuantityAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTransafareQuantityAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTransafareQuantityAmount.Width = 85;
+            // 
+            // colDelete
+            // 
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
+            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.ReadOnly = true;
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDelete.Width = 40;
             // 
             // groupBox1
             // 
@@ -397,110 +501,6 @@
             // 
             this.errorProvider.ContainerControl = this;
             this.errorProvider.RightToLeft = true;
-            // 
-            // colNo
-            // 
-            this.colNo.HeaderText = "م";
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNo.Width = 40;
-            // 
-            // colProduct
-            // 
-            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProduct.HeaderText = "المنتج";
-            this.colProduct.Name = "colProduct";
-            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // colUnit
-            // 
-            this.colUnit.HeaderText = "الوحدة";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colUnit.Width = 120;
-            // 
-            // colTransfareQuantity
-            // 
-            this.colTransfareQuantity.HeaderText = "الكمية المراد نقلها";
-            this.colTransfareQuantity.Name = "colTransfareQuantity";
-            this.colTransfareQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTransfareQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTransfareQuantity.Width = 85;
-            // 
-            // ColCurrentQuantitySource
-            // 
-            this.ColCurrentQuantitySource.HeaderText = "الكمية الحالية (المصدر)";
-            this.ColCurrentQuantitySource.Name = "ColCurrentQuantitySource";
-            this.ColCurrentQuantitySource.ReadOnly = true;
-            this.ColCurrentQuantitySource.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColCurrentQuantitySource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColCurrentQuantitySource.Width = 80;
-            // 
-            // colStatusSource
-            // 
-            this.colStatusSource.HeaderText = "حالة المخزون (المصدر)";
-            this.colStatusSource.Name = "colStatusSource";
-            this.colStatusSource.ReadOnly = true;
-            this.colStatusSource.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colStatusSource.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colStatusSource.Width = 80;
-            // 
-            // colCurrentQuantityDestination
-            // 
-            this.colCurrentQuantityDestination.HeaderText = "الكمية الحالية (الوجهة)";
-            this.colCurrentQuantityDestination.Name = "colCurrentQuantityDestination";
-            this.colCurrentQuantityDestination.ReadOnly = true;
-            this.colCurrentQuantityDestination.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colCurrentQuantityDestination.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colCurrentQuantityDestination.Width = 80;
-            // 
-            // colStatusDestination
-            // 
-            this.colStatusDestination.HeaderText = "حالة المخزون (الوجهة)";
-            this.colStatusDestination.Name = "colStatusDestination";
-            this.colStatusDestination.ReadOnly = true;
-            this.colStatusDestination.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colStatusDestination.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colStatusDestination.Width = 80;
-            // 
-            // colAveragePurchasePrice
-            // 
-            this.colAveragePurchasePrice.HeaderText = "متوسط سعر الشراء (جنيه)";
-            this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
-            this.colAveragePurchasePrice.ReadOnly = true;
-            this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colAveragePurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colAveragePurchasePrice.Width = 80;
-            // 
-            // colSellingPrice
-            // 
-            this.colSellingPrice.HeaderText = "سعر البيع (جنيه)";
-            this.colSellingPrice.Name = "colSellingPrice";
-            this.colSellingPrice.ReadOnly = true;
-            this.colSellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colSellingPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colSellingPrice.Width = 80;
-            // 
-            // colTransafareQuantityAmount
-            // 
-            this.colTransafareQuantityAmount.HeaderText = "قيمة البضاعة المراد نقلها (جنيه)";
-            this.colTransafareQuantityAmount.Name = "colTransafareQuantityAmount";
-            this.colTransafareQuantityAmount.ReadOnly = true;
-            this.colTransafareQuantityAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTransafareQuantityAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTransafareQuantityAmount.Width = 85;
-            // 
-            // colDelete
-            // 
-            this.colDelete.HeaderText = "حذف";
-            this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
-            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.ReadOnly = true;
-            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colDelete.Width = 40;
             // 
             // frmTransfareInventories
             // 

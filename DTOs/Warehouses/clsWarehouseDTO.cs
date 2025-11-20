@@ -8,6 +8,7 @@ namespace DTOs.Warehouses
         public string WarehouseName { get; set; }
         public string Address { get; set; }
         public int TypeID { get; set; }
+        public int ResponsibleEmployeeID { get; set; }
         public bool IsActive { get; set; }
         public int? CreatedByUserID { get; set; }
         public DateTime? CreatedAt { get; set; }
