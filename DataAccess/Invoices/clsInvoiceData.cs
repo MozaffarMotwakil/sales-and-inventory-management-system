@@ -37,8 +37,12 @@ namespace DataAccess.Invoices
                                     TotalDiscountAmount = Convert.ToDecimal(reader["TotalDiscountAmount"]),
                                     TotalTaxAmount = Convert.ToDecimal(reader["TotalTaxAmount"]),
                                     GrandTotal = Convert.ToDecimal(reader["GrandTotal"]),
-                                    PaymentMethodID = Convert.ToByte(reader["PaymentMethodID"]),
-                                    PaymentAmount = Convert.ToDecimal(reader["PaymentAmount"]),
+                                    PaymentMethodID = reader["PaymentMethodID"] != DBNull.Value ?
+                                        Convert.ToByte(reader["PaymentMethodID"]) :
+                                        (byte?)null,
+                                    PaymentAmount = reader["PaymentAmount"] != DBNull.Value ?
+                                        Convert.ToDecimal(reader["PaymentAmount"]) :
+                                        (decimal?)null,
                                     PartyID = reader["PartyID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["PartyID"]),
                                     WarehouseID = Convert.ToInt32(reader["WarehouseID"]),
                                     OriginalInvoiceID = reader["OriginalInvoiceID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["OriginalInvoiceID"]),

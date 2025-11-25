@@ -37,14 +37,14 @@
             this.ctrPersonInfo.Name = "ctrPersonInfo";
             this.ctrPersonInfo.Person = null;
             this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrPersonInfo.Size = new System.Drawing.Size(600, 241);
+            this.ctrPersonInfo.Size = new System.Drawing.Size(600, 180);
             this.ctrPersonInfo.TabIndex = 0;
             // 
             // frmShowPersonInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 246);
+            this.ClientSize = new System.Drawing.Size(604, 184);
             this.Controls.Add(this.ctrPersonInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;

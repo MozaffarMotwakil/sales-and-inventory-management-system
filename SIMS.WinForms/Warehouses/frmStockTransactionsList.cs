@@ -15,11 +15,31 @@ namespace SIMS.WinForms.Warehouses
 {
     public partial class frmStockTransactionsList : BaseStockTransactionsForm
     {
+        enum enShowMode
+        {
+            Normal,
+            Special
+        }
+
         private static DateTime _FirstStockTransactionDate = clsStockTransactionService.GetFirstStockTransactionDate();
+        private enShowMode _ShowMode;
+        private string _ProductName;
+        private string _UnitName;
+        private string _WarehouseName;
 
         public frmStockTransactionsList()
         {
             InitializeComponent();
+            _ShowMode = enShowMode.Normal;
+        }
+
+        public frmStockTransactionsList(string productName, string unitName = "كل الوحدات", string warehouseName = "كل المخازن")
+        {
+            InitializeComponent();
+            _ProductName = productName;
+            _UnitName = unitName;
+            _WarehouseName = warehouseName;
+            _ShowMode = enShowMode.Special;
         }
 
         private void frmStockTransactionsList_Load(object sender, EventArgs e)
@@ -55,6 +75,14 @@ namespace SIMS.WinForms.Warehouses
             contextMenuStrip.Items[1].Click += ShowTransferOperationInfo_Click;
             contextMenuStrip.Items[1].Image = Resources.inventory;
             contextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
+
+            if (_ShowMode == enShowMode.Special)
+            {
+                cbProduct.SelectedItem = _ProductName;
+                cbUnit.SelectedItem = _UnitName;
+                cbWarehouse.SelectedItem = _WarehouseName;
+                btnApplyFilter_Click(sender, e);
+            }
 
             dgvEntitiesList.CellMouseDown += dgvEntitiesList_CellMouseDown;
         }

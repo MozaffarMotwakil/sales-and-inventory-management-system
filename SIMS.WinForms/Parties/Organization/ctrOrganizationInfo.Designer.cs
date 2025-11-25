@@ -36,8 +36,9 @@
             // 
             // llContactPerson
             // 
+            this.llContactPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.llContactPerson.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llContactPerson.Location = new System.Drawing.Point(3, 152);
+            this.llContactPerson.Location = new System.Drawing.Point(3, 114);
             this.llContactPerson.Name = "llContactPerson";
             this.llContactPerson.Size = new System.Drawing.Size(461, 16);
             this.llContactPerson.TabIndex = 35;
@@ -48,9 +49,10 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(473, 152);
+            this.label3.Location = new System.Drawing.Point(473, 114);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 16);
@@ -59,15 +61,17 @@
             // 
             // ctrPartyInfo
             // 
+            this.ctrPartyInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrPartyInfo.Location = new System.Drawing.Point(0, -1);
             this.ctrPartyInfo.Name = "ctrPartyInfo";
             this.ctrPartyInfo.PartyCategory = BusinessLogic.Parties.clsParty.enPartyCategory.Organization;
             this.ctrPartyInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrPartyInfo.Size = new System.Drawing.Size(600, 150);
+            this.ctrPartyInfo.Size = new System.Drawing.Size(600, 109);
             this.ctrPartyInfo.TabIndex = 36;
             // 
             // ctrPartyInfo1
             // 
+            this.ctrPartyInfo1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrPartyInfo1.Location = new System.Drawing.Point(0, -1);
             this.ctrPartyInfo1.Name = "ctrPartyInfo1";
             this.ctrPartyInfo1.PartyCategory = BusinessLogic.Parties.clsParty.enPartyCategory.Organization;
@@ -84,7 +88,7 @@
             this.Controls.Add(this.label3);
             this.Name = "ctrOrganizationInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(600, 175);
+            this.Size = new System.Drawing.Size(600, 132);
             this.ResumeLayout(false);
             this.PerformLayout();
 

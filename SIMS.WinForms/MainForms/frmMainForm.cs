@@ -11,6 +11,8 @@ using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.Purchases;
+using System.Linq;
+using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms
 {
@@ -142,17 +144,39 @@ namespace SIMS.WinForms
         {
             if (form == null || form.IsDisposed)
             {
+                form = _GerFormType(formType);
+
+                Type type = form.GetType();
+
+                if (Application.OpenForms.Cast<Form>().Any(f => f.GetType() == type))
+                {
+                    form = null;
+                    return;
+                }
+
                 // Close any opened form before opening a new form.
                 for (byte i = 2; i < Application.OpenForms.Count; i++)
                 {
                     Application.OpenForms[i].Close();
                 }
                 
-                form = _GerFormType(formType);
                 form.MdiParent = this;
                 form.Dock = DockStyle.Fill;
                 form.Show();
             }
+        }
+
+        public static void OpenForm(Form form)
+        {
+            // Close any opened form before opening a new form.
+            for (byte i = 2; i < Application.OpenForms.Count; i++)
+            {
+                Application.OpenForms[i].Close();
+            }
+
+            form.MdiParent = Application.OpenForms["frmMainForm"];
+            form.Dock = DockStyle.Fill;
+            form.Show();
         }
 
         private Form _GerFormType(enFormType formType)

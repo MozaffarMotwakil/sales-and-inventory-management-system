@@ -517,12 +517,12 @@
             // 
             // ctrSupplierInfo
             // 
-            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 42);
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrSupplierInfo.Name = "ctrSupplierInfo";
             this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(700, 270);
             this.ctrSupplierInfo.Supplier = null;
-            this.ctrSupplierInfo.TabIndex = 45;
+            this.ctrSupplierInfo.TabIndex = 47;
             this.ctrSupplierInfo.Visible = false;
             // 
             // frmSuppliersList
@@ -530,8 +530,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 714);
-            this.Controls.Add(this.cbSupplierCategory);
             this.Controls.Add(this.ctrSupplierInfo);
+            this.Controls.Add(this.cbSupplierCategory);
             this.Controls.Add(this.toolStrip);
             this.Name = "frmSuppliersList";
             this.ShowIcon = false;
@@ -543,8 +543,8 @@
             this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
-            this.Controls.SetChildIndex(this.ctrSupplierInfo, 0);
             this.Controls.SetChildIndex(this.cbSupplierCategory, 0);
+            this.Controls.SetChildIndex(this.ctrSupplierInfo, 0);
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -565,7 +565,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.ComboBox cbSupplierCategory;
-        private ctrSupplierInfo ctrSupplierInfo;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
@@ -612,5 +611,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
+        private ctrSupplierInfo ctrSupplierInfo;
     }
 }

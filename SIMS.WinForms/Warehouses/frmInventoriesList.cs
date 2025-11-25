@@ -148,8 +148,22 @@ namespace SIMS.WinForms.Warehouses
                 return;
             }
 
-            frmShowInventoryTransactions inventoryTransactions = new frmShowInventoryTransactions(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
-            inventoryTransactions.ShowDialog();
+            clsInventory currentInventory = clsInventoryService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+            if (currentInventory != null)
+            {
+                frmStockTransactionsList inventoryTransactions = new frmStockTransactionsList(
+                    currentInventory.ProductInfo.ProductName,
+                    currentInventory.UnitInfo.UnitName,
+                    currentInventory.WarehouseInfo.WarehouseName
+                    );
+
+                frmMainForm.OpenForm(inventoryTransactions);
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزون");
+            }
         }
 
         private void btnApplyFilter_Click(object sender, EventArgs e)

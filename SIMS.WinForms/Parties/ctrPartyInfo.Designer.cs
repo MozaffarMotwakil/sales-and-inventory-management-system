@@ -42,42 +42,47 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(541, 127);
+            this.label6.Location = new System.Drawing.Point(474, 93);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 16);
+            this.label6.Size = new System.Drawing.Size(121, 16);
             this.label6.TabIndex = 45;
             this.label6.Text = "العنوان:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(485, 97);
+            this.label5.Location = new System.Drawing.Point(474, 70);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 16);
+            this.label5.Size = new System.Drawing.Size(121, 16);
             this.label5.TabIndex = 44;
             this.label5.Text = "البريد الإلكتروني:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(518, 67);
+            this.label4.Location = new System.Drawing.Point(474, 47);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 16);
+            this.label4.Size = new System.Drawing.Size(121, 16);
             this.label4.TabIndex = 43;
             this.label4.Text = "رقم الهاتف:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblAddress
             // 
+            this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAddress.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress.ForeColor = System.Drawing.Color.Black;
-            this.lblAddress.Location = new System.Drawing.Point(5, 127);
+            this.lblAddress.Location = new System.Drawing.Point(5, 93);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(459, 16);
@@ -87,9 +92,12 @@
             // 
             // lblEmail
             // 
+            this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmail.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.Black;
-            this.lblEmail.Location = new System.Drawing.Point(5, 97);
+            this.lblEmail.Location = new System.Drawing.Point(5, 70);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(459, 16);
@@ -99,9 +107,12 @@
             // 
             // lblCountry
             // 
+            this.lblCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCountry.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountry.ForeColor = System.Drawing.Color.Black;
-            this.lblCountry.Location = new System.Drawing.Point(5, 35);
+            this.lblCountry.Location = new System.Drawing.Point(5, 24);
             this.lblCountry.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(459, 16);
@@ -111,9 +122,12 @@
             // 
             // lblPhoneNumber
             // 
+            this.lblPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPhoneNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumber.ForeColor = System.Drawing.Color.Black;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(5, 67);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(5, 47);
             this.lblPhoneNumber.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(459, 16);
@@ -123,9 +137,11 @@
             // 
             // lblPartyName
             // 
+            this.lblPartyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPartyName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPartyName.ForeColor = System.Drawing.Color.Red;
-            this.lblPartyName.Location = new System.Drawing.Point(5, 5);
+            this.lblPartyName.Location = new System.Drawing.Point(5, 1);
             this.lblPartyName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPartyName.Name = "lblPartyName";
             this.lblPartyName.Size = new System.Drawing.Size(459, 16);
@@ -135,24 +151,27 @@
             // 
             // lblCountryTitle
             // 
+            this.lblCountryTitle.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblCountryTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountryTitle.Location = new System.Drawing.Point(485, 35);
+            this.lblCountryTitle.Location = new System.Drawing.Point(474, 24);
             this.lblCountryTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCountryTitle.Name = "lblCountryTitle";
-            this.lblCountryTitle.Size = new System.Drawing.Size(110, 16);
+            this.lblCountryTitle.Size = new System.Drawing.Size(121, 16);
             this.lblCountryTitle.TabIndex = 41;
             this.lblCountryTitle.Text = "البلد/الجنسية:";
             this.lblCountryTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPartyTypeTitle
             // 
+            this.lblPartyTypeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPartyTypeTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartyTypeTitle.Location = new System.Drawing.Point(462, 5);
+            this.lblPartyTypeTitle.Location = new System.Drawing.Point(474, 1);
             this.lblPartyTypeTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPartyTypeTitle.Name = "lblPartyTypeTitle";
-            this.lblPartyTypeTitle.Size = new System.Drawing.Size(133, 16);
+            this.lblPartyTypeTitle.Size = new System.Drawing.Size(121, 16);
             this.lblPartyTypeTitle.TabIndex = 42;
             this.lblPartyTypeTitle.Text = "إسم الكيان:";
+            this.lblPartyTypeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ctrPartyInfo
             // 
@@ -170,9 +189,8 @@
             this.Controls.Add(this.lblPartyTypeTitle);
             this.Name = "ctrPartyInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(600, 150);
+            this.Size = new System.Drawing.Size(600, 110);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

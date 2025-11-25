@@ -22,7 +22,7 @@ namespace BusinessLogic.Invoices
         internal clsPurchaseInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
                 (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines),
-                invoiceDTO.WarehouseID, (enPaymentMethod)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
+                invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {
             Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
@@ -60,7 +60,7 @@ namespace BusinessLogic.Invoices
                 TotalDiscountAmount = this.TotalDiscountAmount,
                 TotalTaxAmount = this.TotalTaxAmount,
                 GrandTotal = this.GrandTotal,
-                PaymentMethodID = (byte)this.PaymentMethod,
+                PaymentMethodID = (byte?)this.PaymentMethod,
                 PaymentAmount = this.PaymentAmount,
                 WarehouseID = this?.WarehouseInfo?.WarehouseID ?? -1,
                 CreatedByUserID = clsAppSettings.CurrentUser.UserID,

@@ -96,13 +96,13 @@
             // DashboardToolStripButton
             // 
             this.DashboardToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DashboardToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DashboardToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DashboardToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DashboardToolStripButton.Image")));
             this.DashboardToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.DashboardToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DashboardToolStripButton.Name = "DashboardToolStripButton";
             this.DashboardToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.DashboardToolStripButton.Text = " Dashboard";
+            this.DashboardToolStripButton.Text = "لمحة سريعة";
             this.DashboardToolStripButton.Click += new System.EventHandler(this.DashboardToolStripButton_Click);
             // 
             // PointOfSelesToolStripButton

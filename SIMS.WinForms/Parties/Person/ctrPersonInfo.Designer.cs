@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrPartyInfo = new SIMS.WinForms.Parties.ctrPartyInfo();
             this.label4 = new System.Windows.Forms.Label();
             this.lblBirthData = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
@@ -36,23 +35,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblPartyNameTitle = new System.Windows.Forms.Label();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
+            this.ctrPartyInfo = new SIMS.WinForms.Parties.ctrPartyInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrPartyInfo
-            // 
-            this.ctrPartyInfo.Location = new System.Drawing.Point(0, 0);
-            this.ctrPartyInfo.Name = "ctrPartyInfo";
-            this.ctrPartyInfo.PartyCategory = BusinessLogic.Parties.clsParty.enPartyCategory.Person;
-            this.ctrPartyInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrPartyInfo.Size = new System.Drawing.Size(600, 150);
-            this.ctrPartyInfo.TabIndex = 0;
-            // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(541, 217);
+            this.label4.Location = new System.Drawing.Point(541, 160);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 16);
@@ -61,45 +53,49 @@
             // 
             // lblBirthData
             // 
+            this.lblBirthData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBirthData.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBirthData.ForeColor = System.Drawing.Color.Black;
-            this.lblBirthData.Location = new System.Drawing.Point(5, 187);
+            this.lblBirthData.Location = new System.Drawing.Point(163, 138);
             this.lblBirthData.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBirthData.Name = "lblBirthData";
-            this.lblBirthData.Size = new System.Drawing.Size(459, 16);
+            this.lblBirthData.Size = new System.Drawing.Size(301, 16);
             this.lblBirthData.TabIndex = 46;
             this.lblBirthData.Text = "N/A";
             this.lblBirthData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblGender
             // 
+            this.lblGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGender.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGender.ForeColor = System.Drawing.Color.Black;
-            this.lblGender.Location = new System.Drawing.Point(5, 217);
+            this.lblGender.Location = new System.Drawing.Point(163, 160);
             this.lblGender.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(459, 16);
+            this.lblGender.Size = new System.Drawing.Size(301, 16);
             this.lblGender.TabIndex = 47;
             this.lblGender.Text = "N/A";
             this.lblGender.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblNationalNa
             // 
+            this.lblNationalNa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNationalNa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNationalNa.ForeColor = System.Drawing.Color.Black;
-            this.lblNationalNa.Location = new System.Drawing.Point(5, 157);
+            this.lblNationalNa.Location = new System.Drawing.Point(163, 115);
             this.lblNationalNa.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNationalNa.Name = "lblNationalNa";
-            this.lblNationalNa.Size = new System.Drawing.Size(459, 16);
+            this.lblNationalNa.Size = new System.Drawing.Size(301, 16);
             this.lblNationalNa.TabIndex = 48;
             this.lblNationalNa.Text = "N/A";
             this.lblNationalNa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(513, 187);
+            this.label1.Location = new System.Drawing.Point(513, 138);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 16);
@@ -109,9 +105,10 @@
             // 
             // lblPartyNameTitle
             // 
+            this.lblPartyNameTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPartyNameTitle.AutoSize = true;
             this.lblPartyNameTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPartyNameTitle.Location = new System.Drawing.Point(501, 157);
+            this.lblPartyNameTitle.Location = new System.Drawing.Point(501, 116);
             this.lblPartyNameTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPartyNameTitle.Name = "lblPartyNameTitle";
             this.lblPartyNameTitle.Size = new System.Drawing.Size(94, 16);
@@ -120,15 +117,28 @@
             // 
             // pbPersonImage
             // 
+            this.pbPersonImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbPersonImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
             this.pbPersonImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pbPersonImage.Location = new System.Drawing.Point(4, 3);
             this.pbPersonImage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pbPersonImage.Name = "pbPersonImage";
-            this.pbPersonImage.Size = new System.Drawing.Size(150, 234);
+            this.pbPersonImage.Size = new System.Drawing.Size(150, 173);
             this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPersonImage.TabIndex = 52;
             this.pbPersonImage.TabStop = false;
+            // 
+            // ctrPartyInfo
+            // 
+            this.ctrPartyInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrPartyInfo.Location = new System.Drawing.Point(0, 0);
+            this.ctrPartyInfo.Name = "ctrPartyInfo";
+            this.ctrPartyInfo.PartyCategory = BusinessLogic.Parties.clsParty.enPartyCategory.Person;
+            this.ctrPartyInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrPartyInfo.Size = new System.Drawing.Size(600, 112);
+            this.ctrPartyInfo.TabIndex = 0;
             // 
             // ctrPersonInfo
             // 
@@ -144,7 +154,7 @@
             this.Controls.Add(this.ctrPartyInfo);
             this.Name = "ctrPersonInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(600, 240);
+            this.Size = new System.Drawing.Size(600, 178);
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

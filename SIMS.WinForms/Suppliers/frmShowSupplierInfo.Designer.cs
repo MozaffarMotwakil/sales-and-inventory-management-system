@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.btnCancle = new System.Windows.Forms.Button();
+            this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
             this.SuspendLayout();
-            // 
-            // ctrSupplierInfo
-            // 
-            this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 12);
-            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
-            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrSupplierInfo.Size = new System.Drawing.Size(600, 265);
-            this.ctrSupplierInfo.Supplier = null;
-            this.ctrSupplierInfo.TabIndex = 0;
-            this.ctrSupplierInfo.SizeChanged += new System.EventHandler(this.ctrSupplierInfo_SizeChanged);
             // 
             // btnCancle
             // 
@@ -58,12 +48,21 @@
             this.btnCancle.UseVisualStyleBackColor = true;
             this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
+            // ctrSupplierInfo
+            // 
+            this.ctrSupplierInfo.Location = new System.Drawing.Point(3, 2);
+            this.ctrSupplierInfo.Name = "ctrSupplierInfo";
+            this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(700, 270);
+            this.ctrSupplierInfo.Supplier = null;
+            this.ctrSupplierInfo.TabIndex = 151;
+            // 
             // frmShowSupplierInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancle;
-            this.ClientSize = new System.Drawing.Size(624, 286);
+            this.ClientSize = new System.Drawing.Size(705, 274);
             this.Controls.Add(this.ctrSupplierInfo);
             this.Controls.Add(this.btnCancle);
             this.MaximizeBox = false;
@@ -80,8 +79,7 @@
         }
 
         #endregion
-
-        private ctrSupplierInfo ctrSupplierInfo;
         private System.Windows.Forms.Button btnCancle;
+        private ctrSupplierInfo ctrSupplierInfo;
     }
 }

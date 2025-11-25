@@ -129,6 +129,11 @@ namespace SIMS.WinForms.BaseForms
 
         protected virtual void ApplySearchFilter()
         {
+            if (dgvEntitiesList.DataSource == null)
+            {
+                return;
+            }
+
             try
             {
                 DataView entitiesList = (dgvEntitiesList.DataSource as DataTable).DefaultView;

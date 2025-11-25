@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using BusinessLogic.Parties;
 using SIMS.WinForms.Properties;
@@ -33,6 +34,14 @@ namespace DVLD.WinForms.Utils
             delete.Width = 50;
 
             return delete;
+        }
+
+        public static void DisableSortableDataGridViewColumns(DataGridView dataGridView)
+        {
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         public static int GetSelectedRowID(DataGridView dataGridView)
@@ -70,6 +79,7 @@ namespace DVLD.WinForms.Utils
             if (hit.Type == DataGridViewHitTestType.None || hit.Type == DataGridViewHitTestType.ColumnHeader)
             {
                 e.Cancel = true;
+                dataGridView.ClearSelection();
             }
         }
 

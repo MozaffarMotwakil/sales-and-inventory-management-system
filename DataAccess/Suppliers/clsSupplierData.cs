@@ -211,6 +211,24 @@ namespace DataAccess.Suppliers
                 );
         }
 
+        public static DataTable GetAllProductsSupplied(int supplierID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Suppliers_GetAllProductsSupplied",
+                "@SupplierID",
+                supplierID
+                );
+        }
+
+        public static DataTable GetSupplierInvoices(int supplierID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Suppliers_GetSupplierInvoices",
+                "@SupplierID",
+                supplierID
+                );
+        }
+
         public static bool DeleteSupplier(int supplierID)
         {
             return clsDataSettings.ExecuteSimpleSP(

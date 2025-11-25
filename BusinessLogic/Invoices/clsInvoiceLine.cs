@@ -75,8 +75,8 @@ namespace BusinessLogic.Invoices
                             ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
                             Quantity = Convert.ToInt32(row["Quantity"]),
                             LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
-                            DiscountRate = Convert.ToDecimal(row["Discount"]),
-                            TaxRate = Convert.ToDecimal(row["Tax"]),
+                            DiscountRate = Convert.ToDecimal(row["DiscountRate"]),
+                            TaxRate = Convert.ToDecimal(row["TaxRate"]),
                             LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
                         }
                     );

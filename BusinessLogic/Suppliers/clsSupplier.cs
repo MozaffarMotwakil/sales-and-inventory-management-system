@@ -4,6 +4,8 @@ using BusinessLogic.Parties;
 using BusinessLogic.Validation;
 using DTOs.Suppliers;
 using static BusinessLogic.Parties.clsParty;
+using DataAccess.Suppliers;
+using System.Data;
 
 namespace BusinessLogic.Suppliers
 {
@@ -59,6 +61,16 @@ namespace BusinessLogic.Suppliers
             }
 
             this.Notes = notes;
+        }
+
+        public DataTable GetAllProductsSupplied()
+        {
+            return clsSupplierData.GetAllProductsSupplied(this.SupplierID ?? -1);
+        }
+
+        public DataTable GetInvoices()
+        {
+            return clsSupplierData.GetSupplierInvoices(this.SupplierID ?? -1);
         }
 
         public clsSupplierDTO MappingToDTO()
