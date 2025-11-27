@@ -59,9 +59,11 @@ namespace SIMS.WinForms.Suppliers
 
                 _LoadDataForSuppliedProductsPage();
                 _LoadDataForInvoicesPage();
+                _LoadDataForPaymentPage();
             }
         }
 
+        #region Control
         private void ctrSupplierInfo_Load(object sender, EventArgs e)
         {
             contextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
@@ -70,6 +72,292 @@ namespace SIMS.WinForms.Suppliers
             contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
         }
 
+        private DataGridView _GetCurrentDGV()
+        {
+            return tabControl.SelectedTab == pageInvoices ?
+                dgvInvoices :
+                tabControl.SelectedTab == pagePayments ?
+                dgvPayments :
+                null;
+        }
+
+        private void ShowInvoiceDetails_Click(object sender, EventArgs e)
+        {
+            if (_GetCurrentDGV()?.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(Convert.ToInt32(_GetCurrentDGV().SelectedRows[0]?.Cells["InvoiceID"].Value));
+            showInvoiceInfo.ShowPartyInfo = false;
+            showInvoiceInfo.ShowDialog();
+        }
+
+        private void ShowInvoiceInfo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((sender as DataGridView).SelectedRows.Count == 1)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    e.Handled = true;
+                    ShowInvoiceDetails_Click(sender, e);
+                }
+            }
+        }
+
+        private void SelectedCurrentRow_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
+            {
+                (sender as DataGridView).Rows[e.RowIndex].Selected = true;
+            }
+        }
+
+        private void ShowInvoiceInfo_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.Button == MouseButtons.Right || (sender as DataGridView).SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            ShowInvoiceDetails_Click(sender, e);
+        }
+
+        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(_GetCurrentDGV(), e);
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == pageSuppliedProducts)
+            {
+                dgvSuppliedProducts.ClearSelection();
+            }
+            else if (tabControl.SelectedTab == pagePayments)
+            {
+                dgvPayments.ClearSelection();
+            }
+        }
+        #endregion Control
+
+        #region PaymentPage
+        private void _LoadDataForPaymentPage()
+        {
+            dgvPayments.DataSource = _Supplier.GetPayments();
+
+            cbPaymentType.SelectedIndex = cbPaymentMethod.SelectedIndex = 0;
+                cbPaymentsRange.SelectedIndex = 4;
+
+            if (dgvPayments.Rows.Count > 0)
+            {
+                clsFormHelper.DisableSortableDataGridViewColumns(dgvPayments);
+
+                cbPaymentsRange.Enabled = cbPaymentType.Enabled =
+                    cbPaymentMethod.Enabled = txtSearch.Enabled = true;
+
+                lblSearchHintText.BackColor = Color.White;
+
+                dgvPayments.ColumnHeadersDefaultCellStyle.Font =
+                    new Font("Tahoma", 7, FontStyle.Bold);
+
+                dgvPayments.DefaultCellStyle.Font =
+                    new Font("Tahoma", 8);
+                
+                dgvPayments.Columns[0].HeaderText = "معرف المعاملة";
+                dgvPayments.Columns[0].Width = 60;
+
+                dgvPayments.Columns[1].HeaderText = "تاريخ المعاملة";
+                dgvPayments.Columns[1].Width = 80;
+
+                dgvPayments.Columns[2].HeaderText = "معرف الفاتورة";
+                dgvPayments.Columns[2].Visible = false;
+
+                dgvPayments.Columns[3].HeaderText = "رقم الفاتورة";
+                dgvPayments.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                dgvPayments.Columns[4].HeaderText = "المبلغ المدفوع (جنيه)";
+                dgvPayments.Columns[4].Width = 80;
+
+                dgvPayments.Columns[5].HeaderText = "طريقة الدفع";
+                dgvPayments.Columns[5].Width = 65;
+
+                dgvPayments.Columns[6].HeaderText = "إجمالي الفاتورة (جنيه)";
+                dgvPayments.Columns[6].Width = 85;
+
+                dgvPayments.Columns[7].HeaderText = "الرصيد التراكمي (جنيه)";
+                dgvPayments.Columns[7].Width = 85;
+
+                dgvPayments.Columns[8].HeaderText = "المبلغ المتبقي (جنيه)";
+                dgvPayments.Columns[8].Width = 80;
+
+                dgvPayments.Columns[9].HeaderText = "معرف نوع الفاتورة";
+                dgvPayments.Columns[9].Visible = false;
+            }
+            else
+            {
+                cbPaymentsRange.Enabled = cbPaymentType.Enabled =
+                    cbPaymentMethod.Enabled = txtSearch.Enabled = false;
+
+                lblSearchHintText.BackColor = SystemColors.Control;
+            }
+        }
+
+        private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
+        {
+            txtSearch.Focus();
+        }
+
+        private void cbPaymentType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _ApplyFilterForPaymentsPage();
+        }
+
+        private void cbPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _ApplyFilterForPaymentsPage();
+        }
+
+        private void cbPaymentsRange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _ApplyFilterForPaymentsPage();
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            DataGridView currentDGV = _GetCurrentDGV();
+
+            if (currentDGV.Rows.Count == 0) return;
+
+            int currentIndex = currentDGV.SelectedRows.Count > 0 ? currentDGV.SelectedRows[0].Index : -1;
+            int newIndex = currentIndex;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                ShowInvoiceDetails_Click(currentDGV, e);
+                e.Handled = true;
+                return;
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                if (currentIndex == currentDGV.Rows.Count - 1 || currentIndex == -1)
+                {
+                    newIndex = 0;
+                }
+                else
+                {
+                    newIndex = currentIndex + 1;
+                }
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                if (currentIndex == 0 || currentIndex == -1)
+                {
+                    newIndex = currentDGV.Rows.Count - 1;
+                }
+                else
+                {
+                    newIndex = currentIndex - 1;
+                }
+            }
+            else
+            {
+                return; 
+            }
+
+            currentDGV.ClearSelection();
+            currentDGV.Rows[newIndex].Selected = true;
+
+            int firstVisibleRow = currentDGV.FirstDisplayedScrollingRowIndex;
+            int displayedCount = currentDGV.DisplayedRowCount(false);
+            int lastVisibleRow = firstVisibleRow + displayedCount - 1;
+
+            if (newIndex > lastVisibleRow)
+            {
+                currentDGV.FirstDisplayedScrollingRowIndex = newIndex - displayedCount + 1;
+            }
+            else if (newIndex < firstVisibleRow)
+            {
+                currentDGV.FirstDisplayedScrollingRowIndex = newIndex;
+            }
+
+            e.Handled = true;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            lblSearchHintText.Visible = string.IsNullOrEmpty(txtSearch.Text);
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
+
+        private void searchTimer_Tick(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            _ApplyFilterForPaymentsPage();
+        }
+
+        private void _ApplyFilterForPaymentsPage()
+        {
+            if (dgvPayments.DataSource == null || (dgvPayments.DataSource as DataTable).Rows.Count == 0)
+            {
+                return;
+            }
+
+            List<string> filters = new List<string>();
+            DateTime range;
+
+            if (cbPaymentType.SelectedIndex != 0)
+            {
+                filters.Add($"InvoiceTypeID = {cbPaymentType.SelectedIndex}");
+            }
+
+            if (cbPaymentMethod.SelectedIndex != 0)
+            {
+                filters.Add($"PaymentMethodName = '{cbPaymentMethod.Text}'");
+            }
+
+            if (cbPaymentsRange.SelectedIndex == 0)
+            {
+                range = DateTime.Now.AddDays(-1);
+            }
+            else if (cbPaymentsRange.SelectedIndex == 1)
+            {
+                range = DateTime.Now.AddDays(-7);
+            }
+            else if (cbPaymentsRange.SelectedIndex == 2)
+            {
+                range = DateTime.Now.AddMonths(-1);
+            }
+            else if (cbPaymentsRange.SelectedIndex == 3)
+            {
+                range = DateTime.Now.AddMonths(-6);
+            }
+            else
+            {
+                range = DateTime.Now.AddYears(-1);
+            }
+
+            filters.Add($"(PaymentDate >= #{range:yyyy-MM-dd}# AND PaymentDate <= #{DateTime.Now:yyyy-MM-dd}#)");
+
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                filters.Add($"InvoiceNa LIKE '%{txtSearch.Text}%'");
+            }
+
+            try
+            {
+                DataView payments = (dgvPayments.DataSource as DataTable).DefaultView;
+                payments.RowFilter = string.Join(" AND ", filters);
+            }
+            catch
+            {
+                // في حال رمي إستثناء بسبب إدخال رموز غير صالحة فلا حاجة لعرض رسالة خطأ أو إيقاف تجربة المستخدم
+            }
+        }
+        #endregion PaymentPage
+
+        #region SuppliedProductsPage
         private void _LoadDataForSuppliedProductsPage()
         {
             DataTable suppliedProducts = _Supplier.GetAllProductsSupplied();
@@ -77,35 +365,43 @@ namespace SIMS.WinForms.Suppliers
             dgvSuppliedProducts.ColumnHeadersDefaultCellStyle.Font =
                 new Font("Tahoma", 7, FontStyle.Bold);
 
+            dgvSuppliedProducts.DefaultCellStyle.Font =
+                    new Font("Tahoma", 8);
+
             dgvSuppliedProducts.Rows.Clear();
 
             for (int i = 0; i < suppliedProducts.Rows.Count; i++)
             {
                 dgvSuppliedProducts.Rows.Add();
-                dgvSuppliedProducts.Rows[i].Cells[colNo.Index].Value = i + 1;
+                dgvSuppliedProducts.Rows[i].Cells[colNo.Index].Value = suppliedProducts.Rows[i]["No"];
                 dgvSuppliedProducts.Rows[i].Cells[colProduct.Index].Value = suppliedProducts.Rows[i]["ProductName"];
                 dgvSuppliedProducts.Rows[i].Cells[colUnit.Index].Value = suppliedProducts.Rows[i]["UnitName"];
                 dgvSuppliedProducts.Rows[i].Cells[colLastPurchaseDataTime.Index].Value = (suppliedProducts.Rows[i]["LastPurchaseDate"] as DateTime?)?.ToString("dd/MM/yyyy") ?? "N/A";
                 dgvSuppliedProducts.Rows[i].Cells[colLastPurchasePrice.Index].Value = suppliedProducts.Rows[i]["LastPurchasePrice"];
             }
         }
+        #endregion SuppliedProductsPage
 
+        #region InvoicesPage
         private void _LoadDataForInvoicesPage()
         {
             dgvInvoices.DataSource = _Supplier.GetInvoices();
 
             cbInvoiceType.SelectedIndex = cbPaymentStatus.SelectedIndex = 0;
-            cbRange.SelectedIndex = 4;
+            cbInvoicesRange.SelectedIndex = 4;
 
             if (dgvInvoices.RowCount > 0)
             {
-                cbInvoiceType.Enabled = cbPaymentStatus.Enabled =
-                    cbRange.Enabled = colPurchaseNo.Visible = true;
-
                 clsFormHelper.DisableSortableDataGridViewColumns(dgvInvoices);
+
+                cbInvoiceType.Enabled = cbPaymentStatus.Enabled =
+                    cbInvoicesRange.Enabled = colPurchaseNo.Visible = true;
 
                 dgvInvoices.ColumnHeadersDefaultCellStyle.Font =
                     new Font("Tahoma", 7, FontStyle.Bold);
+
+                dgvInvoices.DefaultCellStyle.Font =
+                    new Font("Tahoma", 8);
 
                 dgvInvoices.Columns[1].Visible = false;
 
@@ -136,54 +432,8 @@ namespace SIMS.WinForms.Suppliers
             else
             {
                 cbInvoiceType.Enabled = cbPaymentStatus.Enabled =
-                    cbRange.Enabled = colPurchaseNo.Visible = false;
+                    cbInvoicesRange.Enabled = colPurchaseNo.Visible = false;
             }
-        }
-
-        private void ShowInvoiceDetails_Click(object sender, EventArgs e)
-        {
-            if (dgvInvoices.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(Convert.ToInt32(dgvInvoices.CurrentRow.Cells["InvoiceID"].Value));
-            showInvoiceInfo.ShowDialog();
-        }
-
-        private void dgvInvoices_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (dgvInvoices.SelectedRows.Count == 1)
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    ShowInvoiceDetails_Click(sender, e);
-                }
-            }
-        }
-
-        private void dgvInvoices_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
-            {
-                dgvInvoices.Rows[e.RowIndex].Selected = true;
-                dgvInvoices.Columns[e.ColumnIndex].Selected = true;
-            }
-        }
-
-        private void dgvInvoices_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex == -1 || e.Button == MouseButtons.Right || dgvInvoices.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            ShowInvoiceDetails_Click(sender, e);
-        }
-
-        private void contextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            clsFormHelper.PreventContextMenuOnEmptyClick(dgvInvoices, e);
         }
 
         private void dgvInvoices_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -240,20 +490,20 @@ namespace SIMS.WinForms.Suppliers
 
         private void cbInvoiceType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _ApplyFilter();
+            _ApplyFilterForInvoicesPage();
         }
 
         private void cbPaymentStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _ApplyFilter();
+            _ApplyFilterForInvoicesPage();
         }
 
-        private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbInvoicesRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _ApplyFilter();
+            _ApplyFilterForInvoicesPage();
         }
 
-        private void _ApplyFilter()
+        private void _ApplyFilterForInvoicesPage()
         {
             if (dgvInvoices.DataSource == null || (dgvInvoices.DataSource as DataTable).Rows.Count == 0)
             {
@@ -274,19 +524,19 @@ namespace SIMS.WinForms.Suppliers
                 filters.Add($"InvoiceStatusName = '{cbPaymentStatus.Text}'");
             }
 
-            if (cbRange.SelectedIndex == 0)
+            if (cbInvoicesRange.SelectedIndex == 0)
             {
                 range = DateTime.Now.AddDays(-1);
             }
-            else if (cbRange.SelectedIndex == 1)
+            else if (cbInvoicesRange.SelectedIndex == 1)
             {
                 range = DateTime.Now.AddDays(-7);
             }
-            else if (cbRange.SelectedIndex == 2)
+            else if (cbInvoicesRange.SelectedIndex == 2)
             {
                 range = DateTime.Now.AddMonths(-1);
             }
-            else if (cbRange.SelectedIndex == 3)
+            else if (cbInvoicesRange.SelectedIndex == 3)
             {
                 range = DateTime.Now.AddMonths(-6);
             }
@@ -298,14 +548,7 @@ namespace SIMS.WinForms.Suppliers
             filters.Add($"(InvoiceDate >= #{range:yyyy-MM-dd}# AND InvoiceDate <= #{DateTime.Now:yyyy-MM-dd}#)");
             invoices.RowFilter = string.Join(" AND ", filters);
         }
-
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControl.SelectedTab == pageSuppliedProducts)
-            {
-                dgvSuppliedProducts.ClearSelection();
-            }
-        }
+        #endregion InvoicesPage
 
     }
 }

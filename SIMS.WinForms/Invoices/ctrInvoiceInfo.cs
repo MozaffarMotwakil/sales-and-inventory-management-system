@@ -9,6 +9,8 @@ namespace SIMS.WinForms.Invoices
 {
     public partial class ctrInvoiceInfo : UserControl
     {
+        public bool ShowPartyInfo;
+
         private clsInvoice _Invoice;
         public clsInvoice Invoice 
         {
@@ -44,6 +46,7 @@ namespace SIMS.WinForms.Invoices
         public ctrInvoiceInfo()
         {
             InitializeComponent();
+            ShowPartyInfo = true;
         }
 
         private void ctrInvoiceInfo_Load(object sender, EventArgs e)
@@ -52,6 +55,11 @@ namespace SIMS.WinForms.Invoices
 
         private void llPartyName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (!ShowPartyInfo)
+            {
+                return;
+            }
+
             if (_Invoice is clsPurchaseInvoice purchaseInvoice && purchaseInvoice.Supplier != null)
             {
                 frmShowSupplierInfo supplierInfo = new frmShowSupplierInfo(purchaseInvoice.Supplier);

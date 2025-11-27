@@ -9,6 +9,12 @@ namespace SIMS.WinForms.Invoices
     {
         private clsInvoice _Invoice;
 
+        public bool ShowPartyInfo
+        {
+            get => ctrInvoiceInfo.ShowPartyInfo;
+            set => ctrInvoiceInfo.ShowPartyInfo = value;
+        }
+
         public frmShowInvoiceInfo(int invoiceID)
         {
             InitializeComponent();

@@ -491,27 +491,34 @@
             this.btnAddSupplier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personToolStripMenuItem,
             this.organizationToolStripMenuItem});
-            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSupplier.Image = global::SIMS.WinForms.Properties.Resources.supplier_add;
-            this.btnAddSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(140, 37);
+            this.btnAddSupplier.Size = new System.Drawing.Size(154, 37);
             this.btnAddSupplier.Text = "  إضافة مورد جديد";
-            this.btnAddSupplier.ToolTipText = "Add a new supplier";
             // 
             // personToolStripMenuItem
             // 
+            this.personToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.personToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.user;
+            this.personToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.personToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
             // 
             // organizationToolStripMenuItem
             // 
+            this.organizationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.organizationToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.organizationToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.organization;
+            this.organizationToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.organizationToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             // 
@@ -566,9 +573,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.ComboBox cbSupplierCategory;
         private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
-        private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
@@ -612,5 +616,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
         private ctrSupplierInfo ctrSupplierInfo;
+        private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
+        private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
     }
 }

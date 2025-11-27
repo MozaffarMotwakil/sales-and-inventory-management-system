@@ -73,6 +73,11 @@ namespace BusinessLogic.Suppliers
             return clsSupplierData.GetSupplierInvoices(this.SupplierID ?? -1);
         }
 
+        public DataTable GetPayments()
+        {
+            return clsSupplierData.GetAllSupplierPayments(this.SupplierID ?? -1);
+        }
+
         public clsSupplierDTO MappingToDTO()
         {
             return new clsSupplierDTO(

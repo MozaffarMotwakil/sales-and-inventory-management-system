@@ -283,6 +283,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap organization {
+            get {
+                object obj = ResourceManager.GetObject("organization", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap packages {
             get {
                 object obj = ResourceManager.GetObject("packages", resourceCulture);
@@ -506,6 +516,16 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap unknow_male {
             get {
                 object obj = ResourceManager.GetObject("unknow_male", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user {
+            get {
+                object obj = ResourceManager.GetObject("user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

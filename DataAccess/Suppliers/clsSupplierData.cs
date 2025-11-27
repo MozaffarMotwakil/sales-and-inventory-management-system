@@ -10,7 +10,7 @@ namespace DataAccess.Suppliers
         public static clsSupplierDTO FindSupplierByID(int supplierID)
         {
             return FindSupplier(
-                "usp_GetSupplierByID",
+                "usp_Suppliers_GetSupplierByID",
                 "@SupplierID",
                 supplierID
                 );
@@ -28,7 +28,7 @@ namespace DataAccess.Suppliers
         public static clsSupplierDTO FindSupplierByName(string supplierName)
         {
             return FindSupplier(
-                "usp_GetSupplierByName",
+                "usp_Suppliers_GetSupplierByName",
                 "@SupplierName",
                 supplierName
                 );
@@ -88,7 +88,7 @@ namespace DataAccess.Suppliers
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_InsertSupplier", connection))
+                using (SqlCommand command = new SqlCommand("usp_Suppliers_InsertSupplier", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -139,9 +139,9 @@ namespace DataAccess.Suppliers
 
                         return rowsAffected > 0;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new Exception("Error adding supplier to database.", ex);
+                        throw;
                     }
                 }
             }
@@ -151,7 +151,7 @@ namespace DataAccess.Suppliers
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_UpdateSupplier", connection))
+                using (SqlCommand command = new SqlCommand("usp_Suppliers_UpdateSupplier", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -189,9 +189,9 @@ namespace DataAccess.Suppliers
                         connection.Open();
                         return command.ExecuteNonQuery() > 0;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new Exception("Error updating supplier to database.", ex);
+                        throw;
                     }
                 }
             }
@@ -200,14 +200,14 @@ namespace DataAccess.Suppliers
         public static DataTable GetAllSuppliers()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllSuppliers"
+                "usp_Suppliers_GetAllSuppliers"
                 );
         }
 
         public static DataTable GetAllSupplierNames()
         {
             return clsDataSettings.GetDataTable(
-                "usp_GetAllSupplierNames"
+                "usp_Suppliers_GetAllSupplierNames"
                 );
         }
 
@@ -229,10 +229,19 @@ namespace DataAccess.Suppliers
                 );
         }
 
+        public static DataTable GetAllSupplierPayments(int supplierID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Suppliers_GetAllSupplierPayments",
+                "@SupplierID",
+                supplierID
+                );
+        }
+
         public static bool DeleteSupplier(int supplierID)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_DeleteSupplier", 
+                "usp_Suppliers_DeleteSupplier", 
                 "@SupplierID",
                 supplierID
                 );
