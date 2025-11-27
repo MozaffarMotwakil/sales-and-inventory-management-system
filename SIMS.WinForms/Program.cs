@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using BusinessLogic.Utilities;
 using DVLD.WinForms.MainForms;
 using DVLD.WinForms.Utils;
-using SIMS.WinForms.Invoices;
 
 namespace SIMS.WinForms
 {
@@ -25,6 +24,7 @@ namespace SIMS.WinForms
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             clsActivityLog.Initialize();
+            frmMainForm.CreateInstance();
             Application.Run(new frmLogin());
         }
 

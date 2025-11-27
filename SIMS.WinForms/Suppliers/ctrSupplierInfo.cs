@@ -203,6 +203,27 @@ namespace SIMS.WinForms.Suppliers
             }
         }
 
+        private void dgvPayments_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow currentRow = dgvPayments.Rows[e.RowIndex];
+
+                int invoiceTypeID = Convert.ToInt32(currentRow.Cells["InvoiceTypeID"].Value);
+
+                if (invoiceTypeID == 1)
+                {
+                    currentRow.DefaultCellStyle.BackColor = Color.LightCoral;
+                    currentRow.DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+                else
+                {
+                    currentRow.DefaultCellStyle.BackColor = Color.LightGreen;
+                    currentRow.DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+            }
+        }
+
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
         {
             txtSearch.Focus();

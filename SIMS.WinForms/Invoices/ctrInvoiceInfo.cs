@@ -32,7 +32,7 @@ namespace SIMS.WinForms.Invoices
                 lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
                 lblInvoiceStatus.Text = _Invoice.GetInvoiceStatusName();
                 lblPaymentMethod.Text = _Invoice.GetPaymentMethodName();
-                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString("0.##");
+                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString("0.##") ?? "0";
                 llPartyName.Text = _Invoice.GetPartyName();
                 llCreatedByUser.Text = _Invoice.CreatedByUserInfo.UserName;
                 lblSubtotal.Text = _Invoice.TotalSubTotal.ToString("0.##");

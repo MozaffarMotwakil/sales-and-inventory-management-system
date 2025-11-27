@@ -12,7 +12,6 @@ using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.Purchases;
 using System.Linq;
-using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms
 {
@@ -48,10 +47,12 @@ namespace SIMS.WinForms
         private Form _UsersListForm;
         private Form _InvoicesListForm;
         private Form _ActivityLogForm;
+        private static frmMainForm _Instance;
 
-        public frmMainForm()
+        private frmMainForm()
         {
             InitializeComponent();
+            ClockAndDateTimer.Start();
 
             foreach (Control control in this.Controls)
             {
@@ -63,10 +64,26 @@ namespace SIMS.WinForms
             }
         }
 
+        public static frmMainForm CreateInstance()
+        {
+            if (_Instance == null)
+            {
+                _Instance = new frmMainForm();
+            }
+
+            return _Instance;
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             WarehousesAndInventories.DropDownDirection = ToolStripDropDownDirection.Left;
             _OpenForm(ref _DashboardForm, enFormType.Dashboard);
+        }
+
+        private void ClockAndDateTimer_Tick(object sender, EventArgs e)
+        {
+            lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
+            lblCurrentDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
         }
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)

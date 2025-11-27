@@ -112,12 +112,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(54, 8);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(89, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 23);
+            this.label2.Size = new System.Drawing.Size(111, 21);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Today Sales";
+            this.label2.Text = "مبيعات اليوم";
             // 
             // button1
             // 
@@ -135,12 +135,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(54, 8);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(78, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 23);
+            this.label1.Size = new System.Drawing.Size(128, 21);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Today Purchases";
+            this.label1.Text = "مشتريات اليوم";
             // 
             // panel9
             // 
@@ -225,12 +225,12 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(54, 8);
+            this.label15.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(98, 10);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(165, 23);
+            this.label15.Size = new System.Drawing.Size(92, 21);
             this.label15.TabIndex = 1;
-            this.label15.Text = "Today Total Profits";
+            this.label15.Text = "أرباح اليوم";
             // 
             // button4
             // 
@@ -282,12 +282,12 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(54, 8);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(189, 23);
+            this.label13.Size = new System.Drawing.Size(204, 21);
             this.label13.TabIndex = 1;
-            this.label13.Text = "Total Inventory Value";
+            this.label13.Text = "قيمة البضاعة في المحل";
             // 
             // button3
             // 
@@ -308,9 +308,9 @@
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(8, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(98, 25);
+            this.label8.Size = new System.Drawing.Size(100, 25);
             this.label8.TabIndex = 1;
-            this.label8.Text = "Overview";
+            this.label8.Text = "نظرة عامة";
             // 
             // label16
             // 
@@ -320,9 +320,9 @@
             this.label16.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(562, 9);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(221, 25);
+            this.label16.Size = new System.Drawing.Size(362, 25);
             this.label16.TabIndex = 1;
-            this.label16.Text = "Running Low on Stock";
+            this.label16.Text = "البضاعة التي وصلت إلى حد إعادة الطلب";
             // 
             // label19
             // 
@@ -330,9 +330,9 @@
             this.label19.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(10, 319);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(206, 25);
+            this.label19.Size = new System.Drawing.Size(147, 25);
             this.label19.TabIndex = 1;
-            this.label19.Text = "Profits and Expenses";
+            this.label19.Text = "الأرباح والخسائر";
             // 
             // dgvRunningLowProducts
             // 
@@ -408,9 +408,9 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(562, 319);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(194, 25);
+            this.label3.Size = new System.Drawing.Size(224, 25);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Departmental Sales";
+            this.label3.Text = "مبيعات الأصناف المختلفة";
             // 
             // frmDashboard
             // 
@@ -435,6 +435,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDashboard";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.RightToLeftLayout = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";

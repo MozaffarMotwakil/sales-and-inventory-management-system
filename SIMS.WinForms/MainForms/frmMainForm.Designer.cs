@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -51,9 +52,10 @@
             this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCurrentDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblCurrentTime = new System.Windows.Forms.Label();
+            this.ClockAndDateTimer = new System.Windows.Forms.Timer(this.components);
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
@@ -114,6 +116,7 @@
             this.PointOfSelesToolStripButton.Name = "PointOfSelesToolStripButton";
             this.PointOfSelesToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.PointOfSelesToolStripButton.Text = "Point of Seles";
+            this.PointOfSelesToolStripButton.Visible = false;
             this.PointOfSelesToolStripButton.Click += new System.EventHandler(this.PointOfSelesToolStripButton_Click);
             // 
             // SuppliersToolStripButton
@@ -212,6 +215,7 @@
             this.ReportsToolStripButton.Name = "ReportsToolStripButton";
             this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.ReportsToolStripButton.Text = "Reports";
+            this.ReportsToolStripButton.Visible = false;
             this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
             // 
             // UsersToolStripButton
@@ -223,6 +227,7 @@
             this.UsersToolStripButton.Name = "UsersToolStripButton";
             this.UsersToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.UsersToolStripButton.Text = "Users";
+            this.UsersToolStripButton.Visible = false;
             this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
             // 
             // InvoicesToolStripButton
@@ -234,6 +239,7 @@
             this.InvoicesToolStripButton.Name = "InvoicesToolStripButton";
             this.InvoicesToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.InvoicesToolStripButton.Text = "Invoices";
+            this.InvoicesToolStripButton.Visible = false;
             this.InvoicesToolStripButton.Click += new System.EventHandler(this.InvoicesToolStripButton_Click);
             // 
             // ActivityLogToolStripButton
@@ -245,17 +251,18 @@
             this.ActivityLogToolStripButton.Name = "ActivityLogToolStripButton";
             this.ActivityLogToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.ActivityLogToolStripButton.Text = "Activity Log";
+            this.ActivityLogToolStripButton.Visible = false;
             this.ActivityLogToolStripButton.Click += new System.EventHandler(this.ActivityLogToolStripButton_Click);
             // 
             // LogoutToolStripButton
             // 
             this.LogoutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
             this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LogoutToolStripButton.Name = "LogoutToolStripButton";
             this.LogoutToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.LogoutToolStripButton.Text = "Logout";
+            this.LogoutToolStripButton.Text = "تسجيل الخروج";
             this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
             // 
             // panel1
@@ -308,9 +315,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.DarkCyan;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.lblCurrentDate);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.lblCurrentTime);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(984, 50);
@@ -329,17 +336,17 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "سوبرماركت الواحة";
             // 
-            // label5
+            // lblCurrentDate
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 19);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "dd/MM/yyyy";
+            this.lblCurrentDate.AutoSize = true;
+            this.lblCurrentDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentDate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentDate.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentDate.Location = new System.Drawing.Point(3, 15);
+            this.lblCurrentDate.Name = "lblCurrentDate";
+            this.lblCurrentDate.Size = new System.Drawing.Size(134, 23);
+            this.lblCurrentDate.TabIndex = 7;
+            this.lblCurrentDate.Text = "dd/MM/yyyy";
             // 
             // pictureBox1
             // 
@@ -353,17 +360,22 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // label4
+            // lblCurrentTime
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(3, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 19);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "00:00:00 AM";
+            this.lblCurrentTime.AutoSize = true;
+            this.lblCurrentTime.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentTime.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentTime.Location = new System.Drawing.Point(136, 15);
+            this.lblCurrentTime.Name = "lblCurrentTime";
+            this.lblCurrentTime.Size = new System.Drawing.Size(132, 23);
+            this.lblCurrentTime.TabIndex = 8;
+            this.lblCurrentTime.Text = "00:00:00 AM";
+            // 
+            // ClockAndDateTimer
+            // 
+            this.ClockAndDateTimer.Interval = 1000;
+            this.ClockAndDateTimer.Tick += new System.EventHandler(this.ClockAndDateTimer_Tick);
             // 
             // frmMainForm
             // 
@@ -414,8 +426,8 @@
         private System.Windows.Forms.ToolStripButton ActivityLogToolStripButton;
         private System.Windows.Forms.ToolStripButton PurchasesToolStripButton;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCurrentDate;
+        private System.Windows.Forms.Label lblCurrentTime;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripDropDownButton WarehousesAndInventories;
@@ -423,6 +435,7 @@
         private System.Windows.Forms.ToolStripMenuItem StockTransactionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem WarehousesToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem TransferOperationsToolStripMenuItem;
+        private System.Windows.Forms.Timer ClockAndDateTimer;
     }
 }
 

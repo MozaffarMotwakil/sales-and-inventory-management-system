@@ -29,16 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageBasicInfo = new System.Windows.Forms.TabPage();
+            this.ctrPersonInfo = new SIMS.WinForms.Parties.Person.ctrPersonInfo();
             this.lblNotesTitle = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
+            this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
             this.pageSuppliedProducts = new System.Windows.Forms.TabPage();
             this.dgvSuppliedProducts = new System.Windows.Forms.DataGridView();
             this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,8 +68,12 @@
             this.cbPaymentType = new System.Windows.Forms.ComboBox();
             this.dgvPayments = new System.Windows.Forms.DataGridView();
             this.searchTimer = new System.Windows.Forms.Timer(this.components);
-            this.ctrPersonInfo = new SIMS.WinForms.Parties.Person.ctrPersonInfo();
-            this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             this.pageSuppliedProducts.SuspendLayout();
@@ -109,6 +115,17 @@
             this.pageBasicInfo.Text = "المعلومات الأساسية";
             this.pageBasicInfo.UseVisualStyleBackColor = true;
             // 
+            // ctrPersonInfo
+            // 
+            this.ctrPersonInfo.Location = new System.Drawing.Point(7, 7);
+            this.ctrPersonInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrPersonInfo.Name = "ctrPersonInfo";
+            this.ctrPersonInfo.Person = null;
+            this.ctrPersonInfo.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
+            this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrPersonInfo.Size = new System.Drawing.Size(675, 177);
+            this.ctrPersonInfo.TabIndex = 61;
+            // 
             // lblNotesTitle
             // 
             this.lblNotesTitle.AutoSize = true;
@@ -132,6 +149,17 @@
             this.lblNotes.Text = "N/A";
             this.lblNotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ctrOrganizationInfo
+            // 
+            this.ctrOrganizationInfo.Location = new System.Drawing.Point(88, 4);
+            this.ctrOrganizationInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrOrganizationInfo.Name = "ctrOrganizationInfo";
+            this.ctrOrganizationInfo.Organization = null;
+            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
+            this.ctrOrganizationInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrOrganizationInfo.Size = new System.Drawing.Size(594, 138);
+            this.ctrOrganizationInfo.TabIndex = 58;
+            // 
             // pageSuppliedProducts
             // 
             this.pageSuppliedProducts.Controls.Add(this.dgvSuppliedProducts);
@@ -151,14 +179,14 @@
             this.dgvSuppliedProducts.AllowUserToResizeColumns = false;
             this.dgvSuppliedProducts.AllowUserToResizeRows = false;
             this.dgvSuppliedProducts.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSuppliedProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSuppliedProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dgvSuppliedProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSuppliedProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNo,
@@ -166,14 +194,14 @@
             this.colUnit,
             this.colLastPurchaseDataTime,
             this.colLastPurchasePrice});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvSuppliedProducts.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSuppliedProducts.DefaultCellStyle = dataGridViewCellStyle34;
             this.dgvSuppliedProducts.Location = new System.Drawing.Point(6, 6);
             this.dgvSuppliedProducts.MultiSelect = false;
             this.dgvSuppliedProducts.Name = "dgvSuppliedProducts";
@@ -229,6 +257,10 @@
             // 
             // pageInvoices
             // 
+            this.pageInvoices.Controls.Add(this.label8);
+            this.pageInvoices.Controls.Add(this.label9);
+            this.pageInvoices.Controls.Add(this.label6);
+            this.pageInvoices.Controls.Add(this.label7);
             this.pageInvoices.Controls.Add(this.label4);
             this.pageInvoices.Controls.Add(this.label3);
             this.pageInvoices.Controls.Add(this.label2);
@@ -343,26 +375,26 @@
             this.dgvInvoices.AllowUserToResizeColumns = false;
             this.dgvInvoices.AllowUserToResizeRows = false;
             this.dgvInvoices.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInvoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInvoices.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle35;
             this.dgvInvoices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInvoices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPurchaseNo});
             this.dgvInvoices.ContextMenuStrip = this.contextMenuStrip;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoices.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoices.DefaultCellStyle = dataGridViewCellStyle36;
             this.dgvInvoices.Location = new System.Drawing.Point(6, 33);
             this.dgvInvoices.MultiSelect = false;
             this.dgvInvoices.Name = "dgvInvoices";
@@ -370,7 +402,7 @@
             this.dgvInvoices.RowHeadersVisible = false;
             this.dgvInvoices.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInvoices.Size = new System.Drawing.Size(674, 198);
+            this.dgvInvoices.Size = new System.Drawing.Size(674, 185);
             this.dgvInvoices.TabIndex = 3;
             this.dgvInvoices.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SelectedCurrentRow_CellMouseClick);
             this.dgvInvoices.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ShowInvoiceInfo_CellMouseDoubleClick);
@@ -396,6 +428,8 @@
             // 
             // pagePayments
             // 
+            this.pagePayments.Controls.Add(this.label1);
+            this.pagePayments.Controls.Add(this.label5);
             this.pagePayments.Controls.Add(this.pictureBox);
             this.pagePayments.Controls.Add(this.lblSearchHintText);
             this.pagePayments.Controls.Add(this.txtSearch);
@@ -403,6 +437,7 @@
             this.pagePayments.Controls.Add(this.cbPaymentMethod);
             this.pagePayments.Controls.Add(this.cbPaymentType);
             this.pagePayments.Controls.Add(this.dgvPayments);
+            this.pagePayments.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pagePayments.Location = new System.Drawing.Point(4, 23);
             this.pagePayments.Name = "pagePayments";
             this.pagePayments.Padding = new System.Windows.Forms.Padding(3);
@@ -507,34 +542,35 @@
             this.dgvPayments.AllowUserToResizeColumns = false;
             this.dgvPayments.AllowUserToResizeRows = false;
             this.dgvPayments.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPayments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPayments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPayments.ContextMenuStrip = this.contextMenuStrip;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPayments.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPayments.DefaultCellStyle = dataGridViewCellStyle32;
             this.dgvPayments.Location = new System.Drawing.Point(6, 33);
             this.dgvPayments.MultiSelect = false;
             this.dgvPayments.Name = "dgvPayments";
             this.dgvPayments.ReadOnly = true;
             this.dgvPayments.RowHeadersVisible = false;
             this.dgvPayments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPayments.Size = new System.Drawing.Size(674, 198);
+            this.dgvPayments.Size = new System.Drawing.Size(674, 185);
             this.dgvPayments.TabIndex = 4;
             this.dgvPayments.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SelectedCurrentRow_CellMouseClick);
             this.dgvPayments.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ShowInvoiceInfo_CellMouseDoubleClick);
+            this.dgvPayments.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvPayments_RowPrePaint);
             this.dgvPayments.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ShowInvoiceInfo_KeyDown);
             // 
             // searchTimer
@@ -543,27 +579,65 @@
             this.searchTimer.Interval = 300;
             this.searchTimer.Tick += new System.EventHandler(this.searchTimer_Tick);
             // 
-            // ctrPersonInfo
+            // label6
             // 
-            this.ctrPersonInfo.Location = new System.Drawing.Point(7, 7);
-            this.ctrPersonInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrPersonInfo.Name = "ctrPersonInfo";
-            this.ctrPersonInfo.Person = null;
-            this.ctrPersonInfo.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
-            this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrPersonInfo.Size = new System.Drawing.Size(675, 177);
-            this.ctrPersonInfo.TabIndex = 61;
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(427, 221);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "🔴 غير مدفوع ";
             // 
-            // ctrOrganizationInfo
+            // label7
             // 
-            this.ctrOrganizationInfo.Location = new System.Drawing.Point(88, 4);
-            this.ctrOrganizationInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrOrganizationInfo.Name = "ctrOrganizationInfo";
-            this.ctrOrganizationInfo.Organization = null;
-            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
-            this.ctrOrganizationInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrOrganizationInfo.Size = new System.Drawing.Size(594, 138);
-            this.ctrOrganizationInfo.TabIndex = 58;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Lime;
+            this.label7.Location = new System.Drawing.Point(588, 221);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 46;
+            this.label7.Text = "🔴 مدفوعة بالكامل ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Lime;
+            this.label1.Location = new System.Drawing.Point(546, 221);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "🔴 المقبوضات (أموال داخلة) ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(402, 221);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(138, 13);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "🔴 المدفوعات (أموال خارجة) ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Gold;
+            this.label8.Location = new System.Drawing.Point(506, 221);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(76, 13);
+            this.label8.TabIndex = 45;
+            this.label8.Text = "🔴 مدفوع جزئيا";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.DimGray;
+            this.label9.Location = new System.Drawing.Point(360, 221);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "🔴 مرتجعات";
             // 
             // ctrSupplierInfo
             // 
@@ -625,5 +699,11 @@
         protected System.Windows.Forms.Label lblSearchHintText;
         protected System.Windows.Forms.TextBox txtSearch;
         protected System.Windows.Forms.Timer searchTimer;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
