@@ -13,7 +13,8 @@ namespace DVLD.WinForms.MainForms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            frmMainForm.CreateInstance().Show();
+            frmMainForm mainForm = frmMainForm.CreateInstance();
+            mainForm.Show();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

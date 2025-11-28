@@ -224,6 +224,23 @@ namespace SIMS.WinForms.Suppliers
             }
         }
 
+        private void dgvPayments_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            lblTotalPayments.Text = dgvPayments
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => (int)row.Cells["InvoiceTypeID"].Value == 1)
+                .Sum(row => Convert.ToSingle(row.Cells["PaymentAmount"].Value))
+                .ToString() + " جنيه";
+
+            lblTotalReceipts.Text = dgvPayments
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => (int)row.Cells["InvoiceTypeID"].Value == 2)
+                .Sum(row => Convert.ToSingle(row.Cells["PaymentAmount"].Value))
+                .ToString() + " جنيه";
+        }
+
         private void pictureBoxAndSearchHintText_Click(object sender, EventArgs e)
         {
             txtSearch.Focus();

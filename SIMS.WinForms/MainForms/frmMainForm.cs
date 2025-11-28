@@ -66,7 +66,7 @@ namespace SIMS.WinForms
 
         public static frmMainForm CreateInstance()
         {
-            if (_Instance == null)
+            if (_Instance == null || _Instance.IsDisposed)
             {
                 _Instance = new frmMainForm();
             }
@@ -154,6 +154,7 @@ namespace SIMS.WinForms
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            frmMainForm.CreateInstance();
             Application.OpenForms["frmLogin"].Activate();
         }
 

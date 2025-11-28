@@ -491,22 +491,22 @@
             this.btnAddSupplier.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personToolStripMenuItem,
             this.organizationToolStripMenuItem});
-            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSupplier.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSupplier.Image = global::SIMS.WinForms.Properties.Resources.supplier_add;
             this.btnAddSupplier.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAddSupplier.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAddSupplier.Name = "btnAddSupplier";
-            this.btnAddSupplier.Size = new System.Drawing.Size(154, 37);
+            this.btnAddSupplier.Size = new System.Drawing.Size(140, 37);
             this.btnAddSupplier.Text = "  إضافة مورد جديد";
             // 
             // personToolStripMenuItem
             // 
             this.personToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.personToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.user;
+            this.personToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.user__1_;
             this.personToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.personToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
             // 
@@ -514,11 +514,11 @@
             // 
             this.organizationToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.organizationToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.organizationToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.organization;
+            this.organizationToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.organization__1_;
             this.organizationToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.organizationToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             // 
