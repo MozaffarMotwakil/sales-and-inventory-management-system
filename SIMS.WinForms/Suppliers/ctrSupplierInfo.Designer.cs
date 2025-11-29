@@ -43,11 +43,6 @@
             this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
             this.pageSuppliedProducts = new System.Windows.Forms.TabPage();
             this.dgvSuppliedProducts = new System.Windows.Forms.DataGridView();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLastPurchaseDataTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLastPurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pageInvoices = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -78,6 +73,14 @@
             this.cbPaymentType = new System.Windows.Forms.ComboBox();
             this.dgvPayments = new System.Windows.Forms.DataGridView();
             this.searchTimer = new System.Windows.Forms.Timer(this.components);
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastPurchaseDataTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastPurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAveragePurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalReturnPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             this.pageSuppliedProducts.SuspendLayout();
@@ -197,7 +200,10 @@
             this.colProduct,
             this.colUnit,
             this.colLastPurchaseDataTime,
-            this.colLastPurchasePrice});
+            this.colLastPurchasePrice,
+            this.colAveragePurchasePrice,
+            this.colTotalPurchases,
+            this.colTotalReturnPurchases});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,50 +220,6 @@
             this.dgvSuppliedProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppliedProducts.Size = new System.Drawing.Size(674, 225);
             this.dgvSuppliedProducts.TabIndex = 0;
-            // 
-            // colNo
-            // 
-            this.colNo.HeaderText = "م";
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNo.Width = 45;
-            // 
-            // colProduct
-            // 
-            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProduct.HeaderText = "المنتج";
-            this.colProduct.Name = "colProduct";
-            this.colProduct.ReadOnly = true;
-            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colUnit
-            // 
-            this.colUnit.HeaderText = "الوحدة";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.ReadOnly = true;
-            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colUnit.Width = 150;
-            // 
-            // colLastPurchaseDataTime
-            // 
-            this.colLastPurchaseDataTime.HeaderText = "تاريخ آخر شراء";
-            this.colLastPurchaseDataTime.Name = "colLastPurchaseDataTime";
-            this.colLastPurchaseDataTime.ReadOnly = true;
-            this.colLastPurchaseDataTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLastPurchaseDataTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLastPurchaseDataTime.Width = 135;
-            // 
-            // colLastPurchasePrice
-            // 
-            this.colLastPurchasePrice.HeaderText = "آخر سعر شراء (جنيه)";
-            this.colLastPurchasePrice.Name = "colLastPurchasePrice";
-            this.colLastPurchasePrice.ReadOnly = true;
-            this.colLastPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLastPurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // pageInvoices
             // 
@@ -690,6 +652,78 @@
             this.searchTimer.Interval = 300;
             this.searchTimer.Tick += new System.EventHandler(this.searchTimer_Tick);
             // 
+            // colNo
+            // 
+            this.colNo.HeaderText = "م";
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNo.Width = 40;
+            // 
+            // colProduct
+            // 
+            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.ReadOnly = true;
+            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.ReadOnly = true;
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colUnit.Width = 80;
+            // 
+            // colLastPurchaseDataTime
+            // 
+            this.colLastPurchaseDataTime.HeaderText = "تاريخ آخر شراء";
+            this.colLastPurchaseDataTime.Name = "colLastPurchaseDataTime";
+            this.colLastPurchaseDataTime.ReadOnly = true;
+            this.colLastPurchaseDataTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLastPurchaseDataTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLastPurchaseDataTime.Width = 80;
+            // 
+            // colLastPurchasePrice
+            // 
+            this.colLastPurchasePrice.HeaderText = "سعر آخر شراء (جنيه)";
+            this.colLastPurchasePrice.Name = "colLastPurchasePrice";
+            this.colLastPurchasePrice.ReadOnly = true;
+            this.colLastPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLastPurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLastPurchasePrice.Width = 80;
+            // 
+            // colAveragePurchasePrice
+            // 
+            this.colAveragePurchasePrice.HeaderText = "متوسط سعر الشراء (جنيه)";
+            this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
+            this.colAveragePurchasePrice.ReadOnly = true;
+            this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colAveragePurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAveragePurchasePrice.Width = 70;
+            // 
+            // colTotalPurchases
+            // 
+            this.colTotalPurchases.HeaderText = "مجموع المشتريات (جنيه)";
+            this.colTotalPurchases.Name = "colTotalPurchases";
+            this.colTotalPurchases.ReadOnly = true;
+            this.colTotalPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTotalPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTotalPurchases.Width = 80;
+            // 
+            // colTotalReturnPurchases
+            // 
+            this.colTotalReturnPurchases.HeaderText = "مجموع المرتجعات (جنيه)";
+            this.colTotalReturnPurchases.Name = "colTotalReturnPurchases";
+            this.colTotalReturnPurchases.ReadOnly = true;
+            this.colTotalReturnPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTotalReturnPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTotalReturnPurchases.Width = 80;
+            // 
             // ctrSupplierInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,11 +763,6 @@
         private System.Windows.Forms.DataGridView dgvPayments;
         private System.Windows.Forms.DataGridView dgvInvoices;
         private System.Windows.Forms.DataGridView dgvSuppliedProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProduct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLastPurchaseDataTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLastPurchasePrice;
         private System.Windows.Forms.ComboBox cbInvoiceType;
         private System.Windows.Forms.ComboBox cbPaymentStatus;
         private System.Windows.Forms.ComboBox cbInvoicesRange;
@@ -760,5 +789,13 @@
         private System.Windows.Forms.Label lblTotalReceipts;
         private System.Windows.Forms.Label lavel13;
         private System.Windows.Forms.Label lblTotalPayments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastPurchaseDataTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastPurchasePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAveragePurchasePrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPurchases;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalReturnPurchases;
     }
 }

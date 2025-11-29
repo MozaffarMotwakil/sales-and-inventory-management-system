@@ -67,6 +67,8 @@
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
             this.pageInventories = new System.Windows.Forms.TabPage();
             this.dgvInventories = new System.Windows.Forms.DataGridView();
+            this.InventoriesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.تعديلحدإعادةالطلبToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pageStockTransactions = new System.Windows.Forms.TabPage();
             this.cbRange = new System.Windows.Forms.ComboBox();
             this.cbTransactionReason = new System.Windows.Forms.ComboBox();
@@ -77,8 +79,7 @@
             this.stockTransactionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.عرضتفاصيلالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.InventoriesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.تعديلحدإعادةالطلبToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImage)).BeginInit();
@@ -88,10 +89,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
             this.pageInventories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventories)).BeginInit();
+            this.InventoriesContextMenuStrip.SuspendLayout();
             this.pageStockTransactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).BeginInit();
             this.stockTransactionsContextMenuStrip.SuspendLayout();
-            this.InventoriesContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -527,6 +528,25 @@
             this.dgvInventories.TabIndex = 4;
             this.dgvInventories.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventories_CellMouseDown);
             // 
+            // InventoriesContextMenuStrip
+            // 
+            this.InventoriesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.تعديلحدإعادةالطلبToolStripMenuItem});
+            this.InventoriesContextMenuStrip.Name = "contextMenuStrip2";
+            this.InventoriesContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.InventoriesContextMenuStrip.Size = new System.Drawing.Size(199, 42);
+            this.InventoriesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.InventoriesContextMenuStrip_Opening);
+            // 
+            // تعديلحدإعادةالطلبToolStripMenuItem
+            // 
+            this.تعديلحدإعادةالطلبToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
+            this.تعديلحدإعادةالطلبToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.تعديلحدإعادةالطلبToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.تعديلحدإعادةالطلبToolStripMenuItem.Name = "تعديلحدإعادةالطلبToolStripMenuItem";
+            this.تعديلحدإعادةالطلبToolStripMenuItem.Size = new System.Drawing.Size(198, 38);
+            this.تعديلحدإعادةالطلبToolStripMenuItem.Text = "تعديل حد إعادة الطلب";
+            this.تعديلحدإعادةالطلبToolStripMenuItem.Click += new System.EventHandler(this.UpdateReorderQuantity_Click);
+            // 
             // pageStockTransactions
             // 
             this.pageStockTransactions.Controls.Add(this.cbRange);
@@ -633,6 +653,8 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvStockTransactions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvStockTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStockTransactions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colTransactionNo});
             this.dgvStockTransactions.ContextMenuStrip = this.stockTransactionsContextMenuStrip;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -682,23 +704,14 @@
             this.toolStripMenuItem1.Text = "عرض تفاصيل عملية النقل";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.ShowTransferOperationInfo_Click);
             // 
-            // InventoriesContextMenuStrip
+            // colTransactionNo
             // 
-            this.InventoriesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعديلحدإعادةالطلبToolStripMenuItem});
-            this.InventoriesContextMenuStrip.Name = "contextMenuStrip2";
-            this.InventoriesContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.InventoriesContextMenuStrip.Size = new System.Drawing.Size(199, 64);
-            // 
-            // تعديلحدإعادةالطلبToolStripMenuItem
-            // 
-            this.تعديلحدإعادةالطلبToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.edit;
-            this.تعديلحدإعادةالطلبToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.تعديلحدإعادةالطلبToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.تعديلحدإعادةالطلبToolStripMenuItem.Name = "تعديلحدإعادةالطلبToolStripMenuItem";
-            this.تعديلحدإعادةالطلبToolStripMenuItem.Size = new System.Drawing.Size(198, 38);
-            this.تعديلحدإعادةالطلبToolStripMenuItem.Text = "تعديل حد إعادة الطلب";
-            this.تعديلحدإعادةالطلبToolStripMenuItem.Click += new System.EventHandler(this.UpdateReorderQuantity_Click);
+            this.colTransactionNo.HeaderText = "م";
+            this.colTransactionNo.Name = "colTransactionNo";
+            this.colTransactionNo.ReadOnly = true;
+            this.colTransactionNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTransactionNo.Width = 40;
             // 
             // ctrProductInfo
             // 
@@ -722,10 +735,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
             this.pageInventories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventories)).EndInit();
+            this.InventoriesContextMenuStrip.ResumeLayout(false);
             this.pageStockTransactions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).EndInit();
             this.stockTransactionsContextMenuStrip.ResumeLayout(false);
-            this.InventoriesContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -774,5 +787,6 @@
         private System.Windows.Forms.ToolStripMenuItem عرضتفاصيلالفاتورةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem تعديلحدإعادةالطلبToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTransactionNo;
     }
 }

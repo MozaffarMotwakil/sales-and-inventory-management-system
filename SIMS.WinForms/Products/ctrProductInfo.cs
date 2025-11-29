@@ -331,6 +331,11 @@ namespace SIMS.WinForms.Products
             }
         }
 
+        private void InventoriesContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvInventories, e);
+        }
+
         private int _GetSelectedInventoryID()
         {
             try
@@ -367,6 +372,7 @@ namespace SIMS.WinForms.Products
 
                 dgvStockTransactions.Columns[0].HeaderText = "م";
                 dgvStockTransactions.Columns[0].Width = 40;
+                dgvStockTransactions.Columns[0].Visible = true;
 
                 dgvStockTransactions.Columns[1].HeaderText = "معرف الحركة";
                 dgvStockTransactions.Columns[1].Visible = false;
@@ -408,6 +414,8 @@ namespace SIMS.WinForms.Products
             {
                 cbUnit.Enabled = cbWarehouse.Enabled = cbTransactionType.Enabled =
                     cbTransactionReason.Enabled = cbRange.Enabled = false;
+
+                colTransactionNo.Visible = false;
             }
         }
 
@@ -415,8 +423,9 @@ namespace SIMS.WinForms.Products
         {
             if (e.RowIndex >= 0)
             {
+                dgvStockTransactions.Rows[e.RowIndex].Cells[colTransactionNo.Index].Value = e.RowIndex + 1;
                 int transactionType = Convert.ToInt32(dgvStockTransactions.Rows[e.RowIndex].Cells["TransactionTypeID"].Value);
-
+                
                 if (transactionType == 1)
                 {
                     dgvStockTransactions.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;

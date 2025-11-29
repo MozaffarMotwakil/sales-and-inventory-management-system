@@ -416,6 +416,9 @@ namespace SIMS.WinForms.Suppliers
                 dgvSuppliedProducts.Rows[i].Cells[colUnit.Index].Value = suppliedProducts.Rows[i]["UnitName"];
                 dgvSuppliedProducts.Rows[i].Cells[colLastPurchaseDataTime.Index].Value = (suppliedProducts.Rows[i]["LastPurchaseDate"] as DateTime?)?.ToString("dd/MM/yyyy") ?? "N/A";
                 dgvSuppliedProducts.Rows[i].Cells[colLastPurchasePrice.Index].Value = suppliedProducts.Rows[i]["LastPurchasePrice"];
+                dgvSuppliedProducts.Rows[i].Cells[colAveragePurchasePrice.Index].Value = suppliedProducts.Rows[i]["AveragePurchasePriceForLast12Month"];
+                dgvSuppliedProducts.Rows[i].Cells[colTotalPurchases.Index].Value = suppliedProducts.Rows[i]["TotalPurchasesForLast12Month"];
+                dgvSuppliedProducts.Rows[i].Cells[colTotalReturnPurchases.Index].Value = suppliedProducts.Rows[i]["TotalReturnPurchasesForLast12Month"];
             }
         }
         #endregion SuppliedProductsPage
