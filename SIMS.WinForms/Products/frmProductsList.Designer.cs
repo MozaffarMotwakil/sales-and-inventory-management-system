@@ -128,10 +128,6 @@
             this.lblTotalRecords.Size = new System.Drawing.Size(154, 16);
             this.lblTotalRecords.Text = "4";
             // 
-            // txtSearch
-            // 
-            this.txtSearch.Size = new System.Drawing.Size(220, 26);
-            // 
             // dataGridViewTextBoxColumn73
             // 
             this.dataGridViewTextBoxColumn73.DataPropertyName = "ProductID";
@@ -740,7 +736,7 @@
             this.ctrProductInfo.Name = "ctrProductInfo";
             this.ctrProductInfo.Product = null;
             this.ctrProductInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrProductInfo.Size = new System.Drawing.Size(700, 270);
+            this.ctrProductInfo.Size = new System.Drawing.Size(850, 270);
             this.ctrProductInfo.TabIndex = 46;
             this.ctrProductInfo.TabStop = false;
             this.ctrProductInfo.Visible = false;

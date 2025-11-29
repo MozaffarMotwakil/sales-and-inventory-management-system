@@ -13,28 +13,28 @@ namespace SIMS.WinForms.Products
             if (base.dgvEntitiesList.RowCount > 0)
             {
                 base.dgvEntitiesList.Columns[0].HeaderText = "معرف المنتج";
-                base.dgvEntitiesList.Columns[0].Width = 95;
+                base.dgvEntitiesList.Columns[0].Visible = false;
 
                 base.dgvEntitiesList.Columns[1].HeaderText = "إسم المنتج";
-                base.dgvEntitiesList.Columns[1].Width = 200;
+                base.dgvEntitiesList.Columns[1].Width = 275;
 
-                base.dgvEntitiesList.Columns[2].HeaderText = "الباركود";
+                base.dgvEntitiesList.Columns[2].HeaderText = "الفئة/الصنف";
                 base.dgvEntitiesList.Columns[2].Width = 150;
 
-                base.dgvEntitiesList.Columns[3].HeaderText = "التصنيف/الفئة";
-                base.dgvEntitiesList.Columns[3].Width = 150;
+                base.dgvEntitiesList.Columns[3].HeaderText = "الوحدة الأساسية";
+                base.dgvEntitiesList.Columns[3].Width = 120;
 
-                base.dgvEntitiesList.Columns[4].HeaderText = "الوحدة الأساسية";
+                base.dgvEntitiesList.Columns[4].HeaderText = "عدد الوحدات البديلة";
                 base.dgvEntitiesList.Columns[4].Width = 100;
 
-                base.dgvEntitiesList.Columns[5].HeaderText = "الوحدات البديلة";
-                base.dgvEntitiesList.Columns[5].Width = 100;
+                base.dgvEntitiesList.Columns[5].HeaderText = "عدد الموردين";
+                base.dgvEntitiesList.Columns[5].Width = 80;
 
-                base.dgvEntitiesList.Columns[6].HeaderText = "سعر البيع";
-                base.dgvEntitiesList.Columns[6].Width = 80;
+                base.dgvEntitiesList.Columns[6].HeaderText = "المورد الرئيسي";
+                base.dgvEntitiesList.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                base.dgvEntitiesList.Columns[7].HeaderText = "المورد الرئيسي";
-                base.dgvEntitiesList.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                base.dgvEntitiesList.Columns[7].HeaderText = "حالة التفعيل";
+                base.dgvEntitiesList.Columns[7].Width = 80;
             }
         }
 

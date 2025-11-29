@@ -176,14 +176,14 @@ namespace SIMS.WinForms.Suppliers
                 dgvPayments.Columns[3].HeaderText = "رقم الفاتورة";
                 dgvPayments.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                dgvPayments.Columns[4].HeaderText = "المبلغ المدفوع (جنيه)";
-                dgvPayments.Columns[4].Width = 80;
+                dgvPayments.Columns[4].HeaderText = "إجمالي الفاتورة (جنيه)";
+                dgvPayments.Columns[4].Width = 85;
 
                 dgvPayments.Columns[5].HeaderText = "طريقة الدفع";
                 dgvPayments.Columns[5].Width = 65;
 
-                dgvPayments.Columns[6].HeaderText = "إجمالي الفاتورة (جنيه)";
-                dgvPayments.Columns[6].Width = 85;
+                dgvPayments.Columns[6].HeaderText = "المبلغ المدفوع (جنيه)";
+                dgvPayments.Columns[6].Width = 80;
 
                 dgvPayments.Columns[7].HeaderText = "الرصيد التراكمي (جنيه)";
                 dgvPayments.Columns[7].Width = 85;

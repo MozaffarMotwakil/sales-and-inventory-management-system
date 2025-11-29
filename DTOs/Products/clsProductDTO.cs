@@ -15,7 +15,7 @@ namespace DTOs.Products
         public float SellingPrice { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public int? CreatedByUserID { get; set; }
         public DateTime? CreatedAt { get; set; }
         public int? UpdatedByUserID { get; set; }
@@ -37,7 +37,7 @@ namespace DTOs.Products
             SellingPrice = sellingPrice;
             Description = description;
             ImagePath = imagePath;
-            IsDeleted = isDeleted;
+            IsActive = isDeleted;
             CreatedByUserID = createdByUserID;
             CreatedAt = createdAt;
             UpdatedByUserID = updatedByUserID;

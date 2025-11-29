@@ -261,11 +261,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 8);
+            this.label1.Location = new System.Drawing.Point(4, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(245, 19);
+            this.label1.Size = new System.Drawing.Size(258, 19);
             this.label1.TabIndex = 1;
-            this.label1.Text = "القيمة المتوقعة من بيع المخزون";
+            this.label1.Text = "القيمة المتوقعة من بيع المخزونات";
             // 
             // panel2
             // 
@@ -283,11 +283,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 8);
+            this.label2.Location = new System.Drawing.Point(37, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 19);
+            this.label2.Size = new System.Drawing.Size(193, 19);
             this.label2.TabIndex = 3;
-            this.label2.Text = "التكلفة الحالية للمخزون";
+            this.label2.Text = "التكلفة الحالية للمخزونات";
             // 
             // lblTotalInventoryValue
             // 

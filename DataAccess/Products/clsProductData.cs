@@ -37,7 +37,7 @@ namespace DataAccess.Products
                                     SellingPrice = Convert.ToSingle(reader["SellingPrice"]),
                                     Description = (reader["Description"] != DBNull.Value) ? reader["Description"].ToString() : string.Empty,
                                     ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : string.Empty,
-                                    IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
+                                    IsActive = Convert.ToBoolean(reader["IsActive"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                                 };
@@ -157,6 +157,42 @@ namespace DataAccess.Products
         {
             return clsDataSettings.GetDataTable(
                 "usp_Products_GetAllProducts"
+                );
+        }
+
+        public static DataTable GetProductUnitsTable(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetProductUnitsTable",
+                "@ProductID",
+                productID
+                );
+        }
+
+        public static DataTable GetSuppliersTable(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetSuppliersTable",
+                "@ProductID",
+                productID
+                );
+        }
+
+        public static DataTable GetInventoriesTable(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetInventoriesTable",
+                "@ProductID",
+                productID
+                );
+        }
+
+        public static DataTable GetStockTransactionsTable(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetStockTransactionsTable",
+                "@ProductID",
+                productID
                 );
         }
 

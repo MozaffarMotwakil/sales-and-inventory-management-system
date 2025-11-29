@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using DTOs.Products;
-using BusinessLogic.Users;
+using System.Data;
 using BusinessLogic.Suppliers;
+using BusinessLogic.Users;
 using BusinessLogic.Validation;
+using DataAccess.Products;
+using DTOs.Products;
 
 namespace BusinessLogic.Products
 {
@@ -20,7 +22,7 @@ namespace BusinessLogic.Products
         public string Description { get; set; }
         internal string CurrentImagePath { get; set; }
         public string ImagePath { get; set; }
-        public bool IsDeleted { get; }
+        public bool IsActive { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
         public clsUser UpdatedByUserInfo { get; }
@@ -56,6 +58,7 @@ namespace BusinessLogic.Products
             Description = productDTO.Description;
             CurrentImagePath = productDTO.ImagePath;
             ImagePath = productDTO.ImagePath;
+            IsActive = productDTO.IsActive;
             CreatedByUserInfo = clsUser.Find(productDTO.CreatedByUserID ?? -1);
             CreatedAt = productDTO.CreatedAt;
             UpdatedByUserInfo = productDTO.UpdatedByUserID is null ?
@@ -63,6 +66,26 @@ namespace BusinessLogic.Products
                 clsUser.Find(productDTO.UpdatedByUserID ?? -1);
             UpdatedAt = productDTO.UpdatedAt;
             Mode = enMode.Update;
+        }
+
+        public DataTable GetProductUnitsTable()
+        {
+            return clsProductData.GetProductUnitsTable(this.ProductID ?? -1);
+        }
+
+        public DataTable GetSuppliersTable()
+        {
+            return clsProductData.GetSuppliersTable(this.ProductID ?? -1);
+        }
+
+        public DataTable GetInventoriesTable()
+        {
+            return clsProductData.GetInventoriesTable(this.ProductID ?? -1);
+        }
+
+        public DataTable GetStockTransactionsTable()
+        {
+            return clsProductData.GetStockTransactionsTable(this.ProductID ?? -1);
         }
 
         public void ChangeCategory(int newCategoryID)
