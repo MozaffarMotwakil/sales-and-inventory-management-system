@@ -33,7 +33,9 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.SuppliersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.SuppliersToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.SuppliersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
             this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +78,7 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DashboardToolStripButton,
             this.PointOfSelesToolStripButton,
-            this.SuppliersToolStripButton,
+            this.SuppliersToolStripDropDownButton,
             this.InventoryToolStripButton3,
             this.WarehousesAndInventories,
             this.PurchasesToolStripButton,
@@ -119,16 +121,38 @@
             this.PointOfSelesToolStripButton.Visible = false;
             this.PointOfSelesToolStripButton.Click += new System.EventHandler(this.PointOfSelesToolStripButton_Click);
             // 
-            // SuppliersToolStripButton
+            // SuppliersToolStripDropDownButton
             // 
-            this.SuppliersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SuppliersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SuppliersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SuppliersToolStripButton.Image")));
-            this.SuppliersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SuppliersToolStripButton.Name = "SuppliersToolStripButton";
-            this.SuppliersToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.SuppliersToolStripButton.Text = "الموردين";
-            this.SuppliersToolStripButton.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
+            this.SuppliersToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SuppliersToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SuppliersListToolStripMenuItem,
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.SuppliersToolStripDropDownButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("SuppliersToolStripDropDownButton.Image")));
+            this.SuppliersToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SuppliersToolStripDropDownButton.Name = "SuppliersToolStripDropDownButton";
+            this.SuppliersToolStripDropDownButton.Size = new System.Drawing.Size(249, 36);
+            this.SuppliersToolStripDropDownButton.Text = "الموردين";
+            // 
+            // SuppliersListToolStripMenuItem
+            // 
+            this.SuppliersListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplier_32;
+            this.SuppliersListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliersListToolStripMenuItem.Name = "SuppliersListToolStripMenuItem";
+            this.SuppliersListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.SuppliersListToolStripMenuItem.Text = "قائمة الموردين";
+            this.SuppliersListToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
+            // 
+            // SuppliedItemsLogToolStripMenuItem
+            // 
+            this.SuppliedItemsLogToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
             // 
             // InventoryToolStripButton3
             // 
@@ -420,7 +444,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripButton SuppliersToolStripButton;
         private System.Windows.Forms.ToolStripButton UsersToolStripButton;
         private System.Windows.Forms.ToolStripButton InvoicesToolStripButton;
         private System.Windows.Forms.ToolStripButton ActivityLogToolStripButton;
@@ -436,6 +459,9 @@
         private System.Windows.Forms.ToolStripMenuItem WarehousesToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem TransferOperationsToolStripMenuItem;
         private System.Windows.Forms.Timer ClockAndDateTimer;
+        private System.Windows.Forms.ToolStripDropDownButton SuppliersToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem SuppliersListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
     }
 }
 

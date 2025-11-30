@@ -117,9 +117,8 @@
             // 
             // pbPersonImage
             // 
-            this.pbPersonImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbPersonImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.pbPersonImage.Image = global::SIMS.WinForms.Properties.Resources.unknow_male;
             this.pbPersonImage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pbPersonImage.Location = new System.Drawing.Point(4, 3);

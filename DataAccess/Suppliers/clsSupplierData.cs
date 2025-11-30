@@ -204,6 +204,13 @@ namespace DataAccess.Suppliers
                 );
         }
 
+        public static DataTable SuppliedItemsLog()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Suppliers_SuppliedItemsLog"
+                );
+        }
+
         public static DataTable GetAllSupplierNames()
         {
             return clsDataSettings.GetDataTable(
@@ -253,6 +260,13 @@ namespace DataAccess.Suppliers
                 "usp_Suppliers_IsSupplierExistsByPartyID", 
                 "@PartyID",
                 partyID
+                );
+        }
+
+        public static DateTime GetFirstSuppliedItemDate()
+        {
+            return Convert.ToDateTime(
+                clsDataSettings.GetSingleValue("usp_Suppliers_GetFirstSuppliedItemDate")
                 );
         }
 

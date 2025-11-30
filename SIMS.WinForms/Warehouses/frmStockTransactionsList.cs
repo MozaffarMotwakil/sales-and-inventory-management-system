@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Employees;
 using BusinessLogic.Products;
@@ -15,12 +14,6 @@ namespace SIMS.WinForms.Warehouses
 {
     public partial class frmStockTransactionsList : BaseStockTransactionsForm
     {
-        enum enShowMode
-        {
-            Normal,
-            Special
-        }
-
         private static DateTime _FirstStockTransactionDate = clsStockTransactionService.GetFirstStockTransactionDate();
         private enShowMode _ShowMode;
         private string _ProductName;
@@ -44,13 +37,9 @@ namespace SIMS.WinForms.Warehouses
 
         private void frmStockTransactionsList_Load(object sender, EventArgs e)
         {
-            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstStockTransactionDate;
-            dtpTimeFrom.MinDate = dtpTimeTo.MinDate = DateTime.MinValue;
+            clsFormHelper.InitializeDateRangeLimits(dtpDateFrom, dtpDateTo, dtpTimeFrom, dtpTimeTo, _FirstStockTransactionDate);
 
-            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = DateTime.Now;
-            dtpTimeFrom.MaxDate = dtpTimeTo.MaxDate = DateTime.MaxValue;
-
-            cbRange.SelectedIndex = 3;
+            cbRange.SelectedIndex = 6;
 
             cbProduct.SelectedIndex = cbUnit.SelectedIndex = cbWarehouse.SelectedIndex = 
                 cbTransactionType.SelectedIndex = cbResponseEmployee.SelectedIndex = cbTransactionReason.SelectedIndex = 0;
@@ -61,8 +50,14 @@ namespace SIMS.WinForms.Warehouses
             cbTransactionType.Items.AddRange(clsStockTransactionService.GetStockTransactionTypeNames());
             cbResponseEmployee.Items.AddRange(clsEmployeeService.GetEmployeeNames());
             cbTransactionReason.Items.AddRange(clsStockTransactionService.GetStockTransactionReasonNames());
-
-            dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
+            
+            if (_ShowMode == enShowMode.Special)
+            {
+                cbProduct.SelectedItem = _ProductName;
+                cbUnit.SelectedItem = _UnitName;
+                cbWarehouse.SelectedItem = _WarehouseName;
+                btnApplyFilter_Click(sender, e);
+            }
 
             contextMenuStrip.Items.Clear();
 
@@ -76,15 +71,27 @@ namespace SIMS.WinForms.Warehouses
             contextMenuStrip.Items[1].Image = Resources.inventory;
             contextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
 
-            if (_ShowMode == enShowMode.Special)
-            {
-                cbProduct.SelectedItem = _ProductName;
-                cbUnit.SelectedItem = _UnitName;
-                cbWarehouse.SelectedItem = _WarehouseName;
-                btnApplyFilter_Click(sender, e);
-            }
+            dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
+        }
 
-            dgvEntitiesList.CellMouseDown += dgvEntitiesList_CellMouseDown;
+        protected override void UpdateRecordsCountLabels()
+        {
+            base.UpdateRecordsCountLabels();
+            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+                .GetStockTransactionInfo(dgvEntitiesList.DataSource as DataTable);
+
+            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
+            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
+        }
+
+        protected override void UpdateRecordsCountLabels(DataView dataSource)
+        {
+            base.UpdateRecordsCountLabels();
+            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
+                .GetStockTransactionInfo(dataSource);
+
+            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
+            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
         }
 
         private void ShowTransferOperationInfo_Click(object sender, EventArgs e)
@@ -139,7 +146,7 @@ namespace SIMS.WinForms.Warehouses
                     currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.Sales ||
                     currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.SalesReturn)
                 {
-                    int? invoiceID = (int?)GetCellValue(dgvEntitiesList.Columns["SourceInvoiceID"].Index);
+                    int? invoiceID = (int?)base.GetCellValue(dgvEntitiesList.Columns["SourceInvoiceID"].Index);
 
                     if (invoiceID != null)
                     {
@@ -164,32 +171,7 @@ namespace SIMS.WinForms.Warehouses
 
         private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                int transactionType = Convert.ToInt32(dgvEntitiesList.Rows[e.RowIndex].Cells["TransactionTypeID"].Value);
-
-                if (transactionType == 1)
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
-                else if (transactionType == 2)
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
-                }
-                else
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvEntitiesList.DefaultCellStyle.BackColor;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvEntitiesList.DefaultCellStyle.ForeColor;
-                }
-            }
-        }
-
-        protected override void LoadData()
-        {
-            base.LoadData();
-            base.SearchHintMessage = "أدخل رقم الفاتورة";
+            clsFormHelper.ApplyGreenRedRowStyle(dgvEntitiesList, e, "TransactionTypeID", 1, 2);
         }
 
         protected override void dgvEntitiesList_KeyDown(object sender, KeyEventArgs e)
@@ -251,53 +233,34 @@ namespace SIMS.WinForms.Warehouses
             }
         }
 
+        protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            base.contextMenuStrip_Opening(sender, e);
+
+            if (dgvEntitiesList.CurrentRow.Index >= 0)
+            {
+                contextMenuStrip.Items[0].Visible = contextMenuStrip.Items[1].Visible = false;
+
+                clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+                if (currentStockTransaction != null)
+                {
+                    if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
+                    {
+                        contextMenuStrip.Items[1].Visible = true;
+                    }
+                    else
+                    {
+                        contextMenuStrip.Items[0].Visible = true;
+                    }
+                }
+            }
+        }
+
         private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
-                dtpDateTo.Enabled = dtpTimeTo.Enabled = false;
-
-            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstStockTransactionDate;
-
-            DateTime currentTime = DateTime.Now;
-
-            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = currentTime;
-
-            dtpDateFrom.Value = dtpDateTo.Value = dtpTimeFrom.Value =
-                dtpTimeTo.Value = currentTime;
-
-            if (cbRange.SelectedIndex == 0)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-1) ?
-                    _FirstStockTransactionDate :
-                    DateTime.Now.AddDays(-1);
-            }
-            else if (cbRange.SelectedIndex == 1)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-7) ?
-                    _FirstStockTransactionDate :
-                    DateTime.Now.AddDays(-7);
-            }
-            else if (cbRange.SelectedIndex == 2)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstStockTransactionDate > DateTime.Now.AddDays(-30) ?
-                    _FirstStockTransactionDate :
-                    DateTime.Now.AddDays(-30);
-            }
-            else if (cbRange.SelectedIndex == 3)
-            {
-                dtpDateFrom.Value = _FirstStockTransactionDate;
-                dtpTimeFrom.Value = _FirstStockTransactionDate;
-            }
-            else
-            {
-                dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
-                    dtpDateTo.Enabled = dtpTimeTo.Enabled = true;
-
-                dtpDateFrom.Value = currentTime.Date;
-                dtpDateTo.Value = currentTime.Date;
-                dtpTimeFrom.Value = currentTime.Date;
-                dtpTimeTo.Value = currentTime.Date;
-            }
+            clsFormHelper.InitializeAndApplyDateRange(dtpDateFrom, dtpDateTo, dtpTimeFrom, dtpTimeTo,
+                cbRange, _FirstStockTransactionDate);
         }
 
         private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
@@ -355,58 +318,6 @@ namespace SIMS.WinForms.Warehouses
 
             base.Filter = string.Join(" AND ", filters);
             base.ApplySearchFilter();
-        }
-
-        protected override void UpdateRecordsCountLabels()
-        {
-            base.UpdateRecordsCountLabels();
-            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
-                .GetStockTransactionInfo(dgvEntitiesList.DataSource as DataTable);
-
-            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
-            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
-        }
-
-        protected override void UpdateRecordsCountLabels(DataView dataSource)
-        {
-            base.UpdateRecordsCountLabels();
-            clsStockTransactionService.StockTransactionInfo transactionInfo = clsStockTransactionService.CreateInstance()
-                .GetStockTransactionInfo(dataSource);
-
-            lblInTransactions.Text = transactionInfo.InTransactions.ToString();
-            lblOutTransactions.Text = transactionInfo.OutTransactions.ToString();
-        }
-
-        private void dgvEntitiesList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                dgvEntitiesList.Rows[e.RowIndex].Selected = true;
-            }
-        }
-
-        protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-            base.contextMenuStrip_Opening(sender, e);
-
-            if (dgvEntitiesList.CurrentRow.Index >= 0)
-            {
-                contextMenuStrip.Items[0].Visible = contextMenuStrip.Items[1].Visible = false;
-
-                clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
-
-                if (currentStockTransaction != null)
-                {
-                    if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
-                    {
-                        contextMenuStrip.Items[1].Visible = true;
-                    }
-                    else
-                    {
-                        contextMenuStrip.Items[0].Visible = true;
-                    }
-                }
-            }
         }
 
     }

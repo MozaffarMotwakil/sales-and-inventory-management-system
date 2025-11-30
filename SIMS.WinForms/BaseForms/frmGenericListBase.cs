@@ -22,6 +22,8 @@ namespace SIMS.WinForms.BaseForms
             set => lblSearchHintText.Text = value;
         }
 
+        protected bool AllowDeleteRecord;
+
         public bool ShowSearchTextBox
         {
             get => searchPanel.Visible;
@@ -33,6 +35,8 @@ namespace SIMS.WinForms.BaseForms
             InitializeComponent();
             Manager = manager;
             ShowSearchTextBox = showSearchTextBox;
+            AllowDeleteRecord = true;
+            EntityName = "الكيان";
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
         }
@@ -45,7 +49,7 @@ namespace SIMS.WinForms.BaseForms
             if (e.OperationMode == BusinessLogic.enMode.Add && dgvEntitiesList.Rows.Count == 1)
             {
                 ResetColumnsOfDGV();
-                SetOnlyFirstColumnSortable();
+                clsFormHelper.DisableSortableDataGridViewColumns(dgvEntitiesList);
             }
             else if (e.OperationMode == BusinessLogic.enMode.Update && (EntityInfoControl != null && EntityInfoControl.Visible))
             {
@@ -62,7 +66,12 @@ namespace SIMS.WinForms.BaseForms
         protected virtual void EntityDeletedEvent(object sender, EntityDeletedEventArgs e)
         {
             txtSearch.Text = string.Empty;
-            EntityInfoControl.Visible = false;
+
+             if (EntityInfoControl != null)
+             {
+                EntityInfoControl.Visible = false;
+             }
+
             dgvEntitiesList.DataSource = GetDataSource();
             UpdateRecordsCountLabels();
             ApplySearchFilter();
@@ -77,7 +86,7 @@ namespace SIMS.WinForms.BaseForms
 
             LoadData();
             ResetColumnsOfDGV();
-            SetOnlyFirstColumnSortable();
+            clsFormHelper.DisableSortableDataGridViewColumns(dgvEntitiesList);
         }
 
         private void frmGenericListBase_Shown(object sender, EventArgs e)
@@ -213,7 +222,7 @@ namespace SIMS.WinForms.BaseForms
             dgvEntitiesList.ClearSelection();
         }
 
-        private void dgvEntitiesList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvEntitiesList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
             {
@@ -222,7 +231,7 @@ namespace SIMS.WinForms.BaseForms
             }
         }
 
-        protected void HideEntityInfo(object sender, MouseEventArgs e)
+        protected void HideEntityInfoControl(object sender, MouseEventArgs e)
         {
             dgvEntitiesList.ClearSelection();
 
@@ -237,7 +246,7 @@ namespace SIMS.WinForms.BaseForms
             clsFormHelper.PreventContextMenuOnEmptyClick(dgvEntitiesList, e);
         }
 
-        private void ShowSelectedEntityInfo()
+        protected virtual void ShowSelectedEntityInfo()
         {
             if (EntityInfoControl == null)
             {
@@ -260,6 +269,11 @@ namespace SIMS.WinForms.BaseForms
 
         protected virtual void DeleteSelectedEntity()
         {
+            if (!AllowDeleteRecord)
+            {
+                return;
+            }
+
             if (clsFormMessages.Confirm($"هل أنت متأكد من أنك تريد حذف هذا {EntityName} ؟", messageBoxIcon: MessageBoxIcon.Warning, messageBoxDefaultButton: MessageBoxDefaultButton.Button2))
             {
                 try
@@ -276,17 +290,6 @@ namespace SIMS.WinForms.BaseForms
                 catch (Exception ex)
                 {
                     clsFormMessages.ShowError(ex.Message);
-                }
-            }
-        }
-
-        protected void SetOnlyFirstColumnSortable()
-        {
-            foreach (DataGridViewColumn column in dgvEntitiesList.Columns)
-            {
-                if (column.Index != 0)
-                {
-                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
             }
         }
@@ -311,7 +314,7 @@ namespace SIMS.WinForms.BaseForms
             return dgvEntitiesList.Rows[rowIndex].Cells[columnIndex].Value;
         }
 
-        private void frmGenericListBase_FormClosed(object sender, FormClosedEventArgs e)
+        protected virtual void frmGenericListBase_FormClosed(object sender, FormClosedEventArgs e)
         {
             Manager.EntitySaved -= EntitySavedEvent;
             Manager.EntityDeleted -= EntityDeletedEvent;

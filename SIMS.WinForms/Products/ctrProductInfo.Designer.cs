@@ -76,10 +76,12 @@
             this.cbWarehouse = new System.Windows.Forms.ComboBox();
             this.cbTransactionType = new System.Windows.Forms.ComboBox();
             this.dgvStockTransactions = new System.Windows.Forms.DataGridView();
-            this.stockTransactionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.colTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockTransactionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.عرضتفاصيلالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.colTransactionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuppliersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImage)).BeginInit();
@@ -92,7 +94,8 @@
             this.InventoriesContextMenuStrip.SuspendLayout();
             this.pageStockTransactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).BeginInit();
-            this.stockTransactionsContextMenuStrip.SuspendLayout();
+            this.StockTransactionsContextMenuStrip.SuspendLayout();
+            this.SuppliersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -464,6 +467,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSuppliers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSuppliers.ContextMenuStrip = this.SuppliersContextMenuStrip;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -480,6 +484,7 @@
             this.dgvSuppliers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSuppliers.Size = new System.Drawing.Size(824, 212);
             this.dgvSuppliers.TabIndex = 3;
+            this.dgvSuppliers.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliers_CellMouseDown);
             // 
             // pageInventories
             // 
@@ -527,6 +532,7 @@
             this.dgvInventories.Size = new System.Drawing.Size(824, 225);
             this.dgvInventories.TabIndex = 4;
             this.dgvInventories.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInventories_CellMouseDown);
+            this.dgvInventories.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvInventories_RowPrePaint);
             // 
             // InventoriesContextMenuStrip
             // 
@@ -655,7 +661,7 @@
             this.dgvStockTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStockTransactions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colTransactionNo});
-            this.dgvStockTransactions.ContextMenuStrip = this.stockTransactionsContextMenuStrip;
+            this.dgvStockTransactions.ContextMenuStrip = this.StockTransactionsContextMenuStrip;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -674,17 +680,27 @@
             this.dgvStockTransactions.TabIndex = 5;
             this.dgvStockTransactions.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStockTransactions_CellMouseDoubleClick);
             this.dgvStockTransactions.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStockTransactions_CellMouseDown);
+            this.dgvStockTransactions.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvStockTransactions_RowPostPaint);
             this.dgvStockTransactions.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvStockTransactions_RowPrePaint);
             this.dgvStockTransactions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvStockTransactions_KeyDown);
             // 
-            // stockTransactionsContextMenuStrip
+            // colTransactionNo
             // 
-            this.stockTransactionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.colTransactionNo.HeaderText = "م";
+            this.colTransactionNo.Name = "colTransactionNo";
+            this.colTransactionNo.ReadOnly = true;
+            this.colTransactionNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTransactionNo.Width = 40;
+            // 
+            // StockTransactionsContextMenuStrip
+            // 
+            this.StockTransactionsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.عرضتفاصيلالفاتورةToolStripMenuItem,
             this.toolStripMenuItem1});
-            this.stockTransactionsContextMenuStrip.Name = "stockTransactionsContextMenuStrip";
-            this.stockTransactionsContextMenuStrip.Size = new System.Drawing.Size(217, 80);
-            this.stockTransactionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.stockTransactionsContextMenuStrip_Opening);
+            this.StockTransactionsContextMenuStrip.Name = "stockTransactionsContextMenuStrip";
+            this.StockTransactionsContextMenuStrip.Size = new System.Drawing.Size(217, 80);
+            this.StockTransactionsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.stockTransactionsContextMenuStrip_Opening);
             // 
             // عرضتفاصيلالفاتورةToolStripMenuItem
             // 
@@ -704,14 +720,22 @@
             this.toolStripMenuItem1.Text = "عرض تفاصيل عملية النقل";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.ShowTransferOperationInfo_Click);
             // 
-            // colTransactionNo
+            // SuppliersContextMenuStrip
             // 
-            this.colTransactionNo.HeaderText = "م";
-            this.colTransactionNo.Name = "colTransactionNo";
-            this.colTransactionNo.ReadOnly = true;
-            this.colTransactionNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTransactionNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTransactionNo.Width = 40;
+            this.SuppliersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.SuppliersContextMenuStrip.Name = "SuppliersContextMenuStrip";
+            this.SuppliersContextMenuStrip.Size = new System.Drawing.Size(182, 42);
+            this.SuppliersContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.SuppliersContextMenuStrip_Opening);
+            // 
+            // SuppliedItemsLogToolStripMenuItem
+            // 
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(181, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
             // 
             // ctrProductInfo
             // 
@@ -738,7 +762,8 @@
             this.InventoriesContextMenuStrip.ResumeLayout(false);
             this.pageStockTransactions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).EndInit();
-            this.stockTransactionsContextMenuStrip.ResumeLayout(false);
+            this.StockTransactionsContextMenuStrip.ResumeLayout(false);
+            this.SuppliersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -782,11 +807,13 @@
         private System.Windows.Forms.ComboBox cbWarehouse;
         private System.Windows.Forms.ComboBox cbTransactionType;
         private System.Windows.Forms.ComboBox cbRange;
-        private System.Windows.Forms.ContextMenuStrip stockTransactionsContextMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip StockTransactionsContextMenuStrip;
         private System.Windows.Forms.ContextMenuStrip InventoriesContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem عرضتفاصيلالفاتورةToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem تعديلحدإعادةالطلبToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTransactionNo;
+        private System.Windows.Forms.ContextMenuStrip SuppliersContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
     }
 }

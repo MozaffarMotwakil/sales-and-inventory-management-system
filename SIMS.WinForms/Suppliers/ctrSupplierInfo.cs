@@ -42,14 +42,14 @@ namespace SIMS.WinForms.Suppliers
                         ctrOrganizationInfo.Visible = false;
                         ctrPersonInfo.Visible = true;
                         ctrPersonInfo.Person = _Supplier.PartyInfo as clsPerson;
-                        lblNotesTitle.Location = new Point(602, 188);
-                        lblNotes.Location = new Point(87, 188);
+                        lblNotesTitle.Location = new Point(703, 188);
+                        lblNotes.Location = new Point(188, 188);
                         break;
                     case clsParty.enPartyCategory.Organization:
                         ctrPersonInfo.Visible = false;
                         ctrOrganizationInfo.Visible = true;
                         ctrOrganizationInfo.Organization = _Supplier.PartyInfo as clsOrganization;
-                        lblNotesTitle.Location = new Point(lblNotesTitle.Location.X, 142); 
+                        lblNotesTitle.Location = new Point(lblNotesTitle.Location.X, 142);
                         lblNotes.Location = new Point(lblNotes.Location.X, 142);
                         break;
                     default:
@@ -147,7 +147,7 @@ namespace SIMS.WinForms.Suppliers
             dgvPayments.DataSource = _Supplier.GetPayments();
 
             cbPaymentType.SelectedIndex = cbPaymentMethod.SelectedIndex = 0;
-                cbPaymentsRange.SelectedIndex = 4;
+            cbPaymentsRange.SelectedIndex = 4;
 
             if (dgvPayments.Rows.Count > 0)
             {
@@ -163,12 +163,12 @@ namespace SIMS.WinForms.Suppliers
 
                 dgvPayments.DefaultCellStyle.Font =
                     new Font("Tahoma", 8);
-                
+
                 dgvPayments.Columns[0].HeaderText = "معرف المعاملة";
-                dgvPayments.Columns[0].Width = 60;
+                dgvPayments.Columns[0].Width = 70;
 
                 dgvPayments.Columns[1].HeaderText = "تاريخ المعاملة";
-                dgvPayments.Columns[1].Width = 80;
+                dgvPayments.Columns[1].Width = 85;
 
                 dgvPayments.Columns[2].HeaderText = "معرف الفاتورة";
                 dgvPayments.Columns[2].Visible = false;
@@ -177,19 +177,19 @@ namespace SIMS.WinForms.Suppliers
                 dgvPayments.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 dgvPayments.Columns[4].HeaderText = "إجمالي الفاتورة (جنيه)";
-                dgvPayments.Columns[4].Width = 85;
+                dgvPayments.Columns[4].Width = 100;
 
                 dgvPayments.Columns[5].HeaderText = "طريقة الدفع";
-                dgvPayments.Columns[5].Width = 65;
+                dgvPayments.Columns[5].Width = 80;
 
                 dgvPayments.Columns[6].HeaderText = "المبلغ المدفوع (جنيه)";
-                dgvPayments.Columns[6].Width = 80;
+                dgvPayments.Columns[6].Width = 100;
 
                 dgvPayments.Columns[7].HeaderText = "الرصيد التراكمي (جنيه)";
-                dgvPayments.Columns[7].Width = 85;
+                dgvPayments.Columns[7].Width = 100;
 
                 dgvPayments.Columns[8].HeaderText = "المبلغ المتبقي (جنيه)";
-                dgvPayments.Columns[8].Width = 80;
+                dgvPayments.Columns[8].Width = 100;
 
                 dgvPayments.Columns[9].HeaderText = "معرف نوع الفاتورة";
                 dgvPayments.Columns[9].Visible = false;
@@ -205,23 +205,7 @@ namespace SIMS.WinForms.Suppliers
 
         private void dgvPayments_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow currentRow = dgvPayments.Rows[e.RowIndex];
-
-                int invoiceTypeID = Convert.ToInt32(currentRow.Cells["InvoiceTypeID"].Value);
-
-                if (invoiceTypeID == 1)
-                {
-                    currentRow.DefaultCellStyle.BackColor = Color.LightCoral;
-                    currentRow.DefaultCellStyle.ForeColor = Color.DarkRed;
-                }
-                else
-                {
-                    currentRow.DefaultCellStyle.BackColor = Color.LightGreen;
-                    currentRow.DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
-            }
+            clsFormHelper.ApplyGreenRedRowStyle(dgvPayments, e, "InvoiceTypeID", 1, 2);
         }
 
         private void dgvPayments_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -300,7 +284,7 @@ namespace SIMS.WinForms.Suppliers
             }
             else
             {
-                return; 
+                return;
             }
 
             currentDGV.ClearSelection();
@@ -421,6 +405,36 @@ namespace SIMS.WinForms.Suppliers
                 dgvSuppliedProducts.Rows[i].Cells[colTotalReturnPurchases.Index].Value = suppliedProducts.Rows[i]["TotalReturnPurchasesForLast12Month"];
             }
         }
+
+        private void SuppliedItemsLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvSuppliedProducts.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            frmSuppliedItemsLogList suppliedItemsLogList = new frmSuppliedItemsLogList(
+                    _Supplier.PartyInfo.PartyName,
+                    Convert.ToString(dgvSuppliedProducts.SelectedRows[0].Cells[colProduct.Index].Value),
+                    Convert.ToString(dgvSuppliedProducts.SelectedRows[0].Cells[colUnit.Index].Value)
+                    );
+
+            frmMainForm.OpenForm(suppliedItemsLogList);
+        }
+
+        private void SuppliesProductsContextMenuStrip_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvSuppliedProducts, e);
+        }
+
+        private void dgvSuppliedProducts_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
+            {
+                dgvSuppliedProducts.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
         #endregion SuppliedProductsPage
 
         #region InvoicesPage
@@ -449,7 +463,7 @@ namespace SIMS.WinForms.Suppliers
                 dgvInvoices.Columns[2].Visible = false;
 
                 dgvInvoices.Columns[3].HeaderText = "نوع الحركة";
-                dgvInvoices.Columns[3].Width = 75;
+                dgvInvoices.Columns[3].Width = 85;
 
                 dgvInvoices.Columns[4].HeaderText = "رقم الفاتورة";
                 dgvInvoices.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -462,13 +476,13 @@ namespace SIMS.WinForms.Suppliers
                 dgvInvoices.Columns[7].Visible = false;
 
                 dgvInvoices.Columns[8].HeaderText = "الإجمالي النهائي (جنيه)";
-                dgvInvoices.Columns[8].Width = 100;
+                dgvInvoices.Columns[8].Width = 110;
 
                 dgvInvoices.Columns[9].HeaderText = "المبلغ المدفوع (جنيه)";
-                dgvInvoices.Columns[9].Width = 100;
+                dgvInvoices.Columns[9].Width = 110;
 
                 dgvInvoices.Columns[10].HeaderText = "المبلغ المتبقي (جنيه)";
-                dgvInvoices.Columns[10].Width = 100;
+                dgvInvoices.Columns[10].Width = 110;
             }
             else
             {
@@ -483,13 +497,13 @@ namespace SIMS.WinForms.Suppliers
             {
                 DataGridViewRow currentRow = dgvInvoices.Rows[e.RowIndex];
                 currentRow.Cells[0].Value = e.RowIndex + 1;
-                
+
                 int invoiceTypeID = Convert.ToInt32(currentRow.Cells["InvoiceTypeID"].Value);
                 int invoiceStatusID = Convert.ToInt32(currentRow.Cells["InvoiceStatusID"].Value);
 
                 if (invoiceTypeID == 1 && invoiceStatusID == 1)
                 {
-                    currentRow.DefaultCellStyle.BackColor = Color.LightGreen;
+                    currentRow.DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);
                     currentRow.DefaultCellStyle.ForeColor = Color.DarkGreen;
                 }
                 else if (invoiceTypeID == 1 && invoiceStatusID == 2)
@@ -559,7 +573,7 @@ namespace SIMS.WinForms.Suppliers
             {
                 filters.Add($"InvoiceTypeName = '{cbInvoiceType.Text}'");
             }
-            
+
             if (cbPaymentStatus.SelectedIndex != 0)
             {
                 filters.Add($"InvoiceStatusName = '{cbPaymentStatus.Text}'");

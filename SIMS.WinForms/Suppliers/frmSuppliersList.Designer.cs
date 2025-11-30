@@ -506,7 +506,7 @@
             this.personToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.personToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.personToolStripMenuItem.Name = "personToolStripMenuItem";
-            this.personToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
+            this.personToolStripMenuItem.Size = new System.Drawing.Size(116, 30);
             this.personToolStripMenuItem.Text = "شخص";
             this.personToolStripMenuItem.Click += new System.EventHandler(this.personToolStripMenuItem_Click);
             // 
@@ -518,7 +518,7 @@
             this.organizationToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.organizationToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.organizationToolStripMenuItem.Name = "organizationToolStripMenuItem";
-            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(188, 30);
+            this.organizationToolStripMenuItem.Size = new System.Drawing.Size(116, 30);
             this.organizationToolStripMenuItem.Text = "منظمة";
             this.organizationToolStripMenuItem.Click += new System.EventHandler(this.organizationToolStripMenuItem_Click);
             // 
@@ -527,7 +527,7 @@
             this.ctrSupplierInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrSupplierInfo.Name = "ctrSupplierInfo";
             this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrSupplierInfo.Size = new System.Drawing.Size(700, 270);
+            this.ctrSupplierInfo.Size = new System.Drawing.Size(800, 270);
             this.ctrSupplierInfo.Supplier = null;
             this.ctrSupplierInfo.TabIndex = 47;
             this.ctrSupplierInfo.Visible = false;

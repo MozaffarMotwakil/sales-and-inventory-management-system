@@ -9,6 +9,7 @@ using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Properties;
+using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Warehouses;
 
 namespace SIMS.WinForms.Products
@@ -274,6 +275,35 @@ namespace SIMS.WinForms.Products
             }
         }
 
+        private void SuppliedItemsLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvSuppliers.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            frmSuppliedItemsLogList suppliedItemsLogList = new frmSuppliedItemsLogList(
+                    Convert.ToString(dgvSuppliers.SelectedRows[0].Cells["SupplierName"].Value),
+                    _Product.ProductName,
+                    Convert.ToString(dgvSuppliers.SelectedRows[0].Cells["UnitName"].Value)
+                    );
+
+            frmMainForm.OpenForm(suppliedItemsLogList);
+        }
+
+        private void SuppliersContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvSuppliers, e);
+        }
+
+        private void dgvSuppliers_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
+            {
+                dgvSuppliers.Rows[e.RowIndex].Selected = true;
+            }
+        }
+
         private void _LoadDataForInventoriesPage()
         {
             dgvInventories.DataSource = _Product.GetInventoriesTable();
@@ -304,23 +334,31 @@ namespace SIMS.WinForms.Products
                 dgvInventories.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 dgvInventories.Columns[5].HeaderText = "حد إعادة الطلب";
-                dgvInventories.Columns[5].Width = 75;
+                dgvInventories.Columns[5].Width = 60;
 
                 dgvInventories.Columns[6].HeaderText = "الكمية الحالية";
                 dgvInventories.Columns[6].Width = 75;
 
-                dgvInventories.Columns[7].HeaderText = "تكلفة شراء المخزون (جنيه)";
-                dgvInventories.Columns[7].Width = 110;
+                dgvInventories.Columns[7].HeaderText = "الحالة";
+                dgvInventories.Columns[7].Width = 50;
 
-                dgvInventories.Columns[8].HeaderText = "قيمة بيع المخزون (جنيه)";
+                dgvInventories.Columns[8].HeaderText = "تكلفة شراء المخزون (جنيه)";
                 dgvInventories.Columns[8].Width = 110;
 
-                dgvInventories.Columns[9].HeaderText = "الربح المتوقع (جنيه)";
-                dgvInventories.Columns[9].Width = 90;
+                dgvInventories.Columns[9].HeaderText = "قيمة بيع المخزون (جنيه)";
+                dgvInventories.Columns[9].Width = 110;
 
-                dgvInventories.Columns[10].HeaderText = "معدل الربح (%)";
-                dgvInventories.Columns[10].Width = 75;
+                dgvInventories.Columns[10].HeaderText = "الربح المتوقع (جنيه)";
+                dgvInventories.Columns[10].Width = 90;
+
+                dgvInventories.Columns[11].HeaderText = "معدل الربح (%)";
+                dgvInventories.Columns[11].Width = 75;
             }
+        }
+
+        private void dgvInventories_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            clsFormHelper.ApplyGreenYellowRedRowStyle(dgvInventories, e, "InventoryStatus", "آمن", "منخفض", "نفذ");
         }
 
         private void dgvInventories_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -421,22 +459,12 @@ namespace SIMS.WinForms.Products
 
         private void dgvStockTransactions_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                dgvStockTransactions.Rows[e.RowIndex].Cells[colTransactionNo.Index].Value = e.RowIndex + 1;
-                int transactionType = Convert.ToInt32(dgvStockTransactions.Rows[e.RowIndex].Cells["TransactionTypeID"].Value);
-                
-                if (transactionType == 1)
-                {
-                    dgvStockTransactions.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                    dgvStockTransactions.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
-                else
-                {
-                    dgvStockTransactions.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-                    dgvStockTransactions.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
-                }
-            }
+            clsFormHelper.ApplyGreenRedRowStyle(dgvStockTransactions, e, "TransactionTypeID", 1, 2);
+        }
+
+        private void dgvStockTransactions_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            dgvStockTransactions.Rows[e.RowIndex].Cells[colTransactionNo.Index].Value = e.RowIndex + 1;
         }
 
         private void dgvStockTransactions_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -492,7 +520,7 @@ namespace SIMS.WinForms.Products
 
             if (dgvStockTransactions.CurrentRow.Index >= 0)
             {
-                stockTransactionsContextMenuStrip.Items[0].Visible = stockTransactionsContextMenuStrip.Items[1].Visible = false;
+                StockTransactionsContextMenuStrip.Items[0].Visible = StockTransactionsContextMenuStrip.Items[1].Visible = false;
 
                 clsStockTransaction currentStockTransaction = clsStockTransactionService.CreateInstance().Find(_GetSelectedTransactionID());
 
@@ -500,11 +528,11 @@ namespace SIMS.WinForms.Products
                 {
                     if (currentStockTransaction.TransactionReason == clsStockTransaction.enTransactionReason.TransferOperation)
                     {
-                        stockTransactionsContextMenuStrip.Items[1].Visible = true;
+                        StockTransactionsContextMenuStrip.Items[1].Visible = true;
                     }
                     else
                     {
-                        stockTransactionsContextMenuStrip.Items[0].Visible = true;
+                        StockTransactionsContextMenuStrip.Items[0].Visible = true;
                     }
                 }
             }

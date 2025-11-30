@@ -23,6 +23,7 @@ namespace SIMS.WinForms
             PointOfSale,
             ProductsList,
             SuppliersList,
+            SuppliedItemsLog,
             WarehousesList,
             InventoriesList,
             StockTransactionsList,
@@ -38,6 +39,7 @@ namespace SIMS.WinForms
         private Form _PointOfSaleForm;
         private Form _ProductsListForm;
         private Form _SuppliersList;
+        private Form _SuppliedItemsLog;
         private Form _WarehousesList;
         private Form _InventoriesList;
         private Form _StockTransactionsList;
@@ -99,6 +101,11 @@ namespace SIMS.WinForms
         private void SuppliersToolStripButton_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _SuppliersList, enFormType.SuppliersList);
+        }
+
+        private void SuppliedItemsLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _SuppliedItemsLog, enFormType.SuppliedItemsLog);
         }
 
         private void InventoryToolStripButton_Click(object sender, EventArgs e)
@@ -209,6 +216,8 @@ namespace SIMS.WinForms
                     return new frmProductsList();
                 case enFormType.SuppliersList:
                     return new frmSuppliersList();
+                case enFormType.SuppliedItemsLog:
+                    return new frmSuppliedItemsLogList();
                 case enFormType.WarehousesList:
                     return new frmWarehouswList();
                 case enFormType.InventoriesList:
@@ -231,6 +240,6 @@ namespace SIMS.WinForms
                     return new Form();
             }
         }
-
+        
     }
 }

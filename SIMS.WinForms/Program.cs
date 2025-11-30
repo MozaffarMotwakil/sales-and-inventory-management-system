@@ -10,6 +10,12 @@ namespace SIMS.WinForms
 {
     public enum enMode { Add, Edit };
 
+    enum enShowMode
+    {
+        Normal,
+        Special
+    }
+
     internal static class Program
     {
         /// <summary>

@@ -43,6 +43,11 @@ namespace BusinessLogic.Suppliers
             return clsSupplierData.IsSupplierExistsByPartyID(partyID);
         }
 
+        public static DateTime GetFirstSuppliedItemDate()
+        {
+            return clsSupplierData.GetFirstSuppliedItemDate();
+        }
+
         public clsSupplier Find(int supplierID)
         {
             if (supplierID < 1)
@@ -117,6 +122,11 @@ namespace BusinessLogic.Suppliers
         public DataTable GetAll()
         {
             return clsSupplierData.GetAllSuppliers();
+        }
+
+        public DataTable GetAllSuppliedItemsLog()
+        {
+            return clsSupplierData.SuppliedItemsLog();
         }
 
         public static string[] GetAllSupplierNames()

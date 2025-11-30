@@ -83,31 +83,7 @@ namespace SIMS.WinForms.Warehouses
 
         private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                string inventoryStatus = Convert.ToString(dgvEntitiesList.Rows[e.RowIndex].Cells["InventoryStatus"].Value);
-
-                if (inventoryStatus == "آمن")
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
-                }
-                else if (inventoryStatus == "منخفض")
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGoldenrod;
-                }
-                else if (inventoryStatus == "نفذ")
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
-                }
-                else
-                {
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgvEntitiesList.DefaultCellStyle.BackColor;
-                    dgvEntitiesList.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgvEntitiesList.DefaultCellStyle.ForeColor;
-                }
-            }
+            clsFormHelper.ApplyGreenYellowRedRowStyle(dgvEntitiesList, e, "InventoryStatus", "آمن", "منخفض", "نفذ");
         }
 
         private void UpdateReorderQuantity_Click(object sender, EventArgs e)

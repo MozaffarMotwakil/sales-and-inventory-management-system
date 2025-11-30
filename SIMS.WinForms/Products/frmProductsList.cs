@@ -20,7 +20,7 @@ namespace SIMS.WinForms.Products
         protected override void LoadData()
         {
             base.LoadData();
-            base.SearchHintMessage = "أدخل إسم المنتج أو الباركود الخاص بالمنتج";
+            base.SearchHintMessage = "أدخل إسم المنتج أو المورد الأساسي";
             base.EntityName = "المنتج";
             base.EntityInfoControl = ctrProductInfo;
         }
@@ -31,11 +31,11 @@ namespace SIMS.WinForms.Products
 
             if (cbCategory.SelectedIndex == 0)
             {
-                Filter = $"ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%'";
+                Filter = $"ProductName LIKE '%{txtSearch.Text}%' OR MainSupplierName LIKE '%{txtSearch.Text}%'";
             }
             else
             {
-                Filter = $"(ProductName LIKE '%{txtSearch.Text}%' OR Barcode LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
+                Filter = $"(ProductName LIKE '%{txtSearch.Text}%' OR MainSupplierName LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
             }
         }
 

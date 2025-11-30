@@ -62,7 +62,7 @@
             this.lblTotalRecords.TabIndex = 43;
             this.lblTotalRecords.Text = "N/A";
             this.lblTotalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTotalRecords.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
+            this.lblTotalRecords.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfoControl);
             // 
             // lblTotalRecordsText
             // 
@@ -75,7 +75,7 @@
             this.lblTotalRecordsText.TabIndex = 42;
             this.lblTotalRecordsText.Text = "إجمالي عدد السجلات:";
             this.lblTotalRecordsText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTotalRecordsText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
+            this.lblTotalRecordsText.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfoControl);
             // 
             // dgvEntitiesList
             // 
@@ -126,11 +126,11 @@
             this.dgvEntitiesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEntitiesList.Size = new System.Drawing.Size(1088, 370);
             this.dgvEntitiesList.TabIndex = 40;
-            this.dgvEntitiesList.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEntitiesList_CellMouseClick);
             this.dgvEntitiesList.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEntitiesList_CellMouseDoubleClick);
+            this.dgvEntitiesList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEntitiesList_CellMouseDown);
             this.dgvEntitiesList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvEntitiesList_DataBindingComplete);
             this.dgvEntitiesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvEntitiesList_KeyDown);
-            this.dgvEntitiesList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
+            this.dgvEntitiesList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfoControl);
             // 
             // contextMenuStrip
             // 
@@ -241,7 +241,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmGenericListBase_FormClosed);
             this.Load += new System.EventHandler(this.frmGenericListBase_Load);
             this.Shown += new System.EventHandler(this.frmGenericListBase_Shown);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfo);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.HideEntityInfoControl);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEntitiesList)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
             this.searchPanel.ResumeLayout(false);

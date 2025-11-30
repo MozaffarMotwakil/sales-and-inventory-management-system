@@ -37,12 +37,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.pageBasicInfo = new System.Windows.Forms.TabPage();
-            this.ctrPersonInfo = new SIMS.WinForms.Parties.Person.ctrPersonInfo();
             this.lblNotesTitle = new System.Windows.Forms.Label();
             this.lblNotes = new System.Windows.Forms.Label();
-            this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
             this.pageSuppliedProducts = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
             this.dgvSuppliedProducts = new System.Windows.Forms.DataGridView();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastPurchaseDataTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastPurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAveragePurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalReturnPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pageInvoices = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -73,14 +80,10 @@
             this.cbPaymentType = new System.Windows.Forms.ComboBox();
             this.dgvPayments = new System.Windows.Forms.DataGridView();
             this.searchTimer = new System.Windows.Forms.Timer(this.components);
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLastPurchaseDataTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLastPurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAveragePurchasePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalReturnPurchases = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuppliesProductsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctrPersonInfo = new SIMS.WinForms.Parties.Person.ctrPersonInfo();
+            this.ctrOrganizationInfo = new SIMS.WinForms.Parties.Organization.ctrOrganizationInfo();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             this.pageSuppliedProducts.SuspendLayout();
@@ -90,6 +93,7 @@
             this.pagePayments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
+            this.SuppliesProductsContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -103,7 +107,7 @@
             this.tabControl.Name = "tabControl";
             this.tabControl.RightToLeftLayout = true;
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(694, 264);
+            this.tabControl.Size = new System.Drawing.Size(794, 264);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
@@ -117,27 +121,16 @@
             this.pageBasicInfo.Location = new System.Drawing.Point(4, 23);
             this.pageBasicInfo.Name = "pageBasicInfo";
             this.pageBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.pageBasicInfo.Size = new System.Drawing.Size(686, 237);
+            this.pageBasicInfo.Size = new System.Drawing.Size(786, 237);
             this.pageBasicInfo.TabIndex = 0;
             this.pageBasicInfo.Text = "المعلومات الأساسية";
             this.pageBasicInfo.UseVisualStyleBackColor = true;
             // 
-            // ctrPersonInfo
-            // 
-            this.ctrPersonInfo.Location = new System.Drawing.Point(7, 7);
-            this.ctrPersonInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrPersonInfo.Name = "ctrPersonInfo";
-            this.ctrPersonInfo.Person = null;
-            this.ctrPersonInfo.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
-            this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrPersonInfo.Size = new System.Drawing.Size(675, 177);
-            this.ctrPersonInfo.TabIndex = 61;
-            // 
             // lblNotesTitle
             // 
-            this.lblNotesTitle.AutoSize = true;
+            this.lblNotesTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNotesTitle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNotesTitle.Location = new System.Drawing.Point(602, 188);
+            this.lblNotesTitle.Location = new System.Drawing.Point(703, 188);
             this.lblNotesTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNotesTitle.Name = "lblNotesTitle";
             this.lblNotesTitle.Size = new System.Drawing.Size(75, 16);
@@ -146,38 +139,39 @@
             // 
             // lblNotes
             // 
+            this.lblNotes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNotes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotes.ForeColor = System.Drawing.Color.Black;
-            this.lblNotes.Location = new System.Drawing.Point(87, 188);
+            this.lblNotes.Location = new System.Drawing.Point(188, 188);
             this.lblNotes.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(459, 16);
+            this.lblNotes.Size = new System.Drawing.Size(458, 16);
             this.lblNotes.TabIndex = 59;
             this.lblNotes.Text = "N/A";
             this.lblNotes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ctrOrganizationInfo
-            // 
-            this.ctrOrganizationInfo.Location = new System.Drawing.Point(88, 4);
-            this.ctrOrganizationInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrOrganizationInfo.Name = "ctrOrganizationInfo";
-            this.ctrOrganizationInfo.Organization = null;
-            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
-            this.ctrOrganizationInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ctrOrganizationInfo.Size = new System.Drawing.Size(594, 138);
-            this.ctrOrganizationInfo.TabIndex = 58;
-            // 
             // pageSuppliedProducts
             // 
+            this.pageSuppliedProducts.Controls.Add(this.label11);
             this.pageSuppliedProducts.Controls.Add(this.dgvSuppliedProducts);
             this.pageSuppliedProducts.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pageSuppliedProducts.Location = new System.Drawing.Point(4, 23);
             this.pageSuppliedProducts.Name = "pageSuppliedProducts";
             this.pageSuppliedProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.pageSuppliedProducts.Size = new System.Drawing.Size(686, 237);
+            this.pageSuppliedProducts.Size = new System.Drawing.Size(786, 237);
             this.pageSuppliedProducts.TabIndex = 1;
             this.pageSuppliedProducts.Text = "المنتجات الموردة";
             this.pageSuppliedProducts.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Red;
+            this.label11.Location = new System.Drawing.Point(513, 221);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(270, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "- تنويه: المنوسطات و المجاميع محسوبة على آخر 12 شهر";
             // 
             // dgvSuppliedProducts
             // 
@@ -204,6 +198,7 @@
             this.colAveragePurchasePrice,
             this.colTotalPurchases,
             this.colTotalReturnPurchases});
+            this.dgvSuppliedProducts.ContextMenuStrip = this.SuppliesProductsContextMenuStrip;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -218,8 +213,81 @@
             this.dgvSuppliedProducts.ReadOnly = true;
             this.dgvSuppliedProducts.RowHeadersVisible = false;
             this.dgvSuppliedProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSuppliedProducts.Size = new System.Drawing.Size(674, 225);
+            this.dgvSuppliedProducts.Size = new System.Drawing.Size(774, 212);
             this.dgvSuppliedProducts.TabIndex = 0;
+            this.dgvSuppliedProducts.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliedProducts_CellMouseDown);
+            // 
+            // colNo
+            // 
+            this.colNo.HeaderText = "م";
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNo.Width = 40;
+            // 
+            // colProduct
+            // 
+            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.ReadOnly = true;
+            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.ReadOnly = true;
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colUnit.Width = 85;
+            // 
+            // colLastPurchaseDataTime
+            // 
+            this.colLastPurchaseDataTime.HeaderText = "تاريخ آخر شراء";
+            this.colLastPurchaseDataTime.Name = "colLastPurchaseDataTime";
+            this.colLastPurchaseDataTime.ReadOnly = true;
+            this.colLastPurchaseDataTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLastPurchaseDataTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLastPurchaseDataTime.Width = 85;
+            // 
+            // colLastPurchasePrice
+            // 
+            this.colLastPurchasePrice.HeaderText = "سعر آخر شراء (جنيه)";
+            this.colLastPurchasePrice.Name = "colLastPurchasePrice";
+            this.colLastPurchasePrice.ReadOnly = true;
+            this.colLastPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLastPurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLastPurchasePrice.Width = 80;
+            // 
+            // colAveragePurchasePrice
+            // 
+            this.colAveragePurchasePrice.HeaderText = "متوسط سعر الشراء (جنيه)";
+            this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
+            this.colAveragePurchasePrice.ReadOnly = true;
+            this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colAveragePurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colAveragePurchasePrice.Width = 70;
+            // 
+            // colTotalPurchases
+            // 
+            this.colTotalPurchases.HeaderText = "مجموع المشتريات (جنيه)";
+            this.colTotalPurchases.Name = "colTotalPurchases";
+            this.colTotalPurchases.ReadOnly = true;
+            this.colTotalPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTotalPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTotalPurchases.Width = 85;
+            // 
+            // colTotalReturnPurchases
+            // 
+            this.colTotalReturnPurchases.HeaderText = "مجموع المرتجعات (جنيه)";
+            this.colTotalReturnPurchases.Name = "colTotalReturnPurchases";
+            this.colTotalReturnPurchases.ReadOnly = true;
+            this.colTotalReturnPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTotalReturnPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTotalReturnPurchases.Width = 85;
             // 
             // pageInvoices
             // 
@@ -239,7 +307,7 @@
             this.pageInvoices.Location = new System.Drawing.Point(4, 23);
             this.pageInvoices.Name = "pageInvoices";
             this.pageInvoices.Padding = new System.Windows.Forms.Padding(3);
-            this.pageInvoices.Size = new System.Drawing.Size(686, 237);
+            this.pageInvoices.Size = new System.Drawing.Size(786, 237);
             this.pageInvoices.TabIndex = 2;
             this.pageInvoices.Text = "المشتريات/المرتجعات";
             this.pageInvoices.UseVisualStyleBackColor = true;
@@ -248,7 +316,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.Gold;
-            this.label8.Location = new System.Drawing.Point(506, 221);
+            this.label8.Location = new System.Drawing.Point(606, 221);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 13);
             this.label8.TabIndex = 45;
@@ -258,7 +326,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.DimGray;
-            this.label9.Location = new System.Drawing.Point(360, 221);
+            this.label9.Location = new System.Drawing.Point(460, 221);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 13);
             this.label9.TabIndex = 45;
@@ -268,7 +336,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(427, 221);
+            this.label6.Location = new System.Drawing.Point(527, 221);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(73, 13);
             this.label6.TabIndex = 45;
@@ -278,7 +346,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Lime;
-            this.label7.Location = new System.Drawing.Point(588, 221);
+            this.label7.Location = new System.Drawing.Point(688, 221);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(95, 13);
             this.label7.TabIndex = 46;
@@ -288,7 +356,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(103, 17);
+            this.label4.Location = new System.Drawing.Point(203, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(196, 13);
             this.label4.TabIndex = 5;
@@ -300,7 +368,7 @@
             this.label3.ForeColor = System.Drawing.Color.Lime;
             this.label3.Location = new System.Drawing.Point(6, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
+            this.label3.Size = new System.Drawing.Size(191, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "0 جنيه";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -309,7 +377,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 3);
+            this.label2.Location = new System.Drawing.Point(232, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(167, 13);
             this.label2.TabIndex = 4;
@@ -321,7 +389,7 @@
             this.lblAmount.ForeColor = System.Drawing.Color.Red;
             this.lblAmount.Location = new System.Drawing.Point(6, 3);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(91, 13);
+            this.lblAmount.Size = new System.Drawing.Size(191, 13);
             this.lblAmount.TabIndex = 6;
             this.lblAmount.Text = "0 جنيه";
             this.lblAmount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -337,7 +405,7 @@
             "آخر شهر",
             "آخر 6 شهور",
             "أخر 12 شهر"});
-            this.cbInvoicesRange.Location = new System.Drawing.Point(305, 6);
+            this.cbInvoicesRange.Location = new System.Drawing.Point(405, 6);
             this.cbInvoicesRange.Name = "cbInvoicesRange";
             this.cbInvoicesRange.Size = new System.Drawing.Size(121, 21);
             this.cbInvoicesRange.TabIndex = 2;
@@ -353,7 +421,7 @@
             "مدفوعة بالكامل",
             "مدفوعة جزئيا",
             "غير مدفوعة"});
-            this.cbPaymentStatus.Location = new System.Drawing.Point(432, 6);
+            this.cbPaymentStatus.Location = new System.Drawing.Point(532, 6);
             this.cbPaymentStatus.Name = "cbPaymentStatus";
             this.cbPaymentStatus.Size = new System.Drawing.Size(121, 21);
             this.cbPaymentStatus.TabIndex = 1;
@@ -368,7 +436,7 @@
             "كل الحركات",
             "مشتريات",
             "مرتجعات"});
-            this.cbInvoiceType.Location = new System.Drawing.Point(559, 6);
+            this.cbInvoiceType.Location = new System.Drawing.Point(659, 6);
             this.cbInvoiceType.Name = "cbInvoiceType";
             this.cbInvoiceType.Size = new System.Drawing.Size(121, 21);
             this.cbInvoiceType.TabIndex = 0;
@@ -408,7 +476,7 @@
             this.dgvInvoices.RowHeadersVisible = false;
             this.dgvInvoices.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInvoices.Size = new System.Drawing.Size(674, 185);
+            this.dgvInvoices.Size = new System.Drawing.Size(774, 185);
             this.dgvInvoices.TabIndex = 3;
             this.dgvInvoices.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SelectedCurrentRow_CellMouseClick);
             this.dgvInvoices.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ShowInvoiceInfo_CellMouseDoubleClick);
@@ -451,7 +519,7 @@
             this.pagePayments.Location = new System.Drawing.Point(4, 23);
             this.pagePayments.Name = "pagePayments";
             this.pagePayments.Padding = new System.Windows.Forms.Padding(3);
-            this.pagePayments.Size = new System.Drawing.Size(686, 237);
+            this.pagePayments.Size = new System.Drawing.Size(786, 237);
             this.pagePayments.TabIndex = 3;
             this.pagePayments.Text = "المدفوعات/المقبوضات";
             this.pagePayments.UseVisualStyleBackColor = true;
@@ -460,9 +528,9 @@
             // 
             this.lblTotalPayments.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPayments.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalPayments.Location = new System.Drawing.Point(0, 2);
+            this.lblTotalPayments.Location = new System.Drawing.Point(6, 2);
             this.lblTotalPayments.Name = "lblTotalPayments";
-            this.lblTotalPayments.Size = new System.Drawing.Size(104, 13);
+            this.lblTotalPayments.Size = new System.Drawing.Size(139, 13);
             this.lblTotalPayments.TabIndex = 51;
             this.lblTotalPayments.Text = "0 جنيه";
             this.lblTotalPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -471,7 +539,7 @@
             // 
             this.lavel13.AutoSize = true;
             this.lavel13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lavel13.Location = new System.Drawing.Point(101, 2);
+            this.lavel13.Location = new System.Drawing.Point(151, 2);
             this.lavel13.Name = "lavel13";
             this.lavel13.Size = new System.Drawing.Size(64, 13);
             this.lavel13.TabIndex = 8;
@@ -481,9 +549,9 @@
             // 
             this.lblTotalReceipts.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalReceipts.ForeColor = System.Drawing.Color.Lime;
-            this.lblTotalReceipts.Location = new System.Drawing.Point(0, 16);
+            this.lblTotalReceipts.Location = new System.Drawing.Point(5, 16);
             this.lblTotalReceipts.Name = "lblTotalReceipts";
-            this.lblTotalReceipts.Size = new System.Drawing.Size(104, 13);
+            this.lblTotalReceipts.Size = new System.Drawing.Size(139, 13);
             this.lblTotalReceipts.TabIndex = 52;
             this.lblTotalReceipts.Text = "0 جنيه";
             this.lblTotalReceipts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -492,7 +560,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(100, 16);
+            this.label10.Location = new System.Drawing.Point(150, 16);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(65, 13);
             this.label10.TabIndex = 7;
@@ -502,7 +570,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(402, 221);
+            this.label1.Location = new System.Drawing.Point(502, 221);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 47;
@@ -512,7 +580,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(545, 221);
+            this.label5.Location = new System.Drawing.Point(645, 221);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(138, 13);
             this.label5.TabIndex = 48;
@@ -524,7 +592,7 @@
             this.pictureBox.BackColor = System.Drawing.Color.White;
             this.pictureBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pictureBox.Image = global::SIMS.WinForms.Properties.Resources.search_icon;
-            this.pictureBox.Location = new System.Drawing.Point(279, 4);
+            this.pictureBox.Location = new System.Drawing.Point(369, 3);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(30, 26);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -540,7 +608,7 @@
             this.lblSearchHintText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lblSearchHintText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchHintText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSearchHintText.Location = new System.Drawing.Point(172, 9);
+            this.lblSearchHintText.Location = new System.Drawing.Point(262, 8);
             this.lblSearchHintText.Name = "lblSearchHintText";
             this.lblSearchHintText.Size = new System.Drawing.Size(101, 16);
             this.lblSearchHintText.TabIndex = 5;
@@ -553,9 +621,9 @@
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(165, 4);
+            this.txtSearch.Location = new System.Drawing.Point(221, 3);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(114, 26);
+            this.txtSearch.Size = new System.Drawing.Size(148, 26);
             this.txtSearch.TabIndex = 3;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
@@ -571,7 +639,7 @@
             "آخر شهر",
             "آخر 6 شهور",
             "أخر 12 شهر"});
-            this.cbPaymentsRange.Location = new System.Drawing.Point(312, 6);
+            this.cbPaymentsRange.Location = new System.Drawing.Point(405, 6);
             this.cbPaymentsRange.Name = "cbPaymentsRange";
             this.cbPaymentsRange.Size = new System.Drawing.Size(121, 21);
             this.cbPaymentsRange.TabIndex = 2;
@@ -586,7 +654,7 @@
             "كل طرق الدفع",
             "كاش",
             "تحويل بنكي"});
-            this.cbPaymentMethod.Location = new System.Drawing.Point(436, 6);
+            this.cbPaymentMethod.Location = new System.Drawing.Point(532, 6);
             this.cbPaymentMethod.Name = "cbPaymentMethod";
             this.cbPaymentMethod.Size = new System.Drawing.Size(121, 21);
             this.cbPaymentMethod.TabIndex = 1;
@@ -601,7 +669,7 @@
             "كل المعاملات",
             "المدفوعات",
             "المقبوضات"});
-            this.cbPaymentType.Location = new System.Drawing.Point(559, 6);
+            this.cbPaymentType.Location = new System.Drawing.Point(659, 6);
             this.cbPaymentType.Name = "cbPaymentType";
             this.cbPaymentType.Size = new System.Drawing.Size(121, 21);
             this.cbPaymentType.TabIndex = 0;
@@ -638,7 +706,7 @@
             this.dgvPayments.ReadOnly = true;
             this.dgvPayments.RowHeadersVisible = false;
             this.dgvPayments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPayments.Size = new System.Drawing.Size(674, 185);
+            this.dgvPayments.Size = new System.Drawing.Size(774, 185);
             this.dgvPayments.TabIndex = 4;
             this.dgvPayments.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SelectedCurrentRow_CellMouseClick);
             this.dgvPayments.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ShowInvoiceInfo_CellMouseDoubleClick);
@@ -652,77 +720,45 @@
             this.searchTimer.Interval = 300;
             this.searchTimer.Tick += new System.EventHandler(this.searchTimer_Tick);
             // 
-            // colNo
+            // SuppliesProductsContextMenuStrip
             // 
-            this.colNo.HeaderText = "م";
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNo.Width = 40;
+            this.SuppliesProductsContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.SuppliesProductsContextMenuStrip.Name = "SuppliersContextMenuStrip";
+            this.SuppliesProductsContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SuppliesProductsContextMenuStrip.Size = new System.Drawing.Size(182, 42);
+            this.SuppliesProductsContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.SuppliesProductsContextMenuStrip_Opening);
             // 
-            // colProduct
+            // SuppliedItemsLogToolStripMenuItem
             // 
-            this.colProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProduct.HeaderText = "المنتج";
-            this.colProduct.Name = "colProduct";
-            this.colProduct.ReadOnly = true;
-            this.colProduct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(181, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
             // 
-            // colUnit
+            // ctrPersonInfo
             // 
-            this.colUnit.HeaderText = "الوحدة";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.ReadOnly = true;
-            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colUnit.Width = 80;
+            this.ctrPersonInfo.Location = new System.Drawing.Point(7, 7);
+            this.ctrPersonInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrPersonInfo.Name = "ctrPersonInfo";
+            this.ctrPersonInfo.Person = null;
+            this.ctrPersonInfo.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
+            this.ctrPersonInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrPersonInfo.Size = new System.Drawing.Size(775, 177);
+            this.ctrPersonInfo.TabIndex = 62;
             // 
-            // colLastPurchaseDataTime
+            // ctrOrganizationInfo
             // 
-            this.colLastPurchaseDataTime.HeaderText = "تاريخ آخر شراء";
-            this.colLastPurchaseDataTime.Name = "colLastPurchaseDataTime";
-            this.colLastPurchaseDataTime.ReadOnly = true;
-            this.colLastPurchaseDataTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLastPurchaseDataTime.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLastPurchaseDataTime.Width = 80;
-            // 
-            // colLastPurchasePrice
-            // 
-            this.colLastPurchasePrice.HeaderText = "سعر آخر شراء (جنيه)";
-            this.colLastPurchasePrice.Name = "colLastPurchasePrice";
-            this.colLastPurchasePrice.ReadOnly = true;
-            this.colLastPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLastPurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLastPurchasePrice.Width = 80;
-            // 
-            // colAveragePurchasePrice
-            // 
-            this.colAveragePurchasePrice.HeaderText = "متوسط سعر الشراء (جنيه)";
-            this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
-            this.colAveragePurchasePrice.ReadOnly = true;
-            this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colAveragePurchasePrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colAveragePurchasePrice.Width = 70;
-            // 
-            // colTotalPurchases
-            // 
-            this.colTotalPurchases.HeaderText = "مجموع المشتريات (جنيه)";
-            this.colTotalPurchases.Name = "colTotalPurchases";
-            this.colTotalPurchases.ReadOnly = true;
-            this.colTotalPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTotalPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTotalPurchases.Width = 80;
-            // 
-            // colTotalReturnPurchases
-            // 
-            this.colTotalReturnPurchases.HeaderText = "مجموع المرتجعات (جنيه)";
-            this.colTotalReturnPurchases.Name = "colTotalReturnPurchases";
-            this.colTotalReturnPurchases.ReadOnly = true;
-            this.colTotalReturnPurchases.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTotalReturnPurchases.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTotalReturnPurchases.Width = 80;
+            this.ctrOrganizationInfo.Location = new System.Drawing.Point(188, 4);
+            this.ctrOrganizationInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrOrganizationInfo.Name = "ctrOrganizationInfo";
+            this.ctrOrganizationInfo.Organization = null;
+            this.ctrOrganizationInfo.OrganizationType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
+            this.ctrOrganizationInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ctrOrganizationInfo.Size = new System.Drawing.Size(594, 138);
+            this.ctrOrganizationInfo.TabIndex = 58;
             // 
             // ctrSupplierInfo
             // 
@@ -731,12 +767,12 @@
             this.Controls.Add(this.tabControl);
             this.Name = "ctrSupplierInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Size = new System.Drawing.Size(700, 270);
+            this.Size = new System.Drawing.Size(800, 270);
             this.Load += new System.EventHandler(this.ctrSupplierInfo_Load);
             this.tabControl.ResumeLayout(false);
             this.pageBasicInfo.ResumeLayout(false);
-            this.pageBasicInfo.PerformLayout();
             this.pageSuppliedProducts.ResumeLayout(false);
+            this.pageSuppliedProducts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliedProducts)).EndInit();
             this.pageInvoices.ResumeLayout(false);
             this.pageInvoices.PerformLayout();
@@ -745,6 +781,7 @@
             this.pagePayments.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).EndInit();
+            this.SuppliesProductsContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -754,7 +791,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage pageBasicInfo;
         private System.Windows.Forms.TabPage pageSuppliedProducts;
-        private Parties.Person.ctrPersonInfo ctrPersonInfo;
         private System.Windows.Forms.Label lblNotesTitle;
         private System.Windows.Forms.Label lblNotes;
         private Parties.Organization.ctrOrganizationInfo ctrOrganizationInfo;
@@ -789,6 +825,7 @@
         private System.Windows.Forms.Label lblTotalReceipts;
         private System.Windows.Forms.Label lavel13;
         private System.Windows.Forms.Label lblTotalPayments;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnit;
@@ -797,5 +834,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAveragePurchasePrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPurchases;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalReturnPurchases;
+        private Parties.Person.ctrPersonInfo ctrPersonInfo;
+        private System.Windows.Forms.ContextMenuStrip SuppliesProductsContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
     }
 }

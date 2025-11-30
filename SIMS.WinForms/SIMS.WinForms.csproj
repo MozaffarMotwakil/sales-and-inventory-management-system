@@ -288,6 +288,15 @@
     <Compile Include="Suppliers\BaseSuppliersForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Suppliers\BaseSuppliedItemsLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmSuppliedItemsLogList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmSuppliedItemsLogList.Designer.cs">
+      <DependentUpon>frmSuppliedItemsLogList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Suppliers\frmShowSupplierInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -538,6 +547,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\ctrSupplierInfo.resx">
       <DependentUpon>ctrSupplierInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmSuppliedItemsLogList.resx">
+      <DependentUpon>frmSuppliedItemsLogList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\frmAddEditSupplier.ar-SD.resx">
       <DependentUpon>frmAddEditSupplier.cs</DependentUpon>
@@ -814,6 +826,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\new-product.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplied_items_32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

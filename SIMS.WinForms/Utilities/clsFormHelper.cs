@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Parties;
 using SIMS.WinForms.Properties;
@@ -8,32 +8,229 @@ namespace DVLD.WinForms.Utils
 {
     public static class clsFormHelper
     {
-        private static DataGridViewImageColumn CreateEditColumn()
+        public static void InitializeDateRangeLimits(
+            DateTimePicker dtpDateFrom,
+            DateTimePicker dtpDateTo,
+            DateTimePicker dtpTimeFrom,
+            DateTimePicker dtpTimeTo,
+            DateTime firstRecordDate)
         {
-            DataGridViewImageColumn edit = new DataGridViewImageColumn();
-            edit.Name = "edit";
-            edit.HeaderText = "تعديل";
-            edit.Image = Resources.edit;
-            edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            edit.SortMode = DataGridViewColumnSortMode.NotSortable;
-            edit.Resizable = DataGridViewTriState.False;
-            edit.Width = 50;
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = firstRecordDate;
+            dtpTimeFrom.MinDate = dtpTimeTo.MinDate = DateTime.MinValue;
 
-            return edit;
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = DateTime.Now;
+            dtpTimeFrom.MaxDate = dtpTimeTo.MaxDate = DateTime.MaxValue;
         }
 
-        private static DataGridViewImageColumn CreateDeleteColumn()
+        public static void InitializeDateRangeLimits(
+            DateTimePicker dtpDateFrom,
+            DateTimePicker dtpDateTo,
+            DateTime firstRecordDate)
         {
-            DataGridViewImageColumn delete = new DataGridViewImageColumn();
-            delete.Name = "delete";
-            delete.HeaderText = "حذف";
-            delete.Image = Resources.delete;
-            delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
-            delete.SortMode = DataGridViewColumnSortMode.NotSortable;
-            delete.Resizable = DataGridViewTriState.False;
-            delete.Width = 50;
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = firstRecordDate;
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = DateTime.Now;
+        }
 
-            return delete;
+        public static void InitializeAndApplyDateRange(
+            DateTimePicker dtpDateFrom,
+            DateTimePicker dtpDateTo,
+            ComboBox cbRange,
+            DateTime firstRecordDate)
+        {
+            dtpDateFrom.Enabled = dtpDateTo.Enabled = false;
+
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = firstRecordDate;
+
+            DateTime currentTime = DateTime.Now;
+
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = currentTime;
+
+            dtpDateFrom.Value = dtpDateTo.Value = currentTime;
+
+            if (cbRange.SelectedIndex == 0)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddDays(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddDays(-1);
+            }
+            else if (cbRange.SelectedIndex == 1)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddDays(-7) ?
+                    firstRecordDate :
+                    DateTime.Now.AddDays(-7);
+            }
+            else if (cbRange.SelectedIndex == 2)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-1);
+            }
+            else if (cbRange.SelectedIndex == 3)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-3) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-3);
+            }
+            else if (cbRange.SelectedIndex == 4)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-6) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-6);
+            }
+            else if (cbRange.SelectedIndex == 5)
+            {
+                dtpDateFrom.Value = firstRecordDate > DateTime.Now.AddYears(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddYears(-1);
+            }
+            else if (cbRange.SelectedIndex == 6)
+            {
+                dtpDateFrom.Value = firstRecordDate;
+            }
+            else
+            {
+                dtpDateFrom.Enabled = dtpDateTo.Enabled =  true;
+
+                dtpDateFrom.Value = currentTime;
+                dtpDateTo.Value = currentTime;
+            }
+        }
+
+        public static void InitializeAndApplyDateRange(
+            DateTimePicker dtpDateFrom,
+            DateTimePicker dtpDateTo,
+            DateTimePicker dtpTimeFrom,
+            DateTimePicker dtpTimeTo,
+            ComboBox cbRange,
+            DateTime firstRecordDate)
+        {
+            dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
+                dtpDateTo.Enabled = dtpTimeTo.Enabled = false;
+
+            dtpDateFrom.MinDate = dtpDateTo.MinDate = firstRecordDate;
+
+            DateTime currentTime = DateTime.Now;
+
+            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = currentTime;
+
+            dtpDateFrom.Value = dtpDateTo.Value = dtpTimeFrom.Value =
+                dtpTimeTo.Value = currentTime;
+
+            if (cbRange.SelectedIndex == 0)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddDays(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddDays(-1);
+            }
+            else if (cbRange.SelectedIndex == 1)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddDays(-7) ?
+                    firstRecordDate :
+                    DateTime.Now.AddDays(-7);
+            }
+            else if (cbRange.SelectedIndex == 2)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-1);
+            }
+            else if (cbRange.SelectedIndex == 3)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-3) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-3);
+            }
+            else if (cbRange.SelectedIndex == 4)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddMonths(-6) ?
+                    firstRecordDate :
+                    DateTime.Now.AddMonths(-6);
+            }
+            else if (cbRange.SelectedIndex == 5)
+            {
+                dtpDateFrom.Value = dtpTimeFrom.Value = firstRecordDate > DateTime.Now.AddYears(-1) ?
+                    firstRecordDate :
+                    DateTime.Now.AddYears(-1);
+            }
+            else if (cbRange.SelectedIndex == 6)
+            {
+                dtpDateFrom.Value = firstRecordDate;
+                dtpTimeFrom.Value = firstRecordDate;
+            }
+            else
+            {
+                dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
+                    dtpDateTo.Enabled = dtpTimeTo.Enabled = true;
+
+                dtpDateFrom.Value = currentTime.Date;
+                dtpDateTo.Value = currentTime.Date;
+                dtpTimeFrom.Value = currentTime.Date;
+                dtpTimeTo.Value = currentTime.Date;
+            }
+        }
+
+        public static void ApplyGreenRedRowStyle<T>(
+            DataGridView dgv,
+            DataGridViewRowPrePaintEventArgs e,
+            string conditionColumnName,
+            T greenValue,
+            T redValue)
+        {
+            if (e.RowIndex >= 0)
+            {
+                T value = (T)(dgv.Rows[e.RowIndex].Cells[conditionColumnName].Value);
+
+                if (value.Equals(greenValue))
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (value.Equals(redValue))
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+                else
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;
+                }
+            }
+        }
+
+        public static void ApplyGreenYellowRedRowStyle<T>(
+            DataGridView dgv,
+            DataGridViewRowPrePaintEventArgs e,
+            string conditionColumnName,
+            T greenValue,
+            T yellowValue,
+            T redValue)
+        {
+            if (e.RowIndex >= 0)
+            {
+                T value = (T)(dgv.Rows[e.RowIndex].Cells[conditionColumnName].Value);
+
+                if (value.Equals(greenValue))
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(192, 255, 192);
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGreen;
+                }
+                else if (value.Equals(redValue))
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkRed;
+                }
+                else if (value.Equals(yellowValue)) 
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.DarkGoldenrod;
+                }
+                else
+                {
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
+                    dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = dgv.DefaultCellStyle.ForeColor;
+                }
+            }
         }
 
         public static void DisableSortableDataGridViewColumns(DataGridView dataGridView)
@@ -78,8 +275,8 @@ namespace DVLD.WinForms.Utils
 
             if (hit.Type == DataGridViewHitTestType.None || hit.Type == DataGridViewHitTestType.ColumnHeader)
             {
-                e.Cancel = true;
                 dataGridView.ClearSelection();
+                e.Cancel = true;
             }
         }
 
