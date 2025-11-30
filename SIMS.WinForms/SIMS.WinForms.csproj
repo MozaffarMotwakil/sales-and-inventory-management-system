@@ -108,6 +108,15 @@
     <Compile Include="Invoices\frmBaseIssueInvoice.Designer.cs">
       <DependentUpon>frmBaseIssueInvoice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Payments\BasePaymentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payments\frmPaymentsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payments\frmPaymentsList.Designer.cs">
+      <DependentUpon>frmPaymentsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,12 +169,6 @@
     </Compile>
     <Compile Include="Products\ctrProductInfo.Designer.cs">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Invoices\frmInvoicesList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Invoices\frmInvoicesList.Designer.cs">
-      <DependentUpon>frmInvoicesList.cs</DependentUpon>
     </Compile>
     <Compile Include="Invoices\ctrInvoiceInfo.cs">
       <SubType>UserControl</SubType>
@@ -456,6 +459,9 @@
     <EmbeddedResource Include="Invoices\frmShowInvoiceInfo.resx">
       <DependentUpon>frmShowInvoiceInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payments\frmPaymentsList.resx">
+      <DependentUpon>frmPaymentsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -476,9 +482,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Invoices\ctrInvoiceInfo.resx">
       <DependentUpon>ctrInvoiceInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Invoices\frmInvoicesList.resx">
-      <DependentUpon>frmInvoicesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

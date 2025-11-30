@@ -45,7 +45,6 @@
             this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.InvoicesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,6 +57,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.ClockAndDateTimer = new System.Windows.Forms.Timer(this.components);
+            this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
@@ -84,7 +84,7 @@
             this.PurchasesToolStripButton,
             this.ReportsToolStripButton,
             this.UsersToolStripButton,
-            this.InvoicesToolStripButton,
+            this.PaymentsToolStripButton,
             this.ActivityLogToolStripButton,
             this.LogoutToolStripButton});
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
@@ -254,18 +254,6 @@
             this.UsersToolStripButton.Visible = false;
             this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
             // 
-            // InvoicesToolStripButton
-            // 
-            this.InvoicesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InvoicesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InvoicesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InvoicesToolStripButton.Image")));
-            this.InvoicesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InvoicesToolStripButton.Name = "InvoicesToolStripButton";
-            this.InvoicesToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.InvoicesToolStripButton.Text = "Invoices";
-            this.InvoicesToolStripButton.Visible = false;
-            this.InvoicesToolStripButton.Click += new System.EventHandler(this.InvoicesToolStripButton_Click);
-            // 
             // ActivityLogToolStripButton
             // 
             this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -401,6 +389,17 @@
             this.ClockAndDateTimer.Interval = 1000;
             this.ClockAndDateTimer.Tick += new System.EventHandler(this.ClockAndDateTimer_Tick);
             // 
+            // InvoicesToolStripButton
+            // 
+            this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PaymentsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PaymentsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InvoicesToolStripButton.Image")));
+            this.PaymentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PaymentsToolStripButton.Name = "InvoicesToolStripButton";
+            this.PaymentsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
+            this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
+            // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,7 +444,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripButton UsersToolStripButton;
-        private System.Windows.Forms.ToolStripButton InvoicesToolStripButton;
         private System.Windows.Forms.ToolStripButton ActivityLogToolStripButton;
         private System.Windows.Forms.ToolStripButton PurchasesToolStripButton;
         private System.Windows.Forms.Panel panel2;
@@ -462,6 +460,7 @@
         private System.Windows.Forms.ToolStripDropDownButton SuppliersToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem SuppliersListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton PaymentsToolStripButton;
     }
 }
 

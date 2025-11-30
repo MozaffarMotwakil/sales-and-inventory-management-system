@@ -12,6 +12,7 @@ using SIMS.WinForms.Users;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.Purchases;
 using System.Linq;
+using SIMS.WinForms.Payments;
 
 namespace SIMS.WinForms
 {
@@ -31,7 +32,7 @@ namespace SIMS.WinForms
             PurchasesList,
             ReportsDashboard,
             UsersList,
-            InvoicesList,
+            PaymentsList,
             ActivityLog
         };
 
@@ -47,7 +48,7 @@ namespace SIMS.WinForms
         private Form _PurchasesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
-        private Form _InvoicesListForm;
+        private Form _PaymentsListForm;
         private Form _ActivityLogForm;
         private static frmMainForm _Instance;
 
@@ -148,9 +149,9 @@ namespace SIMS.WinForms
             _OpenForm(ref _UsersListForm, enFormType.UsersList);
         }
 
-        private void InvoicesToolStripButton_Click(object sender, EventArgs e)
+        private void PaymentsToolStripButton_Click(object sender, EventArgs e)
         {
-            _OpenForm(ref _InvoicesListForm, enFormType.InvoicesList);
+            _OpenForm(ref _PaymentsListForm, enFormType.PaymentsList);
         }
 
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
@@ -232,8 +233,8 @@ namespace SIMS.WinForms
                     return new frmReportsDashboard();
                 case enFormType.UsersList:
                     return new frmUsersList();
-                case enFormType.InvoicesList:
-                    return new frmInvoicesList();
+                case enFormType.PaymentsList:
+                    return new frmPaymentsList();
                 case enFormType.ActivityLog:
                     return new frmActivityLog();
                 default:
