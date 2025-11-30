@@ -9,6 +9,8 @@ namespace SIMS.WinForms.Products
         public frmProductsList()
         {
             InitializeComponent();
+            this.Text = "قائمة المنتجات";
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmProductsList_Load(object sender, EventArgs e)

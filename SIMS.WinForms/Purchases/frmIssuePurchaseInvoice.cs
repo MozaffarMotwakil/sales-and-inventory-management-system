@@ -21,25 +21,26 @@ namespace SIMS.WinForms.Inventory
 
         private void frmReceiveNewGoods_Load(object sender, EventArgs e)
         {
-            this.vw_SuppliersDetailsTableAdapter.Fill(this.supplierNames.vw_SuppliersDetails);
-            this.productsTableAdapter.Fill(this.productNames.Products);
+            cbSupplier.DataSource = clsSupplierService.GetSuppliersName();
+            cbSupplier.DisplayMember = "SupplierName";
+            cbSupplier.ValueMember = "SupplierID";
 
-            cbParty.SelectedItem = null;
-            cbParty.Text = "إختار المورد";
+            cbSupplier.SelectedItem = null;
+            cbSupplier.Text = "إختار المورد";
 
             clsSupplierService.CreateInstance().EntitySaved += clsSupplier_SupplierSaved;
             dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
             dgvInvoiceLines.EditingControlShowing += dgvInvoiceLines_EditingControlShowing;
             dgvInvoiceLines.CellValidating += dgvInvoiceLines_CellValidating;
             txtInvoiceNo.Validating += txtInvoiceNo_Validating;
-            cbParty.Validating += cbParty_Validating;
-            cbParty.Enter += cbParty_Enter;
-            cbParty.Leave += cbParty_Leave;
+            cbSupplier.Validating += cbSupplier_Validating;
+            cbSupplier.Enter += cbSupplier_Enter;
+            cbSupplier.Leave += cbSupplier_Leave;
         }
 
-        private void cbParty_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        private void cbSupplier_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            clsFormValidation.ValidatingRequiredField(cbParty, errorProvider, "يجب تعيين مورد للفاتورة");
+            clsFormValidation.ValidatingRequiredField(cbSupplier, errorProvider, "يجب تعيين مورد للفاتورة");
         }
 
         protected override clsInvoice GetInvoiceInctance()
@@ -49,26 +50,26 @@ namespace SIMS.WinForms.Inventory
                 dtpInvoiceIssueDate.Value,
                 GetInvoiceStatus(),
                 GetInvoiceLinesFromDGV(),
-                (int)cbParty.SelectedValue,
+                (int)cbSupplier.SelectedValue,
                 (int)cbWarehouse.SelectedValue,
                 GetPaymentMethod(),
                 GetPaymentAmount()
                 );
         }
 
-        private void cbParty_Enter(object sender, EventArgs e)
+        private void cbSupplier_Enter(object sender, EventArgs e)
         {
-            if (cbParty.SelectedIndex == -1)
+            if (cbSupplier.SelectedIndex == -1)
             {
-                cbParty.Text = string.Empty;
+                cbSupplier.Text = string.Empty;
             }
         }
 
-        private void cbParty_Leave(object sender, EventArgs e)
+        private void cbSupplier_Leave(object sender, EventArgs e)
         {
-            if (cbParty.SelectedIndex == -1)
+            if (cbSupplier.SelectedIndex == -1)
             {
-                cbParty.Text = "إختار المورد";
+                cbSupplier.Text = "إختار المورد";
             }
         }
 
@@ -76,7 +77,7 @@ namespace SIMS.WinForms.Inventory
         {
             frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Person);
             addPersonSupplier.ShowDialog();
-            cbParty.Focus();
+            cbSupplier.Focus();
             llAddPersonSupplier.Focus();
         }
 
@@ -84,14 +85,16 @@ namespace SIMS.WinForms.Inventory
         {
             frmAddEditSupplier addEditOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Organization);
             addEditOrganizationSupplier.ShowDialog();
-            cbParty.Focus();
+            cbSupplier.Focus();
             llAddOrganizationSupplier.Focus();
         }
 
         private void clsSupplier_SupplierSaved(object sender, EntitySavedEventArgs e)
         {
-            this.vw_SuppliersDetailsTableAdapter.Fill(this.supplierNames.vw_SuppliersDetails);
-            cbParty.SelectedItem = e.EntityName;
+            cbSupplier.DataSource = clsSupplierService.GetSuppliersName();
+            cbSupplier.DisplayMember = "SupplierName";
+            cbSupplier.ValueMember = "SupplierID";
+            cbSupplier.SelectedItem = e.EntityName;
         }
 
         private void dgvInvoiceLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

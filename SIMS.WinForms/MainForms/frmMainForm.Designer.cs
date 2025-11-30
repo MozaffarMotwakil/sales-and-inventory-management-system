@@ -45,6 +45,7 @@
             this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,12 +53,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblCurrentFormName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCurrentDate = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.ClockAndDateTimer = new System.Windows.Forms.Timer(this.components);
-            this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
@@ -67,8 +69,6 @@
             // 
             // toolStrip
             // 
-            this.toolStrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.Color.DarkCyan;
             this.toolStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -93,7 +93,7 @@
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(250, 468);
+            this.toolStrip.Size = new System.Drawing.Size(250, 556);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -254,6 +254,17 @@
             this.UsersToolStripButton.Visible = false;
             this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
             // 
+            // PaymentsToolStripButton
+            // 
+            this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PaymentsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PaymentsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PaymentsToolStripButton.Image")));
+            this.PaymentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PaymentsToolStripButton.Name = "PaymentsToolStripButton";
+            this.PaymentsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
+            this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
+            // 
             // ActivityLogToolStripButton
             // 
             this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -296,7 +307,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(244, 18);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Admin";
+            this.label2.Text = "المدير العام";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -307,7 +318,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(244, 18);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Mozaffar_Mo";
+            this.label1.Text = "مظفر متوكل خضر سلمان";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // circularPictureBox
@@ -323,28 +334,54 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel2.BackColor = System.Drawing.Color.DarkCyan;
+            this.panel2.Controls.Add(this.lblCurrentFormName);
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lblCurrentDate);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.lblCurrentTime);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(984, 50);
+            this.panel2.Size = new System.Drawing.Size(1386, 50);
             this.panel2.TabIndex = 5;
+            // 
+            // lblCurrentFormName
+            // 
+            this.lblCurrentFormName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentFormName.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentFormName.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentFormName.ForeColor = System.Drawing.Color.White;
+            this.lblCurrentFormName.Location = new System.Drawing.Point(273, 5);
+            this.lblCurrentFormName.Name = "lblCurrentFormName";
+            this.lblCurrentFormName.Size = new System.Drawing.Size(435, 39);
+            this.lblCurrentFormName.TabIndex = 9;
+            this.lblCurrentFormName.Text = "لمحة سريعة";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(714, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 39);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "-";
             // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(303, 0);
+            this.label3.Location = new System.Drawing.Point(751, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(345, 45);
+            this.label3.Size = new System.Drawing.Size(296, 39);
             this.label3.TabIndex = 9;
             this.label3.Text = "سوبرماركت الواحة";
             // 
@@ -362,10 +399,10 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::SIMS.WinForms.Properties.Resources.al_waha_mall;
-            this.pictureBox1.Location = new System.Drawing.Point(651, -18);
+            this.pictureBox1.Location = new System.Drawing.Point(1043, -18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(87, 92);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -378,7 +415,7 @@
             this.lblCurrentTime.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentTime.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentTime.ForeColor = System.Drawing.Color.White;
-            this.lblCurrentTime.Location = new System.Drawing.Point(136, 15);
+            this.lblCurrentTime.Location = new System.Drawing.Point(135, 15);
             this.lblCurrentTime.Name = "lblCurrentTime";
             this.lblCurrentTime.Size = new System.Drawing.Size(132, 23);
             this.lblCurrentTime.TabIndex = 8;
@@ -389,22 +426,11 @@
             this.ClockAndDateTimer.Interval = 1000;
             this.ClockAndDateTimer.Tick += new System.EventHandler(this.ClockAndDateTimer_Tick);
             // 
-            // InvoicesToolStripButton
-            // 
-            this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PaymentsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PaymentsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("InvoicesToolStripButton.Image")));
-            this.PaymentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PaymentsToolStripButton.Name = "InvoicesToolStripButton";
-            this.PaymentsToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
-            this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
-            // 
             // frmMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 700);
+            this.ClientSize = new System.Drawing.Size(1386, 788);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -461,6 +487,8 @@
         private System.Windows.Forms.ToolStripMenuItem SuppliersListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton PaymentsToolStripButton;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label lblCurrentFormName;
     }
 }
 

@@ -31,11 +31,9 @@
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).BeginInit();
             this.gbPaymentInfo.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -55,7 +53,7 @@
             this.gbInvoiceDetails.Controls.SetChildIndex(this.label3, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.label5, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.dtpInvoiceIssueDate, 0);
-            this.gbInvoiceDetails.Controls.SetChildIndex(this.cbParty, 0);
+            this.gbInvoiceDetails.Controls.SetChildIndex(this.cbSupplier, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.cbWarehouse, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.llAddPersonSupplier, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.txtInvoiceNo, 0);
@@ -104,12 +102,10 @@
             this.Text = "إصدار فاتورة مشتريات";
             this.Load += new System.EventHandler(this.frmReceiveNewGoods_Load);
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);
             this.gbInvoiceSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).EndInit();
             this.gbPaymentInfo.ResumeLayout(false);
             this.gbPaymentInfo.PerformLayout();
             this.panel2.ResumeLayout(false);

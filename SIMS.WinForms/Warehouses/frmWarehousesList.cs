@@ -14,6 +14,7 @@ namespace SIMS.WinForms.Warehouses
         {
             InitializeComponent();
             _WarehouseService = clsWarehouseService.CreateInstance();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmWarehousesList_Load(object sender, EventArgs e)

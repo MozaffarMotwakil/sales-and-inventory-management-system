@@ -17,6 +17,7 @@ namespace SIMS.WinForms.Warehouses
         public frmInventoriesList()
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmInventoriesList_Load(object sender, EventArgs e)

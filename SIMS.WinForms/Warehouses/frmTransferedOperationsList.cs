@@ -17,8 +17,9 @@ namespace SIMS.WinForms.Warehouses
 
         public frmTransferedOperationsList()
         {
-            ShowSearchTextBox = false;
             InitializeComponent();
+            ShowSearchTextBox = false;
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmTransferedOperationsList_Load(object sender, EventArgs e)

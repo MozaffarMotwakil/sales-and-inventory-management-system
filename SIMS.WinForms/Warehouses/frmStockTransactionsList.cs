@@ -23,12 +23,14 @@ namespace SIMS.WinForms.Warehouses
         public frmStockTransactionsList()
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
             _ShowMode = enShowMode.Normal;
         }
 
         public frmStockTransactionsList(string productName, string unitName = "كل الوحدات", string warehouseName = "كل المخازن")
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
             _ProductName = productName;
             _UnitName = unitName;
             _WarehouseName = warehouseName;

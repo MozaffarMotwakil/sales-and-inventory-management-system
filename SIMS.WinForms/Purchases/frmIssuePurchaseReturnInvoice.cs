@@ -31,7 +31,7 @@ namespace SIMS.WinForms.Purchases
             }
 
             txtInvoiceNo.Text = _OrginalInvoice.InvoiceNo;
-            cbParty.Text = _OrginalInvoice.GetPartyName();
+            cbSupplier.Text = _OrginalInvoice.GetPartyName();
 
             colDiscountAmount.ReadOnly = colDiscountRate.ReadOnly = colTaxAmount.ReadOnly =
                 colTaxRate.ReadOnly = colUnitPrice.ReadOnly = true;

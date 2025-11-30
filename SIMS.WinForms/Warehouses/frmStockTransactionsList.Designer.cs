@@ -345,7 +345,7 @@
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "";
+            this.Text = "سجل حركات المخزون";
             this.Load += new System.EventHandler(this.frmStockTransactionsList_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.searchPanel, 0);

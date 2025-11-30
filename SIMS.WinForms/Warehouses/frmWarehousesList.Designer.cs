@@ -404,6 +404,7 @@
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "قائمة المخازن";
             this.Load += new System.EventHandler(this.frmWarehousesList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.searchPanel, 0);

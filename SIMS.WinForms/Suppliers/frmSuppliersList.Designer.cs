@@ -544,7 +544,7 @@
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Suppliers List";
+            this.Text = "قائمة الموردين";
             this.Load += new System.EventHandler(this.frmSuppliersList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.searchPanel, 0);

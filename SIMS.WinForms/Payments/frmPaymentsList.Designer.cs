@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbPaymentMethod = new System.Windows.Forms.ComboBox();
+            this.cbResponseEmployee = new System.Windows.Forms.ComboBox();
+            this.cbPaymentReason = new System.Windows.Forms.ComboBox();
+            this.cbPaymentType = new System.Windows.Forms.ComboBox();
             this.dtpDateFrom = new System.Windows.Forms.DateTimePicker();
             this.dtpDateTo = new System.Windows.Forms.DateTimePicker();
             this.cbRange = new System.Windows.Forms.ComboBox();
             this.btnApplyFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbResponseEmployee = new System.Windows.Forms.ComboBox();
-            this.cbPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.cbPaymentType = new System.Windows.Forms.ComboBox();
-            this.cbPaymentReason = new System.Windows.Forms.ComboBox();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel2.SuspendLayout();
@@ -83,6 +83,63 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1112, 57);
             this.panel2.TabIndex = 68;
+            // 
+            // cbPaymentMethod
+            // 
+            this.cbPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPaymentMethod.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPaymentMethod.FormattingEnabled = true;
+            this.cbPaymentMethod.Items.AddRange(new object[] {
+            "كل طرق الدفع",
+            "كاش",
+            "تحويل بنكي"});
+            this.cbPaymentMethod.Location = new System.Drawing.Point(793, 3);
+            this.cbPaymentMethod.Name = "cbPaymentMethod";
+            this.cbPaymentMethod.Size = new System.Drawing.Size(150, 22);
+            this.cbPaymentMethod.TabIndex = 2;
+            // 
+            // cbResponseEmployee
+            // 
+            this.cbResponseEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbResponseEmployee.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbResponseEmployee.FormattingEnabled = true;
+            this.cbResponseEmployee.Items.AddRange(new object[] {
+            "كل الموظفين"});
+            this.cbResponseEmployee.Location = new System.Drawing.Point(562, 20);
+            this.cbResponseEmployee.Name = "cbResponseEmployee";
+            this.cbResponseEmployee.Size = new System.Drawing.Size(225, 22);
+            this.cbResponseEmployee.TabIndex = 4;
+            // 
+            // cbPaymentReason
+            // 
+            this.cbPaymentReason.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPaymentReason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPaymentReason.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPaymentReason.FormattingEnabled = true;
+            this.cbPaymentReason.Items.AddRange(new object[] {
+            "كل الأسباب",
+            "مشتريات",
+            "مرتجعات مشتريات",
+            "مبيعات",
+            "مرتجعات مبيعات"});
+            this.cbPaymentReason.Location = new System.Drawing.Point(949, 30);
+            this.cbPaymentReason.Name = "cbPaymentReason";
+            this.cbPaymentReason.Size = new System.Drawing.Size(150, 22);
+            this.cbPaymentReason.TabIndex = 1;
+            // 
+            // cbPaymentType
+            // 
+            this.cbPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPaymentType.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPaymentType.FormattingEnabled = true;
+            this.cbPaymentType.Items.AddRange(new object[] {
+            "كل المعاملات",
+            "المدفوعات",
+            "المقبوضات"});
+            this.cbPaymentType.Location = new System.Drawing.Point(949, 3);
+            this.cbPaymentType.Name = "cbPaymentType";
+            this.cbPaymentType.Size = new System.Drawing.Size(150, 22);
+            this.cbPaymentType.TabIndex = 0;
             // 
             // dtpDateFrom
             // 
@@ -163,63 +220,6 @@
             this.label2.TabIndex = 72;
             this.label2.Text = "من:";
             // 
-            // cbResponseEmployee
-            // 
-            this.cbResponseEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbResponseEmployee.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbResponseEmployee.FormattingEnabled = true;
-            this.cbResponseEmployee.Items.AddRange(new object[] {
-            "كل الموظفين"});
-            this.cbResponseEmployee.Location = new System.Drawing.Point(562, 20);
-            this.cbResponseEmployee.Name = "cbResponseEmployee";
-            this.cbResponseEmployee.Size = new System.Drawing.Size(225, 22);
-            this.cbResponseEmployee.TabIndex = 4;
-            // 
-            // cbPaymentMethod
-            // 
-            this.cbPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPaymentMethod.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPaymentMethod.FormattingEnabled = true;
-            this.cbPaymentMethod.Items.AddRange(new object[] {
-            "كل طرق الدفع",
-            "كاش",
-            "تحويل بنكي"});
-            this.cbPaymentMethod.Location = new System.Drawing.Point(793, 3);
-            this.cbPaymentMethod.Name = "cbPaymentMethod";
-            this.cbPaymentMethod.Size = new System.Drawing.Size(150, 22);
-            this.cbPaymentMethod.TabIndex = 2;
-            // 
-            // cbPaymentType
-            // 
-            this.cbPaymentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPaymentType.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPaymentType.FormattingEnabled = true;
-            this.cbPaymentType.Items.AddRange(new object[] {
-            "كل المعاملات",
-            "المصروفات",
-            "المقبوضات"});
-            this.cbPaymentType.Location = new System.Drawing.Point(949, 3);
-            this.cbPaymentType.Name = "cbPaymentType";
-            this.cbPaymentType.Size = new System.Drawing.Size(150, 22);
-            this.cbPaymentType.TabIndex = 0;
-            // 
-            // cbPaymentReason
-            // 
-            this.cbPaymentReason.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbPaymentReason.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbPaymentReason.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPaymentReason.FormattingEnabled = true;
-            this.cbPaymentReason.Items.AddRange(new object[] {
-            "كل الأسباب",
-            "مشتريات",
-            "مرتجعات مشتريات",
-            "مبيعات",
-            "مرتجعات مبيعات"});
-            this.cbPaymentReason.Location = new System.Drawing.Point(949, 30);
-            this.cbPaymentReason.Name = "cbPaymentReason";
-            this.cbPaymentReason.Size = new System.Drawing.Size(150, 22);
-            this.cbPaymentReason.TabIndex = 1;
-            // 
             // frmPaymentsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,7 +230,7 @@
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "المدفوعات/المقبوضات";
             this.Load += new System.EventHandler(this.frmPaymentsList_Load);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);

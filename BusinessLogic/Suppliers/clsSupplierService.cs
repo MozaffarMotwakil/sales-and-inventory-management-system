@@ -129,6 +129,11 @@ namespace BusinessLogic.Suppliers
             return clsSupplierData.SuppliedItemsLog();
         }
 
+        public static DataTable GetSuppliersName()
+        {
+            return clsSupplierData.GetAllSupplierNames();
+        }
+
         public static string[] GetAllSupplierNames()
         {
             DataTable table = clsSupplierData.GetAllSupplierNames();

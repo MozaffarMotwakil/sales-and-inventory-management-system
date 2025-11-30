@@ -227,8 +227,9 @@
             this.Controls.Add(this.panel2);
             this.Name = "frmTransferedOperationsList";
             this.ShowIcon = false;
+            this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "سجل عمليات النقل";
             this.Load += new System.EventHandler(this.frmTransferedOperationsList_Load);
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);

@@ -15,6 +15,7 @@ namespace SIMS.WinForms.Dashboard
         public frmDashboard()
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
     }
 }

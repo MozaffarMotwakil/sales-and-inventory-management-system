@@ -16,6 +16,7 @@ namespace SIMS.WinForms.Payments
         public frmPaymentsList()
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         protected override void LoadData()
@@ -72,7 +73,7 @@ namespace SIMS.WinForms.Payments
 
         private void dgvEntitiesList_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            clsFormHelper.ApplyGreenRedRowStyle(dgvEntitiesList, e, "PaymentType", "قبض", "صرف");
+            clsFormHelper.ApplyGreenRedRowStyle(dgvEntitiesList, e, "PaymentType", "قبض", "دفع");
         }
 
         private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
@@ -103,7 +104,7 @@ namespace SIMS.WinForms.Payments
 
             if (cbPaymentType.SelectedIndex != 0)
             {
-                filters.Add($"PaymentType = '{(cbPaymentType.Text == "المصروفات" ? "صرف" : "قبض")}'");
+                filters.Add($"PaymentType = '{(cbPaymentType.Text == "المدفوعات" ? "دفع" : "قبض")}'");
             }
 
             if (cbPaymentReason.SelectedIndex != 0)

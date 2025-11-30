@@ -10,6 +10,7 @@ namespace SIMS.WinForms.Purchases
         public frmPurchasesList()
         {
             InitializeComponent();
+            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void issuePurchaseInvoiceToolStripButton_Click(object sender, EventArgs e)

@@ -117,11 +117,6 @@
     <Compile Include="Payments\frmPaymentsList.Designer.cs">
       <DependentUpon>frmPaymentsList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProductNames.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Products\BaseProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,11 +277,6 @@
     </Compile>
     <Compile Include="Sales\frmPointOfSale.Designer.cs">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SupplierNames.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SupplierNames.xsd</DependentUpon>
     </Compile>
     <Compile Include="Suppliers\BaseSuppliersForm.cs">
       <SubType>Form</SubType>
@@ -618,17 +608,6 @@
       <DependentUpon>ctrWarehouseInfo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="ProductNames.xsc">
-      <DependentUpon>ProductNames.xsd</DependentUpon>
-    </None>
-    <None Include="ProductNames.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProductNames.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ProductNames.xss">
-      <DependentUpon>ProductNames.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -638,17 +617,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SupplierNames.xsc">
-      <DependentUpon>SupplierNames.xsd</DependentUpon>
-    </None>
-    <None Include="SupplierNames.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SupplierNames.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SupplierNames.xss">
-      <DependentUpon>SupplierNames.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

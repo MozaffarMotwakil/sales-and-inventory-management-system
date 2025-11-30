@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).BeginInit();
             this.gbPaymentInfo.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -50,7 +48,7 @@
             // 
             // cbParty
             // 
-            this.cbParty.Enabled = false;
+            this.cbSupplier.Enabled = false;
             // 
             // dtpInvoiceIssueDate
             // 
@@ -71,12 +69,10 @@
             this.Name = "frmIssuePurchaseReturnInvoice";
             this.Load += new System.EventHandler(this.frmReturnPurchaseInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);
             this.gbInvoiceSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).EndInit();
             this.gbPaymentInfo.ResumeLayout(false);
             this.gbPaymentInfo.PerformLayout();
             this.panel2.ResumeLayout(false);

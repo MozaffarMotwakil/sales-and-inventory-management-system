@@ -47,18 +47,14 @@
             this.lblTotalDiscount = new System.Windows.Forms.Label();
             this.warehousesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label15 = new System.Windows.Forms.Label();
-            this.productsTableAdapter = new SIMS.WinForms.ProductNamesTableAdapters.ProductsTableAdapter();
             this.vwSuppliersDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.supplierNames = new SIMS.WinForms.SupplierNames();
             this.lblTotalTax = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.gbInvoiceSummary = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.lblTotalGrandTotal = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.vw_SuppliersDetailsTableAdapter = new SIMS.WinForms.SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter();
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productNames = new SIMS.WinForms.ProductNames();
             this.btnCancle = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.gbInvoiceLines = new System.Windows.Forms.GroupBox();
@@ -93,17 +89,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpInvoiceIssueDate = new System.Windows.Forms.DateTimePicker();
-            this.cbParty = new System.Windows.Forms.ComboBox();
+            this.cbSupplier = new System.Windows.Forms.ComboBox();
             this.cbWarehouse = new System.Windows.Forms.ComboBox();
             this.txtInvoiceNo = new System.Windows.Forms.TextBox();
             this.gbInvoiceDetails = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).BeginInit();
             this.gbInvoiceLines.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
             this.gbPaymentInfo.SuspendLayout();
@@ -174,21 +168,6 @@
             this.label15.Size = new System.Drawing.Size(98, 16);
             this.label15.TabIndex = 12;
             this.label15.Text = "إجمالي الخصم";
-            // 
-            // productsTableAdapter
-            // 
-            this.productsTableAdapter.ClearBeforeFill = true;
-            // 
-            // vwSuppliersDetailsBindingSource
-            // 
-            this.vwSuppliersDetailsBindingSource.DataMember = "vw_SuppliersDetails";
-            this.vwSuppliersDetailsBindingSource.DataSource = this.supplierNames;
-            this.vwSuppliersDetailsBindingSource.Sort = "PartyName";
-            // 
-            // supplierNames
-            // 
-            this.supplierNames.DataSetName = "SupplierNames";
-            this.supplierNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblTotalTax
             // 
@@ -267,21 +246,6 @@
             // 
             this.errorProvider.ContainerControl = this;
             this.errorProvider.RightToLeft = true;
-            // 
-            // vw_SuppliersDetailsTableAdapter
-            // 
-            this.vw_SuppliersDetailsTableAdapter.ClearBeforeFill = true;
-            // 
-            // productsBindingSource
-            // 
-            this.productsBindingSource.DataMember = "Products";
-            this.productsBindingSource.DataSource = this.productNames;
-            this.productsBindingSource.Sort = "ProductName";
-            // 
-            // productNames
-            // 
-            this.productNames.DataSetName = "ProductNames";
-            this.productNames.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnCancle
             // 
@@ -708,19 +672,19 @@
             // 
             // cbParty
             // 
-            this.cbParty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbParty.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbParty.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbParty.DataSource = this.vwSuppliersDetailsBindingSource;
-            this.cbParty.DisplayMember = "PartyName";
-            this.cbParty.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbParty.FormattingEnabled = true;
-            this.cbParty.Location = new System.Drawing.Point(710, 86);
-            this.cbParty.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.cbParty.Name = "cbParty";
-            this.cbParty.Size = new System.Drawing.Size(294, 24);
-            this.cbParty.TabIndex = 4;
-            this.cbParty.ValueMember = "SupplierID";
+            this.cbSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSupplier.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbSupplier.DataSource = this.vwSuppliersDetailsBindingSource;
+            this.cbSupplier.DisplayMember = "PartyName";
+            this.cbSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSupplier.FormattingEnabled = true;
+            this.cbSupplier.Location = new System.Drawing.Point(710, 86);
+            this.cbSupplier.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.cbSupplier.Name = "cbParty";
+            this.cbSupplier.Size = new System.Drawing.Size(294, 24);
+            this.cbSupplier.TabIndex = 4;
+            this.cbSupplier.ValueMember = "SupplierID";
             // 
             // cbWarehouse
             // 
@@ -751,7 +715,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbInvoiceDetails.Controls.Add(this.txtInvoiceNo);
             this.gbInvoiceDetails.Controls.Add(this.cbWarehouse);
-            this.gbInvoiceDetails.Controls.Add(this.cbParty);
+            this.gbInvoiceDetails.Controls.Add(this.cbSupplier);
             this.gbInvoiceDetails.Controls.Add(this.dtpInvoiceIssueDate);
             this.gbInvoiceDetails.Controls.Add(this.label5);
             this.gbInvoiceDetails.Controls.Add(this.label3);
@@ -789,12 +753,10 @@
             this.Load += new System.EventHandler(this.frmBaseIssueInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.warehousesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierNames)).EndInit();
             this.gbInvoiceSummary.ResumeLayout(false);
             this.gbInvoiceSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productNames)).EndInit();
             this.gbInvoiceLines.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).EndInit();
             this.gbPaymentInfo.ResumeLayout(false);
@@ -817,9 +779,7 @@
         protected System.Windows.Forms.Label lblTotalDiscount;
         protected System.Windows.Forms.BindingSource warehousesBindingSource;
         protected System.Windows.Forms.Label label15;
-        protected ProductNamesTableAdapters.ProductsTableAdapter productsTableAdapter;
         protected System.Windows.Forms.BindingSource vwSuppliersDetailsBindingSource;
-        protected SupplierNames supplierNames;
         protected System.Windows.Forms.Label lblTotalTax;
         protected System.Windows.Forms.Label label13;
         protected System.Windows.Forms.GroupBox gbInvoiceSummary;
@@ -827,10 +787,8 @@
         protected System.Windows.Forms.Label lblTotalGrandTotal;
         protected System.Windows.Forms.ErrorProvider errorProvider;
         protected System.Windows.Forms.BindingSource productsBindingSource;
-        protected ProductNames productNames;
         protected System.Windows.Forms.Button btnCancle;
         protected System.Windows.Forms.Button btnSave;
-        protected SupplierNamesTableAdapters.vw_SuppliersDetailsTableAdapter vw_SuppliersDetailsTableAdapter;
         protected System.Windows.Forms.GroupBox gbInvoiceLines;
         protected System.Windows.Forms.DataGridView dgvInvoiceLines;
         protected System.Windows.Forms.GroupBox gbPaymentInfo;
@@ -848,7 +806,7 @@
         protected System.Windows.Forms.GroupBox gbInvoiceDetails;
         protected System.Windows.Forms.TextBox txtInvoiceNo;
         protected System.Windows.Forms.ComboBox cbWarehouse;
-        protected System.Windows.Forms.ComboBox cbParty;
+        protected System.Windows.Forms.ComboBox cbSupplier;
         protected System.Windows.Forms.DateTimePicker dtpInvoiceIssueDate;
         protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.Label label3;

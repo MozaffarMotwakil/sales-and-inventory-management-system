@@ -241,7 +241,7 @@
             this.ShowIcon = false;
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "سجل التوريد";
             this.Load += new System.EventHandler(this.frmSuppliedItemsLogList_Load);
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);
