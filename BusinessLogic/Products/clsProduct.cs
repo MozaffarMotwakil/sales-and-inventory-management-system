@@ -30,7 +30,7 @@ namespace BusinessLogic.Products
         public enMode Mode { get; private set; }
 
         public clsProduct(string productName, string barcode, int categoryID, int mainUnitID, List<clsProductUnitConversion> unitConversions,
-            string mainSupplierName, float sellingPrice, string description, string imagePath)
+            int? mainSupplierID, float sellingPrice, string description, string imagePath)
         {
             ProductID = null;
             ProductName = productName;
@@ -38,7 +38,7 @@ namespace BusinessLogic.Products
             CategoryInfo = clsCategory.Find(categoryID);
             MainUnitInfo = clsUnit.Find(mainUnitID);
             UnitConversions = unitConversions;
-            MainSupplierInfo = clsSupplierService.CreateInstance().Find(mainSupplierName);
+            MainSupplierInfo = clsSupplierService.CreateInstance().Find(mainSupplierID ?? -1);
             SellingPrice = sellingPrice;
             Description = description;
             ImagePath = imagePath;

@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Linq;
+using BusinessLogic.Utilities;
 using DataAccess.Products;
 using DTOs.Products;
 
@@ -22,13 +23,17 @@ namespace BusinessLogic.Products
             return unitDTO is null ? null : new clsUnit(unitDTO);
         }
 
-        public static object[] GetAllUnitNames()
+        public static DataTable GetUnitsList()
         {
-            return clsProductUnitData.GetAllProductUnitNames()
-                .Rows
-                .Cast<DataRow>()
-                .Select(row => row[0])
-                .ToArray();
+            return clsProductUnitData.GetUnitsList();
+        }
+
+        public static string[] GetAllUnitNames()
+        {
+            return clsUtils.GetColumnStringArray(
+                clsProductUnitData.GetUnitsList(),
+                "UnitID"
+                );
         }
 
     }

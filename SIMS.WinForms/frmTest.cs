@@ -16,5 +16,30 @@ namespace SIMS.WinForms
         {
             InitializeComponent();
         }
+
+        private void txtProductName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbMainSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void llAddPersonSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void llAddOrganizationSupplier_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }

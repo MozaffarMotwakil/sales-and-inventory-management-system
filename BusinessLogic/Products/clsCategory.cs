@@ -1,5 +1,9 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Linq;
+using BusinessLogic.Utilities;
 using DataAccess.Products;
+using DataAccess.Warehouses;
 using DTOs.Products;
 
 namespace BusinessLogic.Products
@@ -21,17 +25,17 @@ namespace BusinessLogic.Products
             return categoryDTO is null ? null : new clsCategory(categoryDTO);
         }
 
+        public static DataTable GetCategoryList()
+        {
+            return clsProductCategoryData.GetCategoriesList();
+        }
+
         public static string[] GetCategoryNames()
         {
-            DataTable categoryTable = clsProductCategoryData.GetAllProductCategoryNames();
-            string[] categoryNames = new string[categoryTable.Rows.Count];
-
-            for (int i = 0; i < categoryNames.Length; i++)
-            {
-                categoryNames[i] = categoryTable.Rows[i][0].ToString();
-            }
-
-            return categoryNames;
+            return clsUtils.GetColumnStringArray(
+                clsProductCategoryData.GetCategoriesList(),
+                "CategoryName"
+                );
         }
 
     }

@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Parties;
+using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
 using DataAccess.Suppliers;
 using DTOs.Suppliers;
@@ -129,22 +130,17 @@ namespace BusinessLogic.Suppliers
             return clsSupplierData.SuppliedItemsLog();
         }
 
-        public static DataTable GetSuppliersName()
+        public static DataTable GetSuppliersList()
         {
-            return clsSupplierData.GetAllSupplierNames();
+            return clsSupplierData.GetSuppliersList();
         }
 
         public static string[] GetAllSupplierNames()
         {
-            DataTable table = clsSupplierData.GetAllSupplierNames();
-            string[] supplierNames = new string[table.Rows.Count];
-
-            for (int i = 0; i < supplierNames.Length; i++)
-            {
-                supplierNames[i] = table.Rows[i][0].ToString();
-            }
-
-            return supplierNames;
+            return clsUtils.GetColumnStringArray(
+                clsSupplierData.GetSuppliersList(),
+                "SupplierName"
+                );
         }
 
         public clsValidationResult Save(clsSupplier supplier)

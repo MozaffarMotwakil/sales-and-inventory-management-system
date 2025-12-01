@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
 using DataAccess.Warehouses;
 using DTOs.Warehouses;
@@ -90,11 +91,10 @@ namespace BusinessLogic.Warehouses
 
         public static string[] GetWarehouseNames()
         {
-            return clsWarehouseData.GetWarehousesList()
-                .Rows
-                .Cast<DataRow>()
-                .Select(row => Convert.ToString(row["WarehouseName"]))
-                .ToArray();
+            return clsUtils.GetColumnStringArray(
+                clsWarehouseData.GetWarehousesList(), 
+                "WarehouseName"
+                );
         }
 
         public bool MarkAsActive(clsWarehouse warehouse)

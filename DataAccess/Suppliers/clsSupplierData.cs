@@ -211,10 +211,10 @@ namespace DataAccess.Suppliers
                 );
         }
 
-        public static DataTable GetAllSupplierNames()
+        public static DataTable GetSuppliersList()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Suppliers_GetAllSupplierNames"
+                "usp_Suppliers_GetSuppliersList"
                 );
         }
 

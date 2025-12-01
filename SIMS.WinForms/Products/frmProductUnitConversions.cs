@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Products;
@@ -15,26 +17,21 @@ namespace SIMS.WinForms.Products
         public string BaseUnit { get; set; }
         public enMode FormMode { get; set; }
 
-        private HashSet<string> _SelectedUnits = new HashSet<string>();
-        private string _PreviousUnitValue = null;
-        private List<string> _AllUnits = new List<string>();
-        private bool _IsSaved = false;
+        private int _ErrorColumnIndex;
         private bool _FirstTimeEdit = true;
-        private Form _Sender;
+        private bool _IsSaved = false;
 
-        public frmProductUnitConversions(Form sender)
+        public frmProductUnitConversions()
         {
             InitializeComponent();
             UnitConversions = new List<clsProductUnitConversion>();
-            _Sender = sender;
             FormMode = enMode.Add;
         }
 
-        public frmProductUnitConversions(Form sender, List<clsProductUnitConversion> unitConversionsde)
+        public frmProductUnitConversions(List<clsProductUnitConversion> unitConversionsde)
         {
             InitializeComponent();
             UnitConversions = unitConversionsde;
-            _Sender = sender;
             FormMode = enMode.Edit;
         }
 
@@ -50,18 +47,16 @@ namespace SIMS.WinForms.Products
             this.Text = this.Text.Replace("اسم المنتج", ProductName);
             lblBaseUnitName.Text = BaseUnit;
 
-            colUnitConversion.Items.Clear();
-            colUnitConversion.Items.AddRange(clsUnit.GetAllUnitNames());
-            _SelectedUnits.Add(BaseUnit);
-
-            _AllUnits.Clear();
-
-            foreach (var item in colUnitConversion.Items)
-            {
-                _AllUnits.Add(item.ToString());
-            }
-
             dgvUnitConversions.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
+
+            colUnitConversion.DataSource = clsUnit.GetUnitsList()
+                .Rows
+                .Cast<DataRow>()
+                .Where(row => !row["UnitName"].Equals(BaseUnit))
+                .CopyToDataTable();
+
+            colUnitConversion.DisplayMember = "UnitName";
+            colUnitConversion.ValueMember = "UnitID";
 
             if (FormMode is enMode.Edit && _FirstTimeEdit)
             {
@@ -78,26 +73,21 @@ namespace SIMS.WinForms.Products
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == dgvUnitConversions.Columns[colDelete.Index].Index && (e.RowIndex != -1 || e.ColumnIndex != -1) && !dgvUnitConversions.Rows[e.RowIndex].IsNewRow)
+            if (e.ColumnIndex == colDelete.Index && (e.RowIndex != -1 || e.ColumnIndex != -1) && !dgvUnitConversions.Rows[e.RowIndex].IsNewRow)
             {
-                DialogResult result = MessageBox.Show("هل أنت متأكد من أنك تريد حذف معامل التحويل هذا ؟", "تأكيد",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-
-                if (result == DialogResult.Yes)
-                {
-                    string deletedValue = dgvUnitConversions.Rows[e.RowIndex].Cells[colUnitConversion.Index].Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(deletedValue))
-                    {
-                        _SelectedUnits.Remove(deletedValue); 
-                    }
-
-                    dgvUnitConversions.Rows.RemoveAt(e.RowIndex);
-                }
-
-                dgvUnitConversions.ClearSelection();
+                _DeleteRow(e.RowIndex);
             }
+        }
 
+        private void dgvUnitConversions_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (dgvUnitConversions.CurrentCell.ColumnIndex == colDelete.Index && (dgvUnitConversions.CurrentRow.Index != -1 || dgvUnitConversions.CurrentCell.ColumnIndex != -1) && !dgvUnitConversions.Rows[dgvUnitConversions.CurrentRow.Index].IsNewRow)
+                {
+                    _DeleteRow(dgvUnitConversions.CurrentRow.Index);
+                }
+            }
         }
 
         private void dgvUnitConversions_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -118,7 +108,7 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colUnitConversion.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    e.Cancel = true;
+                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إختيار نوع الوحدة البديلة";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
                     SystemSounds.Asterisk.Play();
@@ -135,13 +125,14 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colConversionFactor.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    e.Cancel = true;
+                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون معامل التحويل فارغا";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
                     SystemSounds.Asterisk.Play();
                 }
                 else if (!_IsEmptyCell(e.RowIndex, colConversionFactor.Index) && !_IsValidFactor(e.RowIndex))
                 {
+                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "معامل التحويل يجب أن يكون رقماً صحيحاً وأكبر من 1";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
@@ -159,18 +150,20 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colSellingPrice.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    e.Cancel = true;
+                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون حقل سعر البيع فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
                 else if (!decimal.TryParse(dgvUnitConversions.Rows[e.RowIndex].Cells[colSellingPrice.Index].EditedFormattedValue?.ToString(), out decimal sellingPrice) && !_IsEmptyCell(e.RowIndex, colSellingPrice.Index))
                 {
+                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إدخال قيمة رقمية صحيحة أو عشرية لسعر البيع";
                     SystemSounds.Asterisk.Play();
                 }
                 else if (sellingPrice < 1 && !_IsEmptyCell(e.RowIndex, colSellingPrice.Index))
                 {
+                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب أن يكون سعر البيع أكبر من صفر";
                     SystemSounds.Asterisk.Play();
@@ -187,7 +180,7 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colBarcode.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    e.Cancel = true;
+                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون حقل الباركود فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
@@ -198,81 +191,113 @@ namespace SIMS.WinForms.Products
             }
         }
 
-        private void dgvUnitConversions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                DataGridViewCell factorCell = dgvUnitConversions.Rows[e.RowIndex].Cells[colConversionFactor.Index];
-                DataGridViewCell unitCell = dgvUnitConversions.Rows[e.RowIndex].Cells[colUnitConversion.Index];
-                DataGridViewCell descriptionCell = dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index];
-
-                string factor = factorCell.EditedFormattedValue?.ToString() ?? factorCell.Value?.ToString();
-                string unitName = unitCell.EditedFormattedValue?.ToString() ?? unitCell.Value?.ToString();
-
-                if (!string.IsNullOrWhiteSpace(unitName) && !string.IsNullOrWhiteSpace(factor))
-                {
-                    descriptionCell.Value = $"1 {unitName} = {factor} {BaseUnit}";
-                }
-                else
-                {
-                    descriptionCell.Value = string.Empty;
-                }
-
-                if (e.ColumnIndex == colUnitConversion.Index)
-                {
-                    string newValue = dgvUnitConversions.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-
-                    if (!string.IsNullOrEmpty(_PreviousUnitValue))
-                    {
-                        _SelectedUnits.Remove(_PreviousUnitValue);
-                    }
-
-                    if (!string.IsNullOrEmpty(newValue))
-                    {
-                        _SelectedUnits.Add(newValue);
-                    }
-
-                    _PreviousUnitValue = null;
-                }
-            }
-        }
-
-        private void dgvUnitConversions_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (e.ColumnIndex == colUnitConversion.Index)
-            {
-                _PreviousUnitValue = dgvUnitConversions.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-            }
-        }
-
         private void dgvUnitConversions_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (dgvUnitConversions.CurrentCell.ColumnIndex == colUnitConversion.Index)
             {
-                if (e.Control is ComboBox comboBox)
-                {
-                    comboBox.Items.Clear();
+                ComboBox editingComboBox = e.Control as ComboBox;
+                editingComboBox.DropDown += EditingComboBox_DropDown;
 
-                    foreach (string unit in _AllUnits)
-                    {
-                        if (!_SelectedUnits.Contains(unit) || unit == _PreviousUnitValue)
-                        {
-                            comboBox.Items.Add(unit);
-                        }
-                    }
-                }
+                clsFormHelper.PreventComboBoxAutoSelection(dgvUnitConversions, editingComboBox);
+                clsFormHelper.ResetCellBackColor(dgvUnitConversions, e);
             }
         }
 
-        private void dgvUnitConversions_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
+        private void EditingComboBox_DropDown(object sender, EventArgs e)
         {
-            bool isThereEmptyCellInCurrentRow = (_IsEmptyCell(e.RowIndex, colUnitConversion.Index) || _IsEmptyCell(e.RowIndex, colConversionFactor.Index) || _IsEmptyCell(e.RowIndex, colSellingPrice.Index) || _IsEmptyCell(e.RowIndex, colBarcode.Index));
+            DataTable dataTable = colUnitConversion.DataSource as DataTable;
 
-            if ((!string.IsNullOrEmpty(dgvUnitConversions.Rows[e.RowIndex].ErrorText) || isThereEmptyCellInCurrentRow) && dgvUnitConversions.NewRowIndex != e.RowIndex)
+            int[] selectedUnitIDs = dgvUnitConversions
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .Select(row => Convert.ToInt32(row.Cells[colUnitConversion.Index].Value))
+                .ToArray();
+
+            (sender as ComboBox).DataSource = dataTable
+                .Rows
+                .Cast<DataRow>()
+                .Where(
+                    row =>
+                    Convert.ToInt32(row["UnitID"]) == Convert.ToInt32(dgvUnitConversions.CurrentCell.Value) ||
+                    !selectedUnitIDs.Contains(Convert.ToInt32(row["UnitID"]))
+                )
+                .CopyToDataTable();
+
+            object currentValue = (sender as ComboBox).SelectedValue;
+
+            bool isValueExists = ((sender as ComboBox).DataSource as DataTable)
+                .Rows
+                .Cast<DataRow>()
+                .Select(row => Convert.ToInt32(row["UnitID"]))
+                .Any(value => value == Convert.ToInt32(currentValue));
+
+            if (currentValue != null && isValueExists)
+            {
+                (sender as ComboBox).SelectedValue = currentValue;
+            }
+        }
+
+        private void dgvUnitConversions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            _AutoGenerateConversionDescription(e.RowIndex);
+        }
+
+        private void btnCancle_Click(object sender, EventArgs e)
+        {
+            _IsSaved = false;
+            this.Close();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _IsSaved = true;
+            this.Close();
+        }
+
+        private void frmProductUnitConversions_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (_IsSaved)
+                {
+                    for (int i = 0; i < dgvUnitConversions.Rows.Count - 1; i++)
+                    {
+                        dgvUnitConversions.Rows[i].ErrorText = string.Empty;
+
+                        for (int j = 0; j < dgvUnitConversions.Rows[i].Cells.Count; j++)
+                        {
+                            dgvUnitConversions.CurrentCell = dgvUnitConversions.Rows[i].Cells[j];
+                            dgvUnitConversions.BeginEdit(true);
+                            dgvUnitConversions.CancelEdit();
+
+                            if (!string.IsNullOrEmpty(dgvUnitConversions.Rows[i].ErrorText))
+                            {
+                                string oldError = dgvUnitConversions.Rows[i].ErrorText;
+                                dgvUnitConversions.CurrentCell = dgvUnitConversions.Rows[i].Cells[_ErrorColumnIndex];
+                                dgvUnitConversions.Rows[i].ErrorText = oldError;
+
+                                clsFormMessages.ShowError("يجب إدخال جميع البيانات بصورة صحيحة قبل الحفظ");
+                                e.Cancel = true;
+                                return;
+                            }
+                        }
+                    }
+
+                    _IsSaved = false;
+                    UnitConversions.Clear();
+                    _SetUnitConversionsFromDGV(UnitConversions);
+                }
+                else
+                {
+                    dgvUnitConversions.Rows.Clear();
+                    _SetUnitConversionsToDGV(UnitConversions);
+                }
+            }
+            catch (Exception ex)
             {
                 e.Cancel = true;
-                dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إدخال جميع بيانات الصف الحالي بشكل صحيح قبل الإنتقال لصف جديد";
-                SystemSounds.Asterisk.Play();
+                clsFormMessages.ShowError(ex.Message, "خطأ في البيانات");
             }
         }
 
@@ -303,89 +328,59 @@ namespace SIMS.WinForms.Products
                     dgvUnitConversions.Rows[i].Cells[colSellingPrice.Index].Value != null &&
                     dgvUnitConversions.Rows[i].Cells[colBarcode.Index].Value != null)
                 {
-                    try
-                    {
-                        DataGridViewComboBoxCell alternativeUnitCell = dgvUnitConversions.Rows[i].Cells[colUnitConversion.Index] as DataGridViewComboBoxCell;
-
-                        int alternativeUnitID = alternativeUnitCell.Items.IndexOf(alternativeUnitCell.Value) + 1;
-                        string alternativeUnitName = alternativeUnitCell.Value.ToString();
-                        int conversionFactor = Convert.ToInt32(dgvUnitConversions.Rows[i].Cells[colConversionFactor.Index].Value);
-                        decimal sellginPrice = Convert.ToDecimal(dgvUnitConversions.Rows[i].Cells[colSellingPrice.Index].Value);
-                        string barcode = Convert.ToString(dgvUnitConversions.Rows[i].Cells[colBarcode.Index].Value);
-
-                        unitConversions.Add(new clsProductUnitConversion(
-                            alternativeUnitID,
-                            alternativeUnitName,
-                            conversionFactor,
-                            sellginPrice,
-                            barcode
-                            )
-                        );
-                    }
-                    catch (Exception ex)
-                    {
-                        this.Close();
-                        _Sender.Close();
-                        clsFormMessages.ShowError($"حدث خطأ في قراءة الصف {i + 1}: {ex.Message}\nسيتم إلغاء العملية الحالية الرجاء المحاولة مرة أخرى", "خطأ في البيانات");
-                    }
+                    unitConversions.Add(new clsProductUnitConversion(
+                        Convert.ToInt32(dgvUnitConversions.Rows[i].Cells[colUnitConversion.Index].Value),
+                        Convert.ToString(dgvUnitConversions.Rows[i].Cells[colUnitConversion.Index].EditedFormattedValue),
+                        Convert.ToInt32(dgvUnitConversions.Rows[i].Cells[colConversionFactor.Index].Value),
+                        Convert.ToDecimal(dgvUnitConversions.Rows[i].Cells[colSellingPrice.Index].Value),
+                        Convert.ToString(dgvUnitConversions.Rows[i].Cells[colBarcode.Index].Value)
+                        )
+                    );
                 }
             }
         }
 
         private void _SetUnitConversionsToDGV(List<clsProductUnitConversion> unitConversions)
         {
+            dgvUnitConversions.CellEndEdit -= dgvUnitConversions_CellEndEdit;
+
             for (int i = 0; i < unitConversions.Count; i++)
             {
-                try
-                {
-                    dgvUnitConversions.Rows.Add(unitConversions[i].UnitName, unitConversions[i].ConversionFactor, unitConversions[i].SellingPrice, unitConversions[i].Barcode);
-                    dgvUnitConversions.CurrentCell = dgvUnitConversions.Rows[i].Cells[colConversionFactor.Index];
-                    dgvUnitConversions.BeginEdit(true);
-                    _SelectedUnits.Add(unitConversions[i].UnitName);
-                }
-                catch (Exception ex)
-                {
-                    this.Close();
-                    _Sender.Close();
-                    clsFormMessages.ShowError($"حدث خطأ في قراءة الصف {i + 1}: {ex.Message}\nسيتم إلغاء العملية الحالية الرجاء المحاولة مرة أخرى", "خطأ في البيانات");
-                }
+                dgvUnitConversions.Rows.Add(unitConversions[i].AlternativeUnitID, unitConversions[i].ConversionFactor, unitConversions[i].SellingPrice, unitConversions[i].Barcode);
+                _AutoGenerateConversionDescription(i);
             }
+
+            dgvUnitConversions.CellEndEdit += dgvUnitConversions_CellEndEdit;
         }
 
-        private void btnCancle_Click(object sender, EventArgs e)
+        private void _AutoGenerateConversionDescription(int rowIndex)
         {
-            _IsSaved = false;
-            this.Close();
-        }
+            DataGridViewCell descriptionCell = dgvUnitConversions.Rows[rowIndex].Cells[colDescription.Index];
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            _IsSaved = true;
-            this.Close();
-        }
+            string factor = Convert.ToString(dgvUnitConversions.Rows[rowIndex].Cells[colConversionFactor.Index].EditedFormattedValue);
+            string unitName = Convert.ToString(dgvUnitConversions.Rows[rowIndex].Cells[colUnitConversion.Index].EditedFormattedValue);
 
-        private void frmProductUnitConversions_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
+            if (!string.IsNullOrWhiteSpace(unitName) && !string.IsNullOrWhiteSpace(factor))
             {
-                if (_IsSaved)
-                {
-                    _IsSaved = false;
-                    UnitConversions.Clear();
-                    _SetUnitConversionsFromDGV(UnitConversions);
-                }
-                else
-                {
-                    dgvUnitConversions.Rows.Clear();
-                    _SelectedUnits.Clear();
-                    _SetUnitConversionsToDGV(UnitConversions);
-                }
+                descriptionCell.Value = $"1 {unitName} = {factor} {BaseUnit}";
             }
-            catch (Exception ex)
+            else
             {
-                e.Cancel = true;
-                clsFormMessages.ShowError(ex.Message, "خطأ في البيانات");
+                descriptionCell.Value = string.Empty;
             }
+        }
+
+        private void _DeleteRow(int rowIndex)
+        {
+            DialogResult result = MessageBox.Show("هل أنت متأكد من أنك تريد حذف هذه الوحدة البديلة ؟", "تأكيد",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+            if (result == DialogResult.Yes)
+            {
+                dgvUnitConversions.Rows.RemoveAt(rowIndex);
+            }
+
+            dgvUnitConversions.ClearSelection();
         }
 
     }

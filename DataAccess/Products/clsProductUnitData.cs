@@ -44,10 +44,10 @@ namespace DataAccess.Products
             }
         }
 
-        public static DataTable GetAllProductUnitNames()
+        public static DataTable GetUnitsList()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Products_GetAllProductUnits"
+                "usp_Products_GetUnitsList"
                 );
         }
 

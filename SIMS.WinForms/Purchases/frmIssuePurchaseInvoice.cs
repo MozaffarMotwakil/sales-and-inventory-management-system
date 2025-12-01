@@ -21,7 +21,7 @@ namespace SIMS.WinForms.Inventory
 
         private void frmReceiveNewGoods_Load(object sender, EventArgs e)
         {
-            cbSupplier.DataSource = clsSupplierService.GetSuppliersName();
+            cbSupplier.DataSource = clsSupplierService.GetSuppliersList();
             cbSupplier.DisplayMember = "SupplierName";
             cbSupplier.ValueMember = "SupplierID";
 
@@ -91,7 +91,7 @@ namespace SIMS.WinForms.Inventory
 
         private void clsSupplier_SupplierSaved(object sender, EntitySavedEventArgs e)
         {
-            cbSupplier.DataSource = clsSupplierService.GetSuppliersName();
+            cbSupplier.DataSource = clsSupplierService.GetSuppliersList();
             cbSupplier.DisplayMember = "SupplierName";
             cbSupplier.ValueMember = "SupplierID";
             cbSupplier.SelectedItem = e.EntityName;
@@ -113,8 +113,7 @@ namespace SIMS.WinForms.Inventory
                 cellComboBox.DisplayMember = "UnitName";
                 cellComboBox.ValueMember = "UnitID";
 
-                // Fix issue in back color of drop down list that changed to black.
-                e.CellStyle.BackColor = this.dgvInvoiceLines.DefaultCellStyle.BackColor;
+                clsFormHelper.ResetCellBackColor(dgvInvoiceLines, e);
             }
         }
 

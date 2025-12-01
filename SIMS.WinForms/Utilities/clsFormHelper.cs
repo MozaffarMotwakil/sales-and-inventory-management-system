@@ -8,6 +8,28 @@ namespace DVLD.WinForms.Utils
 {
     public static class clsFormHelper
     {
+        public static void PreventComboBoxAutoSelection(DataGridView dataGridView, ComboBox comboBox)
+        {
+            if (comboBox != null)
+            {
+                if (dataGridView.CurrentCell.Value == null || dataGridView.CurrentCell.Value == DBNull.Value)
+                {
+                    comboBox.SelectedIndex = -1;
+                    comboBox.Text = string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Applied a reset of the `e.CellStyle.BackColor` property to the `DataGridView`'s default style. 
+        /// This resolves a known issue in Windows Forms where the background of the ComboBox 
+        /// cell's drop-down list would** automatically turn black** during editing.
+        /// </summary>
+        public static void ResetCellBackColor(DataGridView dgv, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.CellStyle.BackColor = dgv.DefaultCellStyle.BackColor;
+        }
+
         public static void InitializeDateRangeLimits(
             DateTimePicker dtpDateFrom,
             DateTimePicker dtpDateTo,

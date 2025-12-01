@@ -424,7 +424,9 @@
             // ClockAndDateTimer
             // 
             this.ClockAndDateTimer.Interval = 1000;
+            #if !DEBUG
             this.ClockAndDateTimer.Tick += new System.EventHandler(this.ClockAndDateTimer_Tick);
+            #endif
             // 
             // frmMainForm
             // 
@@ -457,7 +459,7 @@
 
         }
 
-        #endregion
+#endregion
 
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton DashboardToolStripButton;

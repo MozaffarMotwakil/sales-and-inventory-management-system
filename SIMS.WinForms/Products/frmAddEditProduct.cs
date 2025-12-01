@@ -4,6 +4,7 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Products;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Validation;
+using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Suppliers;
 
@@ -21,7 +22,7 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = null;
-            _UnitConversionsForm = new frmProductUnitConversions(this);
+            _UnitConversionsForm = new frmProductUnitConversions();
             _FormMode = enMode.Add;
         }
 
@@ -29,7 +30,7 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = clsProductService.CreateInstance().Find(productID);
-            _UnitConversionsForm = new frmProductUnitConversions(this, _Product?.UnitConversions);
+            _UnitConversionsForm = new frmProductUnitConversions(_Product?.UnitConversions);
             _FormMode = enMode.Edit;
         }
 
@@ -37,7 +38,7 @@ namespace SIMS.WinForms.Products
         {
             InitializeComponent();
             _Product = product;
-            _UnitConversionsForm = new frmProductUnitConversions(this, product.UnitConversions);
+            _UnitConversionsForm = new frmProductUnitConversions(product.UnitConversions);
             _FormMode = enMode.Edit;
         }
 
@@ -47,9 +48,23 @@ namespace SIMS.WinForms.Products
                 "إضافة منتج جديد" :
                 "تعديل منتج";
 
-            cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
-            cbBaseUnit.Items.AddRange(clsUnit.GetAllUnitNames());
-            cbMainSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
+            cbCategory.DataSource = clsCategory.GetCategoryList();
+            cbCategory.ValueMember = "CategoryID";
+            cbCategory.DisplayMember = "CategoryName";
+            cbCategory.SelectedValue = -1;
+            cbCategory.Text = "إختار التصنيف/الفئة";
+
+            cbBaseUnit.DataSource = clsUnit.GetUnitsList();
+            cbBaseUnit.ValueMember = "UnitID";
+            cbBaseUnit.DisplayMember = "UnitName";
+            cbBaseUnit.SelectedValue = -1;
+            cbBaseUnit.Text = "إختار وحدة القياس الأساسية";
+
+            cbMainSupplier.DataSource = clsSupplierService.GetSuppliersList();
+            cbMainSupplier.ValueMember = "SupplierID";
+            cbMainSupplier.DisplayMember = "SupplierName";
+            cbMainSupplier.SelectedValue = -1;
+            cbMainSupplier.Text = "إختار المورد الأساسي";
 
             if (_FormMode is enMode.Edit)
             {
@@ -62,8 +77,8 @@ namespace SIMS.WinForms.Products
 
                 txtProductName.Text = _Product.ProductName;
                 txtProductBarcode.Text = _Product.Barcode;
-                cbCategory.SelectedIndex = _Product.CategoryInfo.CategoryID - 1;
-                cbBaseUnit.SelectedIndex = _Product.MainUnitInfo.UnitID - 1;
+                cbCategory.SelectedValue = _Product.CategoryInfo.CategoryID;
+                cbBaseUnit.SelectedValue = _Product.MainUnitInfo.UnitID;
                 txtSellingPrice.Text = _Product.SellingPrice.ToString();
                 cbMainSupplier.SelectedItem = _Product.MainSupplierInfo?.PartyInfo.PartyName;
                 txtDescription.Text = _Product.Description;
@@ -72,6 +87,11 @@ namespace SIMS.WinForms.Products
             }
 
             clsSupplierService.CreateInstance().EntitySaved += ClsSupplier_SupplierSaved;
+        }
+
+        private void frmAddEditProduct_Shown(object sender, EventArgs e)
+        {
+            txtProductName.Focus();
         }
 
         private void cbCatigory_Enter(object sender, EventArgs e)
@@ -157,8 +177,11 @@ namespace SIMS.WinForms.Products
 
         private void ClsSupplier_SupplierSaved(object sender, EntitySavedEventArgs e)
         {
-            cbMainSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
-            cbMainSupplier.SelectedItem = e.EntityName;
+            cbMainSupplier.DataSource = clsWarehouseService.GetWarehousesList();
+            cbMainSupplier.ValueMember = "SupplierID";
+            cbMainSupplier.DisplayMember = "SupplierName";
+
+            cbMainSupplier.SelectedValue = e.EntityID;
 
             // It use later for delete the added supplier if the user cancle the add/edit operation
             _IsAddedSupplier = true;
@@ -195,7 +218,7 @@ namespace SIMS.WinForms.Products
 
         private void cbCategory_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            clsFormValidation.ValidatingRequiredField(cbCategory, errorProvider, "يجب إختيار تصنيف/فئة للمنتج");
+            clsFormValidation.ValidatingRequiredField(cbCategory, errorProvider, "يجب إختيار الفئة/الصنف للمنتج");
         }
 
         private void cbBaseUnit_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -259,10 +282,10 @@ namespace SIMS.WinForms.Products
                     _Product = new clsProduct(
                         txtProductName.Text,
                         txtProductBarcode.Text,
-                        cbCategory.SelectedIndex + 1,
-                        cbBaseUnit.SelectedIndex + 1,
+                        Convert.ToInt32(cbCategory.SelectedValue),
+                        Convert.ToInt32(cbBaseUnit.SelectedValue),
                         _UnitConversionsForm.UnitConversions,
-                        cbMainSupplier.Text,
+                        Convert.ToInt32(cbMainSupplier.SelectedValue),
                         Convert.ToSingle(txtSellingPrice.Text),
                         txtDescription.Text,
                         ctrProductImage.ImageLocation
@@ -272,8 +295,8 @@ namespace SIMS.WinForms.Products
                 {
                     _Product.ProductName = txtProductName.Text;
                     _Product.Barcode = txtProductBarcode.Text;
-                    _Product.ChangeCategory(cbCategory.SelectedIndex + 1);
-                    _Product.ChangeMainUnit(cbBaseUnit.SelectedIndex + 1);
+                    _Product.ChangeCategory(Convert.ToInt32(cbCategory.SelectedValue));
+                    _Product.ChangeMainUnit(Convert.ToInt32(cbBaseUnit.SelectedValue));
                     _Product.ChangeMainSupplier(cbMainSupplier.Text);
                     _Product.SellingPrice = Convert.ToSingle(txtSellingPrice.Text);
                     _Product.Description = txtDescription.Text;
@@ -301,6 +324,6 @@ namespace SIMS.WinForms.Products
                 }
             }
         }
-        
+
     }
 }

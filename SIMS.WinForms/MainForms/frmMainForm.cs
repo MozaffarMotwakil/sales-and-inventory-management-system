@@ -83,11 +83,14 @@ namespace SIMS.WinForms
             _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 
+        #if !DEBUG
         private void ClockAndDateTimer_Tick(object sender, EventArgs e)
         {
-            lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            lblCurrentDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
+            
+                lblCurrentTime.Text = DateTime.Now.ToString("HH:mm:ss");
+                lblCurrentDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
         }
+        #endif
 
         private void DashboardToolStripButton_Click(object sender, EventArgs e)
         {

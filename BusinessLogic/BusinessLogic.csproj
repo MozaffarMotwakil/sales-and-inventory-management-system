@@ -69,6 +69,7 @@
     <Compile Include="Invoices\clsInvoiceLine.cs" />
     <Compile Include="Payments\clsPaymentService.cs" />
     <Compile Include="Payments\clsPayment.cs" />
+    <Compile Include="Utilities\clsUtils.cs" />
     <Compile Include="Utilities\clsEventLogger.cs" />
     <Compile Include="Warehouses\clsTransferOperationService.cs" />
     <Compile Include="Warehouses\clsTransferOperation.cs" />
