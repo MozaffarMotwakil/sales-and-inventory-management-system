@@ -5,7 +5,9 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Parties;
 using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
+using BusinessLogic.Warehouses;
 using DataAccess.Suppliers;
+using DataAccess.Warehouses;
 using DTOs.Suppliers;
 
 namespace BusinessLogic.Suppliers
@@ -37,6 +39,38 @@ namespace BusinessLogic.Suppliers
         private void OnSupplierDeleted(int productID, string productName)
         {
             EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(productID, productName));
+        }
+
+        public bool MarkAsActive(clsSupplier supplier)
+        {
+            if (supplier.IsActive)
+            {
+                return true;
+            }
+
+            if (supplier.Mode == enMode.Update && clsSupplierData.SetActive(supplier.SupplierID ?? -1, clsAppSettings.CurrentUser.UserID))
+            {
+                OnSupplierSaved(supplier.SupplierID ?? -1, supplier.PartyInfo.PartyName, enMode.Update);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool MarkAsInActive(clsSupplier supplier)
+        {
+            if (!supplier.IsActive)
+            {
+                return true;
+            }
+
+            if (supplier.Mode == enMode.Update && clsSupplierData.SetInActive(supplier.SupplierID ?? -1, clsAppSettings.CurrentUser.UserID))
+            {
+                OnSupplierSaved(supplier.SupplierID ?? -1, supplier.PartyInfo.PartyName, enMode.Update);
+                return true;
+            }
+
+            return false;
         }
 
         public static bool IsSupplierExistsByPartyID(int partyID)
@@ -110,7 +144,7 @@ namespace BusinessLogic.Suppliers
             }
             catch (SqlException ex) when (ex.Number >= 50000)
             {
-                throw new InvalidOperationException(ex.Message, ex);
+                throw;
             }
             catch (Exception ex)
             {

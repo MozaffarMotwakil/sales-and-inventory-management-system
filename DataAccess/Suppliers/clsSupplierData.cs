@@ -59,7 +59,7 @@ namespace DataAccess.Suppliers
                                     PartyID = Convert.ToInt32(reader["PartyID"]),
                                     SupplierCategoryID = Convert.ToByte(reader["PartyCategoryID"]),
                                     SupplierNotes = (reader["Notes"] != DBNull.Value) ? reader["Notes"].ToString() : string.Empty,
-                                    IsDeleted = Convert.ToBoolean(reader["IsDeleted"]),
+                                    IsActive = Convert.ToBoolean(reader["IsActive"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                                 };
@@ -267,6 +267,28 @@ namespace DataAccess.Suppliers
         {
             return Convert.ToDateTime(
                 clsDataSettings.GetSingleValue("usp_Suppliers_GetFirstSuppliedItemDate")
+                );
+        }
+
+        public static bool SetActive(int supplierID, int createdByUserID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Suppliers_SetActive",
+                "@SupplierID",
+                "CreatedByUserID",
+                supplierID,
+                createdByUserID
+                );
+        }
+
+        public static bool SetInActive(int supplierD, int createdByUserID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Suppliers_SetInActive",
+                "@SupplierID",
+                "CreatedByUserID",
+                supplierD,
+                createdByUserID
                 );
         }
 

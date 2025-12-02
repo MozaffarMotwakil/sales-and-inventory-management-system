@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using BusinessLogic.Products;
 
@@ -9,12 +10,12 @@ namespace SIMS.WinForms.Products
         public frmProductsList()
         {
             InitializeComponent();
-            this.Text = "قائمة المنتجات";
             frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmProductsList_Load(object sender, EventArgs e)
         {
+            cbProductActivity.SelectedIndex = 0;
             cbCategory.SelectedIndex = 0;
             cbCategory.Items.AddRange(clsCategory.GetCategoryNames());
         }
@@ -22,38 +23,62 @@ namespace SIMS.WinForms.Products
         protected override void LoadData()
         {
             base.LoadData();
-            base.SearchHintMessage = "أدخل إسم المنتج أو المورد الأساسي";
             base.EntityName = "المنتج";
+            base.IsEntitySupportActivityStatus = true;
             base.EntityInfoControl = ctrProductInfo;
         }
 
-        protected override void SearchTextChanged(object sender, EventArgs e)
+        protected override bool GetEntityActivityStatus()
         {
-            base.SearchTextChanged(sender, e);
+            return GetSelectedEntity().IsActive;
+        }
 
-            if (cbCategory.SelectedIndex == 0)
-            {
-                Filter = $"ProductName LIKE '%{txtSearch.Text}%' OR MainSupplierName LIKE '%{txtSearch.Text}%'";
-            }
-            else
-            {
-                Filter = $"(ProductName LIKE '%{txtSearch.Text}%' OR MainSupplierName LIKE '%{txtSearch.Text}%') AND CategoryName = '{cbCategory.SelectedItem}'";
-            }
+        protected override bool MarkRecordAsActive()
+        {
+            return GetSelectedEntity().MarkAsActive();
+        }
+
+        protected override bool MarkRecordAsInActive()
+        {
+            return GetSelectedEntity().MarkAsInActive();
         }
 
         private void cbCatigory_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
+            ApplySearchFilter();
+        }
 
-            if (cbCategory.SelectedIndex != 0)
+        private void cbProductActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            ApplySearchFilter();
+        }
+
+        protected override void ApplySearchFilter()
+        {
+            List<string> filters = new List<string>();
+
+            if (cbCategory.SelectedIndex > 0)
             {
-                Filter = $"CategoryName LIKE '%{cbCategory.Text}%'";
-            }
-            else
-            {
-                Filter = string.Empty;
+                filters.Add($"CategoryName = '{cbCategory.SelectedItem}'");
             }
 
+            if (cbProductActivity.SelectedIndex == 1)
+            {
+                filters.Add("IsActive = 1");
+            }
+            else if (cbProductActivity.SelectedIndex == 2)
+            {
+                filters.Add("IsActive = 0");
+            }
+
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                filters.Add($"(ProductName LIKE '%{txtSearch.Text}%' OR MainSupplierName LIKE '%{txtSearch.Text}%')");
+            }
+
+            base.Filter = string.Join(" AND ", filters);
             base.ApplySearchFilter();
         }
 

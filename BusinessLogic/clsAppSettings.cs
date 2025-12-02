@@ -16,6 +16,8 @@ namespace BusinessLogic
 
         public const string ErrorToConnectionFormDB = "عذرا,حدثت مشكلة أثناء الإتصال مع قاعدة البيانات, الرجاء المحاولة لاحقا.";
 
+        public const int RefranceErrorNumber = 50000;
+
         public static string AppDataFolder
         {
             get { return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData); }

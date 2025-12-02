@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using BusinessLogic.Suppliers;
 using BusinessLogic.Parties;
+using BusinessLogic.Products;
+using BusinessLogic.Suppliers;
 
 namespace SIMS.WinForms.Suppliers
 {
@@ -16,48 +18,72 @@ namespace SIMS.WinForms.Suppliers
         private void frmSuppliersList_Load(object sender, EventArgs e)
         {
             cbSupplierCategory.SelectedIndex = 0;
+            cbSupplierActivity.SelectedIndex = 0;
         }
 
         protected override void LoadData()
         {
             base.LoadData();
-            base.SearchHintMessage = "أدخل إسم المورد أو العنوان";
             base.EntityName = "المورد";
+            IsEntitySupportActivityStatus = true;
             base.EntityInfoControl = ctrSupplierInfo;
         }
-        
-        protected override void SearchTextChanged(object sender, EventArgs e)
-        {
-            base.SearchTextChanged(sender, e);
 
-            if (cbSupplierCategory.SelectedIndex == 0)
-            {
-                Filter = $"PartyName LIKE '%{txtSearch.Text}%' OR Address LIKE '%{txtSearch.Text}%'";
-            }
-            else
-            {
-                string category = cbSupplierCategory.SelectedIndex == 1 ? "شخص" : "منظمة";
-                Filter = $"(PartyName LIKE '%{txtSearch.Text}%' OR Address LIKE '%{txtSearch.Text}%') AND CategoryName = '{category}'";
-            }
+        protected override bool GetEntityActivityStatus()
+        {
+            return GetSelectedEntity().IsActive;
+        }
+
+        protected override bool MarkRecordAsActive()
+        {
+            return GetSelectedEntity().MarkAsActive();
+        }
+
+        protected override bool MarkRecordAsInActive()
+        {
+            return GetSelectedEntity().MarkAsInActive();
         }
 
         private void cbSupplierCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Text = string.Empty;
+            ApplySearchFilter();
+        }
+
+        private void cbSupplierActivity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch.Text = string.Empty;
+            ApplySearchFilter();
+        }
+
+        protected override void ApplySearchFilter()
+        {
+            List<string> filters = new List<string>();
 
             if (cbSupplierCategory.SelectedIndex == 1)
             {
-                Filter = "CategoryName = 'شخص'";
+                filters.Add("CategoryName = 'شخص'");
             }
             else if (cbSupplierCategory.SelectedIndex == 2)
             {
-                Filter = "CategoryName = 'منظمة'";
-            }
-            else
-            {
-                Filter = string.Empty;
+                filters.Add("CategoryName = 'منظمة'");
             }
 
+            if (cbSupplierActivity.SelectedIndex == 1)
+            {
+                filters.Add("IsActive = 1");
+            }
+            else if (cbSupplierActivity.SelectedIndex == 2)
+            {
+                filters.Add("IsActive = 0");
+            }
+
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                filters.Add($"(PartyName LIKE '%{txtSearch.Text}%' OR Address LIKE '%{txtSearch.Text}%')");
+            }
+
+            base.Filter = string.Join(" AND ", filters);
             base.ApplySearchFilter();
         }
 

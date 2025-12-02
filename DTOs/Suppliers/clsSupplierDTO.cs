@@ -37,7 +37,7 @@ namespace DTOs.Suppliers
 
         // Supplier Table Fileds
         public string SupplierNotes { get; set; }
-        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public int? CreatedByUserID { get; set; } 
         public DateTime? CreatedAt { get; set; }
         public int? UpdatedByUserID { get; set; } 
@@ -86,7 +86,7 @@ namespace DTOs.Suppliers
             ContactPersonGender = organizationDTO?.ContactPersonGender;
             ContactPersonImagePath = organizationDTO?.ContactPersonImagePath;
             SupplierNotes = supplierNotes;
-            IsDeleted = isDeleted;
+            IsActive = isDeleted;
             CreatedByUserID = createdByUserID;
             CreatedAt = createdAt;
             UpdatedByUserID = updatedByUserID;

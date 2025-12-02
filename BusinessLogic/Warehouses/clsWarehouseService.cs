@@ -69,7 +69,7 @@ namespace BusinessLogic.Warehouses
             }
             catch (SqlException ex) when (ex.Number >= 50000)
             {
-                throw new InvalidOperationException(ex.Message, ex);
+                throw;
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@ namespace BusinessLogic.Warehouses
                 return true;
             }
 
-            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetWarehouseActive(warehouse.WarehouseID ?? -1))
+            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetActive(warehouse.WarehouseID ?? -1, clsAppSettings.CurrentUser.UserID))
             {
                 OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
                 return true;
@@ -120,7 +120,7 @@ namespace BusinessLogic.Warehouses
                 return true;
             }
 
-            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetWarehouseInActive(warehouse.WarehouseID ?? -1))
+            if (warehouse.Mode == enMode.Update && clsWarehouseData.SetInActive(warehouse.WarehouseID ?? -1, clsAppSettings.CurrentUser.UserID))
             {
                 OnWarehouseSaved(warehouse.WarehouseID ?? -1, warehouse.WarehouseName, enMode.Update);
                 return true;

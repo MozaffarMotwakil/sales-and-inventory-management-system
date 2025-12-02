@@ -1,11 +1,11 @@
 ﻿using System;
-using BusinessLogic.Users;
+using System.Data;
 using BusinessLogic.Parties;
+using BusinessLogic.Users;
 using BusinessLogic.Validation;
+using DataAccess.Suppliers;
 using DTOs.Suppliers;
 using static BusinessLogic.Parties.clsParty;
-using DataAccess.Suppliers;
-using System.Data;
 
 namespace BusinessLogic.Suppliers
 {
@@ -14,7 +14,7 @@ namespace BusinessLogic.Suppliers
         public int? SupplierID { get; private set; }
         public clsParty PartyInfo { get; }
         public string Notes { get; set; }
-        public bool IsDeleted { get; }
+        public bool IsActive { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreatedAt { get; }
         public clsUser UpdatedByUserInfo { get; private set; }
@@ -26,7 +26,7 @@ namespace BusinessLogic.Suppliers
             this.SupplierID = null;
             this.PartyInfo = party;
             this.Notes = notes;
-            this.IsDeleted = false;
+            this.IsActive = true;
             this.Mode = enMode.Add;
         }
 
@@ -38,7 +38,7 @@ namespace BusinessLogic.Suppliers
                 (enPartyCategory)supplierDTO.SupplierCategoryID
                 );
             Notes = supplierDTO.SupplierNotes;
-            IsDeleted = supplierDTO.IsDeleted;
+            IsActive = supplierDTO.IsActive;
             CreatedByUserInfo = clsUser.Find(supplierDTO.CreatedByUserID ?? -1);
             CreatedAt = supplierDTO.CreatedAt;
             UpdatedByUserInfo = supplierDTO.UpdatedByUserID is null ?
@@ -63,6 +63,16 @@ namespace BusinessLogic.Suppliers
             this.Notes = notes;
         }
 
+        public bool MarkAsActive()
+        {
+            return clsSupplierService.CreateInstance().MarkAsActive(this);
+        }
+
+        public bool MarkAsInActive()
+        {
+            return clsSupplierService.CreateInstance().MarkAsInActive(this);
+        }
+
         public DataTable GetAllProductsSupplied()
         {
             return clsSupplierData.GetAllProductsSupplied(this.SupplierID ?? -1);
@@ -84,7 +94,7 @@ namespace BusinessLogic.Suppliers
                 this.PartyInfo.MappingToDTO(),
                 this.SupplierID,
                 this.Notes.Trim(),
-                this.IsDeleted,
+                this.IsActive,
                 this.CreatedByUserInfo?.UserID,
                 this.CreatedAt,
                 this.UpdatedByUserInfo?.UserID,

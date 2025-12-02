@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Validation;
-using DataAccess.Parties;
+using BusinessLogic.Warehouses;
 using DataAccess.Products;
 using DataAccess.Warehouses;
 using DTOs.Products;
@@ -41,6 +41,38 @@ namespace BusinessLogic.Products
             EntityDeleted?.Invoke(this, new EntityDeletedEventArgs(productID, productName));
         }
 
+        public bool MarkAsActive(clsProduct product)
+        {
+            if (product.IsActive)
+            {
+                return true;
+            }
+
+            if (product.Mode == enMode.Update && clsProductData.SetActive(product.ProductID ?? -1, clsAppSettings.CurrentUser.UserID))
+            {
+                OnProductSaved(product.ProductID ?? -1, product.ProductName, enMode.Update);
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool MarkAsInActive(clsProduct product)
+        {
+            if (!product.IsActive)
+            {
+                return true;
+            }
+
+            if (product.Mode == enMode.Update && clsProductData.SetInActive(product.ProductID ?? -1, clsAppSettings.CurrentUser.UserID))
+            {
+                OnProductSaved(product.ProductID ?? -1, product.ProductName, enMode.Update);
+                return true;
+            }
+
+            return false;
+        }
+
         public clsProduct Find(int productID)
         {
             if (productID < 1)
@@ -72,7 +104,7 @@ namespace BusinessLogic.Products
             }
             catch (SqlException ex) when (ex.Number >= 50000)
             {
-                throw new InvalidOperationException(ex.Message, ex);
+                throw;
             }
             catch (Exception ex)
             {

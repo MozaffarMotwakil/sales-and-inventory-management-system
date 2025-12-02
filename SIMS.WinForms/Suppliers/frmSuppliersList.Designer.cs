@@ -83,6 +83,7 @@
             this.personToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.organizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctrSupplierInfo = new SIMS.WinForms.Suppliers.ctrSupplierInfo();
+            this.cbSupplierActivity = new System.Windows.Forms.ComboBox();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -98,6 +99,10 @@
             this.lblTotalRecords.Location = new System.Drawing.Point(158, 691);
             this.lblTotalRecords.Size = new System.Drawing.Size(157, 16);
             this.lblTotalRecords.Text = "16";
+            // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.Text = "أدخل إسم المورد أو العنوان";
             // 
             // dataGridViewTextBoxColumn43
             // 
@@ -460,10 +465,10 @@
             this.cbSupplierCategory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSupplierCategory.FormattingEnabled = true;
             this.cbSupplierCategory.Items.AddRange(new object[] {
-            "كل الموردين",
+            "كل الأنواع",
             "الأشخاص فقط",
             "المنظمات فقط"});
-            this.cbSupplierCategory.Location = new System.Drawing.Point(643, 9);
+            this.cbSupplierCategory.Location = new System.Drawing.Point(435, 9);
             this.cbSupplierCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbSupplierCategory.Name = "cbSupplierCategory";
             this.cbSupplierCategory.Size = new System.Drawing.Size(200, 24);
@@ -532,11 +537,28 @@
             this.ctrSupplierInfo.TabIndex = 47;
             this.ctrSupplierInfo.Visible = false;
             // 
+            // cbSupplierActivity
+            // 
+            this.cbSupplierActivity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSupplierActivity.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSupplierActivity.FormattingEnabled = true;
+            this.cbSupplierActivity.Items.AddRange(new object[] {
+            "كل الموردين",
+            "الموردين النشطين",
+            "الموردين الغير نشطين"});
+            this.cbSupplierActivity.Location = new System.Drawing.Point(643, 9);
+            this.cbSupplierActivity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbSupplierActivity.Name = "cbSupplierActivity";
+            this.cbSupplierActivity.Size = new System.Drawing.Size(200, 24);
+            this.cbSupplierActivity.TabIndex = 51;
+            this.cbSupplierActivity.SelectedIndexChanged += new System.EventHandler(this.cbSupplierActivity_SelectedIndexChanged);
+            // 
             // frmSuppliersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 714);
+            this.Controls.Add(this.cbSupplierActivity);
             this.Controls.Add(this.ctrSupplierInfo);
             this.Controls.Add(this.cbSupplierCategory);
             this.Controls.Add(this.toolStrip);
@@ -552,6 +574,7 @@
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.cbSupplierCategory, 0);
             this.Controls.SetChildIndex(this.ctrSupplierInfo, 0);
+            this.Controls.SetChildIndex(this.cbSupplierActivity, 0);
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -619,5 +642,6 @@
         private System.Windows.Forms.ToolStripDropDownButton btnAddSupplier;
         private System.Windows.Forms.ToolStripMenuItem personToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem organizationToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cbSupplierActivity;
     }
 }

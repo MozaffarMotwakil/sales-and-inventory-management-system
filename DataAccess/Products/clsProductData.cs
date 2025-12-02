@@ -271,5 +271,27 @@ namespace DataAccess.Products
                 );
         }
 
+        public static bool SetActive(int productID, int createdByUserID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Products_SetActive",
+                "@ProductID",
+                "CreatedByUserID",
+                productID,
+                createdByUserID
+                );
+        }
+
+        public static bool SetInActive(int productID, int createdByUserID)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Products_SetInActive",
+                "@ProductID",
+                "CreatedByUserID",
+                productID,
+                createdByUserID
+                );
+        }
+
     }
 }

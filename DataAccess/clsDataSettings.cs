@@ -193,5 +193,38 @@ namespace DataAccess
             }
         }
 
+        public static bool ExecuteSimpleSP<T>(string storedProcedureName, string parameter1Name,
+            string parameter2Name, T parameter1Value, T parameter2Value)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(parameter1Name, parameter1Value);
+                    command.Parameters.AddWithValue(parameter2Name, parameter2Value);
+
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+
+                    command.Parameters.Add(returnValueParam);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        return (int)returnValueParam.Value == 1;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
     }
 }

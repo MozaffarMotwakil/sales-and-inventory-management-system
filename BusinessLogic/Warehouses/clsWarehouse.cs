@@ -139,6 +139,16 @@ namespace BusinessLogic.Warehouses
             Address = Address.Trim();
         }
 
+        public bool MarkAsActive()
+        {
+            return clsWarehouseService.CreateInstance().MarkAsActive(this);
+        }
+
+        public bool MarkAsInActive()
+        {
+            return clsWarehouseService.CreateInstance().MarkAsInActive(this);
+        }
+
         public List<clsInventory> GetAvailableInventories()
         {
             int[] inventoryIDs = clsWarehouseData.GetAvailableInventoryIDsForWarehouse(this.WarehouseID ?? -1)

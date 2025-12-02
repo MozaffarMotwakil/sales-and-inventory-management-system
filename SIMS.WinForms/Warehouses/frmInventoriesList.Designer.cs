@@ -377,7 +377,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmInventoriesList";
             this.ShowSearchTextBox = true;
-            this.Text = "قائمة المخزونات";
+            this.Text = "قائمة المخزون";
             this.Load += new System.EventHandler(this.frmInventoriesList_Load);
             this.Controls.SetChildIndex(this.searchPanel, 0);
             this.Controls.SetChildIndex(this.lblTotalRecordsText, 0);

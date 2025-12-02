@@ -68,6 +68,16 @@ namespace BusinessLogic.Products
             Mode = enMode.Update;
         }
 
+        public bool MarkAsActive()
+        {
+            return clsProductService.CreateInstance().MarkAsActive(this);
+        }
+
+        public bool MarkAsInActive()
+        {
+            return clsProductService.CreateInstance().MarkAsInActive(this);
+        }
+
         public DataTable GetProductUnitsTable()
         {
             return clsProductData.GetProductUnitsTable(this.ProductID ?? -1);

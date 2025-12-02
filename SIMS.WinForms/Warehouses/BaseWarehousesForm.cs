@@ -30,7 +30,7 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[5].HeaderText = "النوع";
                 base.dgvEntitiesList.Columns[5].Width = 80;
 
-                base.dgvEntitiesList.Columns[6].HeaderText = "الحالة";
+                base.dgvEntitiesList.Columns[6].HeaderText = "حالة النشاط";
                 base.dgvEntitiesList.Columns[6].Width = 80;
             }
         }

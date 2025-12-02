@@ -78,6 +78,10 @@
             this.lblTotalRecords.Location = new System.Drawing.Point(153, 691);
             this.lblTotalRecords.Text = "1";
             // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.Text = "أدخل إسم المخزن أو العنوان";
+            // 
             // dataGridViewTextBoxColumn25
             // 
             this.dataGridViewTextBoxColumn25.DataPropertyName = "WarehouseID";

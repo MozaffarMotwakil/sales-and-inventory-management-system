@@ -32,6 +32,7 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.addProducrToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ctrProductInfo = new SIMS.WinForms.Products.ctrProductInfo();
+            this.cbProductActivity = new System.Windows.Forms.ComboBox();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -48,6 +49,10 @@
             this.lblTotalRecords.Size = new System.Drawing.Size(154, 16);
             this.lblTotalRecords.Text = "4";
             // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.Text = "أدخل إسم المنتج أو المورد الأساسي";
+            // 
             // cbCategory
             // 
             this.cbCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -56,7 +61,7 @@
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Items.AddRange(new object[] {
             "كل التصنيفات"});
-            this.cbCategory.Location = new System.Drawing.Point(643, 9);
+            this.cbCategory.Location = new System.Drawing.Point(435, 9);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(200, 24);
@@ -101,11 +106,28 @@
             this.ctrProductInfo.TabStop = false;
             this.ctrProductInfo.Visible = false;
             // 
+            // cbProductActivity
+            // 
+            this.cbProductActivity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProductActivity.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbProductActivity.FormattingEnabled = true;
+            this.cbProductActivity.Items.AddRange(new object[] {
+            "كل المنتجات",
+            "المنتجات المفعلة",
+            "المنتجات غير المفعلة"});
+            this.cbProductActivity.Location = new System.Drawing.Point(643, 9);
+            this.cbProductActivity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cbProductActivity.Name = "cbProductActivity";
+            this.cbProductActivity.Size = new System.Drawing.Size(200, 24);
+            this.cbProductActivity.TabIndex = 50;
+            this.cbProductActivity.SelectedIndexChanged += new System.EventHandler(this.cbProductActivity_SelectedIndexChanged);
+            // 
             // frmProductsList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 714);
+            this.Controls.Add(this.cbProductActivity);
             this.Controls.Add(this.cbCategory);
             this.Controls.Add(this.ctrProductInfo);
             this.Controls.Add(this.toolStrip);
@@ -114,6 +136,7 @@
             this.Name = "frmProductsList";
             this.ShowSearchTextBox = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "قائمة المنتجات";
             this.Load += new System.EventHandler(this.frmProductsList_Load);
             this.Controls.SetChildIndex(this.toolStrip, 0);
             this.Controls.SetChildIndex(this.searchPanel, 0);
@@ -121,6 +144,7 @@
             this.Controls.SetChildIndex(this.lblTotalRecords, 0);
             this.Controls.SetChildIndex(this.ctrProductInfo, 0);
             this.Controls.SetChildIndex(this.cbCategory, 0);
+            this.Controls.SetChildIndex(this.cbProductActivity, 0);
             this.searchPanel.ResumeLayout(false);
             this.searchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -137,5 +161,6 @@
         private ctrProductInfo ctrProductInfo;
         protected System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton addProducrToolStripButton;
+        private System.Windows.Forms.ComboBox cbProductActivity;
     }
 }

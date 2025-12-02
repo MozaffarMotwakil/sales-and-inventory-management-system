@@ -205,7 +205,7 @@ namespace SIMS.WinForms.Suppliers
 
         private void dgvPayments_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            clsFormHelper.ApplyGreenRedRowStyle(dgvPayments, e, "InvoiceTypeID", 1, 2);
+            clsFormHelper.ApplyGreenRedRowStyle(dgvPayments, e, "InvoiceTypeID", 2, 1);
         }
 
         private void dgvPayments_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

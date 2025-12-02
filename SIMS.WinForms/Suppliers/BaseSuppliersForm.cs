@@ -32,6 +32,9 @@ namespace SIMS.WinForms.Suppliers
 
                 base.dgvEntitiesList.Columns[6].HeaderText = "الملاحظات";
                 base.dgvEntitiesList.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                base.dgvEntitiesList.Columns[7].HeaderText = "حالة النشاط";
+                base.dgvEntitiesList.Columns[7].Width = 80;
             }
         }
 
