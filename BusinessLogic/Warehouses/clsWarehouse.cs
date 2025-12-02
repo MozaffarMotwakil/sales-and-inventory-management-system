@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using BusinessLogic.Employees;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
 using DataAccess.Warehouses;
@@ -10,7 +11,7 @@ using DTOs.Warehouses;
 
 namespace BusinessLogic.Warehouses
 {
-    public class clsWarehouse
+    public class clsWarehouse : IEntityActivity
     {
         public enum enWarehouseType
         {
@@ -137,6 +138,11 @@ namespace BusinessLogic.Warehouses
         {
             WarehouseName = WarehouseName.Trim();
             Address = Address.Trim();
+        }
+
+        public bool GetActivityStatus()
+        {
+            return IsActive;
         }
 
         public bool MarkAsActive()

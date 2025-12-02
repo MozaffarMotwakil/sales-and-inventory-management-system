@@ -1,19 +1,26 @@
 ﻿using System.Windows.Forms;
 using BusinessLogic.Warehouses;
+using SIMS.WinForms.Interfaces;
 using static BusinessLogic.Warehouses.clsWarehouse;
 
 namespace SIMS.WinForms.Warehouses
 {
-    public partial class ctrWarehouseInfo : UserControl
+    public partial class ctrWarehouseInfo : UserControl, IEntityView<clsWarehouse>
     {
-        public clsWarehouse Warehouse
+        private clsWarehouse _Warehouse;
+
+        public clsWarehouse Entity
         {
+            get => _Warehouse;
+
             set
             {
                 if (value == null || !value.WarehouseID.HasValue || value.WarehouseID < 1)
                 {
                     return;
                 }
+
+                _Warehouse = value;
 
                 stBasicInfo basicInfo = value.GetBasicInfo();
                 lblWarehouseName.Text = basicInfo.WarehouseName;

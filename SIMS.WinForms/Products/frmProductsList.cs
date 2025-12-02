@@ -7,6 +7,8 @@ namespace SIMS.WinForms.Products
 {
     public partial class frmProductsList : BaseProductsForm
     {
+        protected override Form EditEntityForm => new frmAddEditProduct(SelectedEntity);
+
         public frmProductsList()
         {
             InitializeComponent();
@@ -26,21 +28,6 @@ namespace SIMS.WinForms.Products
             base.EntityName = "المنتج";
             base.IsEntitySupportActivityStatus = true;
             base.EntityInfoControl = ctrProductInfo;
-        }
-
-        protected override bool GetEntityActivityStatus()
-        {
-            return GetSelectedEntity().IsActive;
-        }
-
-        protected override bool MarkRecordAsActive()
-        {
-            return GetSelectedEntity().MarkAsActive();
-        }
-
-        protected override bool MarkRecordAsInActive()
-        {
-            return GetSelectedEntity().MarkAsInActive();
         }
 
         private void cbCatigory_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,16 +81,6 @@ namespace SIMS.WinForms.Products
         {
             frmAddEditProduct addProduct = new frmAddEditProduct();
             addProduct.ShowDialog();
-        }
-
-        protected override Form CreateEditForm(clsProduct product)
-        {
-            return new frmAddEditProduct(product);
-        }
-
-        protected override void HandleEntityInfoDisplay(clsProduct product)
-        { 
-            ctrProductInfo.Product = product;
         }
 
     }

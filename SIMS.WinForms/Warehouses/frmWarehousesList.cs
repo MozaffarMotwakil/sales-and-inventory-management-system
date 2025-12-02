@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using BusinessLogic.Products;
 using BusinessLogic.Warehouses;
-using DVLD.WinForms.Utils;
-using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Warehouses
 {
     public partial class frmWarehouswList : BaseWarehousesForm
     {
-        private clsWarehouseService _WarehouseService;
+        protected override Form EditEntityForm => new frmAddEditWarehouse(SelectedEntity);
+
         public frmWarehouswList() 
         {
             InitializeComponent();
-            _WarehouseService = clsWarehouseService.CreateInstance();
             frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
@@ -31,21 +28,6 @@ namespace SIMS.WinForms.Warehouses
             base.EntityName = "المخزن";
             base.IsEntitySupportActivityStatus = true;
             base.EntityInfoControl = ctrWarehouseInfo;
-        }
-
-        protected override bool GetEntityActivityStatus()
-        {
-            return GetSelectedEntity().IsActive;
-        }
-
-        protected override bool MarkRecordAsActive()
-        {
-            return GetSelectedEntity().MarkAsActive();
-        }
-
-        protected override bool MarkRecordAsInActive()
-        {
-            return GetSelectedEntity().MarkAsInActive();
         }
 
         private void cbWarehouseActivity_SelectedIndexChanged(object sender, EventArgs e)
@@ -82,22 +64,10 @@ namespace SIMS.WinForms.Warehouses
             AddWarehouse.ShowDialog();
         }
 
-        protected override Form CreateEditForm(clsWarehouse warehouse)
+        private void TransfareInventoriesBetweenWarehousesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            return new frmAddEditWarehouse(warehouse);
-        }
-
-        protected override void HandleEntityInfoDisplay(clsWarehouse warehouse)
-        {
-            ctrWarehouseInfo.Warehouse = warehouse;
-        }
-
-        private void dgvEntitiesList_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                dgvEntitiesList.Rows[e.RowIndex].Selected = true;
-            }
+            frmTransfareInventories transfareInventories = new frmTransfareInventories();
+            transfareInventories.ShowDialog();
         }
 
         protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -106,23 +76,15 @@ namespace SIMS.WinForms.Warehouses
 
             if (dgvEntitiesList.CurrentRow.Index >= 0)
             {
-                clsWarehouse warehouse = GetSelectedEntity();
-                
-                if (warehouse != null)
+                if (SelectedEntity != null)
                 {
-                    if (warehouse.Type == clsWarehouse.enWarehouseType.ShopWarehouse)
+                    if (SelectedEntity.Type == clsWarehouse.enWarehouseType.ShopWarehouse)
                     {
                         e.Cancel = true;
                         return;
                     }
                 } 
             }
-        }
-
-        private void TransfareInventoriesBetweenWarehousesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmTransfareInventories transfareInventories = new frmTransfareInventories();
-            transfareInventories.ShowDialog();
         }
 
     }

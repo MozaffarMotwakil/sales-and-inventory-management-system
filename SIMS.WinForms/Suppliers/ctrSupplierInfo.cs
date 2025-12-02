@@ -7,12 +7,13 @@ using System.Windows.Forms;
 using BusinessLogic.Parties;
 using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
+using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Suppliers
 {
-    public partial class ctrSupplierInfo : UserControl
+    public partial class ctrSupplierInfo : UserControl, IEntityView<clsSupplier>
     {
         public ctrSupplierInfo()
         {
@@ -20,7 +21,7 @@ namespace SIMS.WinForms.Suppliers
         }
 
         private clsSupplier _Supplier;
-        public clsSupplier Supplier
+        public clsSupplier Entity
         {
             get
             {

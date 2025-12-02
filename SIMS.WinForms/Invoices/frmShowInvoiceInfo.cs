@@ -30,7 +30,7 @@ namespace SIMS.WinForms.Invoices
                 return;
             }
 
-            ctrInvoiceInfo.Invoice = _Invoice;
+            ctrInvoiceInfo.Entity = _Invoice;
         }
 
         private void btnCancle_Click(object sender, EventArgs e)

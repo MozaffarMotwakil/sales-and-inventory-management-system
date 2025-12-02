@@ -24,7 +24,7 @@ namespace SIMS.WinForms.Suppliers
                 return; 
             }
 
-            ctrSupplierInfo.Supplier = _Supplier;
+            ctrSupplierInfo.Entity = _Supplier;
         }
 
         private void ctrSupplierInfo_SizeChanged(object sender, EventArgs e)

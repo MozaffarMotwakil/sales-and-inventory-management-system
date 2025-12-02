@@ -82,9 +82,12 @@
             this.cbRange.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbRange.FormattingEnabled = true;
             this.cbRange.Items.AddRange(new object[] {
-            "أخر 24 ساعة",
-            "آخر إسبوع",
+            "آخر 24 ساعة",
+            "آخر 7 أيام",
             "آخر شهر",
+            "آخر 3 شهور",
+            "آخر 6 شهور",
+            "أخر 12 شهر",
             "كل الأيام",
             "مخصص"});
             this.cbRange.Location = new System.Drawing.Point(587, 19);

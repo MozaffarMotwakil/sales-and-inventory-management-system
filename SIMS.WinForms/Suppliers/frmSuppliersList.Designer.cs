@@ -533,7 +533,7 @@
             this.ctrSupplierInfo.Name = "ctrSupplierInfo";
             this.ctrSupplierInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrSupplierInfo.Size = new System.Drawing.Size(800, 270);
-            this.ctrSupplierInfo.Supplier = null;
+            this.ctrSupplierInfo.Entity = null;
             this.ctrSupplierInfo.TabIndex = 47;
             this.ctrSupplierInfo.Visible = false;
             // 

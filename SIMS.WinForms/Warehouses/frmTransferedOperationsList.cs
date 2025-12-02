@@ -18,19 +18,12 @@ namespace SIMS.WinForms.Warehouses
         public frmTransferedOperationsList()
         {
             InitializeComponent();
-            ShowSearchTextBox = false;
             frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmTransferedOperationsList_Load(object sender, EventArgs e)
         {
-            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstTransferOperationDate;
-            dtpTimeFrom.MinDate = dtpTimeTo.MinDate = DateTime.MinValue;
-
-            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = DateTime.Now;
-            dtpTimeFrom.MaxDate = dtpTimeTo.MaxDate = DateTime.MaxValue;
-
-            cbRange.SelectedIndex = 3;
+            clsFormHelper.InitializeDateRangeLimits(dtpDateFrom, dtpDateTo, dtpTimeFrom, dtpTimeTo, _FirstTransferOperationDate);
 
             _WarehouseNames = clsWarehouseService.GetWarehouseNames();
 
@@ -47,13 +40,20 @@ namespace SIMS.WinForms.Warehouses
             cbSourceWarehouse.SelectedIndex = cbDestinationWarehouse.SelectedIndex =
                 cbResponseEmployee.SelectedIndex = 0;
 
-            cbRange.SelectedIndex = 3;
+            cbRange.SelectedIndex = 6;
 
             contextMenuStrip.Items.Clear();
             contextMenuStrip.Items.Add("عرض تفاصيل عملية النقل");
             contextMenuStrip.Items[0].Click += ShowTransferOperationInfo_Click;
             contextMenuStrip.Items[0].Image = Resources.inventory;
             contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+        }
+
+        protected override void LoadData()
+        {
+            base.LoadData();
+            base.ShowSearchTextBox = false;
+            base.AllowDeleteRecord = false;
         }
 
         private void ShowTransferOperationInfo_Click(object sender, EventArgs e)
@@ -103,51 +103,8 @@ namespace SIMS.WinForms.Warehouses
 
         private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
-                dtpDateTo.Enabled = dtpTimeTo.Enabled = false;
-
-            dtpDateFrom.MinDate = dtpDateTo.MinDate = _FirstTransferOperationDate;
-
-            DateTime currentTime = DateTime.Now;
-
-            dtpDateFrom.MaxDate = dtpDateTo.MaxDate = currentTime;
-
-            dtpDateFrom.Value = dtpDateTo.Value = dtpTimeFrom.Value =
-                dtpTimeTo.Value = currentTime;
-
-            if (cbRange.SelectedIndex == 0)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstTransferOperationDate > DateTime.Now.AddDays(-1) ?
-                    _FirstTransferOperationDate :
-                    DateTime.Now.AddDays(-1);
-            }
-            else if (cbRange.SelectedIndex == 1)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstTransferOperationDate > DateTime.Now.AddDays(-7) ?
-                    _FirstTransferOperationDate :
-                    DateTime.Now.AddDays(-7);
-            }
-            else if (cbRange.SelectedIndex == 2)
-            {
-                dtpDateFrom.Value = dtpTimeFrom.Value = _FirstTransferOperationDate > DateTime.Now.AddDays(-30) ?
-                    _FirstTransferOperationDate :
-                    DateTime.Now.AddDays(-30);
-            }
-            else if (cbRange.SelectedIndex == 3)
-            {
-                dtpDateFrom.Value = _FirstTransferOperationDate;
-                dtpTimeFrom.Value = _FirstTransferOperationDate;
-            }
-            else
-            {
-                dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
-                    dtpDateTo.Enabled = dtpTimeTo.Enabled = true;
-
-                dtpDateFrom.Value = currentTime.Date;
-                dtpDateTo.Value = currentTime.Date;
-                dtpTimeFrom.Value = currentTime.Date;
-                dtpTimeTo.Value = currentTime.Date;
-            }
+            clsFormHelper.InitializeAndApplyDateRange(dtpDateFrom, dtpDateTo, dtpTimeFrom, dtpTimeTo,
+                cbRange, _FirstTransferOperationDate);
         }
 
         private void dtpDateFrom_ValueChanged(object sender, EventArgs e)

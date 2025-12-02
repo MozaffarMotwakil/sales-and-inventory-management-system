@@ -96,6 +96,7 @@
     <Compile Include="frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IEntityView.cs" />
     <Compile Include="Invoices\frmShowInvoiceInfo.cs">
       <SubType>Form</SubType>
     </Compile>

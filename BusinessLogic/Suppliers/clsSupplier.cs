@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Parties;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
@@ -9,7 +10,7 @@ using static BusinessLogic.Parties.clsParty;
 
 namespace BusinessLogic.Suppliers
 {
-    public class clsSupplier
+    public class clsSupplier : IEntityActivity
     {
         public int? SupplierID { get; private set; }
         public clsParty PartyInfo { get; }
@@ -61,6 +62,11 @@ namespace BusinessLogic.Suppliers
             }
 
             this.Notes = notes;
+        }
+
+        public bool GetActivityStatus()
+        {
+            return IsActive;
         }
 
         public bool MarkAsActive()

@@ -59,10 +59,5 @@ namespace SIMS.WinForms.Purchases
             Filter = $"InvoiceNa LIKE '%{txtSearch.Text}%' OR SupplierName LIKE '%{txtSearch.Text}%'";
         }
 
-        protected override void HandleEntityInfoDisplay(clsInvoice invoice)
-        {
-            ctrInvoiceInfo.Invoice = invoice;
-        }
-
     }
 }

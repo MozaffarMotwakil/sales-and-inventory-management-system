@@ -10,7 +10,6 @@ namespace SIMS.WinForms.Warehouses
         {
             dgvEntitiesList.Location = new Point(dgvEntitiesList.Location.X, 65);
             dgvEntitiesList.Height = 625;
-            ShowSearchTextBox = false;
         }
 
         protected override void ResetColumnsOfDGV()

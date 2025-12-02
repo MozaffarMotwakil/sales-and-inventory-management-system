@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using BusinessLogic.Products;
 using BusinessLogic.Warehouses;
@@ -50,6 +49,12 @@ namespace SIMS.WinForms.Warehouses
 
             dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;
             clsProductService.CreateInstance().EntitySaved += FrmInventoriesList_ProductSaved;
+        }
+
+        protected override void LoadData()
+        {
+            base.LoadData();
+            AllowDeleteRecord = false;
         }
 
         private void FrmInventoriesList_ProductSaved(object sender, BusinessLogic.Interfaces.EntitySavedEventArgs e)

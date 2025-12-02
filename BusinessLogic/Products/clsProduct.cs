@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
@@ -9,7 +10,7 @@ using DTOs.Products;
 
 namespace BusinessLogic.Products
 {
-    public class clsProduct 
+    public class clsProduct : IEntityActivity
     {
         public int? ProductID { get; private set; }
         public string ProductName { get; set; }
@@ -66,6 +67,11 @@ namespace BusinessLogic.Products
                 clsUser.Find(productDTO.UpdatedByUserID ?? -1);
             UpdatedAt = productDTO.UpdatedAt;
             Mode = enMode.Update;
+        }
+
+        public bool GetActivityStatus()
+        {
+            return IsActive;
         }
 
         public bool MarkAsActive()

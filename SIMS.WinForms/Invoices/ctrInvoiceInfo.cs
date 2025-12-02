@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
+using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
 
 namespace SIMS.WinForms.Invoices
 {
-    public partial class ctrInvoiceInfo : UserControl
+    public partial class ctrInvoiceInfo : UserControl, IEntityView<clsInvoice>
     {
         public bool ShowPartyInfo;
 
         private clsInvoice _Invoice;
-        public clsInvoice Invoice 
+        public clsInvoice Entity 
         {
             get
             {

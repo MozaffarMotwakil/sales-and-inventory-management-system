@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using BusinessLogic.Parties;
-using BusinessLogic.Products;
-using BusinessLogic.Suppliers;
 
 namespace SIMS.WinForms.Suppliers
 {
     public partial class frmSuppliersList : BaseSuppliersForm
     {
+        protected override Form EditEntityForm => new frmAddEditSupplier(SelectedEntity, SelectedEntity.PartyInfo.PartyCategory);
+
         public frmSuppliersList()
         {
             InitializeComponent();
@@ -27,21 +27,6 @@ namespace SIMS.WinForms.Suppliers
             base.EntityName = "المورد";
             IsEntitySupportActivityStatus = true;
             base.EntityInfoControl = ctrSupplierInfo;
-        }
-
-        protected override bool GetEntityActivityStatus()
-        {
-            return GetSelectedEntity().IsActive;
-        }
-
-        protected override bool MarkRecordAsActive()
-        {
-            return GetSelectedEntity().MarkAsActive();
-        }
-
-        protected override bool MarkRecordAsInActive()
-        {
-            return GetSelectedEntity().MarkAsInActive();
         }
 
         private void cbSupplierCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,16 +82,6 @@ namespace SIMS.WinForms.Suppliers
         {
             frmAddEditSupplier addOrganizationSupplier = new frmAddEditSupplier(clsParty.enPartyCategory.Organization);
             addOrganizationSupplier.ShowDialog();
-        }
-
-        protected override Form CreateEditForm(clsSupplier supplier)
-        {
-            return new frmAddEditSupplier(supplier, supplier.PartyInfo.PartyCategory);
-        }
-
-        protected override void HandleEntityInfoDisplay(clsSupplier supplier)
-        {
-            ctrSupplierInfo.Supplier = supplier;
         }
 
     }

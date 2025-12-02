@@ -72,7 +72,7 @@
             // 
             this.ctrInvoiceInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrInvoiceInfo.Invoice = null;
+            this.ctrInvoiceInfo.Entity = null;
             this.ctrInvoiceInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrInvoiceInfo.Name = "ctrInvoiceInfo";
             this.ctrInvoiceInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

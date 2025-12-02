@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using BusinessLogic;
 using BusinessLogic.Interfaces;
 using DVLD.WinForms.Utils;
+using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.BaseForms
@@ -16,7 +17,6 @@ namespace SIMS.WinForms.BaseForms
         where TEntity : class
     {
         protected readonly TManager Manager;
-        protected Control EntityInfoControl { get; set; }
         protected string EntityName { get; set; }
         protected string Filter { get; set; }
         protected string SearchHintMessage
@@ -25,8 +25,8 @@ namespace SIMS.WinForms.BaseForms
             set => lblSearchHintText.Text = value;
         }
 
-        protected bool AllowDeleteRecord;
-        protected bool IsEntitySupportActivityStatus;
+        protected bool AllowDeleteRecord { get; set; }
+        protected bool IsEntitySupportActivityStatus { get; set; }
 
         public bool ShowSearchTextBox
         {
@@ -34,13 +34,22 @@ namespace SIMS.WinForms.BaseForms
             set => searchPanel.Visible = value;
         }
 
+        protected virtual Form EditEntityForm { get; set; }
+
+        protected UserControl EntityInfoControl { get; set; }
+
+        protected IEntityView<TEntity> EntityInfoControlViewer => EntityInfoControl as IEntityView<TEntity>;
+
+        protected TEntity SelectedEntity => Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
+
+        protected IEntityActivity SelectedEntityActivity => SelectedEntity as IEntityActivity;
+
         public frmGenericListBase(TManager manager, bool showSearchTextBox = true)
         {
             InitializeComponent();
             Manager = manager;
             ShowSearchTextBox = showSearchTextBox;
             AllowDeleteRecord = true;
-            IsEntitySupportActivityStatus = false;
             EntityName = "الكيان";
             Manager.EntitySaved += EntitySavedEvent;
             Manager.EntityDeleted += EntityDeletedEvent;
@@ -58,7 +67,7 @@ namespace SIMS.WinForms.BaseForms
             }
             else if (e.OperationMode == BusinessLogic.enMode.Update && (EntityInfoControl != null && EntityInfoControl.Visible))
             {
-                HandleEntityInfoDisplay(Manager.Find(e.EntityID));
+                EntityInfoControlViewer.Entity = SelectedEntity;
             }
             else if (EntityInfoControl != null)
             {
@@ -182,6 +191,11 @@ namespace SIMS.WinForms.BaseForms
 
         protected void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (EditEntityForm == null)
+            {
+                return;
+            }
+
             TEntity entity = Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
 
             if (entity == null)
@@ -190,13 +204,7 @@ namespace SIMS.WinForms.BaseForms
                 return;
             }
 
-            Form editEntity = CreateEditForm(entity);
-            editEntity.ShowDialog();
-        }
-
-        protected virtual Form CreateEditForm(TEntity entity) 
-        {
-            throw new NotImplementedException();
+            EditEntityForm.ShowDialog();
         }
 
         protected void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -268,7 +276,7 @@ namespace SIMS.WinForms.BaseForms
                 contextMenuStrip.Items["itemActive"].Visible = 
                     contextMenuStrip.Items["itemInActive"].Visible = false;
 
-                if (GetEntityActivityStatus())
+                if (SelectedEntityActivity.GetActivityStatus())
                 {
                     contextMenuStrip.Items["itemInActive"].Visible = true;
                 }
@@ -286,24 +294,15 @@ namespace SIMS.WinForms.BaseForms
                 return;
             }
 
-            TEntity entity = GetSelectedEntity();
-
-            if (entity == null)
+            if (SelectedEntity == null)
             {
                 clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
                 return;
             }
 
-            HandleEntityInfoDisplay(entity);
+            EntityInfoControlViewer.Entity = SelectedEntity;
             EntityInfoControl.Visible = true;
         }
-
-        protected virtual TEntity GetSelectedEntity()
-        {
-            return Manager.Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList));
-        }
-
-        protected virtual void HandleEntityInfoDisplay(TEntity entity) { }
 
         protected virtual void DeleteSelectedEntity()
         {
@@ -330,13 +329,13 @@ namespace SIMS.WinForms.BaseForms
             }
             catch (SqlException ex) when (ex.Number == clsAppSettings.RefranceErrorNumber)
             {
-                if (IsEntitySupportActivityStatus && GetEntityActivityStatus())
+                if (IsEntitySupportActivityStatus && SelectedEntityActivity.GetActivityStatus())
                 {
                     if (clsFormMessages.Confirm(ex.Message + $", هل تريد إلغاء تنشيط/تفعيل {EntityName} بدلا من ذلك ؟", 
                         $"إلغاء تنشيط/تفعيل {EntityName}", MessageBoxIcon.Error, MessageBoxDefaultButton.Button2)
                         )
                     {
-                        if (MarkRecordAsInActive())
+                        if (SelectedEntityActivity.MarkAsInActive())
                         {
                             clsFormMessages.ShowSuccess($"تم إلغاء تنشيط/تفعيل {EntityName} بنجاح");
                         }
@@ -355,21 +354,6 @@ namespace SIMS.WinForms.BaseForms
             {
                 clsFormMessages.ShowError(ex.Message);
             }
-        }
-
-        protected virtual bool GetEntityActivityStatus()
-        {
-            return false;
-        }
-
-        protected virtual bool MarkRecordAsActive()
-        {
-            return false;
-        }
-
-        protected virtual bool MarkRecordAsInActive()
-        {
-            return false;
         }
 
         protected object GetCellValue(int columnIndex)
@@ -399,15 +383,13 @@ namespace SIMS.WinForms.BaseForms
                 return;
             }
 
-            TEntity entity = GetSelectedEntity();
-
-            if (entity == null)
+            if (SelectedEntityActivity == null)
             {
                 clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
                 return;
             }
 
-            if (MarkRecordAsInActive())
+            if (SelectedEntityActivity.MarkAsInActive())
             {
                 clsFormMessages.ShowSuccess($"تم إلغاء تنشيط/تفعيل {EntityName} بنجاح");
             }
@@ -424,15 +406,13 @@ namespace SIMS.WinForms.BaseForms
                 return;
             }
 
-            TEntity entity = GetSelectedEntity();
-
-            if (entity == null)
+            if (SelectedEntityActivity == null)
             {
                 clsFormMessages.ShowError($"لم يتم العثور على {EntityName}");
                 return;
             }
 
-            if (MarkRecordAsActive())
+            if (SelectedEntityActivity.MarkAsActive())
             {
                 clsFormMessages.ShowSuccess($"تم تنشيط/تفعيل {EntityName} بنجاح");
             }

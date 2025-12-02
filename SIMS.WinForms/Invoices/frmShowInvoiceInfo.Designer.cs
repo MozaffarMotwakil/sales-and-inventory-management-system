@@ -34,7 +34,7 @@
             // 
             // ctrInvoiceInfo
             // 
-            this.ctrInvoiceInfo.Invoice = null;
+            this.ctrInvoiceInfo.Entity = null;
             this.ctrInvoiceInfo.Location = new System.Drawing.Point(12, 12);
             this.ctrInvoiceInfo.Name = "ctrInvoiceInfo";
             this.ctrInvoiceInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using BusinessLogic.Products;
 using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
+using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Invoices;
 using SIMS.WinForms.Properties;
 using SIMS.WinForms.Suppliers;
@@ -14,11 +15,11 @@ using SIMS.WinForms.Warehouses;
 
 namespace SIMS.WinForms.Products
 {
-    public partial class ctrProductInfo : UserControl
+    public partial class ctrProductInfo : UserControl, IEntityView<clsProduct>
     {
         private clsProduct _Product;
 
-        public clsProduct Product
+        public clsProduct Entity
         {
             get => _Product;
 

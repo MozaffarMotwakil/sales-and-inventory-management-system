@@ -99,7 +99,7 @@
             this.ctrProductInfo.Location = new System.Drawing.Point(12, 43);
             this.ctrProductInfo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ctrProductInfo.Name = "ctrProductInfo";
-            this.ctrProductInfo.Product = null;
+            this.ctrProductInfo.Entity = null;
             this.ctrProductInfo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.ctrProductInfo.Size = new System.Drawing.Size(850, 270);
             this.ctrProductInfo.TabIndex = 46;
