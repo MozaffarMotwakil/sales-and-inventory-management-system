@@ -40,16 +40,6 @@ namespace BusinessLogic.Invoices
             return clsInvoiceData.IsInvoiceExists(invoiceNa);
         }
 
-        public static int GetReturnInvoicesCount(int invoiceID)
-        {
-            return clsInvoiceData.GetReturnInvoicesCount(invoiceID);
-        }
-
-        public static int GetInvoiceLineRemainingQuantity(int lineID)
-        {
-            return clsInvoiceData.GetInvoiceLineRemainingQuantity(lineID);
-        }
-
         public clsInvoice Find(int InvoiceID)
         {
             if (InvoiceID < 1)
@@ -74,10 +64,6 @@ namespace BusinessLogic.Invoices
             }
         }
 
-        /// <summary>
-        /// This method is always throw an exception becuse connot delete an invoice after its issued
-        /// </summary>
-        /// <exception cref="InvalidOperationException"></exception>
         public bool Delete(int purchaseInvoiceID)
         {
             throw new InvalidOperationException("لا يمكن حذف فاتورة قد تم إصدارها");
@@ -88,7 +74,7 @@ namespace BusinessLogic.Invoices
             throw new NotImplementedException("لم يتم إنشاء دالة جلب كل فواتير");
         }
 
-        public DataTable GetAllPurchaseInvoice()
+        public DataTable GetAllPurchaseInvoices()
         {
             return clsInvoiceData.GetAllPurchaseInvoices();
         }
@@ -97,8 +83,6 @@ namespace BusinessLogic.Invoices
         {
             throw new NotImplementedException("لم يتم إنشاء دالة جلب كل فواتير المشتريات");
         }
-
-      
 
     }
 }

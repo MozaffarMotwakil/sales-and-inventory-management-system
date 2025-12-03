@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using BusinessLogic.Invoices;
 using BusinessLogic.Products;
+using BusinessLogic.Suppliers;
 using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Interfaces;
@@ -276,6 +278,25 @@ namespace SIMS.WinForms.Products
             }
         }
 
+        private void ShowSupplierInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvSuppliers.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsSupplier supplier = clsSupplierService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvSuppliers, 1));
+
+            if (supplier == null)
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المورد");
+                return;
+            }
+
+            frmShowSupplierInfo supplierInfo = new frmShowSupplierInfo(supplier);
+            supplierInfo.ShowDialog();
+        }
+
         private void SuppliedItemsLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgvSuppliers.SelectedRows.Count == 0)
@@ -354,6 +375,31 @@ namespace SIMS.WinForms.Products
 
                 dgvInventories.Columns[11].HeaderText = "معدل الربح (%)";
                 dgvInventories.Columns[11].Width = 75;
+            }
+        }
+
+        private void ShowTransactionLog_Click(object sender, EventArgs e)
+        {
+            if (dgvInventories.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsInventory currentInventory = clsInventoryService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvInventories, 1));
+
+            if (currentInventory != null)
+            {
+                frmStockTransactionsList inventoryTransactions = new frmStockTransactionsList(
+                    currentInventory.ProductInfo.ProductName,
+                    currentInventory.UnitInfo.UnitName,
+                    currentInventory.WarehouseInfo.WarehouseName
+                    );
+
+                frmMainForm.OpenForm(inventoryTransactions);
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزون");
             }
         }
 

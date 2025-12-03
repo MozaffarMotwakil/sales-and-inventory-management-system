@@ -18,6 +18,7 @@ namespace SIMS.WinForms.Warehouses
         private DataTable _Warehouses;
         private List<clsInventory> _SourceWarehouseAvailableInventories;
         private List<clsInventory> _DestinationWarehouseAvailableInventories;
+        private int _ErrorColumnIndex;
 
         public frmTransfareInventories()
         {
@@ -37,7 +38,14 @@ namespace SIMS.WinForms.Warehouses
 
             dtpDate.Value = dtpTime.Value = DateTime.Now;
 
-            _Warehouses = clsWarehouseService.GetWarehousesList();
+            _Warehouses = clsWarehouseService.GetActiveWarehousesList();
+
+            if (_Warehouses.Rows.Count < 2)
+            {
+                clsFormMessages.ShowError("يجب أن يتوفر مخزنين نشطين على الأقل لإجراء عملية نقل");
+                this.Close();
+                return;
+            }
 
             cbSourceWarehouse.DataSource = _Warehouses;
             cbSourceWarehouse.DisplayMember = "WarehouseName";
@@ -384,11 +392,12 @@ namespace SIMS.WinForms.Warehouses
 
         private void dgvTransferedInventories_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            _ErrorColumnIndex = e.ColumnIndex;
+
             if (e.ColumnIndex == colProduct.Index)
             {
                 if (IsCurrentCellEmpty() && IsCurrentRowHasData())
                 {
-                    e.Cancel = true;
                     dgvTransferedInventories.CurrentRow.ErrorText = "يجب إختيار منتج";
                     SystemSounds.Asterisk.Play();
                 }
@@ -402,7 +411,6 @@ namespace SIMS.WinForms.Warehouses
             {
                 if (IsCurrentCellEmpty() && IsCurrentRowHasData())
                 {
-                    e.Cancel = true;
                     dgvTransferedInventories.CurrentRow.ErrorText = "يجب إختيار وحدة";
                     SystemSounds.Asterisk.Play();
                 }
@@ -455,22 +463,6 @@ namespace SIMS.WinForms.Warehouses
             return false;
         }
 
-        private void dgvTransferedInventories_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            bool isThereEmptyCellInCurrentRow = (
-                IsEmptyCell(e.RowIndex, colProduct.Index) ||
-                IsEmptyCell(e.RowIndex, colUnit.Index) ||
-                IsEmptyCell(e.RowIndex, colTransfareQuantity.Index) 
-                );
-
-            if ((!string.IsNullOrEmpty(dgvTransferedInventories.CurrentRow.ErrorText) || isThereEmptyCellInCurrentRow) && e.RowIndex != dgvTransferedInventories.NewRowIndex)
-            {
-                e.Cancel = true;
-                dgvTransferedInventories.CurrentRow.ErrorText = "يجب إدخال جميع بيانات الصف الحالي بشكل صحيح قبل الإنتقال لصف جديد";
-                SystemSounds.Asterisk.Play();
-            }
-        }
-
         private void btnCancle_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -481,6 +473,12 @@ namespace SIMS.WinForms.Warehouses
             if (!clsFormValidation.IsDataValid(this, errorProvider))
             {
                 clsFormMessages.ShowInvalidDataError();
+                return;
+            }
+
+            if (clsFormHelper.IsDataGridViewCellsHasError(dgvTransferedInventories, _ErrorColumnIndex))
+            {
+                clsFormMessages.ShowError("يجب إدخال جميع البيانات بصورة صحيحة قبل الحفظ");
                 return;
             }
 

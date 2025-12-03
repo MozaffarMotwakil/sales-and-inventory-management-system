@@ -45,6 +45,10 @@
             // 
             this.lblTotalRecords.Location = new System.Drawing.Point(152, 691);
             // 
+            // lblSearchHintText
+            // 
+            this.lblSearchHintText.Text = "أدخل رقم الفاتورة أو إسم المورد";
+            // 
             // toolStrip
             // 
             this.toolStrip.AutoSize = false;
@@ -61,10 +65,12 @@
             // issuePurchaseInvoiceToolStripButton
             // 
             this.issuePurchaseInvoiceToolStripButton.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.issuePurchaseInvoiceToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.Invoice_32;
+            this.issuePurchaseInvoiceToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.issuePurchaseInvoiceToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.issuePurchaseInvoiceToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.issuePurchaseInvoiceToolStripButton.Name = "issuePurchaseInvoiceToolStripButton";
-            this.issuePurchaseInvoiceToolStripButton.Size = new System.Drawing.Size(129, 37);
+            this.issuePurchaseInvoiceToolStripButton.Size = new System.Drawing.Size(161, 37);
             this.issuePurchaseInvoiceToolStripButton.Text = "   إصدار فاتورة مشتريات";
             this.issuePurchaseInvoiceToolStripButton.Click += new System.EventHandler(this.issuePurchaseInvoiceToolStripButton_Click);
             // 

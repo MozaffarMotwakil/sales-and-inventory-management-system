@@ -31,7 +31,7 @@ namespace SIMS.WinForms.Purchases
             }
 
             txtInvoiceNo.Text = _OrginalInvoice.InvoiceNo;
-            cbSupplier.Text = _OrginalInvoice.GetPartyName();
+            cbParty.Text = _OrginalInvoice.GetPartyName();
 
             colDiscountAmount.ReadOnly = colDiscountRate.ReadOnly = colTaxAmount.ReadOnly =
                 colTaxRate.ReadOnly = colUnitPrice.ReadOnly = true;
@@ -196,6 +196,8 @@ namespace SIMS.WinForms.Purchases
 
         private void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            base.ErrorColumnIndex = e.ColumnIndex;
+
             if (e.ColumnIndex == colProduct.Index)
             {
                 if (IsCurrentCellEmpty() && IsCurrentRowHasData())

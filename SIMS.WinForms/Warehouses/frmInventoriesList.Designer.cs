@@ -174,7 +174,7 @@
             // pnlTotalProjectedSalesValue
             // 
             this.pnlTotalProjectedSalesValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlTotalProjectedSalesValue.BackColor = System.Drawing.Color.LightGray;
+            this.pnlTotalProjectedSalesValue.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlTotalProjectedSalesValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlTotalProjectedSalesValue.Controls.Add(this.lblExpectedProfitValue);
             this.pnlTotalProjectedSalesValue.Controls.Add(this.label8);
@@ -206,7 +206,7 @@
             // panel5
             // 
             this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel5.BackColor = System.Drawing.Color.LightGray;
+            this.panel5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.lblExpectedProfitRate);
             this.panel5.Controls.Add(this.label13);
@@ -238,7 +238,7 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.Color.LightGray;
+            this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.lblTotalProjectedSalesValue);
             this.panel3.Controls.Add(this.label1);
@@ -270,7 +270,7 @@
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.lblTotalInventoryValue);

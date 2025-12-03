@@ -67,7 +67,7 @@ namespace SIMS.WinForms.BaseForms
             }
             else if (e.OperationMode == BusinessLogic.enMode.Update && (EntityInfoControl != null && EntityInfoControl.Visible))
             {
-                EntityInfoControlViewer.Entity = SelectedEntity;
+                EntityInfoControlViewer.Entity = Manager.Find(e.EntityID);
             }
             else if (EntityInfoControl != null)
             {

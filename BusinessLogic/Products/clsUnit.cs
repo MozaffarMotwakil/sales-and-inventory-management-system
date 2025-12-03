@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Linq;
 using BusinessLogic.Utilities;
 using DataAccess.Products;
 using DTOs.Products;
@@ -32,7 +31,7 @@ namespace BusinessLogic.Products
         {
             return clsUtils.GetColumnStringArray(
                 clsProductUnitData.GetUnitsList(),
-                "UnitID"
+                "UnitName"
                 );
         }
 

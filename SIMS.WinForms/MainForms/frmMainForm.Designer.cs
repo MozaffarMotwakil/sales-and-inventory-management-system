@@ -424,9 +424,6 @@
             // ClockAndDateTimer
             // 
             this.ClockAndDateTimer.Interval = 1000;
-            #if !DEBUG
-            this.ClockAndDateTimer.Tick += new System.EventHandler(this.ClockAndDateTimer_Tick);
-            #endif
             // 
             // frmMainForm
             // 

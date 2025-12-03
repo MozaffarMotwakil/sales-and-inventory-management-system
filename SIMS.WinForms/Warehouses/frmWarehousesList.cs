@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using BusinessLogic.Warehouses;
+using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Warehouses
 {
@@ -66,6 +67,12 @@ namespace SIMS.WinForms.Warehouses
 
         private void TransfareInventoriesBetweenWarehousesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (clsWarehouseService.GetActiveWarehousesList().Rows.Count < 2)
+            {
+                clsFormMessages.ShowError("يجب أن يتوفر مخزنين نشطين على الأقل لإجراء عملية نقل");
+                return;
+            }
+
             frmTransfareInventories transfareInventories = new frmTransfareInventories();
             transfareInventories.ShowDialog();
         }

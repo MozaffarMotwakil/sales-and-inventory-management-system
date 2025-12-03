@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
@@ -87,6 +86,11 @@ namespace BusinessLogic.Warehouses
         public static DataTable GetWarehousesList()
         {
             return clsWarehouseData.GetWarehousesList();
+        }
+
+        public static DataTable GetActiveWarehousesList()
+        {
+            return clsUtils.GetActiveRecordsList(clsWarehouseData.GetWarehousesList());
         }
 
         public static string[] GetWarehouseNames()

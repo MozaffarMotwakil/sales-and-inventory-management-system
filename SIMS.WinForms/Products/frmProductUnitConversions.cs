@@ -103,12 +103,12 @@ namespace SIMS.WinForms.Products
         private void dgvUnitConversions_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             bool isThereDataInAnotherCellsInThisRow = (!_IsEmptyCell(e.RowIndex, colConversionFactor.Index) || !_IsEmptyCell(e.RowIndex, colSellingPrice.Index) || !_IsEmptyCell(e.RowIndex, colBarcode.Index));
+            _ErrorColumnIndex = e.ColumnIndex;
 
             if (e.ColumnIndex == colUnitConversion.Index)
             {
                 if (_IsEmptyCell(e.RowIndex, colUnitConversion.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إختيار نوع الوحدة البديلة";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
                     SystemSounds.Asterisk.Play();
@@ -125,14 +125,12 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colConversionFactor.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون معامل التحويل فارغا";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
                     SystemSounds.Asterisk.Play();
                 }
                 else if (!_IsEmptyCell(e.RowIndex, colConversionFactor.Index) && !_IsValidFactor(e.RowIndex))
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "معامل التحويل يجب أن يكون رقماً صحيحاً وأكبر من 1";
                     dgvUnitConversions.Rows[e.RowIndex].Cells[colDescription.Index].Value = string.Empty;
@@ -150,20 +148,17 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colSellingPrice.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون حقل سعر البيع فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
                 else if (!decimal.TryParse(dgvUnitConversions.Rows[e.RowIndex].Cells[colSellingPrice.Index].EditedFormattedValue?.ToString(), out decimal sellingPrice) && !_IsEmptyCell(e.RowIndex, colSellingPrice.Index))
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب إدخال قيمة رقمية صحيحة أو عشرية لسعر البيع";
                     SystemSounds.Asterisk.Play();
                 }
                 else if (sellingPrice < 1 && !_IsEmptyCell(e.RowIndex, colSellingPrice.Index))
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     e.Cancel = true;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "يجب أن يكون سعر البيع أكبر من صفر";
                     SystemSounds.Asterisk.Play();
@@ -180,7 +175,6 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsEmptyCell(e.RowIndex, colBarcode.Index) && isThereDataInAnotherCellsInThisRow)
                 {
-                    _ErrorColumnIndex = e.ColumnIndex;
                     dgvUnitConversions.Rows[e.RowIndex].ErrorText = "لا يمكن أن يكون حقل الباركود فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
@@ -261,27 +255,11 @@ namespace SIMS.WinForms.Products
             {
                 if (_IsSaved)
                 {
-                    for (int i = 0; i < dgvUnitConversions.Rows.Count - 1; i++)
+                    if (clsFormHelper.IsDataGridViewCellsHasError(dgvUnitConversions, _ErrorColumnIndex))
                     {
-                        dgvUnitConversions.Rows[i].ErrorText = string.Empty;
-
-                        for (int j = 0; j < dgvUnitConversions.Rows[i].Cells.Count; j++)
-                        {
-                            dgvUnitConversions.CurrentCell = dgvUnitConversions.Rows[i].Cells[j];
-                            dgvUnitConversions.BeginEdit(true);
-                            dgvUnitConversions.CancelEdit();
-
-                            if (!string.IsNullOrEmpty(dgvUnitConversions.Rows[i].ErrorText))
-                            {
-                                string oldError = dgvUnitConversions.Rows[i].ErrorText;
-                                dgvUnitConversions.CurrentCell = dgvUnitConversions.Rows[i].Cells[_ErrorColumnIndex];
-                                dgvUnitConversions.Rows[i].ErrorText = oldError;
-
-                                clsFormMessages.ShowError("يجب إدخال جميع البيانات بصورة صحيحة قبل الحفظ");
-                                e.Cancel = true;
-                                return;
-                            }
-                        }
+                        e.Cancel = true;
+                        clsFormMessages.ShowError("يجب إدخال جميع البيانات بصورة صحيحة قبل الحفظ");
+                        return;
                     }
 
                     _IsSaved = false;

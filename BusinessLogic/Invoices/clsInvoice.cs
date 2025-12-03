@@ -154,9 +154,14 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("التاريخ", "لا يمكن أن يكون تاريخ الفاتورة في المستقبل.");
             }
 
-            if (WarehouseInfo == null || !WarehouseInfo.IsActive)
+            if (WarehouseInfo == null)
             {
                 validationResult.AddError("المخزن", "يجب تعيين مخزن صالح للفاتورة");
+            }
+
+            if (WarehouseInfo != null && !WarehouseInfo.IsActive)
+            {
+                validationResult.AddError("المخزن", $"المخزن المعين غير نشط");
             }
 
             if (!Enum.IsDefined(typeof(enInvoiceType), InvoiceType))

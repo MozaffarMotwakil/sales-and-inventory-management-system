@@ -140,6 +140,11 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("المنتج", "لم يتم العثور على المنتج المختار ");
             }
 
+            if (ProductInfo != null && !ProductInfo.IsActive)
+            {
+                validationResult.AddError("المنتج", $"المنتج \"{ProductInfo.ProductName}\" غير نشط");
+            }
+
             if (!clsProductUnitData.IsUnitExists(UnitID))
             {
                 validationResult.AddError("وحدة القياس", "لم يتم العثور على وحدة القياس المختارة");

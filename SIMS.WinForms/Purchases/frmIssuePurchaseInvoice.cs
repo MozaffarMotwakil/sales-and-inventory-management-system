@@ -19,28 +19,27 @@ namespace SIMS.WinForms.Inventory
             InitializeComponent();
         }
 
-        private void frmReceiveNewGoods_Load(object sender, EventArgs e)
+        private void frmIssuePurchaseInvoice_Load(object sender, EventArgs e)
         {
-            cbSupplier.DataSource = clsSupplierService.GetSuppliersList();
-            cbSupplier.DisplayMember = "SupplierName";
-            cbSupplier.ValueMember = "SupplierID";
-
-            cbSupplier.SelectedItem = null;
-            cbSupplier.Text = "إختار المورد";
-
             clsSupplierService.CreateInstance().EntitySaved += clsSupplier_SupplierSaved;
+
+            colProduct.DataSource = clsProductService.GetActiveProductsList();
+            colProduct.DisplayMember = "ProductName";
+            colProduct.ValueMember = "ProductID";
+
+            cbParty.DataSource = clsSupplierService.GetActiveSuppliersList();
+            cbParty.DisplayMember = "SupplierName";
+            cbParty.ValueMember = "SupplierID";
+            cbParty.SelectedItem = null;
+            cbParty.Text = "إختار المورد";
+
             dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
             dgvInvoiceLines.EditingControlShowing += dgvInvoiceLines_EditingControlShowing;
             dgvInvoiceLines.CellValidating += dgvInvoiceLines_CellValidating;
             txtInvoiceNo.Validating += txtInvoiceNo_Validating;
-            cbSupplier.Validating += cbSupplier_Validating;
-            cbSupplier.Enter += cbSupplier_Enter;
-            cbSupplier.Leave += cbSupplier_Leave;
-        }
-
-        private void cbSupplier_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            clsFormValidation.ValidatingRequiredField(cbSupplier, errorProvider, "يجب تعيين مورد للفاتورة");
+            cbParty.Validating += cbSupplier_Validating;
+            cbParty.Enter += cbSupplier_Enter;
+            cbParty.Leave += cbSupplier_Leave;
         }
 
         protected override clsInvoice GetInvoiceInctance()
@@ -48,28 +47,38 @@ namespace SIMS.WinForms.Inventory
             return new clsPurchaseInvoice(
                 txtInvoiceNo.Text,
                 dtpInvoiceIssueDate.Value,
-                GetInvoiceStatus(),
-                GetInvoiceLinesFromDGV(),
-                (int)cbSupplier.SelectedValue,
+                base.GetInvoiceStatus(),
+                base.GetInvoiceLinesFromDGV(),
+                (int)cbParty.SelectedValue,
                 (int)cbWarehouse.SelectedValue,
-                GetPaymentMethod(),
-                GetPaymentAmount()
+                base.GetPaymentMethod(),
+                base.GetPaymentAmount()
                 );
+        }
+
+        private void cbSupplier_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(cbParty, errorProvider, "يجب تعيين مورد للفاتورة");
+        }
+
+        private void txtInvoiceNo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            clsFormValidation.ValidatingRequiredField(txtInvoiceNo, errorProvider, "لا يمكن أن يكون حقل رقم الفاتورة فارغا");
         }
 
         private void cbSupplier_Enter(object sender, EventArgs e)
         {
-            if (cbSupplier.SelectedIndex == -1)
+            if (cbParty.SelectedIndex == -1)
             {
-                cbSupplier.Text = string.Empty;
+                cbParty.Text = string.Empty;
             }
         }
 
         private void cbSupplier_Leave(object sender, EventArgs e)
         {
-            if (cbSupplier.SelectedIndex == -1)
+            if (cbParty.SelectedIndex == -1)
             {
-                cbSupplier.Text = "إختار المورد";
+                cbParty.Text = "إختار المورد";
             }
         }
 
@@ -77,7 +86,7 @@ namespace SIMS.WinForms.Inventory
         {
             frmAddEditSupplier addPersonSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Person);
             addPersonSupplier.ShowDialog();
-            cbSupplier.Focus();
+            cbParty.Focus();
             llAddPersonSupplier.Focus();
         }
 
@@ -85,16 +94,16 @@ namespace SIMS.WinForms.Inventory
         {
             frmAddEditSupplier addEditOrganizationSupplier = new frmAddEditSupplier(BusinessLogic.Parties.clsParty.enPartyCategory.Organization);
             addEditOrganizationSupplier.ShowDialog();
-            cbSupplier.Focus();
+            cbParty.Focus();
             llAddOrganizationSupplier.Focus();
         }
 
         private void clsSupplier_SupplierSaved(object sender, EntitySavedEventArgs e)
         {
-            cbSupplier.DataSource = clsSupplierService.GetSuppliersList();
-            cbSupplier.DisplayMember = "SupplierName";
-            cbSupplier.ValueMember = "SupplierID";
-            cbSupplier.SelectedItem = e.EntityName;
+            cbParty.DataSource = clsSupplierService.GetSuppliersList();
+            cbParty.DisplayMember = "SupplierName";
+            cbParty.ValueMember = "SupplierID";
+            cbParty.SelectedItem = e.EntityName;
         }
 
         private void dgvInvoiceLines_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -108,11 +117,18 @@ namespace SIMS.WinForms.Inventory
                     return;
                 }
 
-                DataGridViewComboBoxCell cellComboBox = (dgvInvoiceLines.Rows[dgvInvoiceLines.CurrentRow.Index].Cells[colUnit.Index] as DataGridViewComboBoxCell);
+                ComboBox currentCellComboBox = e.Control as ComboBox;
+
+                currentCellComboBox.DataSource = clsProductService.GetAllProductUnits(productID.Value);
+                currentCellComboBox.DisplayMember = "UnitName";
+                currentCellComboBox.ValueMember = "UnitID";
+
+                DataGridViewComboBoxCell cellComboBox = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
                 cellComboBox.DataSource = clsProductService.GetAllProductUnits(productID.Value);
                 cellComboBox.DisplayMember = "UnitName";
                 cellComboBox.ValueMember = "UnitID";
 
+                clsFormHelper.PreventComboBoxAutoSelection(dgvInvoiceLines, currentCellComboBox);
                 clsFormHelper.ResetCellBackColor(dgvInvoiceLines, e);
             }
         }
@@ -202,13 +218,10 @@ namespace SIMS.WinForms.Inventory
             base.UpdateInvoiceSummary();
         }
 
-        private void txtInvoiceNo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            clsFormValidation.ValidatingRequiredField(txtInvoiceNo, errorProvider, "لا يمكن أن يكون حقل رقم الفاتورة فارغا");
-        }
-
         private void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            ErrorColumnIndex = e.ColumnIndex;
+
             if (e.ColumnIndex == colProduct.Index)
             {
                 if (IsCurrentCellEmpty() && IsCurrentRowHasData())

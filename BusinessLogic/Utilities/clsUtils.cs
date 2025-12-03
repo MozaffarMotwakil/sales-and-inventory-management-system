@@ -14,5 +14,15 @@ namespace BusinessLogic.Utilities
                 .Select(row => Convert.ToString(row[columnName]))
                 .ToArray();
         }
+
+        public static DataTable GetActiveRecordsList(DataTable dataTable, string activityColumnName = "IsActive")
+        {
+            return dataTable
+                .Rows
+                .Cast<DataRow>()
+                .Where(recordRow => Convert.ToBoolean(recordRow[activityColumnName]))
+                .CopyToDataTable();
+        }
+
     }
 }

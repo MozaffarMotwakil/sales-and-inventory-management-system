@@ -65,6 +65,8 @@
             this.pageSuppliers = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvSuppliers = new System.Windows.Forms.DataGridView();
+            this.SuppliersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pageInventories = new System.Windows.Forms.TabPage();
             this.dgvInventories = new System.Windows.Forms.DataGridView();
             this.InventoriesContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -80,8 +82,8 @@
             this.StockTransactionsContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.عرضتفاصيلالفاتورةToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.SuppliersContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.عرضحركاتالمخزونToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowSupplierInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.pageBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImage)).BeginInit();
@@ -89,13 +91,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnits)).BeginInit();
             this.pageSuppliers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).BeginInit();
+            this.SuppliersContextMenuStrip.SuspendLayout();
             this.pageInventories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventories)).BeginInit();
             this.InventoriesContextMenuStrip.SuspendLayout();
             this.pageStockTransactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).BeginInit();
             this.StockTransactionsContextMenuStrip.SuspendLayout();
-            this.SuppliersContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -116,6 +118,7 @@
             // 
             // pageBasicInfo
             // 
+            this.pageBasicInfo.BackColor = System.Drawing.Color.White;
             this.pageBasicInfo.Controls.Add(this.llUpdatedBy);
             this.pageBasicInfo.Controls.Add(this.llCreatedBy);
             this.pageBasicInfo.Controls.Add(this.lblUpdatedAt);
@@ -144,7 +147,6 @@
             this.pageBasicInfo.Size = new System.Drawing.Size(836, 237);
             this.pageBasicInfo.TabIndex = 0;
             this.pageBasicInfo.Text = "المعلومات الأساسية";
-            this.pageBasicInfo.UseVisualStyleBackColor = true;
             // 
             // llUpdatedBy
             // 
@@ -385,6 +387,7 @@
             // 
             // pageUnits
             // 
+            this.pageUnits.BackColor = System.Drawing.Color.White;
             this.pageUnits.Controls.Add(this.dgvUnits);
             this.pageUnits.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pageUnits.Location = new System.Drawing.Point(4, 23);
@@ -393,7 +396,6 @@
             this.pageUnits.Size = new System.Drawing.Size(836, 237);
             this.pageUnits.TabIndex = 1;
             this.pageUnits.Text = "الوحدات";
-            this.pageUnits.UseVisualStyleBackColor = true;
             // 
             // dgvUnits
             // 
@@ -430,6 +432,7 @@
             // 
             // pageSuppliers
             // 
+            this.pageSuppliers.BackColor = System.Drawing.Color.White;
             this.pageSuppliers.Controls.Add(this.label3);
             this.pageSuppliers.Controls.Add(this.dgvSuppliers);
             this.pageSuppliers.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -439,7 +442,6 @@
             this.pageSuppliers.Size = new System.Drawing.Size(836, 237);
             this.pageSuppliers.TabIndex = 2;
             this.pageSuppliers.Text = "الموردين";
-            this.pageSuppliers.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -486,8 +488,28 @@
             this.dgvSuppliers.TabIndex = 3;
             this.dgvSuppliers.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSuppliers_CellMouseDown);
             // 
+            // SuppliersContextMenuStrip
+            // 
+            this.SuppliersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ShowSupplierInfoToolStripMenuItem,
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.SuppliersContextMenuStrip.Name = "SuppliersContextMenuStrip";
+            this.SuppliersContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.SuppliersContextMenuStrip.Size = new System.Drawing.Size(199, 102);
+            this.SuppliersContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.SuppliersContextMenuStrip_Opening);
+            // 
+            // SuppliedItemsLogToolStripMenuItem
+            // 
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(198, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
+            // 
             // pageInventories
             // 
+            this.pageInventories.BackColor = System.Drawing.Color.White;
             this.pageInventories.Controls.Add(this.dgvInventories);
             this.pageInventories.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pageInventories.Location = new System.Drawing.Point(4, 23);
@@ -496,7 +518,6 @@
             this.pageInventories.Size = new System.Drawing.Size(836, 237);
             this.pageInventories.TabIndex = 3;
             this.pageInventories.Text = "المخزون";
-            this.pageInventories.UseVisualStyleBackColor = true;
             // 
             // dgvInventories
             // 
@@ -537,10 +558,11 @@
             // InventoriesContextMenuStrip
             // 
             this.InventoriesContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.عرضحركاتالمخزونToolStripMenuItem,
             this.تعديلحدإعادةالطلبToolStripMenuItem});
             this.InventoriesContextMenuStrip.Name = "contextMenuStrip2";
             this.InventoriesContextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.InventoriesContextMenuStrip.Size = new System.Drawing.Size(199, 42);
+            this.InventoriesContextMenuStrip.Size = new System.Drawing.Size(199, 80);
             this.InventoriesContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.InventoriesContextMenuStrip_Opening);
             // 
             // تعديلحدإعادةالطلبToolStripMenuItem
@@ -555,6 +577,7 @@
             // 
             // pageStockTransactions
             // 
+            this.pageStockTransactions.BackColor = System.Drawing.Color.White;
             this.pageStockTransactions.Controls.Add(this.cbRange);
             this.pageStockTransactions.Controls.Add(this.cbTransactionReason);
             this.pageStockTransactions.Controls.Add(this.cbUnit);
@@ -568,7 +591,6 @@
             this.pageStockTransactions.Size = new System.Drawing.Size(836, 237);
             this.pageStockTransactions.TabIndex = 4;
             this.pageStockTransactions.Text = "حركات المخزون";
-            this.pageStockTransactions.UseVisualStyleBackColor = true;
             // 
             // cbRange
             // 
@@ -720,22 +742,23 @@
             this.toolStripMenuItem1.Text = "عرض تفاصيل عملية النقل";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.ShowTransferOperationInfo_Click);
             // 
-            // SuppliersContextMenuStrip
+            // عرضحركاتالمخزونToolStripMenuItem
             // 
-            this.SuppliersContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SuppliedItemsLogToolStripMenuItem});
-            this.SuppliersContextMenuStrip.Name = "SuppliersContextMenuStrip";
-            this.SuppliersContextMenuStrip.Size = new System.Drawing.Size(182, 42);
-            this.SuppliersContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.SuppliersContextMenuStrip_Opening);
+            this.عرضحركاتالمخزونToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
+            this.عرضحركاتالمخزونToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.عرضحركاتالمخزونToolStripMenuItem.Name = "عرضحركاتالمخزونToolStripMenuItem";
+            this.عرضحركاتالمخزونToolStripMenuItem.Size = new System.Drawing.Size(198, 38);
+            this.عرضحركاتالمخزونToolStripMenuItem.Text = "عرض حركات المخزون";
+            this.عرضحركاتالمخزونToolStripMenuItem.Click += new System.EventHandler(this.ShowTransactionLog_Click);
             // 
-            // SuppliedItemsLogToolStripMenuItem
+            // ShowSupplierInfoToolStripMenuItem
             // 
-            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
-            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
-            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(181, 38);
-            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
-            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
+            this.ShowSupplierInfoToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplier_32;
+            this.ShowSupplierInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowSupplierInfoToolStripMenuItem.Name = "ShowSupplierInfoToolStripMenuItem";
+            this.ShowSupplierInfoToolStripMenuItem.Size = new System.Drawing.Size(198, 38);
+            this.ShowSupplierInfoToolStripMenuItem.Text = "عرض معلومات المورد";
+            this.ShowSupplierInfoToolStripMenuItem.Click += new System.EventHandler(this.ShowSupplierInfoToolStripMenuItem_Click);
             // 
             // ctrProductInfo
             // 
@@ -757,13 +780,13 @@
             this.pageSuppliers.ResumeLayout(false);
             this.pageSuppliers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuppliers)).EndInit();
+            this.SuppliersContextMenuStrip.ResumeLayout(false);
             this.pageInventories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventories)).EndInit();
             this.InventoriesContextMenuStrip.ResumeLayout(false);
             this.pageStockTransactions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStockTransactions)).EndInit();
             this.StockTransactionsContextMenuStrip.ResumeLayout(false);
-            this.SuppliersContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -815,5 +838,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTransactionNo;
         private System.Windows.Forms.ContextMenuStrip SuppliersContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem SuppliedItemsLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem عرضحركاتالمخزونToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowSupplierInfoToolStripMenuItem;
     }
 }

@@ -2,12 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
 using BusinessLogic.Interfaces;
+using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
-using BusinessLogic.Warehouses;
 using DataAccess.Products;
-using DataAccess.Warehouses;
 using DTOs.Products;
 
 namespace BusinessLogic.Products
@@ -119,13 +117,22 @@ namespace BusinessLogic.Products
             return clsProductData.GetAllProducts();
         }
 
-        public static object[] GetAllProductNames()
+        public static DataTable GetProductsList()
         {
-            return clsProductData.GetAllProductNames()
-                .Rows
-                .Cast<DataRow>()
-                .Select(row => row[0])
-                .ToArray();
+            return clsProductData.GetProductsList();
+        }
+
+        public static DataTable GetActiveProductsList()
+        {
+            return clsUtils.GetActiveRecordsList(clsProductData.GetProductsList());
+        }
+
+        public static string[] GetAllProductNames()
+        {
+            return clsUtils.GetColumnStringArray(
+                clsProductData.GetProductsList(),
+                "ProductName"
+                );
         }
 
         public static DataTable GetAllProductUnits(int productID)

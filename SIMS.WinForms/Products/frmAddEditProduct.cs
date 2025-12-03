@@ -80,7 +80,7 @@ namespace SIMS.WinForms.Products
                 cbCategory.SelectedValue = _Product.CategoryInfo.CategoryID;
                 cbBaseUnit.SelectedValue = _Product.MainUnitInfo.UnitID;
                 txtSellingPrice.Text = _Product.SellingPrice.ToString();
-                cbMainSupplier.SelectedItem = _Product.MainSupplierInfo?.PartyInfo.PartyName;
+                cbMainSupplier.SelectedValue = _Product.MainSupplierInfo?.SupplierID ?? -1;
                 txtDescription.Text = _Product.Description;
                 lblTotalOtherUnits.Text = _Product.UnitConversions?.Count.ToString();
                 ctrProductImage.ImageLocation = _Product.ImagePath;

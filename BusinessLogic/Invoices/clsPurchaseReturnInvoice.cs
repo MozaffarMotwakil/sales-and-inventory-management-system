@@ -17,7 +17,7 @@ namespace BusinessLogic.Invoices
                 paymentMethod, paymentAmount, null, null)
         {
             OriginalInvoiceInfo = clsInvoiceService.CreateInstance().Find(originalInvoiceID) as clsPurchaseInvoice;
-            InvoiceNo = OriginalInvoiceInfo != null ? "PR-" + DateTime.Today.Year + '-' + OriginalInvoiceInfo.InvoiceNo + '-' + (clsInvoiceService.GetReturnInvoicesCount(OriginalInvoiceInfo?.InvoiceID ?? -1) + 1) : null;
+            InvoiceNo = OriginalInvoiceInfo != null ? "PR-" + DateTime.Today.Year + '-' + OriginalInvoiceInfo.InvoiceNo + '-' + (OriginalInvoiceInfo.GetReturnInvoicesCount() + 1) : null;
         }
 
         internal clsPurchaseReturnInvoice(clsInvoiceDTO invoiceDTO) :

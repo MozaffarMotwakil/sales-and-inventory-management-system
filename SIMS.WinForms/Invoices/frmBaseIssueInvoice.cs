@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
 using BusinessLogic.Validation;
@@ -14,6 +13,8 @@ namespace SIMS.WinForms.Invoices
 {
     public partial class frmBaseIssueInvoice : Form
     {
+        protected int ErrorColumnIndex;
+
         public frmBaseIssueInvoice()
         {
             InitializeComponent();
@@ -22,37 +23,22 @@ namespace SIMS.WinForms.Invoices
         private void frmBaseIssueInvoice_Load(object sender, EventArgs e)
         {
             dgvInvoiceLines.ColumnHeadersDefaultCellStyle.Font =
-                new Font("Tahoma", 8, FontStyle.Bold);
+                new Font("Tahoma", 7, FontStyle.Bold);
 
-            cbWarehouse.DataSource = clsWarehouseService.GetWarehousesList();
-            cbWarehouse.DisplayMember = "WarehouseName";
-            cbWarehouse.ValueMember = "WarehouseID";
-            cbWarehouse.SelectedValue = 1;
+            if (!DesignMode)
+            {
+                cbWarehouse.DataSource = clsWarehouseService.GetActiveWarehousesList();
+                cbWarehouse.DisplayMember = "WarehouseName";
+                cbWarehouse.ValueMember = "WarehouseID";
+                cbWarehouse.SelectedValue = 1;
+            }
 
             dgvInvoiceLines.Rows[0].Cells[colLineNa.Index].Value = 1;
             dgvInvoiceLines.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
 
-            dtpInvoiceIssueDate.MaxDate = dtpInvoiceIssueDate.Value = DateTime.Today;
+            dtpInvoiceIssueDate.MaxDate = DateTime.Today;
             dtpInvoiceIssueDate.MinDate = DateTime.Today.AddYears(-1);
-        }
-
-        protected enInvoiceStatus GetInvoiceStatus()
-        {
-            return rbPaid.Checked ? enInvoiceStatus.Paid : rbPartiallyPaid.Checked ? enInvoiceStatus.PartiallyPaid : enInvoiceStatus.Unpaid;
-        }
-
-        protected enPaymentMethod? GetPaymentMethod()
-        {
-            return rbCash.Checked ? enPaymentMethod.Cash : rbBankTransfer.Checked ? enPaymentMethod.BankTransfer : (enPaymentMethod?)null;
-        }
-
-        protected decimal? GetPaymentAmount()
-        {
-            return rbPaid.Checked ?
-                Convert.ToDecimal(lblTotalGrandTotal.Text) :
-                rbPartiallyPaid.Checked ?
-                (string.IsNullOrWhiteSpace(txtPaidAmount.Text) ? (decimal?)null : Convert.ToDecimal(txtPaidAmount.Text)) : 
-                null;
+            dtpInvoiceIssueDate.Value = DateTime.Today;
         }
 
         private void dgvInvoiceLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -72,22 +58,6 @@ namespace SIMS.WinForms.Invoices
                 row.Cells[colLineNa.Index].Value = row.Index + 1;
                 row.Cells[colDelete.Index].Value = Resources.delete;
             }
-        }
-
-        protected void UpdateInvoiceSummary()
-        {
-            _RefreshInvoiceTotalLabel(lblTotalSubTotal, colSubTotal);
-            _RefreshInvoiceTotalLabel(lblTotalDiscount, colDiscountAmount);
-            _RefreshInvoiceTotalLabel(lblTotalTax, colTaxAmount);
-            _RefreshInvoiceTotalLabel(lblTotalGrandTotal, colGrandTotal);
-        }
-
-        private void _RefreshInvoiceTotalLabel(Label label, DataGridViewColumn dataGridViewColumn)
-        {
-            label.Text = dgvInvoiceLines.Rows.Cast<DataGridViewRow>()
-                .Where(row => !row.IsNewRow)
-                .Sum(row => Convert.ToDecimal(row.Cells[dataGridViewColumn.Index].Value))
-                .ToString("0.##");
         }
 
         private void dgvInvoiceLines_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -119,92 +89,6 @@ namespace SIMS.WinForms.Invoices
         protected virtual void dgvInvoiceLines_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
-        }
-
-        private void dgvInvoiceLines_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            bool isThereEmptyCellInCurrentRow = (
-                IsEmptyCell(e.RowIndex, colProduct.Index) ||
-                IsEmptyCell(e.RowIndex, colUnit.Index) ||
-                IsEmptyCell(e.RowIndex, colQuantity.Index) ||
-                IsEmptyCell(e.RowIndex, colUnitPrice.Index) ||
-                IsEmptyCell(e.RowIndex, colDiscountAmount.Index) ||
-                IsEmptyCell(e.RowIndex, colDiscountRate.Index) ||
-                IsEmptyCell(e.RowIndex, colTaxAmount.Index) ||
-                IsEmptyCell(e.RowIndex, colTaxRate.Index) ||
-                IsEmptyCell(e.RowIndex, colSubTotal.Index) ||
-                IsEmptyCell(e.RowIndex, colGrandTotal.Index)
-                );
-
-            if ((!string.IsNullOrEmpty(dgvInvoiceLines.CurrentRow.ErrorText) || isThereEmptyCellInCurrentRow) && e.RowIndex != dgvInvoiceLines.NewRowIndex)
-            {
-                e.Cancel = true;
-                dgvInvoiceLines.CurrentRow.ErrorText = "يجب إدخال جميع بيانات الصف الحالي بشكل صحيح قبل الإنتقال لصف جديد";
-                SystemSounds.Asterisk.Play();
-            }
-        }
-
-        protected bool IsQuantityOrUnitPriceChange()
-        {
-            return IsCellValueChange(colQuantity.Index) || IsCellValueChange(colUnitPrice.Index);
-        }
-
-        protected bool IsCellValueChange(int columnIndex)
-        {
-            return GetLastValueOfCell(columnIndex) != GetCellValue(columnIndex);
-        }
-
-        protected object GetLastValueOfCell()
-        {
-            return dgvInvoiceLines.CurrentCell.Tag;
-        }
-
-        protected object GetLastValueOfCell(int columnIndex)
-        {
-            return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Tag;
-        }
-
-        protected object GetCellValue()
-        {
-            return dgvInvoiceLines.CurrentCell.Value;
-        }
-
-        protected object GetCellValue(int columnIndex)
-        {
-            return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Value;
-        }
-
-        protected object GetCellValue(int rowIndex, int columnIndex)
-        {
-            return dgvInvoiceLines.Rows[rowIndex].Cells[columnIndex].Value;
-        }
-
-        protected bool IsCellValueChange()
-        {
-            return IsEmptyCell(dgvInvoiceLines.CurrentCell.RowIndex, dgvInvoiceLines.CurrentCell.ColumnIndex);
-        }
-
-        protected bool IsCurrentCellEmpty()
-        {
-            return IsEmptyCell(dgvInvoiceLines.CurrentCell.RowIndex, dgvInvoiceLines.CurrentCell.ColumnIndex);
-        }
-
-        protected bool IsCurrentRowHasData()
-        {
-            for (int i = 1; i < dgvInvoiceLines.ColumnCount - 3; i++)
-            {
-                if (!IsEmptyCell(dgvInvoiceLines.CurrentCell.RowIndex, i) && i != dgvInvoiceLines.CurrentCell.ColumnIndex)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        protected bool IsEmptyCell(int rowIndex, int colIndex)
-        {
-            return string.IsNullOrWhiteSpace(dgvInvoiceLines.Rows[rowIndex].Cells[colIndex].EditedFormattedValue?.ToString());
         }
 
         private void txtPaidAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -271,6 +155,119 @@ namespace SIMS.WinForms.Invoices
             }
         }
 
+        protected object GetLastValueOfCell()
+        {
+            return dgvInvoiceLines.CurrentCell.Tag;
+        }
+
+        protected object GetLastValueOfCell(int columnIndex)
+        {
+            return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Tag;
+        }
+
+        protected object GetCellValue()
+        {
+            return dgvInvoiceLines.CurrentCell.Value;
+        }
+
+        protected object GetCellValue(int columnIndex)
+        {
+            return dgvInvoiceLines.CurrentRow.Cells[columnIndex].Value;
+        }
+
+        protected bool IsCellValueChange()
+        {
+            return !(GetCellValue() == GetLastValueOfCell());
+        }
+
+        protected bool IsCurrentCellEmpty()
+        {
+            return IsEmptyCell(dgvInvoiceLines.CurrentCell.RowIndex, dgvInvoiceLines.CurrentCell.ColumnIndex);
+        }
+
+        protected bool IsCurrentRowHasData()
+        {
+            for (int i = 1; i < dgvInvoiceLines.ColumnCount - 3; i++)
+            {
+                if (!IsEmptyCell(dgvInvoiceLines.CurrentCell.RowIndex, i) && i != dgvInvoiceLines.CurrentCell.ColumnIndex)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        protected bool IsEmptyCell(int rowIndex, int colIndex)
+        {
+            return string.IsNullOrWhiteSpace(dgvInvoiceLines.Rows[rowIndex].Cells[colIndex].EditedFormattedValue?.ToString());
+        }
+
+        protected enInvoiceStatus GetInvoiceStatus()
+        {
+            return rbPaid.Checked ? enInvoiceStatus.Paid : rbPartiallyPaid.Checked ? enInvoiceStatus.PartiallyPaid : enInvoiceStatus.Unpaid;
+        }
+
+        protected enPaymentMethod? GetPaymentMethod()
+        {
+            return rbCash.Checked ? enPaymentMethod.Cash : rbBankTransfer.Checked ? enPaymentMethod.BankTransfer : (enPaymentMethod?)null;
+        }
+
+        protected decimal? GetPaymentAmount()
+        {
+            return rbPaid.Checked ?
+                Convert.ToDecimal(lblTotalGrandTotal.Text) :
+                rbPartiallyPaid.Checked ?
+                (string.IsNullOrWhiteSpace(txtPaidAmount.Text) ? (decimal?)null : Convert.ToDecimal(txtPaidAmount.Text)) :
+                null;
+        }
+
+        protected virtual clsInvoice GetInvoiceInctance()
+        {
+            throw new NotImplementedException("يجب تعيين كائن  من نوع الفاتورة");
+        }
+
+        protected List<clsInvoiceLine> GetInvoiceLinesFromDGV()
+        {
+            List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
+
+            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
+            {
+                invoiceLines.Add(
+                    new clsInvoiceLine
+                    {
+                        ProductID = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colProduct.Index].Value),
+                        UnitID = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colUnit.Index].Value),
+                        UnitPrice = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colUnitPrice.Index].Value),
+                        ConversionFactor = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colConversionFactor.Index].Value),
+                        Quantity = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colQuantity.Index].Value),
+                        LineSubTotal = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value),
+                        DiscountRate = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colDiscountRate.Index].Value),
+                        TaxRate = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colTaxRate.Index].Value),
+                        LineGrandTotal = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value)
+                    }
+                );
+            }
+
+            return invoiceLines;
+        }
+
+        protected void UpdateInvoiceSummary()
+        {
+            _RefreshInvoiceTotalLabel(lblTotalSubTotal, colSubTotal);
+            _RefreshInvoiceTotalLabel(lblTotalDiscount, colDiscountAmount);
+            _RefreshInvoiceTotalLabel(lblTotalTax, colTaxAmount);
+            _RefreshInvoiceTotalLabel(lblTotalGrandTotal, colGrandTotal);
+        }
+
+        private void _RefreshInvoiceTotalLabel(Label label, DataGridViewColumn dataGridViewColumn)
+        {
+            label.Text = dgvInvoiceLines.Rows.Cast<DataGridViewRow>()
+                .Where(row => !row.IsNewRow)
+                .Sum(row => Convert.ToDecimal(row.Cells[dataGridViewColumn.Index].Value))
+                .ToString("0.##");
+        }
+
         private void btnCancle_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -281,6 +278,12 @@ namespace SIMS.WinForms.Invoices
             if (!clsFormValidation.IsDataValid(this, errorProvider))
             {
                 clsFormMessages.ShowInvalidDataError();
+                return;
+            }
+
+            if (clsFormHelper.IsDataGridViewCellsHasError(dgvInvoiceLines, ErrorColumnIndex))
+            {
+                clsFormMessages.ShowError("يجب إدخال جميع البيانات بصورة صحيحة قبل الحفظ");
                 return;
             }
 
@@ -304,43 +307,5 @@ namespace SIMS.WinForms.Invoices
             }
         }
 
-        protected virtual clsInvoice GetInvoiceInctance()
-        {
-            throw new NotImplementedException("يجب تعيين كائن  من نوع الفاتورة");
-        }
-
-        protected List<clsInvoiceLine> GetInvoiceLinesFromDGV()
-        {
-            List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
-
-            for (int i = 0; i < dgvInvoiceLines.RowCount - 1; i++)
-            {
-                try
-                {
-                    invoiceLines.Add(
-                        new clsInvoiceLine
-                        {
-                            ProductID = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colProduct.Index].Value),
-                            UnitID = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colUnit.Index].Value),
-                            UnitPrice = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colUnitPrice.Index].Value),
-                            ConversionFactor = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colConversionFactor.Index].Value),
-                            Quantity = Convert.ToInt32(dgvInvoiceLines.Rows[i].Cells[colQuantity.Index].Value),
-                            LineSubTotal = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colSubTotal.Index].Value),
-                            DiscountRate = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colDiscountRate.Index].Value),
-                            TaxRate = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colTaxRate.Index].Value),
-                            LineGrandTotal = Convert.ToDecimal(dgvInvoiceLines.Rows[i].Cells[colGrandTotal.Index].Value)
-                        }
-                    );
-                }
-                catch (Exception ex)
-                {
-                    clsFormMessages.ShowError($"حدث خطأ في قراءة الصف {i + 1}: {ex.Message}\nسيتم إلغاء العملية الحالية الرجاء المحاولة مرة أخرى", "خطأ في البيانات");
-                    break;
-                }
-            }
-
-            return invoiceLines;
-        }
-       
     }
 }

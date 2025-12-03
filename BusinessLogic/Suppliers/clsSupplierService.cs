@@ -5,9 +5,7 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Parties;
 using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
-using BusinessLogic.Warehouses;
 using DataAccess.Suppliers;
-using DataAccess.Warehouses;
 using DTOs.Suppliers;
 
 namespace BusinessLogic.Suppliers
@@ -167,6 +165,11 @@ namespace BusinessLogic.Suppliers
         public static DataTable GetSuppliersList()
         {
             return clsSupplierData.GetSuppliersList();
+        }
+
+        public static DataTable GetActiveSuppliersList()
+        {
+            return clsUtils.GetActiveRecordsList(clsSupplierData.GetSuppliersList());
         }
 
         public static string[] GetAllSupplierNames()

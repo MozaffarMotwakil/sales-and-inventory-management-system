@@ -8,6 +8,37 @@ namespace DVLD.WinForms.Utils
 {
     public static class clsFormHelper
     {
+
+        public static bool IsDataGridViewCellsHasError(DataGridView dataGridView, int errorColumnIndex)
+        {
+            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            {
+                dataGridView.Rows[i].ErrorText = string.Empty;
+
+                for (int j = 0; j < dataGridView.Rows[i].Cells.Count; j++)
+                {
+                    if (dataGridView.Columns[j].Visible)
+                    {
+                        dataGridView.CurrentCell = dataGridView.Rows[i].Cells[j];
+                        dataGridView.BeginEdit(true);
+                        dataGridView.CancelEdit();
+
+                        if (!string.IsNullOrEmpty(dataGridView.Rows[i].ErrorText))
+                        {
+                            string oldError = dataGridView.Rows[i].ErrorText;
+                            dataGridView.CurrentCell = dataGridView.Rows[i].Cells[errorColumnIndex];
+                            dataGridView.BeginEdit(true);
+                            dataGridView.Rows[i].ErrorText = oldError;
+
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static void PreventComboBoxAutoSelection(DataGridView dataGridView, ComboBox comboBox)
         {
             if (comboBox != null)
@@ -274,6 +305,23 @@ namespace DVLD.WinForms.Utils
             if (dataGridView.CurrentRow.Index >= 0)
             {
                 int.TryParse(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[0].Value.ToString(), out int ID);
+                return ID;
+            }
+
+            return -1;
+        }
+
+        public static int GetSelectedRowID(DataGridView dataGridView, int columnIndex)
+        {
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                int.TryParse(dataGridView.SelectedRows[0].Cells[columnIndex].Value.ToString(), out int ID);
+                return ID;
+            }
+
+            if (dataGridView.CurrentRow.Index >= 0)
+            {
+                int.TryParse(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[columnIndex].Value.ToString(), out int ID);
                 return ID;
             }
 

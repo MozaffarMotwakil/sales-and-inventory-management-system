@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using BusinessLogic.Invoices;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Purchases
 {
@@ -16,19 +18,29 @@ namespace SIMS.WinForms.Purchases
         private void issuePurchaseInvoiceToolStripButton_Click(object sender, EventArgs e)
         {
             frmIssuePurchaseInvoice issuePurchaseInvoiceForm = new frmIssuePurchaseInvoice();
-            issuePurchaseInvoiceForm.Show();
+            issuePurchaseInvoiceForm.ShowDialog();
         }
 
         private void frmPurchasesList_Load(object sender, EventArgs e)
         {
             contextMenuStrip.Items.Clear();
             contextMenuStrip.Items.Add("إصدار فاتورة مرتجعات");
+            contextMenuStrip.Items[0].Image = Resources.Invoice_32;
+            contextMenuStrip.Items[0].ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             contextMenuStrip.Items[0].Click += IssueReturnPurchaseInvoice_Click;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            base.EntityName = "الفاتورة";
+            base.EntityInfoControl = ctrInvoiceInfo;
+            base.AllowDeleteRecord = false;
         }
 
         protected override object GetDataSource()
         {
-            return clsInvoiceService.CreateInstance().GetAllPurchaseInvoice();
+            return clsInvoiceService.CreateInstance().GetAllPurchaseInvoices();
         }
 
         private void IssueReturnPurchaseInvoice_Click(object sender, EventArgs e)
@@ -45,18 +57,16 @@ namespace SIMS.WinForms.Purchases
             returnPurchaseInvoice.ShowDialog();
         }
 
-        protected override void LoadData()
-        {
-            base.LoadData();
-            base.SearchHintMessage = "أدخل رقم الفاتورة أو إسم المورد";
-            base.EntityName = "الفاتورة";
-            base.EntityInfoControl = ctrInvoiceInfo;
-        }
-
         protected override void SearchTextChanged(object sender, EventArgs e)
         {
             base.SearchTextChanged(sender, e);
             Filter = $"InvoiceNa LIKE '%{txtSearch.Text}%' OR SupplierName LIKE '%{txtSearch.Text}%'";
+        }
+
+        protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            base.contextMenuStrip_Opening(sender, e);
+            e.Cancel = (SelectedEntity.InvoiceType != enInvoiceType.Purchase);
         }
 
     }

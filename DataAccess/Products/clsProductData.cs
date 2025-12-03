@@ -196,10 +196,10 @@ namespace DataAccess.Products
                 );
         }
 
-        public static DataTable GetAllProductNames()
+        public static DataTable GetProductsList()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Products_GetAllProductNames"
+                "usp_Products_GetProductsList"
                 );
         }
 

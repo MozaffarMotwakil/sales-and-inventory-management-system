@@ -30,19 +30,13 @@
         {
             this.llAddPersonSupplier = new System.Windows.Forms.LinkLabel();
             this.llAddOrganizationSupplier = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             this.gbPaymentInfo.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbInvoiceDetails.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // warehousesBindingSource
-            // 
-            this.warehousesBindingSource.Position = 0;
             // 
             // gbInvoiceDetails
             // 
@@ -53,14 +47,21 @@
             this.gbInvoiceDetails.Controls.SetChildIndex(this.label3, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.label5, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.dtpInvoiceIssueDate, 0);
-            this.gbInvoiceDetails.Controls.SetChildIndex(this.cbSupplier, 0);
+            this.gbInvoiceDetails.Controls.SetChildIndex(this.cbParty, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.cbWarehouse, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.llAddPersonSupplier, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.txtInvoiceNo, 0);
             this.gbInvoiceDetails.Controls.SetChildIndex(this.llAddOrganizationSupplier, 0);
             // 
+            // cbWarehouse
+            // 
+            this.cbWarehouse.DisplayMember = "WarehouseName";
+            this.cbWarehouse.ValueMember = "WarehouseID";
+            // 
             // dtpInvoiceIssueDate
             // 
+            this.dtpInvoiceIssueDate.MaxDate = new System.DateTime(2025, 12, 2, 0, 0, 0, 0);
+            this.dtpInvoiceIssueDate.MinDate = new System.DateTime(2024, 12, 2, 0, 0, 0, 0);
             this.dtpInvoiceIssueDate.Value = new System.DateTime(2025, 11, 1, 0, 0, 0, 0);
             // 
             // label3
@@ -95,17 +96,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 657);
+            this.ClientSize = new System.Drawing.Size(1280, 577);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmIssuePurchaseInvoice";
             this.Text = "إصدار فاتورة مشتريات";
-            this.Load += new System.EventHandler(this.frmReceiveNewGoods_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.vwSuppliersDetailsBindingSource)).EndInit();
+            this.Load += new System.EventHandler(this.frmIssuePurchaseInvoice_Load);
             this.gbInvoiceSummary.ResumeLayout(false);
             this.gbInvoiceSummary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             this.gbPaymentInfo.ResumeLayout(false);
             this.gbPaymentInfo.PerformLayout();
             this.panel2.ResumeLayout(false);

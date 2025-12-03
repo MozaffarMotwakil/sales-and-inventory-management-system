@@ -240,7 +240,6 @@
             this.dgvTransferedInventories.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTransferedInventories_CellValidating);
             this.dgvTransferedInventories.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTransferedInventories_RowsAdded);
             this.dgvTransferedInventories.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvTransferedInventories_RowsRemoved);
-            this.dgvTransferedInventories.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvTransferedInventories_RowValidating);
             // 
             // colNo
             // 

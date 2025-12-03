@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using BusinessLogic.Suppliers;
-using BusinessLogic.Users;
 using BusinessLogic.Validation;
+using DataAccess.Invoices;
 using DTOs.Invoices;
 
 namespace BusinessLogic.Invoices
@@ -28,6 +28,11 @@ namespace BusinessLogic.Invoices
             Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
         }
 
+        public int GetReturnInvoicesCount()
+        {
+            return clsInvoiceData.GetReturnInvoicesCount(this.InvoiceID ?? -1);
+        }
+
         public override clsValidationResult Validated()
         {
             clsValidationResult validationResult = base.Validated();
@@ -35,6 +40,11 @@ namespace BusinessLogic.Invoices
             if (Supplier == null)
             {
                 validationResult.AddError("المورد", "يجب تعيين مورد للفاتورة");
+            }
+
+            if (Supplier != null && !Supplier.IsActive)
+            {
+                validationResult.AddError("المورد", $"المورد \"{GetPartyName()}\" غير نشط");
             }
 
             if (InvoiceType != enInvoiceType.Purchase)

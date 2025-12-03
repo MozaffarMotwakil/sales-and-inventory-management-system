@@ -132,6 +132,7 @@
             // 
             // pageBasicInfo
             // 
+            this.pageBasicInfo.BackColor = System.Drawing.Color.White;
             this.pageBasicInfo.Controls.Add(this.llResponsibleEmployeeName);
             this.pageBasicInfo.Controls.Add(this.label4);
             this.pageBasicInfo.Controls.Add(this.label21);
@@ -154,7 +155,6 @@
             this.pageBasicInfo.Size = new System.Drawing.Size(786, 238);
             this.pageBasicInfo.TabIndex = 0;
             this.pageBasicInfo.Text = "المعلومات الأساسية";
-            this.pageBasicInfo.UseVisualStyleBackColor = true;
             // 
             // llResponsibleEmployeeName
             // 
@@ -327,6 +327,7 @@
             // 
             // pageInventorySummary
             // 
+            this.pageInventorySummary.BackColor = System.Drawing.Color.White;
             this.pageInventorySummary.Controls.Add(this.lblDailyTransactionsAverage);
             this.pageInventorySummary.Controls.Add(this.label37);
             this.pageInventorySummary.Controls.Add(this.label8);
@@ -361,7 +362,6 @@
             this.pageInventorySummary.Size = new System.Drawing.Size(786, 238);
             this.pageInventorySummary.TabIndex = 1;
             this.pageInventorySummary.Text = "ملخصات المخزون";
-            this.pageInventorySummary.UseVisualStyleBackColor = true;
             // 
             // lblDailyTransactionsAverage
             // 
@@ -649,6 +649,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.White;
             this.tabPage3.Controls.Add(this.label29);
             this.tabPage3.Controls.Add(this.lblPurchasesValue);
             this.tabPage3.Controls.Add(this.label55);
@@ -671,7 +672,6 @@
             this.tabPage3.Size = new System.Drawing.Size(786, 238);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "الملخصات المالية";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label29
             // 
@@ -843,6 +843,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.White;
             this.tabPage4.Controls.Add(this.lblInsideStockTransactionsRate);
             this.tabPage4.Controls.Add(this.lblOutsideStockTransactionsRate);
             this.tabPage4.Controls.Add(this.label56);
@@ -863,7 +864,6 @@
             this.tabPage4.Size = new System.Drawing.Size(786, 238);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "مؤشرات الأداء - KPIs";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // lblInsideStockTransactionsRate
             // 
