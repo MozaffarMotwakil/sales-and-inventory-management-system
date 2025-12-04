@@ -53,6 +53,7 @@ namespace SIMS.WinForms.Products
                     pbProductImage.Image = Resources.product;
                 }
 
+                tabControl.SelectedIndex = 0;
                 _LoadDataForUnitsPage();
                 _LoadDataForSuppliersPage();
                 _LoadDataForInventoriesPage();

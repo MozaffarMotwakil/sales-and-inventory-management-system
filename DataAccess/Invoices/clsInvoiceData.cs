@@ -174,5 +174,12 @@ namespace DataAccess.Invoices
                 );
         }
 
+        public static DateTime GetFirstPurchaseInvoiceDate()
+        {
+            return Convert.ToDateTime(
+                clsDataSettings.GetSingleValue("usp_Invoices_GetFirstPurchaseInvoiceDate")
+                );
+        }
+
     }
 }

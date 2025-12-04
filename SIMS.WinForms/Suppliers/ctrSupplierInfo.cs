@@ -58,6 +58,7 @@ namespace SIMS.WinForms.Suppliers
                         break;
                 }
 
+                tabControl.SelectedIndex = 0;
                 _LoadDataForSuppliedProductsPage();
                 _LoadDataForInvoicesPage();
                 _LoadDataForPaymentPage();

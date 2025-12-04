@@ -32,6 +32,8 @@ namespace SIMS.WinForms.Warehouses
                 lblCreatedAt.Text = basicInfo.CreatedAt.ToString("HH:mm:ss dd/MM/yyyy");
                 lblUpdatedAt.Text = basicInfo.UpdatedAt?.ToString("HH:mm:ss dd/MM/yyyy") ?? "N/A";
 
+                tabControl.SelectedIndex = 0;
+
                 stInventorySummary inventorySummary = value.GetInventorySummary();
                 lblProductsCount.Text = inventorySummary.ProductsCount.ToString();
                 lblInventoriesCount.Text = inventorySummary.InventoriesCount.ToString();

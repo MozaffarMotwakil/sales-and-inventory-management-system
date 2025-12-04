@@ -84,9 +84,19 @@ namespace BusinessLogic.Warehouses
                 validationResult.AddError("المخزن المصدر", "لم يتم العثور على المخزن");
             }
 
-            if (SourceWarehouseInfo == null)
+            if (SourceWarehouseInfo != null && !SourceWarehouseInfo.IsActive)
+            {
+                validationResult.AddError("المخزن المصدر", $"المخزن المصدر المعين غير نشط");
+            }
+
+            if (DestianationWarehouseInfo == null)
             {
                 validationResult.AddError("المخزن الوجهة", "لم يتم العثور على المخزن");
+            }
+
+            if (DestianationWarehouseInfo != null && !DestianationWarehouseInfo.IsActive)
+            {
+                validationResult.AddError("المخزن الوجهة", $"المخزن الوجهة المعين غير نشط");
             }
 
             if (TransferedInventories == null || TransferedInventories.Count == 0)

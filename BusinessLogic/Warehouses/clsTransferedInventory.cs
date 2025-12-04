@@ -97,6 +97,11 @@ namespace BusinessLogic.Warehouses
                 validationResult.AddError("المخزون المصدر", "لم يتم العثور على المخزون");
             }
 
+            if (SourceInventoryInfo != null && !SourceInventoryInfo.ProductInfo.IsActive)
+            {
+                validationResult.AddError("المخزون المصدر", $"المنتج \"{SourceInventoryInfo.ProductInfo.ProductName}-{SourceInventoryInfo.UnitInfo.UnitName}\" غير نشط لا يمكن إجراء عملية نقل عليه");
+            }
+
             if (TransferedQuantity <= 0)
             {
                 validationResult.AddError("الكمية", "يجب أن تكون الكمية المراد نقلها أكبر من صفر");

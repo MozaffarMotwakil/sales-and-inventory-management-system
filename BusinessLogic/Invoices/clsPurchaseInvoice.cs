@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BusinessLogic.Suppliers;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
@@ -28,9 +29,21 @@ namespace BusinessLogic.Invoices
             Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
         }
 
+        public static DateTime GetFirstPurchaseInvoiceDate()
+        {
+            return clsInvoiceData.GetFirstPurchaseInvoiceDate();
+        }
+
         public int GetReturnInvoicesCount()
         {
             return clsInvoiceData.GetReturnInvoicesCount(this.InvoiceID ?? -1);
+        }
+
+        public bool AreThereAnyItemsNotBeenReturned()
+        {
+            return Lines
+                .Cast<clsInvoiceLine>()
+                .Any(line => line.GetRemainingQuantity() != 0);
         }
 
         public override clsValidationResult Validated()

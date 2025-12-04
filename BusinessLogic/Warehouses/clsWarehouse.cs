@@ -167,7 +167,12 @@ namespace BusinessLogic.Warehouses
 
             foreach (int inventoryID in inventoryIDs)
             {
-                availableInventories.Add(clsInventoryService.CreateInstance().Find(inventoryID));
+                clsInventory inventory = clsInventoryService.CreateInstance().Find(inventoryID);
+
+                if (inventory.ProductInfo.IsActive)
+                {
+                    availableInventories.Add(inventory);
+                }
             }
 
             return availableInventories;
