@@ -270,25 +270,25 @@ namespace DataAccess.Suppliers
                 );
         }
 
-        public static bool SetActive(int supplierID, int createdByUserID)
+        public static bool SetActive(int supplierID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Suppliers_SetActive",
                 "@SupplierID",
-                "CreatedByUserID",
+                "@UpdatedByUserID",
                 supplierID,
-                createdByUserID
+                updatedByUserID
                 );
         }
 
-        public static bool SetInActive(int supplierD, int createdByUserID)
+        public static bool SetInActive(int supplierD, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Suppliers_SetInActive",
                 "@SupplierID",
-                "CreatedByUserID",
+                "@UpdatedByUserID",
                 supplierD,
-                createdByUserID
+                updatedByUserID
                 );
         }
 

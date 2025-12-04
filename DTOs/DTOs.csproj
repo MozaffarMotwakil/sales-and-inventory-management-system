@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Invoices\clsInvoiceDTO.cs" />
+    <Compile Include="Products\clsDiscountDTO.cs" />
     <Compile Include="Products\clsCategoryDTO.cs" />
     <Compile Include="Products\clsUnitDTO.cs" />
     <Compile Include="Products\clsProductDTO.cs" />

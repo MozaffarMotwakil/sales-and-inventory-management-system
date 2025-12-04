@@ -280,25 +280,25 @@ namespace DataAccess.Warehouses
                 );
         }
 
-        public static bool SetActive(int  warehouseID, int createdByUserID)
+        public static bool SetActive(int  warehouseID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_SetActive",
                 "@WarehouseID",
-                "CreatedByUserID",
+                "@UpdatedByUserID",
                 warehouseID,
-                createdByUserID
+                updatedByUserID
                 );
         }
 
-        public static bool SetInActive(int warehouseID, int createdByUserID)
+        public static bool SetInActive(int warehouseID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Warehouses_SetInActive",
                 "@WarehouseID",
-                "CreatedByUserID",
+                "@UpdatedByUserID",
                 warehouseID,
-                createdByUserID
+                updatedByUserID
                 );
         }
 
