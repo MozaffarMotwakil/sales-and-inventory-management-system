@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
-using SIMS.WinForms.ActivityLog;
-using SIMS.WinForms.Dashboard;
-using SIMS.WinForms.Products;
-using SIMS.WinForms.Invoices;
-using SIMS.WinForms.Reports;
-using SIMS.WinForms.Sales;
-using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
-using SIMS.WinForms.Warehouses;
-using SIMS.WinForms.Purchases;
-using System.Linq;
+using SIMS.WinForms.Sales;
+using SIMS.WinForms.Reports;
+using SIMS.WinForms.Products;
 using SIMS.WinForms.Payments;
+using SIMS.WinForms.Suppliers;
+using SIMS.WinForms.Dashboard;
+using SIMS.WinForms.Purchases;
+using SIMS.WinForms.Warehouses;
+using SIMS.WinForms.ActivityLog;
 
 namespace SIMS.WinForms
 {
@@ -23,6 +22,7 @@ namespace SIMS.WinForms
             Dashboard,
             PointOfSale,
             ProductsList,
+            DiscountsList,
             SuppliersList,
             SuppliedItemsLog,
             WarehousesList,
@@ -39,6 +39,7 @@ namespace SIMS.WinForms
         private Form _DashboardForm;
         private Form _PointOfSaleForm;
         private Form _ProductsListForm;
+        private Form _DiscountsListForm;
         private Form _SuppliersList;
         private Form _SuppliedItemsLog;
         private Form _WarehousesList;
@@ -79,7 +80,6 @@ namespace SIMS.WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            WarehousesAndInventories.DropDownDirection = ToolStripDropDownDirection.Left;
             _OpenForm(ref _DashboardForm, enFormType.Dashboard);
         }
 
@@ -112,9 +112,15 @@ namespace SIMS.WinForms
             _OpenForm(ref _SuppliedItemsLog, enFormType.SuppliedItemsLog);
         }
 
-        private void InventoryToolStripButton_Click(object sender, EventArgs e)
+        private void ProductsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
+
+        }
+
+        private void DiscountsListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _DiscountsListForm, enFormType.DiscountsList);
         }
 
         private void WarehousesToolStripButton_Click(object sender, EventArgs e)
@@ -191,6 +197,7 @@ namespace SIMS.WinForms
                 
                 form.MdiParent = this;
                 form.Dock = DockStyle.Fill;
+                lblCurrentFormName.Text = form.Text;
                 form.Show();
             }
         }
@@ -218,6 +225,8 @@ namespace SIMS.WinForms
                     return new frmPointOfSale();
                 case enFormType.ProductsList:
                     return new frmProductsList();
+                case enFormType.DiscountsList:
+                    return new frmDiscountsList();
                 case enFormType.SuppliersList:
                     return new frmSuppliersList();
                 case enFormType.SuppliedItemsLog:
@@ -244,6 +253,6 @@ namespace SIMS.WinForms
                     return new Form();
             }
         }
-        
+
     }
 }

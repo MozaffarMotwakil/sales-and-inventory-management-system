@@ -38,6 +38,8 @@ namespace BusinessLogic.Products
             MinimumQuantity = minimumQuantity;
             StartDate = startDate;
             EndDate = endDate;
+            IsActive = true;
+            Mode = enMode.Add;
         }
 
         internal clsDiscount(clsDiscountDTO discountDTO)
@@ -54,6 +56,7 @@ namespace BusinessLogic.Products
             CreatedAt = discountDTO.CreatedAt;
             UpdatedByUserInfo = clsUser.Find(discountDTO.UpdatedByUserID ?? -1);
             UpdatedAt = discountDTO.UpdatedAt;
+            Mode = enMode.Update;
         }
 
         public bool GetActivityStatus()

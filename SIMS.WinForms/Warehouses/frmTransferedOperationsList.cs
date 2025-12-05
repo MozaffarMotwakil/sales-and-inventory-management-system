@@ -18,7 +18,6 @@ namespace SIMS.WinForms.Warehouses
         public frmTransferedOperationsList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmTransferedOperationsList_Load(object sender, EventArgs e)

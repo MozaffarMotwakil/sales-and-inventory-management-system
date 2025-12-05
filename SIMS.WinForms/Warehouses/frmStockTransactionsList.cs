@@ -23,7 +23,6 @@ namespace SIMS.WinForms.Warehouses
         public frmStockTransactionsList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
             _ShowMode = enShowMode.Normal;
         }
 

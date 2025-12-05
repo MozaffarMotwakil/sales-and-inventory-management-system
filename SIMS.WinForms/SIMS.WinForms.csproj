@@ -121,6 +121,21 @@
     <Compile Include="Products\BaseProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Products\BaseDiscountsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmAddEditDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmAddEditDiscount.Designer.cs">
+      <DependentUpon>frmAddEditDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\frmDiscountsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmDiscountsList.Designer.cs">
+      <DependentUpon>frmDiscountsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\frmProductUnitConversions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +470,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmAddEditDiscount.resx">
+      <DependentUpon>frmAddEditDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmDiscountsList.resx">
+      <DependentUpon>frmDiscountsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\frmAddEditProduct.resx">
       <DependentUpon>frmAddEditProduct.cs</DependentUpon>
@@ -804,6 +825,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\supplied_items_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dairy-products.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

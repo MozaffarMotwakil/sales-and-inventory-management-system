@@ -21,7 +21,6 @@ namespace SIMS.WinForms.Suppliers
         public frmSuppliedItemsLogList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
             _ShowMode = enShowMode.Normal;
         }
 

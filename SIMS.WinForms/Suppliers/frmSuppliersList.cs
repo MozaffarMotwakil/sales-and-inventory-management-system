@@ -12,7 +12,6 @@ namespace SIMS.WinForms.Suppliers
         public frmSuppliersList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmSuppliersList_Load(object sender, EventArgs e)

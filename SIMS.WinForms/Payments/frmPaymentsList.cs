@@ -16,7 +16,6 @@ namespace SIMS.WinForms.Payments
         public frmPaymentsList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         protected override void LoadData()

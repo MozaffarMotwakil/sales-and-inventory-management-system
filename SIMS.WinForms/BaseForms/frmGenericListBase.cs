@@ -243,7 +243,7 @@ namespace SIMS.WinForms.BaseForms
             }
         }
 
-        protected void dgvEntitiesList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        protected virtual void dgvEntitiesList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgvEntitiesList.ClearSelection();
         }

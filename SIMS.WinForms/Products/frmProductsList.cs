@@ -12,7 +12,6 @@ namespace SIMS.WinForms.Products
         public frmProductsList()
         {
             InitializeComponent();
-            frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
         }
 
         private void frmProductsList_Load(object sender, EventArgs e)

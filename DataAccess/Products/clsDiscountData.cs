@@ -68,7 +68,6 @@ namespace DataAccess.Products
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@DiscountID", discountDTO.DiscountID);
                     command.Parameters.AddWithValue("@DiscountName", discountDTO.DiscountName);
                     command.Parameters.AddWithValue("@DiscountValue", discountDTO.DiscountValue);
                     command.Parameters.AddWithValue("@DiscountValueType", discountDTO.DiscountValueType);
@@ -77,9 +76,6 @@ namespace DataAccess.Products
                     command.Parameters.AddWithValue("@EndDate", discountDTO.EndDate);
                     command.Parameters.AddWithValue("@CreatedByUserID", discountDTO.CreatedByUserID);
 
-                    SqlParameter paramDiscountID = command.Parameters.Add("@DiscountID", SqlDbType.Int);
-                    paramDiscountID.Direction = ParameterDirection.Output;
-
                     SqlParameter returnValueParam = new SqlParameter
                     {
                         Direction = ParameterDirection.ReturnValue
@@ -87,17 +83,10 @@ namespace DataAccess.Products
 
                     command.Parameters.Add(returnValueParam);
 
-
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
-
-                        if (paramDiscountID != null)
-                        {
-                            discountDTO.DiscountID = Convert.ToInt32(paramDiscountID.Value);
-                        }
-
                         return (int)returnValueParam.Value == 1;
                     }
                     catch

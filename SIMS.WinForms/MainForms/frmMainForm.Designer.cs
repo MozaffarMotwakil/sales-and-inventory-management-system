@@ -31,40 +31,42 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.SuppliersToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.SuppliersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.InventoryToolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
-            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StockTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TransferOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCurrentFormName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCurrentDate = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.ClockAndDateTimer = new System.Windows.Forms.Timer(this.components);
+            this.DashboardToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PointOfSelesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.SuppliersToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.SuppliersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductsDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ProductsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DiscountsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
+            this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StockTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TransferOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.circularPictureBox = new ctrCircularPictureBox();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -79,7 +81,7 @@
             this.DashboardToolStripButton,
             this.PointOfSelesToolStripButton,
             this.SuppliersToolStripDropDownButton,
-            this.InventoryToolStripButton3,
+            this.ProductsDropDownButton,
             this.WarehousesAndInventories,
             this.PurchasesToolStripButton,
             this.ReportsToolStripButton,
@@ -97,129 +99,6 @@
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
             // 
-            // DashboardToolStripButton
-            // 
-            this.DashboardToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DashboardToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DashboardToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DashboardToolStripButton.Image")));
-            this.DashboardToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DashboardToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DashboardToolStripButton.Name = "DashboardToolStripButton";
-            this.DashboardToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.DashboardToolStripButton.Text = "لمحة سريعة";
-            this.DashboardToolStripButton.Click += new System.EventHandler(this.DashboardToolStripButton_Click);
-            // 
-            // PointOfSelesToolStripButton
-            // 
-            this.PointOfSelesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PointOfSelesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointOfSelesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PointOfSelesToolStripButton.Image")));
-            this.PointOfSelesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PointOfSelesToolStripButton.Name = "PointOfSelesToolStripButton";
-            this.PointOfSelesToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.PointOfSelesToolStripButton.Text = "Point of Seles";
-            this.PointOfSelesToolStripButton.Visible = false;
-            this.PointOfSelesToolStripButton.Click += new System.EventHandler(this.PointOfSelesToolStripButton_Click);
-            // 
-            // SuppliersToolStripDropDownButton
-            // 
-            this.SuppliersToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.SuppliersToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SuppliersListToolStripMenuItem,
-            this.SuppliedItemsLogToolStripMenuItem});
-            this.SuppliersToolStripDropDownButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SuppliersToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("SuppliersToolStripDropDownButton.Image")));
-            this.SuppliersToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SuppliersToolStripDropDownButton.Name = "SuppliersToolStripDropDownButton";
-            this.SuppliersToolStripDropDownButton.Size = new System.Drawing.Size(249, 36);
-            this.SuppliersToolStripDropDownButton.Text = "الموردين";
-            // 
-            // SuppliersListToolStripMenuItem
-            // 
-            this.SuppliersListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SuppliersListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplier_32;
-            this.SuppliersListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SuppliersListToolStripMenuItem.Name = "SuppliersListToolStripMenuItem";
-            this.SuppliersListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
-            this.SuppliersListToolStripMenuItem.Text = "قائمة الموردين";
-            this.SuppliersListToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
-            // 
-            // SuppliedItemsLogToolStripMenuItem
-            // 
-            this.SuppliedItemsLogToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
-            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
-            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
-            this.SuppliedItemsLogToolStripMenuItem.Text = "سجل التوريد";
-            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
-            // 
-            // InventoryToolStripButton3
-            // 
-            this.InventoryToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.InventoryToolStripButton3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InventoryToolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("InventoryToolStripButton3.Image")));
-            this.InventoryToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InventoryToolStripButton3.Name = "InventoryToolStripButton3";
-            this.InventoryToolStripButton3.Size = new System.Drawing.Size(249, 36);
-            this.InventoryToolStripButton3.Text = "المنتجات";
-            this.InventoryToolStripButton3.Click += new System.EventHandler(this.InventoryToolStripButton_Click);
-            // 
-            // WarehousesAndInventories
-            // 
-            this.WarehousesAndInventories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.WarehousesAndInventories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.WarehousesToolStripButton,
-            this.InventoriesToolStripMenuItem,
-            this.StockTransactionsToolStripMenuItem,
-            this.TransferOperationsToolStripMenuItem});
-            this.WarehousesAndInventories.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarehousesAndInventories.Image = ((System.Drawing.Image)(resources.GetObject("WarehousesAndInventories.Image")));
-            this.WarehousesAndInventories.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.WarehousesAndInventories.Name = "WarehousesAndInventories";
-            this.WarehousesAndInventories.Size = new System.Drawing.Size(249, 36);
-            this.WarehousesAndInventories.Text = "المخازن و المخزون";
-            // 
-            // WarehousesToolStripButton
-            // 
-            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarehousesToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
-            this.WarehousesToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
-            this.WarehousesToolStripButton.Size = new System.Drawing.Size(218, 38);
-            this.WarehousesToolStripButton.Text = "المخازن";
-            this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
-            // 
-            // InventoriesToolStripMenuItem
-            // 
-            this.InventoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InventoriesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.packages;
-            this.InventoriesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.InventoriesToolStripMenuItem.Name = "InventoriesToolStripMenuItem";
-            this.InventoriesToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
-            this.InventoriesToolStripMenuItem.Text = "المخزون";
-            this.InventoriesToolStripMenuItem.Click += new System.EventHandler(this.InventoriesToolStripMenuItem_Click);
-            // 
-            // StockTransactionsToolStripMenuItem
-            // 
-            this.StockTransactionsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockTransactionsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
-            this.StockTransactionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.StockTransactionsToolStripMenuItem.Name = "StockTransactionsToolStripMenuItem";
-            this.StockTransactionsToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
-            this.StockTransactionsToolStripMenuItem.Text = "حركات المخزون";
-            this.StockTransactionsToolStripMenuItem.Click += new System.EventHandler(this.StockTransactionsToolStripMenuItem_Click);
-            // 
-            // TransferOperationsToolStripMenuItem
-            // 
-            this.TransferOperationsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TransferOperationsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supply;
-            this.TransferOperationsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TransferOperationsToolStripMenuItem.Name = "TransferOperationsToolStripMenuItem";
-            this.TransferOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
-            this.TransferOperationsToolStripMenuItem.Text = "عمليات النقل";
-            this.TransferOperationsToolStripMenuItem.Click += new System.EventHandler(this.TransferOperationsToolStripMenuItem_Click);
-            // 
             // PurchasesToolStripButton
             // 
             this.PurchasesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -229,64 +108,6 @@
             this.PurchasesToolStripButton.Size = new System.Drawing.Size(249, 36);
             this.PurchasesToolStripButton.Text = "المشتريات";
             this.PurchasesToolStripButton.Click += new System.EventHandler(this.PurchasesToolStripButton_Click);
-            // 
-            // ReportsToolStripButton
-            // 
-            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
-            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
-            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.ReportsToolStripButton.Text = "Reports";
-            this.ReportsToolStripButton.Visible = false;
-            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
-            // 
-            // UsersToolStripButton
-            // 
-            this.UsersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.UsersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UsersToolStripButton.Image")));
-            this.UsersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UsersToolStripButton.Name = "UsersToolStripButton";
-            this.UsersToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.UsersToolStripButton.Text = "Users";
-            this.UsersToolStripButton.Visible = false;
-            this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
-            // 
-            // PaymentsToolStripButton
-            // 
-            this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.PaymentsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PaymentsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PaymentsToolStripButton.Image")));
-            this.PaymentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PaymentsToolStripButton.Name = "PaymentsToolStripButton";
-            this.PaymentsToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
-            this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
-            // 
-            // ActivityLogToolStripButton
-            // 
-            this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ActivityLogToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActivityLogToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ActivityLogToolStripButton.Image")));
-            this.ActivityLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ActivityLogToolStripButton.Name = "ActivityLogToolStripButton";
-            this.ActivityLogToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.ActivityLogToolStripButton.Text = "Activity Log";
-            this.ActivityLogToolStripButton.Visible = false;
-            this.ActivityLogToolStripButton.Click += new System.EventHandler(this.ActivityLogToolStripButton_Click);
-            // 
-            // LogoutToolStripButton
-            // 
-            this.LogoutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
-            this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LogoutToolStripButton.Name = "LogoutToolStripButton";
-            this.LogoutToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.LogoutToolStripButton.Text = "تسجيل الخروج";
-            this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
             // 
             // panel1
             // 
@@ -320,17 +141,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "مظفر متوكل خضر سلمان";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // circularPictureBox
-            // 
-            this.circularPictureBox.BackColor = System.Drawing.Color.White;
-            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
-            this.circularPictureBox.Location = new System.Drawing.Point(49, 15);
-            this.circularPictureBox.Name = "circularPictureBox";
-            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
-            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.circularPictureBox.TabIndex = 2;
-            this.circularPictureBox.TabStop = false;
             // 
             // panel2
             // 
@@ -397,18 +207,6 @@
             this.lblCurrentDate.TabIndex = 7;
             this.lblCurrentDate.Text = "dd/MM/yyyy";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::SIMS.WinForms.Properties.Resources.al_waha_mall;
-            this.pictureBox1.Location = new System.Drawing.Point(1043, -18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(87, 92);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblCurrentTime
             // 
             this.lblCurrentTime.AutoSize = true;
@@ -424,6 +222,232 @@
             // ClockAndDateTimer
             // 
             this.ClockAndDateTimer.Interval = 1000;
+            // 
+            // DashboardToolStripButton
+            // 
+            this.DashboardToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DashboardToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DashboardToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DashboardToolStripButton.Image")));
+            this.DashboardToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DashboardToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DashboardToolStripButton.Name = "DashboardToolStripButton";
+            this.DashboardToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.DashboardToolStripButton.Text = "لمحة سريعة";
+            this.DashboardToolStripButton.Click += new System.EventHandler(this.DashboardToolStripButton_Click);
+            // 
+            // PointOfSelesToolStripButton
+            // 
+            this.PointOfSelesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PointOfSelesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PointOfSelesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PointOfSelesToolStripButton.Image")));
+            this.PointOfSelesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PointOfSelesToolStripButton.Name = "PointOfSelesToolStripButton";
+            this.PointOfSelesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PointOfSelesToolStripButton.Text = "Point of Seles";
+            this.PointOfSelesToolStripButton.Visible = false;
+            this.PointOfSelesToolStripButton.Click += new System.EventHandler(this.PointOfSelesToolStripButton_Click);
+            // 
+            // SuppliersToolStripDropDownButton
+            // 
+            this.SuppliersToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SuppliersToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SuppliersListToolStripMenuItem,
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.SuppliersToolStripDropDownButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("SuppliersToolStripDropDownButton.Image")));
+            this.SuppliersToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SuppliersToolStripDropDownButton.Name = "SuppliersToolStripDropDownButton";
+            this.SuppliersToolStripDropDownButton.Size = new System.Drawing.Size(249, 36);
+            this.SuppliersToolStripDropDownButton.Text = "الموردين";
+            // 
+            // SuppliersListToolStripMenuItem
+            // 
+            this.SuppliersListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliersListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplier_32;
+            this.SuppliersListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliersListToolStripMenuItem.Name = "SuppliersListToolStripMenuItem";
+            this.SuppliersListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.SuppliersListToolStripMenuItem.Text = "قائمة الموردين";
+            this.SuppliersListToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripButton_Click);
+            // 
+            // SuppliedItemsLogToolStripMenuItem
+            // 
+            this.SuppliedItemsLogToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
+            // 
+            // ProductsDropDownButton
+            // 
+            this.ProductsDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ProductsDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ProductsListToolStripMenuItem,
+            this.DiscountsListToolStripMenuItem});
+            this.ProductsDropDownButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("ProductsDropDownButton.Image")));
+            this.ProductsDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ProductsDropDownButton.Name = "ProductsDropDownButton";
+            this.ProductsDropDownButton.Size = new System.Drawing.Size(249, 36);
+            this.ProductsDropDownButton.Text = "المنتجات";
+            // 
+            // ProductsListToolStripMenuItem
+            // 
+            this.ProductsListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProductsListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.dairy_products;
+            this.ProductsListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ProductsListToolStripMenuItem.Name = "ProductsListToolStripMenuItem";
+            this.ProductsListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.ProductsListToolStripMenuItem.Text = "قائمة المنتجات";
+            this.ProductsListToolStripMenuItem.Click += new System.EventHandler(this.ProductsListToolStripMenuItem_Click);
+            // 
+            // DiscountsListToolStripMenuItem
+            // 
+            this.DiscountsListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DiscountsListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.discount;
+            this.DiscountsListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DiscountsListToolStripMenuItem.Name = "DiscountsListToolStripMenuItem";
+            this.DiscountsListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.DiscountsListToolStripMenuItem.Text = "الخصومات";
+            this.DiscountsListToolStripMenuItem.Click += new System.EventHandler(this.DiscountsListToolStripMenuItem_Click);
+            // 
+            // WarehousesAndInventories
+            // 
+            this.WarehousesAndInventories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.WarehousesAndInventories.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.WarehousesToolStripButton,
+            this.InventoriesToolStripMenuItem,
+            this.StockTransactionsToolStripMenuItem,
+            this.TransferOperationsToolStripMenuItem});
+            this.WarehousesAndInventories.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarehousesAndInventories.Image = ((System.Drawing.Image)(resources.GetObject("WarehousesAndInventories.Image")));
+            this.WarehousesAndInventories.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.WarehousesAndInventories.Name = "WarehousesAndInventories";
+            this.WarehousesAndInventories.Size = new System.Drawing.Size(249, 36);
+            this.WarehousesAndInventories.Text = "المخازن و المخزون";
+            // 
+            // WarehousesToolStripButton
+            // 
+            this.WarehousesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarehousesToolStripButton.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
+            this.WarehousesToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.WarehousesToolStripButton.Name = "WarehousesToolStripButton";
+            this.WarehousesToolStripButton.Size = new System.Drawing.Size(218, 38);
+            this.WarehousesToolStripButton.Text = "المخازن";
+            this.WarehousesToolStripButton.Click += new System.EventHandler(this.WarehousesToolStripButton_Click);
+            // 
+            // InventoriesToolStripMenuItem
+            // 
+            this.InventoriesToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoriesToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.packages;
+            this.InventoriesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.InventoriesToolStripMenuItem.Name = "InventoriesToolStripMenuItem";
+            this.InventoriesToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
+            this.InventoriesToolStripMenuItem.Text = "المخزون";
+            this.InventoriesToolStripMenuItem.Click += new System.EventHandler(this.InventoriesToolStripMenuItem_Click);
+            // 
+            // StockTransactionsToolStripMenuItem
+            // 
+            this.StockTransactionsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockTransactionsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
+            this.StockTransactionsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.StockTransactionsToolStripMenuItem.Name = "StockTransactionsToolStripMenuItem";
+            this.StockTransactionsToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
+            this.StockTransactionsToolStripMenuItem.Text = "حركات المخزون";
+            this.StockTransactionsToolStripMenuItem.Click += new System.EventHandler(this.StockTransactionsToolStripMenuItem_Click);
+            // 
+            // TransferOperationsToolStripMenuItem
+            // 
+            this.TransferOperationsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TransferOperationsToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supply;
+            this.TransferOperationsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TransferOperationsToolStripMenuItem.Name = "TransferOperationsToolStripMenuItem";
+            this.TransferOperationsToolStripMenuItem.Size = new System.Drawing.Size(218, 38);
+            this.TransferOperationsToolStripMenuItem.Text = "عمليات النقل";
+            this.TransferOperationsToolStripMenuItem.Click += new System.EventHandler(this.TransferOperationsToolStripMenuItem_Click);
+            // 
+            // ReportsToolStripButton
+            // 
+            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
+            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
+            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.ReportsToolStripButton.Text = "Reports";
+            this.ReportsToolStripButton.Visible = false;
+            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
+            // 
+            // UsersToolStripButton
+            // 
+            this.UsersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.UsersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UsersToolStripButton.Image")));
+            this.UsersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UsersToolStripButton.Name = "UsersToolStripButton";
+            this.UsersToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.UsersToolStripButton.Text = "Users";
+            this.UsersToolStripButton.Visible = false;
+            this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
+            // 
+            // PaymentsToolStripButton
+            // 
+            this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.PaymentsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PaymentsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PaymentsToolStripButton.Image")));
+            this.PaymentsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PaymentsToolStripButton.Name = "PaymentsToolStripButton";
+            this.PaymentsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
+            this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
+            // 
+            // ActivityLogToolStripButton
+            // 
+            this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ActivityLogToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActivityLogToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ActivityLogToolStripButton.Image")));
+            this.ActivityLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ActivityLogToolStripButton.Name = "ActivityLogToolStripButton";
+            this.ActivityLogToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.ActivityLogToolStripButton.Text = "Activity Log";
+            this.ActivityLogToolStripButton.Visible = false;
+            this.ActivityLogToolStripButton.Click += new System.EventHandler(this.ActivityLogToolStripButton_Click);
+            // 
+            // LogoutToolStripButton
+            // 
+            this.LogoutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LogoutToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
+            this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LogoutToolStripButton.Name = "LogoutToolStripButton";
+            this.LogoutToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.LogoutToolStripButton.Text = "تسجيل الخروج";
+            this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::SIMS.WinForms.Properties.Resources.al_waha_mall;
+            this.pictureBox1.Location = new System.Drawing.Point(1043, -18);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(87, 92);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
+            // circularPictureBox
+            // 
+            this.circularPictureBox.BackColor = System.Drawing.Color.White;
+            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
+            this.circularPictureBox.Location = new System.Drawing.Point(49, 15);
+            this.circularPictureBox.Name = "circularPictureBox";
+            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.circularPictureBox.TabIndex = 2;
+            this.circularPictureBox.TabStop = false;
             // 
             // frmMainForm
             // 
@@ -448,10 +472,10 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -461,7 +485,6 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton DashboardToolStripButton;
         private System.Windows.Forms.ToolStripButton PointOfSelesToolStripButton;
-        private System.Windows.Forms.ToolStripButton InventoryToolStripButton3;
         private System.Windows.Forms.ToolStripButton ReportsToolStripButton;
         private System.Windows.Forms.ToolStripButton LogoutToolStripButton;
         private ctrCircularPictureBox circularPictureBox;
@@ -488,6 +511,9 @@
         private System.Windows.Forms.ToolStripButton PaymentsToolStripButton;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Label lblCurrentFormName;
+        private System.Windows.Forms.ToolStripDropDownButton ProductsDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem ProductsListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DiscountsListToolStripMenuItem;
     }
 }
 
