@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
@@ -115,6 +117,50 @@ namespace BusinessLogic.Products
         public DataTable GetAll()
         {
             return clsProductData.GetAllProducts();
+        }
+
+        public static List<clsTreeCategoryDTO> GetProductHierarchyForTreeView()
+        {
+            var allRows = clsProductData.GetProductHierarchyForTreeView().AsEnumerable();
+
+            var categoriesGroup = allRows
+                .GroupBy(row => new { ID = row.Field<int>("CategoryID"), Name = row.Field<string>("CategoryName") })
+                .Select(categoryGroup =>
+                {
+                    var categoryDTO = new clsTreeCategoryDTO
+                    {
+                        CategoryID = categoryGroup.Key.ID,
+                        CategoryName = categoryGroup.Key.Name,
+                    };
+
+                    var productsGroup = categoryGroup
+                        .GroupBy(row => new { ID = row.Field<int>("ProductID"), Name = row.Field<string>("ProductName") })
+                        .Select(productGroup =>
+                        {
+                            var productDTO = new clsTreeProductDTO
+                            {
+                                ProductID = productGroup.Key.ID,
+                                ProductName = productGroup.Key.Name,
+                            };
+
+                            productDTO.Units = productGroup
+                                .Select(row => new clsTreeUnitDTO
+                                {
+                                    UnitID = row.Field<int>("UnitID"),
+                                    UnitName = row.Field<string>("UnitName"),
+                                })
+                                .Distinct()
+                                .ToList();
+
+                            return productDTO;
+                        }).ToList();
+
+                    categoryDTO.Products = productsGroup;
+                    return categoryDTO;
+                })
+                .ToList();
+
+            return categoriesGroup;
         }
 
         public static DataTable GetProductsList()

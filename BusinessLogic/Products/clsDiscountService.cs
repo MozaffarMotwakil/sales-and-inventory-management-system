@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using BusinessLogic.Interfaces;
@@ -113,6 +114,21 @@ namespace BusinessLogic.Discounts
         public DataTable GetAll()
         {
             return clsDiscountData.GetAllDiscounts();
+        }
+
+        public bool SaveDiscountItems(clsDiscount discount, int linkedByUserID, List<clsDiscountItem> discountItems)
+        {
+            if (clsProductData.LinkingDiscountToProducts(
+                discount.DiscountID ?? -1,
+                linkedByUserID,
+                clsDiscountItem.ConvertDiscountItemsListToTable(discountItems)
+                ))
+            {
+                OnDiscountSaved(discount.DiscountID ?? -1, discount.DiscountName, enMode.Add);
+                return true;
+            }
+
+            return false;
         }
 
         public static bool IsDiscountExistsByName(string discountName)

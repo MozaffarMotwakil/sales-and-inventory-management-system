@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using BusinessLogic.Discounts;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Users;
 using BusinessLogic.Validation;
+using DataAccess.Products;
 using DTOs.Products;
 
 namespace BusinessLogic.Products
@@ -28,6 +32,18 @@ namespace BusinessLogic.Products
         public clsUser UpdatedByUserInfo { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public enMode Mode { get; internal set; }
+        public List<clsDiscountItem> Items => clsProductData.GetDiscountItems(this.DiscountID ?? -1)
+                .AsEnumerable()
+                .Select(discountItem =>
+                {
+                    return new clsDiscountItem
+                    (
+                       this.DiscountID.Value,
+                       discountItem.Field<int>("ProductID"),
+                       discountItem.Field<int>("UnitID")
+                    );
+                }
+                ).ToList();
 
         public clsDiscount(string discountName, decimal discountValue, enValueType discountValueType,
             int minimumQuantity, DateTime startDate, DateTime endDate)
@@ -94,6 +110,15 @@ namespace BusinessLogic.Products
         public void TrimAllStringFields()
         {
             this.DiscountName = this.DiscountName.Trim();
+        }
+
+        public bool SaveDiscountItems(List<clsDiscountItem> discountItems)
+        {
+            return clsDiscountService.CreateInstance().SaveDiscountItems(
+                this,
+                clsAppSettings.CurrentUser.UserID,
+                discountItems
+                );
         }
 
         public clsValidationResult Validated()

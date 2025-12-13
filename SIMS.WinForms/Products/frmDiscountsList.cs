@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using DVLD.WinForms.Utils;
+using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Products
 {
@@ -16,7 +18,8 @@ namespace SIMS.WinForms.Products
 
         private void frmDiscountsList_Load(object sender, EventArgs e)
         {
-            cbValueType.SelectedIndex = cbActivityStatus.SelectedIndex = 0;
+            cbValueType.SelectedIndex = 0;
+            cbActivityStatus.SelectedIndex = 1;
             cbCreatedDate.SelectedIndex = 6;
             cbCreatedDate.Text = "إختر نطاق إضافة الخصم";
 
@@ -34,6 +37,31 @@ namespace SIMS.WinForms.Products
                     .Select(row => Convert.ToDateTime(row.Cells[6].Value))
                     .Max();
             }
+
+            btnApplyFilter_Click(sender, e);
+
+            contextMenuStrip.Items.Add("ربط مع المنتجات");
+            contextMenuStrip.Items[4].Image = Resources.link;
+            contextMenuStrip.Items[4].ImageScaling = ToolStripItemImageScaling.None;
+            contextMenuStrip.Items[4].Click += LinkingDiscountToProducts_Click;
+        }
+
+        private void LinkingDiscountToProducts_Click(object sender, EventArgs e)
+        {
+            if (SelectedEntity.EndDate < DateTime.Today)
+            {
+                clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذا الخصم لأنه غير ساري");
+                return;
+            }
+
+            if (!SelectedEntity.IsActive)
+            {
+                clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذا الخصم لأنه غير نشط");
+                return;
+            }
+
+            frmLinkingDiscountToProducts linkingDiscountToProducts = new frmLinkingDiscountToProducts(SelectedEntity);
+            linkingDiscountToProducts.ShowDialog();
         }
 
         protected override void LoadData()
@@ -116,7 +144,7 @@ namespace SIMS.WinForms.Products
 
             filters.Add($"StartDate >= #{dtpStartDate.Value:yyyy/MM/dd}#");
 
-            filters.Add($"EndDate >= #{dtpStartDate.Value:yyyy/MM/dd}#");
+            filters.Add($"EndDate <= #{dtpEndDate.Value:yyyy/MM/dd}#");
 
             base.Filter = string.Join(" AND ", filters);
             base.ApplySearchFilter();

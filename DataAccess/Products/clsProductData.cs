@@ -145,9 +145,9 @@ namespace DataAccess.Products
                         connection.Open();
                         return command.ExecuteNonQuery() > 0;
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        throw new Exception("Error updating Product to database.", ex);
+                        throw;
                     }
                 }
             }
@@ -200,6 +200,13 @@ namespace DataAccess.Products
         {
             return clsDataSettings.GetDataTable(
                 "usp_Products_GetProductsList"
+                );
+        }
+        
+        public static DataTable GetProductHierarchyForTreeView()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetProductHierarchyForTreeView"
                 );
         }
 
@@ -271,13 +278,22 @@ namespace DataAccess.Products
                 );
         }
 
-        public static bool SetActive(int productID, int updatedByUserID)
+        public static DataTable GetDiscountItems(int discountID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Products_GetDiscountItems",
+                "@DiscountID",
+                discountID
+                );
+        }
+
+        public static bool SetActive(int discountID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Products_SetActive",
                 "@ProductID",
                 "@UpdatedByUserID",
-                productID,
+                discountID,
                 updatedByUserID
                 );
         }
@@ -291,6 +307,41 @@ namespace DataAccess.Products
                 productID,
                 updatedByUserID
                 );
+        }
+
+        public static bool LinkingDiscountToProducts(int discountID, int linkedByUserID, DataTable items)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Products_LinkDiscountToProducts", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@DiscountID", discountID);
+                    command.Parameters.AddWithValue("@LinkedByUserID", linkedByUserID);
+
+                    SqlParameter parameter = command.Parameters.AddWithValue("@Items", items);
+                    parameter.SqlDbType = SqlDbType.Structured;
+                    parameter.TypeName = "DiscountLinkType";
+
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+
+                    command.Parameters.Add(returnValueParam);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                        return (int)returnValueParam.Value == 1;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
         }
 
     }

@@ -124,6 +124,12 @@
     <Compile Include="Products\BaseDiscountsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Products\frmLinkingDiscountToProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmLinkingDiscountToProducts.Designer.cs">
+      <DependentUpon>frmLinkingDiscountToProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\frmAddEditDiscount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,6 +477,9 @@
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmLinkingDiscountToProducts.resx">
+      <DependentUpon>frmLinkingDiscountToProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products\frmAddEditDiscount.resx">
       <DependentUpon>frmAddEditDiscount.cs</DependentUpon>
     </EmbeddedResource>
@@ -771,6 +780,10 @@
       <Project>{05c24880-8b70-4c5b-964e-fe36b5c7b28b}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTOs\DTOs.csproj">
+      <Project>{d15e22b3-47b4-420d-be45-bc65beb7254f}</Project>
+      <Name>DTOs</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default_image.jpg" />
@@ -831,6 +844,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dairy-products.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\link.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
