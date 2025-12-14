@@ -119,7 +119,7 @@ namespace BusinessLogic.Products
             return clsProductData.GetAllProducts();
         }
 
-        public static List<clsTreeCategoryDTO> GetProductHierarchyForTreeView()
+        public static List<clsTreeCategoryDTO> GetProductHierarchyForTreeView(bool withUnits = true)
         {
             var allRows = clsProductData.GetProductHierarchyForTreeView().AsEnumerable();
 
@@ -143,7 +143,9 @@ namespace BusinessLogic.Products
                                 ProductName = productGroup.Key.Name,
                             };
 
-                            productDTO.Units = productGroup
+                            if (withUnits)
+                            {
+                                productDTO.Units = productGroup
                                 .Select(row => new clsTreeUnitDTO
                                 {
                                     UnitID = row.Field<int>("UnitID"),
@@ -151,6 +153,7 @@ namespace BusinessLogic.Products
                                 })
                                 .Distinct()
                                 .ToList();
+                            }
 
                             return productDTO;
                         }).ToList();

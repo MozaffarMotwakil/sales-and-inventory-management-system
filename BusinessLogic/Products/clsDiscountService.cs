@@ -118,7 +118,7 @@ namespace BusinessLogic.Discounts
 
         public bool SaveDiscountItems(clsDiscount discount, int linkedByUserID, List<clsDiscountItem> discountItems)
         {
-            if (clsProductData.LinkingDiscountToProducts(
+            if (clsDiscountData.SaveDiscountItems(
                 discount.DiscountID ?? -1,
                 linkedByUserID,
                 clsDiscountItem.ConvertDiscountItemsListToTable(discountItems)

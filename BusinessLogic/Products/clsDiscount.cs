@@ -32,7 +32,7 @@ namespace BusinessLogic.Products
         public clsUser UpdatedByUserInfo { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public enMode Mode { get; internal set; }
-        public List<clsDiscountItem> Items => clsProductData.GetDiscountItems(this.DiscountID ?? -1)
+        public List<clsDiscountItem> Items => clsDiscountData.GetDiscountItems(this.DiscountID ?? -1)
                 .AsEnumerable()
                 .Select(discountItem =>
                 {

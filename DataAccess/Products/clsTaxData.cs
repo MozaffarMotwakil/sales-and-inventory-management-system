@@ -5,16 +5,16 @@ using DTOs.Products;
 
 namespace DataAccess.Products
 {
-    public static class clsDiscountData
+    public static class clsTaxData
     {
-        public static clsDiscountDTO FindDiscountByID(int discountID)
+        public static clsTaxDTO FindTaxByID(int taxID)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_Discounts_FindByID", connection))
+                using (SqlCommand command = new SqlCommand("usp_Taxes_FindByID", connection))
                 {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@DiscountID", discountID);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TaxID", taxID);
 
                     try
                     {
@@ -22,19 +22,16 @@ namespace DataAccess.Products
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            clsDiscountDTO discountDTO = null;
+                            clsTaxDTO taxDTO = null;
 
                             if (reader.Read())
                             {
-                                discountDTO = new clsDiscountDTO
+                                taxDTO = new clsTaxDTO
                                 {
-                                    DiscountID = Convert.ToInt32(reader["DiscountID"]),
-                                    DiscountName = Convert.ToString(reader["DiscountName"]),
-                                    DiscountValue = Convert.ToDecimal(reader["DiscountValue"]),
-                                    DiscountValueType = Convert.ToBoolean(reader["DiscountValueType"]),
-                                    MinimumQuantity = Convert.ToInt32(reader["MinimumQuantity"]),
-                                    StartDate = Convert.ToDateTime(reader["StartDate"]),
-                                    EndDate = Convert.ToDateTime(reader["EndDate"]),
+                                    TaxID = Convert.ToInt32(reader["TaxID"]),
+                                    TaxName = Convert.ToString(reader["TaxName"]),
+                                    TaxRate = Convert.ToDecimal(reader["TaxRate"]),
+                                    Description = Convert.ToString(reader["Description"] == DBNull.Value ? null : reader["Description"]),
                                     IsActive = Convert.ToBoolean(reader["IsActive"]),
                                     CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
                                     CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
@@ -48,7 +45,7 @@ namespace DataAccess.Products
                                 };
                             }
 
-                            return discountDTO;
+                            return taxDTO;
                         }
                     }
                     catch
@@ -59,21 +56,18 @@ namespace DataAccess.Products
             }
         }
 
-        public static bool AddDiscount(clsDiscountDTO discountDTO)
+        public static bool AddTax(clsTaxDTO taxDTO)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_Discounts_InsertDiscount", connection))
+                using (SqlCommand command = new SqlCommand("usp_Taxes_InsertTax", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@DiscountName", discountDTO.DiscountName);
-                    command.Parameters.AddWithValue("@DiscountValue", discountDTO.DiscountValue);
-                    command.Parameters.AddWithValue("@DiscountValueType", discountDTO.DiscountValueType);
-                    command.Parameters.AddWithValue("@MinimumQuantity", discountDTO.MinimumQuantity);
-                    command.Parameters.AddWithValue("@StartDate", discountDTO.StartDate);
-                    command.Parameters.AddWithValue("@EndDate", discountDTO.EndDate);
-                    command.Parameters.AddWithValue("@CreatedByUserID", discountDTO.CreatedByUserID);
+                    command.Parameters.AddWithValue("@TaxName", taxDTO.TaxName);
+                    command.Parameters.AddWithValue("@TaxRate", taxDTO.TaxRate);
+                    command.Parameters.AddWithValue("@Description",  clsDataSettings.GetDBNullIfNull(taxDTO.Description));
+                    command.Parameters.AddWithValue("@CreatedByUserID", taxDTO.CreatedByUserID);
 
                     SqlParameter returnValueParam = new SqlParameter
                     {
@@ -96,22 +90,19 @@ namespace DataAccess.Products
             }
         }
 
-        public static bool UpdateDiscount(clsDiscountDTO discountDTO)
+        public static bool UpdateTax(clsTaxDTO taxDTO)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_Discounts_UpdateDiscount", connection))
+                using (SqlCommand command = new SqlCommand("usp_Taxes_UpdateTax", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
-                    command.Parameters.AddWithValue("@DiscountID", discountDTO.DiscountID);
-                    command.Parameters.AddWithValue("@DiscountName", discountDTO.DiscountName);
-                    command.Parameters.AddWithValue("@DiscountValue", discountDTO.DiscountValue);
-                    command.Parameters.AddWithValue("@DiscountValueType", discountDTO.DiscountValueType);
-                    command.Parameters.AddWithValue("@MinimumQuantity", discountDTO.MinimumQuantity);
-                    command.Parameters.AddWithValue("@StartDate", discountDTO.StartDate);
-                    command.Parameters.AddWithValue("@EndDate", discountDTO.EndDate);
-                    command.Parameters.AddWithValue("@UpdatedByUserID", discountDTO.UpdatedByUserID);
+                    command.Parameters.AddWithValue("@TaxID", taxDTO.TaxID);
+                    command.Parameters.AddWithValue("@TaxName", taxDTO.TaxName);
+                    command.Parameters.AddWithValue("@TaxRate", taxDTO.TaxRate);
+                    command.Parameters.AddWithValue("@Description", clsDataSettings.GetDBNullIfNull(taxDTO.Description));
+                    command.Parameters.AddWithValue("@UpdatedByUserID", taxDTO.UpdatedByUserID);
 
                     SqlParameter returnValueParam = new SqlParameter
                     {
@@ -134,29 +125,29 @@ namespace DataAccess.Products
             }
         }
 
-        public static bool DeleteDiscount(int discountID)
+        public static bool DeleteTax(int taxID)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_Discounts_DeleteDiscount",
-                "@DiscountID",
-                discountID
+                "usp_Taxes_DeleteTax",
+                "@TaxID",
+                taxID
                 );
         }
 
 
-        public static bool SaveDiscountItems(int discountID, int linkedByUserID, DataTable items)
+        public static bool SaveTaxItems(int taxID, int linkedByUserID, DataTable items)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand("usp_Discounts_SaveDiscountItems", connection))
+                using (SqlCommand command = new SqlCommand("usp_Taxes_SaveTaxItems", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@DiscountID", discountID);
+                    command.Parameters.AddWithValue("@TaxID", taxID);
                     command.Parameters.AddWithValue("@LinkedByUserID", linkedByUserID);
 
                     SqlParameter parameter = command.Parameters.AddWithValue("@Items", items);
                     parameter.SqlDbType = SqlDbType.Structured;
-                    parameter.TypeName = "DiscountLinkType";
+                    parameter.TypeName = "TaxLinkType";
 
                     SqlParameter returnValueParam = new SqlParameter
                     {
@@ -179,49 +170,49 @@ namespace DataAccess.Products
             }
         }
 
-        public static DataTable GetAllDiscounts()
+        public static DataTable GetAllTaxs()
         {
             return clsDataSettings.GetDataTable(
-                "usp_Discounts_GetAllDiscounts"
+                "usp_Taxes_GetAllTaxes"
                 );
         }
 
-        public static DataTable GetDiscountItems(int discountID)
+        public static DataTable GetTaxItems(int taxID)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Discounts_GetDiscountItems",
-                "@DiscountID",
-                discountID
+                "usp_Taxes_GetTaxItems",
+                "@TaxID",
+                taxID
                 );
         }
 
-        public static bool IsDiscountExistsByName(string discountName)
+        public static bool IsTaxExistsByName(string taxName)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_Discounts_IsExistsByName",
-                "@DiscountName",
-                discountName
+                "usp_Taxes_IsExistsByName",
+                "@TaxName",
+                taxName
                 );
         }
 
-        public static bool SetActive(int discountID, int updatedByUserID)
+        public static bool SetActive(int taxID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_Discounts_SetActive",
-                "@DiscountID",
+                "usp_Taxes_SetActive",
+                "@TaxID",
                 "@UpdatedByUserID",
-                discountID,
+                taxID,
                 updatedByUserID
                 );
         }
 
-        public static bool SetInActive(int discountID, int updatedByUserID)
+        public static bool SetInActive(int taxID, int updatedByUserID)
         {
             return clsDataSettings.ExecuteSimpleSP(
-                "usp_Discounts_SetInActive",
-                "@DiscountID",
+                "usp_Taxes_SetInActive",
+                "@TaxID",
                 "@UpdatedByUserID",
-                discountID,
+                taxID,
                 updatedByUserID
                 );
         }
