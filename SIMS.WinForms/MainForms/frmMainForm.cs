@@ -23,6 +23,7 @@ namespace SIMS.WinForms
             PointOfSale,
             ProductsList,
             DiscountsList,
+            TaxesList,
             SuppliersList,
             SuppliedItemsLog,
             WarehousesList,
@@ -40,6 +41,7 @@ namespace SIMS.WinForms
         private Form _PointOfSaleForm;
         private Form _ProductsListForm;
         private Form _DiscountsListForm;
+        private Form _TaxesListForm;
         private Form _SuppliersList;
         private Form _SuppliedItemsLog;
         private Form _WarehousesList;
@@ -115,12 +117,16 @@ namespace SIMS.WinForms
         private void ProductsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
-
         }
 
         private void DiscountsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _DiscountsListForm, enFormType.DiscountsList);
+        }
+
+        private void TaxesListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _OpenForm(ref _TaxesListForm, enFormType.TaxesList);
         }
 
         private void WarehousesToolStripButton_Click(object sender, EventArgs e)
@@ -227,6 +233,8 @@ namespace SIMS.WinForms
                     return new frmProductsList();
                 case enFormType.DiscountsList:
                     return new frmDiscountsList();
+                case enFormType.TaxesList:
+                    return new frmTaxesList();
                 case enFormType.SuppliersList:
                     return new frmSuppliersList();
                 case enFormType.SuppliedItemsLog:

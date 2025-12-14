@@ -124,6 +124,27 @@
     <Compile Include="Products\BaseDiscountsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Products\BaseTaxesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmAddEditTax.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmAddEditTax.Designer.cs">
+      <DependentUpon>frmAddEditTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\frmLinkingTaxToProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmLinkingTaxToProducts.Designer.cs">
+      <DependentUpon>frmLinkingTaxToProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\frmTaxesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmTaxesList.Designer.cs">
+      <DependentUpon>frmTaxesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\frmLinkingDiscountToProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -477,6 +498,9 @@
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmAddEditTax.resx">
+      <DependentUpon>frmAddEditTax.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products\frmLinkingDiscountToProducts.resx">
       <DependentUpon>frmLinkingDiscountToProducts.cs</DependentUpon>
     </EmbeddedResource>
@@ -489,11 +513,17 @@
     <EmbeddedResource Include="Products\frmAddEditProduct.resx">
       <DependentUpon>frmAddEditProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmLinkingTaxToProducts.resx">
+      <DependentUpon>frmLinkingTaxToProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products\frmProductsList.resx">
       <DependentUpon>frmProductsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\frmProductUnitConversions.resx">
       <DependentUpon>frmProductUnitConversions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmTaxesList.resx">
+      <DependentUpon>frmTaxesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\frmPurchasesList.resx">
       <DependentUpon>frmPurchasesList.cs</DependentUpon>
@@ -847,6 +877,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\link.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dividend.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

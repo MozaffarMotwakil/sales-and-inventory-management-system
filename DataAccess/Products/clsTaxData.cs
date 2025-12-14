@@ -66,7 +66,7 @@ namespace DataAccess.Products
 
                     command.Parameters.AddWithValue("@TaxName", taxDTO.TaxName);
                     command.Parameters.AddWithValue("@TaxRate", taxDTO.TaxRate);
-                    command.Parameters.AddWithValue("@Description",  clsDataSettings.GetDBNullIfNull(taxDTO.Description));
+                    command.Parameters.AddWithValue("@Description",  clsDataSettings.GetDBNullIfNullOrEmpty(taxDTO.Description));
                     command.Parameters.AddWithValue("@CreatedByUserID", taxDTO.CreatedByUserID);
 
                     SqlParameter returnValueParam = new SqlParameter
@@ -101,7 +101,7 @@ namespace DataAccess.Products
                     command.Parameters.AddWithValue("@TaxID", taxDTO.TaxID);
                     command.Parameters.AddWithValue("@TaxName", taxDTO.TaxName);
                     command.Parameters.AddWithValue("@TaxRate", taxDTO.TaxRate);
-                    command.Parameters.AddWithValue("@Description", clsDataSettings.GetDBNullIfNull(taxDTO.Description));
+                    command.Parameters.AddWithValue("@Description", clsDataSettings.GetDBNullIfNullOrEmpty(taxDTO.Description));
                     command.Parameters.AddWithValue("@UpdatedByUserID", taxDTO.UpdatedByUserID);
 
                     SqlParameter returnValueParam = new SqlParameter

@@ -8,10 +8,7 @@ namespace SIMS.WinForms.Products
 {
     public class BaseDiscountsForm : frmGenericListBase<clsDiscountService, clsDiscount>
     {
-        public BaseDiscountsForm() : base(clsDiscountService.CreateInstance())
-        {
-
-        }
+        public BaseDiscountsForm() : base(clsDiscountService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {

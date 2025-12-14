@@ -173,6 +173,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dividend {
+            get {
+                object obj = ResourceManager.GetObject("dividend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ecommerce_Purchase_icon {
             get {
                 object obj = ResourceManager.GetObject("Ecommerce-Purchase-icon", resourceCulture);

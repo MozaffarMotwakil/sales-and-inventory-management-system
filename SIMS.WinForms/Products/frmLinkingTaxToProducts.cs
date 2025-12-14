@@ -10,39 +10,37 @@ using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Products
 {
-    public partial class frmLinkingDiscountToProducts : Form
+    public partial class frmLinkingTaxToProducts : Form
     {
-        private clsDiscount _Discount;
-        private List<clsDiscountItem> _DiscountItems;
+        private clsTax _Tax;
+        private List<clsTaxItem> _TaxItems;
         private bool isPropagating = true;
 
-        public frmLinkingDiscountToProducts(clsDiscount discount)
+        public frmLinkingTaxToProducts(clsTax tax)
         {
             InitializeComponent();
-            _Discount = discount;
+            _Tax = tax;
         }
 
-        private void frmLinkingDiscountToProducts_Load(object sender, EventArgs e)
+        private void frmLinkingTaxToProducts_Load(object sender, EventArgs e)
         {
-            if (_Discount == null)
+            if (_Tax == null)
             {
-                clsFormMessages.ShowError("لم يتم العثور على الخصم");
+                clsFormMessages.ShowError("لم يتم العثور على الضريبة");
                 this.Close();
                 return;
             }
 
-            _DiscountItems = _Discount.Items;
+            _TaxItems = _Tax.Items;
 
-            lblDiscountName.Text = _Discount.DiscountName;
-            lblPeriodOperation.Text = _Discount.StartDate.ToString("yyyy/MM/dd") + " - " + _Discount.EndDate.ToString("yyyy/MM/dd") + $" ({(_Discount.EndDate - _Discount.StartDate).Days} يوم/أيام)";
-            lblActivityStatus.Text = _Discount.IsActive ? "نشط" : "غير نشط";
-            lblActivityStatus.ForeColor = _Discount.IsActive ? Color.Lime : Color.Red;
-            lblActiveLinkingProduct.Text = _DiscountItems.Count.ToString();
-            lblCreatedAt.Text = _Discount.CreatedAt?.ToString("yyyy/MM/dd") ?? "N/A";
-            lblDiscountValue.Text = _Discount.DiscountValue.ToString() +
-                (_Discount.DiscountValueType == clsDiscount.enValueType.Percentage ? "%" : " جنيه");
+            lblTaxName.Text = _Tax.TaxName;
+            lblTaxRate.Text = _Tax.TaxRate.ToString() + "%";
+            lblActiveLinkingProduct.Text = _TaxItems.Count.ToString();
+            lblCreatedAt.Text = _Tax.CreatedAt?.ToString("yyyy/MM/dd") ?? "N/A";
+            lblActivityStatus.Text = _Tax.IsActive ? "نشط" : "غير نشط";
+            lblActivityStatus.ForeColor = _Tax.IsActive ? Color.Lime : Color.Red;
 
-            LoadProductsToTreeView(clsProductService.GetProductHierarchyForTreeView());
+            LoadProductsToTreeView(clsProductService.GetProductHierarchyForTreeView(withUnits: false));
         }
 
         private void trvProducts_AfterCheck(object sender, TreeViewEventArgs e)
@@ -66,10 +64,10 @@ namespace SIMS.WinForms.Products
 
         public void LoadProductsToTreeView(List<clsTreeCategoryDTO> categoriesHierarchy)
         {
-            trvProducts.Nodes.Clear(); 
+            trvProducts.Nodes.Clear();
 
             TreeNode rootNode = new TreeNode("جميع المنتجات");
-            rootNode.Tag = "ROOT"; 
+            rootNode.Tag = "ROOT";
             rootNode.Checked = false;
             trvProducts.Nodes.Add(rootNode);
 
@@ -85,29 +83,20 @@ namespace SIMS.WinForms.Products
             foreach (var category in categories)
             {
                 TreeNode categoryNode = new TreeNode(category.CategoryName);
-                categoryNode.Tag = $"CATEGORY_{category.CategoryID}"; 
+                categoryNode.Tag = $"CATEGORY_{category.CategoryID}";
 
                 foreach (var product in category.Products)
                 {
                     TreeNode productNode = new TreeNode(product.ProductName);
                     productNode.Tag = $"PRODUCT_{product.ProductID}";
 
-                    foreach (var unit in product.Units)
-                    {
-                        TreeNode unitNode = new TreeNode($"{unit.UnitName}");
-                        unitNode.Tag = $"UNIT_{unit.UnitID}";
-
-                        categoryNode.Checked = productNode.Checked = unitNode.Checked =
-                            _DiscountItems.Any(
-                            item => 
-                            item.ProductID == product.ProductID &&
-                            item.UnitID == unit.UnitID
+                    categoryNode.Checked = productNode.Checked = _TaxItems
+                            .Any(
+                            item =>
+                            item.ProductID == product.ProductID
                             );
 
-                        parentNode.Checked &= unitNode.Checked;
-                        productNode.Nodes.Add(unitNode);
-                    }
-
+                    parentNode.Checked &= productNode.Checked;
                     categoryNode.Nodes.Add(productNode);
                 }
 
@@ -128,7 +117,7 @@ namespace SIMS.WinForms.Products
 
         private void CheckParentState(TreeNode node)
         {
-            if (node.Parent == null) 
+            if (node.Parent == null)
             {
                 return;
             }
@@ -143,22 +132,14 @@ namespace SIMS.WinForms.Products
                 {
                     foreach (TreeNode productNode in categoryNode.Nodes.Cast<TreeNode>())
                     {
-                        foreach (TreeNode unitNode in productNode.Nodes.Cast<TreeNode>())
+                        if (!productNode.Checked)
                         {
-                            if (!unitNode.Checked)
-                            {
-                                allProductsAndUnitsChecked = false;
-                                break;
-                            }
-                        }
-
-                        if (!allProductsAndUnitsChecked)
-                        {
+                            allProductsAndUnitsChecked = false;
                             break;
-                        } 
+                        }
                     }
 
-                    if (!allProductsAndUnitsChecked) 
+                    if (!allProductsAndUnitsChecked)
                     {
                         break;
                     }
@@ -168,12 +149,12 @@ namespace SIMS.WinForms.Products
                 {
                     if (!node.Parent.Checked)
                     {
-                        node.Parent.Checked = true; 
+                        node.Parent.Checked = true;
                     }
                 }
                 else
                 {
-                    if (node.Parent.Checked) 
+                    if (node.Parent.Checked)
                     {
                         node.Parent.Checked = false;
                     }
@@ -204,48 +185,39 @@ namespace SIMS.WinForms.Products
             CheckParentState(node.Parent);
         }
 
-        public List<clsDiscountItem> GetSelectedDiscountItems()
+        public List<clsTaxItem> GetSelectedTaxItems()
         {
-            List<clsDiscountItem> selectedDiscountItems = new List<clsDiscountItem>();
+            List<clsTaxItem> selectedTaxItems = new List<clsTaxItem>();
 
             if (trvProducts.Nodes.Count > 0)
             {
                 TreeNode rootNode = trvProducts.Nodes[0];
-                CollectDiscountItemsRecursively(rootNode, _Discount.DiscountID ?? -1, selectedDiscountItems);
+                CollectTaxItemsRecursively(rootNode, _Tax.TaxID ?? -1, selectedTaxItems);
             }
 
-            return selectedDiscountItems;
+            return selectedTaxItems;
         }
 
-        private void CollectDiscountItemsRecursively(
+        private void CollectTaxItemsRecursively(
             TreeNode node,
-            int discountID,
-            List<clsDiscountItem> itemsList)
+            int taxID,
+            List<clsTaxItem> itemsList)
         {
             if (node.Checked && node.Tag != null)
             {
                 string tag = node.Tag.ToString();
 
-                if (tag.StartsWith("UNIT_"))
+                if (tag.StartsWith("PRODUCT_"))
                 {
-                    if (int.TryParse(tag.Substring(tag.IndexOf('_') + 1), out int unitID))
+                    if (int.TryParse(tag.Substring(tag.IndexOf('_') + 1), out int productID))
                     {
-                        int productID = 0;
-
-                        if (node.Parent != null && node.Parent.Tag != null && node.Parent.Tag.ToString().StartsWith("PRODUCT_"))
-                        {
-                            string parentTag = node.Parent.Tag.ToString();
-                            int.TryParse(parentTag.Substring(parentTag.IndexOf('_') + 1), out productID);
-                        }
-
                         if (productID > 0)
                         {
                             itemsList.Add(
-                                new clsDiscountItem
+                                new clsTaxItem
                                 (
-                                    discountID,
-                                    productID,
-                                    unitID
+                                    taxID,
+                                    productID
                                 )
                             );
                         }
@@ -255,7 +227,7 @@ namespace SIMS.WinForms.Products
 
             foreach (TreeNode child in node.Nodes)
             {
-                CollectDiscountItemsRecursively(child, discountID, itemsList);
+                CollectTaxItemsRecursively(child, taxID, itemsList);
             }
         }
 
@@ -271,14 +243,14 @@ namespace SIMS.WinForms.Products
                 return;
             }
 
-            if (_Discount.SaveDiscountItems(GetSelectedDiscountItems()))
+            if (_Tax.SaveTaxItems(GetSelectedTaxItems()))
             {
-                clsFormMessages.ShowSuccess("تم ربط الخصم مع المنتجات المحددة بنجاح");
+                clsFormMessages.ShowSuccess("تم ربط الضريبة مع المنتجات المحددة بنجاح");
                 this.Close();
             }
             else
             {
-                clsFormMessages.ShowSuccess("فشل ربط الخصم بالمنتجات المحددة");
+                clsFormMessages.ShowSuccess("فشل ربط الضريبة بالمنتجات المحددة");
             }
         }
 

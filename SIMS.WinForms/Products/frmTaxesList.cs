@@ -1,74 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Products
 {
-    public partial class frmDiscountsList : BaseDiscountsForm
+    public partial class frmTaxesList : BaseTaxesForm
     {
-        protected override Form EditEntityForm => new frmAddEditDiscount(SelectedEntity);
+        protected override Form EditEntityForm => new frmAddEditTax(SelectedEntity);
 
-        public frmDiscountsList()
+        public frmTaxesList()
         {
             InitializeComponent();
         }
 
-        private void frmDiscountsList_Load(object sender, EventArgs e)
+        private void frmTaxesList_Load(object sender, EventArgs e)
         {
-            cbValueType.SelectedIndex = 0;
             cbActivityStatus.SelectedIndex = 1;
             cbCreatedDate.SelectedIndex = 6;
-            cbCreatedDate.Text = "إختر نطاق إضافة الخصم";
-
-            if (dgvEntitiesList.Rows.Count > 0)
-            {
-                dtpStartDate.Value = dgvEntitiesList
-                    .Rows
-                    .Cast<DataGridViewRow>()
-                    .Select(row => Convert.ToDateTime(row.Cells[5].Value))
-                    .Min();
-
-                dtpEndDate.Value = dgvEntitiesList
-                    .Rows
-                    .Cast<DataGridViewRow>()
-                    .Select(row => Convert.ToDateTime(row.Cells[6].Value))
-                    .Max();
-            }
-
-            btnApplyFilter_Click(sender, e);
+            cbCreatedDate.Text = "إختر نطاق إضافة الضريبة";
 
             contextMenuStrip.Items.Add("الربط مع منتجات");
             contextMenuStrip.Items[4].Image = Resources.link;
             contextMenuStrip.Items[4].ImageScaling = ToolStripItemImageScaling.None;
-            contextMenuStrip.Items[4].Click += LinkingDiscountToProducts_Click;
+            contextMenuStrip.Items[4].Click += LinkingTaxToProducts_Click;
         }
 
-        private void LinkingDiscountToProducts_Click(object sender, EventArgs e)
+        private void LinkingTaxToProducts_Click(object sender, EventArgs e)
         {
-            if (SelectedEntity.EndDate < DateTime.Today)
-            {
-                clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذا الخصم لأنه غير ساري");
-                return;
-            }
-
             if (!SelectedEntity.IsActive)
             {
-                clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذا الخصم لأنه غير نشط");
+                clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذه الضريبة لأنها غير نشطة");
                 return;
             }
 
-            frmLinkingDiscountToProducts linkingDiscountToProducts = new frmLinkingDiscountToProducts(SelectedEntity);
-            linkingDiscountToProducts.ShowDialog();
+            frmLinkingTaxToProducts linkingTaxToProducts = new frmLinkingTaxToProducts(SelectedEntity);
+            linkingTaxToProducts.ShowDialog();
         }
 
         protected override void LoadData()
         {
             base.LoadData();
-            base.EntityName = "الخصم";
+            base.EntityName = "الضريبة";
             base.IsEntitySupportActivityStatus = true;
+        }
+
+        private void cbActivityStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySearchFilter();
+        }
+
+        private void cbCreatedDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySearchFilter();
+        }
+
+        protected override void ApplySearchFilter()
+        {
+            Filter = _GetFilter();
+            base.ApplySearchFilter();
         }
 
         private void cbCreatedDate_Enter(object sender, EventArgs e)
@@ -84,24 +75,19 @@ namespace SIMS.WinForms.Products
             if (cbCreatedDate.SelectedIndex == -1)
             {
                 cbCreatedDate.SelectedIndex = 6;
-                cbCreatedDate.Text = "إختر نطاق إضافة الخصم";
+                cbCreatedDate.Text = "إختر نطاق إضافة الضريبة";
             }
         }
 
-        private void addNewDiscountToolStripButton_Click(object sender, EventArgs e)
+        private void addNewTaxToolStripButton_Click(object sender, EventArgs e)
         {
-            frmAddEditDiscount addEditDiscount = new frmAddEditDiscount();
-            addEditDiscount.ShowDialog();
+            frmAddEditTax addEditTax = new frmAddEditTax();
+            addEditTax.ShowDialog();
         }
 
-        private void btnApplyFilter_Click(object sender, EventArgs e)
+        private string _GetFilter()
         {
             List<string> filters = new List<string>();
-
-            if (cbValueType.SelectedIndex > 0)
-            {
-                filters.Add($"DiscountValueType = '{cbValueType.SelectedItem}'");
-            }
 
             if (cbActivityStatus.SelectedIndex == 1)
             {
@@ -139,15 +125,10 @@ namespace SIMS.WinForms.Products
 
             if (!string.IsNullOrEmpty(txtSearch.Text))
             {
-                filters.Add($"DiscountName LIKE '%{txtSearch.Text}%'");
+                filters.Add($"TaxName LIKE '%{txtSearch.Text}%'");
             }
 
-            filters.Add($"StartDate >= #{dtpStartDate.Value:yyyy/MM/dd}#");
-
-            filters.Add($"EndDate <= #{dtpEndDate.Value:yyyy/MM/dd}#");
-
-            base.Filter = string.Join(" AND ", filters);
-            base.ApplySearchFilter();
+            return string.Join(" AND ", filters);
         }
 
     }

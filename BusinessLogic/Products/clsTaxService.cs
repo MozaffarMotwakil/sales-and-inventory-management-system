@@ -9,7 +9,7 @@ using DTOs.Products;
 
 namespace BusinessLogic.Products
 {
-    public class clsTaxService
+    public class clsTaxService : IEntityListManager<clsTax>
     {
         public event EventHandler<EntitySavedEventArgs> EntitySaved;
         public event EventHandler<EntityDeletedEventArgs> EntityDeleted;

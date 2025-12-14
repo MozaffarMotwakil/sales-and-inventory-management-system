@@ -63,7 +63,7 @@ namespace BusinessLogic.Products
             DiscountID = discountDTO.DiscountID;
             DiscountName = discountDTO.DiscountName;
             DiscountValue = discountDTO.DiscountValue;
-            DiscountValueType = (enValueType)(discountDTO.DiscountValueType ? 0 : 1);
+            DiscountValueType = (enValueType)(discountDTO.DiscountValueType ? 1 : 0);
             MinimumQuantity = discountDTO.MinimumQuantity;
             StartDate = discountDTO.StartDate;
             EndDate = discountDTO.EndDate;

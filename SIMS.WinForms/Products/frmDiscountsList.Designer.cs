@@ -43,6 +43,15 @@
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
+            // lblTotalRecordsText
+            // 
+            this.lblTotalRecordsText.Size = new System.Drawing.Size(151, 16);
+            this.lblTotalRecordsText.Text = "إجمالي عدد الخصومات:";
+            // 
+            // lblTotalRecords
+            // 
+            this.lblTotalRecords.Location = new System.Drawing.Point(168, 691);
+            // 
             // searchPanel
             // 
             this.searchPanel.Location = new System.Drawing.Point(640, 7);
