@@ -49,16 +49,16 @@ namespace BusinessLogic.Invoices
 
             clsInvoiceDTO InvoiceDTO = clsInvoiceData.FindInvoiceByID(InvoiceID);
 
-            switch (InvoiceDTO?.InvoiceTypeID)
+            switch ((enInvoiceType?)InvoiceDTO?.InvoiceTypeID)
             {
-                case (byte)enInvoiceType.Purchase:
+                case enInvoiceType.Purchase:
                     return new clsPurchaseInvoice(InvoiceDTO);
-                case (byte)enInvoiceType.PurchaseReturn:
+                case enInvoiceType.PurchaseReturn:
                     return new clsPurchaseReturnInvoice(InvoiceDTO);
-                case (byte)enInvoiceType.Sales:
-                    return null;
-                case (byte)enInvoiceType.SalesReturn:
-                    return null;
+                case enInvoiceType.Sales:
+                    return new clsSaleInvoice(InvoiceDTO);
+                case enInvoiceType.SalesReturn:
+                    return new clsSaleReturnInvoice(InvoiceDTO);
                 default:
                     return null;
             }
@@ -81,7 +81,7 @@ namespace BusinessLogic.Invoices
 
         public DataTable GetAllSaleInvoices()
         {
-            throw new NotImplementedException("لم يتم إنشاء دالة جلب كل فواتير المشتريات");
+            return clsInvoiceData.GetAllSaleInvoices();
         }
 
     }

@@ -63,6 +63,8 @@
     <Compile Include="Employees\clsEmployeeService.cs" />
     <Compile Include="Employees\clsEmployee.cs" />
     <Compile Include="Interfaces\IEntityActivity.cs" />
+    <Compile Include="Invoices\clsSaleReturnInvoice.cs" />
+    <Compile Include="Invoices\clsSaleInvoice.cs" />
     <Compile Include="Invoices\clsPurchaseReturnInvoice.cs" />
     <Compile Include="Invoices\clsInvoiceService.cs" />
     <Compile Include="Invoices\clsPurchaseInvoice.cs" />

@@ -1,56 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using BusinessLogic.Suppliers;
-using BusinessLogic.Validation;
 using DataAccess.Invoices;
 using DTOs.Invoices;
 
 namespace BusinessLogic.Invoices
 {
-    public class clsPurchaseInvoice : clsInvoice
+    public class clsSaleInvoice : clsInvoice
     {
-        public clsSupplier Supplier { get; }
-
-        public clsPurchaseInvoice(string invoiceNo, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
-            List<clsInvoiceLine> lines, int supplierID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
-            base(null, invoiceNo, invoiceDate, enInvoiceType.Purchase, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
+        public clsSaleInvoice(string invoiceNo, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
+            List<clsInvoiceLine> lines, int? customerID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
+            base(null, invoiceNo, invoiceDate, enInvoiceType.Sales, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
                 null, null)
         {
-            InvoiceNo = "PI-" + DateTime.Today.Year + '-' + invoiceNo;
-            Supplier = clsSupplierService.CreateInstance().Find(supplierID);
+            InvoiceNo = "SI-" + DateTime.Today.Year + '-' + (GetSaleInvoicesCount() + 1);
         }
 
-        internal clsPurchaseInvoice(clsInvoiceDTO invoiceDTO) :
+        internal clsSaleInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
                 (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines),
                 invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {
-            Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
+
         }
 
-        public static DateTime GetFirstPurchaseInvoiceDate()
+        public static int GetSaleInvoicesCount()
         {
-            return clsInvoiceData.GetFirstPurchaseInvoiceDate();
+            return clsInvoiceData.GetSaleInvoicesCount();
         }
 
-        public override clsValidationResult Validated()
+        public static DateTime GetFirstSaleInvoiceDate()
         {
-            clsValidationResult validationResult = base.Validated();
-
-            if (Supplier == null)
-            {
-                validationResult.AddError("المورد", "يجب تعيين مورد للفاتورة");
-            }
-
-            if (Supplier != null && !Supplier.IsActive)
-            {
-                validationResult.AddError("المورد", $"المورد \"{GetPartyName()}\" غير نشط");
-            }
-
-            return validationResult;
+            return clsInvoiceData.GetFirstSaleInvoiceDate();
         }
-        
+
         protected override clsInvoiceDTO MappingToDTO()
         {
             return new clsInvoiceDTO
@@ -60,7 +43,7 @@ namespace BusinessLogic.Invoices
                 InvoiceDate = this.InvoiceDate,
                 InvoiceTypeID = (byte)this.InvoiceType,
                 InvoiceStatusID = (byte)this.InvoiceStatus,
-                PartyID = this.Supplier?.PartyInfo.PartyID,
+                PartyID = null,
                 Lines = clsInvoiceLine.ConvertInvoiceLinesListToDataTable(base.Lines),
                 TotalSubTotal = this.TotalSubTotal,
                 TotalDiscountAmount = this.TotalDiscountAmount,
@@ -75,7 +58,7 @@ namespace BusinessLogic.Invoices
 
         public override string GetPartyName()
         {
-            return Supplier == null ? "N/A" : Supplier.PartyInfo.PartyName;
+            return "N/A";
         }
 
     }

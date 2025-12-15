@@ -2,31 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using BusinessLogic.Validation;
-using BusinessLogic.Warehouses;
 using DTOs.Invoices;
 
 namespace BusinessLogic.Invoices
 {
-    public class clsPurchaseReturnInvoice : clsInvoice
+    public class clsSaleReturnInvoice : clsInvoice
     {
-        public clsPurchaseInvoice OriginalInvoiceInfo { get; set; }
+        public clsSaleInvoice OriginalInvoiceInfo { get; set; }
 
-        public clsPurchaseReturnInvoice(int originalInvoiceID, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
+        public clsSaleReturnInvoice(int originalInvoiceID, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
             List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
-            base(null, string.Empty, invoiceDate, enInvoiceType.PurchaseReturn, invoiceStatus, lines, warehouseID, 
+            base(null, string.Empty, invoiceDate, enInvoiceType.SalesReturn, invoiceStatus, lines, warehouseID,
                 paymentMethod, paymentAmount, null, null)
         {
-            OriginalInvoiceInfo = clsInvoiceService.CreateInstance().Find(originalInvoiceID) as clsPurchaseInvoice;
-            InvoiceNo = OriginalInvoiceInfo != null ? "PR-" + DateTime.Today.Year + '-' + OriginalInvoiceInfo.InvoiceNo.Substring(8) + '-' + (OriginalInvoiceInfo.GetReturnInvoicesCount() + 1) : null;
+            OriginalInvoiceInfo = clsInvoiceService.CreateInstance().Find(originalInvoiceID) as clsSaleInvoice;
+            InvoiceNo = OriginalInvoiceInfo != null ? "SR-" + DateTime.Today.Year + '-' + OriginalInvoiceInfo.InvoiceNo.Substring(8) + '-' + (OriginalInvoiceInfo.GetReturnInvoicesCount() + 1) : null;
         }
 
-        internal clsPurchaseReturnInvoice(clsInvoiceDTO invoiceDTO) :
+        internal clsSaleReturnInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
                 (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines),
                 invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {
-            OriginalInvoiceInfo = clsInvoiceService.CreateInstance().Find(invoiceDTO.OriginalInvoiceID.Value) as clsPurchaseInvoice;
+            OriginalInvoiceInfo = clsInvoiceService.CreateInstance().Find(invoiceDTO.OriginalInvoiceID.Value) as clsSaleInvoice;
         }
 
         public override clsValidationResult Validated()
@@ -47,14 +46,9 @@ namespace BusinessLogic.Invoices
                     if (line.Quantity > oppositeLine.GetRemainingQuantity())
                     {
                         validationResult.AddError(line.ProductInfo.ProductName + "-" + line.UnitInfo.UnitName,
-                            "لا يمكن إرجاع كمية أكبر من الكمية المشتراة المتبقية من هذا المنتج");
+                            "لا يمكن إرجاع كمية أكبر من الكمية المباعة المتبقية من هذا المنتج");
                     }
 
-                    if (line.Quantity > clsInventoryService.GetInventoryQuantity(this.WarehouseInfo.WarehouseID ?? -1, line.ProductID, line.UnitID))
-                    {
-                        validationResult.AddError(line.ProductInfo.ProductName + "-" + line.UnitInfo.UnitName,
-                            "كمية البضاعة التي يراد إرجاعها أكبر من كمية المخزون الحالي");
-                    }
                 }
             }
 
@@ -70,7 +64,7 @@ namespace BusinessLogic.Invoices
                 InvoiceDate = this.InvoiceDate,
                 InvoiceTypeID = (byte)this.InvoiceType,
                 InvoiceStatusID = (byte)this.InvoiceStatus,
-                PartyID = this.OriginalInvoiceInfo?.Supplier?.PartyInfo.PartyID,
+                PartyID = null,
                 Lines = clsInvoiceLine.ConvertInvoiceLinesListToDataTable(base.Lines),
                 TotalSubTotal = this.TotalSubTotal,
                 TotalDiscountAmount = this.TotalDiscountAmount,

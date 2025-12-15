@@ -138,12 +138,35 @@ namespace DataAccess.Invoices
                 );
         }
 
+        public static DataTable GetAllSaleInvoices()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Invoices_GetAllSaleInvoices"
+                );
+        }
+
         public static bool IsInvoiceExists(int invoiceID)
         {
             return clsDataSettings.ExecuteSimpleSP(
                 "usp_Invoices_IsExistsByID",
                 "@InvoiceID",
                 invoiceID
+                );
+        }
+
+        public static bool IsInvoiceExists(string invoiceNa)
+        {
+            return clsDataSettings.ExecuteSimpleSP(
+                "usp_Invoices_IsExistsByInvoiceNa",
+                "@InvoiceNa",
+                invoiceNa
+                );
+        }
+
+        public static int GetSaleInvoicesCount()
+        {
+            return Convert.ToInt32(
+                clsDataSettings.GetSingleValue("usp_Invoices_GetSaleInvoicesCount")
                 );
         }
 
@@ -165,19 +188,17 @@ namespace DataAccess.Invoices
                 ));
         }
 
-        public static bool IsInvoiceExists(string invoiceNa)
-        {
-            return clsDataSettings.ExecuteSimpleSP(
-                "usp_Invoices_IsExistsByInvoiceNa",
-                "@InvoiceNa",
-                invoiceNa
-                );
-        }
-
         public static DateTime GetFirstPurchaseInvoiceDate()
         {
             return Convert.ToDateTime(
                 clsDataSettings.GetSingleValue("usp_Invoices_GetFirstPurchaseInvoiceDate")
+                );
+        }
+
+        public static DateTime GetFirstSaleInvoiceDate()
+        {
+            return Convert.ToDateTime(
+                clsDataSettings.GetSingleValue("usp_Invoices_GetFirstSaleInvoiceDate")
                 );
         }
 

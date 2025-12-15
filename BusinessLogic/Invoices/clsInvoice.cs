@@ -87,8 +87,18 @@ namespace BusinessLogic.Invoices
             return Lines.Sum(invokeLine => invokeLine.LineGrandTotal);
         }
 
-        public abstract string GetPartyName();
-        
+        public int GetReturnInvoicesCount()
+        {
+            return clsInvoiceData.GetReturnInvoicesCount(this.InvoiceID ?? -1);
+        }
+
+        public bool AreThereAnyItemsNotBeenReturned()
+        {
+            return Lines
+                .Cast<clsInvoiceLine>()
+                .Any(line => line.GetRemainingQuantity() != 0);
+        }
+
         public string GetInvoiceTypeName()
         {
             switch (this.InvoiceType)
@@ -134,6 +144,10 @@ namespace BusinessLogic.Invoices
 
             }
         }
+
+        public abstract string GetPartyName();
+
+        protected abstract clsInvoiceDTO MappingToDTO();
 
         public virtual clsValidationResult Validated()
         {
@@ -237,8 +251,6 @@ namespace BusinessLogic.Invoices
 
             return validationResult;
         }
-
-        protected abstract clsInvoiceDTO MappingToDTO();
 
         public clsValidationResult Issue()
         {
