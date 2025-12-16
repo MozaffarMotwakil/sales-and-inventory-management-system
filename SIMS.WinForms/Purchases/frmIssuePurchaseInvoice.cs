@@ -19,7 +19,7 @@ namespace SIMS.WinForms.Inventory
             InitializeComponent();
         }
 
-        private void frmIssuePurchaseInvoice_Load(object sender, EventArgs e)
+        private void frmIssuePurchaseInvoice_Load_Local(object sender, EventArgs e)
         {
             clsSupplierService.CreateInstance().EntitySaved += clsSupplier_SupplierSaved;
 
@@ -35,7 +35,6 @@ namespace SIMS.WinForms.Inventory
 
             dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
             dgvInvoiceLines.EditingControlShowing += dgvInvoiceLines_EditingControlShowing;
-            dgvInvoiceLines.CellValidating += dgvInvoiceLines_CellValidating;
             txtInvoiceNo.Validating += txtInvoiceNo_Validating;
             cbParty.Validating += cbSupplier_Validating;
             cbParty.Enter += cbSupplier_Enter;
@@ -53,7 +52,7 @@ namespace SIMS.WinForms.Inventory
                 (int)cbWarehouse.SelectedValue,
                 base.GetPaymentMethod(),
                 base.GetPaymentAmount()
-                );
+            );
         }
 
         private void cbSupplier_Validating(object sender, System.ComponentModel.CancelEventArgs e)
@@ -110,21 +109,20 @@ namespace SIMS.WinForms.Inventory
         {
             if (dgvInvoiceLines.CurrentCell.ColumnIndex == colUnit.Index)
             {
-                int? productID = (int?)dgvInvoiceLines.Rows[dgvInvoiceLines.CurrentRow.Index].Cells[colProduct.Index].Value;
-
-                if (productID == null)
+                if (CurrentLine == null || CurrentLine.ProductID == null)
                 {
                     return;
                 }
 
                 ComboBox currentCellComboBox = e.Control as ComboBox;
+                DataTable unitsData = clsProductService.GetAllProductUnits(CurrentLine.ProductID.GetValueOrDefault());
 
-                currentCellComboBox.DataSource = clsProductService.GetAllProductUnits(productID.Value);
+                currentCellComboBox.DataSource = unitsData;
                 currentCellComboBox.DisplayMember = "UnitName";
                 currentCellComboBox.ValueMember = "UnitID";
 
                 DataGridViewComboBoxCell cellComboBox = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
-                cellComboBox.DataSource = clsProductService.GetAllProductUnits(productID.Value);
+                cellComboBox.DataSource = unitsData;
                 cellComboBox.DisplayMember = "UnitName";
                 cellComboBox.ValueMember = "UnitID";
 
@@ -135,90 +133,54 @@ namespace SIMS.WinForms.Inventory
 
         private void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == colProduct.Index)
+            if (CurrentLine == null)
             {
-                if (IsCellValueChange())
-                {
-                    DataGridViewComboBoxCell cellComboBox = (dgvInvoiceLines.CurrentRow.Cells[colUnit.Index] as DataGridViewComboBoxCell);
-                    cellComboBox.ValueMember = string.Empty;
-                    cellComboBox.Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = null;
-                }
+                return;
             }
 
-            if (e.ColumnIndex == colUnit.Index && dgvInvoiceLines.CurrentCell.Value != null)
+            ResetColumnsValuesWhenProductOrUnitChanged(e.ColumnIndex, e.RowIndex);
+
+            // تعيين عامل التحويل
+            if (e.ColumnIndex == colUnit.Index && CurrentLine.UnitID != 0)
             {
                 DataGridViewComboBoxCell comboBoxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
-                dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = (comboBoxCell.DataSource as DataTable).Rows.Find(dgvInvoiceLines.CurrentCell.Value).Field<object>("ConversionFactor");
-            }
 
-            if (dgvInvoiceLines.CurrentRow.Cells[colProduct.Index].Value != null && dgvInvoiceLines.CurrentRow.Cells[colUnit.Index].Value != null)
-            {
-                if (int.TryParse(dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value?.ToString(), out int lineQuantity) &&
-                    decimal.TryParse(dgvInvoiceLines.CurrentRow.Cells[colUnitPrice.Index].Value?.ToString(), out decimal lineUnitPrice))
+                if (comboBoxCell != null && comboBoxCell.DataSource is DataTable unitsDataTable)
                 {
-                    decimal lineSubTotal = clsInvoiceLine.CalculateSubTotal(lineUnitPrice, lineQuantity);
-                    decimal lineDiscountAmount = Convert.ToDecimal(dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value);
-                    decimal lineDiscountRate = Convert.ToDecimal(dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value);
-                    decimal lineTaxAmount = Convert.ToDecimal(dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value);
-                    decimal lineTaxRate = Convert.ToDecimal(dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value);
+                    DataRow selectedRow = unitsDataTable.Rows.Find(CurrentLine.UnitID);
 
-                    if (e.ColumnIndex == colDiscountAmount.Index)
+                    if (selectedRow != null)
                     {
-                        lineDiscountRate = clsInvoiceLine.CalculateDiscountRate(lineDiscountAmount, lineSubTotal);
-                    }
-
-                    if (e.ColumnIndex == colTaxAmount.Index)
-                    {
-                        lineTaxRate = clsInvoiceLine.CalculateTaxRate(lineTaxAmount, lineDiscountAmount, lineSubTotal);
-                    }
-
-                    lineDiscountAmount = clsInvoiceLine.CalculateDiscountAmount(lineDiscountRate, lineSubTotal);
-                    lineDiscountRate = clsInvoiceLine.CalculateDiscountRate(lineDiscountAmount, lineSubTotal);
-                    lineTaxAmount = clsInvoiceLine.CalculateTaxAmount(lineTaxRate, lineDiscountAmount, lineSubTotal);
-                    lineTaxRate = clsInvoiceLine.CalculateTaxRate(lineTaxAmount, lineDiscountAmount, lineSubTotal);
-
-                    dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = lineSubTotal;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = lineDiscountRate;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = lineDiscountAmount;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = lineTaxRate;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = lineTaxAmount;
-
-                    if ((dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value != null && dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value != null))
-                    {
-                        dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = clsInvoiceLine.CalculateGrandTotal(lineSubTotal, lineDiscountRate, lineTaxRate);
-                    }
-                    else
-                    {
-                        dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
+                        CurrentLine.ConversionFactor = selectedRow.Field<int>("ConversionFactor");
                     }
                 }
-                else
+            }
+
+            if (CurrentLine.ProductID != null && CurrentLine.UnitID != null)
+            {
+                if (CurrentLine.Quantity == null && CurrentLine.UnitPrice == null)
                 {
-                    dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
+                    CurrentLine.LineSubTotal = null;
+                    CurrentLine.DiscountRate = null;
+                    CurrentLine.TaxRate = null;
+                    CurrentLine.LineGrandTotal = null;
                 }
             }
             else
             {
-                dgvInvoiceLines.CurrentRow.Cells[colUnitPrice.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
+                CurrentLine.Quantity = null;
+                CurrentLine.UnitPrice = null;
+                CurrentLine.LineSubTotal = null;
+                CurrentLine.DiscountRate = null;
+                CurrentLine.TaxRate = null;
+                CurrentLine.LineGrandTotal = null;
             }
 
+            ApplyEditOnDGV(e.RowIndex);
             base.UpdateInvoiceSummary();
         }
 
-        private void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        protected override void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             ErrorColumnIndex = e.ColumnIndex;
 
@@ -255,7 +217,7 @@ namespace SIMS.WinForms.Inventory
                     dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون حقل الكمية فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
-                else if ((!IsCurrentCellEmpty()) && (!int.TryParse(dgvInvoiceLines.CurrentCell.EditedFormattedValue?.ToString(), out int quantity) || quantity < 1))
+                else if ((!IsCurrentCellEmpty()) && (!int.TryParse(GetEditedValue()?.ToString(), out int quantity) || quantity < 1))
                 {
                     e.Cancel = true;
                     dgvInvoiceLines.CurrentRow.ErrorText = "يجب أن تكون الكمية رقماً صحيحاً أكبر من صفر";
@@ -274,8 +236,7 @@ namespace SIMS.WinForms.Inventory
                     dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون حقل سعر شراء الوحدة فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
-                else if (!decimal.TryParse(dgvInvoiceLines.CurrentCell.EditedFormattedValue?.ToString(), out decimal unitPrice) &&
-                    !IsCurrentCellEmpty())
+                else if (!decimal.TryParse(GetEditedValue()?.ToString(), out decimal unitPrice) && !IsCurrentCellEmpty())
                 {
                     e.Cancel = true;
                     dgvInvoiceLines.CurrentRow.ErrorText = "يجب إدخال قيمة رقمية صحيحة أو عشرية لسعر شراء الوحدة";
@@ -300,23 +261,11 @@ namespace SIMS.WinForms.Inventory
                     dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون حقل قيمة الخصم أو نسبة الخصم فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
-                else if (!(decimal.TryParse(dgvInvoiceLines.CurrentCell.EditedFormattedValue?.ToString(), out decimal discount) || discount < 0) && !IsCurrentCellEmpty())
+                else if ((!(decimal.TryParse(GetEditedValue()?.ToString(), out decimal discount) && discount >= 0)) && !IsCurrentCellEmpty())
                 {
                     e.Cancel = true;
                     dgvInvoiceLines.CurrentRow.ErrorText = "يجب أن تكون نسبة الخصم أو مبلغ الخصم رقم موجب صحيح";
                     SystemSounds.Asterisk.Play();
-                }
-                else if (!IsCurrentCellEmpty())
-                {
-                    decimal subTotal = (decimal)GetCellValue(colSubTotal.Index);
-
-                    if ((e.ColumnIndex == colDiscountAmount.Index && discount >= subTotal) ||
-                        (e.ColumnIndex == colDiscountRate.Index && clsInvoiceLine.CalculateDiscountAmount(discount, subTotal) >= subTotal))
-                    {
-                        e.Cancel = true;
-                        dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون مبلغ الخصم أكبر من أو يساوي الإجمالي الفرعي";
-                        SystemSounds.Asterisk.Play();
-                    }
                 }
                 else
                 {
@@ -331,7 +280,7 @@ namespace SIMS.WinForms.Inventory
                     dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون حقل قيمة الضريبة أو نسبة الضريبة فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
-                else if (!IsCurrentCellEmpty() && (!(decimal.TryParse(dgvInvoiceLines.CurrentCell.EditedFormattedValue?.ToString(), out decimal tax) || tax < 0)))
+                else if (!IsCurrentCellEmpty() && (!(decimal.TryParse(GetEditedValue()?.ToString(), out decimal tax) && tax >= 0)))
                 {
                     e.Cancel = true;
                     dgvInvoiceLines.CurrentRow.ErrorText = "يجب أن تكون نسبة الضريبة أو مبلغ الضريبة رقم موجب صحيح";
@@ -342,7 +291,6 @@ namespace SIMS.WinForms.Inventory
                     dgvInvoiceLines.CurrentRow.ErrorText = string.Empty;
                 }
             }
-
         }
 
     }

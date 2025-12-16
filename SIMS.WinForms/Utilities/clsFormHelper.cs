@@ -11,24 +11,24 @@ namespace DVLD.WinForms.Utils
 
         public static bool IsDataGridViewCellsHasError(DataGridView dataGridView, int errorColumnIndex)
         {
-            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            for (int rowIndex = 0; rowIndex < dataGridView.Rows.Count - 1; rowIndex++)
             {
-                dataGridView.Rows[i].ErrorText = string.Empty;
+                dataGridView.Rows[rowIndex].ErrorText = string.Empty;
 
-                for (int j = 0; j < dataGridView.Rows[i].Cells.Count; j++)
+                for (int columnIndex = 0; columnIndex < dataGridView.Rows[rowIndex].Cells.Count; columnIndex++)
                 {
-                    if (dataGridView.Columns[j].Visible)
+                    if (dataGridView.Columns[columnIndex].Visible)
                     {
-                        dataGridView.CurrentCell = dataGridView.Rows[i].Cells[j];
+                        dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnIndex];
                         dataGridView.BeginEdit(true);
                         dataGridView.CancelEdit();
 
-                        if (!string.IsNullOrEmpty(dataGridView.Rows[i].ErrorText))
+                        if (!string.IsNullOrEmpty(dataGridView.Rows[rowIndex].ErrorText))
                         {
-                            string oldError = dataGridView.Rows[i].ErrorText;
-                            dataGridView.CurrentCell = dataGridView.Rows[i].Cells[errorColumnIndex];
+                            string oldError = dataGridView.Rows[rowIndex].ErrorText;
+                            dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[errorColumnIndex];
                             dataGridView.BeginEdit(true);
-                            dataGridView.Rows[i].ErrorText = oldError;
+                            dataGridView.Rows[rowIndex].ErrorText = oldError;
 
                             return true;
                         }

@@ -41,10 +41,14 @@ namespace BusinessLogic.Invoices
         public enInvoiceType InvoiceType { get; }
         public enInvoiceStatus InvoiceStatus { get; }
         public List<clsInvoiceLine> Lines { get; } = new List<clsInvoiceLine>();
-        public decimal TotalSubTotal => CalculateTotalSubTotal();
-        public decimal TotalDiscountAmount => CalculateDiscountTotal();
-        public decimal TotalTaxAmount => CalculateTaxTotal();
-        public decimal GrandTotal => CalculateGrandTotal();
+        public decimal TotalSubTotal =>
+            Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault());
+        public decimal TotalDiscountAmount =>
+            Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault() * invoiceLine.DiscountRate.GetValueOrDefault() / 100);
+        public decimal TotalTaxAmount =>
+            Lines.Sum(invoiceLine => (invoiceLine.LineSubTotal.GetValueOrDefault() - TotalDiscountAmount) * (invoiceLine.TaxRate.GetValueOrDefault() / 100));
+        public decimal GrandTotal => 
+            Lines.Sum(invoiceLine => invoiceLine.LineGrandTotal.GetValueOrDefault());
         public enPaymentMethod? PaymentMethod { get; }
         public decimal? PaymentAmount { get; }
         public clsWarehouse WarehouseInfo { get; }
@@ -67,26 +71,6 @@ namespace BusinessLogic.Invoices
             CreateAt = createdAt;
         }
         
-        private decimal CalculateTotalSubTotal()
-        {
-            return Lines.Sum(invokeLine => invokeLine.LineSubTotal);
-        }
-
-        private decimal CalculateTaxTotal()
-        {
-            return Lines.Sum(invokeLine => (invokeLine.LineSubTotal - (invokeLine.LineSubTotal * invokeLine.DiscountRate / 100)) * (invokeLine.TaxRate / 100));
-        }
-
-        private decimal CalculateDiscountTotal()
-        {
-            return Lines.Sum(invokeLine => invokeLine.LineSubTotal * invokeLine.DiscountRate / 100);
-        }
-
-        private decimal CalculateGrandTotal()
-        {
-            return Lines.Sum(invokeLine => invokeLine.LineGrandTotal);
-        }
-
         public int GetReturnInvoicesCount()
         {
             return clsInvoiceData.GetReturnInvoicesCount(this.InvoiceID ?? -1);

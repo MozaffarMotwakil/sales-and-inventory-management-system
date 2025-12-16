@@ -76,8 +76,6 @@ namespace SIMS.WinForms.Invoices
         private void llCreatedByUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             return;
-            frmShowUserInfo userInfo = new frmShowUserInfo();
-            userInfo.ShowDialog();
         }
 
         private void _SetInvoiceLinesToDGV(List<clsInvoiceLine> invoiceLines)
@@ -92,14 +90,14 @@ namespace SIMS.WinForms.Invoices
                         i + 1,
                         invoiceLines[i].ProductInfo.ProductName, 
                         invoiceLines[i].UnitInfo.UnitName,
-                        invoiceLines[i].Quantity,
-                        invoiceLines[i].UnitPrice.ToString("0.##"),
-                        invoiceLines[i].LineSubTotal.ToString("0.##"),
-                        invoiceLines[i].DiscountRate.ToString("0.##") + "%",
-                        invoiceLines[i].CalculateDiscountAmount().ToString("0.##"),
-                        invoiceLines[i].TaxRate.ToString("0.##") + "%",
-                        invoiceLines[i].CalculateTaxAmount().ToString("0.##"),
-                        invoiceLines[i].LineGrandTotal.ToString("0.##")
+                        invoiceLines[i].Quantity.GetValueOrDefault(),
+                        invoiceLines[i].UnitPrice.GetValueOrDefault().ToString("0.##"),
+                        invoiceLines[i].LineSubTotal.GetValueOrDefault().ToString("0.##"),
+                        invoiceLines[i].DiscountRate.GetValueOrDefault().ToString("0.##") + "%",
+                        invoiceLines[i].DiscountAmount.GetValueOrDefault().ToString("0.##"),
+                        invoiceLines[i].TaxRate.GetValueOrDefault().ToString("0.##") + "%",
+                        invoiceLines[i].TaxAmount.GetValueOrDefault().ToString("0.##"),
+                        invoiceLines[i].LineGrandTotal.GetValueOrDefault().ToString("0.##")
                         );
                 }
                 catch { }

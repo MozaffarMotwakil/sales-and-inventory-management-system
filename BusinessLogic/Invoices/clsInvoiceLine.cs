@@ -12,17 +12,84 @@ namespace BusinessLogic.Invoices
     {
         public int? LineID { get; set; }
         public int? InvoiceID { get; set; }
-        public int ProductID { get; set; }
-        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
-        public int UnitID { get; set; }
-        public clsUnit UnitInfo => clsUnit.Find(UnitID);
-        public decimal UnitPrice { get; set; }
-        public int ConversionFactor { get; set; }
-        public int Quantity { get; set; }
-        public decimal DiscountRate { get; set; }
-        public decimal TaxRate { get; set; }
-        public decimal LineSubTotal { get; set; }
-        public decimal LineGrandTotal { get; set; }
+        public int? ProductID { get; set; }
+        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
+        public int? UnitID { get; set; }
+        public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
+        public decimal? UnitPrice { get; set; }
+        public int? ConversionFactor { get; set; }
+        public int? Quantity { get; set; }
+
+        private decimal? _DiscountRate;
+        public decimal? DiscountRate
+        {
+            get => _DiscountRate;
+            set
+            {
+                _DiscountRate = value;
+                _DiscountAmount = (DiscountRate / 100) * LineSubTotal;
+                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+                _TaxRate = CalculateTaxRate();
+            }
+        }
+
+        private decimal? _DiscountAmount;
+        public decimal? DiscountAmount
+        {
+            get => _DiscountAmount;
+            set
+            {
+                _DiscountAmount = value;
+                DiscountRate = (DiscountAmount / LineSubTotal) * 100;
+                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+                _TaxRate = CalculateTaxRate();
+            }
+        }
+
+        private decimal? _TaxRate;
+        public decimal? TaxRate
+        {
+            get => _TaxRate;
+            set
+            {
+                _TaxRate = value;
+                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+            }
+        }
+
+        private decimal? _TaxAmount;
+        public decimal? TaxAmount
+        {
+            get => _TaxAmount;
+            set
+            {
+                _TaxAmount = value;
+                _TaxRate = CalculateTaxRate();
+            }
+        }
+
+        private decimal? _LineSubTotal;
+        public decimal? LineSubTotal
+        {
+            get => UnitPrice * Quantity;
+            set
+            {
+                _LineSubTotal = value;
+            }
+        }
+
+        private decimal? _LineGrandTotal;
+        public decimal? LineGrandTotal
+        {
+            get => LineSubTotal - DiscountAmount + TaxAmount;
+            set
+            {
+                _LineGrandTotal = value;
+            }
+        }
+
+        public bool IsNewRow => ProductID == null || UnitID == null || UnitPrice == null ||
+            Quantity == null || LineSubTotal == null || LineGrandTotal == null;
 
         public static DataTable ConvertInvoiceLinesListToDataTable(List<clsInvoiceLine> lines)
         {
@@ -86,44 +153,9 @@ namespace BusinessLogic.Invoices
             return invoiceLines;
         }
 
-        public static decimal CalculateSubTotal(decimal unitPrice, int quantity)
+        public decimal? CalculateTaxRate()
         {
-            return unitPrice * quantity;
-        }
-
-        public static decimal CalculateDiscountRate(decimal discountAmount, decimal subTotal)
-        {
-            return (discountAmount / subTotal) * 100;
-        }
-
-        public static decimal CalculateDiscountAmount(decimal discountRate, decimal subTotal)
-        {
-            return (discountRate / 100) * subTotal;
-        }
-
-        public decimal CalculateDiscountAmount()
-        {
-            return (DiscountRate / 100) * LineSubTotal;
-        }
-
-        public static decimal CalculateTaxRate(decimal taxAmount, decimal discountAmount, decimal subTotal)
-        {
-            return (taxAmount / (subTotal - discountAmount)) * 100;
-        }
-
-        public static decimal CalculateTaxAmount(decimal taxRate, decimal discountAmount, decimal subTotal)
-        {
-            return (subTotal - discountAmount) * (taxRate / 100);
-        }
-
-        public decimal CalculateTaxAmount()
-        {
-            return (LineSubTotal - CalculateDiscountAmount()) * (TaxRate / 100);
-        }
-
-        public static decimal CalculateGrandTotal(decimal subTotal, decimal discountRate, decimal taxRate)
-        {
-            return (subTotal - (subTotal * (discountRate / 100))) * (1 + taxRate / 100);
+            return (TaxAmount / (LineSubTotal - DiscountAmount)) * 100;
         }
 
         public int GetRemainingQuantity()
@@ -135,7 +167,7 @@ namespace BusinessLogic.Invoices
         {
             clsValidationResult validationResult = new clsValidationResult();
 
-            if (!clsProductService.IsProductExists(ProductID))
+            if (!clsProductService.IsProductExists(ProductID.GetValueOrDefault()))
             {
                 validationResult.AddError("المنتج", "لم يتم العثور على المنتج المختار ");
             }
@@ -145,7 +177,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("المنتج", $"المنتج \"{ProductInfo.ProductName}\" غير نشط");
             }
 
-            if (!clsProductUnitData.IsUnitExists(UnitID))
+            if (!clsProductUnitData.IsUnitExists(UnitID.GetValueOrDefault()))
             {
                 validationResult.AddError("وحدة القياس", "لم يتم العثور على وحدة القياس المختارة");
             }
@@ -170,28 +202,25 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
             }
 
+
+            if (DiscountAmount > LineSubTotal)
+            {
+                validationResult.AddError("الخصم", "لا يمكن أن يكون مبلغ الخصم أكبر من أو يساوي الإجمالي الفرعي.");
+            }
+
             if (TaxRate < 0)
             {
                 validationResult.AddError("الضريبة", "لا يمكن أن تكون قيمة الضريبة سالبة.");
             }
 
-            decimal expectedSubTotal = UnitPrice * Quantity;
-
-            if (LineSubTotal != expectedSubTotal)
+            if (LineSubTotal != (UnitPrice * Quantity))
             {
                 validationResult.AddError("الإجمالي الفرعي", "الإجمالي الفرعي المحسوب غير صحيح بناءً على السعر والكمية.");
             }
 
-            decimal expectedFinalTotal = CalculateGrandTotal(LineSubTotal, DiscountRate, TaxRate);
-
-            if (LineGrandTotal != expectedFinalTotal)
+            if (LineGrandTotal != (LineSubTotal - DiscountAmount + TaxAmount))
             {
                 validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
-            }
-
-            if (DiscountRate > LineSubTotal)
-            {
-                validationResult.AddError("الخصم", "لا يمكن أن يتجاوز الخصم الممنوح القيمة الفرعية للسطر.");
             }
 
             return validationResult;

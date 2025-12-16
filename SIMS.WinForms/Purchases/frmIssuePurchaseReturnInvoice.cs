@@ -5,7 +5,6 @@ using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
-using BusinessLogic.Products;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Invoices;
 
@@ -21,7 +20,7 @@ namespace SIMS.WinForms.Purchases
             _OrginalInvoice = orginilInvoice;
         }
 
-        private void frmReturnPurchaseInvoice_Load(object sender, EventArgs e)
+        private void frmReturnPurchaseInvoice_Load_Local(object sender, EventArgs e)
         {
             if (_OrginalInvoice == null)
             {
@@ -30,6 +29,7 @@ namespace SIMS.WinForms.Purchases
                 return;
             }
 
+            // تعيين معلومات الفاتورة الأصلية
             txtInvoiceNo.Text = _OrginalInvoice.InvoiceNo;
             cbParty.Text = _OrginalInvoice.GetPartyName();
 
@@ -37,7 +37,6 @@ namespace SIMS.WinForms.Purchases
                 colTaxRate.ReadOnly = colUnitPrice.ReadOnly = true;
 
             dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
-            dgvInvoiceLines.CellValidating += dgvInvoiceLines_CellValidating;
         }
 
         protected override clsInvoice GetInvoiceInctance()
@@ -59,21 +58,24 @@ namespace SIMS.WinForms.Purchases
 
             if (e.ColumnIndex == colProduct.Index)
             {
-                List<int> selectedProductIDs = dgvInvoiceLines.Rows.Cast<DataGridViewRow>()
-                    .Where(row => row != dgvInvoiceLines.CurrentRow && row.Cells[colProduct.Index].Value != null)
-                    .Select(row => Convert.ToInt32(row.Cells[colProduct.Index].Value))
-                    .ToList();
-
                 DataGridViewComboBoxCell boxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
 
+                List<int> selectedProductIDs = InvoiceLinesDataSource
+                    .Where(line => line != CurrentLine && line.ProductID != null)
+                    .Select(line => line.ProductID.GetValueOrDefault())
+                    .ToList();
+
+                // تصفية المنتجات:
+                // 1. يجب أن تكون الكمية المتبقية من المنتج لا تساوي صفر
+                // 2. يجب ألا يكون المنتج قد تم اختياره مسبقاً في سطر آخر، إلا إذا كان المنتج يحتوي على وحدات متعددة لم يتم استخدامها جميعاً
                 boxCell.DataSource = _OrginalInvoice.Lines
-                    .Where(line => line.GetRemainingQuantity() != 0)
+                    .Where(line => line.GetRemainingQuantity() > 0)
                     .GroupBy(line => line.ProductInfo.ProductID)
                     .Select(group => group.First().ProductInfo)
-                    .Where(product => 
-                        !selectedProductIDs.Contains(product.ProductID.Value) || 
-                        _GetSelectedProductUnitIDs(product.ProductID).Count != 
-                        _OrginalInvoice.Lines.Where(line => line.ProductID == product.ProductID).Count())
+                    .Where(product => product.ProductID != null &&
+                        !selectedProductIDs.Contains(product.ProductID.Value) ||
+                        _GetSelectedProductUnitIDs(product.ProductID.Value).Count <
+                        _OrginalInvoice.Lines.Count(line => line.ProductID == product.ProductID))
                     .OrderBy(product => product.ProductName)
                     .ToList();
 
@@ -81,14 +83,17 @@ namespace SIMS.WinForms.Purchases
                 colProduct.ValueMember = "ProductID";
             }
 
-            if (e.ColumnIndex == colUnit.Index && dgvInvoiceLines.CurrentRow.Cells[colProduct.Index].Value != null)
+            if (e.ColumnIndex == colUnit.Index && CurrentLine != null && CurrentLine.ProductID != null)
             {
                 DataGridViewComboBoxCell boxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
 
+                // تصفية الوحدات: 
+                // 1. الوحدة يجب أن تكون جزءاً من فاتورة الشراء الأصلية
+                // 2. يجب ألا تكون الوحدة قد تم اختيارها مسبقاً في سطر إرجاع آخر لهذا المنتج
                 boxCell.DataSource = _OrginalInvoice.Lines
-                    .Where(line => line.ProductID == Convert.ToInt32(dgvInvoiceLines.CurrentRow.Cells[colProduct.Index].Value))
+                    .Where(line => line.ProductID == CurrentLine.ProductID && line.GetRemainingQuantity() > 0)
                     .Select(line => line.UnitInfo)
-                    .Where(unit => !_GetSelectedProductUnitIDs((int?)dgvInvoiceLines.CurrentRow.Cells[colProduct.Index].Value).Contains(unit.UnitID))
+                    .Where(unit => !_GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault()).Contains(unit.UnitID))
                     .ToList();
 
                 colUnit.DisplayMember = "UnitName";
@@ -96,105 +101,62 @@ namespace SIMS.WinForms.Purchases
             }
         }
 
-        private List<int> _GetSelectedProductUnitIDs(int? productID)
-        {
-            return dgvInvoiceLines.Rows.Cast<DataGridViewRow>()
-                   .Where(row => row != dgvInvoiceLines.CurrentRow && row.Cells[colUnit.Index].Value != null &&
-                        (int?)row.Cells[colProduct.Index].Value == productID)
-                   .Select(row => Convert.ToInt32(row.Cells[colUnit.Index].Value))
-                   .ToList();
-        }
-
         private void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == colProduct.Index)
+            if (CurrentLine == null) 
             {
-                if (dgvInvoiceLines.CurrentCell.Tag != dgvInvoiceLines.CurrentCell.Value)
-                {
-                    DataGridViewComboBoxCell cellComboBox = (dgvInvoiceLines.CurrentRow.Cells[colUnit.Index] as DataGridViewComboBoxCell);
-                    cellComboBox.ValueMember = string.Empty;
-                    cellComboBox.Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = null;
-                }
+                return;
             }
 
-            if (e.ColumnIndex == colUnit.Index && dgvInvoiceLines.CurrentCell.Value != null)
+            ResetColumnsValuesWhenProductOrUnitChanged(e.ColumnIndex, e.RowIndex);
+
+            if (CurrentLine.ProductID != null && CurrentLine.UnitID != null)
             {
-                DataGridViewComboBoxCell unitComboBoxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
-                DataGridViewComboBoxCell productComboBoxCell = dgvInvoiceLines.CurrentRow.Cells[colProduct.Index] as DataGridViewComboBoxCell;
-                clsProduct selectedProduct = (productComboBoxCell.DataSource as List<clsProduct>)
-                    .First(product => product.ProductID == (int?)productComboBoxCell.Value);
+                clsInvoiceLine originalLine = _OrginalInvoice.Lines
+                    .FirstOrDefault(line => line.ProductID == CurrentLine.ProductID && line.UnitID == CurrentLine.UnitID);
 
-                if ((int)dgvInvoiceLines.CurrentCell.Value != selectedProduct.MainUnitInfo.UnitID)
+                if (originalLine == null) return;
+
+                // جلب البيانات الثابتة من السطر الأصلي
+                CurrentLine.UnitPrice = originalLine.UnitPrice;
+                CurrentLine.ConversionFactor = originalLine.ConversionFactor;
+
+                // التحقق من الكمية المدخلة
+                if (CurrentLine.Quantity != null)
                 {
-                    dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = selectedProduct.UnitConversions
-                        .First(alternativeUnit => alternativeUnit.AlternativeUnitID == (int)dgvInvoiceLines.CurrentCell.Value).ConversionFactor;
-                }
-                else
-                {
-                    dgvInvoiceLines.CurrentRow.Cells[colConversionFactor.Index].Value = 1;
-                }
-            }
-            
-            if (int.TryParse(dgvInvoiceLines.CurrentRow.Cells[colProduct.Index].Value?.ToString(), out int lineProductID) && 
-                int.TryParse(dgvInvoiceLines.CurrentRow.Cells[colUnit.Index].Value?.ToString(), out int lineUnitID))
-            {
-                clsInvoiceLine cuurentLine = _OrginalInvoice.Lines
-                    .First(line => line.ProductID == lineProductID && line.UnitID == lineUnitID);
+                    int remainingQuantity = originalLine.GetRemainingQuantity();
 
-                dgvInvoiceLines.CurrentRow.Cells[colUnitPrice.Index].Value = cuurentLine.UnitPrice;
-
-                if (int.TryParse(dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value?.ToString(), out int lineQuantity))
-                {
-                    int remainingQuantity = cuurentLine.GetRemainingQuantity();
-
-                    if (lineQuantity > remainingQuantity)
+                    // التحقق من الكمية المتبقية
+                    if (CurrentLine.Quantity > remainingQuantity)
                     {
-                        lineQuantity = remainingQuantity;
-                        dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value = remainingQuantity;
+                        CurrentLine.Quantity = remainingQuantity;
                     }
-
-                    decimal lineSubTotal = clsInvoiceLine.CalculateSubTotal(cuurentLine.UnitPrice, lineQuantity);
-                    dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = lineSubTotal;
-
-                    decimal discountAmount = clsInvoiceLine.CalculateDiscountAmount(cuurentLine.DiscountRate, lineSubTotal);
-                    decimal discountRate = clsInvoiceLine.CalculateDiscountRate(discountAmount, lineSubTotal);
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = discountAmount;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = discountRate;
-
-                    decimal taxAmount = clsInvoiceLine.CalculateTaxAmount(cuurentLine.TaxRate, discountAmount, lineSubTotal);
-                    decimal taxRate = clsInvoiceLine.CalculateTaxRate(taxAmount, discountAmount, lineSubTotal);
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = taxAmount;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = taxRate;
-
-                    dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = clsInvoiceLine.CalculateGrandTotal(lineSubTotal, discountRate, taxRate);
+                    
+                    CurrentLine.DiscountRate = originalLine.DiscountRate;
+                    CurrentLine.TaxRate = originalLine.TaxRate;
                 }
                 else
                 {
-                    dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = null;
-                    dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
+                    CurrentLine.Quantity = null;
+                    CurrentLine.LineSubTotal = null;
+                    CurrentLine.LineGrandTotal = null;
                 }
             }
             else
             {
-                dgvInvoiceLines.CurrentRow.Cells[colQuantity.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colUnitPrice.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colSubTotal.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colDiscountAmount.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colDiscountRate.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colTaxAmount.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colTaxRate.Index].Value = null;
-                dgvInvoiceLines.CurrentRow.Cells[colGrandTotal.Index].Value = null;
+                CurrentLine.Quantity = null;
+                CurrentLine.UnitPrice = null;
+                CurrentLine.LineSubTotal = null;
+                CurrentLine.DiscountRate = null;
+                CurrentLine.TaxRate = null;
+                CurrentLine.LineGrandTotal = null;
             }
 
+            ApplyEditOnDGV(e.RowIndex);
             base.UpdateInvoiceSummary();
         }
 
-        private void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        protected override void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             base.ErrorColumnIndex = e.ColumnIndex;
 
@@ -233,7 +195,7 @@ namespace SIMS.WinForms.Purchases
                     dgvInvoiceLines.CurrentRow.ErrorText = "لا يمكن أن يكون حقل الكمية فارغاً";
                     SystemSounds.Asterisk.Play();
                 }
-                else if ((!IsCurrentCellEmpty()) && (!int.TryParse(dgvInvoiceLines.CurrentCell.EditedFormattedValue?.ToString(), out int quantity) || quantity < 1))
+                else if ((!int.TryParse(GetEditedValue()?.ToString(), out int quantity) || quantity < 1) && (!IsCurrentCellEmpty()))
                 {
                     e.Cancel = true;
                     dgvInvoiceLines.CurrentRow.ErrorText = "يجب أن تكون الكمية رقماً صحيحاً أكبر من صفر";
@@ -244,6 +206,18 @@ namespace SIMS.WinForms.Purchases
                     dgvInvoiceLines.CurrentRow.ErrorText = string.Empty;
                 }
             }
+        }
+
+        private List<int> _GetSelectedProductUnitIDs(int productID)
+        {
+            return InvoiceLinesDataSource
+                .Where(
+                    line =>
+                    line != dgvInvoiceLines.CurrentRow.DataBoundItem as clsInvoiceLine &&
+                    line.UnitID != null && line.ProductID == productID
+                )
+                .Select(line => line.UnitID.GetValueOrDefault())
+                .ToList();
         }
 
     }
