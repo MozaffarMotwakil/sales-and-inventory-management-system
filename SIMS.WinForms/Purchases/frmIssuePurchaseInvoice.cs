@@ -14,7 +14,7 @@ namespace SIMS.WinForms.Inventory
 {
     public partial class frmIssuePurchaseInvoice : frmBaseIssueInvoice
     {
-        public frmIssuePurchaseInvoice()
+        public frmIssuePurchaseInvoice() : base(enInvoiceType.Purchase)
         {
             InitializeComponent();
         }
@@ -33,7 +33,6 @@ namespace SIMS.WinForms.Inventory
             cbParty.SelectedItem = null;
             cbParty.Text = "إختار المورد";
 
-            dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
             dgvInvoiceLines.EditingControlShowing += dgvInvoiceLines_EditingControlShowing;
             txtInvoiceNo.Validating += txtInvoiceNo_Validating;
             cbParty.Validating += cbSupplier_Validating;
@@ -131,14 +130,12 @@ namespace SIMS.WinForms.Inventory
             }
         }
 
-        private void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        protected override void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (CurrentLine == null)
             {
                 return;
             }
-
-            ResetColumnsValuesWhenProductOrUnitChanged(e.ColumnIndex, e.RowIndex);
 
             // تعيين عامل التحويل
             if (e.ColumnIndex == colUnit.Index && CurrentLine.UnitID != 0)

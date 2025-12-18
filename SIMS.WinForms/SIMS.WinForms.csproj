@@ -315,6 +315,21 @@
     <Compile Include="Reports\frmReportsDashboard.Designer.cs">
       <DependentUpon>frmReportsDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\BaseSalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\frmIssueSaleInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\frmIssueSaleInvoice.Designer.cs">
+      <DependentUpon>frmIssueSaleInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\frmSalesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\frmSalesList.Designer.cs">
+      <DependentUpon>frmSalesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\frmPointOfSale.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -596,8 +611,14 @@
     <EmbeddedResource Include="Reports\frmSalesByEmployeeReport.resx">
       <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmIssueSaleInvoice.resx">
+      <DependentUpon>frmIssueSaleInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPointOfSale.resx">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmSalesList.resx">
+      <DependentUpon>frmSalesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Suppliers\ctrSupplierInfo.resx">
       <DependentUpon>ctrSupplierInfo.cs</DependentUpon>

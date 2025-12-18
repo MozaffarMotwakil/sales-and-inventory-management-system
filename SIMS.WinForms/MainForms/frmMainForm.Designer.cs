@@ -39,21 +39,23 @@
             this.ProductsDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.ProductsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DiscountsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TaxesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WarehousesAndInventories = new System.Windows.Forms.ToolStripDropDownButton();
             this.WarehousesToolStripButton = new System.Windows.Forms.ToolStripMenuItem();
             this.InventoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StockTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TransferOperationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PurchasesToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.PaymentsToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.EmployeesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UsersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ActivityLogToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.SettingsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.LogoutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.circularPictureBox = new ctrCircularPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblCurrentFormName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,12 +64,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentTime = new System.Windows.Forms.Label();
             this.ClockAndDateTimer = new System.Windows.Forms.Timer(this.components);
-            this.TaxesListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalesToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CustomersToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.circularPictureBox = new ctrCircularPictureBox();
             this.toolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip
@@ -82,21 +86,25 @@
             this.DashboardToolStripButton,
             this.PointOfSelesToolStripButton,
             this.SuppliersToolStripDropDownButton,
+            this.CustomersToolStripButton,
             this.ProductsDropDownButton,
             this.WarehousesAndInventories,
             this.PurchasesToolStripButton,
-            this.ReportsToolStripButton,
-            this.UsersToolStripButton,
+            this.SalesToolStripButton,
             this.PaymentsToolStripButton,
+            this.EmployeesToolStripButton,
+            this.UsersToolStripButton,
+            this.ReportsToolStripButton,
             this.ActivityLogToolStripButton,
+            this.SettingsToolStripButton,
             this.LogoutToolStripButton});
             this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip.Location = new System.Drawing.Point(0, 232);
+            this.toolStrip.Location = new System.Drawing.Point(0, 204);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(250, 556);
+            this.toolStrip.Size = new System.Drawing.Size(250, 584);
             this.toolStrip.TabIndex = 0;
             this.toolStrip.Text = "toolStrip";
             // 
@@ -191,6 +199,16 @@
             this.DiscountsListToolStripMenuItem.Text = "الخصومات";
             this.DiscountsListToolStripMenuItem.Click += new System.EventHandler(this.DiscountsListToolStripMenuItem_Click);
             // 
+            // TaxesListToolStripMenuItem
+            // 
+            this.TaxesListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxesListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.dividend;
+            this.TaxesListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TaxesListToolStripMenuItem.Name = "TaxesListToolStripMenuItem";
+            this.TaxesListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
+            this.TaxesListToolStripMenuItem.Text = "الضرائب";
+            this.TaxesListToolStripMenuItem.Click += new System.EventHandler(this.TaxesListToolStripMenuItem_Click);
+            // 
             // WarehousesAndInventories
             // 
             this.WarehousesAndInventories.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -256,30 +274,6 @@
             this.PurchasesToolStripButton.Text = "المشتريات";
             this.PurchasesToolStripButton.Click += new System.EventHandler(this.PurchasesToolStripButton_Click);
             // 
-            // ReportsToolStripButton
-            // 
-            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
-            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
-            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.ReportsToolStripButton.Text = "Reports";
-            this.ReportsToolStripButton.Visible = false;
-            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
-            // 
-            // UsersToolStripButton
-            // 
-            this.UsersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.UsersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UsersToolStripButton.Image")));
-            this.UsersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UsersToolStripButton.Name = "UsersToolStripButton";
-            this.UsersToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.UsersToolStripButton.Text = "Users";
-            this.UsersToolStripButton.Visible = false;
-            this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
-            // 
             // PaymentsToolStripButton
             // 
             this.PaymentsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -291,17 +285,60 @@
             this.PaymentsToolStripButton.Text = "المدفوعات/المقبوضات";
             this.PaymentsToolStripButton.Click += new System.EventHandler(this.PaymentsToolStripButton_Click);
             // 
+            // EmployeesToolStripButton
+            // 
+            this.EmployeesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.EmployeesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmployeesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("EmployeesToolStripButton.Image")));
+            this.EmployeesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EmployeesToolStripButton.Name = "EmployeesToolStripButton";
+            this.EmployeesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.EmployeesToolStripButton.Text = "الموظفين";
+            this.EmployeesToolStripButton.Click += new System.EventHandler(this.EmployeesToolStripButton_Click);
+            // 
+            // UsersToolStripButton
+            // 
+            this.UsersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.UsersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UsersToolStripButton.Image")));
+            this.UsersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UsersToolStripButton.Name = "UsersToolStripButton";
+            this.UsersToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.UsersToolStripButton.Text = "المسخدمين و الصلاحيات";
+            this.UsersToolStripButton.Click += new System.EventHandler(this.UsersToolStripButton_Click);
+            // 
+            // ReportsToolStripButton
+            // 
+            this.ReportsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ReportsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReportsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ReportsToolStripButton.Image")));
+            this.ReportsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ReportsToolStripButton.Name = "ReportsToolStripButton";
+            this.ReportsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.ReportsToolStripButton.Text = "التقارير";
+            this.ReportsToolStripButton.Click += new System.EventHandler(this.ReportsToolStripButton_Click);
+            // 
             // ActivityLogToolStripButton
             // 
             this.ActivityLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ActivityLogToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActivityLogToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ActivityLogToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ActivityLogToolStripButton.Image")));
             this.ActivityLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ActivityLogToolStripButton.Name = "ActivityLogToolStripButton";
             this.ActivityLogToolStripButton.Size = new System.Drawing.Size(249, 36);
-            this.ActivityLogToolStripButton.Text = "Activity Log";
-            this.ActivityLogToolStripButton.Visible = false;
+            this.ActivityLogToolStripButton.Text = "سجل النشاط";
             this.ActivityLogToolStripButton.Click += new System.EventHandler(this.ActivityLogToolStripButton_Click);
+            // 
+            // SettingsToolStripButton
+            // 
+            this.SettingsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SettingsToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SettingsToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SettingsToolStripButton.Image")));
+            this.SettingsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SettingsToolStripButton.Name = "SettingsToolStripButton";
+            this.SettingsToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.SettingsToolStripButton.Text = "الإعدادات";
+            this.SettingsToolStripButton.Click += new System.EventHandler(this.SettingsToolStripButton_Click);
             // 
             // LogoutToolStripButton
             // 
@@ -310,7 +347,7 @@
             this.LogoutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LogoutToolStripButton.Image")));
             this.LogoutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LogoutToolStripButton.Name = "LogoutToolStripButton";
-            this.LogoutToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.LogoutToolStripButton.Size = new System.Drawing.Size(155, 36);
             this.LogoutToolStripButton.Text = "تسجيل الخروج";
             this.LogoutToolStripButton.Click += new System.EventHandler(this.LogoutToolStripButton_Click);
             // 
@@ -322,14 +359,14 @@
             this.panel1.Controls.Add(this.circularPictureBox);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 239);
+            this.panel1.Size = new System.Drawing.Size(250, 213);
             this.panel1.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(2, 197);
+            this.label2.Location = new System.Drawing.Point(3, 179);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(244, 18);
             this.label2.TabIndex = 4;
@@ -340,23 +377,12 @@
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(2, 174);
+            this.label1.Location = new System.Drawing.Point(3, 156);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(244, 18);
             this.label1.TabIndex = 3;
             this.label1.Text = "مظفر متوكل خضر سلمان";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // circularPictureBox
-            // 
-            this.circularPictureBox.BackColor = System.Drawing.Color.White;
-            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
-            this.circularPictureBox.Location = new System.Drawing.Point(49, 15);
-            this.circularPictureBox.Name = "circularPictureBox";
-            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
-            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.circularPictureBox.TabIndex = 2;
-            this.circularPictureBox.TabStop = false;
             // 
             // panel2
             // 
@@ -451,15 +477,38 @@
             // 
             this.ClockAndDateTimer.Interval = 1000;
             // 
-            // TaxesListToolStripMenuItem
+            // SalesToolStripButton
             // 
-            this.TaxesListToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TaxesListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.dividend;
-            this.TaxesListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TaxesListToolStripMenuItem.Name = "TaxesListToolStripMenuItem";
-            this.TaxesListToolStripMenuItem.Size = new System.Drawing.Size(216, 38);
-            this.TaxesListToolStripMenuItem.Text = "الضرائب";
-            this.TaxesListToolStripMenuItem.Click += new System.EventHandler(this.TaxesListToolStripMenuItem_Click);
+            this.SalesToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.SalesToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SalesToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SalesToolStripButton.Image")));
+            this.SalesToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SalesToolStripButton.Name = "SalesToolStripButton";
+            this.SalesToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.SalesToolStripButton.Text = "المبيعات";
+            this.SalesToolStripButton.Click += new System.EventHandler(this.SalesToolStripButton_Click);
+            // 
+            // CustomersToolStripButton
+            // 
+            this.CustomersToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CustomersToolStripButton.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomersToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CustomersToolStripButton.Image")));
+            this.CustomersToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CustomersToolStripButton.Name = "CustomersToolStripButton";
+            this.CustomersToolStripButton.Size = new System.Drawing.Size(249, 36);
+            this.CustomersToolStripButton.Text = "العملاء";
+            this.CustomersToolStripButton.Click += new System.EventHandler(this.CustomersToolStripButton_Click);
+            // 
+            // circularPictureBox
+            // 
+            this.circularPictureBox.BackColor = System.Drawing.Color.White;
+            this.circularPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("circularPictureBox.Image")));
+            this.circularPictureBox.Location = new System.Drawing.Point(49, 3);
+            this.circularPictureBox.Name = "circularPictureBox";
+            this.circularPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.circularPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.circularPictureBox.TabIndex = 2;
+            this.circularPictureBox.TabStop = false;
             // 
             // frmMainForm
             // 
@@ -484,10 +533,10 @@
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.circularPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -527,6 +576,10 @@
         private System.Windows.Forms.ToolStripMenuItem ProductsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DiscountsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TaxesListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton EmployeesToolStripButton;
+        private System.Windows.Forms.ToolStripButton SettingsToolStripButton;
+        private System.Windows.Forms.ToolStripButton SalesToolStripButton;
+        private System.Windows.Forms.ToolStripButton CustomersToolStripButton;
     }
 }
 

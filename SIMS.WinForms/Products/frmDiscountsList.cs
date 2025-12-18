@@ -48,7 +48,7 @@ namespace SIMS.WinForms.Products
 
         private void LinkingDiscountToProducts_Click(object sender, EventArgs e)
         {
-            if (SelectedEntity.EndDate < DateTime.Today)
+            if (!SelectedEntity.IsValid)
             {
                 clsFormMessages.ShowError("عذرا, لا يمكن ربط منتجات مع هذا الخصم لأنه غير ساري");
                 return;

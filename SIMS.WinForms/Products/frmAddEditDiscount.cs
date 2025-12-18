@@ -42,8 +42,8 @@ namespace SIMS.WinForms.Products
 
                 txtDiscountName.Text = _Discount.DiscountName;
                 rbPercentage.Checked = _Discount.DiscountValueType == clsDiscount.enValueType.Percentage ? 
-                    false :
-                    true;
+                    true :
+                    false;
                 rbAmount.Checked = !rbPercentage.Checked;
                 txtDiscountValue.Text = _Discount.DiscountValue.ToString();
                 txtMinimumQuantity.Text = _Discount.MinimumQuantity.ToString();

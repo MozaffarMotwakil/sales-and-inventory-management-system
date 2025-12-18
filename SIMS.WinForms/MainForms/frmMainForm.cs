@@ -12,6 +12,7 @@ using SIMS.WinForms.Dashboard;
 using SIMS.WinForms.Purchases;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.ActivityLog;
+using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms
 {
@@ -31,6 +32,7 @@ namespace SIMS.WinForms
             StockTransactionsList,
             TransferOperations,
             PurchasesList,
+            SalesList,
             ReportsDashboard,
             UsersList,
             PaymentsList,
@@ -49,6 +51,7 @@ namespace SIMS.WinForms
         private Form _StockTransactionsList;
         private Form _TransferOperations;
         private Form _PurchasesList;
+        private Form _SalesList;
         private Form _ReportsDashboardForm;
         private Form _UsersListForm;
         private Form _PaymentsListForm;
@@ -114,6 +117,11 @@ namespace SIMS.WinForms
             _OpenForm(ref _SuppliedItemsLog, enFormType.SuppliedItemsLog);
         }
 
+        private void CustomersToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFormMessages.ShowNotImplementedFeatureWarning();
+        }
+
         private void ProductsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _OpenForm(ref _ProductsListForm, enFormType.ProductsList);
@@ -154,14 +162,9 @@ namespace SIMS.WinForms
             _OpenForm(ref _PurchasesList, enFormType.PurchasesList);
         }
 
-        private void ReportsToolStripButton_Click(object sender, EventArgs e)
+        private void SalesToolStripButton_Click(object sender, EventArgs e)
         {
-            _OpenForm(ref _ReportsDashboardForm, enFormType.ReportsDashboard);
-        }
-
-        private void UsersToolStripButton_Click(object sender, EventArgs e)
-        {
-            _OpenForm(ref _UsersListForm, enFormType.UsersList);
+            _OpenForm(ref _SalesList, enFormType.SalesList);
         }
 
         private void PaymentsToolStripButton_Click(object sender, EventArgs e)
@@ -169,9 +172,32 @@ namespace SIMS.WinForms
             _OpenForm(ref _PaymentsListForm, enFormType.PaymentsList);
         }
 
+        private void EmployeesToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFormMessages.ShowNotImplementedFeatureWarning();
+        }
+
+        private void UsersToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFormMessages.ShowNotImplementedFeatureWarning();
+            // _OpenForm(ref _UsersListForm, enFormType.UsersList);
+        }
+
+        private void ReportsToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFormMessages.ShowNotImplementedFeatureWarning();
+            // _OpenForm(ref _ReportsDashboardForm, enFormType.ReportsDashboard);
+        }
+
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
         {
-            _OpenForm(ref _ActivityLogForm, enFormType.ActivityLog);
+            clsFormMessages.ShowNotImplementedFeatureWarning();
+            // _OpenForm(ref _ActivityLogForm, enFormType.ActivityLog);
+        }
+
+        private void SettingsToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFormMessages.ShowNotImplementedFeatureWarning();
         }
 
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
@@ -249,6 +275,8 @@ namespace SIMS.WinForms
                     return new frmTransferedOperationsList();
                 case enFormType.PurchasesList:
                     return new frmPurchasesList();
+                case enFormType.SalesList:
+                    return new frmSalesList();
                 case enFormType.ReportsDashboard:
                     return new frmReportsDashboard();
                 case enFormType.UsersList:

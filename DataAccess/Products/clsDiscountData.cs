@@ -189,9 +189,18 @@ namespace DataAccess.Products
         public static DataTable GetDiscountItems(int discountID)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Discounts_GetDiscountItems",
+                "usp_Discounts_GetDiscountItemsByDiscountID",
                 "@DiscountID",
                 discountID
+                );
+        }
+
+        public static DataTable GetDiscountItemsForProduct(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Discounts_GetDiscountItemsByProductID",
+                "@ProductID",
+                productID
                 );
         }
 

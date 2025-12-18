@@ -3,11 +3,11 @@ using System.Windows.Forms;
 using BusinessLogic.Invoices;
 using SIMS.WinForms.BaseForms;
 
-namespace SIMS.WinForms.Purchases
+namespace SIMS.WinForms.Sales
 {
-    public class BasePurchasesForm : frmGenericListBase<clsInvoiceService, clsInvoice>
+    public class BaseSalesForm : frmGenericListBase<clsInvoiceService, clsInvoice>
     {
-        public BasePurchasesForm() : base(clsInvoiceService.CreateInstance()) { }
+        public BaseSalesForm() : base(clsInvoiceService.CreateInstance()) { }
 
         protected override void ResetColumnsOfDGV()
         {
@@ -29,7 +29,7 @@ namespace SIMS.WinForms.Purchases
                 base.dgvEntitiesList.Columns[4].HeaderText = "حالة الفاتورة";
                 base.dgvEntitiesList.Columns[4].Width = 100;
 
-                base.dgvEntitiesList.Columns[5].HeaderText = "إسم المورد";
+                base.dgvEntitiesList.Columns[5].HeaderText = "إسم العميل";
                 base.dgvEntitiesList.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
                 base.dgvEntitiesList.Columns[6].HeaderText = "عدد السطور";

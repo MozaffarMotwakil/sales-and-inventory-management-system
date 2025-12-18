@@ -7,17 +7,17 @@ namespace BusinessLogic.Invoices
 {
     public class clsSaleInvoice : clsInvoice
     {
-        public clsSaleInvoice(string invoiceNo, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
+        public clsSaleInvoice(DateTime invoiceDate, enInvoiceStatus invoiceStatus,
             List<clsInvoiceLine> lines, int? customerID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
-            base(null, invoiceNo, invoiceDate, enInvoiceType.Sales, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
+            base(null, "SI-" + DateTime.Today.Year + '-' + (GetSaleInvoicesCount() + 1), invoiceDate, enInvoiceType.Sales, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
                 null, null)
         {
-            InvoiceNo = "SI-" + DateTime.Today.Year + '-' + (GetSaleInvoicesCount() + 1);
+
         }
 
         internal clsSaleInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
-                (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines),
+                (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines, (enInvoiceType)invoiceDTO.InvoiceTypeID),
                 invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {

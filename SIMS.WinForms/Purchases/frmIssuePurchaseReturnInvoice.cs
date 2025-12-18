@@ -14,7 +14,7 @@ namespace SIMS.WinForms.Purchases
     {
         private clsPurchaseInvoice _OrginalInvoice;
 
-        public frmIssuePurchaseReturnInvoice(clsPurchaseInvoice orginilInvoice)
+        public frmIssuePurchaseReturnInvoice(clsPurchaseInvoice orginilInvoice) : base(enInvoiceType.PurchaseReturn)
         {
             InitializeComponent();
             _OrginalInvoice = orginilInvoice;
@@ -35,8 +35,6 @@ namespace SIMS.WinForms.Purchases
 
             colDiscountAmount.ReadOnly = colDiscountRate.ReadOnly = colTaxAmount.ReadOnly =
                 colTaxRate.ReadOnly = colUnitPrice.ReadOnly = true;
-
-            dgvInvoiceLines.CellEndEdit += dgvInvoiceLines_CellEndEdit;
         }
 
         protected override clsInvoice GetInvoiceInctance()
@@ -74,7 +72,7 @@ namespace SIMS.WinForms.Purchases
                     .Select(group => group.First().ProductInfo)
                     .Where(product => product.ProductID != null &&
                         !selectedProductIDs.Contains(product.ProductID.Value) ||
-                        _GetSelectedProductUnitIDs(product.ProductID.Value).Count <
+                        GetSelectedProductUnitIDs(product.ProductID.Value).Count <
                         _OrginalInvoice.Lines.Count(line => line.ProductID == product.ProductID))
                     .OrderBy(product => product.ProductName)
                     .ToList();
@@ -93,7 +91,7 @@ namespace SIMS.WinForms.Purchases
                 boxCell.DataSource = _OrginalInvoice.Lines
                     .Where(line => line.ProductID == CurrentLine.ProductID && line.GetRemainingQuantity() > 0)
                     .Select(line => line.UnitInfo)
-                    .Where(unit => !_GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault()).Contains(unit.UnitID))
+                    .Where(unit => !GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault()).Contains(unit.UnitID))
                     .ToList();
 
                 colUnit.DisplayMember = "UnitName";
@@ -101,14 +99,12 @@ namespace SIMS.WinForms.Purchases
             }
         }
 
-        private void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        protected override void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (CurrentLine == null) 
             {
                 return;
             }
-
-            ResetColumnsValuesWhenProductOrUnitChanged(e.ColumnIndex, e.RowIndex);
 
             if (CurrentLine.ProductID != null && CurrentLine.UnitID != null)
             {
@@ -206,18 +202,6 @@ namespace SIMS.WinForms.Purchases
                     dgvInvoiceLines.CurrentRow.ErrorText = string.Empty;
                 }
             }
-        }
-
-        private List<int> _GetSelectedProductUnitIDs(int productID)
-        {
-            return InvoiceLinesDataSource
-                .Where(
-                    line =>
-                    line != dgvInvoiceLines.CurrentRow.DataBoundItem as clsInvoiceLine &&
-                    line.UnitID != null && line.ProductID == productID
-                )
-                .Select(line => line.UnitID.GetValueOrDefault())
-                .ToList();
         }
 
     }

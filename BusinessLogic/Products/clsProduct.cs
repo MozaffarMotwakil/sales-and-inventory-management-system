@@ -19,8 +19,9 @@ namespace BusinessLogic.Products
         public clsCategory CategoryInfo { get; private set; }
         public clsUnit MainUnitInfo { get; private set; }
         public List<clsProductUnitConversion> UnitConversions { get; } = new List<clsProductUnitConversion>();
+        public List<clsDiscountItem> DiscountItems => clsDiscountItem.ConvertDiscountItemsTableToList(clsDiscountData.GetDiscountItemsForProduct(ProductID.GetValueOrDefault()));
         public clsSupplier MainSupplierInfo { get; private set; }
-        public float SellingPrice { get; set; }
+        public decimal SellingPrice { get; set; }
         public string Description { get; set; }
         internal string CurrentImagePath { get; set; }
         public string ImagePath { get; set; }
@@ -32,7 +33,7 @@ namespace BusinessLogic.Products
         public enMode Mode { get; private set; }
 
         public clsProduct(string productName, string barcode, int categoryID, int mainUnitID, List<clsProductUnitConversion> unitConversions,
-            int? mainSupplierID, float sellingPrice, string description, string imagePath)
+            int? mainSupplierID, decimal sellingPrice, string description, string imagePath)
         {
             ProductID = null;
             ProductName = productName;

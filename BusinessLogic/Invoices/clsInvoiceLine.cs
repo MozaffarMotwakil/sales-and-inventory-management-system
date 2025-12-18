@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using BusinessLogic.Products;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
@@ -12,63 +13,162 @@ namespace BusinessLogic.Invoices
     {
         public int? LineID { get; set; }
         public int? InvoiceID { get; set; }
-        public int? ProductID { get; set; }
+        public int? ProductID
+        {
+            get => _ProductID;
+            set
+            {
+                if (_ProductID.GetValueOrDefault() != value.GetValueOrDefault())
+                {
+                    _UnitID = null;
+                    UnitPrice = null;
+                    ConversionFactor = null;
+                    Quantity = null;
+                    UnitPrice = null;
+                    LineSubTotal = null;
+                    DiscountRate = null;
+                    DiscountAmount = null;
+                    TaxRate = null;
+                    TaxAmount = null;
+                    LineGrandTotal = null;
+                }
+                
+                _ProductID = value;
+            }
+        }
         public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
-        public int? UnitID { get; set; }
+        public int? UnitID
+        {
+            get => _UnitID;
+            set
+            {
+                if (ProductID == null)
+                {
+                    return;
+                }
+
+                if (_UnitID.GetValueOrDefault() != value.GetValueOrDefault())
+                {
+                    UnitPrice = null;
+                    ConversionFactor = null;
+                    Quantity = null;
+                    UnitPrice = null;
+                    LineSubTotal = null;
+                    DiscountRate = null;
+                    DiscountAmount = null;
+                    TaxRate = null;
+                    TaxAmount = null;
+                    LineGrandTotal = null;
+                }
+
+                _UnitID = value;
+
+                if (BaseInvoiceType == enInvoiceType.Sales || BaseInvoiceType == enInvoiceType.SalesReturn)
+                {
+                    clsProduct product = ProductInfo;
+
+                    if (product == null)
+                    {
+                        return;
+                    }
+
+                    if (UnitID == product.MainUnitInfo.UnitID)
+                    {
+                        UnitPrice = product.SellingPrice;
+                        ConversionFactor = 1;
+                    }
+                    else
+                    {
+                        clsProductUnitConversion alternativeUnit = product.UnitConversions.FirstOrDefault(unit => unit.AlternativeUnitID == UnitID);
+
+                        if (alternativeUnit != null)
+                        {
+                            UnitPrice = alternativeUnit.SellingPrice;
+                            ConversionFactor = alternativeUnit.ConversionFactor;
+                        }
+                    }
+
+                    _TaxRate = 0;
+                    _TaxAmount = 0;
+                }
+            }
+        }
         public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
         public decimal? UnitPrice { get; set; }
         public int? ConversionFactor { get; set; }
-        public int? Quantity { get; set; }
+        public int? Quantity
+        {
+            get => _Quantity;
+            set
+            {
+                _Quantity = value;
 
-        private decimal? _DiscountRate;
+                if (BaseInvoiceType == enInvoiceType.Sales || BaseInvoiceType == enInvoiceType.SalesReturn)
+                {
+                    clsProduct product = ProductInfo;
+
+                    if (product == null)
+                    {
+                        return;
+                    }
+
+                    _DiscountRate = GetSumOfDiscountsValue(product, clsDiscount.enValueType.Percentage);
+                    _DiscountAmount = GetSumOfDiscountsValue(product, clsDiscount.enValueType.Amount);
+                }
+            }
+        }
         public decimal? DiscountRate
         {
             get => _DiscountRate;
             set
             {
-                _DiscountRate = value;
-                _DiscountAmount = (DiscountRate / 100) * LineSubTotal;
-                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
-                _TaxRate = CalculateTaxRate();
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                {
+                    _DiscountRate = value;
+                    _DiscountAmount = CalculateDiscountAmount();
+                    _TaxAmount = CalculateTaxAmount();
+                    _TaxRate = CalculateTaxRate();
+                }
             }
         }
-
-        private decimal? _DiscountAmount;
         public decimal? DiscountAmount
         {
             get => _DiscountAmount;
             set
             {
-                _DiscountAmount = value;
-                DiscountRate = (DiscountAmount / LineSubTotal) * 100;
-                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
-                _TaxRate = CalculateTaxRate();
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                {
+                    _DiscountAmount = value;
+                    DiscountRate = CalculateDiscountRate();
+                    _TaxAmount = CalculateTaxAmount();
+                    _TaxRate = CalculateTaxRate();
+                }
             }
         }
-
-        private decimal? _TaxRate;
         public decimal? TaxRate
         {
             get => _TaxRate;
             set
             {
-                _TaxRate = value;
-                _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                {
+                    _TaxRate = value;
+                    _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+                }
             }
         }
-
-        private decimal? _TaxAmount;
         public decimal? TaxAmount
         {
             get => _TaxAmount;
             set
             {
-                _TaxAmount = value;
-                _TaxRate = CalculateTaxRate();
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                {
+                    _TaxAmount = value;
+                    _TaxRate = CalculateTaxRate();
+                }
             }
         }
-
-        private decimal? _LineSubTotal;
         public decimal? LineSubTotal
         {
             get => UnitPrice * Quantity;
@@ -77,19 +177,37 @@ namespace BusinessLogic.Invoices
                 _LineSubTotal = value;
             }
         }
-
-        private decimal? _LineGrandTotal;
         public decimal? LineGrandTotal
         {
-            get => LineSubTotal - DiscountAmount + TaxAmount;
+            get
+            {
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                {
+                    return LineSubTotal - DiscountAmount + TaxAmount;
+                }
+                else
+                {
+                    return LineSubTotal - CalculateFinalDiscountAmount() + TaxAmount;
+                }
+            }
             set
             {
                 _LineGrandTotal = value;
             }
         }
-
+        public enInvoiceType BaseInvoiceType { get; set; }
         public bool IsNewRow => ProductID == null || UnitID == null || UnitPrice == null ||
             Quantity == null || LineSubTotal == null || LineGrandTotal == null;
+
+        private int? _ProductID;
+        private int? _UnitID;
+        private int? _Quantity;
+        private decimal? _DiscountRate;
+        private decimal? _DiscountAmount;
+        private decimal? _TaxRate;
+        private decimal? _TaxAmount;
+        private decimal? _LineSubTotal;
+        private decimal? _LineGrandTotal;
 
         public static DataTable ConvertInvoiceLinesListToDataTable(List<clsInvoiceLine> lines)
         {
@@ -123,7 +241,7 @@ namespace BusinessLogic.Invoices
             return invoiceLines;
         }
 
-        public static List<clsInvoiceLine> ConvertInvoiceLinesDataTableToList(DataTable lines)
+        public static List<clsInvoiceLine> ConvertInvoiceLinesDataTableToList(DataTable lines, enInvoiceType invoiceType)
         {
             List<clsInvoiceLine> invoiceLines = new List<clsInvoiceLine>();
 
@@ -135,6 +253,7 @@ namespace BusinessLogic.Invoices
                         new clsInvoiceLine
                         {
                             LineID = Convert.ToInt32(row["LineID"]),
+                            BaseInvoiceType = invoiceType,
                             InvoiceID = Convert.ToInt32(row["InvoiceID"]),
                             ProductID = Convert.ToInt32(row["ProductID"]),
                             UnitID = Convert.ToInt32(row["UnitID"]),
@@ -156,6 +275,43 @@ namespace BusinessLogic.Invoices
         public decimal? CalculateTaxRate()
         {
             return (TaxAmount / (LineSubTotal - DiscountAmount)) * 100;
+        }
+
+        public decimal? CalculateDiscountRate()
+        {
+            return (DiscountAmount / LineSubTotal) * 100;
+        }
+
+        public decimal? CalculateTaxAmount()
+        {
+            return (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+        }
+
+        public decimal? CalculateDiscountAmount()
+        {
+            return (DiscountRate / 100) * LineSubTotal;
+        }
+
+        public decimal? CalculateFinalDiscountAmount()
+        {
+            return CalculateDiscountAmount() + DiscountAmount;
+        }
+
+        public decimal? GetSumOfDiscountsValue(clsProduct product, clsDiscount.enValueType valueType)
+        {
+            if (Quantity == null)
+            {
+                return null;
+            }
+
+            return product.DiscountItems
+                .Where(
+                    discountItem =>
+                    discountItem.UnitID == _UnitID && discountItem.DiscountInfo.IsActive && discountItem.DiscountInfo.IsValid &&
+                    Quantity.GetValueOrDefault() >= discountItem.DiscountInfo.MinimumQuantity &&
+                    discountItem.DiscountInfo.DiscountValueType == valueType
+                    )
+                .Sum(d => d.DiscountInfo.DiscountValue);
         }
 
         public int GetRemainingQuantity()

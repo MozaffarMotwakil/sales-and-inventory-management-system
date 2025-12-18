@@ -34,7 +34,7 @@ namespace DataAccess.Products
                                     CategoryID = Convert.ToInt32(reader["CategoryID"]),
                                     MainUnitID = Convert.ToInt32(reader["MainUnitID"]),
                                     MainSupplierID = reader["MainSupplierID"] == DBNull.Value ? null : (int?)(reader["MainSupplierID"]),
-                                    SellingPrice = Convert.ToSingle(reader["SellingPrice"]),
+                                    SellingPrice = Convert.ToDecimal(reader["SellingPrice"]),
                                     Description = (reader["Description"] != DBNull.Value) ? reader["Description"].ToString() : string.Empty,
                                     ImagePath = (reader["ImagePath"] != DBNull.Value) ? reader["ImagePath"].ToString() : string.Empty,
                                     IsActive = Convert.ToBoolean(reader["IsActive"]),

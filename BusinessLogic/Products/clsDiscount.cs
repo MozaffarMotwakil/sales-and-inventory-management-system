@@ -27,6 +27,7 @@ namespace BusinessLogic.Products
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
+        public bool IsValid => DateTime.Today <= EndDate;
         public clsUser CreatedByUserInfo { get; set; }
         public DateTime? CreatedAt { get; set; }
         public clsUser UpdatedByUserInfo { get; set; }

@@ -180,6 +180,7 @@
             this.dgvInvoiceLines.Size = new System.Drawing.Size(1234, 342);
             this.dgvInvoiceLines.TabIndex = 6;
             this.dgvInvoiceLines.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvInvoiceLines_CellBeginEdit);
+            this.dgvInvoiceLines.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoiceLines_CellEndEdit);
             this.dgvInvoiceLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvInvoiceLines_CellMouseClick);
             this.dgvInvoiceLines.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvInvoiceLines_CellValidating);
             this.dgvInvoiceLines.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvInvoiceLines_RowsAdded);
@@ -238,7 +239,7 @@
             dataGridViewCellStyle3.Format = "0.##";
             this.colUnitPrice.DefaultCellStyle = dataGridViewCellStyle3;
             this.colUnitPrice.FillWeight = 78.73761F;
-            this.colUnitPrice.HeaderText = "سعر شراء الوحدة";
+            this.colUnitPrice.HeaderText = "سعر الوحدة";
             this.colUnitPrice.MaxInputLength = 9;
             this.colUnitPrice.Name = "colUnitPrice";
             this.colUnitPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;

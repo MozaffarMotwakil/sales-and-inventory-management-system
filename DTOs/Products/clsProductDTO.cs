@@ -12,7 +12,7 @@ namespace DTOs.Products
         public int MainUnitID { get; set; }
         public DataTable UnitConversions { get; set; }
         public int? MainSupplierID { get; set; }
-        public float SellingPrice { get; set; }
+        public decimal SellingPrice { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
@@ -24,7 +24,7 @@ namespace DTOs.Products
         public clsProductDTO() { }
 
         public clsProductDTO(int? productID, string productName, string barcode, int categoryID, int mainUnitID,
-            DataTable unitConversions, int? mainSupplierID, float sellingPrice, string description, string imagePath, 
+            DataTable unitConversions, int? mainSupplierID, decimal sellingPrice, string description, string imagePath, 
             bool isDeleted, int? createdByUserID, DateTime? createdAt, int? updatedByUserID, DateTime? updatedAt)
         {
             ProductID = productID;

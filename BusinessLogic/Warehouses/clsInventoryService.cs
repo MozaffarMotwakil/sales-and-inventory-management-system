@@ -54,6 +54,17 @@ namespace BusinessLogic.Warehouses
             return inventoryDTO is null ? null : new clsInventory(inventoryDTO);
         }
 
+        public clsInventory Find(int warehouseID, int productID, int unitID)
+        {
+            if (warehouseID < 1 || productID < 1 || unitID < 1)
+            {
+                return null;
+            }
+
+            clsInventoryDTO inventoryDTO = clsInventoryData.FindInventory(warehouseID, productID, unitID);
+            return inventoryDTO is null ? null : new clsInventory(inventoryDTO);
+        }
+
         public bool Delete(int id)
         {
             throw new NotImplementedException("لا يمكن حذف مخزون");

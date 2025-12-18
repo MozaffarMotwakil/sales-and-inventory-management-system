@@ -90,6 +90,11 @@ namespace DVLD.WinForms.Utils
             ComboBox cbRange,
             DateTime firstRecordDate)
         {
+            if (firstRecordDate == DateTime.MinValue)
+            {
+                firstRecordDate = dtpDateFrom.MinDate;
+            }
+
             dtpDateFrom.Enabled = dtpDateTo.Enabled = false;
 
             dtpDateFrom.MinDate = dtpDateTo.MinDate = firstRecordDate;
@@ -157,6 +162,11 @@ namespace DVLD.WinForms.Utils
             ComboBox cbRange,
             DateTime firstRecordDate)
         {
+            if (firstRecordDate == DateTime.MinValue)
+            {
+                firstRecordDate = dtpDateFrom.MinDate;
+            }
+
             dtpDateFrom.Enabled = dtpTimeFrom.Enabled =
                 dtpDateTo.Enabled = dtpTimeTo.Enabled = false;
 

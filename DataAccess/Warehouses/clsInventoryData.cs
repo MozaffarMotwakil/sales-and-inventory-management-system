@@ -7,6 +7,48 @@ namespace DataAccess.Warehouses
 {
     public static class clsInventoryData
     {
+        public static clsInventoryDTO FindInventory(int warehouseID, int productID, int unitID)
+        {
+            using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("usp_Inventories_Find", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@WarehouseID", warehouseID);
+                    command.Parameters.AddWithValue("@ProductID", productID);
+                    command.Parameters.AddWithValue("@UnitID", unitID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            clsInventoryDTO inventoryDTO = null;
+
+                            if (reader.Read())
+                            {
+                                inventoryDTO = new clsInventoryDTO
+                                {
+                                    InventoryID = Convert.ToInt32(reader["InventoryID"]),
+                                    WarehouseID = Convert.ToInt32(reader["WarehouseID"]),
+                                    ProductID = Convert.ToInt32(reader["ProductID"]),
+                                    UnitID = Convert.ToInt32(reader["UnitID"]),
+                                    ReorderQuantity = Convert.ToInt32(reader["ReorderQuantity"]),
+                                };
+                            }
+
+                            return inventoryDTO;
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
+
         public static clsInventoryDTO FindInventoryByID(int inventoryID)
         {
             using (SqlConnection connection = new SqlConnection(clsDataSettings.ConnectionString))

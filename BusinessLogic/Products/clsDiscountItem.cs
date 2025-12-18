@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using BusinessLogic.Discounts;
 using BusinessLogic.Users;
 
 namespace BusinessLogic.Products
@@ -9,8 +10,11 @@ namespace BusinessLogic.Products
     {
         public int DiscountItemID { get; private set; }
         public int DiscountID { get; private set; }
+        public clsDiscount DiscountInfo => clsDiscountService.CreateInstance().Find(DiscountID);
         public int ProductID { get; private set; }
+        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
         public int UnitID { get; private set; }
+        public clsUnit UnitInfo => clsUnit.Find(UnitID);
         public clsUser LinkedByUserInfo { get; private set; }
         public DateTime LinkedAt { get; private set; }
 

@@ -313,13 +313,13 @@ namespace SIMS.WinForms.Warehouses
                         inventory.UnitInfo.UnitID == (int)currentRow.Cells[colUnit.Index].Value
                     );
 
-                clsInventory destinationInventory = _DestinationWarehouseAvailableInventories
+                clsInventory destinationInventory = clsInventoryService.CreateInstance()
                     .Find(
-                        inventory =>
-                        inventory.ProductInfo.ProductID == (int?)currentRow.Cells[colProduct.Index].Value &&
-                        inventory.UnitInfo.UnitID == (int)currentRow.Cells[colUnit.Index].Value
+                        Convert.ToInt32(cbDestinationWarehouse.SelectedValue),
+                        Convert.ToInt32(currentRow.Cells[colProduct.Index].Value),
+                        Convert.ToInt32(currentRow.Cells[colUnit.Index].Value)
                     );
-
+                    
                 currentRow.Cells[ColCurrentQuantitySource.Index].Value = sourceInventory?.GetCurrentQuantity();
                 currentRow.Cells[colStatusSource.Index].Value = sourceInventory?.GetStatus();
 

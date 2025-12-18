@@ -14,14 +14,15 @@ namespace SIMS.WinForms.Invoices
 {
     public partial class frmBaseIssueInvoice : Form
     {
+        private enInvoiceType _InvoiceType;
         protected int ErrorColumnIndex;
         protected BindingList<clsInvoiceLine> InvoiceLinesDataSource;
         protected clsInvoiceLine CurrentLine => dgvInvoiceLines.CurrentRow.DataBoundItem as clsInvoiceLine;
 
-        public frmBaseIssueInvoice()
+        public frmBaseIssueInvoice(enInvoiceType invoiceType)
         {
             InitializeComponent();
-
+            _InvoiceType = invoiceType;
             InvoiceLinesDataSource = new BindingList<clsInvoiceLine>();
             InvoiceLinesDataSource.ListChanged += _InvoiceLinesDataSource_ListChanged;
         }
@@ -75,6 +76,11 @@ namespace SIMS.WinForms.Invoices
             if (e.ListChangedType == ListChangedType.ItemAdded ||
                 e.ListChangedType == ListChangedType.ItemDeleted)
             {
+                if (e.ListChangedType == ListChangedType.ItemAdded)
+                {
+                    InvoiceLinesDataSource[e.NewIndex].BaseInvoiceType = _InvoiceType;
+                }
+
                 UpdateInvoiceSummary();
             }
         }
@@ -125,6 +131,11 @@ namespace SIMS.WinForms.Invoices
             dgvInvoiceLines.CurrentCell.Tag = dgvInvoiceLines.CurrentCell.Value;
         }
 
+        protected virtual void dgvInvoiceLines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         protected virtual void dgvInvoiceLines_CellValidating(object sender, DataGridViewCellValidatingEventArgs e) { }
 
         protected object GetLastValueOfCell()
@@ -132,25 +143,16 @@ namespace SIMS.WinForms.Invoices
             return dgvInvoiceLines.CurrentCell.Tag;
         }
 
-        protected void ResetColumnsValuesWhenProductOrUnitChanged(int columnIndex, int rowIndex)
+        protected List<int> GetSelectedProductUnitIDs(int productID)
         {
-            if ((columnIndex == colProduct.Index || columnIndex == colUnit.Index) && IsCellValueChanged())
-            {
-                if (columnIndex == colProduct.Index)
-                {
-                    CurrentLine.UnitID = null;
-                }
-
-                CurrentLine.UnitPrice = null;
-                CurrentLine.ConversionFactor = null;
-                CurrentLine.Quantity = null;
-                CurrentLine.UnitPrice = null;
-                CurrentLine.LineSubTotal = null;
-                CurrentLine.DiscountRate = null;
-                CurrentLine.TaxRate = null;
-                CurrentLine.LineGrandTotal = null;
-                ApplyEditOnDGV(rowIndex);
-            }
+            return InvoiceLinesDataSource
+                .Where(
+                    line =>
+                    line != dgvInvoiceLines.CurrentRow.DataBoundItem as clsInvoiceLine &&
+                    line.UnitID != null && line.ProductID == productID
+                )
+                .Select(line => line.UnitID.GetValueOrDefault())
+                .ToList();
         }
 
         protected object GetLastValueOfCell(int columnIndex)

@@ -286,7 +286,7 @@ namespace SIMS.WinForms.Products
                         Convert.ToInt32(cbBaseUnit.SelectedValue),
                         _UnitConversionsForm.UnitConversions,
                         Convert.ToInt32(cbMainSupplier.SelectedValue),
-                        Convert.ToSingle(txtSellingPrice.Text),
+                        Convert.ToDecimal(txtSellingPrice.Text),
                         txtDescription.Text,
                         ctrProductImage.ImageLocation
                         );
@@ -298,7 +298,7 @@ namespace SIMS.WinForms.Products
                     _Product.ChangeCategory(Convert.ToInt32(cbCategory.SelectedValue));
                     _Product.ChangeMainUnit(Convert.ToInt32(cbBaseUnit.SelectedValue));
                     _Product.ChangeMainSupplier(cbMainSupplier.Text);
-                    _Product.SellingPrice = Convert.ToSingle(txtSellingPrice.Text);
+                    _Product.SellingPrice = Convert.ToDecimal(txtSellingPrice.Text);
                     _Product.Description = txtDescription.Text;
                     _Product.ImagePath = ctrProductImage.ImageLocation;
                 }
