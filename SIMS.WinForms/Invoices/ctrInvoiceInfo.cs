@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
+using BusinessLogic.Products;
 using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Users;
@@ -52,6 +54,63 @@ namespace SIMS.WinForms.Invoices
 
         private void ctrInvoiceInfo_Load(object sender, EventArgs e)
         {
+            dgvInvoiceLines.CellToolTipTextNeeded += dgvInvoiceLines_CellToolTipTextNeeded;
+        }
+
+        private void dgvInvoiceLines_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            // 1. التأكد من أن الفاتورة ليست فارغة وأننا فوق سطر بيانات
+            if (_Invoice == null || e.RowIndex < 0 || e.RowIndex >= _Invoice.Lines.Count)
+            {
+                return;
+            }
+
+            // 2. التحقق من نوع الفاتورة (مبيعات أو مرتجع مبيعات فقط)
+            if (_Invoice.InvoiceType != enInvoiceType.Sales && _Invoice.InvoiceType != enInvoiceType.SalesReturn)
+            {
+                return;
+            }
+
+            var line = _Invoice.Lines[e.RowIndex];
+
+            if (line == null)
+            {
+                return;
+            }
+
+            // ملاحظة: استبدل أسماء الأعمدة (col...) بالأسماء البرمجية لديك في المصمم 
+            // أو استخدم رقم الفهرس (Index) بناءً على ترتيب الإضافة في دالة _SetInvoiceLinesToDGV
+
+            // تلميح مبلغ الخصم (العمود رقم 7 في ترتيب الإضافة لديك)
+            if (e.ColumnIndex == colDiscountAmount.Index && line.SaleDiscounts.Any())
+            {
+                var amountDiscounts = line.SaleDiscounts
+                    .Where(d => d.DiscountValueType == clsDiscount.enValueType.Amount)
+                    .Select(d => $"{d.DiscountName}: {d.DiscountValue:N2}");
+
+                if (amountDiscounts.Any())
+                    e.ToolTipText = "تفاصيل المبالغ المخصومة:" + Environment.NewLine + string.Join(Environment.NewLine, amountDiscounts);
+            }
+
+            // تلميح نسبة الخصم (العمود رقم 6 في ترتيب الإضافة لديك)
+            else if (e.ColumnIndex == colDiscountRate.Index && line.SaleDiscounts.Any())
+            {
+                var percentDiscounts = line.SaleDiscounts
+                    .Where(d => d.DiscountValueType == clsDiscount.enValueType.Percentage)
+                    .Select(d => $"{d.DiscountName}: {d.DiscountValue}%");
+
+                if (percentDiscounts.Any())
+                    e.ToolTipText = "تفاصيل نسب الخصم:" + Environment.NewLine + string.Join(Environment.NewLine, percentDiscounts);
+            }
+
+            // تلميح الضرائب (الأعمدة رقم 8 و 9)
+            else if ((e.ColumnIndex == colTaxAmount.Index || e.ColumnIndex == colTaxRate.Index) && line.SaleTaxes.Any())
+            {
+                var taxes = line.SaleTaxes
+                    .Select(t => $"{t.TaxName}: {t.TaxRate}%");
+
+                e.ToolTipText = "الضرائب المطبقة على هذا الصنف:" + Environment.NewLine + string.Join(Environment.NewLine, taxes);
+            }
         }
 
         private void llPartyName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -80,13 +139,13 @@ namespace SIMS.WinForms.Invoices
 
         private void _SetInvoiceLinesToDGV(List<clsInvoiceLine> invoiceLines)
         {
-            dgvPurchasedProducts.Rows.Clear();
+            dgvInvoiceLines.Rows.Clear();
 
             for (int i = 0; i < invoiceLines.Count; i++)
             {
                 try
                 {
-                    dgvPurchasedProducts.Rows.Add(
+                    dgvInvoiceLines.Rows.Add(
                         i + 1,
                         invoiceLines[i].ProductInfo.ProductName, 
                         invoiceLines[i].UnitInfo.UnitName,
@@ -103,6 +162,7 @@ namespace SIMS.WinForms.Invoices
                 catch { }
             }
         }
+
 
     }
 }

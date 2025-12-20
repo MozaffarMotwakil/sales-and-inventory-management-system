@@ -145,6 +145,24 @@ namespace DataAccess.Invoices
                 );
         }
 
+        public static DataTable GetDiscountsForSaleLine(int lineID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Invoices_GetDiscountsForSaleLine", 
+                "@LineID",
+                lineID
+                );
+        }
+
+        public static DataTable GetTaxesForSaleLine(int lineID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Invoices_GetTaxesForSaleLine", 
+                "@LineID",
+                lineID
+                );
+        }
+
         public static bool IsInvoiceExists(int invoiceID)
         {
             return clsDataSettings.ExecuteSimpleSP(

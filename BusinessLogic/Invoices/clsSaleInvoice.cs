@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using BusinessLogic.Validation;
+using BusinessLogic.Warehouses;
 using DataAccess.Invoices;
 using DTOs.Invoices;
 
@@ -32,6 +34,27 @@ namespace BusinessLogic.Invoices
         public static DateTime GetFirstSaleInvoiceDate()
         {
             return clsInvoiceData.GetFirstSaleInvoiceDate();
+        }
+
+        public override clsValidationResult Validated()
+        {
+            clsValidationResult validationResult = base.Validated();
+
+            if (Lines != null)
+            {
+                foreach (clsInvoiceLine line in Lines)
+                {
+                    int inventoryQuantity = clsInventoryService.GetInventoryQuantity(this.WarehouseInfo.WarehouseID ?? -1, line.ProductID.GetValueOrDefault(), line.UnitID.GetValueOrDefault());
+
+                    if (line.Quantity > inventoryQuantity)
+                    {
+                        validationResult.AddError(line.ProductInfo.ProductName + "-" + line.UnitInfo.UnitName,
+                            $"كمية البضاعة التي يراد بيعها أكبر من كمية المخزون الحالي, الكمية المتوفرة حاليا هي {inventoryQuantity} {line.UnitInfo.UnitName} فقط");
+                    }
+                }
+            }
+
+            return validationResult;
         }
 
         protected override clsInvoiceDTO MappingToDTO()

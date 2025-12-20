@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using BusinessLogic.Discounts;
 using BusinessLogic.Products;
 using BusinessLogic.Validation;
 using DataAccess.Invoices;
@@ -28,15 +29,16 @@ namespace BusinessLogic.Invoices
                     LineSubTotal = null;
                     DiscountRate = null;
                     DiscountAmount = null;
+                    SaleDiscounts.Clear();
                     TaxRate = null;
                     TaxAmount = null;
+                    SaleTaxes.Clear();
                     LineGrandTotal = null;
                 }
                 
                 _ProductID = value;
             }
         }
-        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
         public int? UnitID
         {
             get => _UnitID;
@@ -56,8 +58,10 @@ namespace BusinessLogic.Invoices
                     LineSubTotal = null;
                     DiscountRate = null;
                     DiscountAmount = null;
+                    SaleDiscounts.Clear();
                     TaxRate = null;
                     TaxAmount = null;
+                    SaleTaxes.Clear();
                     LineGrandTotal = null;
                 }
 
@@ -87,13 +91,9 @@ namespace BusinessLogic.Invoices
                             ConversionFactor = alternativeUnit.ConversionFactor;
                         }
                     }
-
-                    _TaxRate = 0;
-                    _TaxAmount = 0;
                 }
             }
         }
-        public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
         public decimal? UnitPrice { get; set; }
         public int? ConversionFactor { get; set; }
         public int? Quantity
@@ -112,8 +112,44 @@ namespace BusinessLogic.Invoices
                         return;
                     }
 
+                    // Discounts
+                    SaleDiscounts.Clear();
+                    SaleDiscounts
+                    .AddRange(
+                        product
+                        .DiscountItems
+                            .Where(
+                                discountItem =>
+                                discountItem.UnitID == UnitID.GetValueOrDefault() && discountItem.DiscountInfo.IsActive &&
+                                discountItem.DiscountInfo.IsValid && Quantity.GetValueOrDefault() >= discountItem.DiscountInfo.MinimumQuantity
+                            )
+                            .Select(discountItem => discountItem.DiscountInfo)
+                    );
+
                     _DiscountRate = GetSumOfDiscountsValue(product, clsDiscount.enValueType.Percentage);
                     _DiscountAmount = GetSumOfDiscountsValue(product, clsDiscount.enValueType.Amount);
+
+                    // Taxes
+                    SaleTaxes.Clear();
+                    SaleTaxes
+                    .AddRange(
+                        product
+                        .TaxItems
+                            .Where(
+                                taxItem =>
+                                taxItem.TaxInfo.IsActive
+                            )
+                            .Select(taxItem => taxItem.TaxInfo)
+                    );
+
+                    _TaxRate = product.TaxItems
+                        .Where(
+                            taxItem =>
+                            taxItem.TaxInfo.IsActive
+                        )
+                        .Sum(taxItem => taxItem.TaxInfo.TaxRate);
+
+                    _TaxAmount = CalculateFinalTaxAmount();
                 }
             }
         }
@@ -153,7 +189,7 @@ namespace BusinessLogic.Invoices
                 if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
                 {
                     _TaxRate = value;
-                    _TaxAmount = (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+                    _TaxAmount = CalculateTaxAmount();
                 }
             }
         }
@@ -199,6 +235,11 @@ namespace BusinessLogic.Invoices
         public bool IsNewRow => ProductID == null || UnitID == null || UnitPrice == null ||
             Quantity == null || LineSubTotal == null || LineGrandTotal == null;
 
+        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
+        public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
+        public List<clsDiscount> SaleDiscounts { get; set; }
+        public List<clsTax> SaleTaxes { get; set; }
+
         private int? _ProductID;
         private int? _UnitID;
         private int? _Quantity;
@@ -208,6 +249,12 @@ namespace BusinessLogic.Invoices
         private decimal? _TaxAmount;
         private decimal? _LineSubTotal;
         private decimal? _LineGrandTotal;
+
+        public clsInvoiceLine()
+        {
+            SaleDiscounts = new List<clsDiscount>();
+            SaleTaxes = new List<clsTax>();
+        }
 
         public static DataTable ConvertInvoiceLinesListToDataTable(List<clsInvoiceLine> lines)
         {
@@ -262,6 +309,42 @@ namespace BusinessLogic.Invoices
                             Quantity = Convert.ToInt32(row["Quantity"]),
                             LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
                             DiscountRate = Convert.ToDecimal(row["DiscountRate"]),
+                            SaleDiscounts = clsInvoiceData.GetDiscountsForSaleLine(Convert.ToInt32(row["LineID"]))
+                                .AsEnumerable()
+                                .Select(discountRow =>
+                                {
+                                    int discountID = Convert.ToInt32(discountRow["DiscountID"]);
+
+                                    clsDiscount discountItem = clsDiscountService.CreateInstance().Find(discountID);
+
+                                    if (discountItem != null)
+                                    {
+                                        discountItem.DiscountValue = Convert.ToDecimal(discountRow["DiscountValue"]); ;
+                                        discountItem.DiscountValueType = (clsDiscount.enValueType)(Convert.ToBoolean(discountRow["DiscountValueType"]) ? 1 : 0);
+                                        discountItem.MinimumQuantity = Convert.ToInt32(discountRow["MinimumQuantity"]);
+                                    }
+
+                                    return discountItem;
+                                })
+                                .Where(discount => discount != null)
+                                .ToList(),
+                            SaleTaxes = clsInvoiceData.GetTaxesForSaleLine(Convert.ToInt32(row["LineID"]))
+                                .AsEnumerable()
+                                .Select(taxRow =>
+                                {
+                                    int taxID = Convert.ToInt32(taxRow["TaxID"]);
+
+                                    clsTax taxItem = clsTaxService.CreateInstance().Find(taxID);
+
+                                    if (taxItem != null)
+                                    {
+                                        taxItem.TaxRate = Convert.ToDecimal(taxRow["TaxRate"]); ;
+                                    }
+
+                                    return taxItem;
+                                })
+                                .Where(taxItem => taxItem != null)
+                                .ToList(),
                             TaxRate = Convert.ToDecimal(row["TaxRate"]),
                             LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
                         }
@@ -287,6 +370,11 @@ namespace BusinessLogic.Invoices
             return (LineSubTotal - DiscountAmount) * (TaxRate / 100);
         }
 
+        public decimal? CalculateFinalTaxAmount()
+        {
+            return (LineSubTotal - CalculateFinalDiscountAmount()) * (TaxRate / 100);
+        }
+
         public decimal? CalculateDiscountAmount()
         {
             return (DiscountRate / 100) * LineSubTotal;
@@ -307,11 +395,11 @@ namespace BusinessLogic.Invoices
             return product.DiscountItems
                 .Where(
                     discountItem =>
-                    discountItem.UnitID == _UnitID && discountItem.DiscountInfo.IsActive && discountItem.DiscountInfo.IsValid &&
-                    Quantity.GetValueOrDefault() >= discountItem.DiscountInfo.MinimumQuantity &&
+                    discountItem.UnitID == UnitID.GetValueOrDefault() && discountItem.DiscountInfo.IsActive &&
+                    discountItem.DiscountInfo.IsValid && Quantity.GetValueOrDefault() >= discountItem.DiscountInfo.MinimumQuantity &&
                     discountItem.DiscountInfo.DiscountValueType == valueType
-                    )
-                .Sum(d => d.DiscountInfo.DiscountValue);
+                )
+                .Sum(discountItem => discountItem.DiscountInfo.DiscountValue);
         }
 
         public int GetRemainingQuantity()
@@ -358,7 +446,6 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
             }
 
-
             if (DiscountAmount > LineSubTotal)
             {
                 validationResult.AddError("الخصم", "لا يمكن أن يكون مبلغ الخصم أكبر من أو يساوي الإجمالي الفرعي.");
@@ -367,16 +454,6 @@ namespace BusinessLogic.Invoices
             if (TaxRate < 0)
             {
                 validationResult.AddError("الضريبة", "لا يمكن أن تكون قيمة الضريبة سالبة.");
-            }
-
-            if (LineSubTotal != (UnitPrice * Quantity))
-            {
-                validationResult.AddError("الإجمالي الفرعي", "الإجمالي الفرعي المحسوب غير صحيح بناءً على السعر والكمية.");
-            }
-
-            if (LineGrandTotal != (LineSubTotal - DiscountAmount + TaxAmount))
-            {
-                validationResult.AddError("الإجمالي النهائي", "الإجمالي النهائي المحسوب غير صحيح.");
             }
 
             return validationResult;

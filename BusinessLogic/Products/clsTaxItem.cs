@@ -9,7 +9,9 @@ namespace BusinessLogic.Products
     {
         public int TaxItemID { get; private set; }
         public int TaxID { get; private set; }
+        public clsTax TaxInfo => clsTaxService.CreateInstance().Find(TaxID);
         public int ProductID { get; private set; }
+        public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
         public clsUser LinkedByUserInfo { get; private set; }
         public DateTime LinkedAt { get; private set; }
 

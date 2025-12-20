@@ -20,6 +20,7 @@ namespace BusinessLogic.Products
         public clsUnit MainUnitInfo { get; private set; }
         public List<clsProductUnitConversion> UnitConversions { get; } = new List<clsProductUnitConversion>();
         public List<clsDiscountItem> DiscountItems => clsDiscountItem.ConvertDiscountItemsTableToList(clsDiscountData.GetDiscountItemsForProduct(ProductID.GetValueOrDefault()));
+        public List<clsTaxItem> TaxItems => clsTaxItem.ConvertTaxItemsTableToList(clsTaxData.GetTaxItemsForProduct(ProductID.GetValueOrDefault()));
         public clsSupplier MainSupplierInfo { get; private set; }
         public decimal SellingPrice { get; set; }
         public string Description { get; set; }

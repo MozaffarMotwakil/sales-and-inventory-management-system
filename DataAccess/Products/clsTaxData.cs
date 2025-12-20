@@ -180,9 +180,18 @@ namespace DataAccess.Products
         public static DataTable GetTaxItems(int taxID)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Taxes_GetTaxItems",
+                "usp_Taxes_GetTaxItemsByTaxID",
                 "@TaxID",
                 taxID
+                );
+        }
+
+        public static DataTable GetTaxItemsForProduct(int productID)
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Taxes_GetTaxItemsByProductID",
+                "@ProductID",
+                productID
                 );
         }
 

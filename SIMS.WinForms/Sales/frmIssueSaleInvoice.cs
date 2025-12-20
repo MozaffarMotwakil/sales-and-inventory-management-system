@@ -4,6 +4,7 @@ using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 using BusinessLogic.Invoices;
+using BusinessLogic.Products;
 using BusinessLogic.Warehouses;
 using SIMS.WinForms.Invoices;
 
@@ -27,6 +28,48 @@ namespace SIMS.WinForms.Sales
                 .CreateInstance()
                 .Find((int)cbWarehouse.SelectedValue)
                 .GetAvailableInventories();
+
+            dgvInvoiceLines.CellToolTipTextNeeded += dgvInvoiceLines_CellToolTipTextNeeded;
+        }
+
+        private void dgvInvoiceLines_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            // التأكد أننا فوق سطر بيانات وليس فوق الرأس (Header)
+            if (e.RowIndex < 0 || e.RowIndex >= InvoiceLinesDataSource.Count) return;
+
+            var line = InvoiceLinesDataSource[e.RowIndex];
+            if (line == null) return;
+
+            // تلميح عميد مبلغ الخصم (Amount Discounts)
+            if (e.ColumnIndex == colDiscountAmount.Index && line.SaleDiscounts.Any())
+            {
+                var amountDiscounts = line.SaleDiscounts
+                    .Where(d => d.DiscountValueType == clsDiscount.enValueType.Amount)
+                    .Select(d => $"{d.DiscountName}: {d.DiscountValue:N2}");
+
+                if (amountDiscounts.Any())
+                    e.ToolTipText = "تفاصيل الخصومات المقطوعة:" + Environment.NewLine + string.Join(Environment.NewLine, amountDiscounts);
+            }
+
+            // تلميح عمود نسبة الخصم (Percentage Discounts)
+            else if (e.ColumnIndex == colDiscountRate.Index && line.SaleDiscounts.Any())
+            {
+                var percentDiscounts = line.SaleDiscounts
+                    .Where(d => d.DiscountValueType == clsDiscount.enValueType.Percentage)
+                    .Select(d => $"{d.DiscountName}: {d.DiscountValue}%");
+
+                if (percentDiscounts.Any())
+                    e.ToolTipText = "تفاصيل نسب الخصم:" + Environment.NewLine + string.Join(Environment.NewLine, percentDiscounts);
+            }
+
+            // تلميح عمود الضرائب
+            else if ((e.ColumnIndex == colTaxAmount.Index || e.ColumnIndex == colTaxRate.Index) && line.SaleTaxes.Any())
+            {
+                var taxes = line.SaleTaxes
+                    .Select(t => $"{t.TaxName}: {t.TaxRate}%");
+
+                e.ToolTipText = "تفاصيل الضرائب المطبقة:" + Environment.NewLine + string.Join(Environment.NewLine, taxes);
+            }
         }
 
         protected override clsInvoice GetInvoiceInctance()

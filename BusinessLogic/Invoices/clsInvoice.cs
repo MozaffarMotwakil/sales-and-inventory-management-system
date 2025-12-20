@@ -226,13 +226,6 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("الإجمالي الكلي", "الإجمالي الكلي للفاتورة غير متطابق مع مجموع السطور النهائي.");
             }
 
-            decimal calculatedFinalTotal = (TotalSubTotal - TotalDiscountAmount) + (TotalTaxAmount);
-
-            if (GrandTotal != calculatedFinalTotal)
-            {
-                validationResult.AddError("الإجمالي الكلي", "الإجمالي الكلي لا يطابق مع المعادلة المالية: الإجمالي الفرعي - الخصم + الضريبة");
-            }
-
             return validationResult;
         }
 
