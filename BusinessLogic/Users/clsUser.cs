@@ -6,11 +6,13 @@ namespace BusinessLogic.Users
     {
         public int UserID { get; set; }
         public string UserName { get; set; }
+        public bool IsActive { get; set; }
 
         public clsUser(int userID)
         {
             UserID = userID;
             UserName = "Mozaffar_Mo";
+            IsActive = true;
         }
 
         public static clsUser Find(int userID)

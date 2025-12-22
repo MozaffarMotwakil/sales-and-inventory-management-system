@@ -365,5 +365,35 @@ namespace DVLD.WinForms.Utils
             return gender is clsPerson.enGender.Male ? Resources.unknow_male : Resources.unknow_female;
         }
 
+        public static void ShowPassword(object sender, MouseEventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                if (pictureBox.Tag is TextBox textBox)
+                {
+                    textBox.UseSystemPasswordChar = false;
+                }
+            }
+        }
+
+        public static void HidePassword(object sender, MouseEventArgs e)
+        {
+            if (sender is PictureBox pictureBox)
+            {
+                if (pictureBox.Tag is TextBox textBox)
+                {
+                    textBox.UseSystemPasswordChar = true;
+                }
+            }
+        }
+
+        public static void SetPasswordsVisibility(TextBox[] passwordFields, bool isVisible)
+        {
+            foreach (TextBox textBox in passwordFields)
+            {
+                textBox.UseSystemPasswordChar = !isVisible;
+            }
+        }
+
     }
 }

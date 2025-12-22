@@ -417,6 +417,7 @@
     <Compile Include="Utilities\clsFormHelper.cs" />
     <Compile Include="Utilities\clsFormMessages.cs" />
     <Compile Include="Utilities\clsFormValidation.cs" />
+    <Compile Include="Utilities\clsLoginManager .cs" />
     <Compile Include="Utilities\ctrImage.cs">
       <SubType>UserControl</SubType>
     </Compile>
