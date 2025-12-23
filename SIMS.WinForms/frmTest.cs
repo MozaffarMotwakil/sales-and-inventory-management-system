@@ -11,5 +11,10 @@ namespace SIMS.WinForms
             InitializeComponent();
         }
 
+        private void frmTest_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

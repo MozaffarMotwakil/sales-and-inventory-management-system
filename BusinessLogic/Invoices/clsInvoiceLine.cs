@@ -26,6 +26,7 @@ namespace BusinessLogic.Invoices
                     ConversionFactor = null;
                     Quantity = null;
                     UnitPrice = null;
+                    FinalUnitPrice = null;
                     LineSubTotal = null;
                     DiscountRate = null;
                     DiscountAmount = null;
@@ -55,6 +56,7 @@ namespace BusinessLogic.Invoices
                     ConversionFactor = null;
                     Quantity = null;
                     UnitPrice = null;
+                    FinalUnitPrice = null;
                     LineSubTotal = null;
                     DiscountRate = null;
                     DiscountAmount = null;
@@ -95,6 +97,14 @@ namespace BusinessLogic.Invoices
             }
         }
         public decimal? UnitPrice { get; set; }
+        public decimal? FinalUnitPrice 
+        {
+            get => LineGrandTotal / Quantity;
+            private set
+            {
+                _FinalUnitPrice = value;
+            }
+        } 
         public int? ConversionFactor { get; set; }
         public int? Quantity
         {
@@ -243,6 +253,7 @@ namespace BusinessLogic.Invoices
         private int? _ProductID;
         private int? _UnitID;
         private int? _Quantity;
+        private decimal? _FinalUnitPrice;
         private decimal? _DiscountRate;
         private decimal? _DiscountAmount;
         private decimal? _TaxRate;

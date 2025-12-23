@@ -19,9 +19,13 @@ namespace SIMS.WinForms.Invoices
         protected BindingList<clsInvoiceLine> InvoiceLinesDataSource;
         protected clsInvoiceLine CurrentLine => dgvInvoiceLines.CurrentRow.DataBoundItem as clsInvoiceLine;
 
-        public frmBaseIssueInvoice(enInvoiceType invoiceType)
+        private frmBaseIssueInvoice()
         {
             InitializeComponent();
+        }
+
+        public frmBaseIssueInvoice(enInvoiceType invoiceType) : this()
+        {
             _InvoiceType = invoiceType;
             InvoiceLinesDataSource = new BindingList<clsInvoiceLine>();
             InvoiceLinesDataSource.ListChanged += _InvoiceLinesDataSource_ListChanged;
@@ -62,6 +66,7 @@ namespace SIMS.WinForms.Invoices
             dgvInvoiceLines.Columns[colQuantity.Name].DataPropertyName = "Quantity";
             dgvInvoiceLines.Columns[colConversionFactor.Name].DataPropertyName = "ConversionFactor";
             dgvInvoiceLines.Columns[colUnitPrice.Name].DataPropertyName = "UnitPrice";
+            dgvInvoiceLines.Columns[colFinalUnitPrice.Name].DataPropertyName = "FinalUnitPrice";
             dgvInvoiceLines.Columns[colDiscountRate.Name].DataPropertyName = "DiscountRate";
             dgvInvoiceLines.Columns[colDiscountAmount.Name].DataPropertyName = "DiscountAmount";
             dgvInvoiceLines.Columns[colTaxRate.Name].DataPropertyName = "TaxRate";

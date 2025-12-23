@@ -318,6 +318,12 @@
     <Compile Include="Sales\BaseSalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sales\frmIssueSaleReturnInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\frmIssueSaleReturnInvoice.Designer.cs">
+      <DependentUpon>frmIssueSaleReturnInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\frmIssueSaleInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -614,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmIssueSaleInvoice.resx">
       <DependentUpon>frmIssueSaleInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\frmIssueSaleReturnInvoice.resx">
+      <DependentUpon>frmIssueSaleReturnInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmPointOfSale.resx">
       <DependentUpon>frmPointOfSale.cs</DependentUpon>

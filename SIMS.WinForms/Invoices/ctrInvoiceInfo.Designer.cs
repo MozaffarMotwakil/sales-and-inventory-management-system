@@ -31,6 +31,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvInvoiceLines = new System.Windows.Forms.DataGridView();
+            this.colLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscountRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscountAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTaxRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.llPartyName = new System.Windows.Forms.LinkLabel();
             this.llCreatedByUser = new System.Windows.Forms.LinkLabel();
@@ -60,17 +71,6 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.colLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscountRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDiscountAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTaxRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbInvoiceSummary.SuspendLayout();
@@ -123,6 +123,102 @@
             this.dgvInvoiceLines.Size = new System.Drawing.Size(484, 268);
             this.dgvInvoiceLines.TabIndex = 2;
             this.dgvInvoiceLines.TabStop = false;
+            // 
+            // colLineNo
+            // 
+            this.colLineNo.FillWeight = 34.76712F;
+            this.colLineNo.HeaderText = "م";
+            this.colLineNo.Name = "colLineNo";
+            this.colLineNo.ReadOnly = true;
+            this.colLineNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colLineNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colLineNo.Width = 35;
+            // 
+            // colProduct
+            // 
+            this.colProduct.FillWeight = 171.306F;
+            this.colProduct.HeaderText = "المنتج";
+            this.colProduct.Name = "colProduct";
+            this.colProduct.ReadOnly = true;
+            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colProduct.Width = 250;
+            // 
+            // colUnit
+            // 
+            this.colUnit.HeaderText = "الوحدة";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.ReadOnly = true;
+            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colUnit.Width = 80;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.FillWeight = 83.51167F;
+            this.colQuantity.HeaderText = "الكمية";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.ReadOnly = true;
+            this.colQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colQuantity.Width = 60;
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.FillWeight = 83.51167F;
+            this.UnitPrice.HeaderText = "سعر الوحدة (جنيه)";
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.ReadOnly = true;
+            this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.UnitPrice.Width = 75;
+            // 
+            // colSubTotal
+            // 
+            this.colSubTotal.HeaderText = "الإجمالي الفرعي (جنيه)";
+            this.colSubTotal.Name = "colSubTotal";
+            this.colSubTotal.ReadOnly = true;
+            this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colSubTotal.Width = 80;
+            // 
+            // colDiscountRate
+            // 
+            this.colDiscountRate.HeaderText = "نسبة الخصم";
+            this.colDiscountRate.Name = "colDiscountRate";
+            this.colDiscountRate.ReadOnly = true;
+            this.colDiscountRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscountRate.Width = 80;
+            // 
+            // colDiscountAmount
+            // 
+            this.colDiscountAmount.HeaderText = "قيمة الخصم (جنيه)";
+            this.colDiscountAmount.Name = "colDiscountAmount";
+            this.colDiscountAmount.ReadOnly = true;
+            this.colDiscountAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDiscountAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colDiscountAmount.Width = 80;
+            // 
+            // colTaxRate
+            // 
+            this.colTaxRate.HeaderText = "نسبة الضريبة";
+            this.colTaxRate.Name = "colTaxRate";
+            this.colTaxRate.ReadOnly = true;
+            this.colTaxRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTaxRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTaxRate.Width = 80;
+            // 
+            // colTaxAmount
+            // 
+            this.colTaxAmount.HeaderText = "قيمة الضريبة (جنيه)";
+            this.colTaxAmount.Name = "colTaxAmount";
+            this.colTaxAmount.ReadOnly = true;
+            this.colTaxAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colTaxAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colTaxAmount.Width = 80;
+            // 
+            // colGrandTotal
+            // 
+            this.colGrandTotal.FillWeight = 126.9036F;
+            this.colGrandTotal.HeaderText = "الإجمالي الكلي (جنيه)";
+            this.colGrandTotal.Name = "colGrandTotal";
+            this.colGrandTotal.ReadOnly = true;
+            this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // groupBox1
             // 
@@ -478,102 +574,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "الإجمالي الكلي";
             // 
-            // colLineNo
-            // 
-            this.colLineNo.FillWeight = 34.76712F;
-            this.colLineNo.HeaderText = "م";
-            this.colLineNo.Name = "colLineNo";
-            this.colLineNo.ReadOnly = true;
-            this.colLineNo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colLineNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colLineNo.Width = 35;
-            // 
-            // colProduct
-            // 
-            this.colProduct.FillWeight = 171.306F;
-            this.colProduct.HeaderText = "المنتج";
-            this.colProduct.Name = "colProduct";
-            this.colProduct.ReadOnly = true;
-            this.colProduct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colProduct.Width = 250;
-            // 
-            // colUnit
-            // 
-            this.colUnit.HeaderText = "الوحدة";
-            this.colUnit.Name = "colUnit";
-            this.colUnit.ReadOnly = true;
-            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colUnit.Width = 80;
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.FillWeight = 83.51167F;
-            this.colQuantity.HeaderText = "الكمية";
-            this.colQuantity.Name = "colQuantity";
-            this.colQuantity.ReadOnly = true;
-            this.colQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colQuantity.Width = 60;
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.FillWeight = 83.51167F;
-            this.UnitPrice.HeaderText = "سعر الوحدة (جنيه)";
-            this.UnitPrice.Name = "UnitPrice";
-            this.UnitPrice.ReadOnly = true;
-            this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.UnitPrice.Width = 75;
-            // 
-            // colSubTotal
-            // 
-            this.colSubTotal.HeaderText = "الإجمالي الفرعي (جنيه)";
-            this.colSubTotal.Name = "colSubTotal";
-            this.colSubTotal.ReadOnly = true;
-            this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colSubTotal.Width = 80;
-            // 
-            // colDiscountRate
-            // 
-            this.colDiscountRate.HeaderText = "نسبة الخصم";
-            this.colDiscountRate.Name = "colDiscountRate";
-            this.colDiscountRate.ReadOnly = true;
-            this.colDiscountRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDiscountRate.Width = 80;
-            // 
-            // colDiscountAmount
-            // 
-            this.colDiscountAmount.HeaderText = "قيمة الخصم (جنيه)";
-            this.colDiscountAmount.Name = "colDiscountAmount";
-            this.colDiscountAmount.ReadOnly = true;
-            this.colDiscountAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colDiscountAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDiscountAmount.Width = 80;
-            // 
-            // colTaxRate
-            // 
-            this.colTaxRate.HeaderText = "نسبة الضريبة";
-            this.colTaxRate.Name = "colTaxRate";
-            this.colTaxRate.ReadOnly = true;
-            this.colTaxRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTaxRate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTaxRate.Width = 80;
-            // 
-            // colTaxAmount
-            // 
-            this.colTaxAmount.HeaderText = "قيمة الضريبة (جنيه)";
-            this.colTaxAmount.Name = "colTaxAmount";
-            this.colTaxAmount.ReadOnly = true;
-            this.colTaxAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colTaxAmount.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colTaxAmount.Width = 80;
-            // 
-            // colGrandTotal
-            // 
-            this.colGrandTotal.FillWeight = 126.9036F;
-            this.colGrandTotal.HeaderText = "الإجمالي الكلي (جنيه)";
-            this.colGrandTotal.Name = "colGrandTotal";
-            this.colGrandTotal.ReadOnly = true;
-            this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // ctrInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,7 +585,6 @@
             this.Name = "ctrInvoiceInfo";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(850, 275);
-            this.Load += new System.EventHandler(this.ctrInvoiceInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

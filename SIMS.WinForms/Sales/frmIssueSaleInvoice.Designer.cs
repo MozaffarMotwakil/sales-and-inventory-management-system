@@ -44,6 +44,9 @@
             this.lineSubTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lineGrandTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isNewRowDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.gbInvoiceSummary.SuspendLayout();
             this.gbInvoiceDetails.SuspendLayout();
@@ -56,11 +59,12 @@
             // txtInvoiceNo
             // 
             this.txtInvoiceNo.Enabled = false;
-            this.txtInvoiceNo.Text = "يولد بشكل تلقائي";
+            this.txtInvoiceNo.Text = "يتم توليده بشكل تلقائي";
             // 
             // cbParty
             // 
             this.cbParty.Enabled = false;
+            this.cbParty.Text = "لم يتم توفير قسم العملاء بعد";
             // 
             // dtpInvoiceIssueDate
             // 
@@ -71,6 +75,28 @@
             // label3
             // 
             this.label3.Text = "العميل:";
+            // 
+            // panel1
+            // 
+            this.panel1.Enabled = false;
+            // 
+            // label6
+            // 
+            this.label6.Enabled = false;
+            // 
+            // label8
+            // 
+            this.label8.Enabled = false;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.SetChildIndex(this.gbPaymentInfo, 0);
+            this.panel3.Controls.SetChildIndex(this.label4, 0);
+            this.panel3.Controls.SetChildIndex(this.label9, 0);
+            this.panel3.Controls.SetChildIndex(this.label10, 0);
             // 
             // lineIDDataGridViewTextBoxColumn
             // 
@@ -171,6 +197,38 @@
             this.isNewRowDataGridViewCheckBoxColumn.Name = "isNewRowDataGridViewCheckBoxColumn";
             this.isNewRowDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
+            // label4
+            // 
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(128, 466);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(262, 61);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "1- حاليا لا يمكن تغيير حالة الدفع الخاصة بالفاتورة بحيث أن فواتير البيع التي تصدر" +
+    " للمستهلكين العاديين وليس للعملاء يجب أن تحصل قيمتها كاملة ولا يجوز البيع بالدين" +
+    " (للمستهلكين) بأي حال من الأحوال.";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(128, 518);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(262, 43);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "2- عندما يتم إضافة القسم الخاص بالعملاء يمكن حينها البيع بالدين (للعملاء فقط) وبا" +
+    "لتالي إتاحة إمكانية تغيير حالة الدفع الخاصة بالفاتورة.";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(342, 453);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "-تنويهات:";
+            // 
             // frmIssueSaleInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +249,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +272,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lineSubTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lineGrandTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isNewRowDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
