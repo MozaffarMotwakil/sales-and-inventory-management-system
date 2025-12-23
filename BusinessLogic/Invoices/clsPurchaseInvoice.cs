@@ -11,7 +11,7 @@ namespace BusinessLogic.Invoices
     {
         public clsSupplier Supplier { get; }
 
-        public clsPurchaseInvoice(string invoiceNo, DateTime invoiceDate, enInvoiceStatus invoiceStatus,
+        public clsPurchaseInvoice(string invoiceNo, DateTime invoiceDate, enPaymentStatus invoiceStatus,
             List<clsInvoiceLine> lines, int supplierID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
             base(null, invoiceNo, invoiceDate, enInvoiceType.Purchase, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
                 null, null)
@@ -22,8 +22,8 @@ namespace BusinessLogic.Invoices
 
         internal clsPurchaseInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
-                (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines, (enInvoiceType)invoiceDTO.InvoiceTypeID),
-                invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
+                (enPaymentStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines, (enInvoiceType)invoiceDTO.InvoiceTypeID),
+                invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaidAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {
             Supplier = clsSupplierService.CreateInstance().FindByPartyID(invoiceDTO.PartyID ?? -1);
@@ -59,7 +59,7 @@ namespace BusinessLogic.Invoices
                 InvoiceNo = this.InvoiceNo,
                 InvoiceDate = this.InvoiceDate,
                 InvoiceTypeID = (byte)this.InvoiceType,
-                InvoiceStatusID = (byte)this.InvoiceStatus,
+                InvoiceStatusID = (byte)this.PaymentStatus,
                 PartyID = this.Supplier?.PartyInfo.PartyID,
                 Lines = clsInvoiceLine.ConvertInvoiceLinesListToDataTable(base.Lines),
                 TotalSubTotal = this.TotalSubTotal,
@@ -67,7 +67,7 @@ namespace BusinessLogic.Invoices
                 TotalTaxAmount = this.TotalTaxAmount,
                 GrandTotal = this.GrandTotal,
                 PaymentMethodID = (byte?)this.PaymentMethod,
-                PaymentAmount = this.PaymentAmount,
+                PaidAmount = this.PaidAmount,
                 WarehouseID = this?.WarehouseInfo?.WarehouseID ?? -1,
                 CreatedByUserID = clsAppSettings.CurrentUser.UserID,
             };

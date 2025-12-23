@@ -231,9 +231,9 @@ namespace SIMS.WinForms.Invoices
             dgvInvoiceLines.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
-        protected enInvoiceStatus GetInvoiceStatus()
+        protected enPaymentStatus GetInvoiceStatus()
         {
-            return rbPaid.Checked ? enInvoiceStatus.Paid : rbPartiallyPaid.Checked ? enInvoiceStatus.PartiallyPaid : enInvoiceStatus.Unpaid;
+            return rbPaid.Checked ? enPaymentStatus.Paid : rbPartiallyPaid.Checked ? enPaymentStatus.PartiallyPaid : enPaymentStatus.Unpaid;
         }
 
         protected enPaymentMethod? GetPaymentMethod()

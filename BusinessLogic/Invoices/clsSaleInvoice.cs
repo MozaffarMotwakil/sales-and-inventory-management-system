@@ -9,7 +9,7 @@ namespace BusinessLogic.Invoices
 {
     public class clsSaleInvoice : clsInvoice
     {
-        public clsSaleInvoice(DateTime invoiceDate, enInvoiceStatus invoiceStatus,
+        public clsSaleInvoice(DateTime invoiceDate, enPaymentStatus invoiceStatus,
             List<clsInvoiceLine> lines, int? customerID, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount) :
             base(null, "SI-" + DateTime.Today.Year + '-' + (GetSaleInvoicesCount() + 1), invoiceDate, enInvoiceType.Sales, invoiceStatus, lines, warehouseID, paymentMethod, paymentAmount,
                 null, null)
@@ -19,8 +19,8 @@ namespace BusinessLogic.Invoices
 
         internal clsSaleInvoice(clsInvoiceDTO invoiceDTO) :
             base(invoiceDTO.InvoiceID, invoiceDTO.InvoiceNo, invoiceDTO.InvoiceDate, (enInvoiceType)invoiceDTO.InvoiceTypeID,
-                (enInvoiceStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines, (enInvoiceType)invoiceDTO.InvoiceTypeID),
-                invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaymentAmount, invoiceDTO.CreatedByUserID,
+                (enPaymentStatus)invoiceDTO.InvoiceStatusID, clsInvoiceLine.ConvertInvoiceLinesDataTableToList(invoiceDTO.Lines, (enInvoiceType)invoiceDTO.InvoiceTypeID),
+                invoiceDTO.WarehouseID, (enPaymentMethod?)invoiceDTO.PaymentMethodID, invoiceDTO.PaidAmount, invoiceDTO.CreatedByUserID,
                 invoiceDTO.CreatedAt)
         {
 
@@ -65,7 +65,7 @@ namespace BusinessLogic.Invoices
                 InvoiceNo = this.InvoiceNo,
                 InvoiceDate = this.InvoiceDate,
                 InvoiceTypeID = (byte)this.InvoiceType,
-                InvoiceStatusID = (byte)this.InvoiceStatus,
+                InvoiceStatusID = (byte)this.PaymentStatus,
                 PartyID = null,
                 Lines = clsInvoiceLine.ConvertInvoiceLinesListToDataTable(base.Lines),
                 TotalSubTotal = this.TotalSubTotal,
@@ -73,7 +73,7 @@ namespace BusinessLogic.Invoices
                 TotalTaxAmount = this.TotalTaxAmount,
                 GrandTotal = this.GrandTotal,
                 PaymentMethodID = (byte?)this.PaymentMethod,
-                PaymentAmount = this.PaymentAmount,
+                PaidAmount = this.PaidAmount,
                 WarehouseID = this?.WarehouseInfo?.WarehouseID ?? -1,
                 CreatedByUserID = clsAppSettings.CurrentUser.UserID,
             };

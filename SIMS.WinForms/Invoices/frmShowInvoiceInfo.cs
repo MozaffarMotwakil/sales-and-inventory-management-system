@@ -21,6 +21,12 @@ namespace SIMS.WinForms.Invoices
             _Invoice = clsInvoiceService.CreateInstance().Find(invoiceID);
         }
 
+        public frmShowInvoiceInfo(clsInvoice invoice)
+        {
+            InitializeComponent();
+            _Invoice = invoice;
+        }
+
         private void frmShowInvoiceInfo_Load(object sender, EventArgs e)
         {
             if (_Invoice == null)

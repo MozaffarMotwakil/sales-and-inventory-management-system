@@ -20,7 +20,7 @@ namespace BusinessLogic.Invoices
         SalesReturn
     }
 
-    public enum enInvoiceStatus
+    public enum enPaymentStatus
     {
         Paid = 1,
         PartiallyPaid,
@@ -39,7 +39,7 @@ namespace BusinessLogic.Invoices
         public string InvoiceNo { get; protected set; }
         public DateTime InvoiceDate { get; }
         public enInvoiceType InvoiceType { get; }
-        public enInvoiceStatus InvoiceStatus { get; }
+        public enPaymentStatus PaymentStatus { get; }
         public List<clsInvoiceLine> Lines { get; } = new List<clsInvoiceLine>();
         public decimal TotalSubTotal =>
             Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault());
@@ -50,23 +50,24 @@ namespace BusinessLogic.Invoices
         public decimal GrandTotal => 
             Lines.Sum(invoiceLine => invoiceLine.LineGrandTotal.GetValueOrDefault());
         public enPaymentMethod? PaymentMethod { get; }
-        public decimal? PaymentAmount { get; }
+        public decimal? PaidAmount { get; }
+        public decimal? RemainingAmount => GrandTotal - PaidAmount;
         public clsWarehouse WarehouseInfo { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreateAt { get; }
 
-        protected clsInvoice(int? invoiceID, string invoiceNo, DateTime invoiceDate, enInvoiceType invoiceType, enInvoiceStatus invoiceStatus,
-            List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? paymentAmount, int? createdByUserID, DateTime? createdAt)
+        protected clsInvoice(int? invoiceID, string invoiceNo, DateTime invoiceDate, enInvoiceType invoiceType, enPaymentStatus paymentStatus,
+            List<clsInvoiceLine> lines, int warehouseID, enPaymentMethod? paymentMethod, decimal? paidAmount, int? createdByUserID, DateTime? createdAt)
         {
             InvoiceID = invoiceID;
             InvoiceNo = invoiceNo;
             InvoiceDate = invoiceDate;
             InvoiceType = invoiceType;
-            InvoiceStatus = invoiceStatus;
+            PaymentStatus = paymentStatus;
             Lines = lines;
             WarehouseInfo = clsWarehouseService.CreateInstance().Find(warehouseID);
             PaymentMethod = paymentMethod;
-            PaymentAmount = paymentAmount;
+            PaidAmount = paidAmount;
             CreatedByUserInfo = createdByUserID.HasValue ? clsUser.Find(createdByUserID.Value) : null;
             CreateAt = createdAt;
         }
@@ -100,15 +101,15 @@ namespace BusinessLogic.Invoices
             }
         }
 
-        public string GetInvoiceStatusName()
+        public string GetPaymentStatusName()
         {
-            switch (this.InvoiceStatus)
+            switch (this.PaymentStatus)
             {
-                case enInvoiceStatus.Paid:
+                case enPaymentStatus.Paid:
                     return "مدفوعة بالكامل";
-                case enInvoiceStatus.PartiallyPaid:
+                case enPaymentStatus.PartiallyPaid:
                     return "مدفوعة جزئيا";
-                case enInvoiceStatus.Unpaid:
+                case enPaymentStatus.Unpaid:
                     return "غير مدفوعة";
                 default:
                     throw new InvalidEnumArgumentException("لم يتم التعرف على حالة الفاتورة");
@@ -167,29 +168,29 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("نوع الفاتورة", "يجب اختيار نوع فاتورة صالح.");
             }
 
-            if (!Enum.IsDefined(typeof(enInvoiceStatus), InvoiceStatus))
+            if (!Enum.IsDefined(typeof(enPaymentStatus), PaymentStatus))
             {
                 validationResult.AddError("حالة الفاتورة", "يجب اختيار حالة صالحة للفاتورة.");
             }
 
-            if (InvoiceStatus == enInvoiceStatus.Paid || InvoiceStatus == enInvoiceStatus.PartiallyPaid)
+            if (PaymentStatus == enPaymentStatus.Paid || PaymentStatus == enPaymentStatus.PartiallyPaid)
             {
                 if (!Enum.IsDefined(typeof(enPaymentMethod), PaymentMethod))
                 {
                     validationResult.AddError("طريقة الدفع", "يجب اختيار طريقة دفع صالحة.");
                 }
 
-                if (PaymentAmount == null || PaymentAmount < 0)
+                if (PaidAmount == null || PaidAmount < 0)
                 {
                     validationResult.AddError("المبلغ النقدي المدفوع", "يجب تحديد مبلغ مدفوع موجب.");
                 }
 
-                if (InvoiceStatus == enInvoiceStatus.Paid && PaymentAmount < GrandTotal)
+                if (PaymentStatus == enPaymentStatus.Paid && PaidAmount < GrandTotal)
                 {
                     validationResult.AddError("حالة الدفع", "حالة الفاتورة 'مدفوعة بالكامل' تتطلب دفع المبلغ الكلي.");
                 }
 
-                if (PaymentAmount > GrandTotal)
+                if (PaidAmount > GrandTotal)
                 {
                     validationResult.AddError("المبلغ النقدي المدفوع", "المبلغ المدفوع لا يمكن أن يتجاوز الإجمالي الكلي للفاتورة.");
                 }

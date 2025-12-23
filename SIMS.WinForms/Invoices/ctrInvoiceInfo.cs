@@ -28,13 +28,27 @@ namespace SIMS.WinForms.Invoices
                 }
 
                 _Invoice = value;
+
+                if (_Invoice.InvoiceType == enInvoiceType.PurchaseReturn || _Invoice.InvoiceType == enInvoiceType.SalesReturn)
+                {
+                    llShowOriginalInvoiceInvo.Visible = true;
+                    colProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    colDiscountRate.Visible = colDiscountAmount.Visible = colTaxRate.Visible = colTaxAmount.Visible = false;
+                }
+                else
+                {
+                    llShowOriginalInvoiceInvo.Visible = false;
+                    colProduct.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    colDiscountRate.Visible = colDiscountAmount.Visible = colTaxRate.Visible = colTaxAmount.Visible = true;
+                }
+
                 lblInvoiceNo.Text = _Invoice.InvoiceNo;
                 lblIssuedDate.Text = _Invoice.InvoiceDate.ToString("dd/MM/yyyy");
                 lblWarehouse.Text = _Invoice.WarehouseInfo.WarehouseName;
                 lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
-                lblInvoiceStatus.Text = _Invoice.GetInvoiceStatusName();
+                lblInvoiceStatus.Text = _Invoice.GetPaymentStatusName();
                 lblPaymentMethod.Text = _Invoice.GetPaymentMethodName();
-                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString() ?? "0";
+                lblPaymentAmount.Text = _Invoice.PaidAmount?.ToString() ?? "0";
                 llPartyName.Text = _Invoice.GetPartyName();
                 llCreatedByUser.Text = _Invoice.CreatedByUserInfo.UserName;
                 lblSubtotal.Text = _Invoice.TotalSubTotal.ToString();
@@ -142,6 +156,19 @@ namespace SIMS.WinForms.Invoices
             }
         }
 
+        private void llShowOriginalInvoiceInvo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (_Invoice.InvoiceType == enInvoiceType.PurchaseReturn)
+            {
+                frmShowInvoiceInfo invoiceInfo = new frmShowInvoiceInfo((_Invoice as clsPurchaseReturnInvoice).OriginalInvoiceInfo);
+                invoiceInfo.ShowDialog();
+            }
 
+            if (_Invoice.InvoiceType == enInvoiceType.SalesReturn)
+            {
+                frmShowInvoiceInfo invoiceInfo = new frmShowInvoiceInfo((_Invoice as clsSaleReturnInvoice).OriginalInvoiceInfo);
+                invoiceInfo.ShowDialog();
+            }
+        }
     }
 }

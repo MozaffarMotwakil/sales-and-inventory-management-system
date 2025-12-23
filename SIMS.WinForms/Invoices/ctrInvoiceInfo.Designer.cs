@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvInvoiceLines = new System.Windows.Forms.DataGridView();
             this.colLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +71,7 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.llShowOriginalInvoiceInvo = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbInvoiceSummary.SuspendLayout();
@@ -84,14 +85,14 @@
             this.dgvInvoiceLines.AllowUserToResizeRows = false;
             this.dgvInvoiceLines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInvoiceLines.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvInvoiceLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInvoiceLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLineNo,
@@ -105,14 +106,14 @@
             this.colTaxRate,
             this.colTaxAmount,
             this.colGrandTotal});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvInvoiceLines.Location = new System.Drawing.Point(5, 4);
             this.dgvInvoiceLines.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dgvInvoiceLines.MultiSelect = false;
@@ -223,6 +224,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.llShowOriginalInvoiceInvo);
             this.groupBox1.Controls.Add(this.llPartyName);
             this.groupBox1.Controls.Add(this.llCreatedByUser);
             this.groupBox1.Controls.Add(this.label1);
@@ -574,6 +576,18 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "الإجمالي الكلي";
             // 
+            // llShowOriginalInvoiceInvo
+            // 
+            this.llShowOriginalInvoiceInvo.AutoSize = true;
+            this.llShowOriginalInvoiceInvo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowOriginalInvoiceInvo.Location = new System.Drawing.Point(6, 14);
+            this.llShowOriginalInvoiceInvo.Name = "llShowOriginalInvoiceInvo";
+            this.llShowOriginalInvoiceInvo.Size = new System.Drawing.Size(103, 13);
+            this.llShowOriginalInvoiceInvo.TabIndex = 5;
+            this.llShowOriginalInvoiceInvo.TabStop = true;
+            this.llShowOriginalInvoiceInvo.Text = "عرض الفاتورة الأصلية";
+            this.llShowOriginalInvoiceInvo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowOriginalInvoiceInvo_LinkClicked);
+            // 
             // ctrInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,5 +651,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTaxRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTaxAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGrandTotal;
+        private System.Windows.Forms.LinkLabel llShowOriginalInvoiceInvo;
     }
 }

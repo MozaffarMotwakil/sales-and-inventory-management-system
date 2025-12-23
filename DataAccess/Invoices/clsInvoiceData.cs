@@ -40,7 +40,7 @@ namespace DataAccess.Invoices
                                     PaymentMethodID = reader["PaymentMethodID"] != DBNull.Value ?
                                         Convert.ToByte(reader["PaymentMethodID"]) :
                                         (byte?)null,
-                                    PaymentAmount = reader["PaymentAmount"] != DBNull.Value ?
+                                    PaidAmount = reader["PaymentAmount"] != DBNull.Value ?
                                         Convert.ToDecimal(reader["PaymentAmount"]) :
                                         (decimal?)null,
                                     PartyID = reader["PartyID"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["PartyID"]),
@@ -89,7 +89,7 @@ namespace DataAccess.Invoices
                     command.Parameters.AddWithValue("@TotalTaxAmount", invoiceDTO.TotalTaxAmount);
                     command.Parameters.AddWithValue("@GrandTotal", invoiceDTO.GrandTotal);
                     command.Parameters.AddWithValue("@PaymentMethodID", clsDataSettings.GetDBNullIfNull(invoiceDTO.PaymentMethodID));
-                    command.Parameters.AddWithValue("@PaymentAmount", clsDataSettings.GetDBNullIfNull(invoiceDTO.PaymentAmount));
+                    command.Parameters.AddWithValue("@PaymentAmount", clsDataSettings.GetDBNullIfNull(invoiceDTO.PaidAmount));
                     command.Parameters.AddWithValue("@PartyID", invoiceDTO.PartyID);
                     command.Parameters.AddWithValue("@WarehouseID", invoiceDTO.WarehouseID);
                     command.Parameters.AddWithValue("@OriginalInvoiceID", clsDataSettings.GetDBNullIfNull(invoiceDTO.OriginalInvoiceID));

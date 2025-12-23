@@ -17,7 +17,7 @@ namespace DTOs.Invoices
         public decimal TotalTaxAmount { get; set; }
         public decimal GrandTotal { get; set; }
         public byte? PaymentMethodID { get; set; }
-        public decimal? PaymentAmount { get; set; } 
+        public decimal? PaidAmount { get; set; } 
         public int? OriginalInvoiceID { get; set; } 
         public int WarehouseID { get; set; } 
         public int? CreatedByUserID { get; set; }
