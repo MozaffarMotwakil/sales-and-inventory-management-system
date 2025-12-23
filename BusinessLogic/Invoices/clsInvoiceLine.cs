@@ -96,13 +96,39 @@ namespace BusinessLogic.Invoices
                 }
             }
         }
-        public decimal? UnitPrice { get; set; }
+        public decimal? UnitPrice 
+        {
+            get => _UnitPrice;
+            set
+            {
+                if (value.HasValue)
+                {
+                    _UnitPrice = Math.Round(value.Value, 2);
+                }
+                else
+                {
+                    _UnitPrice = value;
+                }
+            } 
+        }
         public decimal? FinalUnitPrice 
         {
-            get => LineGrandTotal / Quantity;
+            get
+            {
+                return LineGrandTotal.HasValue && Quantity.HasValue ?
+                    Math.Round(LineGrandTotal.Value / Quantity.Value, 2) :
+                    (decimal?)null;
+            }
             private set
             {
-                _FinalUnitPrice = value;
+                if (value.HasValue)
+                {
+                    _FinalUnitPrice = Math.Round(value.Value, 2);
+                }
+                else
+                {
+                    _FinalUnitPrice = value;
+                }
             }
         } 
         public int? ConversionFactor { get; set; }
@@ -152,12 +178,12 @@ namespace BusinessLogic.Invoices
                             .Select(taxItem => taxItem.TaxInfo)
                     );
 
-                    _TaxRate = product.TaxItems
+                    _TaxRate = Math.Round(product.TaxItems
                         .Where(
                             taxItem =>
                             taxItem.TaxInfo.IsActive
                         )
-                        .Sum(taxItem => taxItem.TaxInfo.TaxRate);
+                        .Sum(taxItem => taxItem.TaxInfo.TaxRate), 2);
 
                     _TaxAmount = CalculateFinalTaxAmount();
                 }
@@ -170,7 +196,10 @@ namespace BusinessLogic.Invoices
             {
                 if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
                 {
-                    _DiscountRate = value;
+                    _DiscountRate = value.HasValue ?
+                        Math.Round(value.Value, 2) :
+                        (decimal?)null;
+
                     _DiscountAmount = CalculateDiscountAmount();
                     _TaxAmount = CalculateTaxAmount();
                     _TaxRate = CalculateTaxRate();
@@ -184,7 +213,10 @@ namespace BusinessLogic.Invoices
             {
                 if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
                 {
-                    _DiscountAmount = value;
+                    _DiscountAmount = value.HasValue ?
+                        Math.Round(value.Value, 2) :
+                        (decimal?)null;
+
                     DiscountRate = CalculateDiscountRate();
                     _TaxAmount = CalculateTaxAmount();
                     _TaxRate = CalculateTaxRate();
@@ -198,7 +230,10 @@ namespace BusinessLogic.Invoices
             {
                 if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
                 {
-                    _TaxRate = value;
+                    _TaxRate = value.HasValue ?
+                        Math.Round(value.Value, 2) :
+                        (decimal?)null;
+
                     _TaxAmount = CalculateTaxAmount();
                 }
             }
@@ -210,7 +245,10 @@ namespace BusinessLogic.Invoices
             {
                 if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
                 {
-                    _TaxAmount = value;
+                    _TaxAmount = value.HasValue ?
+                        Math.Round(value.Value, 2) :
+                        (decimal?)null;
+
                     _TaxRate = CalculateTaxRate();
                 }
             }
@@ -253,6 +291,7 @@ namespace BusinessLogic.Invoices
         private int? _ProductID;
         private int? _UnitID;
         private int? _Quantity;
+        private decimal? _UnitPrice;
         private decimal? _FinalUnitPrice;
         private decimal? _DiscountRate;
         private decimal? _DiscountAmount;
@@ -318,7 +357,6 @@ namespace BusinessLogic.Invoices
                             UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
                             ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
                             Quantity = Convert.ToInt32(row["Quantity"]),
-                            LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
                             DiscountRate = Convert.ToDecimal(row["DiscountRate"]),
                             SaleDiscounts = clsInvoiceData.GetDiscountsForSaleLine(Convert.ToInt32(row["LineID"]))
                                 .AsEnumerable()
@@ -339,6 +377,7 @@ namespace BusinessLogic.Invoices
                                 })
                                 .Where(discount => discount != null)
                                 .ToList(),
+                            TaxRate = Convert.ToDecimal(row["TaxRate"]),
                             SaleTaxes = clsInvoiceData.GetTaxesForSaleLine(Convert.ToInt32(row["LineID"]))
                                 .AsEnumerable()
                                 .Select(taxRow =>
@@ -356,7 +395,7 @@ namespace BusinessLogic.Invoices
                                 })
                                 .Where(taxItem => taxItem != null)
                                 .ToList(),
-                            TaxRate = Convert.ToDecimal(row["TaxRate"]),
+                            LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
                             LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
                         }
                     );
@@ -368,32 +407,44 @@ namespace BusinessLogic.Invoices
 
         public decimal? CalculateTaxRate()
         {
-            return (TaxAmount / (LineSubTotal - DiscountAmount)) * 100;
+            return TaxAmount.HasValue && LineSubTotal.HasValue && DiscountAmount.HasValue ?
+                Math.Round((TaxAmount / (LineSubTotal - DiscountAmount)).Value * 100, 2) :
+                (decimal?)null;
         }
 
         public decimal? CalculateDiscountRate()
         {
-            return (DiscountAmount / LineSubTotal) * 100;
+            return DiscountAmount.HasValue && LineSubTotal.HasValue ?
+                Math.Round((DiscountAmount / LineSubTotal).Value * 100, 2) :
+                (decimal?)null;
         }
 
         public decimal? CalculateTaxAmount()
         {
-            return (LineSubTotal - DiscountAmount) * (TaxRate / 100);
+            return LineSubTotal.HasValue && DiscountAmount.HasValue && TaxRate.HasValue ?
+                Math.Round(((LineSubTotal - DiscountAmount) * (TaxRate / 100)).Value, 2) :
+                (decimal?)null;
         }
 
         public decimal? CalculateFinalTaxAmount()
         {
-            return (LineSubTotal - CalculateFinalDiscountAmount()) * (TaxRate / 100);
+            return LineSubTotal.HasValue && TaxRate.HasValue ?
+                Math.Round(((LineSubTotal - CalculateFinalDiscountAmount()) * (TaxRate / 100)).Value, 2) :
+                (decimal?)null;
         }
 
         public decimal? CalculateDiscountAmount()
         {
-            return (DiscountRate / 100) * LineSubTotal;
+            return DiscountRate.HasValue && LineSubTotal.HasValue ?
+                Math.Round(((DiscountRate / 100) * LineSubTotal).Value, 2) :
+                (decimal?)null;
         }
 
         public decimal? CalculateFinalDiscountAmount()
         {
-            return CalculateDiscountAmount() + DiscountAmount;
+            return DiscountAmount.HasValue ?
+                Math.Round((CalculateDiscountAmount() + DiscountAmount).Value, 2) :
+                (decimal?)null;
         }
 
         public decimal? GetSumOfDiscountsValue(clsProduct product, clsDiscount.enValueType valueType)
@@ -403,14 +454,14 @@ namespace BusinessLogic.Invoices
                 return null;
             }
 
-            return product.DiscountItems
+            return Math.Round(product.DiscountItems
                 .Where(
                     discountItem =>
                     discountItem.UnitID == UnitID.GetValueOrDefault() && discountItem.DiscountInfo.IsActive &&
                     discountItem.DiscountInfo.IsValid && Quantity.GetValueOrDefault() >= discountItem.DiscountInfo.MinimumQuantity &&
                     discountItem.DiscountInfo.DiscountValueType == valueType
                 )
-                .Sum(discountItem => discountItem.DiscountInfo.DiscountValue);
+                .Sum(discountItem => discountItem.DiscountInfo.DiscountValue), 2);
         }
 
         public int GetRemainingQuantity()

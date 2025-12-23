@@ -30,16 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -165,14 +158,14 @@
             this.colSubTotal,
             this.colGrandTotal,
             this.colDelete});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvInvoiceLines.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvInvoiceLines.Location = new System.Drawing.Point(6, 22);
             this.dgvInvoiceLines.MultiSelect = false;
@@ -649,8 +642,6 @@
             // 
             // colUnitPrice
             // 
-            dataGridViewCellStyle3.Format = "0.##";
-            this.colUnitPrice.DefaultCellStyle = dataGridViewCellStyle3;
             this.colUnitPrice.FillWeight = 78.73761F;
             this.colUnitPrice.HeaderText = "سعر الوحدة";
             this.colUnitPrice.MaxInputLength = 9;
@@ -670,8 +661,6 @@
             // 
             // colDiscountRate
             // 
-            dataGridViewCellStyle4.Format = "0.##";
-            this.colDiscountRate.DefaultCellStyle = dataGridViewCellStyle4;
             this.colDiscountRate.HeaderText = "نسبة الخصم";
             this.colDiscountRate.Name = "colDiscountRate";
             this.colDiscountRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -680,8 +669,6 @@
             // 
             // colDiscountAmount
             // 
-            dataGridViewCellStyle5.Format = "0.##";
-            this.colDiscountAmount.DefaultCellStyle = dataGridViewCellStyle5;
             this.colDiscountAmount.HeaderText = "قيمة الخصم";
             this.colDiscountAmount.Name = "colDiscountAmount";
             this.colDiscountAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -690,8 +677,6 @@
             // 
             // colTaxRate
             // 
-            dataGridViewCellStyle6.Format = "0.##";
-            this.colTaxRate.DefaultCellStyle = dataGridViewCellStyle6;
             this.colTaxRate.HeaderText = "نسبة الضريبة";
             this.colTaxRate.Name = "colTaxRate";
             this.colTaxRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -700,8 +685,6 @@
             // 
             // colTaxAmount
             // 
-            dataGridViewCellStyle7.Format = "0.##";
-            this.colTaxAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.colTaxAmount.HeaderText = "قيمة الضريبة";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -710,8 +693,6 @@
             // 
             // colSubTotal
             // 
-            dataGridViewCellStyle8.Format = "0.##";
-            this.colSubTotal.DefaultCellStyle = dataGridViewCellStyle8;
             this.colSubTotal.HeaderText = "الإجمالي الفرعي";
             this.colSubTotal.Name = "colSubTotal";
             this.colSubTotal.ReadOnly = true;
@@ -720,8 +701,6 @@
             // 
             // colGrandTotal
             // 
-            dataGridViewCellStyle9.Format = "0.##";
-            this.colGrandTotal.DefaultCellStyle = dataGridViewCellStyle9;
             this.colGrandTotal.HeaderText = "الإجمالي الكلي";
             this.colGrandTotal.Name = "colGrandTotal";
             this.colGrandTotal.ReadOnly = true;
@@ -731,10 +710,10 @@
             // colDelete
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.NullValue = null;
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle3;
             this.colDelete.HeaderText = "حذف";
             this.colDelete.Image = global::SIMS.WinForms.Properties.Resources.delete;
             this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
