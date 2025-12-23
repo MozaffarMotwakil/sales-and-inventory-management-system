@@ -36,7 +36,7 @@ namespace BusinessLogic.Invoices
                     SaleTaxes.Clear();
                     LineGrandTotal = null;
                 }
-                
+
                 _ProductID = value;
             }
         }
@@ -69,34 +69,39 @@ namespace BusinessLogic.Invoices
 
                 _UnitID = value;
 
-                if (BaseInvoiceType == enInvoiceType.Sales || BaseInvoiceType == enInvoiceType.SalesReturn)
+                clsProduct product = ProductInfo;
+
+                if (product == null)
                 {
-                    clsProduct product = ProductInfo;
+                    return;
+                }
 
-                    if (product == null)
-                    {
-                        return;
-                    }
-
-                    if (UnitID == product.MainUnitInfo.UnitID)
+                if (UnitID == product.MainUnitInfo.UnitID)
+                {
+                    if (BaseInvoiceType == enInvoiceType.Sales)
                     {
                         UnitPrice = product.SellingPrice;
-                        ConversionFactor = 1;
                     }
-                    else
-                    {
-                        clsProductUnitConversion alternativeUnit = product.UnitConversions.FirstOrDefault(unit => unit.AlternativeUnitID == UnitID);
 
-                        if (alternativeUnit != null)
+                    ConversionFactor = 1;
+                }
+                else
+                {
+                    clsProductUnitConversion alternativeUnit = product.UnitConversions.FirstOrDefault(unit => unit.AlternativeUnitID == UnitID);
+
+                    if (alternativeUnit != null)
+                    {
+                        if (BaseInvoiceType == enInvoiceType.Sales)
                         {
                             UnitPrice = alternativeUnit.SellingPrice;
-                            ConversionFactor = alternativeUnit.ConversionFactor;
                         }
+
+                        ConversionFactor = alternativeUnit.ConversionFactor;
                     }
                 }
             }
         }
-        public decimal? UnitPrice 
+        public decimal? UnitPrice
         {
             get => _UnitPrice;
             set
@@ -109,9 +114,9 @@ namespace BusinessLogic.Invoices
                 {
                     _UnitPrice = value;
                 }
-            } 
+            }
         }
-        public decimal? FinalUnitPrice 
+        public decimal? FinalUnitPrice
         {
             get
             {
@@ -130,16 +135,21 @@ namespace BusinessLogic.Invoices
                     _FinalUnitPrice = value;
                 }
             }
-        } 
+        }
         public int? ConversionFactor { get; set; }
         public int? Quantity
         {
             get => _Quantity;
             set
             {
+                if (!ProductID.HasValue || !UnitID.HasValue)
+                {
+                    return;
+                }
+
                 _Quantity = value;
 
-                if (BaseInvoiceType == enInvoiceType.Sales || BaseInvoiceType == enInvoiceType.SalesReturn)
+                if (BaseInvoiceType == enInvoiceType.Sales)
                 {
                     clsProduct product = ProductInfo;
 
@@ -194,7 +204,7 @@ namespace BusinessLogic.Invoices
             get => _DiscountRate;
             set
             {
-                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                if (BaseInvoiceType == enInvoiceType.Purchase)
                 {
                     _DiscountRate = value.HasValue ?
                         Math.Round(value.Value, 2) :
@@ -211,13 +221,13 @@ namespace BusinessLogic.Invoices
             get => _DiscountAmount;
             set
             {
-                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                if (BaseInvoiceType == enInvoiceType.Purchase)
                 {
                     _DiscountAmount = value.HasValue ?
                         Math.Round(value.Value, 2) :
                         (decimal?)null;
 
-                    DiscountRate = CalculateDiscountRate();
+                    _DiscountRate = CalculateDiscountRate();
                     _TaxAmount = CalculateTaxAmount();
                     _TaxRate = CalculateTaxRate();
                 }
@@ -228,7 +238,7 @@ namespace BusinessLogic.Invoices
             get => _TaxRate;
             set
             {
-                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                if (BaseInvoiceType == enInvoiceType.Purchase)
                 {
                     _TaxRate = value.HasValue ?
                         Math.Round(value.Value, 2) :
@@ -243,7 +253,7 @@ namespace BusinessLogic.Invoices
             get => _TaxAmount;
             set
             {
-                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                if (BaseInvoiceType == enInvoiceType.Purchase)
                 {
                     _TaxAmount = value.HasValue ?
                         Math.Round(value.Value, 2) :
@@ -265,13 +275,17 @@ namespace BusinessLogic.Invoices
         {
             get
             {
-                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.PurchaseReturn)
+                if (BaseInvoiceType == enInvoiceType.Purchase)
                 {
                     return LineSubTotal - DiscountAmount + TaxAmount;
                 }
-                else
+                else if (BaseInvoiceType == enInvoiceType.Sales)
                 {
                     return LineSubTotal - CalculateFinalDiscountAmount() + TaxAmount;
+                }
+                else
+                {
+                    return LineSubTotal;
                 }
             }
             set
@@ -280,9 +294,23 @@ namespace BusinessLogic.Invoices
             }
         }
         public enInvoiceType BaseInvoiceType { get; set; }
-        public bool IsNewRow => ProductID == null || UnitID == null || UnitPrice == null ||
-            Quantity == null || LineSubTotal == null || LineGrandTotal == null;
-
+        public bool IsNewRow 
+        {
+            get
+            {
+                if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.Sales)
+                {
+                    return ProductID == null || UnitID == null || UnitPrice == null || Quantity == null ||
+                        DiscountRate == null || DiscountAmount == null || TaxRate == null || TaxAmount == null ||
+                        LineSubTotal == null || LineGrandTotal == null;
+                }
+                else
+                {
+                    return ProductID == null || UnitID == null || UnitPrice == null ||
+                        Quantity == null || LineSubTotal == null || LineGrandTotal == null;
+                }
+            }
+        }
         public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
         public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
         public List<clsDiscount> SaleDiscounts { get; set; }
@@ -315,8 +343,10 @@ namespace BusinessLogic.Invoices
             invoiceLines.Columns.Add("UnitPrice", typeof(decimal));
             invoiceLines.Columns.Add("ConversionFactor", typeof(decimal));
             invoiceLines.Columns.Add("Quantity", typeof(short));
-            invoiceLines.Columns.Add("Discount", typeof(decimal));
-            invoiceLines.Columns.Add("Tax", typeof(decimal));
+            invoiceLines.Columns.Add("DiscountRate", typeof(decimal));
+            invoiceLines.Columns.Add("DiscountAmount", typeof(decimal));
+            invoiceLines.Columns.Add("TaxRate", typeof(decimal));
+            invoiceLines.Columns.Add("TaxAmount", typeof(decimal));
             invoiceLines.Columns.Add("LineSubTotal", typeof(decimal));
             invoiceLines.Columns.Add("FinalLineTotal", typeof(decimal));
 
@@ -329,7 +359,9 @@ namespace BusinessLogic.Invoices
                     line.ConversionFactor,
                     (short)line.Quantity,
                     line.DiscountRate,
+                    line.DiscountAmount,
                     line.TaxRate,
+                    line.TaxAmount,
                     line.LineSubTotal,
                     line.LineGrandTotal
                 );
@@ -352,12 +384,17 @@ namespace BusinessLogic.Invoices
                             LineID = Convert.ToInt32(row["LineID"]),
                             BaseInvoiceType = invoiceType,
                             InvoiceID = Convert.ToInt32(row["InvoiceID"]),
-                            ProductID = Convert.ToInt32(row["ProductID"]),
-                            UnitID = Convert.ToInt32(row["UnitID"]),
-                            UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
+                            _ProductID = Convert.ToInt32(row["ProductID"]),
+                            _UnitID = Convert.ToInt32(row["UnitID"]),
+                            _UnitPrice = Convert.ToDecimal(row["UnitPrice"]),
                             ConversionFactor = Convert.ToInt32(row["ConversionFactor"]),
-                            Quantity = Convert.ToInt32(row["Quantity"]),
-                            DiscountRate = Convert.ToDecimal(row["DiscountRate"]),
+                            _Quantity = Convert.ToInt32(row["Quantity"]),
+                            _DiscountRate = row["DiscountRate"] != DBNull.Value ? 
+                                Convert.ToDecimal(row["DiscountRate"]) :
+                                (decimal?)null,
+                            _DiscountAmount = row["DiscountAmount"] != DBNull.Value ?
+                                Convert.ToDecimal(row["DiscountAmount"]) :
+                                (decimal?)null,
                             SaleDiscounts = clsInvoiceData.GetDiscountsForSaleLine(Convert.ToInt32(row["LineID"]))
                                 .AsEnumerable()
                                 .Select(discountRow =>
@@ -377,7 +414,12 @@ namespace BusinessLogic.Invoices
                                 })
                                 .Where(discount => discount != null)
                                 .ToList(),
-                            TaxRate = Convert.ToDecimal(row["TaxRate"]),
+                            _TaxRate = row["TaxRate"] != DBNull.Value ?
+                                Convert.ToDecimal(row["TaxRate"]) : 
+                                (decimal?)null,
+                            _TaxAmount = row["TaxAmount"] != DBNull.Value ?
+                                Convert.ToDecimal(row["TaxAmount"]) :
+                                (decimal?)null,
                             SaleTaxes = clsInvoiceData.GetTaxesForSaleLine(Convert.ToInt32(row["LineID"]))
                                 .AsEnumerable()
                                 .Select(taxRow =>
@@ -395,8 +437,8 @@ namespace BusinessLogic.Invoices
                                 })
                                 .Where(taxItem => taxItem != null)
                                 .ToList(),
-                            LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
-                            LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
+                            _LineSubTotal = Convert.ToDecimal(row["LineSubTotal"]),
+                            _LineGrandTotal = Convert.ToDecimal(row["LineGrandTotal"])
                         }
                     );
                 }
@@ -503,19 +545,29 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("سعر الوحدة", "لا يمكن أن يكون سعر الوحدة عدد سالب");
             }
 
-            if (DiscountRate < 0)
+            if (BaseInvoiceType == enInvoiceType.Purchase || BaseInvoiceType == enInvoiceType.Sales)
             {
-                validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
-            }
+                if (DiscountRate < 0)
+                {
+                    validationResult.AddError("الخصم", "لا يمكن أن تكون قيمة الخصم سالبة.");
+                }
 
-            if (DiscountAmount > LineSubTotal)
-            {
-                validationResult.AddError("الخصم", "لا يمكن أن يكون مبلغ الخصم أكبر من أو يساوي الإجمالي الفرعي.");
-            }
+                if (DiscountAmount > LineSubTotal)
+                {
+                    validationResult.AddError("الخصم", "لا يمكن أن يكون مبلغ الخصم أكبر من أو يساوي الإجمالي الفرعي.");
+                }
 
-            if (TaxRate < 0)
+                if (TaxRate < 0)
+                {
+                    validationResult.AddError("الضريبة", "لا يمكن أن تكون قيمة الضريبة سالبة.");
+                }
+            }
+            else
             {
-                validationResult.AddError("الضريبة", "لا يمكن أن تكون قيمة الضريبة سالبة.");
+                if (DiscountRate.HasValue || DiscountAmount.HasValue || TaxRate.HasValue || TaxAmount.HasValue)
+                {
+                    validationResult.AddError("الخصومات والضرائب", "لا يجب أن تحتوي فاتورة المرتجعات على خصومات أو ضرائب.");
+                }
             }
 
             return validationResult;

@@ -34,13 +34,13 @@ namespace SIMS.WinForms.Invoices
                 lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
                 lblInvoiceStatus.Text = _Invoice.GetInvoiceStatusName();
                 lblPaymentMethod.Text = _Invoice.GetPaymentMethodName();
-                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString("0.##") ?? "0";
+                lblPaymentAmount.Text = _Invoice.PaymentAmount?.ToString() ?? "0";
                 llPartyName.Text = _Invoice.GetPartyName();
                 llCreatedByUser.Text = _Invoice.CreatedByUserInfo.UserName;
-                lblSubtotal.Text = _Invoice.TotalSubTotal.ToString("0.##");
-                lblDiscountTotal.Text = _Invoice.TotalDiscountAmount.ToString("0.##");
-                lblTaxTotal.Text = _Invoice.TotalTaxAmount.ToString("0.##");
-                lblGrandTotal.Text = _Invoice.GrandTotal.ToString("0.##");
+                lblSubtotal.Text = _Invoice.TotalSubTotal.ToString();
+                lblDiscountTotal.Text = _Invoice.TotalDiscountAmount.ToString();
+                lblTaxTotal.Text = _Invoice.TotalTaxAmount.ToString();
+                lblGrandTotal.Text = _Invoice.GrandTotal.ToString();
                 _SetInvoiceLinesToDGV(_Invoice.Lines);
             }
         }
@@ -70,17 +70,11 @@ namespace SIMS.WinForms.Invoices
             }
         }
 
-        private void llCreatedByUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            return;
-        }
-
+        private void llCreatedByUser_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { }
+        
         private void _SetInvoiceLinesToDGV(List<clsInvoiceLine> invoiceLines)
         {
             dgvInvoiceLines.Rows.Clear();
-
-            // تأكد من تفعيل خاصية التلميحات للجدول
-            dgvInvoiceLines.ShowCellToolTips = true;
 
             for (int i = 0; i < invoiceLines.Count; i++)
             {
@@ -94,18 +88,17 @@ namespace SIMS.WinForms.Invoices
                         line.ProductInfo.ProductName,
                         line.UnitInfo.UnitName,
                         line.Quantity.GetValueOrDefault(),
-                        line.UnitPrice.GetValueOrDefault().ToString("0.##"),
-                        line.LineSubTotal.GetValueOrDefault().ToString("0.##"),
-                        line.DiscountRate.GetValueOrDefault().ToString("0.##") + "%",
-                        line.DiscountAmount.GetValueOrDefault().ToString("0.##"),
-                        line.TaxRate.GetValueOrDefault().ToString("0.##") + "%",
-                        line.TaxAmount.GetValueOrDefault().ToString("0.##"),
-                        line.LineGrandTotal.GetValueOrDefault().ToString("0.##")
+                        line.UnitPrice.GetValueOrDefault().ToString(),
+                        line.LineSubTotal.GetValueOrDefault().ToString(),
+                        line.DiscountRate.GetValueOrDefault().ToString() + "%",
+                        line.DiscountAmount.GetValueOrDefault().ToString(),
+                        line.TaxRate.GetValueOrDefault().ToString() + "%",
+                        line.TaxAmount.GetValueOrDefault().ToString(),
+                        line.LineGrandTotal.GetValueOrDefault().ToString()
                     );
 
                     var row = dgvInvoiceLines.Rows[rowIndex];
 
-                    // 2. التحقق من نوع الفاتورة (مبيعات أو مرتجع مبيعات فقط) كما طلبت
                     if (_Invoice.InvoiceType == enInvoiceType.Sales || _Invoice.InvoiceType == enInvoiceType.SalesReturn)
                     {
                         // --- تلميح مبلغ الخصم ---
@@ -133,7 +126,7 @@ namespace SIMS.WinForms.Invoices
                             }
                         }
 
-                        // --- تلميح الضرائب (للعمودين) ---
+                        // --- تلميح الضرائب ---
                         if (line.SaleTaxes != null && line.SaleTaxes.Any())
                         {
                             var taxes = line.SaleTaxes.Select(t => $"{t.TaxName}: {t.TaxRate}%");

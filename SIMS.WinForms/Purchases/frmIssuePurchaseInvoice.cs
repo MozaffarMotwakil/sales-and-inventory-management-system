@@ -137,42 +137,6 @@ namespace SIMS.WinForms.Inventory
                 return;
             }
 
-            // تعيين عامل التحويل
-            if (e.ColumnIndex == colUnit.Index && CurrentLine.UnitID != 0)
-            {
-                DataGridViewComboBoxCell comboBoxCell = dgvInvoiceLines.CurrentCell as DataGridViewComboBoxCell;
-
-                if (comboBoxCell != null && comboBoxCell.DataSource is DataTable unitsDataTable)
-                {
-                    DataRow selectedRow = unitsDataTable.Rows.Find(CurrentLine.UnitID);
-
-                    if (selectedRow != null)
-                    {
-                        CurrentLine.ConversionFactor = selectedRow.Field<int>("ConversionFactor");
-                    }
-                }
-            }
-
-            if (CurrentLine.ProductID != null && CurrentLine.UnitID != null)
-            {
-                if (CurrentLine.Quantity == null && CurrentLine.UnitPrice == null)
-                {
-                    CurrentLine.LineSubTotal = null;
-                    CurrentLine.DiscountRate = null;
-                    CurrentLine.TaxRate = null;
-                    CurrentLine.LineGrandTotal = null;
-                }
-            }
-            else
-            {
-                CurrentLine.Quantity = null;
-                CurrentLine.UnitPrice = null;
-                CurrentLine.LineSubTotal = null;
-                CurrentLine.DiscountRate = null;
-                CurrentLine.TaxRate = null;
-                CurrentLine.LineGrandTotal = null;
-            }
-
             ApplyEditOnDGV(e.RowIndex);
             base.UpdateInvoiceSummary();
         }

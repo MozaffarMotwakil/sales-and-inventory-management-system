@@ -39,6 +39,7 @@
             this.cbInvoiceStatus = new System.Windows.Forms.ComboBox();
             this.cbInvoiceType = new System.Windows.Forms.ComboBox();
             this.cbRange = new System.Windows.Forms.ComboBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.searchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.toolStrip.SuspendLayout();
@@ -207,6 +208,11 @@
             this.cbRange.TabIndex = 85;
             this.cbRange.SelectedIndexChanged += new System.EventHandler(this.cbRange_SelectedIndexChanged);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 38);
+            // 
             // frmSalesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,5 +270,6 @@
         private System.Windows.Forms.ComboBox cbInvoiceStatus;
         private System.Windows.Forms.ComboBox cbInvoiceType;
         private System.Windows.Forms.ComboBox cbRange;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

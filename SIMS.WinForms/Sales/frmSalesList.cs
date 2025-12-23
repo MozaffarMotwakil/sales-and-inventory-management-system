@@ -66,8 +66,8 @@ namespace SIMS.WinForms.Sales
                 return;
             }
 
-            //frmIssuePurchaseReturnInvoice returnPurchaseInvoice = new frmIssuePurchaseReturnInvoice(invoice);
-            //returnPurchaseInvoice.ShowDialog();
+            frmIssueSaleReturnInvoice returnSaleInvoice = new frmIssueSaleReturnInvoice(originalInvoice);
+            returnSaleInvoice.ShowDialog();
         }
 
         private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace SIMS.WinForms.Sales
 
             if (!string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                filters.Add($"(InvoiceNa LIKE '%{txtSearch.Text}%' OR SupplierName LIKE '%{txtSearch.Text}%')");
+                filters.Add($"(InvoiceNa LIKE '%{txtSearch.Text}%' OR CustomerName LIKE '%{txtSearch.Text}%')");
             }
 
             filters.Add($"(InvoiceDate >= #{dtpDateFrom.Value:yyyy-MM-dd}# AND InvoiceDate <= #{dtpDateTo.Value:yyyy-MM-dd}#)");

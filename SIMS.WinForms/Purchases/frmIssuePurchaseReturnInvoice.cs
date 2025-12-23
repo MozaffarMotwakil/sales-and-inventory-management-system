@@ -32,9 +32,6 @@ namespace SIMS.WinForms.Purchases
             // تعيين معلومات الفاتورة الأصلية
             txtInvoiceNo.Text = _OrginalInvoice.InvoiceNo;
             cbParty.Text = _OrginalInvoice.GetPartyName();
-
-            colDiscountAmount.ReadOnly = colDiscountRate.ReadOnly = colTaxAmount.ReadOnly =
-                colTaxRate.ReadOnly = colUnitPrice.ReadOnly = true;
         }
 
         protected override clsInvoice GetInvoiceInctance()
@@ -114,8 +111,7 @@ namespace SIMS.WinForms.Purchases
                 if (originalLine == null) return;
 
                 // جلب البيانات الثابتة من السطر الأصلي
-                CurrentLine.UnitPrice = originalLine.UnitPrice;
-                CurrentLine.ConversionFactor = originalLine.ConversionFactor;
+                CurrentLine.UnitPrice = originalLine.FinalUnitPrice;
 
                 // التحقق من الكمية المدخلة
                 if (CurrentLine.Quantity != null)
@@ -127,27 +123,10 @@ namespace SIMS.WinForms.Purchases
                     {
                         CurrentLine.Quantity = remainingQuantity;
                     }
-                    
-                    CurrentLine.DiscountRate = originalLine.DiscountRate;
-                    CurrentLine.TaxRate = originalLine.TaxRate;
-                }
-                else
-                {
-                    CurrentLine.Quantity = null;
-                    CurrentLine.LineSubTotal = null;
-                    CurrentLine.LineGrandTotal = null;
-                }
-            }
-            else
-            {
-                CurrentLine.Quantity = null;
-                CurrentLine.UnitPrice = null;
-                CurrentLine.LineSubTotal = null;
-                CurrentLine.DiscountRate = null;
-                CurrentLine.TaxRate = null;
-                CurrentLine.LineGrandTotal = null;
-            }
 
+                }
+            }
+           
             ApplyEditOnDGV(e.RowIndex);
             base.UpdateInvoiceSummary();
         }

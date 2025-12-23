@@ -54,6 +54,16 @@ namespace SIMS.WinForms.Invoices
             dtpInvoiceIssueDate.MaxDate = DateTime.Today;
             dtpInvoiceIssueDate.MinDate = DateTime.Today.AddYears(-1);
             dtpInvoiceIssueDate.Value = DateTime.Today;
+
+            if (_InvoiceType == enInvoiceType.PurchaseReturn || _InvoiceType == enInvoiceType.SalesReturn)
+            {
+                colUnitPrice.Width = colQuantity.Width = 100;
+                colSubTotal.Width = colGrandTotal.Width = 120;
+                colUnit.Width = 150;
+
+                colDiscountAmount.Visible = colDiscountRate.Visible = colTaxAmount.Visible =
+                    colTaxRate.Visible = colFinalUnitPrice.Visible = false;
+            }
         }
 
         private void _SetupDGVColumns()
@@ -264,19 +274,19 @@ namespace SIMS.WinForms.Invoices
 
             lblTotalSubTotal.Text = InvoiceLinesDataSource
                 .Where(line => !line.IsNewRow)
-                .Sum(line => line.LineSubTotal.GetValueOrDefault()).ToString("0.00");
+                .Sum(line => line.LineSubTotal.GetValueOrDefault()).ToString();
 
             lblTotalDiscount.Text = InvoiceLinesDataSource
                 .Where(line => !line.IsNewRow)
-                .Sum(line => line.DiscountAmount.GetValueOrDefault()).ToString("0.00");
+                .Sum(line => line.DiscountAmount.GetValueOrDefault()).ToString();
 
             lblTotalTax.Text = InvoiceLinesDataSource
                 .Where(line => !line.IsNewRow)
-                .Sum(line => line.TaxAmount.GetValueOrDefault()).ToString("0.00");
+                .Sum(line => line.TaxAmount.GetValueOrDefault()).ToString();
 
             lblTotalGrandTotal.Text = InvoiceLinesDataSource
                 .Where(line => !line.IsNewRow)
-                .Sum(line => line.LineGrandTotal.GetValueOrDefault()).ToString("0.00");
+                .Sum(line => line.LineGrandTotal.GetValueOrDefault()).ToString();
         }
 
         private void txtPaidAmount_Validating(object sender, System.ComponentModel.CancelEventArgs e)

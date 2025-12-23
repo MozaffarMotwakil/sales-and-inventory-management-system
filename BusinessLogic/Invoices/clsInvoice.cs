@@ -44,9 +44,9 @@ namespace BusinessLogic.Invoices
         public decimal TotalSubTotal =>
             Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault());
         public decimal TotalDiscountAmount =>
-            Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault() * invoiceLine.DiscountRate.GetValueOrDefault() / 100);
+            Lines.Sum(invoiceLine => invoiceLine.DiscountAmount.GetValueOrDefault());
         public decimal TotalTaxAmount =>
-            Lines.Sum(invoiceLine => (invoiceLine.LineSubTotal.GetValueOrDefault() - TotalDiscountAmount) * (invoiceLine.TaxRate.GetValueOrDefault() / 100));
+            Lines.Sum(invoiceLine => invoiceLine.TaxAmount.GetValueOrDefault());
         public decimal GrandTotal => 
             Lines.Sum(invoiceLine => invoiceLine.LineGrandTotal.GetValueOrDefault());
         public enPaymentMethod? PaymentMethod { get; }
