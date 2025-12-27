@@ -19,7 +19,7 @@ namespace SIMS.WinForms.Warehouses
         private void frmUpdateReorderInventoryQuantity_Load(object sender, EventArgs e)
         {
             if (_Inventory == null)
-            {
+            { 
                 clsFormMessages.ShowError("لم يتم العثور على المخزون");
                 this.Close();
                 return;

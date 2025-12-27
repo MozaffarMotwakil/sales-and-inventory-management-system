@@ -10,13 +10,13 @@ namespace BusinessLogic.Payments
     {
         public int PaymentID { get; set; }
         public clsInvoice InvoiceInfo { get; set; }
-        public float PaymentAmount { get; set; }
+        public decimal PaymentAmount { get; set; }
         public enPaymentMethod PaymentMethod { get; set; }
         public DateTime PaymentDate { get; set; }
         public clsUser CreatedByUserInfo { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public clsPayment(clsInvoice invoiceInfo, float paymentAmount, enPaymentMethod paymentMethod, DateTime paymentDate)
+        public clsPayment(clsInvoice invoiceInfo, decimal paymentAmount, enPaymentMethod paymentMethod, DateTime paymentDate)
         {
             InvoiceInfo = invoiceInfo;
             PaymentAmount = paymentAmount;
@@ -57,13 +57,13 @@ namespace BusinessLogic.Payments
                 validationResult.AddError("التاريخ", "لا يمكن أن يكون تاريخ المدفوع في المستقبل.");
             }
 
-            if (!float.TryParse(PaymentAmount.ToString(), out float sellingPrice) || sellingPrice < 1)
+            if (!decimal.TryParse(PaymentAmount.ToString(), out decimal sellingPrice) || sellingPrice < 1)
             {
                 validationResult.AddError("المبلغ المدفوع", "يجب أن يكون المبلغ المدفوع رقم أكبر من صفر");
             }
             else
             {
-                if (InvoiceInfo != null && PaymentAmount > (float)InvoiceInfo.RemainingAmount.GetValueOrDefault())
+                if (InvoiceInfo != null && PaymentAmount > InvoiceInfo.RemainingAmount.GetValueOrDefault())
                 {
                     validationResult.AddError("المبلغ المدفوع", $"المبلغ المدفوع \"{PaymentAmount}\" أكبر من المبلغ المتبقي \"{InvoiceInfo.RemainingAmount}\"");
                 }

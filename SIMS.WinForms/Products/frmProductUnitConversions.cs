@@ -48,6 +48,7 @@ namespace SIMS.WinForms.Products
             lblBaseUnitName.Text = BaseUnit;
 
             dgvUnitConversions.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
+            dgvUnitConversions.Rows[0].Cells[colGenerateBarcode.Index].Value = Resources.generate_barcode;
 
             colUnitConversion.DataSource = clsUnit.GetUnitsList()
                 .Rows
@@ -73,9 +74,28 @@ namespace SIMS.WinForms.Products
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex == colDelete.Index && (e.RowIndex != -1 || e.ColumnIndex != -1) && !dgvUnitConversions.Rows[e.RowIndex].IsNewRow)
+            if (e.ColumnIndex == colDelete.Index && (e.RowIndex != -1 && e.ColumnIndex != -1) && !dgvUnitConversions.Rows[e.RowIndex].IsNewRow)
             {
                 _DeleteRow(e.RowIndex);
+            }
+
+            if (e.ColumnIndex == colGenerateBarcode.Index && (e.RowIndex != -1 && e.ColumnIndex != -1) && !dgvUnitConversions.Rows[e.RowIndex].IsNewRow)
+            {
+                DataGridViewCell barcodeCell = dgvUnitConversions.Rows[e.RowIndex].Cells[colBarcode.Index];
+
+                if (string.IsNullOrWhiteSpace(barcodeCell.Value?.ToString()))
+                {
+                    barcodeCell.Value = clsProductService.GenerateBarcode();
+
+                    if (dgvUnitConversions.Rows[e.RowIndex].ErrorText == "لا يمكن أن يكون حقل الباركود فارغاً")
+                    {
+                        dgvUnitConversions.Rows[e.RowIndex].ErrorText = string.Empty;
+                    }
+                }
+                else
+                {
+                    clsFormMessages.ShowError("يجب أن يكون حقل الباركود فارغا لتوليد باركود جديد");
+                }
             }
         }
 
@@ -294,6 +314,7 @@ namespace SIMS.WinForms.Products
             foreach (DataGridViewRow row in dgvUnitConversions.Rows)
             {
                 row.Cells[colDelete.Index].Value = Resources.delete;
+                row.Cells[colGenerateBarcode.Index].Value = Resources.generate_barcode;
             }
         }
 

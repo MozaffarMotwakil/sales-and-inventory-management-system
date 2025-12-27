@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvInvoiceLines = new System.Windows.Forms.DataGridView();
             this.colLineNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,11 +43,11 @@
             this.colTaxAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llShowOriginalInvoiceInvo = new System.Windows.Forms.LinkLabel();
             this.llPartyName = new System.Windows.Forms.LinkLabel();
             this.llCreatedByUser = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,7 +55,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblPaymentAmount = new System.Windows.Forms.Label();
-            this.lblPaymentMethod = new System.Windows.Forms.Label();
             this.lblInvoiceStatus = new System.Windows.Forms.Label();
             this.lblInvoiceType = new System.Windows.Forms.Label();
             this.lblWarehouse = new System.Windows.Forms.Label();
@@ -71,7 +70,6 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.llShowOriginalInvoiceInvo = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceLines)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbInvoiceSummary.SuspendLayout();
@@ -85,14 +83,14 @@
             this.dgvInvoiceLines.AllowUserToResizeRows = false;
             this.dgvInvoiceLines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvInvoiceLines.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInvoiceLines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvInvoiceLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInvoiceLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLineNo,
@@ -106,14 +104,14 @@
             this.colTaxRate,
             this.colTaxAmount,
             this.colGrandTotal});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoiceLines.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvInvoiceLines.Location = new System.Drawing.Point(5, 4);
             this.dgvInvoiceLines.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dgvInvoiceLines.MultiSelect = false;
@@ -229,7 +227,6 @@
             this.groupBox1.Controls.Add(this.llCreatedByUser);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
@@ -237,7 +234,6 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lblPaymentAmount);
-            this.groupBox1.Controls.Add(this.lblPaymentMethod);
             this.groupBox1.Controls.Add(this.lblInvoiceStatus);
             this.groupBox1.Controls.Add(this.lblInvoiceType);
             this.groupBox1.Controls.Add(this.lblWarehouse);
@@ -251,10 +247,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "المعلومات الأساسية";
             // 
+            // llShowOriginalInvoiceInvo
+            // 
+            this.llShowOriginalInvoiceInvo.AutoSize = true;
+            this.llShowOriginalInvoiceInvo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowOriginalInvoiceInvo.Location = new System.Drawing.Point(6, 14);
+            this.llShowOriginalInvoiceInvo.Name = "llShowOriginalInvoiceInvo";
+            this.llShowOriginalInvoiceInvo.Size = new System.Drawing.Size(103, 13);
+            this.llShowOriginalInvoiceInvo.TabIndex = 5;
+            this.llShowOriginalInvoiceInvo.TabStop = true;
+            this.llShowOriginalInvoiceInvo.Text = "عرض الفاتورة الأصلية";
+            this.llShowOriginalInvoiceInvo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowOriginalInvoiceInvo_LinkClicked);
+            // 
             // llPartyName
             // 
             this.llPartyName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llPartyName.Location = new System.Drawing.Point(6, 142);
+            this.llPartyName.Location = new System.Drawing.Point(6, 135);
             this.llPartyName.Name = "llPartyName";
             this.llPartyName.Size = new System.Drawing.Size(228, 16);
             this.llPartyName.TabIndex = 4;
@@ -265,7 +273,7 @@
             // llCreatedByUser
             // 
             this.llCreatedByUser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llCreatedByUser.Location = new System.Drawing.Point(6, 160);
+            this.llCreatedByUser.Location = new System.Drawing.Point(6, 154);
             this.llCreatedByUser.Name = "llCreatedByUser";
             this.llCreatedByUser.Size = new System.Drawing.Size(228, 16);
             this.llCreatedByUser.TabIndex = 4;
@@ -277,7 +285,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(267, 14);
+            this.label1.Location = new System.Drawing.Point(264, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 18);
             this.label1.TabIndex = 3;
@@ -287,37 +295,27 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(248, 122);
+            this.label14.Location = new System.Drawing.Point(248, 114);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(101, 18);
             this.label14.TabIndex = 3;
             this.label14.Text = "المبلغ المدفوع:";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(263, 104);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(86, 18);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "طريقة الدفع:";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(267, 86);
+            this.label12.Location = new System.Drawing.Point(273, 95);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(82, 18);
+            this.label12.Size = new System.Drawing.Size(76, 18);
             this.label12.TabIndex = 3;
-            this.label12.Text = "حالة الفاترة:";
+            this.label12.Text = "حالة الدفع:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(268, 68);
+            this.label11.Location = new System.Drawing.Point(268, 76);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 18);
             this.label11.TabIndex = 3;
@@ -327,7 +325,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(252, 50);
+            this.label10.Location = new System.Drawing.Point(252, 57);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(97, 18);
             this.label10.TabIndex = 3;
@@ -337,17 +335,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(267, 140);
+            this.label4.Location = new System.Drawing.Point(298, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 18);
+            this.label4.Size = new System.Drawing.Size(51, 18);
             this.label4.TabIndex = 3;
-            this.label4.Text = "أصدرت إلى:";
+            this.label4.Text = "الطرف:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(260, 32);
+            this.label2.Location = new System.Drawing.Point(260, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 18);
             this.label2.TabIndex = 3;
@@ -357,7 +355,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(240, 158);
+            this.label3.Location = new System.Drawing.Point(240, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 18);
             this.label3.TabIndex = 3;
@@ -367,29 +365,18 @@
             // 
             this.lblPaymentAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPaymentAmount.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentAmount.Location = new System.Drawing.Point(6, 124);
+            this.lblPaymentAmount.Location = new System.Drawing.Point(6, 116);
             this.lblPaymentAmount.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPaymentAmount.Name = "lblPaymentAmount";
             this.lblPaymentAmount.Size = new System.Drawing.Size(228, 16);
             this.lblPaymentAmount.TabIndex = 0;
             this.lblPaymentAmount.Text = "N/A";
             // 
-            // lblPaymentMethod
-            // 
-            this.lblPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPaymentMethod.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentMethod.Location = new System.Drawing.Point(6, 106);
-            this.lblPaymentMethod.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lblPaymentMethod.Name = "lblPaymentMethod";
-            this.lblPaymentMethod.Size = new System.Drawing.Size(228, 16);
-            this.lblPaymentMethod.TabIndex = 0;
-            this.lblPaymentMethod.Text = "N/A";
-            // 
             // lblInvoiceStatus
             // 
             this.lblInvoiceStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInvoiceStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceStatus.Location = new System.Drawing.Point(6, 88);
+            this.lblInvoiceStatus.Location = new System.Drawing.Point(6, 95);
             this.lblInvoiceStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblInvoiceStatus.Name = "lblInvoiceStatus";
             this.lblInvoiceStatus.Size = new System.Drawing.Size(228, 16);
@@ -400,7 +387,7 @@
             // 
             this.lblInvoiceType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInvoiceType.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceType.Location = new System.Drawing.Point(6, 70);
+            this.lblInvoiceType.Location = new System.Drawing.Point(6, 78);
             this.lblInvoiceType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblInvoiceType.Name = "lblInvoiceType";
             this.lblInvoiceType.Size = new System.Drawing.Size(228, 16);
@@ -411,7 +398,7 @@
             // 
             this.lblWarehouse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWarehouse.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarehouse.Location = new System.Drawing.Point(6, 52);
+            this.lblWarehouse.Location = new System.Drawing.Point(6, 59);
             this.lblWarehouse.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblWarehouse.Name = "lblWarehouse";
             this.lblWarehouse.Size = new System.Drawing.Size(228, 16);
@@ -422,7 +409,7 @@
             // 
             this.lblIssuedDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblIssuedDate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIssuedDate.Location = new System.Drawing.Point(6, 34);
+            this.lblIssuedDate.Location = new System.Drawing.Point(6, 40);
             this.lblIssuedDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblIssuedDate.Name = "lblIssuedDate";
             this.lblIssuedDate.Size = new System.Drawing.Size(228, 16);
@@ -433,7 +420,7 @@
             // 
             this.lblInvoiceNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblInvoiceNo.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInvoiceNo.Location = new System.Drawing.Point(6, 16);
+            this.lblInvoiceNo.Location = new System.Drawing.Point(6, 21);
             this.lblInvoiceNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblInvoiceNo.Name = "lblInvoiceNo";
             this.lblInvoiceNo.Size = new System.Drawing.Size(228, 16);
@@ -576,18 +563,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "الإجمالي الكلي";
             // 
-            // llShowOriginalInvoiceInvo
-            // 
-            this.llShowOriginalInvoiceInvo.AutoSize = true;
-            this.llShowOriginalInvoiceInvo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llShowOriginalInvoiceInvo.Location = new System.Drawing.Point(6, 14);
-            this.llShowOriginalInvoiceInvo.Name = "llShowOriginalInvoiceInvo";
-            this.llShowOriginalInvoiceInvo.Size = new System.Drawing.Size(103, 13);
-            this.llShowOriginalInvoiceInvo.TabIndex = 5;
-            this.llShowOriginalInvoiceInvo.TabStop = true;
-            this.llShowOriginalInvoiceInvo.Text = "عرض الفاتورة الأصلية";
-            this.llShowOriginalInvoiceInvo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llShowOriginalInvoiceInvo_LinkClicked);
-            // 
             // ctrInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,9 +602,7 @@
         private System.Windows.Forms.Label lblSubtotal;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblPaymentMethod;
         private System.Windows.Forms.Label lblInvoiceStatus;
         private System.Windows.Forms.Label lblInvoiceType;
         private System.Windows.Forms.Label lblWarehouse;

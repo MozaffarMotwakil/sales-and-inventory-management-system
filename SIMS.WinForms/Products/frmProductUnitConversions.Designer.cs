@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUnitConversions = new System.Windows.Forms.DataGridView();
+            this.btnCancle = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblBaseUnitName = new System.Windows.Forms.Label();
             this.colUnitConversion = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.colConversionFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGenerateBarcode = new System.Windows.Forms.DataGridViewImageColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnCancle = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblBaseUnitName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnitConversions)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,14 +53,14 @@
             this.dgvUnitConversions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvUnitConversions.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUnitConversions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUnitConversions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUnitConversions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUnitConversions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colUnitConversion,
@@ -67,28 +68,29 @@
             this.colSellingPrice,
             this.colBarcode,
             this.colDescription,
+            this.colGenerateBarcode,
             this.colDelete});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUnitConversions.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUnitConversions.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUnitConversions.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvUnitConversions.Location = new System.Drawing.Point(12, 44);
             this.dgvUnitConversions.MultiSelect = false;
             this.dgvUnitConversions.Name = "dgvUnitConversions";
             this.dgvUnitConversions.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUnitConversions.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUnitConversions.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUnitConversions.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvUnitConversions.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvUnitConversions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -102,50 +104,6 @@
             this.dgvUnitConversions.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUnitConversions_RowsAdded);
             this.dgvUnitConversions.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvUnitConversions_RowsRemoved);
             this.dgvUnitConversions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUnitConversions_KeyDown);
-            // 
-            // colUnitConversion
-            // 
-            this.colUnitConversion.HeaderText = "الوحدة البديلة";
-            this.colUnitConversion.Name = "colUnitConversion";
-            this.colUnitConversion.Width = 175;
-            // 
-            // colConversionFactor
-            // 
-            this.colConversionFactor.HeaderText = "معامل التحويل";
-            this.colConversionFactor.MaxInputLength = 10;
-            this.colConversionFactor.Name = "colConversionFactor";
-            this.colConversionFactor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colConversionFactor.Width = 140;
-            // 
-            // colSellingPrice
-            // 
-            this.colSellingPrice.HeaderText = "سعر البيع";
-            this.colSellingPrice.Name = "colSellingPrice";
-            this.colSellingPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colSellingPrice.Width = 150;
-            // 
-            // colBarcode
-            // 
-            this.colBarcode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colBarcode.HeaderText = "الباركود";
-            this.colBarcode.Name = "colBarcode";
-            this.colBarcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colDescription
-            // 
-            this.colDescription.HeaderText = "الوصف المرئي";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
-            this.colDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colDescription.Width = 200;
-            // 
-            // colDelete
-            // 
-            this.colDelete.HeaderText = "حذف";
-            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.colDelete.Name = "colDelete";
-            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colDelete.Width = 50;
             // 
             // btnCancle
             // 
@@ -197,6 +155,57 @@
             this.lblBaseUnitName.Text = "N/A";
             this.lblBaseUnitName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // colUnitConversion
+            // 
+            this.colUnitConversion.HeaderText = "الوحدة البديلة";
+            this.colUnitConversion.Name = "colUnitConversion";
+            this.colUnitConversion.Width = 175;
+            // 
+            // colConversionFactor
+            // 
+            this.colConversionFactor.HeaderText = "معامل التحويل";
+            this.colConversionFactor.MaxInputLength = 10;
+            this.colConversionFactor.Name = "colConversionFactor";
+            this.colConversionFactor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colSellingPrice
+            // 
+            this.colSellingPrice.HeaderText = "سعر البيع";
+            this.colSellingPrice.Name = "colSellingPrice";
+            this.colSellingPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colBarcode
+            // 
+            this.colBarcode.HeaderText = "الباركود";
+            this.colBarcode.Name = "colBarcode";
+            this.colBarcode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colBarcode.Width = 280;
+            // 
+            // colDescription
+            // 
+            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescription.HeaderText = "الوصف المرئي";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.ReadOnly = true;
+            this.colDescription.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colGenerateBarcode
+            // 
+            this.colGenerateBarcode.HeaderText = "إضافة باركود";
+            this.colGenerateBarcode.Image = global::SIMS.WinForms.Properties.Resources.generate_barcode;
+            this.colGenerateBarcode.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colGenerateBarcode.Name = "colGenerateBarcode";
+            this.colGenerateBarcode.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colGenerateBarcode.Width = 50;
+            // 
+            // colDelete
+            // 
+            this.colDelete.HeaderText = "حذف";
+            this.colDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colDelete.Name = "colDelete";
+            this.colDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colDelete.Width = 50;
+            // 
             // frmProductUnitConversions
             // 
             this.AcceptButton = this.btnSave;
@@ -239,6 +248,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSellingPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBarcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
+        private System.Windows.Forms.DataGridViewImageColumn colGenerateBarcode;
         private System.Windows.Forms.DataGridViewImageColumn colDelete;
     }
 }

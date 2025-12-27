@@ -34,13 +34,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCancle = new System.Windows.Forms.Button();
             this.lblProductName = new System.Windows.Forms.Label();
             this.lblUnitName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblWarehouseName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,21 +89,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "الوحدة:";
             // 
-            // btnCancle
-            // 
-            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
-            this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(100, 175);
-            this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(114, 42);
-            this.btnCancle.TabIndex = 10;
-            this.btnCancle.Text = "    إلغاء";
-            this.btnCancle.UseVisualStyleBackColor = true;
-            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
-            // 
             // lblProductName
             // 
             this.lblProductName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -143,6 +128,26 @@
             this.panel1.Size = new System.Drawing.Size(435, 223);
             this.panel1.TabIndex = 0;
             // 
+            // lblWarehouseName
+            // 
+            this.lblWarehouseName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarehouseName.ForeColor = System.Drawing.Color.Red;
+            this.lblWarehouseName.Location = new System.Drawing.Point(17, 73);
+            this.lblWarehouseName.Name = "lblWarehouseName";
+            this.lblWarehouseName.Size = new System.Drawing.Size(326, 16);
+            this.lblWarehouseName.TabIndex = 11;
+            this.lblWarehouseName.Text = "N/A";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(372, 73);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 16);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "المخزن:";
+            // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -157,25 +162,20 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label4
+            // btnCancle
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(372, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 16);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "المخزن:";
-            // 
-            // lblWarehouseName
-            // 
-            this.lblWarehouseName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarehouseName.ForeColor = System.Drawing.Color.Red;
-            this.lblWarehouseName.Location = new System.Drawing.Point(17, 73);
-            this.lblWarehouseName.Name = "lblWarehouseName";
-            this.lblWarehouseName.Size = new System.Drawing.Size(326, 16);
-            this.lblWarehouseName.TabIndex = 11;
-            this.lblWarehouseName.Text = "N/A";
+            this.btnCancle.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
+            this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancle.Location = new System.Drawing.Point(100, 175);
+            this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(114, 42);
+            this.btnCancle.TabIndex = 10;
+            this.btnCancle.Text = "    إلغاء";
+            this.btnCancle.UseVisualStyleBackColor = true;
+            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
             // frmUpdateReorderInventoryQuantity
             // 

@@ -47,7 +47,6 @@ namespace SIMS.WinForms.Invoices
                 lblWarehouse.Text = _Invoice.WarehouseInfo.WarehouseName;
                 lblInvoiceType.Text = _Invoice.GetInvoiceTypeName();
                 lblInvoiceStatus.Text = _Invoice.GetPaymentStatusName();
-                lblPaymentMethod.Text = _Invoice.GetPaymentMethodName();
                 lblPaymentAmount.Text = _Invoice.PaidAmount?.ToString() ?? "0";
                 llPartyName.Text = _Invoice.GetPartyName();
                 llCreatedByUser.Text = _Invoice.CreatedByUserInfo.UserName;

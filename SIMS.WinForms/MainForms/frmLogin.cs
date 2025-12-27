@@ -117,6 +117,7 @@ namespace DVLD.WinForms.MainForms
 
             clsAppSettings.CurrentUser = user;
             frmMainForm mainForm = frmMainForm.CreateInstance();
+            this.Visible = false;
             mainForm.Show();
         }
 

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 using BusinessLogic.Invoices;
+using BusinessLogic.Payments;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Inventory;
+using SIMS.WinForms.Payments;
 using SIMS.WinForms.Properties;
 
 namespace SIMS.WinForms.Purchases
@@ -31,10 +34,30 @@ namespace SIMS.WinForms.Purchases
             cbRange.SelectedIndex = 6;
 
             contextMenuStrip.Items.Clear();
+
             contextMenuStrip.Items.Add("إصدار فاتورة مرتجعات");
             contextMenuStrip.Items[0].Image = Resources.Invoice_32;
             contextMenuStrip.Items[0].ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             contextMenuStrip.Items[0].Click += IssueReturnPurchaseInvoice_Click;
+
+            contextMenuStrip.Items.Add("إصدار مستند نقدي");
+            contextMenuStrip.Items[1].Image = Resources.payment_method;
+            contextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
+            contextMenuStrip.Items[1].Click += IssuePayment_Click;
+
+            clsPaymentService.CreateInstance().EntitySaved += AfterIssueNewPayment_EntitySaved;
+        }
+
+        private void AfterIssueNewPayment_EntitySaved(object sender, BusinessLogic.Interfaces.EntitySavedEventArgs e)
+        {
+            e.OperationMode = BusinessLogic.enMode.Update;
+            base.EntitySavedEvent(sender, e);
+        }
+
+        private void IssuePayment_Click(object sender, EventArgs e)
+        {
+            frmIssuePayment issuePayment = new frmIssuePayment(SelectedEntity);
+            issuePayment.ShowDialog();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -52,7 +75,7 @@ namespace SIMS.WinForms.Purchases
 
         private void IssueReturnPurchaseInvoice_Click(object sender, EventArgs e)
         {
-            clsPurchaseInvoice invoice = clsInvoiceService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvEntitiesList)) as clsPurchaseInvoice;
+            clsPurchaseInvoice invoice = SelectedEntity as clsPurchaseInvoice;
 
             if (invoice == null)
             {
@@ -83,7 +106,8 @@ namespace SIMS.WinForms.Purchases
         protected override void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             base.contextMenuStrip_Opening(sender, e);
-            e.Cancel = (SelectedEntity.InvoiceType != enInvoiceType.Purchase);
+            contextMenuStrip.Items[0].Visible = SelectedEntity.InvoiceType == enInvoiceType.Purchase;
+            contextMenuStrip.Items[1].Enabled = SelectedEntity.PaymentStatus != enPaymentStatus.Paid;
         }
 
         private void btnApplyFilter_Click(object sender, EventArgs e)

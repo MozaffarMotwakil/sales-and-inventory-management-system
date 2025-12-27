@@ -31,6 +31,7 @@ namespace SIMS.WinForms.Sales
 
             // تعيين معلومات الفاتورة الأصلية
             txtInvoiceNo.Text = _OrginalInvoice.InvoiceNo;
+            cbWarehouse.SelectedValue = _OrginalInvoice.WarehouseInfo.WarehouseID;
         }
 
         protected override clsInvoice GetInvoiceInctance()

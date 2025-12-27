@@ -22,19 +22,19 @@ namespace BusinessLogic.Invoices
                 if (_ProductID.GetValueOrDefault() != value.GetValueOrDefault())
                 {
                     _UnitID = null;
-                    UnitPrice = null;
+                    _UnitPrice = null;
                     ConversionFactor = null;
-                    Quantity = null;
-                    UnitPrice = null;
-                    FinalUnitPrice = null;
-                    LineSubTotal = null;
-                    DiscountRate = null;
-                    DiscountAmount = null;
+                    _Quantity = null;
+                    _UnitPrice = null;
+                    _FinalUnitPrice = null;
+                    _LineSubTotal = null;
+                    _DiscountRate = null;
+                    _DiscountAmount = null;
                     SaleDiscounts.Clear();
-                    TaxRate = null;
-                    TaxAmount = null;
+                    _TaxRate = null;
+                    _TaxAmount = null;
                     SaleTaxes.Clear();
-                    LineGrandTotal = null;
+                    _LineGrandTotal = null;
                 }
 
                 _ProductID = value;
@@ -52,19 +52,19 @@ namespace BusinessLogic.Invoices
 
                 if (_UnitID.GetValueOrDefault() != value.GetValueOrDefault())
                 {
-                    UnitPrice = null;
+                    _UnitPrice = null;
                     ConversionFactor = null;
-                    Quantity = null;
-                    UnitPrice = null;
-                    FinalUnitPrice = null;
-                    LineSubTotal = null;
-                    DiscountRate = null;
-                    DiscountAmount = null;
+                    _Quantity = null;
+                    _UnitPrice = null;
+                    _FinalUnitPrice = null;
+                    _LineSubTotal = null;
+                    _DiscountRate = null;
+                    _DiscountAmount = null;
                     SaleDiscounts.Clear();
-                    TaxRate = null;
-                    TaxAmount = null;
+                    _TaxRate = null;
+                    _TaxAmount = null;
                     SaleTaxes.Clear();
-                    LineGrandTotal = null;
+                    _LineGrandTotal = null;
                 }
 
                 _UnitID = value;
@@ -484,7 +484,7 @@ namespace BusinessLogic.Invoices
 
         public decimal? CalculateFinalDiscountAmount()
         {
-            return DiscountAmount.HasValue ?
+            return DiscountAmount.HasValue && DiscountRate.HasValue && LineSubTotal.HasValue ?
                 Math.Round((CalculateDiscountAmount() + DiscountAmount).Value, 2) :
                 (decimal?)null;
         }

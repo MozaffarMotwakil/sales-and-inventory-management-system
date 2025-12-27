@@ -6,7 +6,7 @@ namespace BusinessLogic.Interfaces
     {
         public int EntityID { get; }
         public string EntityName { get; }
-        public enMode OperationMode { get; }
+        public enMode OperationMode { get; set; }
         public DateTime Timestamp { get; }
         public int UserID { get; }
 

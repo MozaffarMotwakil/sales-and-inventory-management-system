@@ -202,9 +202,9 @@ namespace SIMS.WinForms
 
         private void LogoutToolStripButton_Click(object sender, EventArgs e)
         {
+            Application.OpenForms["frmLogin"].Visible = true;
             this.Close();
             frmMainForm.CreateInstance();
-            Application.OpenForms["frmLogin"].Activate();
         }
 
         private void _OpenForm(ref Form form, enFormType formType)

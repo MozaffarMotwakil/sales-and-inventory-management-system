@@ -112,6 +112,12 @@
     <Compile Include="Payments\BasePaymentsForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Payments\frmIssuePayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payments\frmIssuePayment.Designer.cs">
+      <DependentUpon>frmIssuePayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Payments\frmPaymentsList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -514,6 +520,9 @@
     <EmbeddedResource Include="Invoices\frmShowInvoiceInfo.resx">
       <DependentUpon>frmShowInvoiceInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Payments\frmIssuePayment.resx">
+      <DependentUpon>frmIssuePayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Payments\frmPaymentsList.resx">
       <DependentUpon>frmPaymentsList.cs</DependentUpon>
     </EmbeddedResource>
@@ -911,6 +920,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dividend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\payment-method.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

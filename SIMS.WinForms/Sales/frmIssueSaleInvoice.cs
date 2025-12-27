@@ -29,7 +29,37 @@ namespace SIMS.WinForms.Sales
                 .Find((int)cbWarehouse.SelectedValue)
                 .GetAvailableInventories();
 
+            cbWarehouse.SelectedIndexChanged += cbWarehouse_SelectedIndexChanged;
             dgvInvoiceLines.CellToolTipTextNeeded += dgvInvoiceLines_CellToolTipTextNeeded;
+        }
+
+        private void cbWarehouse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _WarehouseAvailableInventories = clsWarehouseService
+                .CreateInstance()
+                .Find((int)cbWarehouse.SelectedValue)
+                .GetAvailableInventories();
+        }
+
+
+        protected override void dgvInvoiceLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            base.dgvInvoiceLines_RowsAdded(sender, e);
+
+            if (dgvInvoiceLines.Rows.Count != 1)
+            {
+                cbWarehouse.Enabled = false;
+            }
+        }
+
+        protected override void dgvInvoiceLines_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            base.dgvInvoiceLines_RowsRemoved(sender, e);
+
+            if (dgvInvoiceLines.Rows.Count == 1)
+            {
+                cbWarehouse.Enabled = true;
+            }
         }
 
         private void dgvInvoiceLines_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)

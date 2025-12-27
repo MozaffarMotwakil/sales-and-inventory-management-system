@@ -43,15 +43,30 @@ namespace BusinessLogic.Invoices
         public List<clsInvoiceLine> Lines { get; } = new List<clsInvoiceLine>();
         public decimal TotalSubTotal =>
             Lines.Sum(invoiceLine => invoiceLine.LineSubTotal.GetValueOrDefault());
-        public decimal TotalDiscountAmount =>
-            Lines.Sum(invoiceLine => invoiceLine.DiscountAmount.GetValueOrDefault());
-        public decimal TotalTaxAmount =>
-            Lines.Sum(invoiceLine => invoiceLine.TaxAmount.GetValueOrDefault());
+        public decimal TotalDiscountAmount
+        {
+            get
+            {
+                return InvoiceType == enInvoiceType.Sales ?
+                    Lines.Sum(invoiceLine => invoiceLine.CalculateFinalDiscountAmount().GetValueOrDefault()) :
+                    Lines.Sum(invoiceLine => invoiceLine.DiscountAmount.GetValueOrDefault());
+            }
+        }
+        public decimal TotalTaxAmount
+        {
+            get
+            {
+                return InvoiceType == enInvoiceType.Sales ?
+                    Lines.Sum(invoiceLine => invoiceLine.CalculateFinalTaxAmount().GetValueOrDefault()) :
+                    Lines.Sum(invoiceLine => invoiceLine.TaxAmount.GetValueOrDefault());
+            }
+        }
+            
         public decimal GrandTotal => 
             Lines.Sum(invoiceLine => invoiceLine.LineGrandTotal.GetValueOrDefault());
         public enPaymentMethod? PaymentMethod { get; }
         public decimal? PaidAmount { get; }
-        public decimal? RemainingAmount => GrandTotal - PaidAmount;
+        public decimal? RemainingAmount => Math.Round((GrandTotal - PaidAmount.GetValueOrDefault()), 2);
         public clsWarehouse WarehouseInfo { get; }
         public clsUser CreatedByUserInfo { get; }
         public DateTime? CreateAt { get; }

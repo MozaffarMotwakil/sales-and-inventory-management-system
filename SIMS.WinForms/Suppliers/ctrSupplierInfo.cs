@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Invoices;
 using BusinessLogic.Parties;
+using BusinessLogic.Payments;
 using BusinessLogic.Suppliers;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Interfaces;
 using SIMS.WinForms.Invoices;
+using SIMS.WinForms.Payments;
 using SIMS.WinForms.Properties;
+using SIMS.WinForms.Purchases;
 
 namespace SIMS.WinForms.Suppliers
 {
@@ -21,6 +27,8 @@ namespace SIMS.WinForms.Suppliers
         }
 
         private clsSupplier _Supplier;
+        private clsInvoice _SelectedInvoice =>
+            clsInvoiceService.CreateInstance().Find(Convert.ToInt32(_GetCurrentDGV()?.SelectedRows[0]?.Cells["InvoiceID"].Value));
         public clsSupplier Entity
         {
             get
@@ -68,10 +76,7 @@ namespace SIMS.WinForms.Suppliers
         #region Control
         private void ctrSupplierInfo_Load(object sender, EventArgs e)
         {
-            contextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
-            contextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
-            contextMenuStrip.Items[0].Image = Resources.Invoice_32;
-            contextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+            
         }
 
         private DataGridView _GetCurrentDGV()
@@ -90,7 +95,7 @@ namespace SIMS.WinForms.Suppliers
                 return;
             }
 
-            frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(Convert.ToInt32(_GetCurrentDGV().SelectedRows[0]?.Cells["InvoiceID"].Value));
+            frmShowInvoiceInfo showInvoiceInfo = new frmShowInvoiceInfo(_SelectedInvoice);
             showInvoiceInfo.ShowPartyInfo = false;
             showInvoiceInfo.ShowDialog();
         }
@@ -150,6 +155,13 @@ namespace SIMS.WinForms.Suppliers
 
             cbPaymentType.SelectedIndex = cbPaymentMethod.SelectedIndex = 0;
             cbPaymentsRange.SelectedIndex = 4;
+
+            PaymentsContextMenuStrip.Items.Clear();
+
+            PaymentsContextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
+            PaymentsContextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
+            PaymentsContextMenuStrip.Items[0].Image = Resources.Invoice_32;
+            PaymentsContextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
 
             if (dgvPayments.Rows.Count > 0)
             {
@@ -447,6 +459,26 @@ namespace SIMS.WinForms.Suppliers
             cbInvoiceType.SelectedIndex = cbPaymentStatus.SelectedIndex = 0;
             cbInvoicesRange.SelectedIndex = 4;
 
+            InvoicesContextMenuStrip.Items.Clear();
+
+            InvoicesContextMenuStrip.Items.Add("عرض تفاصيل الفاتورة");
+            InvoicesContextMenuStrip.Items[0].Click += ShowInvoiceDetails_Click;
+            InvoicesContextMenuStrip.Items[0].Image = Resources.Invoice_32;
+            InvoicesContextMenuStrip.Items[0].ImageScaling = ToolStripItemImageScaling.None;
+
+            InvoicesContextMenuStrip.Items.Add("إصدار فاتورة مرتجعات");
+            InvoicesContextMenuStrip.Items[1].Image = Resources.Invoice_32;
+            InvoicesContextMenuStrip.Items[1].ImageScaling = ToolStripItemImageScaling.None;
+            InvoicesContextMenuStrip.Items[1].Click += IssueReturnPurchaseInvoice_Click;
+            clsInvoiceService.CreateInstance().EntitySaved += AfterIssueReturnInvoice_EntitySaved;
+
+            InvoicesContextMenuStrip.Items.Add("إصدار مستند نقدي");
+            InvoicesContextMenuStrip.Items[2].Image = Resources.payment_method;
+            InvoicesContextMenuStrip.Items[2].ImageScaling = ToolStripItemImageScaling.None;
+            InvoicesContextMenuStrip.Items[2].Click += IssuePayment_Click;
+            clsPaymentService.CreateInstance().EntitySaved += AfterIssueNewPayment_EntitySaved;
+
+
             if (dgvInvoices.RowCount > 0)
             {
                 clsFormHelper.DisableSortableDataGridViewColumns(dgvInvoices);
@@ -491,6 +523,58 @@ namespace SIMS.WinForms.Suppliers
                 cbInvoiceType.Enabled = cbPaymentStatus.Enabled =
                     cbInvoicesRange.Enabled = colPurchaseNo.Visible = false;
             }
+        }
+
+        private void dgvInvoices_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0)
+            {
+                dgvInvoices.Rows[e.RowIndex].Selected = true;
+                dgvInvoices.Columns[e.ColumnIndex].Selected = true;
+            }
+        }
+
+        private void AfterIssueReturnInvoice_EntitySaved(object sender, EntitySavedEventArgs e)
+        {
+            _LoadDataForInvoicesPage();
+        }
+
+        private void AfterIssueNewPayment_EntitySaved(object sender, EntitySavedEventArgs e)
+        {
+            _LoadDataForInvoicesPage();
+        }
+
+        private void IssueReturnPurchaseInvoice_Click(object sender, EventArgs e)
+        {
+            clsPurchaseInvoice invoice = _SelectedInvoice as clsPurchaseInvoice;
+
+            if (invoice == null)
+            {
+                clsFormMessages.ShowError($"لم يتم العثور على الفاتورة");
+                return;
+            }
+
+            if (!invoice.AreThereAnyItemsNotBeenReturned())
+            {
+                clsFormMessages.ShowError($"لا يمكن إصدار فاتورة مرتجعات جديدة, فقد تم بالفعل إرجاع كل البضاعة المشتراة في هذه الفاتورة");
+                return;
+            }
+
+            frmIssuePurchaseReturnInvoice returnPurchaseInvoice = new frmIssuePurchaseReturnInvoice(invoice);
+            returnPurchaseInvoice.ShowDialog();
+        }
+
+        private void IssuePayment_Click(object sender, EventArgs e)
+        {
+            frmIssuePayment issuePayment = new frmIssuePayment(_SelectedInvoice);
+            issuePayment.ShowDialog();
+        }
+
+        private void InvoicesContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvInvoices, e);
+            InvoicesContextMenuStrip.Items[1].Visible = _SelectedInvoice.InvoiceType == enInvoiceType.Purchase;
+            InvoicesContextMenuStrip.Items[2].Enabled = _SelectedInvoice.PaymentStatus != enPaymentStatus.Paid;
         }
 
         private void dgvInvoices_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)

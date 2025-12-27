@@ -60,6 +60,7 @@
             // 
             // cbWarehouse
             // 
+            this.cbWarehouse.Enabled = false;
             this.cbWarehouse.Location = new System.Drawing.Point(273, 45);
             // 
             // cbParty

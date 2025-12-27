@@ -69,7 +69,7 @@ namespace BusinessLogic.Payments
 
             byte newInvoiceStatusID = 0;
 
-            if (payment.PaymentAmount + (float)payment.InvoiceInfo.RemainingAmount.GetValueOrDefault() == (float)payment.InvoiceInfo.GrandTotal)
+            if (payment.PaymentAmount - payment.InvoiceInfo.RemainingAmount.GetValueOrDefault() == 0)
             {
                 newInvoiceStatusID = ((byte)enPaymentStatus.Paid);
             }

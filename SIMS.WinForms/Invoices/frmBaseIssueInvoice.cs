@@ -101,12 +101,12 @@ namespace SIMS.WinForms.Invoices
         }
 
 
-        private void dgvInvoiceLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        protected virtual void dgvInvoiceLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             _UpdateRowsDetails();
         }
 
-        private void dgvInvoiceLines_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        protected virtual void dgvInvoiceLines_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             _UpdateRowsDetails();
         }
