@@ -71,6 +71,7 @@
     <Compile Include="Products\clsProductUnitData.cs" />
     <Compile Include="Products\clsProductCategoryData.cs" />
     <Compile Include="Products\clsProductData.cs" />
+    <Compile Include="Reports\clsReportData.cs" />
     <Compile Include="Suppliers\clsSupplierData.cs" />
     <Compile Include="Parties\clsCountryData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
