@@ -7,7 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic.Products;
 using BusinessLogic.Reports;
+using BusinessLogic.Warehouses;
+using DVLD.WinForms.Utils;
+using SIMS.WinForms.Properties;
+using SIMS.WinForms.Suppliers;
+using SIMS.WinForms.Warehouses;
 
 namespace SIMS.WinForms.Dashboard
 {
@@ -34,6 +40,187 @@ namespace SIMS.WinForms.Dashboard
 
             lblTodayTotalProfits.Text = dailySummary.TodayProfit.ToString("0.##") + " ج.س";
             lblTodayProfitRate.Text = dailySummary.TodayProfitRate.ToString("0.##") + "%";
+
+            dgvRunningLowProducts.DataSource = clsInventoryService.CreateInstance().GetRunningLowInventories();
+            _ResetColumnsOfDGV();
+
+            dgvRunningLowProducts.CellMouseDown += clsFormHelper.SelectingOnCurrentRowByRightMouse;
         }
+
+        private void dgvRunningLowProducts_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            clsFormHelper.ApplyGreenYellowRedRowStyle(dgvRunningLowProducts, e, "InventoryStatus", "آمن", "منخفض", "نفذ");
+        }
+
+        private void _ResetColumnsOfDGV()
+        {
+            if (dgvRunningLowProducts.RowCount > 0)
+            {
+                dgvRunningLowProducts.ColumnHeadersDefaultCellStyle.Font =
+                   new Font("Tahoma", 7, FontStyle.Bold);
+
+                dgvRunningLowProducts.DefaultCellStyle.Font =
+                    new Font("Tahoma", 8);
+
+                clsFormHelper.DisableSortableDataGridViewColumns(dgvRunningLowProducts);
+
+                dgvRunningLowProducts.Columns[0].HeaderText = "معرف المخزون";
+                dgvRunningLowProducts.Columns[0].Visible = false;
+
+                dgvRunningLowProducts.Columns[1].HeaderText = "معرف المنتج";
+                dgvRunningLowProducts.Columns[1].Visible = false;
+
+                dgvRunningLowProducts.Columns[2].HeaderText = "المنتج";
+                dgvRunningLowProducts.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                dgvRunningLowProducts.Columns[3].HeaderText = "الصنف/الفئة";
+                dgvRunningLowProducts.Columns[3].Width = 150;
+                dgvRunningLowProducts.Columns[3].Visible = false;
+
+                dgvRunningLowProducts.Columns[4].HeaderText = "معرف الوحدة";
+                dgvRunningLowProducts.Columns[4].Visible = false;
+
+                dgvRunningLowProducts.Columns[5].HeaderText = "الوحدة";
+                dgvRunningLowProducts.Columns[5].Width = 90;
+
+                dgvRunningLowProducts.Columns[6].HeaderText = "معرف المخزن";
+                dgvRunningLowProducts.Columns[6].Visible = false;
+
+                dgvRunningLowProducts.Columns[7].HeaderText = "المخزن";
+                dgvRunningLowProducts.Columns[7].Width = 120;
+
+                dgvRunningLowProducts.Columns[8].HeaderText = "حد إعادة الطلب";
+                dgvRunningLowProducts.Columns[8].Width = 55;
+
+                dgvRunningLowProducts.Columns[9].HeaderText = "الكمية الحالية";
+                dgvRunningLowProducts.Columns[9].Width = 55;
+
+                dgvRunningLowProducts.Columns[10].HeaderText = "متوسط سعر الشراء (جنيه)";
+                dgvRunningLowProducts.Columns[10].Width = 85;
+                dgvRunningLowProducts.Columns[10].DefaultCellStyle.Format = "0.##";
+                dgvRunningLowProducts.Columns[10].Visible = false;
+
+                dgvRunningLowProducts.Columns[11].HeaderText = "سعر البيع (جنيه)";
+                dgvRunningLowProducts.Columns[11].Width = 85;
+                dgvRunningLowProducts.Columns[11].DefaultCellStyle.Format = "0.##";
+                dgvRunningLowProducts.Columns[11].Visible = false;
+
+                dgvRunningLowProducts.Columns[12].HeaderText = "تكلفة شراء المخزون (جنيه)";
+                dgvRunningLowProducts.Columns[12].Width = 85;
+                dgvRunningLowProducts.Columns[12].DefaultCellStyle.Format = "0.##";
+                dgvRunningLowProducts.Columns[12].Visible = false;
+
+                dgvRunningLowProducts.Columns[13].HeaderText = "قيمة بيع المخزون (جنيه)";
+                dgvRunningLowProducts.Columns[13].Width = 85;
+                dgvRunningLowProducts.Columns[13].DefaultCellStyle.Format = "0.##";
+                dgvRunningLowProducts.Columns[13].Visible = false;
+
+                dgvRunningLowProducts.Columns[14].HeaderText = "الربح المتوقع (جنيه)";
+                dgvRunningLowProducts.Columns[14].Width = 85;
+                dgvRunningLowProducts.Columns[14].DefaultCellStyle.Format = "0.##";
+                dgvRunningLowProducts.Columns[14].Visible = false;
+
+                dgvRunningLowProducts.Columns[15].HeaderText = "معدل الربح (%)";
+                dgvRunningLowProducts.Columns[15].Width = 85;
+                dgvRunningLowProducts.Columns[15].Visible = false;
+
+                dgvRunningLowProducts.Columns[16].HeaderText = "آخر حركة شراء";
+                dgvRunningLowProducts.Columns[16].Width = 125;
+                dgvRunningLowProducts.Columns[16].Visible = false;
+
+                dgvRunningLowProducts.Columns[17].HeaderText = "آخر حركة بيع";
+                dgvRunningLowProducts.Columns[17].Width = 125;
+                dgvRunningLowProducts.Columns[17].Visible = false;
+
+                dgvRunningLowProducts.Columns[18].HeaderText = "آخر حركة نقل";
+                dgvRunningLowProducts.Columns[18].Width = 125;
+                dgvRunningLowProducts.Columns[18].Visible = false;
+
+                dgvRunningLowProducts.Columns[19].HeaderText = "حالة المخزون";
+                dgvRunningLowProducts.Columns[19].Width = 85;
+                dgvRunningLowProducts.Columns[19].Visible = false;
+            }
+        }
+
+        private void GoToInventoriesListtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvRunningLowProducts.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsInventory currentInventory = clsInventoryService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvRunningLowProducts, "InventoryID"));
+
+            if (currentInventory != null)
+            {
+                frmInventoriesList inventoriesList = new frmInventoriesList(
+                    productName: currentInventory.ProductInfo.ProductName,
+                    unitName: currentInventory.UnitInfo.UnitName,
+                    warehouseName: currentInventory.WarehouseInfo.WarehouseName
+                    );
+
+                frmMainForm.OpenForm(inventoriesList);
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزون");
+            }
+        }
+
+        private void ShowStockTransactionsListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvRunningLowProducts.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsInventory currentInventory = clsInventoryService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvRunningLowProducts, "InventoryID"));
+
+            if (currentInventory != null)
+            {
+                frmStockTransactionsList inventoryTransactions = new frmStockTransactionsList(
+                    currentInventory.ProductInfo.ProductName,
+                    currentInventory.UnitInfo.UnitName,
+                    currentInventory.WarehouseInfo.WarehouseName
+                    );
+
+                frmMainForm.OpenForm(inventoryTransactions);
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزون");
+            }
+        }
+
+        private void SuppliedItemsLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvRunningLowProducts.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            clsInventory currentInventory = clsInventoryService.CreateInstance().Find(clsFormHelper.GetSelectedRowID(dgvRunningLowProducts, "InventoryID"));
+
+            if (currentInventory != null)
+            {
+                frmSuppliedItemsLogList suppliedItemsLogList = new frmSuppliedItemsLogList(
+                    productName: currentInventory.ProductInfo.ProductName,
+                    unitName: currentInventory.UnitInfo.UnitName,
+                    warehouseName: currentInventory.WarehouseInfo.WarehouseName
+                    );
+
+                frmMainForm.OpenForm(suppliedItemsLogList);
+            }
+            else
+            {
+                clsFormMessages.ShowError("لم يتم العثور على المخزون");
+            }
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            clsFormHelper.PreventContextMenuOnEmptyClick(dgvRunningLowProducts, e);
+        }
+
     }
 }

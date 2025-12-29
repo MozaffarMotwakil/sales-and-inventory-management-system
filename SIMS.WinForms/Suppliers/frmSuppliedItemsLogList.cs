@@ -17,6 +17,7 @@ namespace SIMS.WinForms.Suppliers
         private string _SupplierName;
         private string _ProductName;
         private string _UnitName;
+        private string _WarehouseName;
 
         public frmSuppliedItemsLogList()
         {
@@ -24,13 +25,15 @@ namespace SIMS.WinForms.Suppliers
             _ShowMode = enShowMode.Normal;
         }
 
-        public frmSuppliedItemsLogList(string supplierName = "كل الموردين", string productName = "كل المنتجات", string unitName = "كل الوحدات")
+        public frmSuppliedItemsLogList(string supplierName = "كل الموردين", string productName = "كل المنتجات",
+            string unitName = "كل الوحدات", string warehouseName = "كل المخازن")
         {
             InitializeComponent();
             frmMainForm.CreateInstance().lblCurrentFormName.Text = this.Text;
             _SupplierName = string.IsNullOrWhiteSpace(supplierName) ? "كل الموردين" : supplierName;
             _ProductName = string.IsNullOrWhiteSpace(productName) ? "كل المنتجات" : productName;
             _UnitName = string.IsNullOrWhiteSpace(unitName) ? "كل الوحدات" : unitName;
+            _WarehouseName = string.IsNullOrWhiteSpace(warehouseName) ? "كل المخازن" : warehouseName;
             _ShowMode = enShowMode.Special;
         }
 
@@ -91,6 +94,7 @@ namespace SIMS.WinForms.Suppliers
                 cbSupplier.SelectedItem = _SupplierName;
                 cbProduct.SelectedItem = _ProductName;
                 cbUnit.SelectedItem = _UnitName;
+                cbWarehouse.SelectedItem = _WarehouseName;
                 btnApplyFilter_Click(sender, e);
             }
 

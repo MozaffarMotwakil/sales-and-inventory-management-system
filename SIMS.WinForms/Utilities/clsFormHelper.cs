@@ -338,6 +338,32 @@ namespace DVLD.WinForms.Utils
             return -1;
         }
 
+        public static int GetSelectedRowID(DataGridView dataGridView, string columnName)
+        {
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                int.TryParse(dataGridView.SelectedRows[0].Cells[columnName].Value.ToString(), out int ID);
+                return ID;
+            }
+
+            if (dataGridView.CurrentRow.Index >= 0)
+            {
+                int.TryParse(dataGridView.Rows[dataGridView.CurrentRow.Index].Cells[columnName].Value.ToString(), out int ID);
+                return ID;
+            }
+
+            return -1;
+        }
+
+        public static void SelectingOnCurrentRowByRightMouse(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button is MouseButtons.Right && e.RowIndex >= 0 && sender is DataGridView dataGridView)
+            {
+                dataGridView.Rows[e.RowIndex].Selected = true;
+                dataGridView.Columns[e.ColumnIndex].Selected = true;
+            }
+        }
+
         public static Point GetCurrentPoint(Control control)
         {
             return control.PointToClient(Cursor.Position);

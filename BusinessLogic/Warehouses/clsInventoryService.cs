@@ -75,6 +75,18 @@ namespace BusinessLogic.Warehouses
             return clsInventoryData.GetAllInventories();
         }
 
+        public DataTable GetRunningLowInventories()
+        {
+            return clsInventoryData.GetAllInventories()
+                .AsEnumerable()
+                .Where(
+                    inventory =>
+                    inventory["InventoryStatus"].Equals("منخفض") || inventory["InventoryStatus"].Equals("نفذ")
+                )
+                .OrderByDescending(inventory => inventory["InventoryStatus"])
+                .CopyToDataTable();
+        }
+
         public static int GetInventoryQuantity(int warehouseID, int productID, int unitID)
         {
             return clsInventoryData.GetInventoryQuantity(warehouseID, productID, unitID);
