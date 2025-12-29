@@ -25,12 +25,12 @@ namespace SIMS.WinForms.Dashboard
             lblTodaySales.Text = dailySummary.TodaySales.ToString("0.##") + " ج.س";
             lblTodayTotalSalesReturn.Text = dailySummary.TodaySalesReturn.ToString("0.##") + " ج.س";
             lblTodayNetSales.Text = dailySummary.TodayNetSales.ToString("0.##") + " ج.س";
-            lblTodaySalesInvoices.Text = dailySummary.TodaySalesInvoiceCount.ToString() + " فاتورة بيع";
+            lblTodaySalesInvoices.Text = dailySummary.TodaySalesInvoiceCount.ToString();
 
             lblTodayPurchases.Text = dailySummary.TodayPurchases.ToString("0.##") + " ج.س";
             lblTodayPurchasesReturn.Text = dailySummary.TodayPurchasesReturn.ToString("0.##") + " ج.س";
             lblTodayNetPurchases.Text = dailySummary.TodayNetPurchases.ToString("0.##") + " ج.س";
-            lblTodayPurchasesInvoices.Text = dailySummary.TodayPurchasesInvoiceCount.ToString() + " فاتورة شراء";
+            lblTodayPurchasesInvoices.Text = dailySummary.TodayPurchasesInvoiceCount.ToString();
 
             lblTodayTotalProfits.Text = dailySummary.TodayProfit.ToString("0.##") + " ج.س";
             lblTodayProfitRate.Text = dailySummary.TodayProfitRate.ToString("0.##") + "%";
