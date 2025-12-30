@@ -433,7 +433,7 @@
             this.SuppliedItemsLogToolStripMenuItem});
             this.contextMenuStrip.Name = "SuppliersContextMenuStrip";
             this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip.Size = new System.Drawing.Size(201, 118);
+            this.contextMenuStrip.Size = new System.Drawing.Size(201, 140);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             this.contextMenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
@@ -445,7 +445,6 @@
             this.GoToInventoriesListtoolStripMenuItem.Size = new System.Drawing.Size(200, 38);
             this.GoToInventoriesListtoolStripMenuItem.Text = "الإنتقال لقائمة المخزون";
             this.GoToInventoriesListtoolStripMenuItem.Click += new System.EventHandler(this.GoToInventoriesListtoolStripMenuItem_Click);
-            this.GoToInventoriesListtoolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // ShowStockTransactionsListToolStripMenuItem
             // 
@@ -455,7 +454,6 @@
             this.ShowStockTransactionsListToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
             this.ShowStockTransactionsListToolStripMenuItem.Text = "عرض حركات المخزون";
             this.ShowStockTransactionsListToolStripMenuItem.Click += new System.EventHandler(this.ShowStockTransactionsListToolStripMenuItem_Click);
-            this.ShowStockTransactionsListToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // SuppliedItemsLogToolStripMenuItem
             // 
@@ -465,7 +463,6 @@
             this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
             this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
             this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
-            this.SuppliedItemsLogToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // chartCategoriesSales
             // 
