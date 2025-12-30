@@ -11,5 +11,12 @@ namespace DataAccess.Reports
                 "usp_Reports_GetDailySummary"
                 );
         }
+
+        public static DataTable GetTopCategorySalesForCurrentMonth()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Reports_GetTopCategorySales"
+                );
+        }
     }
 }

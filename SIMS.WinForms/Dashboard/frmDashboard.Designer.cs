@@ -39,7 +39,6 @@
             this.lblTodaySales = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.lblTodayNetSales = new System.Windows.Forms.Label();
             this.lblTodayTotalSalesReturn = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -62,24 +61,23 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dgvRunningLowProducts = new System.Windows.Forms.DataGridView();
-            this.chartDepartmentalSales = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label3 = new System.Windows.Forms.Label();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.GoToInventoriesListtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowStockTransactionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chartCategoriesSales = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblCategorySalesTextHeder = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.lblTodayPurchasesInvoices = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.GoToInventoriesListtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShowStockTransactionsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SuppliedItemsLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel9.SuspendLayout();
@@ -87,7 +85,8 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLowProducts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartDepartmentalSales)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartCategoriesSales)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
@@ -96,7 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -106,11 +104,11 @@
             this.panel1.Controls.Add(this.lblTodaySales);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(12, 49);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(269, 126);
             this.panel1.TabIndex = 0;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodaySales
             // 
@@ -121,6 +119,7 @@
             this.lblTodaySales.TabIndex = 1;
             this.lblTodaySales.Text = "999.999.999.99 ج.س";
             this.lblTodaySales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodaySales.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox1
             // 
@@ -131,6 +130,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label2
             // 
@@ -141,19 +141,7 @@
             this.label2.Size = new System.Drawing.Size(133, 25);
             this.label2.TabIndex = 1;
             this.label2.Text = "مبيعات اليوم";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 39);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = false;
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayNetSales
             // 
@@ -164,6 +152,7 @@
             this.lblTodayNetSales.TabIndex = 1;
             this.lblTodayNetSales.Text = "999.999.999.99 ج.س";
             this.lblTodayNetSales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayNetSales.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayTotalSalesReturn
             // 
@@ -174,6 +163,7 @@
             this.lblTodayTotalSalesReturn.TabIndex = 1;
             this.lblTodayTotalSalesReturn.Text = "999.999.999.99 ج.س";
             this.lblTodayTotalSalesReturn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayTotalSalesReturn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label7
             // 
@@ -185,6 +175,7 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "صافي المبيعات:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel9
             // 
@@ -200,6 +191,7 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(269, 126);
             this.panel9.TabIndex = 0;
+            this.panel9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label6
             // 
@@ -210,6 +202,7 @@
             this.label6.Size = new System.Drawing.Size(186, 25);
             this.label6.TabIndex = 1;
             this.label6.Text = "مرتجعات المبيعات";
+            this.label6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayNetPurchases
             // 
@@ -220,6 +213,7 @@
             this.lblTodayNetPurchases.TabIndex = 3;
             this.lblTodayNetPurchases.Text = "999.999.999.99 ج.س";
             this.lblTodayNetPurchases.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayNetPurchases.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayPurchasesReturn
             // 
@@ -230,6 +224,7 @@
             this.lblTodayPurchasesReturn.TabIndex = 4;
             this.lblTodayPurchasesReturn.Text = "999.999.999.99 ج.س";
             this.lblTodayPurchasesReturn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayPurchasesReturn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label13
             // 
@@ -240,6 +235,7 @@
             this.label13.Size = new System.Drawing.Size(118, 16);
             this.label13.TabIndex = 5;
             this.label13.Text = "صافي المشتريات:";
+            this.label13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayPurchases
             // 
@@ -250,6 +246,7 @@
             this.lblTodayPurchases.TabIndex = 1;
             this.lblTodayPurchases.Text = "999.999.999.99 ج.س";
             this.lblTodayPurchases.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayPurchases.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label1
             // 
@@ -260,6 +257,7 @@
             this.label1.Size = new System.Drawing.Size(155, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "مشتريات اليوم";
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox2
             // 
@@ -271,6 +269,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel4
             // 
@@ -283,6 +282,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(269, 126);
             this.panel4.TabIndex = 0;
+            this.panel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox5
             // 
@@ -293,6 +293,7 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodaySalesInvoices
             // 
@@ -303,6 +304,7 @@
             this.lblTodaySalesInvoices.TabIndex = 1;
             this.lblTodaySalesInvoices.Text = "1500";
             this.lblTodaySalesInvoices.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodaySalesInvoices.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label10
             // 
@@ -313,6 +315,7 @@
             this.label10.Size = new System.Drawing.Size(155, 25);
             this.label10.TabIndex = 1;
             this.label10.Text = "فواتير المبيعات";
+            this.label10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayProfitRate
             // 
@@ -323,6 +326,7 @@
             this.lblTodayProfitRate.TabIndex = 1;
             this.lblTodayProfitRate.Text = "100.00%";
             this.lblTodayProfitRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayProfitRate.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayTotalProfits
             // 
@@ -333,6 +337,7 @@
             this.lblTodayTotalProfits.TabIndex = 1;
             this.lblTodayTotalProfits.Text = "999.999.999.99 ج.س";
             this.lblTodayTotalProfits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayTotalProfits.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label5
             // 
@@ -343,6 +348,7 @@
             this.label5.Size = new System.Drawing.Size(107, 23);
             this.label5.TabIndex = 1;
             this.label5.Text = "نسبة الربح";
+            this.label5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label15
             // 
@@ -353,6 +359,7 @@
             this.label15.Size = new System.Drawing.Size(110, 25);
             this.label15.TabIndex = 1;
             this.label15.Text = "أرباح اليوم";
+            this.label15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label8
             // 
@@ -363,6 +370,7 @@
             this.label8.Size = new System.Drawing.Size(261, 25);
             this.label8.TabIndex = 1;
             this.label8.Text = "نظرة عامة على الأداء اليومي";
+            this.label8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label16
             // 
@@ -375,6 +383,7 @@
             this.label16.Size = new System.Drawing.Size(362, 25);
             this.label16.TabIndex = 1;
             this.label16.Text = "البضاعة التي وصلت إلى حد إعادة الطلب";
+            this.label16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // dgvRunningLowProducts
             // 
@@ -412,38 +421,84 @@
             this.dgvRunningLowProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRunningLowProducts.Size = new System.Drawing.Size(544, 332);
             this.dgvRunningLowProducts.TabIndex = 2;
+            this.dgvRunningLowProducts.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvRunningLowProducts_DataBindingComplete);
             this.dgvRunningLowProducts.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgvRunningLowProducts_RowPrePaint);
+            this.dgvRunningLowProducts.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgvRunningLowProducts_MouseDown);
             // 
-            // chartDepartmentalSales
+            // contextMenuStrip
             // 
-            this.chartDepartmentalSales.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GoToInventoriesListtoolStripMenuItem,
+            this.ShowStockTransactionsListToolStripMenuItem,
+            this.SuppliedItemsLogToolStripMenuItem});
+            this.contextMenuStrip.Name = "SuppliersContextMenuStrip";
+            this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.contextMenuStrip.Size = new System.Drawing.Size(201, 118);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
+            this.contextMenuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
+            // 
+            // GoToInventoriesListtoolStripMenuItem
+            // 
+            this.GoToInventoriesListtoolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
+            this.GoToInventoriesListtoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.GoToInventoriesListtoolStripMenuItem.Name = "GoToInventoriesListtoolStripMenuItem";
+            this.GoToInventoriesListtoolStripMenuItem.Size = new System.Drawing.Size(200, 38);
+            this.GoToInventoriesListtoolStripMenuItem.Text = "الإنتقال لقائمة المخزون";
+            this.GoToInventoriesListtoolStripMenuItem.Click += new System.EventHandler(this.GoToInventoriesListtoolStripMenuItem_Click);
+            this.GoToInventoriesListtoolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
+            // 
+            // ShowStockTransactionsListToolStripMenuItem
+            // 
+            this.ShowStockTransactionsListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
+            this.ShowStockTransactionsListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ShowStockTransactionsListToolStripMenuItem.Name = "ShowStockTransactionsListToolStripMenuItem";
+            this.ShowStockTransactionsListToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
+            this.ShowStockTransactionsListToolStripMenuItem.Text = "عرض حركات المخزون";
+            this.ShowStockTransactionsListToolStripMenuItem.Click += new System.EventHandler(this.ShowStockTransactionsListToolStripMenuItem_Click);
+            this.ShowStockTransactionsListToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
+            // 
+            // SuppliedItemsLogToolStripMenuItem
+            // 
+            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
+            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
+            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
+            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
+            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
+            this.SuppliedItemsLogToolStripMenuItem.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
+            // 
+            // chartCategoriesSales
+            // 
+            this.chartCategoriesSales.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.chartDepartmentalSales.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.chartCategoriesSales.BackColor = System.Drawing.Color.LightSeaGreen;
             chartArea1.Name = "ChartArea1";
-            this.chartDepartmentalSales.ChartAreas.Add(chartArea1);
+            this.chartCategoriesSales.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.chartDepartmentalSales.Legends.Add(legend1);
-            this.chartDepartmentalSales.Location = new System.Drawing.Point(564, 357);
-            this.chartDepartmentalSales.Name = "chartDepartmentalSales";
+            this.chartCategoriesSales.Legends.Add(legend1);
+            this.chartCategoriesSales.Location = new System.Drawing.Point(564, 357);
+            this.chartCategoriesSales.Name = "chartCategoriesSales";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chartDepartmentalSales.Series.Add(series1);
-            this.chartDepartmentalSales.Size = new System.Drawing.Size(544, 332);
-            this.chartDepartmentalSales.TabIndex = 4;
-            this.chartDepartmentalSales.Text = "chart1";
+            this.chartCategoriesSales.Series.Add(series1);
+            this.chartCategoriesSales.Size = new System.Drawing.Size(544, 332);
+            this.chartCategoriesSales.TabIndex = 4;
+            this.chartCategoriesSales.Text = "chart1";
+            this.chartCategoriesSales.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
-            // label3
+            // lblCategorySalesTextHeder
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(562, 319);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(224, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "مبيعات الأصناف المختلفة";
+            this.lblCategorySalesTextHeder.AutoSize = true;
+            this.lblCategorySalesTextHeder.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCategorySalesTextHeder.Location = new System.Drawing.Point(562, 319);
+            this.lblCategorySalesTextHeder.Name = "lblCategorySalesTextHeder";
+            this.lblCategorySalesTextHeder.Size = new System.Drawing.Size(366, 25);
+            this.lblCategorySalesTextHeder.TabIndex = 1;
+            this.lblCategorySalesTextHeder.Text = "مبيعات الأصناف المختلفة (الشهر الحالي)";
+            this.lblCategorySalesTextHeder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel3
             // 
@@ -458,6 +513,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(269, 126);
             this.panel3.TabIndex = 29;
+            this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label4
             // 
@@ -468,6 +524,7 @@
             this.label4.Size = new System.Drawing.Size(177, 25);
             this.label4.TabIndex = 1;
             this.label4.Text = "فواتير المشتريات";
+            this.label4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // lblTodayPurchasesInvoices
             // 
@@ -478,6 +535,7 @@
             this.lblTodayPurchasesInvoices.TabIndex = 1;
             this.lblTodayPurchasesInvoices.Text = "1500";
             this.lblTodayPurchasesInvoices.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTodayPurchasesInvoices.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox3
             // 
@@ -489,6 +547,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel2
             // 
@@ -497,26 +556,13 @@
             this.panel2.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.lblTodayPurchases);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Location = new System.Drawing.Point(564, 49);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(269, 126);
             this.panel2.TabIndex = 0;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::SIMS.WinForms.Properties.Resources.view_details;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 39);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
+            this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel5
             // 
@@ -531,6 +577,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(269, 126);
             this.panel5.TabIndex = 0;
+            this.panel5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // label9
             // 
@@ -541,6 +588,7 @@
             this.label9.Size = new System.Drawing.Size(208, 25);
             this.label9.TabIndex = 1;
             this.label9.Text = "مرتجعات المشتريات";
+            this.label9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel6
             // 
@@ -555,6 +603,7 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(269, 126);
             this.panel6.TabIndex = 0;
+            this.panel6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox7
             // 
@@ -566,6 +615,7 @@
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 2;
             this.pictureBox7.TabStop = false;
+            this.pictureBox7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // panel7
             // 
@@ -579,6 +629,7 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(269, 126);
             this.panel7.TabIndex = 29;
+            this.panel7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // pictureBox4
             // 
@@ -589,44 +640,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
-            // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.GoToInventoriesListtoolStripMenuItem,
-            this.ShowStockTransactionsListToolStripMenuItem,
-            this.SuppliedItemsLogToolStripMenuItem});
-            this.contextMenuStrip.Name = "SuppliersContextMenuStrip";
-            this.contextMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.contextMenuStrip.Size = new System.Drawing.Size(201, 140);
-            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
-            // 
-            // GoToInventoriesListtoolStripMenuItem
-            // 
-            this.GoToInventoriesListtoolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.warehouse;
-            this.GoToInventoriesListtoolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.GoToInventoriesListtoolStripMenuItem.Name = "GoToInventoriesListtoolStripMenuItem";
-            this.GoToInventoriesListtoolStripMenuItem.Size = new System.Drawing.Size(200, 38);
-            this.GoToInventoriesListtoolStripMenuItem.Text = "الإنتقال لقائمة المخزون";
-            this.GoToInventoriesListtoolStripMenuItem.Click += new System.EventHandler(this.GoToInventoriesListtoolStripMenuItem_Click);
-            // 
-            // ShowStockTransactionsListToolStripMenuItem
-            // 
-            this.ShowStockTransactionsListToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.stock_market;
-            this.ShowStockTransactionsListToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ShowStockTransactionsListToolStripMenuItem.Name = "ShowStockTransactionsListToolStripMenuItem";
-            this.ShowStockTransactionsListToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
-            this.ShowStockTransactionsListToolStripMenuItem.Text = "عرض حركات المخزون";
-            this.ShowStockTransactionsListToolStripMenuItem.Click += new System.EventHandler(this.ShowStockTransactionsListToolStripMenuItem_Click);
-            // 
-            // SuppliedItemsLogToolStripMenuItem
-            // 
-            this.SuppliedItemsLogToolStripMenuItem.Image = global::SIMS.WinForms.Properties.Resources.supplied_items_32;
-            this.SuppliedItemsLogToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.SuppliedItemsLogToolStripMenuItem.Name = "SuppliedItemsLogToolStripMenuItem";
-            this.SuppliedItemsLogToolStripMenuItem.Size = new System.Drawing.Size(200, 38);
-            this.SuppliedItemsLogToolStripMenuItem.Text = "عرض سجل التوريد";
-            this.SuppliedItemsLogToolStripMenuItem.Click += new System.EventHandler(this.SuppliedItemsLogToolStripMenuItem_Click);
+            this.pictureBox4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AnyControl_MouseDown);
             // 
             // frmDashboard
             // 
@@ -637,10 +651,10 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.chartDepartmentalSales);
+            this.Controls.Add(this.chartCategoriesSales);
             this.Controls.Add(this.dgvRunningLowProducts);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblCategorySalesTextHeder);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.panel5);
@@ -659,6 +673,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "لمحة سريعة";
             this.Load += new System.EventHandler(this.frmDashboard_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Dashbord_Click);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -669,7 +684,8 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunningLowProducts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartDepartmentalSales)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartCategoriesSales)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -683,7 +699,6 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -703,13 +718,12 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView dgvRunningLowProducts;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartDepartmentalSales;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartCategoriesSales;
+        private System.Windows.Forms.Label lblCategorySalesTextHeder;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblTodaySalesInvoices;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblTodayPurchases;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTodayPurchasesInvoices;
@@ -722,7 +736,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblTodayProfitRate;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pictureBox7;

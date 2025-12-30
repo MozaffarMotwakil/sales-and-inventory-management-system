@@ -173,7 +173,12 @@ namespace BusinessLogic.Products
 
         public static DataTable GetActiveProductsList()
         {
-            return clsUtils.GetActiveRecordsList(clsProductData.GetProductsList());
+            return clsUtils.GetActiveRecordsList(
+                clsProductData.GetProductsList()
+                .AsEnumerable()
+                .OrderBy(product => product["ProductName"])
+                .CopyToDataTable()
+                );
         }
 
         public static string[] GetAllProductNames()

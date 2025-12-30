@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BusinessLogic.Products;
+using System.Windows.Forms.DataVisualization.Charting;
 using BusinessLogic.Reports;
 using BusinessLogic.Warehouses;
 using DVLD.WinForms.Utils;
-using SIMS.WinForms.Properties;
 using SIMS.WinForms.Suppliers;
 using SIMS.WinForms.Warehouses;
 
@@ -41,10 +39,18 @@ namespace SIMS.WinForms.Dashboard
             lblTodayTotalProfits.Text = dailySummary.TodayProfit.ToString("0.##") + " ج.س";
             lblTodayProfitRate.Text = dailySummary.TodayProfitRate.ToString("0.##") + "%";
 
+            lblCategorySalesTextHeder.Text = lblCategorySalesTextHeder.Text.Replace("الشهر الحالي", GetCurrentMonthNameAr());
+            LoadCategoryChart(clsCategorySales.GetTopCategorySalesForCurrentMonth());
+
             dgvRunningLowProducts.DataSource = clsInventoryService.CreateInstance().GetRunningLowInventories();
             _ResetColumnsOfDGV();
 
             dgvRunningLowProducts.CellMouseDown += clsFormHelper.SelectingOnCurrentRowByRightMouse;
+        }
+
+        public static string GetCurrentMonthNameAr()
+        {
+            return DateTime.Now.ToString("MMMM", new CultureInfo("ar-EG"));
         }
 
         private void dgvRunningLowProducts_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
@@ -220,6 +226,80 @@ namespace SIMS.WinForms.Dashboard
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
             clsFormHelper.PreventContextMenuOnEmptyClick(dgvRunningLowProducts, e);
+        }
+
+        public void LoadCategoryChart(List<clsCategorySales> categoriesSales)
+        {
+            var sortedList = categoriesSales
+                .Where(c => c.CategoryName != "أخرى")
+                .OrderByDescending(c => c.SalesAmount) 
+                .ToList();
+
+            var othersItem = categoriesSales
+                .FirstOrDefault(c => c.CategoryName == "أخرى");
+
+            if (othersItem != null)
+            {
+                sortedList.Add(othersItem);
+            }
+
+            var series = new Series
+            {
+                Name = "Categories",
+                ChartType = SeriesChartType.Pie,
+                IsValueShownAsLabel = false
+            };
+
+            chartCategoriesSales.Series.Add(series);
+
+            decimal total = sortedList.Sum(c => c.SalesAmount);
+
+            foreach (var item in sortedList)
+            {
+                int i = series.Points.AddXY(item.CategoryName, item.SalesAmount);
+                decimal percent = total > 0 ? (item.SalesAmount / total) * 100 : 0;
+
+                series.Points[i].Label = "";
+                series.Points[i].LegendText = item.CategoryName;
+                series.Points[i].ToolTip = $"{item.CategoryName}: {item.SalesAmount:N0} ج.س ({percent:0.#}%)";
+            }
+
+            series["PieLabelStyle"] = "Disabled";
+            series.BorderColor = Color.White;
+            series.BorderWidth = 1;
+
+            chartCategoriesSales.Legends[0].Enabled = true;
+            chartCategoriesSales.Legends[0].Docking = Docking.Bottom;
+            chartCategoriesSales.Legends[0].Alignment = StringAlignment.Center;
+            chartCategoriesSales.Legends[0].LegendStyle = LegendStyle.Table;
+            chartCategoriesSales.Legends[0].TableStyle = LegendTableStyle.Wide;
+            chartCategoriesSales.Legends[0].Font = new Font("Segoe UI", 9, FontStyle.Regular);
+        }
+
+        private void dgvRunningLowProducts_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            DataGridView.HitTestInfo hit = dgvRunningLowProducts.HitTest(e.X, e.Y);
+
+            if (hit.Type == DataGridViewHitTestType.None || hit.Type == DataGridViewHitTestType.ColumnHeader)
+            {
+                dgvRunningLowProducts.ClearSelection();
+            }
+        }
+
+        private void Dashbord_Click(object sender, MouseEventArgs e)
+        {
+            dgvRunningLowProducts.ClearSelection();
+        }
+
+        private void AnyControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            dgvRunningLowProducts.ClearSelection();
+        }
+
+        private void dgvRunningLowProducts_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvRunningLowProducts.ClearSelection();
         }
 
     }
