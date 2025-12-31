@@ -31,7 +31,7 @@ namespace SIMS.WinForms
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             clsActivityLog.Initialize();
             frmMainForm.CreateInstance();
-            Application.Run(new frmLogin());
+            Application.Run(new frmTest());
         }
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
