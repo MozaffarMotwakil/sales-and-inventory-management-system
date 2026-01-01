@@ -4,13 +4,8 @@ using DataAccess.Reports;
 
 namespace BusinessLogic.Reports
 {
-    public class clsBasicSalesReport
+    public class clsBasicSalesReport : clsReport
     {
-        public DateTime CurrentDate => DateTime.Now;
-        public int CurrentYear => DateTime.Now.Year;
-        public string EmployeeName {  get; set; }
-        public DateTime DateFrom {  get; set; }
-        public DateTime DateTo {  get; set; }
         public int TotalInvoicesCount { get; set; }
         public decimal GrossSalesAmount { get; set; }
         public decimal TotalDiscounts { get; set; }
@@ -29,9 +24,9 @@ namespace BusinessLogic.Reports
 
         public clsBasicSalesReport(DateTime dateFrom, DateTime dateTo)
         {
+            ReportName = "تقرير المبيعات الشامل";
             DateFrom = dateFrom;
             DateTo = dateTo;
-            EmployeeName = "مظفر متوكل خضر سلمان";
 
             DataTable basicSalesReport = clsReportData.GetBasicSalesReport();
 
