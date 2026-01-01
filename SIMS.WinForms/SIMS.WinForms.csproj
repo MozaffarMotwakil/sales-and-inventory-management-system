@@ -646,7 +646,9 @@
     <EmbeddedResource Include="Reports\frmSalesByEmployeeReport.resx">
       <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\repSales.rdlc" />
+    <EmbeddedResource Include="Reports\repSales.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sales\frmIssueSaleInvoice.resx">
       <DependentUpon>frmIssueSaleInvoice.cs</DependentUpon>
     </EmbeddedResource>
@@ -730,6 +732,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BusinessLogic.Reports.clsSalesReport.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -959,6 +962,9 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
