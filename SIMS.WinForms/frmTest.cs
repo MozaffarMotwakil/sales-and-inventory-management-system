@@ -24,7 +24,7 @@ namespace SIMS.WinForms
             reportViewer.LocalReport.ReportPath = "C:\\Users\\mozaf\\GitHub\\sales-and-inventory-management-system\\SIMS.WinForms\\Reports\\repSales.rdlc";
 
             // 2. تجهيز القائمة (هنا تكتب الكود الذي سألت عنه)
-            List<clsSalesReport> basicFinancialSummary = new List<clsSalesReport>();
+            List<clsBasicSalesReport> basicFinancialSummary = new List<clsBasicSalesReport>();
             //{
             //    new clsSalesReport
             //    {

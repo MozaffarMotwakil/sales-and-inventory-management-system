@@ -48,10 +48,5 @@ namespace BusinessLogic.Reports
             TodayProfitRate = (row["TodayProfitRate"] != DBNull.Value) ? Convert.ToDecimal(row["TodayProfitRate"]) : 0m;
         }
 
-        public static clsDailySummary Refresh()
-        {
-            return new clsDailySummary();
-        }
-
     }
 }

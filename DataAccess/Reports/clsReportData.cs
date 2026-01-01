@@ -12,6 +12,20 @@ namespace DataAccess.Reports
                 );
         }
 
+        public static DataTable GetBasicSalesReport()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Reports_GetBasicSalesReport"
+                );
+        }
+
+        public static DataTable GetBasicPurchasesReport()
+        {
+            return clsDataSettings.GetDataTable(
+                "usp_Reports_GetBasicPurchasesReport"
+                );
+        }
+
         public static DataTable GetTopCategorySalesForCurrentMonth()
         {
             return clsDataSettings.GetDataTable(

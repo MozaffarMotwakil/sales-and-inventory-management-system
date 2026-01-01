@@ -261,13 +261,11 @@ namespace SIMS.WinForms.Dashboard
 
                 series.Points[i].Label = "";
                 series.Points[i].LegendText = item.CategoryName;
-                series.Points[i].ToolTip = $"{item.CategoryName}: {item.SalesAmount:N0} ج.س ({percent:0.#}%)";
+                series.Points[i].ToolTip = $"{item.CategoryName}: {item.SalesAmount:0.##} ج.س ({percent:0.#}%)";
             }
 
             series["PieLabelStyle"] = "Disabled";
-            series.BorderColor = Color.White;
-            series.BorderWidth = 1;
-
+           
             chartCategoriesSales.Legends[0].Enabled = true;
             chartCategoriesSales.Legends[0].Docking = Docking.Bottom;
             chartCategoriesSales.Legends[0].Alignment = StringAlignment.Center;
