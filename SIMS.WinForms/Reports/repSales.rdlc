@@ -165,8 +165,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>7.16431cm</Top>
-            <Left>7.65969cm</Left>
+            <Top>8.56431cm</Top>
+            <Left>7.64645cm</Left>
             <Height>0.75875cm</Height>
             <Width>9.12813cm</Width>
             <ZIndex>1</ZIndex>
@@ -424,6 +424,82 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox16</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox17">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>متوسط عدد الفواتير</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.7cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="DiscountsRate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -571,6 +647,82 @@
                     </TablixCell>
                   </TablixCells>
                 </TablixRow>
+                <TablixRow>
+                  <Height>0.7cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>نسبة الربح</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
@@ -591,14 +743,16 @@
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
+                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>BasicFinancialSummary</DataSetName>
-            <Top>8.09945cm</Top>
-            <Left>0.26458cm</Left>
-            <Height>3.6cm</Height>
+            <Top>9.49945cm</Top>
+            <Left>0.27783cm</Left>
+            <Height>5cm</Height>
             <Width>16.51cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -629,7 +783,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>11.87584cm</Top>
+            <Top>14.67584cm</Top>
             <Left>7.64645cm</Left>
             <Height>0.75875cm</Height>
             <Width>9.12813cm</Width>
@@ -1009,8 +1163,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>BasicFinancialSummary</DataSetName>
-            <Top>12.81098cm</Top>
-            <Left>0.27781cm</Left>
+            <Top>15.61098cm</Top>
+            <Left>0.27782cm</Left>
             <Height>2.2cm</Height>
             <Width>16.51001cm</Width>
             <ZIndex>4</ZIndex>
@@ -1606,7 +1760,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>صافي اإليرادات النهائية</Value>
+                                  <Value>صافي الإيرادات النهائية</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
@@ -1623,6 +1777,158 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox78</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.7cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>تكلفة البضاعة المباعة</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.7cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>صافي الربح</Value>
+                                  <Style>
+                                    <FontStyle>Normal</FontStyle>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Normal</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                    <Color>#000000</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1667,12 +1973,18 @@
                 <TablixMember>
                   <KeepWithGroup>Before</KeepWithGroup>
                 </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>BasicFinancialSummary</DataSetName>
             <Top>1.28792cm</Top>
             <Left>0.26458cm</Left>
-            <Height>5.7cm</Height>
+            <Height>7.1cm</Height>
             <Width>16.51cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
@@ -1682,15 +1994,14 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.90983in</Height>
+        <Height>7.0122in</Height>
         <Style />
       </Body>
-      <Width>6.71875in</Width>
+      <Width>6.69792in</Width>
       <Page>
         <PageHeader>
           <Height>2.82292cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Textbox Name="Textbox1">
               <CanGrow>true</CanGrow>
@@ -1813,7 +2124,7 @@
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value>=Parameters!EmployeeName.Value</Value>
+                      <Value>=Parameters!IssuedEmployeeName.Value</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Times New Roman</FontFamily>
@@ -1829,9 +2140,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.34396cm</Top>
-              <Left>3.79306cm</Left>
+              <Left>3.18451cm</Left>
               <Height>2.15828cm</Height>
-              <Width>12.98153cm</Width>
+              <Width>13.59008cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1847,8 +2158,10 @@
               <Source>Embedded</Source>
               <Value>SmartMart1</Value>
               <Sizing>FitProportional</Sizing>
-              <Height>2.82292cm</Height>
-              <Width>3.61667cm</Width>
+              <Top>0.34396cm</Top>
+              <Left>0.26458cm</Left>
+              <Height>2.15828cm</Height>
+              <Width>2.74354cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1864,9 +2177,8 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.33243cm</Height>
+          <Height>1.5441cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Textbox Name="Textbox2">
               <CanGrow>true</CanGrow>
@@ -1875,7 +2187,29 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>تم توليد هذا التقرير بواسطة نظام SmartMart لسوبرماركت الواحة - © </Value>
+                      <Value>تم إنشاء هذا التقرير بواسطة نظام </Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>SmartMart</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> لسوبرماركت الواحة - © </Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Times New Roman</FontFamily>
@@ -1921,9 +2255,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.17639cm</Top>
+              <Top>0.17638cm</Top>
               <Left>0.26458cm</Left>
-              <Height>1.15604cm</Height>
+              <Height>1.11cm</Height>
               <Width>16.51cm</Width>
               <Style>
                 <Border>
@@ -1956,60 +2290,23 @@
   </ReportSections>
   <ReportParameters>
     <ReportParameter Name="DateFrom">
-      <DataType>DateTime</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>DateFrom</ValueField>
-        </DataSetReference>
-      </DefaultValue>
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>DateFrom</ValueField>
-          <LabelField>DateFrom</LabelField>
-        </DataSetReference>
-      </ValidValues>
     </ReportParameter>
     <ReportParameter Name="DateTo">
-      <DataType>DateTime</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>DateTo</ValueField>
-        </DataSetReference>
-      </DefaultValue>
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="EmployeeName">
+    <ReportParameter Name="IssuedEmployeeName">
       <DataType>String</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>EmployeeName</ValueField>
-        </DataSetReference>
-      </DefaultValue>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="TodayDate">
-      <DataType>DateTime</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>CurrentDate</ValueField>
-        </DataSetReference>
-      </DefaultValue>
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CurrentYear">
       <DataType>Integer</DataType>
-      <DefaultValue>
-        <DataSetReference>
-          <DataSetName>BasicFinancialSummary</DataSetName>
-          <ValueField>CurrentYear</ValueField>
-        </DataSetReference>
-      </DefaultValue>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -2031,7 +2328,7 @@
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>EmployeeName</ParameterName>
+          <ParameterName>IssuedEmployeeName</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>

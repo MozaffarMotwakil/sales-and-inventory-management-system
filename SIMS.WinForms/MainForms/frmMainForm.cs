@@ -13,6 +13,7 @@ using SIMS.WinForms.Purchases;
 using SIMS.WinForms.Warehouses;
 using SIMS.WinForms.ActivityLog;
 using DVLD.WinForms.Utils;
+using BusinessLogic.Reports;
 
 namespace SIMS.WinForms
 {
@@ -288,6 +289,27 @@ namespace SIMS.WinForms
                 default:
                     return new Form();
             }
+        }
+
+        private void BasicSalesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmIssueReportFilters issueReportFilters = new frmIssueReportFilters(BasicSalesReportToolStripMenuItem.Text);
+            issueReportFilters.ShowDialog();
+        }
+
+        private void BasicPurchasesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BasicInventoriesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BasicFinatcialReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

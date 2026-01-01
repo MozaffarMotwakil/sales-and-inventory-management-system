@@ -69,6 +69,46 @@ namespace DataAccess
             }
         }
 
+        public static DataTable GetDataTable<T>(string storedProcedureName, string parameter1Name, T parameter1Value, string parameter2Name, T parameter2Value)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue(parameter1Name, parameter1Value);
+                    command.Parameters.AddWithValue(parameter2Name, parameter2Value);
+
+                    SqlParameter returnValueParam = new SqlParameter
+                    {
+                        Direction = ParameterDirection.ReturnValue
+                    };
+
+                    command.Parameters.Add(returnValueParam);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            DataTable records = new DataTable();
+
+                            if (reader.HasRows)
+                            {
+                                records.Load(reader);
+                            }
+
+                            return records;
+                        }
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+            }
+        }
         public static DataTable GetDataTable<T>(string storedProcedureName, string parameterName, T parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))

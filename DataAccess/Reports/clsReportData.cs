@@ -12,17 +12,25 @@ namespace DataAccess.Reports
                 );
         }
 
-        public static DataTable GetBasicSalesReport()
+        public static DataTable GetBasicSalesReport(DateTime dateFrom, DateTime dateTo)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Reports_GetBasicSalesReport"
+                "usp_Reports_GetBasicSalesReport",
+                "@DateFrom",
+                dateFrom,
+                "@DateTo",
+                dateTo
                 );
         }
 
-        public static DataTable GetBasicPurchasesReport()
+        public static DataTable GetBasicPurchasesReport(DateTime dateFrom, DateTime dateTo)
         {
             return clsDataSettings.GetDataTable(
-                "usp_Reports_GetBasicPurchasesReport"
+                "usp_Reports_GetBasicPurchasesReport",
+                "@DateFrom",
+                dateFrom,
+                "@DateTo",
+                dateTo
                 );
         }
 

@@ -28,7 +28,7 @@ namespace BusinessLogic.Reports
             DateFrom = dateFrom;
             DateTo = dateTo;
 
-            DataTable basicSalesReport = clsReportData.GetBasicSalesReport();
+            DataTable basicSalesReport = clsReportData.GetBasicSalesReport(dateFrom, dateTo);
 
             if (basicSalesReport == null || basicSalesReport.Rows.Count == 0)
             {
