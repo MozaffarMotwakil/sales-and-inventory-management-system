@@ -37,7 +37,7 @@
             this.btnCancle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancle.Image = global::SIMS.WinForms.Properties.Resources.cancle;
             this.btnCancle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancle.Location = new System.Drawing.Point(276, 259);
+            this.btnCancle.Location = new System.Drawing.Point(301, -45);
             this.btnCancle.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCancle.Name = "btnCancle";
             this.btnCancle.Size = new System.Drawing.Size(114, 42);
@@ -45,6 +45,7 @@
             this.btnCancle.TabStop = false;
             this.btnCancle.Text = "    إلغاء";
             this.btnCancle.UseVisualStyleBackColor = true;
+            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
             // 
             // frmReportViewer
             // 
@@ -62,7 +63,6 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "عرض التقرير";
-            this.Load += new System.EventHandler(this.frmReportViewer_Load);
             this.ResumeLayout(false);
 
         }

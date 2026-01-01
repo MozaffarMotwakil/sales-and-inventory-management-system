@@ -750,6 +750,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BusinessLogic.Reports.clsBasicSalesReport.datasource" />
     <None Include="Properties\DataSources\BusinessLogic.Reports.clsSalesReport.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

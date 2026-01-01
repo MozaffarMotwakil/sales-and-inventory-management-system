@@ -6,7 +6,6 @@ namespace BusinessLogic.Reports
 {
     public class clsBasicSalesReport : clsReport
     {
-        public int TotalInvoicesCount { get; set; }
         public decimal GrossSalesAmount { get; set; }
         public decimal TotalDiscounts { get; set; }
         public decimal DiscountsRate { get; set; }
@@ -15,12 +14,19 @@ namespace BusinessLogic.Reports
         public decimal TotalReturns { get; set; }
         public decimal ReturnsRate { get; set; }
         public decimal FinalNetRevenue { get; set; }
-        public decimal InvoiceAmountAvg { get; set; }
-        public decimal InvoiceProductCountAvg { get; set; }
+        public decimal COGS { get; set; }
+        public decimal TotalProfit { get; set; }
+        public decimal ProfitRate { get; set; }
+
         public decimal CashAmount { get; set; }
         public decimal CashRate { get; set; }
         public decimal BankTransferAmount { get; set; }
         public decimal BankTransferRate { get; set; }
+
+        public int TotalInvoicesCount { get; set; }
+        public decimal InvoiceAmountAvg { get; set; }
+        public decimal InvoiceProductCountAvg { get; set; }
+        public decimal InvoiceCountAvg { get; set; }
 
         public clsBasicSalesReport(DateTime dateFrom, DateTime dateTo)
         {
@@ -55,6 +61,11 @@ namespace BusinessLogic.Reports
             CashRate = (row["CashRate"] != DBNull.Value) ? Convert.ToDecimal(row["CashRate"]) : 0m;
             BankTransferAmount = (row["BankTransferAmount"] != DBNull.Value) ? Convert.ToDecimal(row["BankTransferAmount"]) : 0m;
             BankTransferRate = (row["BankTransferRate"] != DBNull.Value) ? Convert.ToDecimal(row["BankTransferRate"]) : 0m;
+
+            COGS = (row["COGS"] != DBNull.Value) ? Convert.ToDecimal(row["COGS"]) : 0m;
+            TotalProfit = (row["TotalProfit"] != DBNull.Value) ? Convert.ToDecimal(row["TotalProfit"]) : 0m;
+            ProfitRate = (row["ProfitRate"] != DBNull.Value) ? Convert.ToDecimal(row["ProfitRate"]) : 0m;
+            InvoiceCountAvg = (row["InvoiceCountAvg"] != DBNull.Value) ? Convert.ToDecimal(row["InvoiceCountAvg"]) : 0m;
         }
 
     }

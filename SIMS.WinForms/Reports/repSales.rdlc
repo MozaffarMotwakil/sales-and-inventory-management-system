@@ -33,13 +33,9 @@
           <DataField>CashRate</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="CurrentDate">
-          <DataField>CurrentDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="CurrentYear">
-          <DataField>CurrentYear</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="COGS">
+          <DataField>COGS</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="DateFrom">
           <DataField>DateFrom</DataField>
@@ -53,10 +49,6 @@
           <DataField>DiscountsRate</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="EmployeeName">
-          <DataField>EmployeeName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="FinalNetRevenue">
           <DataField>FinalNetRevenue</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -69,13 +61,37 @@
           <DataField>InvoiceAmountAvg</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="InvoiceCountAvg">
+          <DataField>InvoiceCountAvg</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="InvoiceProductCountAvg">
           <DataField>InvoiceProductCountAvg</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="IssuedDate">
+          <DataField>IssuedDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="IssuedEmployeeName">
+          <DataField>IssuedEmployeeName</DataField>
+          <rd:TypeName>BusinessLogic.Employees.clsEmployee</rd:TypeName>
+        </Field>
+        <Field Name="IssuedYear">
+          <DataField>IssuedYear</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="NetSales">
           <DataField>NetSales</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ProfitRate">
+          <DataField>ProfitRate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ReportName">
+          <DataField>ReportName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ReturnsRate">
           <DataField>ReturnsRate</DataField>
@@ -89,6 +105,10 @@
           <DataField>TotalInvoicesCount</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="TotalProfit">
+          <DataField>TotalProfit</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="TotalReturns">
           <DataField>TotalReturns</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -100,8 +120,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>BusinessLogic.Reports</rd:DataSetName>
-        <rd:TableName>clsSalesReport</rd:TableName>
-        <rd:ObjectDataSourceType>BusinessLogic.Reports.clsSalesReport, BusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>clsBasicSalesReport</rd:TableName>
+        <rd:ObjectDataSourceType>BusinessLogic.Reports.clsBasicSalesReport, BusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -116,7 +136,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>الملخص المالي الأساسي:</Value>
+                    <Value>الملخص المالي الأساسي</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -206,7 +226,7 @@
                                 <TextRun>
                                   <Value>القيمة</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -241,7 +261,7 @@
                                 <TextRun>
                                   <Value>المؤشر</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -280,7 +300,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!InvoiceAmountAvg.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -315,8 +337,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -356,7 +377,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!InvoiceProductCountAvg.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -387,12 +410,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>متوسط عدد األصناف في الفاتورة</Value>
+                                  <Value>متوسط عدد المنتجات في الفاتورة</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -431,8 +453,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=Fields!InvoiceCountAvg.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -463,12 +487,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>متوسط عدد الفواتير</Value>
+                                  <Value>متوسط عدد فواتير المبيعات اليومي</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -508,7 +531,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!DiscountsRate.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -543,8 +568,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -584,7 +608,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!ReturnsRate.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -619,8 +645,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -659,8 +684,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=Fields!ProfitRate.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -695,8 +722,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -827,7 +853,7 @@
                                 <TextRun>
                                   <Value>نسبة المساهمة</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -860,9 +886,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>حصة المبيعات (القيمة)</Value>
+                                  <Value>القيمة</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -897,7 +923,7 @@
                                 <TextRun>
                                   <Value>طريقة الدفع</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -936,7 +962,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!CashRate.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -968,7 +996,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!CashAmount.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1003,8 +1033,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1044,7 +1073,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!BankTransferRate.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1076,7 +1107,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!BankTransferAmount.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1111,8 +1144,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1199,7 +1231,7 @@
                                 <TextRun>
                                   <Value>القيمة</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1234,7 +1266,7 @@
                                 <TextRun>
                                   <Value>البيان</Value>
                                   <Style>
-                                    <FontSize>14pt</FontSize>
+                                    <FontSize>13pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1273,7 +1305,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!TotalInvoicesCount.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1308,8 +1342,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1349,7 +1382,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!GrossSalesAmount.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1384,8 +1419,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1425,7 +1459,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!TotalDiscounts.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1460,8 +1496,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1501,7 +1536,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!TotalTaxes.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1536,8 +1573,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1577,7 +1613,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!NetSales.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1612,8 +1650,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1653,7 +1690,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!TotalReturns.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1688,8 +1727,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1729,7 +1767,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!FinalNetRevenue.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1764,8 +1804,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1797,15 +1836,17 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox7">
+                        <Textbox Name="COGS">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=Fields!COGS.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1813,7 +1854,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox7</rd:DefaultName>
+                          <rd:DefaultName>COGS</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1840,8 +1881,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>
@@ -1880,8 +1920,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=Fields!TotalProfit.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1916,8 +1958,7 @@
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>12pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
+                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                     <Color>#000000</Color>
                                   </Style>

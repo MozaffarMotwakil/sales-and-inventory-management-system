@@ -17,10 +17,9 @@ namespace SIMS.WinForms.Reports
             InitializeComponent();
         }
 
-        private void frmReportViewer_Load(object sender, EventArgs e)
+        private void btnCancle_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }
