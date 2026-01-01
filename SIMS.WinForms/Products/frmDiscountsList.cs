@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BusinessLogic.Discounts;
 using DVLD.WinForms.Utils;
 using SIMS.WinForms.Properties;
 
@@ -44,6 +45,28 @@ namespace SIMS.WinForms.Products
             contextMenuStrip.Items[4].Image = Resources.link;
             contextMenuStrip.Items[4].ImageScaling = ToolStripItemImageScaling.None;
             contextMenuStrip.Items[4].Click += LinkingDiscountToProducts_Click;
+
+            clsDiscountService.CreateInstance().EntitySaved += WhenDiscountEdited_EntitySaved;
+        }
+
+        private void WhenDiscountEdited_EntitySaved(object sender, BusinessLogic.Interfaces.EntitySavedEventArgs e)
+        {
+            DateTime? newEndDate = clsDiscountService.CreateInstance().Find(e.EntityID)?.EndDate;
+
+            if (e.OperationMode == BusinessLogic.enMode.Update && newEndDate.HasValue && newEndDate >= _GetMaximumEndDateInDGV())
+            {
+                dtpEndDate.Value = newEndDate.Value;
+                base.Filter = _GetAppliedFilters();
+                base.ApplySearchFilter();
+            }
+        }
+
+        private DateTime _GetMaximumEndDateInDGV()
+        {
+            return dgvEntitiesList
+                .Rows
+                .Cast<DataGridViewRow>()
+                .Max(discountRow => Convert.ToDateTime(discountRow.Cells["EndDate"].Value));
         }
 
         private void LinkingDiscountToProducts_Click(object sender, EventArgs e)
@@ -96,6 +119,12 @@ namespace SIMS.WinForms.Products
 
         private void btnApplyFilter_Click(object sender, EventArgs e)
         {
+            base.Filter = _GetAppliedFilters();
+            base.ApplySearchFilter();
+        }
+
+        private string _GetAppliedFilters()
+        {
             List<string> filters = new List<string>();
 
             if (cbValueType.SelectedIndex > 0)
@@ -146,8 +175,7 @@ namespace SIMS.WinForms.Products
 
             filters.Add($"EndDate <= #{dtpEndDate.Value:yyyy/MM/dd}#");
 
-            base.Filter = string.Join(" AND ", filters);
-            base.ApplySearchFilter();
+            return string.Join(" AND ", filters);
         }
 
     }
