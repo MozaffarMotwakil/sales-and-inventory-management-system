@@ -276,9 +276,13 @@ namespace SIMS.WinForms.Invoices
                 .Where(line => !line.IsNewRow)
                 .Sum(line => line.LineSubTotal.GetValueOrDefault()).ToString();
 
-            lblTotalDiscount.Text = InvoiceLinesDataSource
-                .Where(line => !line.IsNewRow)
-                .Sum(line => line.DiscountAmount.GetValueOrDefault()).ToString();
+            lblTotalDiscount.Text = _InvoiceType == enInvoiceType.Sales ?
+                InvoiceLinesDataSource
+                    .Where(line => !line.IsNewRow)
+                    .Sum(line => line.CalculateFinalDiscountAmount().GetValueOrDefault()).ToString() :
+                InvoiceLinesDataSource
+                    .Where(line => !line.IsNewRow)
+                    .Sum(line => line.DiscountAmount).ToString();
 
             lblTotalTax.Text = InvoiceLinesDataSource
                 .Where(line => !line.IsNewRow)
