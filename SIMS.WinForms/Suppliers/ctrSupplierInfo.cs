@@ -542,6 +542,7 @@ namespace SIMS.WinForms.Suppliers
         private void AfterIssueNewPayment_EntitySaved(object sender, EntitySavedEventArgs e)
         {
             _LoadDataForInvoicesPage();
+            _LoadDataForPaymentPage();
         }
 
         private void IssueReturnPurchaseInvoice_Click(object sender, EventArgs e)
