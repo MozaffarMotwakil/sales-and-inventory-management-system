@@ -19,14 +19,29 @@ namespace SIMS.WinForms.Reports
 
         private void frmIssueReportFilters_Load(object sender, EventArgs e)
         {
-            clsFormHelper.InitializeDateRangeLimits(dtpDateFrom, dtpDateTo, clsSaleInvoice.GetFirstSaleInvoiceDate());
+            if (_ReportName.Contains("مبيعات"))
+            {
+                clsFormHelper.InitializeDateRangeLimits(dtpDateFrom, dtpDateTo, clsSaleInvoice.GetFirstSaleInvoiceDate());
+            }
+            else
+            {
+                clsFormHelper.InitializeDateRangeLimits(dtpDateFrom, dtpDateTo, clsPurchaseInvoice.GetFirstPurchaseInvoiceDate());
+            }
+
             cbRange.SelectedIndex = 2;
             lblReportName.Text = _ReportName;
         }
 
         private void cbRange_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clsFormHelper.InitializeAndApplyDateRange(dtpDateFrom, dtpDateTo, cbRange, clsSaleInvoice.GetFirstSaleInvoiceDate());
+            if (_ReportName.Contains("مبيعات"))
+            {
+                clsFormHelper.InitializeAndApplyDateRange(dtpDateFrom, dtpDateTo, cbRange, clsSaleInvoice.GetFirstSaleInvoiceDate());
+            }
+            else
+            {
+                clsFormHelper.InitializeAndApplyDateRange(dtpDateFrom, dtpDateTo, cbRange, clsPurchaseInvoice.GetFirstPurchaseInvoiceDate());
+            }
         }
 
         private void dtpDateFrom_ValueChanged(object sender, EventArgs e)
@@ -47,27 +62,49 @@ namespace SIMS.WinForms.Reports
             frmReportViewer reportViewerForm = new frmReportViewer();
             reportViewerForm.Controls.Add(reportViewer);
 
-            reportViewer.LocalReport.ReportPath = "C:\\Users\\mozaf\\GitHub\\sales-and-inventory-management-system\\SIMS.WinForms\\Reports\\repSales.rdlc";
-
-            List<clsBasicSalesReport> basicFinancialSummary = new List<clsBasicSalesReport>
+            if (_ReportName.Contains("مبيعات"))
             {
-                new clsBasicSalesReport(dtpDateFrom.Value, dtpDateTo.Value)
-            };
+                reportViewer.LocalReport.ReportPath = 
+                    "C:\\Users\\mozaf\\GitHub\\sales-and-inventory-management-system\\SIMS.WinForms\\Reports\\repSales.rdlc";
 
-            List<ReportParameter> parameters = new List<ReportParameter>
+                List<clsBasicSalesReport> basicSalesReport = new List<clsBasicSalesReport>
+                {
+                    new clsBasicSalesReport(dtpDateFrom.Value, dtpDateTo.Value)
+                };
+
+                reportViewer.LocalReport.SetParameters(_GetParameters(basicSalesReport[0]));
+                
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("BasicSalesReport", basicSalesReport));
+            }
+            else
             {
-                new ReportParameter("DateFrom", basicFinancialSummary[0].DateFrom.ToString("yyyy/MM/dd")),
-                new ReportParameter("DateTo", basicFinancialSummary[0].DateTo.ToString("yyyy/MM/dd")),
-                new ReportParameter("IssuedEmployeeName", basicFinancialSummary[0].IssuedEmployeeName.EmployeeName),
-                new ReportParameter("TodayDate", basicFinancialSummary[0].IssuedDate.ToString("yyyy/MM/dd HH:mm:ss")),
-                new ReportParameter("CurrentYear", basicFinancialSummary[0].IssuedYear.ToString())
-            };
+                reportViewer.LocalReport.ReportPath =
+                    "C:\\Users\\mozaf\\GitHub\\sales-and-inventory-management-system\\SIMS.WinForms\\Reports\\repPurchases.rdlc";
 
-            reportViewer.LocalReport.SetParameters(parameters);
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("BasicFinancialSummary", basicFinancialSummary));
+                List<clsBasicPurchasesReport> basicPurchasesReport = new List<clsBasicPurchasesReport>
+                {
+                    new clsBasicPurchasesReport(dtpDateFrom.Value, dtpDateTo.Value)
+                };
+
+                reportViewer.LocalReport.SetParameters(_GetParameters(basicPurchasesReport[0]));
+
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("BasicPurchasesReport", basicPurchasesReport));
+            }
 
             reportViewer.RefreshReport();
             reportViewerForm.ShowDialog();
+        }
+
+        private List<ReportParameter> _GetParameters(clsReport report)
+        {
+            return new List<ReportParameter>
+            {
+                new ReportParameter("DateFrom", report.DateFrom.ToString("yyyy/MM/dd")),
+                new ReportParameter("DateTo", report.DateTo.ToString("yyyy/MM/dd")),
+                new ReportParameter("IssuedEmployeeName", report.IssuedEmployeeName.EmployeeName),
+                new ReportParameter("TodayDate", report.IssuedDate.ToString("yyyy/MM/dd HH:mm:ss")),
+                new ReportParameter("CurrentYear", report.IssuedYear.ToString())
+            };
         }
 
     }

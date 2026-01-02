@@ -78,6 +78,7 @@
     <Compile Include="Products\clsDiscountItem.cs" />
     <Compile Include="Products\clsDiscountService.cs" />
     <Compile Include="Products\clsDiscount.cs" />
+    <Compile Include="Reports\clsBasicPurchasesReport.cs" />
     <Compile Include="Reports\clsReport.cs" />
     <Compile Include="Reports\clsBasicSalesReport.cs" />
     <Compile Include="Reports\clsCategorySales.cs" />

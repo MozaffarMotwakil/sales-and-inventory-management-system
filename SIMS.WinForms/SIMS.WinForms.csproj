@@ -664,6 +664,9 @@
     <EmbeddedResource Include="Reports\frmSalesByEmployeeReport.resx">
       <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\repPurchases.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\repSales.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -750,6 +753,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BusinessLogic.Reports.clsBasicPurchasesReport.datasource" />
     <None Include="Properties\DataSources\BusinessLogic.Reports.clsBasicSalesReport.datasource" />
     <None Include="Properties\DataSources\BusinessLogic.Reports.clsSalesReport.datasource" />
     <None Include="Properties\Settings.settings">

@@ -299,17 +299,18 @@ namespace SIMS.WinForms
 
         private void BasicPurchasesReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmIssueReportFilters issueReportFilters = new frmIssueReportFilters(BasicPurchasesReportToolStripMenuItem.Text);
+            issueReportFilters.ShowDialog();
         }
 
         private void BasicInventoriesReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            clsFormMessages.ShowNotImplementedFeatureWarning();
         }
 
         private void BasicFinatcialReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            clsFormMessages.ShowNotImplementedFeatureWarning();
         }
 
     }
