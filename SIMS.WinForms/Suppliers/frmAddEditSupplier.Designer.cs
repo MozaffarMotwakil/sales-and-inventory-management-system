@@ -30,25 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEditSupplier));
-            this.lblFormTitle = new System.Windows.Forms.Label();
             this.gbOtherInfo = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancle = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
-            this.ctrAddEditOrganization = new SIMS.WinForms.Parties.Organization.ctrAddEditOrganization();
-            this.ctrAddEditPerson = new SIMS.WinForms.Parties.Person.ctrAddEditPerson();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ctrAddEditPerson = new SIMS.WinForms.Parties.Person.ctrAddEditPerson();
+            this.ctrAddEditOrganization = new SIMS.WinForms.Parties.Organization.ctrAddEditOrganization();
             this.gbOtherInfo.SuspendLayout();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblFormTitle
-            // 
-            resources.ApplyResources(this.lblFormTitle, "lblFormTitle");
-            this.lblFormTitle.Name = "lblFormTitle";
             // 
             // gbOtherInfo
             // 
@@ -90,7 +84,6 @@
             this.panel.BackColor = System.Drawing.Color.White;
             this.panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel.Controls.Add(this.ctrAddEditPerson);
-            this.panel.Controls.Add(this.lblFormTitle);
             this.panel.Controls.Add(this.ctrAddEditOrganization);
             this.panel.Controls.Add(this.btnCancle);
             this.panel.Controls.Add(this.btnSave);
@@ -98,10 +91,10 @@
             resources.ApplyResources(this.panel, "panel");
             this.panel.Name = "panel";
             // 
-            // ctrAddEditOrganization
+            // errorProvider
             // 
-            resources.ApplyResources(this.ctrAddEditOrganization, "ctrAddEditOrganization");
-            this.ctrAddEditOrganization.Name = "ctrAddEditOrganization";
+            this.errorProvider.ContainerControl = this;
+            resources.ApplyResources(this.errorProvider, "errorProvider");
             // 
             // ctrAddEditPerson
             // 
@@ -109,10 +102,10 @@
             this.ctrAddEditPerson.Name = "ctrAddEditPerson";
             this.ctrAddEditPerson.PersonType = BusinessLogic.Parties.clsParty.enPartyType.Supplier;
             // 
-            // errorProvider
+            // ctrAddEditOrganization
             // 
-            this.errorProvider.ContainerControl = this;
-            resources.ApplyResources(this.errorProvider, "errorProvider");
+            resources.ApplyResources(this.ctrAddEditOrganization, "ctrAddEditOrganization");
+            this.ctrAddEditOrganization.Name = "ctrAddEditOrganization";
             // 
             // frmAddEditSupplier
             // 
@@ -136,8 +129,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblFormTitle;
         private System.Windows.Forms.GroupBox gbOtherInfo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtNotes;
@@ -145,7 +136,7 @@
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private Parties.Person.ctrAddEditPerson ctrAddEditPerson;
         private Parties.Organization.ctrAddEditOrganization ctrAddEditOrganization;
+        private Parties.Person.ctrAddEditPerson ctrAddEditPerson;
     }
 }

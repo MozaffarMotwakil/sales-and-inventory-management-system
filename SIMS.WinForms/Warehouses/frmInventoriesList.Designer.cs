@@ -186,11 +186,11 @@
             // lblExpectedProfitValue
             // 
             this.lblExpectedProfitValue.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpectedProfitValue.Location = new System.Drawing.Point(3, 43);
+            this.lblExpectedProfitValue.Location = new System.Drawing.Point(3, 35);
             this.lblExpectedProfitValue.Name = "lblExpectedProfitValue";
-            this.lblExpectedProfitValue.Size = new System.Drawing.Size(261, 23);
+            this.lblExpectedProfitValue.Size = new System.Drawing.Size(261, 38);
             this.lblExpectedProfitValue.TabIndex = 1;
-            this.lblExpectedProfitValue.Text = "$999.999.999";
+            this.lblExpectedProfitValue.Text = "999.999.999 ج.س";
             this.lblExpectedProfitValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -250,11 +250,11 @@
             // lblTotalProjectedSalesValue
             // 
             this.lblTotalProjectedSalesValue.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalProjectedSalesValue.Location = new System.Drawing.Point(3, 43);
+            this.lblTotalProjectedSalesValue.Location = new System.Drawing.Point(3, 35);
             this.lblTotalProjectedSalesValue.Name = "lblTotalProjectedSalesValue";
-            this.lblTotalProjectedSalesValue.Size = new System.Drawing.Size(261, 23);
+            this.lblTotalProjectedSalesValue.Size = new System.Drawing.Size(261, 38);
             this.lblTotalProjectedSalesValue.TabIndex = 1;
-            this.lblTotalProjectedSalesValue.Text = "$999.999.999";
+            this.lblTotalProjectedSalesValue.Text = "999.999.999 ج.س";
             this.lblTotalProjectedSalesValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -292,11 +292,11 @@
             // lblTotalInventoryValue
             // 
             this.lblTotalInventoryValue.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalInventoryValue.Location = new System.Drawing.Point(3, 43);
+            this.lblTotalInventoryValue.Location = new System.Drawing.Point(3, 35);
             this.lblTotalInventoryValue.Name = "lblTotalInventoryValue";
-            this.lblTotalInventoryValue.Size = new System.Drawing.Size(261, 23);
+            this.lblTotalInventoryValue.Size = new System.Drawing.Size(261, 38);
             this.lblTotalInventoryValue.TabIndex = 1;
-            this.lblTotalInventoryValue.Text = "$999.999.999";
+            this.lblTotalInventoryValue.Text = "999.999.999 ج.س";
             this.lblTotalInventoryValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblEmptyInventoriesCount

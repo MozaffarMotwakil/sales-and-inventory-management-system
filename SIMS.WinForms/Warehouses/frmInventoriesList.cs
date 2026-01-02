@@ -248,9 +248,9 @@ namespace SIMS.WinForms.Warehouses
             lblSavedIInventoriesCount.Text = inventoryInfo.SavedItemsCount.ToString();
             lblLowedInventoriesCount.Text = inventoryInfo.LowedItemsCount.ToString();
             lblEmptyInventoriesCount.Text = inventoryInfo.EmptyItemsCount.ToString();
-            lblTotalInventoryValue.Text = inventoryInfo.TotalCurrentAmount.ToString() + " جنيه";
-            lblTotalProjectedSalesValue.Text = inventoryInfo.TotalProjectedSellAmount.ToString() + " جنيه";
-            lblExpectedProfitValue.Text = inventoryInfo.TotalProfitAmoubt.ToString() + " جنيه";
+            lblTotalInventoryValue.Text = inventoryInfo.TotalCurrentAmount.ToString() + " ج.س";
+            lblTotalProjectedSalesValue.Text = inventoryInfo.TotalProjectedSellAmount.ToString() + " ج.س";
+            lblExpectedProfitValue.Text = inventoryInfo.TotalProfitAmoubt.ToString() + " ج.س";
             lblExpectedProfitRate.Text = inventoryInfo.TotalProfitRate.ToString() + "%";
         }
 

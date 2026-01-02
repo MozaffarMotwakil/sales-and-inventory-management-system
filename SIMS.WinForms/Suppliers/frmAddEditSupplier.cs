@@ -32,18 +32,18 @@ namespace SIMS.WinForms.Suppliers
                         ctrAddEditOrganization.Visible = true;
                         gbOtherInfo.Location = new System.Drawing.Point(
                             gbOtherInfo.Location.X,
-                            397
+                            367
                             );
                         btnSave.Location = new System.Drawing.Point(
                             btnSave.Location.X,
-                            545
+                            515
                             );
                         btnCancle.Location = new System.Drawing.Point(
                             btnCancle.Location.X,
-                            545
+                            515
                             );
-                        panel.Size = new System.Drawing.Size(panel.Width, 600);
-                        this.Size = new System.Drawing.Size(this.Width, 660);
+                        panel.Size = new System.Drawing.Size(panel.Width, 570);
+                        this.Size = new System.Drawing.Size(this.Width, 630);
                         ctrAddEditOrganization.AttachErrorProvider(errorProvider);
                         break;
                     default:
@@ -73,19 +73,6 @@ namespace SIMS.WinForms.Suppliers
 
         private void frmAddEditSupplier_Load(object sender, EventArgs e)
         {
-            if (FormMode is enMode.Add)
-            {
-                this.Text = lblFormTitle.Text = SupplierCategory is clsParty.enPartyCategory.Person ?
-                    "إضافة مورد جديد - شخص" :
-                    "إضافة مورد جديد - منظمة";
-            }
-            else
-            {
-                this.Text = lblFormTitle.Text = SupplierCategory is clsParty.enPartyCategory.Person ?
-                    "تعديل بيانات مورد - شخص" :
-                    "تعديل بيانات مورد - منظمة";
-            }
-
             if (FormMode is enMode.Edit)
             {
                 if (_Supplier is null)

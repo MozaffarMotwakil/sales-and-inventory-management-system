@@ -315,42 +315,6 @@
     <Compile Include="Reports\frmIssueReportFilters.Designer.cs">
       <DependentUpon>frmIssueReportFilters.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\frmMainReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmMainReport.Designer.cs">
-      <DependentUpon>frmMainReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\frmProfitAndLossReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmProfitAndLossReport.Designer.cs">
-      <DependentUpon>frmProfitAndLossReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\frmSalesByEmployeeReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmSalesByEmployeeReport.Designer.cs">
-      <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\frmSalesByDateReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmSalesByDateReport.Designer.cs">
-      <DependentUpon>frmSalesByDateReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\frmSalesByCategoryReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmSalesByCategoryReport.Designer.cs">
-      <DependentUpon>frmSalesByCategoryReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\frmReportsDashboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reports\frmReportsDashboard.Designer.cs">
-      <DependentUpon>frmReportsDashboard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Sales\BaseSalesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -645,24 +609,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\frmIssueReportFilters.resx">
       <DependentUpon>frmIssueReportFilters.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmMainReport.resx">
-      <DependentUpon>frmMainReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmProfitAndLossReport.resx">
-      <DependentUpon>frmProfitAndLossReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmSalesByDateReport.resx">
-      <DependentUpon>frmSalesByDateReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmReportsDashboard.resx">
-      <DependentUpon>frmReportsDashboard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmSalesByCategoryReport.resx">
-      <DependentUpon>frmSalesByCategoryReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\frmSalesByEmployeeReport.resx">
-      <DependentUpon>frmSalesByEmployeeReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\repPurchases.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

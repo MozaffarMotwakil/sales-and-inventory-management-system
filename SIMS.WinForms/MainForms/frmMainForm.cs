@@ -34,7 +34,6 @@ namespace SIMS.WinForms
             TransferOperations,
             PurchasesList,
             SalesList,
-            ReportsDashboard,
             UsersList,
             PaymentsList,
             ActivityLog
@@ -53,7 +52,6 @@ namespace SIMS.WinForms
         private Form _TransferOperations;
         private Form _PurchasesList;
         private Form _SalesList;
-        private Form _ReportsDashboardForm;
         private Form _UsersListForm;
         private Form _PaymentsListForm;
         private Form _ActivityLogForm;
@@ -184,12 +182,6 @@ namespace SIMS.WinForms
             // _OpenForm(ref _UsersListForm, enFormType.UsersList);
         }
 
-        private void ReportsToolStripButton_Click(object sender, EventArgs e)
-        {
-            clsFormMessages.ShowNotImplementedFeatureWarning();
-            // _OpenForm(ref _ReportsDashboardForm, enFormType.ReportsDashboard);
-        }
-
         private void ActivityLogToolStripButton_Click(object sender, EventArgs e)
         {
             clsFormMessages.ShowNotImplementedFeatureWarning();
@@ -278,8 +270,6 @@ namespace SIMS.WinForms
                     return new frmPurchasesList();
                 case enFormType.SalesList:
                     return new frmSalesList();
-                case enFormType.ReportsDashboard:
-                    return new frmReportsDashboard();
                 case enFormType.UsersList:
                     return new frmUsersList();
                 case enFormType.PaymentsList:
