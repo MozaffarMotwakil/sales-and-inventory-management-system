@@ -40,7 +40,7 @@ namespace SIMS.WinForms.Payments
                 base.dgvEntitiesList.Columns[6].HeaderText = "رقم الفاتورة";
                 base.dgvEntitiesList.Columns[6].Width = 100;
 
-                base.dgvEntitiesList.Columns[7].HeaderText = "المبلغ (جنيه)";
+                base.dgvEntitiesList.Columns[7].HeaderText = "المبلغ (ج.س)";
                 base.dgvEntitiesList.Columns[7].Width = 100;
 
                 base.dgvEntitiesList.Columns[8].HeaderText = "طريقة الدقع";

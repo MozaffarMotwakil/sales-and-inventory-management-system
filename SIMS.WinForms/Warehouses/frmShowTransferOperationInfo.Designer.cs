@@ -225,7 +225,7 @@
             // 
             // colAverageInventoryPurchasePrice
             // 
-            this.colAverageInventoryPurchasePrice.HeaderText = "متوسط سعر الوحدة عند عملية النقل (جنيه)";
+            this.colAverageInventoryPurchasePrice.HeaderText = "متوسط سعر الوحدة عند عملية النقل (ج.س)";
             this.colAverageInventoryPurchasePrice.Name = "colAverageInventoryPurchasePrice";
             this.colAverageInventoryPurchasePrice.ReadOnly = true;
             this.colAverageInventoryPurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -234,7 +234,7 @@
             // 
             // colTransferedInventoryValue
             // 
-            this.colTransferedInventoryValue.HeaderText = "قيمة البضاعة المنقولة (جنيه)";
+            this.colTransferedInventoryValue.HeaderText = "قيمة البضاعة المنقولة (ج.س)";
             this.colTransferedInventoryValue.Name = "colTransferedInventoryValue";
             this.colTransferedInventoryValue.ReadOnly = true;
             this.colTransferedInventoryValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;

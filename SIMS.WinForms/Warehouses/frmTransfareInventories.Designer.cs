@@ -135,7 +135,7 @@
             this.lblTotalItemsValue.Name = "lblTotalItemsValue";
             this.lblTotalItemsValue.Size = new System.Drawing.Size(127, 14);
             this.lblTotalItemsValue.TabIndex = 0;
-            this.lblTotalItemsValue.Text = "0 جنيه";
+            this.lblTotalItemsValue.Text = "0 ج.س";
             // 
             // lblTotalItemsCount
             // 
@@ -466,7 +466,7 @@
             // 
             // colAveragePurchasePrice
             // 
-            this.colAveragePurchasePrice.HeaderText = "متوسط سعر شراء الوحدة (جنيه)";
+            this.colAveragePurchasePrice.HeaderText = "متوسط سعر شراء الوحدة (ج.س)";
             this.colAveragePurchasePrice.Name = "colAveragePurchasePrice";
             this.colAveragePurchasePrice.ReadOnly = true;
             this.colAveragePurchasePrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -475,7 +475,7 @@
             // 
             // colSellingPrice
             // 
-            this.colSellingPrice.HeaderText = "سعر بيع الوحدة (جنيه)";
+            this.colSellingPrice.HeaderText = "سعر بيع الوحدة (ج.س)";
             this.colSellingPrice.Name = "colSellingPrice";
             this.colSellingPrice.ReadOnly = true;
             this.colSellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -484,7 +484,7 @@
             // 
             // colTransafareQuantityAmount
             // 
-            this.colTransafareQuantityAmount.HeaderText = "قيمة البضاعة المراد نقلها (جنيه)";
+            this.colTransafareQuantityAmount.HeaderText = "قيمة البضاعة المراد نقلها (ج.س)";
             this.colTransafareQuantityAmount.Name = "colTransafareQuantityAmount";
             this.colTransafareQuantityAmount.ReadOnly = true;
             this.colTransafareQuantityAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;

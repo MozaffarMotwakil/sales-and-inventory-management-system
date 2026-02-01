@@ -222,10 +222,10 @@ namespace SIMS.WinForms.Products
                 dgvUnits.Columns[6].HeaderText = "معامل التحويل";
                 dgvUnits.Columns[6].Width = 90;
 
-                dgvUnits.Columns[7].HeaderText = "متوسط سعر الشراء (جنيه)";
+                dgvUnits.Columns[7].HeaderText = "متوسط سعر الشراء (ج.س)";
                 dgvUnits.Columns[7].Width = 110;
 
-                dgvUnits.Columns[8].HeaderText = "سعر البيع (جنيه)";
+                dgvUnits.Columns[8].HeaderText = "سعر البيع (ج.س)";
                 dgvUnits.Columns[8].Width = 100;
 
                 dgvUnits.Columns[9].HeaderText = "معدل الربح (%)";
@@ -265,16 +265,16 @@ namespace SIMS.WinForms.Products
                 dgvSuppliers.Columns[5].HeaderText = "تاريخ آخر شراء";
                 dgvSuppliers.Columns[5].Width = 85;
 
-                dgvSuppliers.Columns[6].HeaderText = "سعر آخر شراء (جنيه)";
+                dgvSuppliers.Columns[6].HeaderText = "سعر آخر شراء (ج.س)";
                 dgvSuppliers.Columns[6].Width = 85;
 
-                dgvSuppliers.Columns[7].HeaderText = "متوسط سعر الشراء (جنيه)";
+                dgvSuppliers.Columns[7].HeaderText = "متوسط سعر الشراء (ج.س)";
                 dgvSuppliers.Columns[7].Width = 110;
 
-                dgvSuppliers.Columns[8].HeaderText = "مجموع المشتريات (جنيه)";
+                dgvSuppliers.Columns[8].HeaderText = "مجموع المشتريات (ج.س)";
                 dgvSuppliers.Columns[8].Width = 100;
 
-                dgvSuppliers.Columns[9].HeaderText = "مجموع المرتجعات (جنيه)";
+                dgvSuppliers.Columns[9].HeaderText = "مجموع المرتجعات (ج.س)";
                 dgvSuppliers.Columns[9].Width = 100;
             }
         }
@@ -370,13 +370,13 @@ namespace SIMS.WinForms.Products
                 dgvInventories.Columns[7].HeaderText = "الحالة";
                 dgvInventories.Columns[7].Width = 50;
 
-                dgvInventories.Columns[8].HeaderText = "تكلفة شراء المخزون (جنيه)";
+                dgvInventories.Columns[8].HeaderText = "تكلفة شراء المخزون (ج.س)";
                 dgvInventories.Columns[8].Width = 110;
 
-                dgvInventories.Columns[9].HeaderText = "قيمة بيع المخزون (جنيه)";
+                dgvInventories.Columns[9].HeaderText = "قيمة بيع المخزون (ج.س)";
                 dgvInventories.Columns[9].Width = 110;
 
-                dgvInventories.Columns[10].HeaderText = "الربح المتوقع (جنيه)";
+                dgvInventories.Columns[10].HeaderText = "الربح المتوقع (ج.س)";
                 dgvInventories.Columns[10].Width = 90;
 
                 dgvInventories.Columns[11].HeaderText = "معدل الربح (%)";

@@ -51,14 +51,14 @@ namespace SIMS.WinForms.Warehouses
                 lblLastOutsideTransactionDate.Text = inventorySummary.LastOutsideTransactionDate?.ToString("HH:mm:ss dd/MM/yyyy") ?? "N/A";
 
                 stFinancialSummary financialSummary = value.GetFinancialSummary();
-                lblInventoriesCostValue.Text = financialSummary.InventoriesCostValue.ToString() + " جنيه";
-                lblInventoriesSellingValue.Text = financialSummary.InventoriesSellingValue.ToString() + " جنيه";
-                lblExpectedProfit.Text = financialSummary.ExpectedProfit.ToString() + " جنيه";
+                lblInventoriesCostValue.Text = financialSummary.InventoriesCostValue.ToString() + " ج.س";
+                lblInventoriesSellingValue.Text = financialSummary.InventoriesSellingValue.ToString() + " ج.س";
+                lblExpectedProfit.Text = financialSummary.ExpectedProfit.ToString() + " ج.س";
                 lblProfitRate.Text = financialSummary.ProfitRate.ToString() + "%";
-                lblPurchasesValue.Text = financialSummary.PurchasesValue.ToString() + " جنيه";
-                lblReturnPurchasesValue.Text = financialSummary.ReturnPurchasesValue.ToString() + " جنيه";
-                lblSellingValue.Text = financialSummary.SellingValue.ToString() + " جنيه";
-                lblReturnSellingValue.Text = financialSummary.ReturnSellingValue.ToString() + " جنيه";
+                lblPurchasesValue.Text = financialSummary.PurchasesValue.ToString() + " ج.س";
+                lblReturnPurchasesValue.Text = financialSummary.ReturnPurchasesValue.ToString() + " ج.س";
+                lblSellingValue.Text = financialSummary.SellingValue.ToString() + " ج.س";
+                lblReturnSellingValue.Text = financialSummary.ReturnSellingValue.ToString() + " ج.س";
 
                 stKPIsSummary KPIsSummary = value.GetKPIsSummary();
                 lblItemsThatNeedToBeReorderedRate.Text = KPIsSummary.ItemsThatNeedToBeReorderedRate.ToString() + "%";

@@ -40,7 +40,7 @@ namespace SIMS.WinForms.Products
             lblActiveLinkingProduct.Text = _DiscountItems.Count.ToString();
             lblCreatedAt.Text = _Discount.CreatedAt?.ToString("yyyy/MM/dd") ?? "N/A";
             lblDiscountValue.Text = _Discount.DiscountValue.ToString() +
-                (_Discount.DiscountValueType == clsDiscount.enValueType.Percentage ? "%" : " جنيه");
+                (_Discount.DiscountValueType == clsDiscount.enValueType.Percentage ? "%" : " ج.س");
 
             LoadProductsToTreeView(clsProductService.GetProductHierarchyForTreeView());
         }

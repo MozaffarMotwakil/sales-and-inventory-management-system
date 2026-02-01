@@ -40,7 +40,7 @@ namespace SIMS.WinForms.Warehouses
                 base.dgvEntitiesList.Columns[7].HeaderText = "إجمالي الكمية المنقولة";
                 base.dgvEntitiesList.Columns[7].Width = 80;
 
-                base.dgvEntitiesList.Columns[8].HeaderText = "إجمالي قيمة البضاعة المنقولة (جنيه)";
+                base.dgvEntitiesList.Columns[8].HeaderText = "إجمالي قيمة البضاعة المنقولة (ج.س)";
                 base.dgvEntitiesList.Columns[8].Width = 110;
 
                 base.dgvEntitiesList.Columns[9].HeaderText = "معرف الموظف المسؤول";

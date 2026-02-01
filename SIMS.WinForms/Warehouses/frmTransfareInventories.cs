@@ -129,7 +129,7 @@ namespace SIMS.WinForms.Warehouses
                 .Cast<DataGridViewRow>()
                 .Where(row => !row.IsNewRow)
                 .Sum(row => Convert.ToSingle(row.Cells[colAveragePurchasePrice.Index].Value) * Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
-                .ToString() + " جنيه";
+                .ToString() + " ج.س";
         }
 
         private void _UpdateRowsDetails()
@@ -378,7 +378,7 @@ namespace SIMS.WinForms.Warehouses
                         .Cast<DataGridViewRow>()
                         .Where(row => !row.IsNewRow)
                         .Sum(row => Convert.ToSingle(row.Cells[colAveragePurchasePrice.Index].Value) * Convert.ToInt32(row.Cells[colTransfareQuantity.Index].Value))
-                        .ToString() + " جنيه";
+                        .ToString() + " ج.س";
                 }
             }
         }

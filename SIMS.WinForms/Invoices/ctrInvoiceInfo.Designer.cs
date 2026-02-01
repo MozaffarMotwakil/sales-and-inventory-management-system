@@ -162,7 +162,7 @@
             // UnitPrice
             // 
             this.UnitPrice.FillWeight = 83.51167F;
-            this.UnitPrice.HeaderText = "سعر الوحدة (جنيه)";
+            this.UnitPrice.HeaderText = "سعر الوحدة (ج.س)";
             this.UnitPrice.Name = "UnitPrice";
             this.UnitPrice.ReadOnly = true;
             this.UnitPrice.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -170,7 +170,7 @@
             // 
             // colSubTotal
             // 
-            this.colSubTotal.HeaderText = "الإجمالي الفرعي (جنيه)";
+            this.colSubTotal.HeaderText = "الإجمالي الفرعي (ج.س)";
             this.colSubTotal.Name = "colSubTotal";
             this.colSubTotal.ReadOnly = true;
             this.colSubTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -186,7 +186,7 @@
             // 
             // colDiscountAmount
             // 
-            this.colDiscountAmount.HeaderText = "قيمة الخصم (جنيه)";
+            this.colDiscountAmount.HeaderText = "قيمة الخصم (ج.س)";
             this.colDiscountAmount.Name = "colDiscountAmount";
             this.colDiscountAmount.ReadOnly = true;
             this.colDiscountAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -204,7 +204,7 @@
             // 
             // colTaxAmount
             // 
-            this.colTaxAmount.HeaderText = "قيمة الضريبة (جنيه)";
+            this.colTaxAmount.HeaderText = "قيمة الضريبة (ج.س)";
             this.colTaxAmount.Name = "colTaxAmount";
             this.colTaxAmount.ReadOnly = true;
             this.colTaxAmount.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -214,7 +214,7 @@
             // colGrandTotal
             // 
             this.colGrandTotal.FillWeight = 126.9036F;
-            this.colGrandTotal.HeaderText = "الإجمالي الكلي (جنيه)";
+            this.colGrandTotal.HeaderText = "الإجمالي الكلي (ج.س)";
             this.colGrandTotal.Name = "colGrandTotal";
             this.colGrandTotal.ReadOnly = true;
             this.colGrandTotal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

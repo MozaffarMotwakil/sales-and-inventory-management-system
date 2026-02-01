@@ -101,27 +101,27 @@ namespace SIMS.WinForms.Dashboard
                 dgvRunningLowProducts.Columns[9].HeaderText = "الكمية الحالية";
                 dgvRunningLowProducts.Columns[9].Width = 55;
 
-                dgvRunningLowProducts.Columns[10].HeaderText = "متوسط سعر الشراء (جنيه)";
+                dgvRunningLowProducts.Columns[10].HeaderText = "متوسط سعر الشراء (ج.س)";
                 dgvRunningLowProducts.Columns[10].Width = 85;
                 dgvRunningLowProducts.Columns[10].DefaultCellStyle.Format = "0.##";
                 dgvRunningLowProducts.Columns[10].Visible = false;
 
-                dgvRunningLowProducts.Columns[11].HeaderText = "سعر البيع (جنيه)";
+                dgvRunningLowProducts.Columns[11].HeaderText = "سعر البيع (ج.س)";
                 dgvRunningLowProducts.Columns[11].Width = 85;
                 dgvRunningLowProducts.Columns[11].DefaultCellStyle.Format = "0.##";
                 dgvRunningLowProducts.Columns[11].Visible = false;
 
-                dgvRunningLowProducts.Columns[12].HeaderText = "تكلفة شراء المخزون (جنيه)";
+                dgvRunningLowProducts.Columns[12].HeaderText = "تكلفة شراء المخزون (ج.س)";
                 dgvRunningLowProducts.Columns[12].Width = 85;
                 dgvRunningLowProducts.Columns[12].DefaultCellStyle.Format = "0.##";
                 dgvRunningLowProducts.Columns[12].Visible = false;
 
-                dgvRunningLowProducts.Columns[13].HeaderText = "قيمة بيع المخزون (جنيه)";
+                dgvRunningLowProducts.Columns[13].HeaderText = "قيمة بيع المخزون (ج.س)";
                 dgvRunningLowProducts.Columns[13].Width = 85;
                 dgvRunningLowProducts.Columns[13].DefaultCellStyle.Format = "0.##";
                 dgvRunningLowProducts.Columns[13].Visible = false;
 
-                dgvRunningLowProducts.Columns[14].HeaderText = "الربح المتوقع (جنيه)";
+                dgvRunningLowProducts.Columns[14].HeaderText = "الربح المتوقع (ج.س)";
                 dgvRunningLowProducts.Columns[14].Width = 85;
                 dgvRunningLowProducts.Columns[14].DefaultCellStyle.Format = "0.##";
                 dgvRunningLowProducts.Columns[14].Visible = false;

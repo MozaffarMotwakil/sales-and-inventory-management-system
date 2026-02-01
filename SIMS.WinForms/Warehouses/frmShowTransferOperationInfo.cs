@@ -44,7 +44,7 @@ namespace SIMS.WinForms.Warehouses
             lblProductsCount.Text = _TransferOperation.TransferedProductsCount.ToString();
             lblInventoriesCount.Text = _TransferOperation.TransferedInventoriesCount.ToString();
             lblTotalQuantity.Text = _TransferOperation.TotalTransferedQuantity.ToString();
-            lblTotalTransferedInventoriesValue.Text = _TransferOperation.TotalTransferedInventoriesValue.ToString() + " جنيه";
+            lblTotalTransferedInventoriesValue.Text = _TransferOperation.TotalTransferedInventoriesValue.ToString() + " ج.س";
 
             for (int i = 0; i < _TransferOperation.TransferedInventories.Count; i++)
             {

@@ -693,7 +693,7 @@
             this.lblPurchasesValue.Name = "lblPurchasesValue";
             this.lblPurchasesValue.Size = new System.Drawing.Size(200, 16);
             this.lblPurchasesValue.TabIndex = 66;
-            this.lblPurchasesValue.Text = "N/A جنيه";
+            this.lblPurchasesValue.Text = "N/A ج.س";
             // 
             // label55
             // 
@@ -725,7 +725,7 @@
             this.lblReturnSellingValue.Name = "lblReturnSellingValue";
             this.lblReturnSellingValue.Size = new System.Drawing.Size(200, 16);
             this.lblReturnSellingValue.TabIndex = 64;
-            this.lblReturnSellingValue.Text = "N/A جنيه";
+            this.lblReturnSellingValue.Text = "N/A ج.س";
             // 
             // label32
             // 
@@ -746,7 +746,7 @@
             this.lblSellingValue.Name = "lblSellingValue";
             this.lblSellingValue.Size = new System.Drawing.Size(200, 16);
             this.lblSellingValue.TabIndex = 64;
-            this.lblSellingValue.Text = "N/A جنيه";
+            this.lblSellingValue.Text = "N/A ج.س";
             // 
             // lblReturnPurchasesValue
             // 
@@ -755,7 +755,7 @@
             this.lblReturnPurchasesValue.Name = "lblReturnPurchasesValue";
             this.lblReturnPurchasesValue.Size = new System.Drawing.Size(200, 16);
             this.lblReturnPurchasesValue.TabIndex = 61;
-            this.lblReturnPurchasesValue.Text = "N/A جنيه";
+            this.lblReturnPurchasesValue.Text = "N/A ج.س";
             // 
             // label18
             // 
@@ -777,7 +777,7 @@
             this.lblInventoriesCostValue.Name = "lblInventoriesCostValue";
             this.lblInventoriesCostValue.Size = new System.Drawing.Size(200, 16);
             this.lblInventoriesCostValue.TabIndex = 60;
-            this.lblInventoriesCostValue.Text = "N/A جنيه";
+            this.lblInventoriesCostValue.Text = "N/A ج.س";
             // 
             // label38
             // 
@@ -820,7 +820,7 @@
             this.lblExpectedProfit.Name = "lblExpectedProfit";
             this.lblExpectedProfit.Size = new System.Drawing.Size(200, 16);
             this.lblExpectedProfit.TabIndex = 57;
-            this.lblExpectedProfit.Text = "N/A جنيه";
+            this.lblExpectedProfit.Text = "N/A ج.س";
             // 
             // lblProfitRate
             // 
@@ -839,7 +839,7 @@
             this.lblInventoriesSellingValue.Name = "lblInventoriesSellingValue";
             this.lblInventoriesSellingValue.Size = new System.Drawing.Size(200, 16);
             this.lblInventoriesSellingValue.TabIndex = 53;
-            this.lblInventoriesSellingValue.Text = "N/A جنيه";
+            this.lblInventoriesSellingValue.Text = "N/A ج.س";
             // 
             // tabPage4
             // 

@@ -58,25 +58,25 @@ namespace SIMS.WinForms.Suppliers
                 base.dgvEntitiesList.Columns[12].HeaderText = "الوحدة";
                 base.dgvEntitiesList.Columns[12].Width = 85;
 
-                base.dgvEntitiesList.Columns[13].HeaderText = "سعر الوحدة (جنيه)";
+                base.dgvEntitiesList.Columns[13].HeaderText = "سعر الوحدة (ج.س)";
                 base.dgvEntitiesList.Columns[13].Width = 100;
 
-                base.dgvEntitiesList.Columns[14].HeaderText = "السعر الصافي للوحدة (جنيه)";
+                base.dgvEntitiesList.Columns[14].HeaderText = "السعر الصافي للوحدة (ج.س)";
                 base.dgvEntitiesList.Columns[14].Width = 100;
 
                 base.dgvEntitiesList.Columns[15].HeaderText = "الكمية";
                 base.dgvEntitiesList.Columns[15].Width = 100;
 
-                base.dgvEntitiesList.Columns[16].HeaderText = "الإجمالي الفرعي (جنيه)";
+                base.dgvEntitiesList.Columns[16].HeaderText = "الإجمالي الفرعي (ج.س)";
                 base.dgvEntitiesList.Columns[16].Width = 120;
 
-                base.dgvEntitiesList.Columns[17].HeaderText = "قيمة الخصم (جنيه)";
+                base.dgvEntitiesList.Columns[17].HeaderText = "قيمة الخصم (ج.س)";
                 base.dgvEntitiesList.Columns[17].Width = 100;
 
-                base.dgvEntitiesList.Columns[18].HeaderText = "قيمة الضريبة (جنيه)";
+                base.dgvEntitiesList.Columns[18].HeaderText = "قيمة الضريبة (ج.س)";
                 base.dgvEntitiesList.Columns[18].Width = 100;
 
-                base.dgvEntitiesList.Columns[19].HeaderText = "الإجمالي النهائي (جنيه)";
+                base.dgvEntitiesList.Columns[19].HeaderText = "الإجمالي النهائي (ج.س)";
                 base.dgvEntitiesList.Columns[19].Width = 120;
             }
         }
