@@ -20,7 +20,7 @@ namespace BusinessLogic.Warehouses
             InventoryID = inventoryDTO.InventoryID;
             WarehouseInfo = clsWarehouseService.CreateInstance().Find(inventoryDTO.WarehouseID);
             ProductInfo = clsProductService.CreateInstance().Find(inventoryDTO.ProductID);
-            UnitInfo = clsUnit.Find(inventoryDTO.UnitID);
+            UnitInfo = clsUnitService.CreateInstance().Find(inventoryDTO.UnitID);
             ReorderQuantity = inventoryDTO.ReorderQuantity;
         }
 
@@ -38,7 +38,7 @@ namespace BusinessLogic.Warehouses
         public int GetCurrentQuantity()
         {
             return clsInventoryData.GetInventoryQuantity(
-                this.WarehouseInfo.WarehouseID ?? -1, this.ProductInfo.ProductID ?? -1, this.UnitInfo.UnitID
+                this.WarehouseInfo.WarehouseID ?? -1, this.ProductInfo.ProductID ?? -1, this.UnitInfo.UnitID.GetValueOrDefault()
                 );
         }
 

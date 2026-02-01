@@ -47,7 +47,7 @@ namespace BusinessLogic.Products
 
                 foreach (int unitID in productUnitIDs)
                 {
-                    units.Add(clsUnit.Find(unitID));
+                    units.Add(clsUnitService.CreateInstance().Find(unitID));
                 }
 
                 return units;
@@ -61,7 +61,7 @@ namespace BusinessLogic.Products
             ProductName = productName;
             Barcode = barcode;
             CategoryInfo = clsCategoryService.CreateInstance().Find(categoryID);
-            MainUnitInfo = clsUnit.Find(mainUnitID);
+            MainUnitInfo = clsUnitService.CreateInstance().Find(mainUnitID);
             UnitConversions = unitConversions;
             MainSupplierInfo = clsSupplierService.CreateInstance().Find(mainSupplierID ?? -1);
             SellingPrice = sellingPrice;
@@ -76,7 +76,7 @@ namespace BusinessLogic.Products
             ProductName = productDTO.ProductName;
             Barcode = productDTO.Barcode;
             CategoryInfo = clsCategoryService.CreateInstance().Find(productDTO.CategoryID);
-            MainUnitInfo = clsUnit.Find(productDTO.MainUnitID);
+            MainUnitInfo = clsUnitService.CreateInstance().Find(productDTO.MainUnitID);
             UnitConversions = clsProductUnitConversion.ConvertAlternativeUnitsTableToList(productDTO.UnitConversions);
             MainSupplierInfo = clsSupplierService.CreateInstance().Find(productDTO.MainSupplierID ?? -1);
             SellingPrice = productDTO.SellingPrice;
@@ -135,7 +135,7 @@ namespace BusinessLogic.Products
 
         public void ChangeMainUnit(int newUnitID)
         {
-            MainUnitInfo = clsUnit.Find(newUnitID);
+            MainUnitInfo = clsUnitService.CreateInstance().Find(newUnitID);
         }
 
         public void ChangeMainSupplier(string newSupplierName)
@@ -170,7 +170,7 @@ namespace BusinessLogic.Products
                 ProductName = this.ProductName,
                 Barcode = this.Barcode,
                 CategoryID = this.CategoryInfo.CategoryID.GetValueOrDefault(),
-                MainUnitID = this.MainUnitInfo.UnitID,
+                MainUnitID = this.MainUnitInfo.UnitID.GetValueOrDefault(),
                 UnitConversions = clsProductUnitConversion.ConvertAlternativeUnitsListToTable(this.UnitConversions),
                 MainSupplierID = this.MainSupplierInfo?.SupplierID,
                 SellingPrice = this.SellingPrice,

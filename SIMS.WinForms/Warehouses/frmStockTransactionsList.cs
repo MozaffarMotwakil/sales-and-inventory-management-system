@@ -46,7 +46,7 @@ namespace SIMS.WinForms.Warehouses
                 cbTransactionType.SelectedIndex = cbResponseEmployee.SelectedIndex = cbTransactionReason.SelectedIndex = 0;
 
             cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
-            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbUnit.Items.AddRange(clsUnitService.GetAllUnitNames());
             cbWarehouse.Items.AddRange(clsWarehouseService.GetWarehouseNames());
             cbTransactionType.Items.AddRange(clsStockTransactionService.GetStockTransactionTypeNames());
             cbResponseEmployee.Items.AddRange(clsEmployeeService.GetEmployeeNames());

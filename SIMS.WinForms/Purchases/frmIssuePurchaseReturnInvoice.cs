@@ -85,7 +85,11 @@ namespace SIMS.WinForms.Purchases
                 boxCell.DataSource = _OrginalInvoice.Lines
                     .Where(line => line.ProductID == CurrentLine.ProductID && line.GetRemainingQuantity() > 0)
                     .Select(line => line.UnitInfo)
-                    .Where(unit => !GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault()).Contains(unit.UnitID))
+                    .Where(
+                        unit => 
+                        !GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault())
+                        .Contains(unit.UnitID.GetValueOrDefault())
+                    )
                     .ToList();
 
                 colUnit.DisplayMember = "UnitName";

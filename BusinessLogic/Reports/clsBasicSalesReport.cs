@@ -6,27 +6,27 @@ namespace BusinessLogic.Reports
 {
     public class clsBasicSalesReport : clsReport
     {
-        public decimal GrossSalesAmount { get; set; }
-        public decimal TotalDiscounts { get; set; }
-        public decimal DiscountsRate { get; set; }
-        public decimal TotalTaxes { get; set; }
-        public decimal NetSales { get; set; }
-        public decimal TotalReturns { get; set; }
-        public decimal ReturnsRate { get; set; }
-        public decimal FinalNetRevenue { get; set; }
-        public decimal COGS { get; set; }
-        public decimal TotalProfit { get; set; }
-        public decimal ProfitRate { get; set; }
+        public decimal GrossSalesAmount { get; }
+        public decimal TotalDiscounts { get; }
+        public decimal DiscountsRate { get; }
+        public decimal TotalTaxes { get; }
+        public decimal NetSales { get; }
+        public decimal TotalReturns { get; }
+        public decimal ReturnsRate { get; }
+        public decimal FinalNetRevenue { get; }
+        public decimal COGS { get; }
+        public decimal TotalProfit { get; }
+        public decimal ProfitRate { get; }
 
-        public decimal CashAmount { get; set; }
-        public decimal CashRate { get; set; }
-        public decimal BankTransferAmount { get; set; }
-        public decimal BankTransferRate { get; set; }
+        public decimal CashAmount { get; }
+        public decimal CashRate { get; }
+        public decimal BankTransferAmount { get; }
+        public decimal BankTransferRate { get; }
 
-        public int TotalInvoicesCount { get; set; }
-        public decimal InvoiceAmountAvg { get; set; }
-        public decimal InvoiceProductCountAvg { get; set; }
-        public decimal InvoiceCountAvg { get; set; }
+        public int TotalInvoicesCount { get; }
+        public decimal InvoiceAmountAvg { get; }
+        public decimal InvoiceProductCountAvg { get; }
+        public decimal InvoiceCountAvg { get; }
 
         public clsBasicSalesReport(DateTime dateFrom, DateTime dateTo)
         {

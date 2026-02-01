@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Utilities;
 using BusinessLogic.Validation;
-using DataAccess;
 using DataAccess.Products;
 using DTOs.Products;
 
@@ -46,7 +45,7 @@ namespace BusinessLogic.Products
                 return true;
             }
 
-            if (category.Mode == enMode.Update && clsProductCategoryData.SetActive(category.CategoryID ?? -1, clsAppSettings.CurrentUser.UserID))
+            if (category.Mode == enMode.Update && clsCategoryData.SetActive(category.CategoryID ?? -1, clsAppSettings.CurrentUser.UserID))
             {
                 OnCategorySaved(category.CategoryID ?? -1, category.CategoryName, enMode.Update);
                 return true;
@@ -62,7 +61,7 @@ namespace BusinessLogic.Products
                 return true;
             }
 
-            if (category.Mode == enMode.Update && clsProductCategoryData.SetInActive(category.CategoryID ?? -1, clsAppSettings.CurrentUser.UserID))
+            if (category.Mode == enMode.Update && clsCategoryData.SetInActive(category.CategoryID ?? -1, clsAppSettings.CurrentUser.UserID))
             {
                 OnCategorySaved(category.CategoryID ?? -1, category.CategoryName, enMode.Update);
                 return true;
@@ -73,7 +72,7 @@ namespace BusinessLogic.Products
 
         public clsCategory Find(int categoryID)
         {
-            clsCategoryDTO categoryDTO = clsProductCategoryData.FindCategoryByID(categoryID);
+            clsCategoryDTO categoryDTO = clsCategoryData.FindCategoryByID(categoryID);
             return categoryDTO is null ? null : new clsCategory(categoryDTO);
         }
 
@@ -88,7 +87,7 @@ namespace BusinessLogic.Products
 
             try
             {
-                if (clsProductCategoryData.DeleteCategory(categoryID))
+                if (clsCategoryData.DeleteCategory(categoryID))
                 {
                     OnCategoryDeleted(categoryID, category.CategoryName);
                     return true;
@@ -108,35 +107,35 @@ namespace BusinessLogic.Products
 
         public DataTable GetAll()
         {
-            return clsProductCategoryData.GetAllCategorys();
+            return clsCategoryData.GetAllCategorys();
         }
 
         public static bool IsCategoryExists(int categoryID)
         {
-            return clsProductCategoryData.IsCategoryExists(categoryID);
+            return clsCategoryData.IsCategoryExists(categoryID);
         }
 
         public static bool IsCategoryExistsByName(string categoryName)
         {
-            return clsProductCategoryData.IsCategoryExistsByName(categoryName);
+            return clsCategoryData.IsCategoryExistsByName(categoryName);
         }
 
         public static DataTable GetCategoriesList()
         {
-            return clsProductCategoryData.GetCategoriesList();
+            return clsCategoryData.GetCategoriesList();
         }
 
         public static DataTable GetActiveCategoriesList()
         {
             return clsUtils.GetActiveRecordsList(
-                clsProductCategoryData.GetCategoriesList()
+                clsCategoryData.GetCategoriesList()
                 );
         }
 
         public static string[] GetCategoryNames()
         {
             return clsUtils.GetColumnStringArray(
-                clsProductCategoryData.GetCategoriesList(),
+                clsCategoryData.GetCategoriesList(),
                 "CategoryName"
                 );
         }
@@ -179,8 +178,8 @@ namespace BusinessLogic.Products
             }
 
             bool isSaved = mode is enMode.Add ?
-                clsProductCategoryData.AddCategory(categoryDTO) :
-                clsProductCategoryData.UpdateCategory(categoryDTO);
+                clsCategoryData.AddCategory(categoryDTO) :
+                clsCategoryData.UpdateCategory(categoryDTO);
 
             if (isSaved)
             {

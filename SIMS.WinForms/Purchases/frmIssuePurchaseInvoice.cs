@@ -136,7 +136,7 @@ namespace SIMS.WinForms.Inventory
                     .Where(
                         unit =>
                         !GetSelectedProductUnitIDs(CurrentLine.ProductID.GetValueOrDefault())
-                            .Contains(unit.UnitID)
+                            .Contains(unit.UnitID.GetValueOrDefault())
                     )
                     .ToList();
 

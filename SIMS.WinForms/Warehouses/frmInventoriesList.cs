@@ -59,7 +59,7 @@ namespace SIMS.WinForms.Warehouses
 
             cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
             cbCategory.Items.AddRange(clsCategoryService.GetCategoryNames());
-            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbUnit.Items.AddRange(clsUnitService.GetAllUnitNames());
             cbWarehouse.Items.AddRange(clsWarehouseService.GetWarehouseNames());
 
             dgvEntitiesList.RowPrePaint += dgvEntitiesList_RowPrePaint;

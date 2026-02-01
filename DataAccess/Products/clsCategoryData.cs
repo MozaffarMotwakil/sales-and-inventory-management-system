@@ -5,7 +5,7 @@ using DTOs.Products;
 
 namespace DataAccess.Products
 {
-    public static class clsProductCategoryData
+    public static class clsCategoryData
     {
         public static clsCategoryDTO FindCategoryByID(int categoryID)
         {
@@ -31,10 +31,20 @@ namespace DataAccess.Products
                                     CategoryID = categoryID,
                                     CategoryName = Convert.ToString(reader["CategoryName"]),
                                     Description = reader["Description"] != DBNull.Value ?
-                                    Convert.ToString(reader["Description"]) :
-                                    null,
+                                        Convert.ToString(reader["Description"]) :
+                                        null,
+                                    CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]),
+                                    CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
                                     IsActive = Convert.ToBoolean(reader["IsActive"])
                                 };
+
+                                categoryDTO.UpdatedByUserID = reader["UpdatedByUserID"] == DBNull.Value ?
+                                    (int?)null :
+                                    (int)reader["UpdatedByUserID"];
+
+                                categoryDTO.UpdatedAt = reader["UpdatedAt"] == DBNull.Value ?
+                                    (DateTime?)null :
+                                    (DateTime)reader["UpdatedAt"];
                             }
 
                             return categoryDTO;

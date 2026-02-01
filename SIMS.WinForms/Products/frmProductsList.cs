@@ -87,5 +87,12 @@ namespace SIMS.WinForms.Products
             frmCategoriesList frmCategoriesList = new frmCategoriesList();
             frmCategoriesList.ShowDialog();
         }
+
+        private void UnitsToolStripButton_Click(object sender, EventArgs e)
+        {
+            frmUnitsList unitsList = new frmUnitsList();
+            unitsList.ShowDialog();
+        }
+
     }
 }

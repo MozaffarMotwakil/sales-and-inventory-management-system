@@ -153,7 +153,7 @@ namespace SIMS.WinForms.Sales
                     .Where(
                         unit => 
                         !GetSelectedProductUnitIDs(CurrentLine.ProductID.Value)
-                        .Contains(unit.UnitID)
+                        .Contains(unit.UnitID.GetValueOrDefault())
                     )
                     .ToList();
 

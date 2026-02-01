@@ -50,7 +50,7 @@ namespace SIMS.WinForms.Products
             dgvUnitConversions.Rows[0].Cells[colDelete.Index].Value = Resources.delete;
             dgvUnitConversions.Rows[0].Cells[colGenerateBarcode.Index].Value = Resources.generate_barcode;
 
-            colUnitConversion.DataSource = clsUnit.GetUnitsList()
+            colUnitConversion.DataSource = clsUnitService.GetUnitsList()
                 .Rows
                 .Cast<DataRow>()
                 .Where(row => !row["UnitName"].Equals(BaseUnit))

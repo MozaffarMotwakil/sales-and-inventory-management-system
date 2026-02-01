@@ -191,7 +191,7 @@ namespace BusinessLogic.Products
 
         public static DataTable GetAllProductUnits(int productID)
         {
-            DataTable productUnits = clsProductUnitData.GetAllUnitsByProductID(productID);
+            DataTable productUnits = clsUnitData.GetProductUnits(productID);
             DataColumn[] primaryKey = new DataColumn[1] { productUnits.Columns["UnitID"] };
             productUnits.PrimaryKey = primaryKey;
             return productUnits;

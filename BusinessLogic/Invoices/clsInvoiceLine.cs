@@ -312,7 +312,7 @@ namespace BusinessLogic.Invoices
             }
         }
         public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID.GetValueOrDefault());
-        public clsUnit UnitInfo => clsUnit.Find(UnitID.GetValueOrDefault());
+        public clsUnit UnitInfo => clsUnitService.CreateInstance().Find(UnitID.GetValueOrDefault());
         public List<clsDiscount> SaleDiscounts { get; set; }
         public List<clsTax> SaleTaxes { get; set; }
 
@@ -525,7 +525,7 @@ namespace BusinessLogic.Invoices
                 validationResult.AddError("المنتج", $"المنتج \"{ProductInfo.ProductName}\" غير نشط");
             }
 
-            if (!clsProductUnitData.IsUnitExists(UnitID.GetValueOrDefault()))
+            if (!clsUnitData.IsUnitExists(UnitID.GetValueOrDefault()))
             {
                 validationResult.AddError("وحدة القياس", "لم يتم العثور على وحدة القياس المختارة");
             }

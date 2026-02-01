@@ -14,7 +14,7 @@ namespace BusinessLogic.Products
         public int ProductID { get; private set; }
         public clsProduct ProductInfo => clsProductService.CreateInstance().Find(ProductID);
         public int UnitID { get; private set; }
-        public clsUnit UnitInfo => clsUnit.Find(UnitID);
+        public clsUnit UnitInfo => clsUnitService.CreateInstance().Find(UnitID);
         public clsUser LinkedByUserInfo { get; private set; }
         public DateTime LinkedAt { get; private set; }
 

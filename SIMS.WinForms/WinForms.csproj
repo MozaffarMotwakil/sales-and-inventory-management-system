@@ -154,6 +154,21 @@
     <Compile Include="Products\BaseCategoriesForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Products\BaseUnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmUnitsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmUnitsList.Designer.cs">
+      <DependentUpon>frmUnitsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Products\frmAddEditUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Products\frmAddEditUnit.Designer.cs">
+      <DependentUpon>frmAddEditUnit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Products\frmAddEditCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -539,8 +554,14 @@
     <EmbeddedResource Include="Products\ctrProductInfo.resx">
       <DependentUpon>ctrProductInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmUnitsList.resx">
+      <DependentUpon>frmUnitsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Products\frmAddEditCategory.resx">
       <DependentUpon>frmAddEditCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Products\frmAddEditUnit.resx">
+      <DependentUpon>frmAddEditUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Products\frmCategoriesList.resx">
       <DependentUpon>frmCategoriesList.cs</DependentUpon>
@@ -939,6 +960,9 @@
     <None Include="Resources\payment-method.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Units_1.png" />
+    <None Include="Resources\Units_2.jpg" />
+    <None Include="Resources\ready-stock.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -413,6 +413,16 @@ namespace SIMS.WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ready_stock {
+            get {
+                object obj = ResourceManager.GetObject("ready-stock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recived_goods {
             get {
                 object obj = ResourceManager.GetObject("recived_goods", resourceCulture);
@@ -586,6 +596,26 @@ namespace SIMS.WinForms.Properties {
         internal static System.Drawing.Bitmap total_profits {
             get {
                 object obj = ResourceManager.GetObject("total_profits", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Units_1 {
+            get {
+                object obj = ResourceManager.GetObject("Units_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Units_2 {
+            get {
+                object obj = ResourceManager.GetObject("Units_2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

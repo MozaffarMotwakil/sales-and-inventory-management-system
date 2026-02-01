@@ -68,8 +68,8 @@
     <Compile Include="Payments\clsPaymentData.cs" />
     <Compile Include="Products\clsTaxData.cs" />
     <Compile Include="Products\clsDiscountData.cs" />
-    <Compile Include="Products\clsProductUnitData.cs" />
-    <Compile Include="Products\clsProductCategoryData.cs" />
+    <Compile Include="Products\clsUnitData.cs" />
+    <Compile Include="Products\clsCategoryData.cs" />
     <Compile Include="Products\clsProductData.cs" />
     <Compile Include="Reports\clsReportData.cs" />
     <Compile Include="Suppliers\clsSupplierData.cs" />

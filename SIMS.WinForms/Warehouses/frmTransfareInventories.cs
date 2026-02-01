@@ -266,7 +266,11 @@ namespace SIMS.WinForms.Warehouses
                 boxCell.DataSource = _SourceWarehouseAvailableInventories
                     .Where(inventory => inventory.ProductInfo.ProductID == Convert.ToInt32(dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value))
                     .Select(inventory => inventory.UnitInfo)
-                    .Where(unit => !_GetSelectedProductUnitIDs((int?)dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value).Contains(unit.UnitID))
+                    .Where(
+                        unit => 
+                        !_GetSelectedProductUnitIDs((int?)dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value)
+                        .Contains(unit.UnitID.GetValueOrDefault())
+                    )
                     .ToList();
 
                 colUnit.DisplayMember = "UnitName";
@@ -285,7 +289,11 @@ namespace SIMS.WinForms.Warehouses
                 boxCell.DataSource = _SourceWarehouseAvailableInventories
                     .Where(inventory => inventory.ProductInfo.ProductID == Convert.ToInt32(dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value))
                     .Select(inventory => inventory.UnitInfo)
-                    .Where(unit => !_GetSelectedProductUnitIDs((int?)dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value).Contains(unit.UnitID))
+                    .Where(
+                        unit => 
+                        !_GetSelectedProductUnitIDs((int?)dgvTransferedInventories.CurrentRow.Cells[colProduct.Index].Value)
+                        .Contains(unit.UnitID.GetValueOrDefault())
+                    )
                     .ToList();
 
                 colUnit.DisplayMember = "UnitName";

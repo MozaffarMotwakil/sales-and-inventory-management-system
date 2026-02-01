@@ -78,7 +78,7 @@ namespace SIMS.WinForms.Suppliers
             cbRange.SelectedIndex = 6;
 
             cbProduct.Items.AddRange(clsProductService.GetAllProductNames());
-            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbUnit.Items.AddRange(clsUnitService.GetAllUnitNames());
             cbWarehouse.Items.AddRange(clsWarehouseService.GetWarehouseNames());
             cbSupplier.Items.AddRange(clsSupplierService.GetAllSupplierNames());
 

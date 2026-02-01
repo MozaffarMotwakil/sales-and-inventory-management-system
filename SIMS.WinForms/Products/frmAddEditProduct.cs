@@ -54,7 +54,7 @@ namespace SIMS.WinForms.Products
             cbCategory.SelectedValue = -1;
             cbCategory.Text = "إختار التصنيف/الفئة";
 
-            cbBaseUnit.DataSource = clsUnit.GetUnitsList();
+            cbBaseUnit.DataSource = clsUnitService.GetUnitsList();
             cbBaseUnit.ValueMember = "UnitID";
             cbBaseUnit.DisplayMember = "UnitName";
             cbBaseUnit.SelectedValue = -1;

@@ -6,24 +6,24 @@ namespace BusinessLogic.Reports
 {
     public class clsBasicPurchasesReport : clsReport
     {
-        public decimal GrossPurchasesAmount { get; set; }
-        public decimal TotalDiscounts { get; set; }
-        public decimal DiscountsRate { get; set; }
-        public decimal TotalTaxes { get; set; }
-        public decimal NetPurchases { get; set; }
-        public decimal TotalReturns { get; set; }
-        public decimal ReturnsRate { get; set; }
-        public decimal FinalNetCost { get; set; }
+        public decimal GrossPurchasesAmount { get; }
+        public decimal TotalDiscounts { get; }
+        public decimal DiscountsRate { get; }
+        public decimal TotalTaxes { get; }
+        public decimal NetPurchases { get; }
+        public decimal TotalReturns { get; }
+        public decimal ReturnsRate { get; }
+        public decimal FinalNetCost { get; }
 
-        public decimal CashAmount { get; set; }
-        public decimal CashRate { get; set; }
-        public decimal BankTransferAmount { get; set; }
-        public decimal BankTransferRate { get; set; }
+        public decimal CashAmount { get; }
+        public decimal CashRate { get; }
+        public decimal BankTransferAmount { get; }
+        public decimal BankTransferRate { get; }
 
-        public int TotalInvoicesCount { get; set; }
-        public decimal InvoiceAmountAvg { get; set; }
-        public decimal InvoiceProductCountAvg { get; set; }
-        public decimal InvoiceCountAvg { get; set; }
+        public int TotalInvoicesCount { get; }
+        public decimal InvoiceAmountAvg { get; }
+        public decimal InvoiceProductCountAvg { get; }
+        public decimal InvoiceCountAvg { get; }
 
         public clsBasicPurchasesReport(DateTime dateFrom, DateTime dateTo)
         {

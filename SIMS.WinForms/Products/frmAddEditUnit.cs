@@ -7,54 +7,53 @@ using DVLD.WinForms.Utils;
 
 namespace SIMS.WinForms.Products
 {
-    public partial class frmAddEditCategory : Form
+    public partial class frmAddEditUnit : Form
     {
-        private clsCategory _Category;
+        private clsUnit _Unit;
         private enMode _FormMode;
 
-        public frmAddEditCategory()
+        public frmAddEditUnit()
         {
             InitializeComponent();
             _FormMode = enMode.Add;
         }
 
-        public frmAddEditCategory(int categoryID)
+        public frmAddEditUnit(int unitID)
         {
             InitializeComponent();
-            _Category = clsCategoryService.CreateInstance().Find(categoryID);
+            _Unit = clsUnitService.CreateInstance().Find(unitID);
             _FormMode = enMode.Edit;
         }
 
-        public frmAddEditCategory(clsCategory category)
+        public frmAddEditUnit(clsUnit unit)
         {
             InitializeComponent();
-            _Category = category;
+            _Unit = unit;
             _FormMode = enMode.Edit;
         }
 
-        private void frmAddEditCategory_Load(object sender, EventArgs e)
+        private void frmAddEditUnit_Load(object sender, EventArgs e)
         {
             this.Text = _FormMode is enMode.Add ?
-                "إضافة فئة جديدة" :
-                "تعديل معلومات فئة";
+                "إضافة وحدة جديدة" :
+                "تعديل معلومات وحدة";
 
             if (_FormMode is enMode.Edit)
             {
-                if (_Category == null)
+                if (_Unit == null)
                 {
                     this.Close();
-                    clsFormMessages.ShowError("لم يتم العثور على الفئة");
+                    clsFormMessages.ShowError("لم يتم العثور على الوحدة");
                     return;
                 }
 
-                txtCategoryName.Text = _Category.CategoryName;
-                txtDescription.Text = _Category.Description;
+                txtUnitName.Text = _Unit.UnitName;
             }
         }
 
-        private void txtCategoryName_Validating(object sender, CancelEventArgs e)
+        private void txtUnitName_Validating(object sender, CancelEventArgs e)
         {
-            clsFormValidation.ValidatingRequiredField(txtCategoryName, errorProvider, "يجب إدخال إسم للفئة");
+            clsFormValidation.ValidatingRequiredField(txtUnitName, errorProvider, "يجب إدخال إسم للوحدة");
         }
 
         private void btnCancle_Click(object sender, EventArgs e)
@@ -77,24 +76,22 @@ namespace SIMS.WinForms.Products
 
             if (_FormMode is enMode.Add)
             {
-                _Category = new clsCategory(
-                    txtCategoryName.Text,
-                    txtDescription.Text
+                _Unit = new clsUnit(
+                    txtUnitName.Text
                     );
             }
             else
             {
-                _Category.CategoryName = txtCategoryName.Text;
-                _Category.Description = txtDescription.Text;
+                _Unit.UnitName = txtUnitName.Text;
             }
 
-            clsValidationResult validationResult = _Category.Save();
+            clsValidationResult validationResult = _Unit.Save();
 
             if (validationResult.IsValid)
             {
                 if (_FormMode is enMode.Add)
                 {
-                    clsFormMessages.ShowSuccess("تم إضافة الفئة بنجاح");
+                    clsFormMessages.ShowSuccess("تم إضافة الوحدة بنجاح");
                 }
                 else
                 {

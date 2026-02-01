@@ -68,7 +68,7 @@ namespace SIMS.WinForms.Products
 
         private void ctrProductInfo_Load(object sender, EventArgs e)
         {
-            cbUnit.Items.AddRange(clsUnit.GetAllUnitNames());
+            cbUnit.Items.AddRange(clsUnitService.GetAllUnitNames());
             cbWarehouse.Items.AddRange(clsWarehouseService.GetWarehouseNames());
             cbTransactionType.Items.AddRange(clsStockTransactionService.GetStockTransactionTypeNames());
             cbTransactionReason.Items.AddRange(clsStockTransactionService.GetStockTransactionReasonNames());
